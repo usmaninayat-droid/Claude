@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IWMP Driver App v2 — Pre-shift vehicle check</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.24.0/dist/tabler-icons.min.css">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;}
+  body{background:#E7ECEA;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#16221C;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:24px;gap:14px;}
+  .caption{font-size:13px;color:#8A9A93;text-align:center;max-width:1040px;line-height:1.6;}
+  .device{position:relative;width:100%;max-width:1180px;aspect-ratio:1280/666;background:#FFFFFF;border-radius:22px;border:10px solid #C9D2CE;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.18);}
+  .hdr{display:flex;align-items:center;gap:14px;padding:12px 22px;background:#F1F7F4;border-bottom:1px solid rgba(0,0,0,.08);}
+  .abtn{background:#EEF3F1;border:1px solid rgba(0,0,0,.12);color:#2C3A34;border-radius:12px;height:56px;min-width:56px;padding:0 18px;font-size:18px;cursor:pointer;display:flex;align-items:center;gap:6px;justify-content:center;}
+  .abtn:hover{background:#E3EBE7;}
+  .chip{background:#EEF3F1;border:1px solid rgba(0,0,0,.08);color:#5F736B;font-size:17px;padding:9px 14px;border-radius:22px;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;}
+  #grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:6px 22px 4px;flex:1;align-content:center;}
+  .tile{background:#FFFFFF;border:2px solid rgba(0,0,0,.1);border-radius:16px;padding:11px 10px 9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;position:relative;color:#16221C;font:inherit;transition:border-color .12s,background .12s,transform .08s;}
+  .tile:active{transform:scale(.97);}
+  .tile .ic{font-size:40px;color:#4A5A53;}
+  .tile .lbl{font-size:20px;font-weight:500;text-align:center;line-height:1.2;}
+  .tile .sum{font-size:15px;font-weight:500;margin-top:3px;display:none;align-items:center;gap:6px;}
+  .tile .badge{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;border:2px dashed rgba(0,0,0,.22);color:#8A9A93;background:#FFFFFF;}
+  .tile.ok{border-color:#22C882;background:#E1F5EE;}
+  .tile.ok .ic,.tile.ok .lbl{color:#0F6E56;}
+  .tile.ok .badge{border:none;background:#22C882;color:#fff;}
+  .tile.fa{border-color:#BA7517;background:#FAEEDA;}
+  .tile.fa .ic,.tile.fa .lbl{color:#854F0B;}
+  .tile.fa .badge{border:none;background:#EF9F27;color:#3A2703;}
+  .tile.fr{border-color:#C0392B;background:#FBEAE8;}
+  .tile.fr .ic,.tile.fr .lbl{color:#8a251c;}
+  .tile.fr .badge{border:none;background:#C0392B;color:#fff;}
+  .ftr{display:flex;align-items:center;gap:14px;padding:10px 22px;background:#F1F7F4;border-top:1px solid rgba(0,0,0,.08);}
+  #cta{flex:1;height:72px;border:none;border-radius:14px;font-size:23px;font-weight:500;cursor:pointer;background:#E4EAE7;color:#8A9A93;font-family:inherit;}
+  #sos{height:72px;min-width:124px;border:none;border-radius:14px;background:#C0392B;color:#fff;font-size:23px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;font-family:inherit;}
+  #faults{padding:2px 22px 0;display:none;}
+  .scroll{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;}
+  .overlay{position:absolute;inset:0;background:rgba(10,20,15,.5);display:none;align-items:center;justify-content:center;padding:22px;z-index:50;}
+  .overlay.open{display:flex;}
+  .sheet{background:#fff;border-radius:22px;width:100%;max-width:640px;max-height:100%;overflow:auto;padding:22px 24px;}
+  .sheet-hd{display:flex;align-items:center;gap:14px;margin-bottom:6px;}
+  .sheet-hd .si{width:68px;height:68px;border-radius:16px;background:#EEF3F1;display:flex;align-items:center;justify-content:center;font-size:36px;color:#4A5A53;flex:none;}
+  .sheet-hd .st{font-size:28px;font-weight:500;}
+  .sheet-hd .close{margin-inline-start:auto;background:#EEF3F1;border:none;border-radius:12px;width:54px;height:54px;font-size:26px;color:#5F736B;cursor:pointer;}
+  .q{font-size:18px;color:#5F736B;margin:18px 0 10px;}
+  .choose{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .cbig{height:110px;border-radius:16px;border:2px solid rgba(0,0,0,.12);background:#fff;font:inherit;font-size:22px;font-weight:500;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#16221C;}
+  .cbig i{font-size:40px;}
+  .cbig.okc{border-color:#22C882;color:#0F6E56;background:#E9F8F1;}
+  .cbig.rep{border-color:#EF9F27;color:#854F0B;background:#FDF3E0;}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .opt{height:90px;border-radius:14px;border:2px solid rgba(0,0,0,.12);background:#fff;font:inherit;font-size:19px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:12px;padding:0 18px;color:#16221C;}
+  .opt i{font-size:30px;color:#5F736B;}
+  .opt.sel{border-color:#BA7517;background:#FDF3E0;color:#854F0B;}
+  .opt.sel i{color:#BA7517;}
+  .sev{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .sv{height:84px;border-radius:14px;border:2px solid rgba(0,0,0,.12);background:#fff;font:inherit;font-size:20px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;color:#16221C;}
+  .sv i{font-size:28px;}
+  .sv.sel.safe{border-color:#22C882;background:#E9F8F1;color:#0F6E56;}
+  .sv.sel.no{border-color:#C0392B;background:#FBEAE8;color:#8a251c;}
+  .ev{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .evb{min-height:84px;border-radius:14px;border:2px solid rgba(0,0,0,.12);background:#fff;font:inherit;font-size:18px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px 18px;color:#16221C;text-align:start;}
+  .evb i{font-size:30px;color:#5F736B;flex:none;}
+  .evb.done{border-color:#22C882;background:#E9F8F1;color:#0F6E56;}
+  .evb.done i{color:#0F6E56;}
+  .evb.rec{border-color:#C0392B;background:#FBEAE8;color:#8a251c;}
+  .sheet-ftr{display:flex;gap:12px;margin-top:20px;}
+  .sheet-ftr button{height:68px;border-radius:14px;font:inherit;font-size:21px;font-weight:500;cursor:pointer;flex:1;border:2px solid rgba(0,0,0,.12);background:#fff;color:#16221C;}
+  .sheet-ftr .save{border:none;background:#22C882;color:#052018;flex:2;}
+  .sheet-ftr .save:disabled{background:#E4EAE7;color:#8A9A93;}
+  .faultrow{display:flex;align-items:center;gap:10px;border-radius:12px;padding:9px 12px;}
+</style>
+</head>
+<body>
+<div class="device" id="app" dir="ltr">
+  <div class="hdr">
+    <i id="back" class="ti ti-chevron-left" style="font-size:28px;color:#5F736B;"></i>
+    <div style="flex:1;min-width:0;">
+      <div data-en="Pre-shift vehicle check" data-ar="فحص المركبة قبل الوردية" class="tl" style="font-size:24px;font-weight:500;">Pre-shift vehicle check</div>
+      <div style="font-size:17px;color:#5F736B;">Truck 12 · Route A · Sun 1 Jul</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;margin-inline-end:8px;">
+      <div style="position:relative;width:60px;height:60px;">
+        <svg width="60" height="60" viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(0,0,0,.1)" stroke-width="7"/>
+          <circle id="ring" cx="32" cy="32" r="26" fill="none" stroke="#22C882" stroke-width="7" stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="163.4" transform="rotate(-90 32 32)"/>
+        </svg>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+          <span id="pcount" style="font-size:23px;font-weight:500;line-height:1;color:#16221C;">0</span>
+          <span style="font-size:13px;color:#5F736B;">/ 12</span>
+        </div>
+      </div>
+    </div>
+    <button id="audio" class="abtn" aria-label="Toggle voice"><i class="ti ti-volume" style="font-size:20px;"></i></button>
+    <button id="lang" class="abtn" aria-label="Switch language">عربي</button>
+  </div>
+  <div class="scroll">
+  <div style="display:flex;align-items:center;gap:12px;padding:12px 22px 4px;flex-wrap:wrap;">
+    <span id="status" data-en="Tap each item, then choose OK or report a problem" data-ar="المس كل عنصر ثم اختر سليم أو أبلغ عن مشكلة" class="tl" style="font-size:20px;font-weight:500;">Tap each item, then choose OK or report a problem</span>
+    <span class="chip"><span style="color:#22C882;">●</span> <span data-en="OK" data-ar="سليم" class="tl">OK</span> <b id="okc" style="color:#16221C;">0</b></span>
+    <span class="chip"><span style="color:#BA7517;">▲</span> <span data-en="Reported" data-ar="مُبلَّغ" class="tl">Reported</span> <b id="fc" style="color:#16221C;">0</b></span>
+  </div>
+  <div id="grid"></div>
+  <div id="faults">
+    <div data-en="Reported problems" data-ar="المشاكل المُبلَّغ عنها" class="tl" style="font-size:13px;color:#854F0B;margin:2px 0 6px;"></div>
+    <div id="faultlist" style="display:flex;flex-direction:column;gap:6px;"></div>
+  </div>
+  </div>
+  <div class="ftr">
+    <button id="cta" disabled>Check all items (0/12)</button>
+    <button id="sos" aria-label="SOS emergency"><i class="ti ti-urgent" style="font-size:22px;"></i>SOS</button>
+  </div>
+
+  <div class="overlay" id="overlay"><div class="sheet" id="sheet"></div></div>
+</div>
+<div class="caption">v2 pre-shift vehicle check — tap a tile → focused item sheet: OK, or a guided no-typing problem report (pictogram · severity · auto photo · voice note), all voiced. Severity sets the tile colour (amber = drivable, red = do-not-drive).</div>
+<script>
+(function(){
+  var items=[
+    {en:'Tyres',ar:'الإطارات',ic:'ti-disc'},
+    {en:'Lights',ar:'الأضواء',ic:'ti-bulb'},
+    {en:'Mirrors',ar:'المرايا',ic:'ti-eye'},
+    {en:'Brakes',ar:'الفرامل',ic:'ti-hand-stop'},
+    {en:'Oil level',ar:'مستوى الزيت',ic:'ti-droplet'},
+    {en:'Coolant',ar:'سائل التبريد',ic:'ti-temperature'},
+    {en:'Battery',ar:'البطارية',ic:'ti-battery-3'},
+    {en:'Wipers',ar:'المساحات',ic:'ti-wind'},
+    {en:'Horn',ar:'البوق',ic:'ti-volume'},
+    {en:'Seatbelt',ar:'حزام الأمان',ic:'ti-shield'},
+    {en:'AdBlue',ar:'سائل الأدبلو',ic:'ti-gas-station'},
+    {en:'Body / damage',ar:'الهيكل / الأضرار',ic:'ti-car-crash'}
+  ];
+  var problems=[
+    {en:'Damaged',ar:'تالف',ic:'ti-alert-hexagon'},
+    {en:'Leak / low',ar:'تسرب / منخفض',ic:'ti-droplet'},
+    {en:'Not working',ar:'لا يعمل',ic:'ti-ban'},
+    {en:'Warning light',ar:'ضوء تحذير',ic:'ti-alert-triangle'}
+  ];
+  var T={ok_no:{en:'OK — no problem',ar:'سليم — لا مشكلة'},report:{en:'Report a problem',ar:'الإبلاغ عن مشكلة'},
+    whats:{en:"What's the problem?",ar:'ما المشكلة؟'},howbad:{en:'How bad is it?',ar:'ما مدى خطورته؟'},
+    safe:{en:'Safe to drive',ar:'آمن للقيادة'},nodrive:{en:'Do not drive',ar:'لا تقد المركبة'},
+    evidence:{en:'Add proof',ar:'أضف دليلاً'},photo:{en:'Photo added',ar:'تمت إضافة صورة'},photoadd:{en:'Tap to retake photo',ar:'المس لإعادة الصورة'},
+    voiceadd:{en:'Add voice note',ar:'أضف ملاحظة صوتية'},voicedone:{en:'Voice note added',ar:'تمت إضافة ملاحظة صوتية'},recording:{en:'Recording…',ar:'جارٍ التسجيل…'},
+    back:{en:'Back',ar:'رجوع'},save:{en:'Save report',ar:'حفظ البلاغ'}};
+  var state=items.map(function(){return 0;});
+  var reports=items.map(function(){return null;});
+  var lang='en', muted=false, C=163.4;
+  var grid=document.getElementById('grid');
+  var openI=null, step='choose', draft=null, recTimer=null;
+  function speak(t){ if(muted) return; try{ var u=new SpeechSynthesisUtterance(t); u.lang=(lang==='ar'?'ar-SA':'en-GB'); speechSynthesis.cancel(); speechSynthesis.speak(u);}catch(e){} }
+  function L(o){ return lang==='ar'?o.ar:o.en; }
+
+  items.forEach(function(it,i){
+    var b=document.createElement('button');
+    b.className='tile'; b.setAttribute('aria-label',it.en);
+    b.innerHTML='<span class="badge"><i class="ti ti-dots"></i></span><i class="ti '+it.ic+' ic"></i><span class="lbl">'+L(it)+'</span><span class="sum"></span>';
+    b.addEventListener('click',function(){ openItem(i); });
+    grid.appendChild(b);
+  });
+
+  function openItem(i){ openI=i; draft=reports[i]?JSON.parse(JSON.stringify(reports[i])):{problem:null,severity:null,photo:true,voice:false}; step=(state[i]===2?'report':'choose'); buildSheet(); document.getElementById('overlay').classList.add('open'); speak(L(items[i])); }
+  function closeSheet(){ document.getElementById('overlay').classList.remove('open'); openI=null; if(recTimer){clearInterval(recTimer);recTimer=null;} }
+
+  function buildSheet(){
+    var it=items[openI], s=document.getElementById('sheet'); var h='';
+    h+='<div class="sheet-hd"><span class="si"><i class="ti '+it.ic+'"></i></span><span class="st">'+L(it)+'</span><button class="close" id="x" aria-label="Close"><i class="ti ti-x"></i></button></div>';
+    if(step==='choose'){
+      h+='<div class="q">'+ (lang==='ar'?'هل هذا العنصر سليم؟':'Is this item OK?') +'</div>';
+      h+='<div class="choose"><button class="cbig okc" id="mok"><i class="ti ti-checks"></i>'+L(T.ok_no)+'</button>'+
+         '<button class="cbig rep" id="mrep"><i class="ti ti-alert-triangle"></i>'+L(T.report)+'</button></div>';
+    } else {
+      h+='<div class="q">'+L(T.whats)+'</div><div class="opts">';
+      problems.forEach(function(p,pi){ h+='<button class="opt'+(draft.problem===pi?' sel':'')+'" data-p="'+pi+'"><i class="ti '+p.ic+'"></i>'+L(p)+'</button>'; });
+      h+='</div>';
+      h+='<div class="q">'+L(T.howbad)+'</div><div class="sev">'+
+         '<button class="sv safe'+(draft.severity==='safe'?' sel':'')+'" data-s="safe"><i class="ti ti-steering-wheel"></i>'+L(T.safe)+'</button>'+
+         '<button class="sv no'+(draft.severity==='no'?' sel':'')+'" data-s="no"><i class="ti ti-hand-stop"></i>'+L(T.nodrive)+'</button></div>';
+      h+='<div class="q">'+L(T.evidence)+'</div><div class="ev">'+
+         '<div class="evb done" id="photo"><i class="ti ti-camera-check"></i><span>'+L(T.photo)+'<br><span style="font-weight:400;font-size:12.5px;opacity:.8">'+L(T.photoadd)+'</span></span></div>'+
+         '<button class="evb'+(draft.voice?' done':'')+'" id="voice"><i class="ti '+(draft.voice?'ti-microphone-2':'ti-microphone')+'"></i><span id="vtxt">'+(draft.voice?L(T.voicedone):L(T.voiceadd))+'</span></button></div>';
+      h+='<div class="sheet-ftr"><button id="back">'+L(T.back)+'</button><button class="save" id="save"'+((draft.problem!==null&&draft.severity)?'':' disabled')+'>'+L(T.save)+'</button></div>';
+    }
+    s.innerHTML=h;
+    s.querySelector('#x').addEventListener('click',closeSheet);
+    if(step==='choose'){
+      s.querySelector('#mok').addEventListener('click',function(){ state[openI]=1; reports[openI]=null; speak(L(items[openI])+'. '+(lang==='ar'?'سليم':'okay')); closeSheet(); render(); });
+      s.querySelector('#mrep').addEventListener('click',function(){ step='report'; buildSheet(); speak(L(T.whats)); });
+    } else {
+      s.querySelectorAll('.opt').forEach(function(o){ o.addEventListener('click',function(){ draft.problem=+o.getAttribute('data-p'); speak(L(problems[draft.problem])); buildSheet(); }); });
+      s.querySelectorAll('.sv').forEach(function(o){ o.addEventListener('click',function(){ draft.severity=o.getAttribute('data-s'); speak(draft.severity==='safe'?L(T.safe):L(T.nodrive)); buildSheet(); }); });
+      s.querySelector('#photo').addEventListener('click',function(){ speak(L(T.photo)); });
+      s.querySelector('#voice').addEventListener('click',function(){ toggleRec(); });
+      s.querySelector('#back').addEventListener('click',function(){ step='choose'; buildSheet(); });
+      var sv=s.querySelector('#save'); sv.addEventListener('click',function(){ if(draft.problem===null||!draft.severity) return; reports[openI]=draft; state[openI]=2; speak((lang==='ar'?'تم حفظ البلاغ':'Report saved')); closeSheet(); render(); });
+    }
+  }
+  function toggleRec(){
+    var vb=document.getElementById('voice'), vt=document.getElementById('vtxt');
+    if(recTimer){ clearInterval(recTimer); recTimer=null; draft.voice=true; vb.className='evb done'; vb.querySelector('i').className='ti ti-microphone-2'; vt.textContent=L(T.voicedone); return; }
+    if(draft.voice){ draft.voice=false; vb.className='evb'; vb.querySelector('i').className='ti ti-microphone'; vt.textContent=L(T.voiceadd); return; }
+    var sec=0; vb.className='evb rec'; vb.querySelector('i').className='ti ti-microphone';
+    vt.textContent=L(T.recording)+' 0:00';
+    recTimer=setInterval(function(){ sec++; vt.textContent=L(T.recording)+' 0:'+(sec<10?'0':'')+sec; },1000);
+  }
+
+  function render(){
+    var ok=0,ft=0,ins=0;
+    grid.querySelectorAll('.tile').forEach(function(t,i){
+      t.classList.remove('ok','fa','fr');
+      var badge=t.querySelector('.badge'), sum=t.querySelector('.sum');
+      sum.style.display='none'; sum.innerHTML='';
+      if(state[i]===1){ t.classList.add('ok'); ok++; ins++; badge.innerHTML='<i class="ti ti-check"></i>'; }
+      else if(state[i]===2){ ft++; ins++;
+        var r=reports[i], nodrive=r&&r.severity==='no';
+        t.classList.add(nodrive?'fr':'fa'); badge.innerHTML='<i class="ti ti-alert-triangle"></i>';
+        var p=r&&r.problem!==null?L(problems[r.problem]):'';
+        sum.style.display='flex'; sum.style.color=nodrive?'#8a251c':'#854F0B';
+        sum.innerHTML=(r&&r.voice?'<i class="ti ti-microphone-2"></i>':'<i class="ti ti-camera"></i>')+' '+p+(nodrive?' · '+L(T.nodrive):'');
+      } else { badge.innerHTML='<i class="ti ti-dots"></i>'; }
+    });
+    document.getElementById('pcount').textContent=ins;
+    document.getElementById('okc').textContent=ok;
+    document.getElementById('fc').textContent=ft;
+    document.getElementById('ring').setAttribute('stroke-dashoffset',(C*(1-ins/12)).toFixed(1));
+    var anyNo=reports.some(function(r){return r&&r.severity==='no';});
+    document.getElementById('ring').setAttribute('stroke',anyNo?'#C0392B':(ft>0?'#BA7517':'#22C882'));
+    var fl=document.getElementById('faults'), list=document.getElementById('faultlist');
+    if(ft>0){ fl.style.display='block'; list.innerHTML='';
+      items.forEach(function(it,i){ if(state[i]===2){ var r=reports[i], nod=r.severity==='no';
+        var row=document.createElement('div'); row.className='faultrow';
+        row.style.background=nod?'#FBEAE8':'#FDF3E0'; row.style.border='1px solid '+(nod?'rgba(192,57,43,.35)':'rgba(186,117,23,.35)');
+        row.innerHTML='<i class="ti '+it.ic+'" style="font-size:20px;color:'+(nod?'#C0392B':'#BA7517')+'"></i>'+
+          '<span style="flex:1;font-size:15px;color:#16221C"><b>'+L(it)+'</b> · '+L(problems[r.problem])+'</span>'+
+          '<span class="chip" style="color:'+(nod?'#8a251c':'#854F0B')+'">'+(nod?'<i class="ti ti-hand-stop"></i> '+L(T.nodrive):'<i class="ti ti-steering-wheel"></i> '+L(T.safe))+'</span>'+
+          '<span class="chip"><i class="ti ti-camera"></i></span>'+(r.voice?'<span class="chip"><i class="ti ti-microphone-2"></i></span>':'');
+        list.appendChild(row);
+      }});
+    } else { fl.style.display='none'; }
+    var cta=document.getElementById('cta');
+    if(ins<12){ cta.disabled=true; cta.style.background='#E4EAE7'; cta.style.color='#8A9A93'; cta.textContent=(lang==='ar'?('افحص كل العناصر ('+ins+'/12)'):('Check all items ('+ins+'/12)')); }
+    else if(ft===0){ cta.disabled=false; cta.style.background='#22C882'; cta.style.color='#052018'; cta.textContent=(lang==='ar'?'المركبة جاهزة — ابدأ الوردية':'Vehicle ready — start shift'); }
+    else if(anyNo){ cta.disabled=false; cta.style.background='#C0392B'; cta.style.color='#fff'; cta.textContent=(lang==='ar'?'مركبة غير آمنة — أبلغ المشرف':'Vehicle not safe — notify supervisor'); }
+    else { cta.disabled=false; cta.style.background='#EF9F27'; cta.style.color='#3A2703'; cta.textContent=(lang==='ar'?('أبلغ عن '+ft+' مشكلة وتابع'):('Report '+ft+' issue'+(ft>1?'s':'')+' & continue')); }
+  }
+  function applyLang(){
+    document.getElementById('app').dir=(lang==='ar'?'rtl':'ltr');
+    document.getElementById('lang').textContent=(lang==='ar'?'EN':'عربي');
+    document.getElementById('back').className='ti '+(lang==='ar'?'ti-chevron-right':'ti-chevron-left');
+    document.querySelectorAll('.tl').forEach(function(el){ el.textContent=(lang==='ar'?el.getAttribute('data-ar'):el.getAttribute('data-en')); });
+    grid.querySelectorAll('.tile').forEach(function(t,i){ t.querySelector('.lbl').textContent=L(items[i]); });
+    if(openI!==null) buildSheet();
+    render();
+  }
+  document.getElementById('lang').addEventListener('click',function(){ lang=(lang==='en'?'ar':'en'); applyLang(); });
+  document.getElementById('audio').addEventListener('click',function(){ muted=!muted; this.innerHTML='<i class="ti '+(muted?'ti-volume-off':'ti-volume')+'" style="font-size:20px;"></i>'; });
+  document.getElementById('sos').addEventListener('click',function(){ alert('SOS — sends location + Truck 12 / Route A to dispatch. (Tap-and-hold in production.)'); });
+  document.getElementById('overlay').addEventListener('click',function(e){ if(e.target===this) closeSheet(); });
+  render();
+})();
+</script>
+</body>
+</html>

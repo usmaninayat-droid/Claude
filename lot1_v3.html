@@ -1,0 +1,330 @@
+<meta charset="utf-8">
+<title>LOT 1: Abu Dhabi — FAMS Palette</title>
+<style>
+  :root{
+    --bg:#f9fafb; --card:#ffffff; --ink:#101828; --ink2:#475467; --ink3:#98a2b3;
+    --line:#eaecf0; --line2:#d0d5dd; --minimal:#f9fafb;
+    --brand:#22c882; --brand-d:#027a48; --brand-l:#e9faf3;
+    --success:#12b76a; --success-l:#ecfdf3;
+    --lav:#9e77ed; --lav-l:#f4f0fe;
+    --cyan:#06b6d4; --cyan-l:#ecfeff;
+    --blue:#047cd5; --blue-l:#eaf4fd;
+    --warning:#f79009; --warning-l:#fffaeb; --yellow:#f5bb2a;
+    --error:#f04438; --error-l:#fef3f2;
+    --rose:#f63d68; --rose-l:#fff1f3;
+    --shadow:0 4px 6px -2px rgba(16,24,40,.03),0 12px 16px -4px rgba(16,24,40,.08);
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body,html{margin:0;padding:0}
+  .wrap{font-family:var(--font);background:var(--bg);color:var(--ink);padding:22px;max-width:1360px;margin:0 auto;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{margin:0}
+  .muted{color:var(--ink2)} .dim{color:var(--ink3)}
+  svg{display:block;overflow:visible}
+
+  .crumb{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 11px;font-size:12.5px;font-weight:600;color:var(--ink2)}
+  .pill{display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:999px;font-size:12px;font-weight:700}
+  .pill.active{background:var(--brand);color:#fff;box-shadow:0 6px 16px rgba(34,200,130,.3)}
+  .pill.dot::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;gap:20px;flex-wrap:wrap}
+  .title{font-size:27px;font-weight:800;letter-spacing:-.5px}
+  .subtitle{color:var(--ink3);font-size:13.5px;margin-top:7px;max-width:660px;line-height:1.5}
+
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:18px 20px}
+  .ch{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+  .ch .tag{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .ch h3{font-size:15.5px;font-weight:700}
+  .ch .sub{font-size:11.5px;color:var(--ink3);margin-top:1px}
+  .ch .badge{margin-left:auto;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px}
+
+  .span2{grid-column:span 2}.span3{grid-column:span 3}.span4{grid-column:span 4}.span5{grid-column:span 5}
+  .span6{grid-column:span 6}.span7{grid-column:span 7}.span8{grid-column:span 8}.span12{grid-column:span 12}
+  @media(max-width:1080px){.grid{grid-template-columns:repeat(6,1fr)}[class*=span]{grid-column:span 3}.span12{grid-column:span 6}}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}[class*=span]{grid-column:span 1}}
+
+  /* KPI tiles */
+  .ktile{display:flex;flex-direction:column;gap:9px}
+  .ktile .top{display:flex;align-items:center;gap:9px}
+  .ktile .ic{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px}
+  .ktile .lbl{font-size:12px;color:var(--ink2);font-weight:600}
+  .ktile .val{font-size:23px;font-weight:800;letter-spacing:-.5px}
+  .ktile .val small{font-size:13px;color:var(--ink3);font-weight:600}
+  .ktrend{font-size:11.5px;font-weight:700}
+
+  .legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:12px}
+  .lg{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink2);font-weight:600}
+  .lg .sw{width:11px;height:11px;border-radius:3px}
+  .count{background:var(--minimal);border:1px solid var(--line);border-radius:6px;padding:1px 7px;font-size:11px;font-weight:700;color:var(--ink2)}
+  .center{display:flex;align-items:center;justify-content:center}
+
+  /* segmented distribution bar */
+  .segrow{display:flex;align-items:center;gap:14px;margin:14px 0}
+  .segrow .nm{width:96px;font-size:12.5px;font-weight:600;color:var(--ink2)}
+  .segbar{flex:1;height:16px;border-radius:8px;display:flex;overflow:hidden;background:var(--minimal);gap:2px}
+  .segbar i{display:block;height:100%}
+  .segrow .tot{font-size:13px;font-weight:800;width:34px;text-align:right}
+
+  .kv{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+  .kv:last-child{border-bottom:0}.kv .k{font-size:12.5px;color:var(--ink3)}.kv .v{font-size:13px;font-weight:600}
+  .av{width:22px;height:22px;border-radius:50%;background:#eef1f6;color:#475467;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;margin-right:7px;vertical-align:middle}
+
+  /* schedule cards */
+  .sched{display:flex;flex-direction:column;gap:10px}
+  .scard{border:1px solid var(--line);border-radius:12px;padding:11px 13px;background:var(--card)}
+  .scard .r1{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+  .scard .nm{font-size:13px;font-weight:700}
+  .scard .meta{font-size:11.5px;color:var(--ink3);margin-bottom:8px}
+  .tinybar{height:6px;border-radius:5px;background:var(--minimal);overflow:hidden}
+  .tinybar i{display:block;height:100%;border-radius:5px}
+  .badge{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px}
+  .b-suc{background:var(--success-l);color:var(--brand-d)} .b-warn{background:var(--warning-l);color:#b54708}
+  .b-err{background:var(--error-l);color:#b42318} .b-rose{background:var(--rose-l);color:#c01548}
+  .b-blue{background:var(--blue-l);color:#00478a} .b-lav{background:var(--lav-l);color:#6941c6} .b-gray{background:#f2f4f7;color:#475467}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink3);font-weight:700;padding:9px 12px;border-bottom:1px solid var(--line)}
+  td{padding:11px 12px;border-bottom:1px solid var(--line);color:var(--ink2)}
+  tr:last-child td{border-bottom:0}
+  td .id{font-weight:700;color:var(--ink)}
+  .tablewrap{overflow-x:auto}
+  .mapwrap{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+  .mtag{position:absolute;background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 10px;font-size:11px;font-weight:600;box-shadow:var(--shadow)}
+  .foot{text-align:center;color:var(--ink3);font-size:12px;padding:14px 0 2px}
+
+  /* fleet availability breakdown cards */
+  .fleet-stats{display:flex;align-items:stretch;margin:14px 0 12px}
+  .fleet-stat{flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 6px;gap:5px}
+  .fleet-num{font-size:32px;font-weight:800;letter-spacing:-0.5px;line-height:1}
+  .fleet-lbl{font-size:11.5px;color:var(--ink2);font-weight:600;text-align:center;line-height:1.3}
+  .fleet-div{width:1px;background:var(--line);margin:8px 0}
+  .fleet-bar{height:10px;border-radius:6px;display:flex;overflow:hidden;gap:2px;margin-top:4px}
+  .fleet-bar i{display:block;height:100%}
+</style>
+
+<div class="wrap">
+  <div class="crumb">
+    <span class="chip"># &nbsp;CRT#123</span>
+    <span class="dim" style="font-size:12.5px">Contracts / Lot Overview</span>
+    <span style="flex:1"></span>
+    <span class="pill active dot">ACTIVE</span>
+  </div>
+  <div class="head">
+    <div>
+      <h1 class="title">LOT 1: Abu Dhabi</h1>
+      <p class="subtitle">Operational command view — compliance health, resource readiness, service performance and asset composition for the assigned lot.</p>
+    </div>
+    <div style="text-align:right"><div style="font-size:12px;color:var(--ink3)">Reporting period</div><div style="font-size:15px;font-weight:700">08 – 14 July · Year 1</div></div>
+  </div>
+
+  <div class="grid">
+    <!-- KPI tiles -->
+    <div class="card span2 ktile"><div class="top"><span class="ic" style="background:var(--brand-l);color:var(--brand-d)">◎</span><span class="lbl">Compliance</span></div><div class="val">81<small>%</small></div><span class="ktrend" style="color:var(--brand-d)">▲ 4% vs last</span></div>
+    <div class="card span2 ktile"><div class="top"><span class="ic" style="background:var(--blue-l);color:var(--blue)">🚛</span><span class="lbl">Vehicles</span></div><div class="val">100<small> / 120</small></div><span class="ktrend dim">83% of capacity</span></div>
+    <div class="card span2 ktile"><div class="top"><span class="ic" style="background:var(--cyan-l);color:#0e7490">👷</span><span class="lbl">Workforce</span></div><div class="val">100<small> / 120</small></div><span class="ktrend dim">83% of capacity</span></div>
+    <div class="card span2 ktile"><div class="top"><span class="ic" style="background:var(--lav-l);color:#6941c6">🛠️</span><span class="lbl">Equipment</span></div><div class="val">100<small> / 120</small></div><span class="ktrend dim">83% of capacity</span></div>
+    <div class="card span2 ktile"><div class="top"><span class="ic" style="background:var(--warning-l);color:#b54708">🗑️</span><span class="lbl">Bins</span></div><div class="val">100<small> / 120</small></div><span class="ktrend dim">83% of capacity</span></div>
+    <div class="card span2 ktile"><div class="top"><span class="ic" style="background:#eef1f6;color:var(--ink2)">📅</span><span class="lbl">Days Left</span></div><div class="val">45<small> days</small></div><span class="ktrend dim">75 of 120 elapsed</span></div>
+
+    <!-- Operational Health rings -->
+    <div class="card span4">
+      <div class="ch"><span class="tag" style="background:var(--brand-l)">◎</span><div><h3>Operational Health</h3><div class="sub">Three core ratios</div></div><span class="badge b-suc">81%</span></div>
+      <div class="center" id="rings"></div>
+      <div id="ringsLegend" style="margin-top:10px"></div>
+    </div>
+
+    <!-- Resource composition segmented (Fleet Availability style) -->
+    <div class="card span5">
+      <div class="ch"><span class="tag" style="background:var(--lav-l)">📊</span><div><h3>Resource Composition</h3><div class="sub">Approved units by type (segmented)</div></div></div>
+      <div id="segbars"></div>
+      <div class="legend"><span class="lg"><span class="sw" style="background:var(--brand)"></span>Primary</span><span class="lg"><span class="sw" style="background:var(--lav)"></span>Secondary</span><span class="lg"><span class="sw" style="background:var(--warning)"></span>Specialist</span></div>
+    </div>
+
+    <!-- Contract -->
+    <div class="card span3">
+      <div class="ch"><span class="tag" style="background:var(--brand-l)">📄</span><div><h3>Contract</h3><div class="sub">CRT#123 · Lot 1</div></div></div>
+      <div id="contract"></div>
+    </div>
+
+    <!-- Radar -->
+    <div class="card span5">
+      <div class="ch"><span class="tag" style="background:var(--lav-l)">📡</span><div><h3>KPI Performance Radar</h3><div class="sub">Achieved vs contractual target</div></div></div>
+      <div class="center" id="radar"></div>
+      <div class="legend" id="radarLegend"></div>
+    </div>
+    <!-- Coxcomb -->
+    <div class="card span4">
+      <div class="ch"><span class="tag" style="background:var(--brand-l)">🌸</span><div><h3>Service Coverage</h3><div class="sub">Frequency compliance by line</div></div></div>
+      <div class="center" id="coxcomb"></div>
+      <div class="legend" id="coxLegend"></div>
+    </div>
+    <!-- Contractor -->
+    <div class="card span3">
+      <div class="ch"><span class="tag" style="background:var(--blue-l)">🏢</span><div><h3>Contractor</h3><div class="sub">ESP Contractor</div></div></div>
+      <div id="contractor"></div>
+    </div>
+
+    <!-- Slope -->
+    <div class="card span7">
+      <div class="ch"><span class="tag" style="background:var(--brand-l)">📐</span><div><h3>Annual Compliance Trajectory</h3><div class="sub">Year-by-year vs 90% target band</div></div><span class="badge b-warn">4 yrs below band</span></div>
+      <div id="slope"></div>
+    </div>
+    <!-- Dumbbell -->
+    <div class="card span5">
+      <div class="ch"><span class="tag" style="background:var(--rose-l)">🏋️</span><div><h3>Resource Gap</h3><div class="sub">Required → Actual shortfall</div></div><span class="badge b-rose">−30 each</span></div>
+      <div id="dumbbell"></div>
+    </div>
+
+    <!-- GIS map + schedule -->
+    <div class="card span8">
+      <div class="ch"><span class="tag" style="background:var(--brand-l)">🗺️</span><div><h3>Live GIS Map</h3><div class="sub">Routes & vehicles — Lot 1, Abu Dhabi</div></div></div>
+      <div style="display:grid;grid-template-columns:230px 1fr;gap:14px">
+        <div class="sched" id="sched"></div>
+        <div id="map"></div>
+      </div>
+    </div>
+    <!-- Calendar heat -->
+    <div class="card span4">
+      <div class="ch"><span class="tag" style="background:var(--warning-l)">🗓️</span><div><h3>Daily Plan Compliance</h3><div class="sub">Achieved & deficit to baseline</div></div></div>
+      <div id="calendar"></div>
+    </div>
+
+    <!-- Breakdown — Fleet Availability style -->
+    <div class="card span3" id="bd-0"></div>
+    <div class="card span3" id="bd-1"></div>
+    <div class="card span3" id="bd-2"></div>
+    <div class="card span3" id="bd-3"></div>
+
+    <!-- Bin Repair table -->
+    <div class="card span12">
+      <div class="ch"><span class="tag" style="background:var(--rose-l)">🧾</span><div><h3>Bin Repair &amp; Replacement</h3><div class="sub">Open service tickets across the lot</div></div><span class="badge b-rose" style="margin-left:auto">6 open tasks</span></div>
+      <div class="tablewrap"><table id="repairTable"></table></div>
+    </div>
+  </div>
+  <div class="foot">Tadweer — Launch Pad · New visualization system · FAMS design-system palette · same data as source</div>
+</div>
+
+<script>
+const C={brand:'#22c882',brandD:'#027a48',success:'#12b76a',lav:'#9e77ed',cyan:'#06b6d4',blue:'#047cd5',warning:'#f79009',yellow:'#f5bb2a',error:'#f04438',rose:'#f63d68',ink:'#101828',ink2:'#475467',ink3:'#98a2b3',line:'#eaecf0',line2:'#d0d5dd',track:'#eef1f6',minimal:'#f9fafb'};
+const $=id=>document.getElementById(id);
+const POL=(cx,cy,r,d)=>{const a=(d-90)*Math.PI/180;return [cx+r*Math.cos(a),cy+r*Math.sin(a)];};
+const arc=(cx,cy,r,s,e)=>{const[x1,y1]=POL(cx,cy,r,s),[x2,y2]=POL(cx,cy,r,e);const lg=(((e-s)%360)+360)%360>180?1:0;return `M${x1.toFixed(2)} ${y1.toFixed(2)} A ${r} ${r} 0 ${lg} 1 ${x2.toFixed(2)} ${y2.toFixed(2)}`;};
+
+/* rings */
+(function(){const items=[{l:'Overall Compliance',v:81,c:C.brand},{l:'Resource Utilisation',v:83,c:C.lav},{l:'Contract Time Elapsed',v:63,c:C.cyan}];
+  const sz=210,cx=105,cy=105,sw=15;let s=`<svg viewBox="0 0 ${sz} ${sz}" width="210" height="210">`;
+  items.forEach((it,i)=>{const r=88-i*(sw+7);s+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${C.track}" stroke-width="${sw}"/><path d="${arc(cx,cy,r,-90,-90+Math.min(359.9,it.v*3.6))}" fill="none" stroke="${it.c}" stroke-width="${sw}" stroke-linecap="round"/>`;});
+  s+=`<text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="32" font-weight="800" fill="${C.ink}">81%</text><text x="${cx}" y="${cy+16}" text-anchor="middle" font-size="10" font-weight="600" fill="${C.ink3}">health index</text></svg>`;
+  $('rings').innerHTML=s;
+  $('ringsLegend').innerHTML=items.map(it=>`<div style="display:flex;align-items:center;gap:9px;padding:6px 0"><span style="width:9px;height:9px;border-radius:50%;background:${it.c}"></span><span style="font-size:12.5px;color:${C.ink2};font-weight:600">${it.l}</span><b style="margin-left:auto;color:${it.c};font-size:13.5px">${it.v}%</b></div>`).join('');
+})();
+
+/* segmented composition bars */
+(function(){
+  const rows=[['Vehicles',[['Compactor',73],['Bin Washer',43],['Tipper',5]]],['Workforce',[['Drivers',73],['Helpers',43],['Supervisors',5]]],['Equipment',[['Equip 1',73],['Equip 2',43],['Equip 3',5]]]];
+  const cols=[C.brand,C.lav,C.warning];
+  $('segbars').innerHTML=rows.map(([nm,segs])=>{
+    const tot=segs.reduce((a,s)=>a+s[1],0);
+    const bar=segs.map((s,i)=>`<i style="flex:${s[1]};background:${cols[i]}" title="${s[0]} ${s[1]}"></i>`).join('');
+    return `<div class="segrow"><span class="nm">${nm}</span><span class="segbar">${bar}</span><span class="tot">${tot}</span></div>`;
+  }).join('');
+})();
+
+/* radar */
+(function(){const axes=['Solid Waste','Recyclables','Street Sweep','Bulky/Garden','Public Area'],ach=[75,70,77,88,62],tgt=[88,95,87,100,92];
+  const sz=300,cx=150,cy=150,Rmax=104,N=5,pt=(i,v)=>POL(cx,cy,Rmax*v/100,i*360/N);
+  let s=`<svg viewBox="0 0 ${sz} ${sz}" width="270" height="270">`;
+  [25,50,75,100].forEach(t=>{let d='';for(let i=0;i<N;i++){const[x,y]=pt(i,t);d+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';}s+=`<path d="${d}Z" fill="none" stroke="${C.line}"/>`;});
+  for(let i=0;i<N;i++){const[x,y]=pt(i,100);s+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${C.line}"/>`;}
+  const poly=(v,st,fl)=>{let d='';v.forEach((q,i)=>{const[x,y]=pt(i,q);d+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';});return `<path d="${d}Z" fill="${fl}" stroke="${st}" stroke-width="2" stroke-linejoin="round"/>`;};
+  s+=poly(tgt,'#cbd2e0','rgba(152,162,179,0.12)');s+=poly(ach,C.lav,'rgba(158,119,237,0.20)');
+  ach.forEach((v,i)=>{const[x,y]=pt(i,v);s+=`<circle cx="${x}" cy="${y}" r="3.5" fill="${C.lav}"/>`;});
+  axes.forEach((a,i)=>{const[x,y]=POL(cx,cy,Rmax+20,i*360/N);const anc=Math.abs(x-cx)<6?'middle':(x>cx?'start':'end');s+=`<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anc}" font-size="10.5" font-weight="600" fill="${C.ink2}">${a}</text>`;});
+  $('radar').innerHTML=s+'</svg>';
+  $('radarLegend').innerHTML=`<span class="lg"><span class="sw" style="background:${C.lav}"></span>Achieved</span><span class="lg"><span class="sw" style="background:#cbd2e0"></span>Target</span>`;
+})();
+
+/* coxcomb */
+(function(){const data=[['Full Bin',89,C.brand],['Bin Washing',88,C.cyan],['Bulky Waste',92,C.blue],['Dead Animals',95,C.lav]];
+  const sz=240,cx=120,cy=120,Rmax=104,N=4,gp=4;let s=`<svg viewBox="0 0 ${sz} ${sz}" width="230" height="230">`;
+  [25,50,75,100].forEach(t=>{s+=`<circle cx="${cx}" cy="${cy}" r="${Rmax*t/100}" fill="none" stroke="${C.line}"/>`;});
+  data.forEach((d,i)=>{const a0=i*360/N+gp,a1=(i+1)*360/N-gp,r=Rmax*d[1]/100,[x0,y0]=POL(cx,cy,r,a0),[x1,y1]=POL(cx,cy,r,a1),lg=(a1-a0)>180?1:0;
+    s+=`<path d="M${cx} ${cy} L${x0.toFixed(1)} ${y0.toFixed(1)} A ${r} ${r} 0 ${lg} 1 ${x1.toFixed(1)} ${y1.toFixed(1)} Z" fill="${d[2]}" fill-opacity="0.88"/>`;
+    const[tx,ty]=POL(cx,cy,r*0.64,(a0+a1)/2);s+=`<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">${d[1]}</text>`;});
+  $('coxcomb').innerHTML=s+'</svg>';
+  $('coxLegend').innerHTML=data.map(d=>`<span class="lg"><span class="sw" style="background:${d[2]}"></span>${d[0]}</span>`).join('');
+})();
+
+/* slope */
+(function(){const vals=[95,80,80,80,80],target=90,w=640,h=240,top=24,bottom=40,left=42,right=24,ph=h-top-bottom,pw=w-left-right,max=100,min=60;
+  const X=i=>left+pw*i/(vals.length-1),Y=v=>top+ph*(1-(v-min)/(max-min));
+  let g='';for(let t=60;t<=100;t+=10){const y=Y(t);g+=`<line x1="${left}" y1="${y}" x2="${w-right}" y2="${y}" stroke="${C.line}"/><text x="${left-8}" y="${y+3}" text-anchor="end" font-size="9.5" fill="${C.ink3}">${t}</text>`;}
+  const yb=Y(target);g+=`<rect x="${left}" y="${top}" width="${pw}" height="${(yb-top).toFixed(1)}" fill="rgba(34,200,130,0.07)"/><line x1="${left}" y1="${yb}" x2="${w-right}" y2="${yb}" stroke="${C.brand}" stroke-dasharray="6 5" stroke-width="1.5"/><text x="${w-right}" y="${yb-6}" text-anchor="end" font-size="10" font-weight="700" fill="${C.brandD}">Target band 90%</text>`;
+  let line=`M${X(0)} ${Y(vals[0])}`;vals.forEach((v,i)=>{if(i)line+=` L${X(i)} ${Y(v)}`;});
+  let gap=`M${X(0)} ${yb}`;vals.forEach((v,i)=>{gap+=` L${X(i)} ${Y(Math.min(v,target))}`;});gap+=` L${X(vals.length-1)} ${yb} Z`;
+  g+=`<path d="${gap}" fill="rgba(247,144,9,0.14)"/><path d="${line}" fill="none" stroke="${C.lav}" stroke-width="3" stroke-linejoin="round"/>`;
+  vals.forEach((v,i)=>{const x=X(i),y=Y(v),ab=v>=target;g+=`<circle cx="${x}" cy="${y}" r="6" fill="${ab?C.brand:C.warning}" stroke="#fff" stroke-width="2"/><text x="${x}" y="${y-14}" text-anchor="middle" font-size="12" font-weight="800" fill="${C.ink}">${v}%</text><text x="${x}" y="${h-22}" text-anchor="middle" font-size="11" font-weight="600" fill="${C.ink2}">Year ${i+1}</text>`;});
+  $('slope').innerHTML=`<svg viewBox="0 0 ${w} ${h}" width="100%">${g}</svg>`;
+})();
+
+/* dumbbell */
+(function(){const data=[['Vehicles',100,70],['Workforces',100,70],['Equipment',100,70],['Bins',100,70]],max=110;
+  const w=520,rowH=46,top=12,left=104,right=34,h=top*2+data.length*rowH,plot=w-left-right,X=v=>left+plot*v/max;
+  let g='';for(let t=0;t<=100;t+=25){const x=X(t);g+=`<line x1="${x}" y1="${top}" x2="${x}" y2="${h-top}" stroke="${C.line}"/><text x="${x}" y="${h-1}" text-anchor="middle" font-size="9.5" fill="${C.ink3}">${t}</text>`;}
+  data.forEach((d,i)=>{const y=top+i*rowH+rowH/2,xr=X(d[1]),xa=X(d[2]);
+    g+=`<text x="${left-12}" y="${y+4}" text-anchor="end" font-size="12" font-weight="600" fill="${C.ink2}">${d[0]}</text><line x1="${xa}" y1="${y}" x2="${xr}" y2="${y}" stroke="${C.rose}" stroke-width="4" stroke-linecap="round" opacity="0.45"/><circle cx="${xa}" cy="${y}" r="7" fill="${C.rose}" stroke="#fff" stroke-width="2"/><circle cx="${xr}" cy="${y}" r="7" fill="${C.brand}" stroke="#fff" stroke-width="2"/><text x="${xa}" y="${y-12}" text-anchor="middle" font-size="11" font-weight="800" fill="${C.rose}">${d[2]}</text><text x="${xr}" y="${y-12}" text-anchor="middle" font-size="11" font-weight="800" fill="${C.brandD}">${d[1]}</text><text x="${(xa+xr)/2}" y="${y+18}" text-anchor="middle" font-size="10" font-weight="700" fill="${C.error}">−${d[1]-d[2]}</text>`;});
+  $('dumbbell').innerHTML=`<svg viewBox="0 0 ${w} ${h}" width="100%">${g}</svg><div class="legend"><span class="lg"><span class="sw" style="background:${C.brand};border-radius:50%"></span>Required</span><span class="lg"><span class="sw" style="background:${C.rose};border-radius:50%"></span>Actual</span></div>`;
+})();
+
+/* calendar heat + deficit */
+(function(){const days=[['Mon 8',59],['Tue 9',63],['Wed 10',66],['Thu 11',70],['Fri 12',72],['Sat 13',76],['Sun 14',80]],base=90;
+  const heat=v=>{const t=Math.max(0,Math.min(1,(v-55)/40)),stops=[[240,68,56],[247,144,9],[34,200,130]],seg=t*2,i=Math.min(1,Math.floor(seg)),f=seg-i,a=stops[i],b=stops[i+1]||stops[i];return `rgb(${a.map((c,k)=>Math.round(c+(b[k]-c)*f)).join(',')})`;};
+  const cw=44,gap=7,top=6,cellH=52,w=days.length*(cw+gap),h=top+cellH+30+70;let s='';
+  days.forEach((d,i)=>{const x=i*(cw+gap)+2,col=heat(d[1]);s+=`<rect x="${x}" y="${top}" width="${cw}" height="${cellH}" rx="9" fill="${col}" fill-opacity="0.92"/><text x="${x+cw/2}" y="${top+28}" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">${d[1]}</text><text x="${x+cw/2}" y="${top+cellH+15}" text-anchor="middle" font-size="10" font-weight="600" fill="${C.ink2}">${d[0].split(' ')[1]}</text>`;});
+  const dTop=top+cellH+28,dH=52,zero=dTop+6,maxDef=40;s+=`<text x="2" y="${dTop-2}" font-size="10" font-weight="700" fill="${C.ink3}">Deficit to 90%</text><line x1="2" y1="${zero}" x2="${w-gap}" y2="${zero}" stroke="${C.line}"/>`;
+  days.forEach((d,i)=>{const x=i*(cw+gap)+2,gv=base-d[1],bh=dH*gv/maxDef;s+=`<rect x="${x+cw/2-12}" y="${zero}" width="24" height="${bh.toFixed(1)}" rx="4" fill="${C.rose}" opacity="0.85"/><text x="${x+cw/2}" y="${zero+bh+12}" text-anchor="middle" font-size="10" font-weight="800" fill="${C.rose}">−${gv}</text>`;});
+  $('calendar').innerHTML=`<svg viewBox="0 0 ${w} ${h}" width="100%">${s}</svg>`;
+})();
+
+/* GIS map + schedule */
+(function(){
+  const sch=[['Schedule 1','Compactor · V-1042',92,'On Time','b-suc'],['Schedule 2','Bin Washer · V-2210',64,'Delayed','b-warn'],['Schedule 3','Tipper · V-3318',38,'At Risk','b-rose']];
+  $('sched').innerHTML=sch.map(([n,v,p,st,cls])=>`<div class="scard"><div class="r1"><span class="nm">${n}</span><span class="badge ${cls}">${st}</span></div><div class="meta">${v}</div><div class="tinybar"><i style="width:${p}%;background:var(--brand)"></i></div><div style="font-size:10.5px;color:var(--ink3);margin-top:6px">${p}% of route complete</div></div>`).join('');
+  const w=560,h=320;const dots=[[180,120],[250,90],[320,140],[380,95],[230,200],[410,170],[300,220]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="7" fill="${C.cyan}" stroke="#fff" stroke-width="2"/>`).join('');
+  const deps=[[150,210],[460,110]].map(([x,y])=>`<rect x="${x-7}" y="${y-7}" width="14" height="14" rx="3" fill="${C.warning}" stroke="#fff" stroke-width="2"/>`).join('');
+  $('map').innerHTML=`<div class="mapwrap"><svg viewBox="0 0 ${w} ${h}" width="100%"><rect width="${w}" height="${h}" fill="#e3eefb"/><path d="M0 215 Q150 190 300 215 T560 200 L560 320 L0 320 Z" fill="#d6e8d8"/><path d="M100 70 Q260 35 420 75 Q520 110 430 215 Q300 285 180 240 Q90 205 100 70 Z" fill="rgba(34,200,130,.14)" stroke="${C.brand}" stroke-width="2.5" stroke-dasharray="8 6"/><text x="250" y="150" font-size="16" font-weight="800" fill="#3f7a55" opacity=".5">Lot 1 · Abu Dhabi</text>${deps}${dots}</svg><div class="mtag" style="top:12px;left:12px">🚛 7 vehicles active</div><div class="mtag" style="top:12px;right:12px">🟢 1 zone · 2 depots</div></div>`;
+})();
+
+/* breakdown — Fleet Availability style */
+(function(){
+  const BD=[
+    {title:'Vehicle Type Breakdown',sub:'Basic Details of the contract',icon:'🚛',ibg:'var(--blue-l)',segs:[['Compactor',73,C.brand],['Bin Washer',43,C.lav],['Tipper Trucks',5,C.warning]]},
+    {title:'Workforce Type Breakdown',sub:'Basic Details of the contract',icon:'👷',ibg:'var(--cyan-l)',segs:[['Drivers',73,C.brand],['Helpers',43,C.lav],['Supervisors',5,C.warning]]},
+    {title:'Equipment Type Breakdown',sub:'Basic Details of the contract',icon:'🛠️',ibg:'var(--lav-l)',segs:[['Equip 1',73,C.brand],['Equip 2',43,C.lav],['Equip 3',5,C.warning]]},
+    {title:'Bin Type Breakdown',sub:'Basic Details of the contract',icon:'🗑️',ibg:'var(--warning-l)',segs:[['Type A',73,C.brand],['Type B',43,C.lav],['Type C',5,C.warning]]}
+  ];
+  BD.forEach((d,idx)=>{
+    const tot=d.segs.reduce((a,s)=>a+s[1],0);
+    const stats=d.segs.map((s,i)=>(i?'<div class="fleet-div"></div>':'')+`<div class="fleet-stat"><div class="fleet-num" style="color:${s[2]}">${s[1]}</div><div class="fleet-lbl">${s[0]}</div></div>`).join('');
+    const bar=d.segs.map(s=>`<i style="flex:${s[1]};background:${s[2]}"></i>`).join('');
+    $('bd-'+idx).innerHTML=`<div class="ch"><span class="tag" style="background:${d.ibg}">${d.icon}</span><div><h3>${d.title}</h3><div class="sub">${d.sub}</div></div><span class="badge b-suc" style="margin-left:auto">${tot} Total</span></div><div class="fleet-stats">${stats}</div><div class="fleet-bar">${bar}</div>`;
+  });
+})();
+
+/* repair table */
+(function(){
+  const rows=[['#BR-1042','Al Wathba — Zone 3','Compactor bin','12 Jul','High','b-rose','Open','b-rose'],
+    ['#BR-1039','Mussafah — Zone 1','240L bin','12 Jul','Medium','b-warn','In Progress','b-blue'],
+    ['#BR-1031','Khalifa City — Zone 2','Bin washer','11 Jul','Low','b-gray','In Progress','b-blue'],
+    ['#BR-1028','Al Shamkha — Zone 4','Tipper truck','11 Jul','High','b-rose','Resolved','b-suc'],
+    ['#BR-1022','Baniyas — Zone 2','660L bin','10 Jul','Medium','b-warn','Resolved','b-suc'],
+    ['#BR-1019','Al Reef — Zone 5','Compactor bin','10 Jul','Low','b-gray','Open','b-rose']];
+  $('repairTable').innerHTML=`<thead><tr><th>Ticket</th><th>Location</th><th>Asset</th><th>Reported</th><th>Priority</th><th>Status</th></tr></thead><tbody>`+
+    rows.map(r=>`<tr><td class="id">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td><span class="badge ${r[5]}">${r[4]}</span></td><td><span class="badge ${r[7]}">${r[6]}</span></td></tr>`).join('')+`</tbody>`;
+})();
+
+/* contract / contractor */
+$('contract').innerHTML=[['Status','<span style="color:#027a48;font-weight:700">● Ongoing</span>'],['Reference','1072'],['Term','24 Nov 24 → 10 Nov 35'],['Days left','45 days'],['Manager','<span class="av">S</span>Suraj']].map(([k,v])=>`<div class="kv"><span class="k">${k}</span><span class="v">${v}</span></div>`).join('');
+$('contractor').innerHTML=[['ESP','<span class="av">EP</span>ESP Contractor'],['Contact','<span class="av">S</span>Saad Bin Usman'],['Email','saad.bin12@gmail.com'],['Phone','+971 50 123 4567'],['PM','<span class="av">S</span>Syed Ali']].map(([k,v])=>`<div class="kv"><span class="k">${k}</span><span class="v">${v}</span></div>`).join('');
+</script>

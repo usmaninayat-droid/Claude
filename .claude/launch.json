@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "entity-selector",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["/private/tmp/claude-501/-Users-apple-Desktop-Claude/99f1ae1f-8c3a-4460-87f4-a251273391fe/scratchpad/serve.py"],
+      "port": 8189
+    },
+    {
+      "name": "fams-gallery",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd '/private/tmp/claude-501/-Users-apple-Desktop-Claude/dd19b1ad-37c6-4d55-8f3f-a5a8b0b0f671/scratchpad/fams-gallery/prototype' && exec python3 -m http.server 8767 --bind 127.0.0.1"],
+      "port": 8767
+    },
+    {
+      "name": "fams-gallery2",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd '/private/tmp/claude-501/-Users-apple-Desktop-Claude/dd19b1ad-37c6-4d55-8f3f-a5a8b0b0f671/scratchpad/gallery2' && exec python3 -m http.server 8768 --bind 127.0.0.1"],
+      "port": 8768
+    },
+    {
+      "name": "tap-animation-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["/private/tmp/claude-501/-Users-apple-Desktop-Claude/edecc1e1-e9eb-4569-8d1a-cc09093f0637/scratchpad/lottie-preview/serve_capture.py"],
+      "port": 8769
+    }
+  ]
+}

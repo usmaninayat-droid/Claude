@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IWMP Driver App v2 — Daily recap</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.24.0/dist/tabler-icons.min.css">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;}
+  body{background:#E7ECEA;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#16221C;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;gap:12px;}
+  .caption{font-size:12.5px;color:#8A9A93;text-align:center;max-width:1160px;line-height:1.6;}
+  .device{width:100%;max-width:1180px;aspect-ratio:1280/666;background:#F4F8F6;border-radius:20px;border:9px solid #C9D2CE;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 18px 50px rgba(0,0,0,.2);}
+  .top{display:flex;align-items:center;gap:14px;padding:18px 26px 10px;}
+  .greet{font-size:30px;font-weight:500;}
+  .sub{font-size:17px;color:#5F736B;margin-top:2px;}
+  .tbtns{margin-inline-start:auto;display:flex;align-items:center;gap:10px;}
+  .abtn{background:#EAF1EE;border:1px solid rgba(0,0,0,.1);color:#2C3A34;border-radius:12px;height:54px;min-width:54px;padding:0 16px;font-size:18px;cursor:pointer;display:flex;align-items:center;gap:8px;justify-content:center;font-family:inherit;}
+  .demo{background:#fff;border:1px dashed rgba(0,0,0,.25);color:#5F736B;font-size:15px;border-radius:12px;height:54px;padding:0 16px;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;}
+  .body{flex:1;display:flex;gap:18px;padding:6px 26px 8px;min-height:0;}
+  .hero{width:360px;flex:none;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:10px;}
+  .heroring{position:relative;width:230px;height:230px;}
+  .heroring .cta-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .heroval{font-size:56px;font-weight:500;line-height:1;}
+  .herosub{font-size:20px;color:#5F736B;margin-top:2px;}
+  .herolabel{font-size:24px;font-weight:500;}
+  .stats{flex:1;display:flex;flex-direction:column;gap:14px;min-width:0;}
+  .tiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;flex:1;}
+  .tile{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;padding:18px;display:flex;flex-direction:column;justify-content:center;gap:6px;}
+  .tile .ic{width:62px;height:62px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:33px;}
+  .tile .tv{font-size:38px;font-weight:500;line-height:1;}
+  .tile .tl{font-size:19px;color:#5F736B;}
+  .ic.g{background:#E1F5EE;color:#0F6E56;}
+  .ic.n{background:#EEF1EF;color:#5F736B;}
+  .ic.a{background:#FAEEDA;color:#854F0B;}
+  .compare{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;padding:14px 18px;display:flex;align-items:center;gap:18px;}
+  .bars{flex:1;display:flex;flex-direction:column;gap:9px;}
+  .barrow{display:flex;align-items:center;gap:12px;font-size:18px;color:#5F736B;}
+  .barrow .lab{width:130px;flex:none;}
+  .track{flex:1;height:16px;background:#EEF1EF;border-radius:9px;overflow:hidden;}
+  .fill{height:100%;border-radius:9px;}
+  .delta{flex:none;text-align:center;}
+  .delta .dv{font-size:34px;font-weight:500;}
+  .win{display:flex;align-items:center;gap:16px;padding:14px 26px 18px;}
+  .winbox{flex:1;display:flex;align-items:center;gap:14px;border-radius:18px;padding:16px 20px;}
+  .winbox .wi{font-size:42px;}
+  .winbox .wt{font-size:24px;font-weight:500;}
+  .winbox .ws{font-size:17px;opacity:.9;}
+  .win.good .winbox{background:#E1F5EE;color:#0F6E56;}
+  .win.tough .winbox{background:#EEF1EF;color:#3F4E48;}
+  #done{height:74px;min-width:220px;border:none;border-radius:16px;background:#22C882;color:#052018;font:inherit;font-size:23px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 30px;}
+</style>
+</head>
+<body>
+<div class="device" id="app" dir="ltr">
+  <div class="top">
+    <div>
+      <div class="greet"><span id="greet">Great work today, Ahmed</span></div>
+      <div class="sub">Truck 12 · Route A · Sun 1 Jul · shift 06:00–13:20</div>
+    </div>
+    <div class="tbtns">
+      <button class="demo" id="demo"><i class="ti ti-eye"></i> <span id="demolbl">Preview: tough day</span></button>
+      <button class="abtn" id="speak" aria-label="Play recap"><i class="ti ti-volume"></i> <span id="speaklbl">Play</span></button>
+      <button class="abtn" id="lang" aria-label="Language">عربي</button>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="hero">
+      <div class="herolabel" id="herolabel">Route complete</div>
+      <div class="heroring">
+        <svg width="230" height="230" viewBox="0 0 230 230">
+          <circle cx="115" cy="115" r="98" fill="none" stroke="#EAF1EE" stroke-width="18"/>
+          <circle id="hring" cx="115" cy="115" r="98" fill="none" stroke="#22C882" stroke-width="18" stroke-linecap="round" stroke-dasharray="615.7" stroke-dashoffset="0" transform="rotate(-90 115 115)"/>
+        </svg>
+        <div class="cta-txt">
+          <i id="herocheck" class="ti ti-circle-check" style="font-size:40px;color:#22C882;margin-bottom:2px;"></i>
+          <div class="heroval" id="heroval">24<span style="font-size:28px;color:#5F736B">/24</span></div>
+          <div class="herosub" id="herosub">bins collected</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="tiles" id="tiles"></div>
+      <div class="compare">
+        <div class="bars">
+          <div class="barrow"><span class="lab" id="cmp-usual-l">Your usual</span><div class="track"><div class="fill" id="usualfill" style="width:70%;background:#C7D2CD"></div></div></div>
+          <div class="barrow"><span class="lab" id="cmp-today-l" style="color:#0F6E56;font-weight:500">Today</span><div class="track"><div class="fill" id="todayfill" style="width:80%;background:#22C882"></div></div></div>
+        </div>
+        <div class="delta"><div class="dv" id="deltav" style="color:#0F6E56">+3</div><div style="font-size:16px;color:#5F736B" id="deltal">vs usual</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="win good" id="win">
+    <div class="winbox">
+      <i class="ti ti-trophy wi" id="wini"></i>
+      <div><div class="wt" id="wint">You beat your usual by 3 bins!</div><div class="ws" id="wins">Safe driving all shift — a great day.</div></div>
+    </div>
+    <button id="done"><i class="ti ti-check"></i> <span id="donelbl">Finish shift</span></button>
+  </div>
+</div>
+<div class="caption">v2 daily performance recap (§2) — self-comparison not ranking · max 3 positive tiles · icon-first + voice-over · never red · always ends on a win. Try "Play" (reads it aloud), عربي (RTL), and the "tough day" toggle to see the never-punish behaviour.</div>
+<script>
+(function(){
+  var lang='en', day='good';
+  var DATA={
+    good:{ bins:24,total:24,usual:21,streak:5,missed:0, herolabel:{en:'Route complete',ar:'اكتمل المسار'},
+      winI:'ti-trophy', winIc:'#EF9F27',
+      wint:{en:'You beat your usual by 3 bins!',ar:'تجاوزت معدلك المعتاد بـ 3 حاويات!'},
+      wins:{en:'Safe driving all shift — a great day.',ar:'قيادة آمنة طوال الوردية — يوم رائع.'},
+      speakEn:'Great work today Ahmed. You collected all 24 bins, three more than your usual, with safe driving all shift. A great day.',
+      speakAr:'عمل رائع اليوم يا أحمد. جمعت كل الحاويات الأربع والعشرين، ثلاث حاويات أكثر من المعتاد، مع قيادة آمنة طوال الوردية.' },
+    tough:{ bins:18,total:24,usual:21,streak:0,missed:2, herolabel:{en:'Shift finished',ar:'انتهت الوردية'},
+      winI:'ti-sunrise', winIc:'#5F736B',
+      wint:{en:'Tough day — tomorrow is a fresh start.',ar:'يوم صعب — غدًا بداية جديدة.'},
+      wins:{en:'2 bins to catch tomorrow. Every shift counts.',ar:'حاويتان للحاق بهما غدًا. كل وردية مهمة.'},
+      speakEn:'Thanks for your work today Ahmed. It was a tougher day with 18 bins. Two to catch tomorrow. Every shift counts — see you tomorrow.',
+      speakAr:'شكرًا على عملك اليوم يا أحمد. كان يومًا أصعب مع ثماني عشرة حاوية. حاويتان غدًا. كل وردية مهمة.' }
+  };
+  var greet={en:'Great work today, Ahmed',ar:'عمل رائع اليوم يا أحمد'}, greetT={en:'Thanks for today, Ahmed',ar:'شكرًا على اليوم يا أحمد'};
+  function speak(t){ try{ var u=new SpeechSynthesisUtterance(t); u.lang=(lang==='ar'?'ar-SA':'en-GB'); speechSynthesis.cancel(); speechSynthesis.speak(u);}catch(e){} }
+  function T(o){ return lang==='ar'?o.ar:o.en; }
+
+  function tile(cls,ic,val,label){ return '<div class="tile"><div class="ic '+cls+'"><i class="ti '+ic+'"></i></div><div class="tv">'+val+'</div><div class="tl">'+label+'</div></div>'; }
+  function render(){
+    var d=DATA[day], good=day==='good', C=615.7;
+    document.getElementById('greet').textContent=T(good?greet:greetT);
+    document.getElementById('demolbl').textContent=(lang==='ar'?(good?'معاينة: يوم صعب':'معاينة: يوم جيد'):(good?'Preview: tough day':'Preview: good day'));
+    document.getElementById('lang').textContent=(lang==='ar'?'EN':'عربي');
+    document.getElementById('speaklbl').textContent=(lang==='ar'?'استمع':'Play');
+    document.getElementById('donelbl').textContent=(lang==='ar'?'إنهاء الوردية':'Finish shift');
+    document.getElementById('app').dir=(lang==='ar'?'rtl':'ltr');
+    // hero
+    document.getElementById('herolabel').textContent=T(d.herolabel);
+    document.getElementById('heroval').innerHTML=d.bins+'<span style="font-size:28px;color:#5F736B">/'+d.total+'</span>';
+    document.getElementById('herosub').textContent=(lang==='ar'?'حاوية مجمّعة':'bins collected');
+    var pct=d.bins/d.total; document.getElementById('hring').setAttribute('stroke-dashoffset',(C*(1-pct)).toFixed(1));
+    document.getElementById('hring').setAttribute('stroke',good?'#22C882':'#B7C3BD');
+    var chk=document.getElementById('herocheck'); chk.className='ti '+(good?'ti-circle-check':'ti-flag');
+    chk.style.color=good?'#22C882':'#8A9A93';
+    // tiles (max 3)
+    var t='';
+    t+=tile(good?'g':'n', 'ti-checks', d.bins+'/'+d.total, (lang==='ar'?'حاويات اليوم':'bins today'));
+    if(good) t+=tile('g','ti-shield-check', d.streak+(lang==='ar'?' أيام':' days'), (lang==='ar'?'قيادة آمنة متتالية':'safe-driving streak'));
+    else t+=tile('n','ti-shield', (lang==='ar'?'واصل':'Keep steady'), (lang==='ar'?'القيادة الآمنة':'safe driving'));
+    if(good) t+=tile('g','ti-map-pin-check', d.missed, (lang==='ar'?'حاويات فائتة':'missed bins'));
+    else t+=tile('n','ti-map-pin', d.missed, (lang==='ar'?'للحاق بها غدًا':'to catch tomorrow'));
+    document.getElementById('tiles').innerHTML=t;
+    // compare
+    document.getElementById('cmp-usual-l').textContent=(lang==='ar'?'معدّلك المعتاد':'Your usual');
+    document.getElementById('cmp-today-l').textContent=(lang==='ar'?'اليوم':'Today');
+    var mx=Math.max(d.usual,d.bins,1);
+    document.getElementById('usualfill').style.width=Math.round(d.usual/mx*100)+'%';
+    document.getElementById('todayfill').style.width=Math.round(d.bins/mx*100)+'%';
+    document.getElementById('todayfill').style.background=good?'#22C882':'#B7C3BD';
+    var delta=d.bins-d.usual; var dv=document.getElementById('deltav');
+    dv.textContent=(delta>=0?'+':'')+delta; dv.style.color=good?'#0F6E56':'#5F736B';
+    document.getElementById('deltal').textContent=(lang==='ar'?'مقارنة بالمعتاد':'vs usual');
+    // win
+    var win=document.getElementById('win'); win.className='win '+(good?'good':'tough');
+    var wi=document.getElementById('wini'); wi.className='ti '+d.winI+' wi'; wi.style.color=d.winIc;
+    document.getElementById('wint').textContent=T(d.wint);
+    document.getElementById('wins').textContent=T(d.wins);
+  }
+  function playVoice(){ var d=DATA[day]; speak(lang==='ar'?d.speakAr:d.speakEn); }
+  document.getElementById('demo').addEventListener('click',function(){ day=(day==='good'?'tough':'good'); render(); playVoice(); });
+  document.getElementById('speak').addEventListener('click',playVoice);
+  document.getElementById('lang').addEventListener('click',function(){ lang=(lang==='en'?'ar':'en'); render(); });
+  document.getElementById('done').addEventListener('click',function(){ speak(lang==='ar'?'تم إنهاء الوردية':'Shift finished'); });
+  render();
+  setTimeout(playVoice,400);
+})();
+</script>
+</body>
+</html>

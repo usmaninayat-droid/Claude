@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "iwmp-preview",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "mkdir -p /tmp/iwmp_preview && cp \"$PWD/iwmp_v2_handoff/screens/\"*.html /tmp/iwmp_preview/ && cp /tmp/iwmp_preview/checklist.html /tmp/iwmp_preview/index.html && cd /tmp/iwmp_preview && exec python3 -m http.server 8137 --bind 127.0.0.1"],
+      "port": 8137
+    }
+  ]
+}

@@ -1,0 +1,1118 @@
+<title>Entity Selector &mdash; Standard Component</title>
+<style>
+  :root {
+    --ground: #F6F8F7;
+    --surface: #FFFFFF;
+    --ink: #101828;
+    --ink-2: #344054;
+    --muted: #667085;
+    --faint: #98A2B3;
+    --border: #E7EBE9;
+    --border-strong: #D6DDDA;
+    --brand: #22C882;
+    --brand-dark: #159C64;
+    --brand-tint: #E9FAF2;
+    --brand-tint-2: #F1FCF7;
+    --ok-bg: #E7F8EF; --ok-tx: #067647;
+    --warn-bg: #FEF6E7; --warn-tx: #B54708;
+    --crit-bg: #FEECEB; --crit-tx: #B42318;
+    --neut-bg: #EEF1F0; --neut-tx: #475467;
+    --shadow-sm: 0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.05);
+    --shadow-md: 0 4px 8px -2px rgba(16,24,40,.10), 0 2px 4px -2px rgba(16,24,40,.06);
+    --shadow-lg: 0 16px 40px -8px rgba(16,24,40,.20), 0 4px 12px -4px rgba(16,24,40,.10);
+    --r: 10px;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  /* ---------- Layout scaffold ---------- */
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 56px 0; border-top: 1px solid var(--border); }
+  section:first-of-type { border-top: 0; }
+
+  .eyebrow {
+    font-size: 11.5px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--brand-dark);
+    display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px;
+  }
+  .eyebrow::before { content:""; width: 22px; height: 2px; background: var(--brand); border-radius:2px; }
+  h1, h2, h3 { text-wrap: balance; margin: 0; }
+  h2 { font-size: 27px; letter-spacing: -.02em; line-height: 1.15; }
+  .lede { color: var(--muted); font-size: 16.5px; max-width: 62ch; margin: 14px 0 0; }
+  .section-head { margin-bottom: 34px; }
+
+  /* ---------- Masthead ---------- */
+  header.top {
+    background:
+      radial-gradient(120% 140% at 88% -20%, rgba(34,200,130,.16), transparent 55%),
+      linear-gradient(180deg, #0E1B16 0%, #0B1512 100%);
+    color: #fff; padding: 20px 0 68px;
+  }
+  .brandbar { display: flex; align-items: center; justify-content: space-between; padding-top: 6px; }
+  .brandbar .id { display:flex; align-items:center; gap:11px; font-weight:650; letter-spacing:.01em; }
+  .brandbar .id .dot { width:26px; height:26px; border-radius:8px; background: var(--brand);
+    display:grid; place-items:center; color:#08130D; font-weight:800; font-size:15px; box-shadow: 0 0 0 4px rgba(34,200,130,.16); }
+  .brandbar .meta { color: rgba(255,255,255,.62); font-size: 12.5px; letter-spacing:.03em; }
+  .hero { max-width: 720px; margin-top: 46px; }
+  .hero .eyebrow { color: #8FE9C0; }
+  .hero .eyebrow::before { background: #8FE9C0; }
+  .hero h1 { font-size: 46px; line-height: 1.04; letter-spacing: -.03em; font-weight: 720; }
+  .hero h1 em { font-style: normal; color: var(--brand); }
+  .hero p { color: rgba(255,255,255,.72); font-size: 17.5px; max-width: 60ch; margin: 20px 0 0; }
+  .hero .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top: 26px; }
+  .hero .tags span { font-size: 12.5px; color: rgba(255,255,255,.8);
+    border:1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05);
+    padding: 5px 11px; border-radius: 999px; }
+
+  /* pull the demo up over the masthead */
+  .stage-wrap { margin-top: -44px; }
+
+  /* ---------- Problem strip ---------- */
+  .problem { display:grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items:center; }
+  .dupes { background: var(--surface); border:1px solid var(--border); border-radius: 14px;
+    box-shadow: var(--shadow-sm); overflow:hidden; }
+  .dupes .dh { padding: 12px 16px; border-bottom:1px solid var(--border); font-size:12.5px; color:var(--muted);
+    display:flex; justify-content:space-between; }
+  .dupe-row { display:flex; align-items:center; gap:12px; padding: 12px 16px; }
+  .dupe-row + .dupe-row { border-top: 1px dashed var(--border); }
+  .dupe-row .av { width:34px; height:34px; border-radius:50%; flex:0 0 auto; display:grid; place-items:center;
+    color:#fff; font-weight:650; font-size:13px; }
+  .dupe-row .nm { font-weight:600; font-size:14.5px; }
+  .dupe-row.thin .nm { color: var(--faint); }
+  .dupe-row .fields { margin-left:auto; display:flex; gap:14px; color:var(--muted); font-size:12.5px; }
+  .dupe-row .fields .k { color: var(--ink-2); }
+  .callout-x { color:#B42318; }
+  .callout-ok { color:#067647; }
+
+  /* ---------- The component stage ---------- */
+  .stage {
+    background: var(--surface); border:1px solid var(--border); border-radius: 16px;
+    box-shadow: var(--shadow-lg); overflow: clip;
+  }
+  .stage-bar {
+    display:flex; flex-wrap:wrap; align-items:center; gap: 14px 20px;
+    padding: 14px 18px; border-bottom:1px solid var(--border);
+    background: linear-gradient(180deg,#fff, #FBFDFC);
+  }
+  .stage-bar .grp { display:flex; align-items:center; gap:8px; }
+  .stage-bar .grp > label { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+  .seg { display:inline-flex; background:#F1F4F3; border:1px solid var(--border); border-radius: 9px; padding:3px; gap:2px; }
+  .seg button { font: inherit; font-size:13px; font-weight:550; color:var(--muted); border:0; background:transparent;
+    padding:6px 13px; border-radius:6px; cursor:pointer; display:inline-flex; align-items:center; gap:7px; white-space:nowrap; }
+  .seg button svg { width:15px; height:15px; }
+  .seg button[aria-pressed="true"] { background:#fff; color:var(--ink); box-shadow: var(--shadow-sm); }
+  .seg.brand button[aria-pressed="true"] { color: var(--brand-dark); }
+  .stage-note { margin-left:auto; font-size:12.5px; color:var(--faint); }
+
+  .stage-body { padding: 26px; background:
+      linear-gradient(0deg, var(--brand-tint-2), var(--brand-tint-2)) padding-box,
+      repeating-linear-gradient(45deg, #eef2f0 0 1px, transparent 1px 9px);
+    background: #F4F7F6;
+    display:flex; justify-content:center; min-height: 520px; position:relative; }
+
+  /* generic controls */
+  .btn { font: inherit; font-size:13.5px; font-weight:550; cursor:pointer; border-radius:8px;
+    border:1px solid var(--border-strong); background:#fff; color:var(--ink-2);
+    padding:8px 13px; display:inline-flex; align-items:center; gap:7px; white-space:nowrap; }
+  .btn:hover { background:#F7F9F8; }
+  .btn svg { width:15px; height:15px; opacity:.8; }
+  .btn.primary { background: var(--brand); border-color: var(--brand); color:#06130C; font-weight:650; }
+  .btn.primary:hover { background: var(--brand-dark); border-color: var(--brand-dark); color:#fff; }
+  .btn.primary:disabled { background:#DfE5E2; border-color:#DfE5E2; color:#9AA4A0; cursor:not-allowed; }
+  .btn.ghost { border-color:transparent; background:transparent; color:var(--muted); }
+  .btn.ghost:hover { background:#F1F4F3; }
+
+  .pill { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:650;
+    padding:3px 8px; border-radius:999px; letter-spacing:.01em; white-space:nowrap; }
+  .pill .d { width:6px; height:6px; border-radius:50%; }
+  .pill.ok { background:var(--ok-bg); color:var(--ok-tx); } .pill.ok .d{ background:var(--ok-tx);}
+  .pill.warn { background:var(--warn-bg); color:var(--warn-tx); } .pill.warn .d{ background:var(--warn-tx);}
+  .pill.crit { background:var(--crit-bg); color:var(--crit-tx); } .pill.crit .d{ background:var(--crit-tx);}
+  .pill.neut { background:var(--neut-bg); color:var(--neut-tx); } .pill.neut .d{ background:var(--neut-tx);}
+
+  .av { border-radius:50%; flex:0 0 auto; display:grid; place-items:center; color:#fff; font-weight:650; letter-spacing:.02em; }
+
+  /* ===== COMPACT DROPDOWN form factor ===== */
+  .mockform { width: 340px; background:#fff; border:1px solid var(--border); border-radius:14px;
+    box-shadow: var(--shadow-md); padding:18px; align-self:flex-start; }
+  .mockform .mf-h { font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); margin-bottom:14px; }
+  .field { margin-bottom:14px; }
+  .field > .lab { font-size:12.5px; color:var(--muted); margin-bottom:6px; display:block; }
+  .selectbox { width:100%; text-align:left; border:1px solid var(--border-strong); background:#fff; border-radius:9px;
+    padding:9px 11px; cursor:pointer; display:flex; align-items:center; gap:11px; font:inherit; }
+  .selectbox:hover { border-color: var(--faint); }
+  .selectbox.filled { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-tint); }
+  .selectbox .ph { color: var(--faint); font-size:14px; }
+  .selectbox .chev { margin-left:auto; color:var(--faint); }
+  .selectbox .sel-main { font-weight:600; font-size:14px; line-height:1.2; }
+  .selectbox .sel-sub { font-size:11.5px; color:var(--muted); margin-top:2px; display:flex; gap:9px; }
+  .selectbox .sel-sub b { color:var(--ink-2); font-weight:600; }
+
+  /* ===== PANEL form factor ===== */
+  .panel { width: 620px; max-width:100%; background:#fff; border:1px solid var(--border); border-radius:14px;
+    box-shadow: var(--shadow-md); display:flex; flex-direction:column; overflow:hidden; align-self:stretch; max-height: 560px; }
+  .panel .p-head { padding:16px 18px 0; }
+  .panel .p-title { display:flex; align-items:center; gap:10px; }
+  .panel .p-title h3 { font-size:16px; letter-spacing:-.01em; }
+  .panel .p-title .cnt { font-size:12.5px; color:var(--faint); font-weight:600; }
+  .panel .p-title .x { margin-left:auto; }
+  .icon-btn { width:30px; height:30px; border-radius:8px; border:1px solid transparent; background:transparent;
+    display:grid; place-items:center; cursor:pointer; color:var(--muted); }
+  .icon-btn:hover { background:#F1F4F3; }
+
+  .toolbar { display:flex; gap:8px; padding:14px 18px 12px; align-items:center; }
+  .search { flex:1; display:flex; align-items:center; gap:8px; border:1px solid var(--border-strong);
+    border-radius:9px; padding:0 11px; background:#fff; }
+  .search:focus-within { border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-tint); }
+  .search svg { width:16px; height:16px; color:var(--faint); flex:0 0 auto; }
+  .search input { border:0; outline:0; font:inherit; font-size:14px; padding:9px 0; width:100%; background:transparent; color:var(--ink); }
+  .tool-btn { position:relative; }
+  .tool-btn .badge { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; border-radius:999px;
+    background:var(--brand); color:#06130C; font-size:10px; font-weight:750; display:grid; place-items:center; }
+
+  .bulkbar { display:flex; align-items:center; gap:12px; padding:9px 18px; background:var(--brand-tint);
+    border-top:1px solid var(--border); border-bottom:1px solid var(--border); font-size:13px; color:var(--brand-dark); font-weight:600; }
+  .bulkbar .sp { margin-left:auto; }
+
+  .thead { display:flex; align-items:center; gap:12px; padding:8px 18px; border-bottom:1px solid var(--border);
+    font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); background:#FBFDFC; position:sticky; top:0; }
+  .thead .sortable { cursor:pointer; display:inline-flex; align-items:center; gap:4px; }
+  .thead .sortable:hover { color:var(--muted); }
+  .thead .sortable.active { color:var(--brand-dark); }
+  .thead .sortable svg { width:12px; height:12px; }
+
+  .rows { overflow-y:auto; flex:1; }
+  .row { display:flex; align-items:center; gap:12px; padding:11px 18px; cursor:pointer; border-bottom:1px solid #F2F4F3; position:relative; }
+  .row:hover { background:#FAFBFB; }
+  .row.selected { background: var(--brand-tint); }
+  .row.selected::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--brand); }
+  .row.disabled { cursor:not-allowed; opacity:.62; }
+  .row.disabled:hover { background:transparent; }
+  .row .ctrl { flex:0 0 auto; }
+  .ck { width:18px; height:18px; border-radius:5px; border:1.5px solid var(--border-strong); display:grid; place-items:center; background:#fff; }
+  .ck.radio { border-radius:50%; }
+  .row.selected .ck { background:var(--brand); border-color:var(--brand); }
+  .row.selected .ck svg { display:block; }
+  .ck svg { display:none; width:12px; height:12px; color:#fff; }
+  .ck.radio svg { display:none !important; }
+  .row.selected .ck.radio { background:#fff; }
+  .row.selected .ck.radio::after { content:""; width:9px; height:9px; border-radius:50%; background:var(--brand); }
+
+  .idcell { display:flex; align-items:center; gap:11px; min-width: 0; flex: 0 0 auto; width: 210px; }
+  .idcell .nm { font-weight:600; font-size:14px; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .idcell .sub { font-size:11.5px; color:var(--muted); font-family:var(--mono); letter-spacing:-.01em; }
+  .cols { margin-left:auto; display:flex; align-items:center; gap:18px; }
+  .cell { font-size:12.5px; color:var(--muted); display:flex; align-items:center; gap:6px; white-space:nowrap; }
+  .cell svg { width:13px; height:13px; color:var(--faint); }
+  .cell.status { min-width:92px; justify-content:flex-end; }
+  .row .reason { font-size:11px; color:var(--warn-tx); }
+
+  .empty { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:10px; color:var(--muted); padding:40px; }
+  .empty .ic { width:44px; height:44px; border-radius:12px; background:#F1F4F3; display:grid; place-items:center; color:var(--faint); }
+  .empty h4 { margin:0; font-size:15px; color:var(--ink-2); }
+  .empty p { margin:0; font-size:13px; max-width:34ch; }
+
+  .footer { display:flex; align-items:center; gap:12px; padding:13px 18px; border-top:1px solid var(--border); background:#FBFDFC; position:relative; }
+  .footer .chips { display:flex; gap:6px; flex-wrap:wrap; flex:1; min-width:0; overflow:hidden; }
+  .chip { display:inline-flex; align-items:center; gap:6px; background:#fff; border:1px solid var(--border-strong); border-radius:999px;
+    padding:3px 4px 3px 9px; font-size:12px; font-weight:550; }
+  .chip .av { width:18px; height:18px; font-size:9px; }
+  .chip .rm { width:17px; height:17px; border-radius:50%; border:0; background:#EEF1F0; color:var(--muted); cursor:pointer; display:grid; place-items:center; }
+  .chip .rm:hover { background:#E0E5E2; color:var(--ink); }
+  .footer .foot-actions { margin-left:auto; display:flex; gap:8px; flex:0 0 auto; }
+  .footer .selcount { font-size:13px; color:var(--muted); }
+  .footer .selcount b { color:var(--ink); }
+
+  /* popovers (filter / columns / sort) */
+  .pop { position:absolute; z-index:20; background:#fff; border:1px solid var(--border); border-radius:12px; box-shadow: var(--shadow-lg);
+    padding:8px; min-width: 220px; }
+  .pop h5 { margin:6px 8px 8px; font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--faint); font-weight:700; }
+  .opt { display:flex; align-items:center; gap:10px; padding:8px 9px; border-radius:8px; cursor:pointer; font-size:13.5px; }
+  .opt:hover { background:#F5F7F6; }
+  .opt .mk { width:16px; height:16px; border-radius:4px; border:1.5px solid var(--border-strong); display:grid; place-items:center; }
+  .opt.on .mk { background:var(--brand); border-color:var(--brand); }
+  .opt .mk svg { width:11px; height:11px; color:#fff; display:none; }
+  .opt.on .mk svg { display:block; }
+  .opt.radio .mk { border-radius:50%; }
+  .pop .divide { height:1px; background:var(--border); margin:6px 4px; }
+
+  .dd-anchor, .stage-body { position:relative; }
+
+  /* ---------- Anatomy ---------- */
+  .anatomy { display:grid; grid-template-columns: repeat(2, 1fr); gap:14px; }
+  .acard { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; box-shadow:var(--shadow-sm); }
+  .acard .n { font-family:var(--mono); font-size:12px; color:var(--brand-dark); font-weight:600; }
+  .acard h4 { margin:6px 0 6px; font-size:15.5px; }
+  .acard p { margin:0; color:var(--muted); font-size:13.5px; }
+
+  /* ---------- Config schema ---------- */
+  .schema { display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
+  .scard { background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:var(--shadow-sm); }
+  .scard .sh { display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid var(--border); }
+  .scard .sh .ic { width:32px; height:32px; border-radius:9px; display:grid; place-items:center; color:#fff; }
+  .scard .sh b { font-size:15px; }
+  .scard .sb { padding:6px 16px 16px; }
+  .srow { display:flex; gap:10px; padding:9px 0; border-top:1px dashed var(--border); font-size:12.5px; }
+  .srow:first-child { border-top:0; }
+  .srow .lab { color:var(--faint); text-transform:uppercase; letter-spacing:.06em; font-size:10px; font-weight:700; width:74px; flex:0 0 auto; padding-top:2px; }
+  .srow .val { color:var(--ink-2); display:flex; flex-wrap:wrap; gap:5px; }
+  .tag { background:#F1F4F3; border:1px solid var(--border); border-radius:6px; padding:2px 7px; font-size:11.5px; color:var(--ink-2); }
+  .tag.key { background:var(--brand-tint); border-color:#CDEEDE; color:var(--brand-dark); font-weight:600; }
+
+  /* ---------- States ---------- */
+  .states { display:grid; grid-template-columns: repeat(4,1fr); gap:14px; }
+  .stcard { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px; box-shadow:var(--shadow-sm); }
+  .stcard .tt { font-weight:650; font-size:13.5px; margin-bottom:4px; display:flex; align-items:center; gap:7px; }
+  .stcard .tt .d { width:8px; height:8px; border-radius:50%; }
+  .stcard p { margin:0; font-size:12.5px; color:var(--muted); }
+
+  /* ---------- Adoption ---------- */
+  .adopt { display:flex; flex-direction:column; gap:0; border:1px solid var(--border); border-radius:14px; overflow:hidden; background:var(--surface); box-shadow:var(--shadow-sm); }
+  .arow { display:grid; grid-template-columns: 200px 1fr auto; gap:16px; align-items:center; padding:15px 20px; }
+  .arow + .arow { border-top:1px solid var(--border); }
+  .arow .mod { font-weight:650; font-size:14.5px; display:flex; align-items:center; gap:9px; }
+  .arow .mod .sq { width:9px; height:9px; border-radius:3px; background:var(--brand); }
+  .arow .desc { color:var(--muted); font-size:13px; }
+  .arow .cfg { font-family:var(--mono); font-size:11.5px; color:var(--muted); display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+  .arow .cfg span { background:#F1F4F3; border:1px solid var(--border); border-radius:6px; padding:2px 7px; }
+
+  footer.foot { padding:40px 0 60px; color:var(--faint); font-size:12.5px; text-align:center; }
+
+  a { color: var(--brand-dark); }
+  :focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius:4px; }
+
+
+  /* multi-select summary pill + review tray */
+  .selsummary { display:inline-flex; align-items:center; gap:9px; border:1px solid var(--border-strong); background:#fff;
+    border-radius:999px; padding:4px 12px 4px 5px; cursor:pointer; font:inherit; font-size:13px; color:var(--ink-2); }
+  .selsummary:hover { background:#F7F9F8; border-color:var(--faint); }
+  .selsummary.open { border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-tint); }
+  .avstack { display:inline-flex; }
+  .avstack .av { width:22px; height:22px; font-size:9px; border:2px solid #fff; margin-left:-8px; }
+  .avstack .av:first-child { margin-left:0; }
+  .avstack .av.more { background:#EEF1F0; color:var(--muted); font-weight:700; }
+  .ss-count b { font-weight:700; color:var(--ink); }
+  .ss-chev { display:inline-flex; color:var(--faint); transition:transform .15s ease; }
+  .ss-chev svg { width:15px; height:15px; }
+  .selsummary.open .ss-chev { transform:rotate(180deg); }
+  .seltray { position:absolute; bottom:100%; left:0; right:0; background:#fff; border-top:1px solid var(--border);
+    box-shadow:0 -14px 28px -14px rgba(16,24,40,.22); max-height:224px; display:flex; flex-direction:column; z-index:15; }
+  .tray-head { display:flex; align-items:center; justify-content:space-between; padding:10px 18px; border-bottom:1px solid var(--border);
+    font-size:12px; color:var(--muted); }
+  .tray-head b { color:var(--ink); font-weight:700; }
+  .tray-clear { border:0; background:transparent; color:var(--brand-dark); font:inherit; font-size:12.5px; font-weight:600; cursor:pointer; padding:2px 4px; border-radius:6px; }
+  .tray-clear:hover { background:var(--brand-tint); }
+  .tray-list { overflow-y:auto; padding:6px; }
+  .tray-row { display:flex; align-items:center; gap:11px; padding:7px 10px; border-radius:8px; }
+  .tray-row:hover { background:#FAFBFB; }
+  .tray-row .av { width:28px; height:28px; font-size:10.5px; flex:0 0 auto; }
+  .tr-idbox { display:flex; flex-direction:column; min-width:0; }
+  .tr-name { font-weight:600; font-size:13.5px; line-height:1.2; }
+  .tr-id { font-family:var(--mono); font-size:11px; color:var(--muted); }
+  .tr-rm { margin-left:auto; width:24px; height:24px; border-radius:6px; border:0; background:transparent; color:var(--faint);
+    cursor:pointer; display:grid; place-items:center; flex:0 0 auto; }
+  .tr-rm:hover { background:var(--crit-bg); color:var(--crit-tx); }
+  .tr-rm svg { width:14px; height:14px; }
+
+
+  /* compact dropdown trigger status */
+  .selectbox .sel-sub .sub-status { display:inline-flex; align-items:center; gap:4px; font-weight:600; }
+  .selectbox .sel-sub .sub-status .d { width:6px; height:6px; border-radius:50%; }
+  .sub-status.ok { color:var(--ok-tx); } .sub-status.ok .d { background:var(--ok-tx); }
+  .sub-status.warn { color:var(--warn-tx); } .sub-status.warn .d { background:var(--warn-tx); }
+  .sub-status.crit { color:var(--crit-tx); } .sub-status.crit .d { background:var(--crit-tx); }
+  .sub-status.neut { color:var(--neut-tx); } .sub-status.neut .d { background:var(--neut-tx); }
+
+  /* compact menu (dropdown open state) */
+  .ddmenu { position:absolute; top:calc(100% + 6px); left:0; width:340px; max-width:calc(100vw - 48px); z-index:30;
+    background:#fff; border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow-lg); overflow:hidden;
+    display:flex; flex-direction:column; }
+  .dd-search { display:flex; align-items:center; gap:8px; padding:10px 12px; border-bottom:1px solid var(--border); }
+  .dd-search svg { width:15px; height:15px; color:var(--faint); flex:0 0 auto; }
+  .dd-search input { border:0; outline:0; font:inherit; font-size:13.5px; width:100%; background:transparent; color:var(--ink); }
+  .dd-list { max-height:266px; overflow-y:auto; padding:5px; }
+  .dd-item { display:flex; align-items:center; gap:10px; padding:8px 9px; border-radius:8px; cursor:pointer; position:relative; }
+  .dd-item:hover { background:#F7F9F8; }
+  .dd-item.selected { background:var(--brand-tint); }
+  .dd-item.disabled { cursor:not-allowed; opacity:.55; }
+  .dd-item.disabled:hover { background:transparent; }
+  .dd-item .ck { width:17px; height:17px; border-radius:5px; border:1.5px solid var(--border-strong); display:grid; place-items:center; background:#fff; flex:0 0 auto; }
+  .dd-item .ck svg { display:none; width:11px; height:11px; color:#fff; }
+  .dd-item.selected .ck { background:var(--brand); border-color:var(--brand); }
+  .dd-item.selected .ck svg { display:block; }
+  .dd-item .av { width:28px; height:28px; font-size:10.5px; flex:0 0 auto; }
+  .dd-id { display:flex; flex-direction:column; min-width:0; }
+  .dd-name { font-weight:600; font-size:13.5px; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .dd-sub { font-family:var(--mono); font-size:11px; color:var(--muted); }
+  .dd-status { margin-left:auto; display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; color:var(--muted); white-space:nowrap; flex:0 0 auto; }
+  .dd-status .d { width:6px; height:6px; border-radius:50%; background:var(--faint); }
+  .dd-status.ok { color:var(--ok-tx); } .dd-status.ok .d { background:var(--ok-tx); }
+  .dd-status.warn { color:var(--warn-tx); } .dd-status.warn .d { background:var(--warn-tx); }
+  .dd-status.crit { color:var(--crit-tx); } .dd-status.crit .d { background:var(--crit-tx); }
+  .dd-status.neut { color:var(--neut-tx); } .dd-status.neut .d { background:var(--neut-tx); }
+  .dd-empty { padding:24px; text-align:center; color:var(--muted); font-size:13px; }
+  .dd-foot { display:flex; align-items:center; gap:10px; padding:9px 11px; border-top:1px solid var(--border); background:#FBFDFC; }
+  .dd-expand { display:inline-flex; align-items:center; gap:7px; border:0; background:transparent; color:var(--brand-dark);
+    font:inherit; font-size:12.5px; font-weight:600; cursor:pointer; padding:5px 7px; border-radius:7px; }
+  .dd-expand:hover { background:var(--brand-tint); }
+  .dd-expand svg { width:14px; height:14px; }
+  .dd-done { margin-left:auto; padding:6px 14px; font-size:13px; }
+
+
+  /* master checkbox (header / select-all) */
+  .ck.master { cursor:pointer; }
+  .ck.master.checked, .ck.master.indet { background:var(--brand); border-color:var(--brand); }
+  .ck.master.checked svg { display:block; }
+  .ck.master .dash { width:9px; height:2px; background:#fff; border-radius:1px; }
+  /* toolbar toggle active state (Show selected) */
+  .btn.tool-btn.active { background:var(--brand-tint); border-color:var(--brand); color:var(--brand-dark); }
+  /* compact dropdown select bar */
+  .dd-selectbar { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:7px 12px; border-bottom:1px solid var(--border); background:#FBFDFC; }
+  .dd-selectall { display:inline-flex; align-items:center; gap:9px; cursor:pointer; font-size:12.5px; font-weight:600; color:var(--ink-2); }
+  .dd-showsel { border:1px solid var(--border-strong); background:#fff; border-radius:999px; padding:4px 11px; font:inherit; font-size:12px; font-weight:600; color:var(--muted); cursor:pointer; }
+  .dd-showsel:hover { background:#F5F7F6; }
+  .dd-showsel.active { background:var(--brand-tint); border-color:var(--brand); color:var(--brand-dark); }
+
+
+  /* icon-only toolbar buttons (give the search bar the width) */
+  .btn.iconbtn { padding:0; width:38px; height:38px; justify-content:center; flex:0 0 auto; }
+  .btn.iconbtn svg { width:16px; height:16px; opacity:.85; }
+  .btn.iconbtn.active svg { opacity:1; }
+
+  @media (max-width: 900px) {
+    .problem, .anatomy, .schema, .states { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 34px; }
+    .arow { grid-template-columns: 1fr; gap:6px; }
+    .arow .cfg { justify-content:flex-start; }
+    .cols .cell:not(.status) { display:none; }
+    .panel, .mockform { width:100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+  .row, .btn, .seg button, .selectbox, .chip .rm { transition: background .14s ease, border-color .14s ease, box-shadow .14s ease, color .14s ease; }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brandbar">
+      <div class="id"><span class="dot">T</span> Tadweer &middot; Launch Pad</div>
+      <div class="meta">Design proposal &middot; Shared component &middot; v0.1</div>
+    </div>
+    <div class="hero">
+      <div class="eyebrow">Cross-module component</div>
+      <h1>One <em>Entity Selector</em>, everywhere you assign something.</h1>
+      <p>Drivers share names. So do assets, and half the vehicles look alike on paper. Every module solves &ldquo;which one?&rdquo; its own way today. This is the single, config-driven component that solves it once &mdash; search, filter, sort, custom columns, and a preview that actually tells two people apart.</p>
+      <div class="tags">
+        <span>Smart Planning</span><span>Plan Monitoring</span><span>Reports</span><span>Any assignment flow</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ LIVE COMPONENT ============ -->
+<div class="wrap stage-wrap">
+  <div class="stage">
+    <div class="stage-bar">
+      <div class="grp">
+        <label>Entity</label>
+        <div class="seg brand" id="segEntity">
+          <button data-entity="driver" aria-pressed="true">Driver</button>
+          <button data-entity="vehicle" aria-pressed="false">Vehicle</button>
+          <button data-entity="asset" aria-pressed="false">Asset</button>
+        </div>
+      </div>
+      <div class="grp">
+        <label>Form factor</label>
+        <div class="seg" id="segForm">
+          <button data-form="panel" aria-pressed="true">Expanded panel</button>
+          <button data-form="dropdown" aria-pressed="false">Compact dropdown</button>
+        </div>
+      </div>
+      <div class="grp">
+        <label>Mode</label>
+        <div class="seg" id="segMode">
+          <button data-mode="single" aria-pressed="true">Single</button>
+          <button data-mode="multi" aria-pressed="false">Multi</button>
+        </div>
+      </div>
+      <span class="stage-note">Live &mdash; click rows, search &ldquo;arjun&rdquo;, open Filter / Columns</span>
+    </div>
+    <div class="stage-body" id="stage"></div>
+  </div>
+</div>
+
+<!-- ============ PROBLEM ============ -->
+<section>
+  <div class="wrap">
+    <div class="problem">
+      <div>
+        <div class="eyebrow">Why this exists</div>
+        <h2>A name is not an identity.</h2>
+        <p class="lede">The client flagged it on Smart Planning: three drivers named <b>Arjun Malik</b> and no way to tell them apart at selection time. The fix isn&rsquo;t &ldquo;add fields to that one screen&rdquo; &mdash; it&rsquo;s to make every selector show the fields that disambiguate, and let the user search, filter, and choose which of those fields to see.</p>
+      </div>
+      <div class="dupes">
+        <div class="dh"><span>Select Driver</span><span class="callout-x">Name only &mdash; ambiguous &#10005;</span></div>
+        <div class="dupe-row thin"><span class="av" style="background:#8FA0B5">AM</span><span class="nm">Arjun Malik</span></div>
+        <div class="dupe-row thin"><span class="av" style="background:#8FA0B5">AM</span><span class="nm">Arjun Malik</span></div>
+        <div class="dupe-row thin"><span class="av" style="background:#8FA0B5">AM</span><span class="nm">Arjun Malik</span></div>
+        <div class="dh" style="border-top:1px solid var(--border)"><span>With identity fields</span><span class="callout-ok">Distinct &check;</span></div>
+        <div class="dupe-row"><span class="av" style="background:#22C882">AM</span><span class="nm">Arjun Malik</span><span class="fields"><span class="k">#AV020032</span><span>CRT-1123</span></span></div>
+        <div class="dupe-row"><span class="av" style="background:#3E7BE0">AM</span><span class="nm">Arjun Malik</span><span class="fields"><span class="k">#AV020087</span><span>CRT-1188</span></span></div>
+        <div class="dupe-row"><span class="av" style="background:#B54708">AM</span><span class="nm">Arjun Malik</span><span class="fields"><span class="k">#AV020104</span><span>CRT-1201</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ANATOMY ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Anatomy</div>
+      <h2>Seven parts, assembled from one config.</h2>
+      <p class="lede">Each module passes an entity config; the component renders the same anatomy every time. Nobody rebuilds a list.</p>
+    </div>
+    <div class="anatomy">
+      <div class="acard"><div class="n">01 &middot; Trigger</div><h4>Selected preview</h4><p>The closed state shows the chosen entity with its identity fields &mdash; never just a name. Empty state prompts selection.</p></div>
+      <div class="acard"><div class="n">02 &middot; Toolbar</div><h4>Search &middot; Filter &middot; Sort &middot; Columns</h4><p>Search spans every identity field. Filter opens entity-specific facets. Columns lets the user pick what&rsquo;s visible &mdash; persisted per user, per context.</p></div>
+      <div class="acard"><div class="n">03 &middot; Bulk bar</div><h4>Select all &middot; count &middot; clear</h4><p>Appears only in multi mode. Select-all respects the active filter, so &ldquo;all&rdquo; means &ldquo;all 6 available&rdquo;, not all 400.</p></div>
+      <div class="acard"><div class="n">04 &middot; Row</div><h4>Control &middot; identity &middot; columns &middot; status</h4><p>Radio (single) or checkbox (multi), avatar + name + primary ID, the toggled columns, and a status pill. Ineligible rows are disabled with a reason.</p></div>
+      <div class="acard"><div class="n">05 &middot; Preview chips</div><h4>What&rsquo;s chosen, disambiguated</h4><p>Selected items become removable chips carrying the same identity field, so a full selection is auditable at a glance.</p></div>
+      <div class="acard"><div class="n">06 &middot; Two form factors</div><h4>Compact &harr; Expanded</h4><p>A dropdown for quick in-form picks; a panel/table for filtering at scale &mdash; same engine, same data, same result. The reports &ldquo;expand&rdquo; pattern, standardized.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONFIG SCHEMA ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The &ldquo;think it through once&rdquo; bit</div>
+      <h2>Every entity declares the same shape.</h2>
+      <p class="lede">Identity fields (always shown), optional columns, a status vocabulary, searchable keys, filter facets, sort keys, and a default mode. Add a new entity by writing this object &mdash; not a new screen.</p>
+    </div>
+    <div class="schema" id="schemaCards"></div>
+  </div>
+</section>
+
+<!-- ============ STATES ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">States, defined once</div>
+      <h2>The unhappy paths ship with the component.</h2>
+    </div>
+    <div class="states">
+      <div class="stcard"><div class="tt"><span class="d" style="background:#98A2B3"></span>Loading</div><p>Skeleton rows matched to the configured columns &mdash; no layout shift when data lands.</p></div>
+      <div class="stcard"><div class="tt"><span class="d" style="background:#98A2B3"></span>Empty source</div><p>No entities exist yet. Prompts the create/import action for that entity, if the user has rights.</p></div>
+      <div class="stcard"><div class="tt"><span class="d" style="background:#F79009"></span>No results</div><p>Search or filter matched nothing. Offers a one-click &ldquo;clear filters&rdquo;. Try searching &ldquo;zzz&rdquo; in the demo.</p></div>
+      <div class="stcard"><div class="tt"><span class="d" style="background:#F04438"></span>Ineligible</div><p>Row visible but not selectable &mdash; off-duty, in maintenance &mdash; with the reason inline, never a dead click.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ADOPTION ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Where it lands</div>
+      <h2>Same component, tuned by config.</h2>
+      <p class="lede">The only per-module differences are which entity, which mode, and which form factor &mdash; all data, no new UI.</p>
+    </div>
+    <div class="adopt">
+      <div class="arow"><div class="mod"><span class="sq"></span>Smart Planning</div><div class="desc">Assign vehicle, driver, and helpers to a plan.</div><div class="cfg"><span>driver&middot;vehicle</span><span>single</span><span>dropdown &rarr; panel</span></div></div>
+      <div class="arow"><div class="mod"><span class="sq"></span>Plan Monitoring</div><div class="desc">Swap the driver on an in-progress plan.</div><div class="cfg"><span>driver</span><span>single</span><span>panel</span></div></div>
+      <div class="arow"><div class="mod"><span class="sq"></span>Reports</div><div class="desc">Pick assets to scope a report &mdash; filter, search, expand.</div><div class="cfg"><span>asset</span><span>multi</span><span>dropdown &rarr; panel</span></div></div>
+      <div class="arow"><div class="mod"><span class="sq"></span>Any assignment</div><div class="desc">Customers, sites, routes, contracts &mdash; register a config and reuse.</div><div class="cfg"><span>*</span><span>single&middot;multi</span><span>both</span></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">Entity Selector &middot; standard component proposal &middot; Tadweer Launch Pad &middot; built to be argued with, not shipped as-is</div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  // ---------- icons ----------
+  const I = {
+    listChecks:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg>',
+    expand:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>',
+    check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+    search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+    filter:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>',
+    cols:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>',
+    sort:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5h10M11 9h7M11 13h4"/><path d="M3 17l3 3 3-3M6 20V5"/></svg>',
+    chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>',
+    x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+    hash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>',
+    phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+    file:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+    pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+    clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>',
+    box:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+    truck:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>',
+    user:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+    fuel:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="15" y2="22"/><line x1="4" y1="9" x2="14" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/></svg>',
+    gauge:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>',
+    empty:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>'
+  };
+  const avColors = ["#22C882","#3E7BE0","#B54708","#7A5AF8","#0BA5A5","#D93F87","#475467","#DB6D0B"];
+  const initials = n => n.split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase();
+  const stCls = s => ({available:"ok","in service":"neut","assigned:on":"neut",assigned:"neut","off-duty":"crit",maintenance:"warn",idle:"neut",active:"ok",retired:"crit"}[s.toLowerCase()]||"neut");
+
+  // ---------- config-driven entity registry ----------
+  const ENTITIES = {
+    driver: {
+      label:"Driver", icon:I.user, color:"#22C882",
+      identity:{ label:"Employee ID", key:"eid", icon:I.hash },
+      columns:[
+        {key:"phone", label:"Phone", icon:I.phone, on:true},
+        {key:"contract", label:"Contract", icon:I.file, on:true},
+        {key:"zone", label:"Zone", icon:I.pin, on:false},
+        {key:"shift", label:"Shift", icon:I.clock, on:false}
+      ],
+      filters:[
+        {key:"status", label:"Status", values:["Available","Assigned","Off-duty"]},
+        {key:"zone", label:"Zone", values:["Al Wathba","Mussafah","Al Shahama"]}
+      ],
+      sorts:[{key:"name",label:"Name"},{key:"eid",label:"Employee ID"},{key:"status",label:"Status"}],
+      searchKeys:["name","eid","phone","contract"],
+      data:[
+        {id:1,name:"Arjun Malik",eid:"AV020032",phone:"+971 50 987 6543",contract:"CRT-1123",zone:"Al Wathba",shift:"Morning",status:"Available"},
+        {id:2,name:"Arjun Malik",eid:"AV020087",phone:"+971 52 447 1100",contract:"CRT-1188",zone:"Mussafah",shift:"Night",status:"Assigned"},
+        {id:3,name:"Arjun Malik",eid:"AV020104",phone:"+971 55 332 0091",contract:"CRT-1201",zone:"Al Wathba",shift:"Evening",status:"Off-duty",reason:"On leave"},
+        {id:4,name:"Priya Nair",eid:"AV020045",phone:"+971 50 118 4420",contract:"CRT-1140",zone:"Mussafah",shift:"Morning",status:"Available"},
+        {id:5,name:"Mohammed Hassan",eid:"AV020061",phone:"+971 54 220 7781",contract:"CRT-1155",zone:"Al Shahama",shift:"Morning",status:"Available"},
+        {id:6,name:"Mohammed Hassan",eid:"AV020112",phone:"+971 56 901 3320",contract:"CRT-1210",zone:"Al Wathba",shift:"Night",status:"Assigned"},
+        {id:7,name:"Sunil Kumar",eid:"AV020078",phone:"+971 52 664 9012",contract:"CRT-1170",zone:"Mussafah",shift:"Evening",status:"Available"},
+        {id:8,name:"Rashid Al Amiri",eid:"AV020090",phone:"+971 50 771 2245",contract:"CRT-1182",zone:"Al Shahama",shift:"Morning",status:"Available"},
+        {id:9,name:"Priya Nair",eid:"AV020133",phone:"+971 55 480 6677",contract:"CRT-1225",zone:"Al Wathba",shift:"Night",status:"Off-duty",reason:"Medical rest"},
+        {id:10,name:"Deepak Rao",eid:"AV020150",phone:"+971 54 339 8890",contract:"CRT-1240",zone:"Mussafah",shift:"Morning",status:"Available"}
+      ]
+    },
+    vehicle: {
+      label:"Vehicle", icon:I.truck, color:"#3E7BE0",
+      identity:{ label:"Plate", key:"eid", icon:I.hash },
+      columns:[
+        {key:"type", label:"Type", icon:I.box, on:true},
+        {key:"capacity", label:"Capacity", icon:I.gauge, on:true},
+        {key:"fuel", label:"Fuel", icon:I.fuel, on:false},
+        {key:"depot", label:"Depot", icon:I.pin, on:false}
+      ],
+      filters:[
+        {key:"status", label:"Status", values:["Available","In service","Maintenance"]},
+        {key:"type", label:"Type", values:["Compactor","Skip loader","Tipper"]}
+      ],
+      sorts:[{key:"name",label:"Model"},{key:"eid",label:"Plate"},{key:"status",label:"Status"}],
+      searchKeys:["name","eid","type","depot"],
+      data:[
+        {id:1,name:"Isuzu FVR",eid:"Z 5678",type:"Compactor",capacity:"12 m&sup3;",fuel:"Diesel &middot; 78%",depot:"Al Wathba",status:"Available"},
+        {id:2,name:"Isuzu FVR",eid:"Z 5691",type:"Compactor",capacity:"12 m&sup3;",fuel:"Diesel &middot; 40%",depot:"Mussafah",status:"In service"},
+        {id:3,name:"Mercedes Arocs",eid:"D 1120",type:"Skip loader",capacity:"18 m&sup3;",fuel:"Diesel &middot; 92%",depot:"Al Wathba",status:"Available"},
+        {id:4,name:"Volvo FM",eid:"D 2245",type:"Tipper",capacity:"20 m&sup3;",fuel:"Diesel &middot; 12%",depot:"Al Shahama",status:"Maintenance",reason:"In workshop"},
+        {id:5,name:"Isuzu FVR",eid:"Z 5702",type:"Compactor",capacity:"12 m&sup3;",fuel:"Diesel &middot; 66%",depot:"Mussafah",status:"Available"},
+        {id:6,name:"Mercedes Arocs",eid:"D 1188",type:"Skip loader",capacity:"18 m&sup3;",fuel:"CNG &middot; 55%",depot:"Al Wathba",status:"In service"},
+        {id:7,name:"Scania P360",eid:"D 3310",type:"Tipper",capacity:"22 m&sup3;",fuel:"Diesel &middot; 88%",depot:"Al Shahama",status:"Available"}
+      ]
+    },
+    asset: {
+      label:"Asset", icon:I.box, color:"#7A5AF8",
+      identity:{ label:"Asset tag", key:"eid", icon:I.hash },
+      columns:[
+        {key:"type", label:"Type", icon:I.box, on:true},
+        {key:"site", label:"Site", icon:I.pin, on:true},
+        {key:"contract", label:"Contract", icon:I.file, on:false}
+      ],
+      filters:[
+        {key:"status", label:"Status", values:["Active","Idle","Retired"]},
+        {key:"type", label:"Type", values:["Bin 1100L","Bin 660L","Skip"]}
+      ],
+      sorts:[{key:"name",label:"Name"},{key:"eid",label:"Asset tag"},{key:"status",label:"Status"}],
+      searchKeys:["name","eid","type","site"],
+      data:[
+        {id:1,name:"Bin 1100L",eid:"AST-4401",type:"Bin 1100L",site:"Corniche &middot; Sector 3",contract:"CRT-9001",status:"Active"},
+        {id:2,name:"Bin 1100L",eid:"AST-4402",type:"Bin 1100L",site:"Corniche &middot; Sector 3",contract:"CRT-9001",status:"Active"},
+        {id:3,name:"Skip 8yd",eid:"AST-5510",type:"Skip",site:"Mussafah Ind. 12",contract:"CRT-9040",status:"Idle"},
+        {id:4,name:"Bin 660L",eid:"AST-3320",type:"Bin 660L",site:"Al Bateen",contract:"CRT-9022",status:"Active"},
+        {id:5,name:"Skip 8yd",eid:"AST-5511",type:"Skip",site:"Mussafah Ind. 12",contract:"CRT-9040",status:"Retired",reason:"Decommissioned"},
+        {id:6,name:"Bin 1100L",eid:"AST-4460",type:"Bin 1100L",site:"Khalifa City A",contract:"CRT-9055",status:"Active"}
+      ]
+    }
+  };
+
+  // ---------- state ----------
+  const S = {
+    entity:"driver", form:"panel", mode:"single",
+    query:"", sort:"name", filters:{}, cols:null,
+    selected:new Set(), open:false, pop:null, trayOpen:false, showSelected:false, pinnedTop:new Set()
+  };
+  function cfg(){ return ENTITIES[S.entity]; }
+  function resetForEntity(){
+    S.query=""; S.sort="name"; S.filters={}; S.selected.clear(); S.pop=null; S.trayOpen=false; S.showSelected=false; S.pinnedTop=new Set();
+    S.cols = cfg().columns.map(c=>({key:c.key,on:c.on}));
+  }
+  function capturePinned(){ S.pinnedTop = new Set(S.selected); }
+  resetForEntity();
+
+  // ---------- filtering / sorting ----------
+  function activeCols(){ return S.cols.filter(c=>c.on).map(c=>cfg().columns.find(k=>k.key===c.key)); }
+  function filtered(){
+    const c = cfg();
+    let rows = c.data.slice();
+    const q = S.query.trim().toLowerCase();
+    if(q) rows = rows.filter(r=> c.searchKeys.some(k=> String(r[k]||"").toLowerCase().includes(q)));
+    Object.entries(S.filters).forEach(([k,vals])=>{
+      if(vals && vals.size) rows = rows.filter(r=> vals.has(String(r[k])));
+    });
+    if(S.showSelected) rows = rows.filter(r=> S.selected.has(r.id));
+    rows.sort((a,b)=> String(a[S.sort]).localeCompare(String(b[S.sort]), undefined, {numeric:true}));
+    if(S.pinnedTop && S.pinnedTop.size){
+      const pin=rows.filter(r=>S.pinnedTop.has(r.id));
+      const rest=rows.filter(r=>!S.pinnedTop.has(r.id));
+      rows=pin.concat(rest);
+    }
+    return rows;
+  }
+  function selectable(r){ return !r.reason; }
+  function activeFilterCount(){ return Object.values(S.filters).reduce((n,s)=> n + (s?s.size:0), 0); }
+  function eligibleFiltered(){ return filtered().filter(selectable); }
+  function masterState(){ const rows=eligibleFiltered(); if(!rows.length) return "none"; const n=rows.filter(r=>S.selected.has(r.id)).length; return n===0?"none":(n===rows.length?"all":"some"); }
+  function toggleAll(){ const rows=eligibleFiltered(); if(masterState()==="all"){ rows.forEach(r=>S.selected.delete(r.id)); } else { rows.forEach(r=>S.selected.add(r.id)); } render(); }
+  function masterCheckbox(){
+    const st=masterState();
+    const ck=document.createElement("span"); ck.className="ck master"+(st==="all"?" checked":(st==="some"?" indet":""));
+    ck.innerHTML = st==="some" ? '<span class="dash"></span>' : I.check;
+    ck.title = st==="all" ? "Deselect all" : "Select all";
+    ck.addEventListener("click",(e)=>{ e.stopPropagation(); toggleAll(); });
+    return ck;
+  }
+
+  // ---------- rendering ----------
+  const stage = document.getElementById("stage");
+  function syncSegs(){
+    document.querySelectorAll('#segEntity button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.entity===S.entity));
+    document.querySelectorAll('#segForm button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.form===S.form));
+    document.querySelectorAll('#segMode button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.mode===S.mode));
+  }
+  function render(){
+    closePop();
+    syncSegs();
+    stage.innerHTML = "";
+    if(S.form==="dropdown") stage.appendChild(renderDropdown());
+    else stage.appendChild(renderPanel());
+  }
+
+  function selectedList(){ return cfg().data.filter(r=>S.selected.has(r.id)); }
+
+  function renderTriggerContent(box){
+    const list = selectedList();
+    box.innerHTML = "";
+    if(!list.length){
+      const ph = document.createElement("span"); ph.className="ph";
+      ph.textContent = "Select "+cfg().label.toLowerCase()+"\u2026";
+      box.appendChild(ph);
+      box.classList.remove("filled");
+    } else if(S.mode==="single" || list.length===1){
+      const r=list[0];
+      box.classList.add("filled");
+      const av=document.createElement("span"); av.className="av"; av.style.width="30px"; av.style.height="30px"; av.style.fontSize="11px";
+      av.style.background=avColors[r.id%avColors.length]; av.textContent=initials(r.name);
+      const wrap=document.createElement("div");
+      wrap.innerHTML = '<div class="sel-main">'+r.name+'</div><div class="sel-sub"><b>#'+r.eid+'</b><span class="sub-status '+stCls(r.status)+'"><span class="d"></span>'+r.status+'</span></div>';
+      box.appendChild(av); box.appendChild(wrap);
+    } else {
+      box.classList.add("filled");
+      const wrap=document.createElement("div");
+      wrap.innerHTML='<div class="sel-main">'+list.length+' '+cfg().label.toLowerCase()+'s selected</div><div class="sel-sub"><span>'+list.slice(0,2).map(r=>r.name).join(", ")+(list.length>2?" +"+(list.length-2):"")+'</span></div>';
+      box.appendChild(wrap);
+    }
+    const chev=document.createElement("span"); chev.className="chev"; chev.innerHTML=I.chev; box.appendChild(chev);
+  }
+
+  // --- Compact dropdown form factor ---
+  function renderDropdown(){
+    const form=document.createElement("div"); form.className="mockform";
+    form.innerHTML='<div class="mf-h">Resource Allocation</div>';
+    const field=document.createElement("div"); field.className="field";
+    const lab=document.createElement("label"); lab.className="lab"; lab.textContent="Select "+cfg().label; field.appendChild(lab);
+    const box=document.createElement("button"); box.className="selectbox"; box.type="button";
+    renderTriggerContent(box);
+    box.addEventListener("click",()=>{ S.open=!S.open; if(S.open) capturePinned(); render(); });
+    field.appendChild(box);
+
+    if(S.open){
+      field.style.position="relative";
+      field.appendChild(buildCompactMenu());
+    }
+    form.appendChild(field);
+
+    const hint=document.createElement("div"); hint.style.fontSize="12px"; hint.style.color="var(--faint)"; hint.style.marginTop="4px";
+    hint.textContent = S.open ? "Just enough to tell people apart \u2014 open full view to filter or add columns." : "Click the field to open the selector.";
+    form.appendChild(hint);
+    return form;
+  }
+
+  // --- Compact menu: essentials only (name + ID + status), search, escalate ---
+  function buildCompactMenu(){
+    const c=cfg();
+    const menu=document.createElement("div"); menu.className="ddmenu";
+    const sr=document.createElement("div"); sr.className="dd-search"; sr.innerHTML=I.search;
+    const inp=document.createElement("input"); inp.type="text"; inp.placeholder="Search "+c.label.toLowerCase()+"\u2026"; inp.value=S.query;
+    inp.addEventListener("input",e=>{ S.query=e.target.value; fillCompact(menu); });
+    sr.appendChild(inp); menu.appendChild(sr);
+    if(S.mode==="multi"){
+      const bar=document.createElement("div"); bar.className="dd-selectbar";
+      const left=document.createElement("span"); left.className="dd-selectall";
+      left.appendChild(masterCheckbox());
+      const lbl=document.createElement("span"); lbl.textContent = masterState()==="all" ? "Deselect all" : "Select all"; left.appendChild(lbl);
+      left.addEventListener("click",(e)=>{ if(!e.target.closest(".ck")){ e.stopPropagation(); toggleAll(); }});
+      bar.appendChild(left);
+      const showBtn=document.createElement("button"); showBtn.type="button"; showBtn.className="dd-showsel"+(S.showSelected?" active":"");
+      showBtn.textContent="Show selected"+(S.selected.size?" ("+S.selected.size+")":"");
+      showBtn.addEventListener("click",(e)=>{ e.stopPropagation(); S.showSelected=!S.showSelected; render(); });
+      bar.appendChild(showBtn); menu.appendChild(bar);
+    }
+    const listWrap=document.createElement("div"); listWrap.className="dd-list"; menu.appendChild(listWrap);
+    const foot=document.createElement("div"); foot.className="dd-foot";
+    const exp=document.createElement("button"); exp.type="button"; exp.className="dd-expand";
+    exp.innerHTML='<span>Open full view</span>'+I.expand; exp.title="Filter, sort, customise columns";
+    exp.addEventListener("click",(e)=>{ e.stopPropagation(); capturePinned(); S.form="panel"; render(); });
+    foot.appendChild(exp);
+    if(S.mode==="multi"){
+      const done=document.createElement("button"); done.type="button"; done.className="btn primary dd-done";
+      done.textContent = "Done"+(S.selected.size?" ("+S.selected.size+")":""); done.disabled=!S.selected.size;
+      done.addEventListener("click",(e)=>{ e.stopPropagation(); S.open=false; render(); });
+      foot.appendChild(done);
+    }
+    menu.appendChild(foot);
+    menu.__list=listWrap;
+    fillCompact(menu);
+    // stop clicks inside from bubbling to the trigger toggle
+    menu.addEventListener("click",e=>e.stopPropagation());
+    return menu;
+  }
+  function fillCompact(menu){
+    const listWrap=menu.__list; listWrap.innerHTML="";
+    const rows=filtered();
+    if(!rows.length){ const e=document.createElement("div"); e.className="dd-empty"; e.textContent = S.showSelected ? "Nothing selected yet" : "No matches"; listWrap.appendChild(e); return; }
+    rows.forEach(r=>{
+      const can=selectable(r); const sel=S.selected.has(r.id);
+      const it=document.createElement("div"); it.className="dd-item"+(sel?" selected":"")+(can?"":" disabled");
+      if(S.mode==="multi"){ const ck=document.createElement("span"); ck.className="ck"; ck.innerHTML=I.check; it.appendChild(ck); }
+      const av=document.createElement("span"); av.className="av"; av.style.background=avColors[r.id%avColors.length]; av.textContent=initials(r.name); it.appendChild(av);
+      const box=document.createElement("span"); box.className="dd-id";
+      box.innerHTML='<span class="dd-name">'+r.name+'</span><span class="dd-sub">#'+r.eid+'</span>'; it.appendChild(box);
+      const st=document.createElement("span"); st.className="dd-status "+(can?stCls(r.status):"crit");
+      st.innerHTML='<span class="d"></span>'+(can?r.status:(r.reason||r.status)); it.appendChild(st);
+      if(can) it.addEventListener("click",()=>{
+        if(S.mode==="single"){ S.selected.clear(); S.selected.add(r.id); S.open=false; render(); }
+        else { S.selected.has(r.id)?S.selected.delete(r.id):S.selected.add(r.id); render(); }
+      });
+      listWrap.appendChild(it);
+    });
+  }
+
+  // --- Expanded panel form factor ---
+  function renderPanel(){ return buildPanel(false); }
+
+  function buildPanel(embedded){
+    const c=cfg();
+    const panel=document.createElement("div"); panel.className="panel";
+
+    // head
+    const head=document.createElement("div"); head.className="p-head";
+    const title=document.createElement("div"); title.className="p-title";
+    title.innerHTML='<h3>Select '+c.label+'</h3><span class="cnt tnum"></span>';
+    const x=document.createElement("button"); x.className="icon-btn x"; x.innerHTML=I.x; x.title="Close";
+    x.addEventListener("click",()=>{ if(S.form==="dropdown"){S.open=false; render();} });
+    title.appendChild(x);
+    head.appendChild(title);
+    panel.appendChild(head);
+
+    // toolbar
+    const tb=document.createElement("div"); tb.className="toolbar";
+    const search=document.createElement("div"); search.className="search";
+    search.innerHTML=I.search;
+    const inp=document.createElement("input"); inp.type="text"; inp.placeholder="Search "+c.label.toLowerCase()+" \u2014 name, ID, phone\u2026"; inp.value=S.query;
+    inp.addEventListener("input",e=>{ S.query=e.target.value; refreshRows(panel); });
+    search.appendChild(inp); tb.appendChild(search);
+
+    tb.appendChild(toolBtn(I.filter,"Filter", activeFilterCount(), (btn)=>togglePop("filter",btn,panel)));
+    tb.appendChild(toolBtn(I.sort,"Sort", 0, (btn)=>togglePop("sort",btn,panel)));
+    tb.appendChild(toolBtn(I.cols,"Columns", 0, (btn)=>togglePop("cols",btn,panel)));
+    if(S.mode==="multi"){ const selB=toolBtn(I.listChecks,"Show selected", S.selected.size, ()=>{ S.showSelected=!S.showSelected; render(); }); if(S.showSelected) selB.classList.add("active"); tb.appendChild(selB); }
+    panel.appendChild(tb);
+
+    // header row
+    const thead=document.createElement("div"); thead.className="thead";
+    const ctrlH=document.createElement("div"); ctrlH.style.width="18px"; ctrlH.style.display="flex"; ctrlH.style.alignItems="center";
+    if(S.mode==="multi") ctrlH.appendChild(masterCheckbox()); thead.appendChild(ctrlH);
+    const nameH=document.createElement("div"); nameH.className="idcell";
+    nameH.appendChild(sortHead("name", c.label));
+    thead.appendChild(nameH);
+    const colsH=document.createElement("div"); colsH.className="cols";
+    activeCols().forEach(col=> colsH.appendChild(labelSpan(col.label)) );
+    colsH.appendChild(sortHead("status","Status", true));
+    thead.appendChild(colsH);
+    panel.appendChild(thead);
+
+    // rows container
+    const rowsWrap=document.createElement("div"); rowsWrap.className="rows";
+    panel.appendChild(rowsWrap);
+
+    // footer
+    const footer=document.createElement("div"); footer.className="footer";
+    panel.appendChild(footer);
+
+    panel.__refs={title,rowsWrap,footer,inp};
+    fillRows(panel);
+    return panel;
+  }
+
+  function labelSpan(t){ const s=document.createElement("span"); s.textContent=t; s.style.minWidth = t==="Status"?"92px":"auto"; return s; }
+  function sortHead(key,label,alignEnd){
+    const s=document.createElement("span"); s.className="sortable"+(S.sort===key?" active":"");
+    if(alignEnd){ s.style.minWidth="92px"; s.style.justifyContent="flex-end"; }
+    s.innerHTML=label+(S.sort===key?I.sort:"");
+    s.addEventListener("click",(e)=>{ e.stopPropagation(); S.sort=key; render(); });
+    return s;
+  }
+  function labelText(t){ const s=document.createElement("span"); s.textContent=t; return s; }
+
+  function toolBtn(icon,label,badge,onClick){
+    const b=document.createElement("button"); b.className="btn tool-btn iconbtn"; b.title=label; b.setAttribute("aria-label",label); b.innerHTML=icon;
+    if(badge>0){ const bd=document.createElement("span"); bd.className="badge tnum"; bd.textContent=badge; b.appendChild(bd); }
+    b.addEventListener("click",(e)=>{ e.stopPropagation(); onClick(b); });
+    return b;
+  }
+
+  function refreshRows(panel){
+    // update count + rows without full re-render (keeps input focus)
+    fillRows(panel);
+  }
+
+  function fillRows(panel){
+    const {title,rowsWrap,footer}=panel.__refs;
+    const rows=filtered();
+    title.querySelector(".cnt").textContent = rows.length+" of "+cfg().data.length;
+    rowsWrap.innerHTML="";
+
+    if(rows.length===0){
+      const e=document.createElement("div"); e.className="empty";
+      if(S.showSelected){
+        e.innerHTML='<div class="ic">'+I.empty+'</div><h4>Nothing selected yet</h4><p>Tick a few rows, or turn off &ldquo;Selected&rdquo; to see everyone.</p>';
+        const clr=document.createElement("button"); clr.className="btn"; clr.textContent="Show all"; clr.addEventListener("click",()=>{ S.showSelected=false; render(); }); e.appendChild(clr);
+      } else {
+        e.innerHTML='<div class="ic">'+I.empty+'</div><h4>No matches</h4><p>Nothing matches &ldquo;'+escapeHtml(S.query)+'&rdquo;'+(activeFilterCount()?" with the current filters":"")+'.</p>';
+        const clr=document.createElement("button"); clr.className="btn"; clr.textContent="Clear search & filters"; clr.addEventListener("click",()=>{ S.query=""; S.filters={}; render(); }); e.appendChild(clr);
+      }
+      rowsWrap.appendChild(e);
+    } else {
+      rows.forEach(r=> rowsWrap.appendChild(renderRow(r)) );
+    }
+    fillFooter(footer);
+  }
+
+  function renderRow(r){
+    const c=cfg();
+    const row=document.createElement("div"); row.className="row";
+    const sel=S.selected.has(r.id);
+    const can=selectable(r);
+    if(sel) row.classList.add("selected");
+    if(!can) row.classList.add("disabled");
+
+    // control
+    const ctrl=document.createElement("div"); ctrl.className="ctrl";
+    const ck=document.createElement("div"); ck.className="ck"+(S.mode==="single"?" radio":""); ck.innerHTML=I.check;
+    ctrl.appendChild(ck); row.appendChild(ctrl);
+
+    // identity
+    const idc=document.createElement("div"); idc.className="idcell";
+    const av=document.createElement("span"); av.className="av"; av.style.width="34px"; av.style.height="34px"; av.style.fontSize="12.5px";
+    av.style.background=avColors[r.id%avColors.length]; av.textContent=initials(r.name);
+    const nm=document.createElement("div"); nm.style.minWidth="0";
+    nm.innerHTML='<div class="nm">'+r.name+'</div><div class="sub">#'+r.eid+'</div>';
+    idc.appendChild(av); idc.appendChild(nm); row.appendChild(idc);
+
+    // columns + status
+    const cols=document.createElement("div"); cols.className="cols";
+    activeCols().forEach(col=>{
+      const cell=document.createElement("div"); cell.className="cell";
+      cell.innerHTML=col.icon+"<span>"+ (r[col.key]||"&mdash;") +"</span>";
+      cols.appendChild(cell);
+    });
+    const st=document.createElement("div"); st.className="cell status";
+    if(!can && r.reason){
+      st.innerHTML='<span class="reason">'+r.reason+'</span>';
+    } else {
+      const p=document.createElement("span"); p.className="pill "+stCls(r.status);
+      p.innerHTML='<span class="d"></span>'+r.status; st.appendChild(p);
+    }
+    cols.appendChild(st);
+    row.appendChild(cols);
+
+    if(can){
+      row.addEventListener("click",()=>{
+        if(S.mode==="single"){ S.selected.clear(); S.selected.add(r.id); }
+        else { S.selected.has(r.id)? S.selected.delete(r.id): S.selected.add(r.id); }
+        render();
+      });
+    }
+    return row;
+  }
+
+  function fillFooter(footer){
+    footer.innerHTML="";
+    const list=selectedList();
+    if(S.mode==="multi"){
+      const s=document.createElement("div"); s.className="selcount";
+      s.innerHTML = list.length ? '<b>'+list.length+'</b> '+cfg().label.toLowerCase()+(list.length>1?'s':'')+' selected' : 'No '+cfg().label.toLowerCase()+'s selected yet';
+      footer.appendChild(s);
+    } else {
+      const s=document.createElement("div"); s.className="selcount";
+      s.innerHTML = list.length ? 'Selected <b>'+list[0].name+'</b> &middot; #'+list[0].eid : 'Nothing selected';
+      footer.appendChild(s);
+    }
+    const fa=document.createElement("div"); fa.className="foot-actions";
+    const cancel=document.createElement("button"); cancel.className="btn"; cancel.textContent="Cancel"; fa.appendChild(cancel);
+    const conf=document.createElement("button"); conf.className="btn primary";
+    conf.textContent = S.mode==="multi" ? "Confirm ("+list.length+")" : "Confirm selection";
+    conf.disabled = list.length===0;
+    conf.addEventListener("click",()=>{ if(S.form!=="dropdown") return; S.open=false; render(); });
+    fa.appendChild(conf);
+    footer.appendChild(fa);
+  }
+
+  // ---------- popovers ----------
+  let popEl=null;
+  function closePop(){ if(popEl){ popEl.remove(); popEl=null; } }
+  function togglePop(kind, btn, panel){
+    if(popEl && popEl.__kind===kind){ closePop(); return; }
+    closePop();
+    const pop=document.createElement("div"); pop.className="pop"; pop.__kind=kind;
+    const c=cfg();
+    if(kind==="filter"){
+      c.filters.forEach(f=>{
+        const h=document.createElement("h5"); h.textContent=f.label; pop.appendChild(h);
+        f.values.forEach(v=>{
+          const on = S.filters[f.key] && S.filters[f.key].has(v);
+          const o=document.createElement("div"); o.className="opt"+(on?" on":"");
+          o.innerHTML='<span class="mk">'+I.check+'</span>'+v;
+          o.addEventListener("click",()=>{
+            if(!S.filters[f.key]) S.filters[f.key]=new Set();
+            const set=S.filters[f.key];
+            set.has(v)?set.delete(v):set.add(v);
+            if(!set.size) delete S.filters[f.key];
+            render();
+          });
+          pop.appendChild(o);
+        });
+      });
+    } else if(kind==="sort"){
+      const h=document.createElement("h5"); h.textContent="Sort by"; pop.appendChild(h);
+      c.sorts.forEach(s=>{
+        const o=document.createElement("div"); o.className="opt radio"+(S.sort===s.key?" on":"");
+        o.innerHTML='<span class="mk">'+I.check+'</span>'+s.label;
+        o.addEventListener("click",()=>{ S.sort=s.key; render(); });
+        pop.appendChild(o);
+      });
+    } else if(kind==="cols"){
+      const h=document.createElement("h5"); h.textContent="Show columns"; pop.appendChild(h);
+      const ido=document.createElement("div"); ido.className="opt on"; ido.style.opacity=".6"; ido.style.cursor="default";
+      ido.innerHTML='<span class="mk">'+I.check+'</span>'+c.identity.label+' <span style="margin-left:auto;font-size:11px;color:var(--faint)">identity</span>';
+      pop.appendChild(ido);
+      const div=document.createElement("div"); div.className="divide"; pop.appendChild(div);
+      S.cols.forEach(sc=>{
+        const col=c.columns.find(k=>k.key===sc.key);
+        const o=document.createElement("div"); o.className="opt"+(sc.on?" on":"");
+        o.innerHTML='<span class="mk">'+I.check+'</span>'+col.label;
+        o.addEventListener("click",()=>{ sc.on=!sc.on; render(); });
+        pop.appendChild(o);
+      });
+      const div2=document.createElement("div"); div2.className="divide"; pop.appendChild(div2);
+      const so=document.createElement("div"); so.className="opt"; so.innerHTML='<span class="mk">'+I.check+'</span>Status <span style="margin-left:auto;font-size:11px;color:var(--faint)">pinned</span>';
+      so.style.opacity=".6"; so.style.cursor="default"; pop.appendChild(so);
+    }
+    // position under button
+    const stageBody=document.getElementById("stage");
+    const br=btn.getBoundingClientRect(); const sr=stageBody.getBoundingClientRect();
+    pop.style.top=(br.bottom - sr.top + 6)+"px";
+    let left=br.left - sr.left;
+    if(left + 240 > sr.width) left = sr.width - 250;
+    pop.style.left=Math.max(8,left)+"px";
+    stageBody.appendChild(pop);
+    popEl=pop;
+  }
+  document.addEventListener("click",(e)=>{
+    if(popEl && !popEl.contains(e.target) && !e.target.closest(".tool-btn")) closePop();
+  });
+
+  function escapeHtml(s){ return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+  // ---------- segmented controls ----------
+  function wireSeg(id, key, after){
+    const seg=document.getElementById(id);
+    seg.addEventListener("click",(e)=>{
+      const b=e.target.closest("button"); if(!b) return;
+      [...seg.children].forEach(c=>c.setAttribute("aria-pressed", c===b));
+      S[key]=b.dataset[key===S.entityKey?"":key] || b.dataset[Object.keys(b.dataset)[0]];
+      if(after) after();
+      render();
+    });
+  }
+  document.getElementById("segEntity").addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b) return;
+    [...e.currentTarget.children].forEach(c=>c.setAttribute("aria-pressed",c===b));
+    S.entity=b.dataset.entity; S.open=(S.form==="dropdown"); resetForEntity(); render();
+  });
+  document.getElementById("segForm").addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b) return;
+    [...e.currentTarget.children].forEach(c=>c.setAttribute("aria-pressed",c===b));
+    S.form=b.dataset.form; S.open=(S.form==="dropdown"); capturePinned(); render();
+  });
+  document.getElementById("segMode").addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b) return;
+    [...e.currentTarget.children].forEach(c=>c.setAttribute("aria-pressed",c===b));
+    S.mode=b.dataset.mode; S.selected.clear(); S.trayOpen=false; S.showSelected=false; capturePinned(); render();
+  });
+
+  // ---------- schema cards ----------
+  function buildSchema(){
+    const wrap=document.getElementById("schemaCards");
+    Object.entries(ENTITIES).forEach(([k,c])=>{
+      const card=document.createElement("div"); card.className="scard";
+      const cols=c.columns.map(x=>x.label);
+      const filters=c.filters.map(f=>f.label);
+      card.innerHTML =
+        '<div class="sh"><span class="ic" style="background:'+c.color+'">'+c.icon+'</span><b>'+c.label+'</b></div>'+
+        '<div class="sb">'+
+          srow("Identity",'<span class="tag key">'+c.identity.label+'</span>')+
+          srow("Columns", cols.map(x=>'<span class="tag">'+x+'</span>').join(""))+
+          srow("Filters", filters.map(x=>'<span class="tag">'+x+'</span>').join(""))+
+          srow("Search", c.searchKeys.map(x=>'<span class="tag">'+x+'</span>').join(""))+
+          srow("Status", c.filters[0].values.map(x=>'<span class="tag">'+x+'</span>').join(""))+
+        '</div>';
+      wrap.appendChild(card);
+    });
+  }
+  function srow(lab,val){ return '<div class="srow"><span class="lab">'+lab+'</span><span class="val">'+val+'</span></div>'; }
+
+  // ---------- init ----------
+  buildSchema();
+  render();
+})();
+</script>
