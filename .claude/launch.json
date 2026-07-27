@@ -24,6 +24,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["/private/tmp/claude-501/-Users-apple-Desktop-Claude/edecc1e1-e9eb-4569-8d1a-cc09093f0637/scratchpad/lottie-preview/serve_capture.py"],
       "port": 8769
+    },
+    {
+      "name": "v5-design-system",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd '/Users/apple/Desktop/Claude/v5-design-system-ai-main' && exec npx vite --port 5180"],
+      "port": 5180
     }
   ]
 }
