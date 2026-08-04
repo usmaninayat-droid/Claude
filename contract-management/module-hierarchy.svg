@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg" style="font-family:'Gilroy','Inter',system-ui,sans-serif">
+  <rect width="1200" height="900" fill="#ffffff"/>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#98a2b3"/>
+    </marker>
+    <marker id="arrGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#22c882"/>
+    </marker>
+    <style><![CDATA[
+      .layer-label{font-size:11px;fill:#98a2b3;font-weight:600;letter-spacing:0.08em;text-transform:uppercase}
+      .box{fill:#fff;stroke:#d0d5dd;stroke-width:1}
+      .box-active{fill:#e9faf3;stroke:#22c882;stroke-width:1.5}
+      .box-oracle{fill:#f9fafb;stroke:#98a2b3;stroke-width:1;stroke-dasharray:4 3}
+      .title{font-size:14px;font-weight:600;fill:#101828}
+      .sub{font-size:11px;fill:#667085}
+      .tag-built{fill:#22c882}
+      .tag-partial{fill:#f79009}
+      .tag-todo{fill:#98a2b3}
+      .flow{stroke:#98a2b3;stroke-width:1.5;fill:none}
+      .flow-strong{stroke:#22c882;stroke-width:2;fill:none}
+      .flow-dash{stroke:#98a2b3;stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+      .divider{stroke:#eaecf0;stroke-width:1}
+    ]]></style>
+  </defs>
+
+  <text x="30" y="30" class="layer-label">External systems (source of truth)</text>
+  <line x1="30" y1="40" x2="1170" y2="40" class="divider"/>
+  <g transform="translate(30,55)"><rect width="200" height="60" rx="6" class="box-oracle"/><text x="16" y="26" class="title">Oracle ERP</text><text x="16" y="46" class="sub">Client · Contract · Prices</text></g>
+  <g transform="translate(250,55)"><rect width="200" height="60" rx="6" class="box-oracle"/><text x="16" y="26" class="title">Maximo</text><text x="16" y="46" class="sub">Asset maintenance</text></g>
+  <g transform="translate(470,55)"><rect width="200" height="60" rx="6" class="box-oracle"/><text x="16" y="26" class="title">Incident Mgmt (IMS)</text><text x="16" y="46" class="sub">Ad-hoc tickets</text></g>
+  <g transform="translate(690,55)"><rect width="200" height="60" rx="6" class="box-oracle"/><text x="16" y="26" class="title">Attendance / HR</text><text x="16" y="46" class="sub">Real-time presence</text></g>
+  <g transform="translate(910,55)"><rect width="200" height="60" rx="6" class="box-oracle"/><text x="16" y="26" class="title">TAMM Portal</text><text x="16" y="46" class="sub">Public reports</text></g>
+
+  <text x="30" y="160" class="layer-label">Layer 1 — Legal / commercial</text>
+  <line x1="30" y1="170" x2="1170" y2="170" class="divider"/>
+  <g transform="translate(30,185)"><rect width="360" height="90" rx="8" class="box-active"/><text x="20" y="30" class="title">Contract Management</text><text x="20" y="52" class="sub">Sync from Oracle · Structural approval</text><text x="20" y="70" class="sub">Assign team · Attachments · Compliance targets</text><circle cx="340" cy="20" r="5" class="tag-built"/><text x="330" y="24" text-anchor="end" font-size="10" fill="#22c882" font-weight="600">BUILT</text></g>
+  <path d="M 130 115 L 130 185" class="flow" marker-end="url(#arr)"/>
+
+  <text x="30" y="310" class="layer-label">Layer 2 — Operational execution unit</text>
+  <line x1="30" y1="320" x2="1170" y2="320" class="divider"/>
+  <g transform="translate(30,335)"><rect width="360" height="90" rx="8" class="box-active"/><text x="20" y="30" class="title">Project Management</text><text x="20" y="52" class="sub">Multiple projects per contract</text><text x="20" y="70" class="sub">Type: MSW · Commercial · Bulky · Green</text><circle cx="340" cy="20" r="5" class="tag-built"/><text x="330" y="24" text-anchor="end" font-size="10" fill="#22c882" font-weight="600">BUILT</text></g>
+  <path d="M 210 275 L 210 335" class="flow-strong" marker-end="url(#arrGreen)"/>
+
+  <text x="30" y="460" class="layer-label">Layer 3 — Service definition</text>
+  <line x1="30" y1="470" x2="1170" y2="470" class="divider"/>
+  <g transform="translate(30,485)"><rect width="230" height="80" rx="8" class="box-active"/><text x="16" y="26" class="title">Locations</text><text x="16" y="46" class="sub">MSW lots + Commercial zones</text><text x="16" y="64" class="sub">Restructure per project</text></g>
+  <g transform="translate(280,485)"><rect width="230" height="80" rx="8" class="box-active"/><text x="16" y="26" class="title">Service Lines</text><text x="16" y="46" class="sub">Bin · Service · Frequency</text><text x="16" y="64" class="sub">Price = Oracle (read-only)</text></g>
+  <path d="M 145 425 L 145 485" class="flow-strong" marker-end="url(#arrGreen)"/>
+  <path d="M 275 425 L 395 485" class="flow-strong" marker-end="url(#arrGreen)"/>
+
+  <text x="530" y="460" class="layer-label">Layer 4 — Planning</text>
+  <line x1="530" y1="470" x2="1170" y2="470" class="divider"/>
+  <g transform="translate(530,485)"><rect width="300" height="80" rx="8" class="box"/><text x="16" y="26" class="title">Static Planning</text><text x="16" y="46" class="sub">Templates: vehicle class + driver role</text><text x="16" y="64" class="sub">Task plans grouped by frequency</text><circle cx="280" cy="20" r="5" class="tag-partial"/><text x="270" y="24" text-anchor="end" font-size="10" fill="#f79009" font-weight="600">SCAFFOLD</text></g>
+  <g transform="translate(850,485)"><rect width="320" height="80" rx="8" class="box"/><text x="16" y="26" class="title">Dynamic Planning</text><text x="16" y="46" class="sub">Tours = static + availability + attendance</text><text x="16" y="64" class="sub">Ad-hoc incidents inject here</text><circle cx="300" cy="20" r="5" class="tag-partial"/><text x="290" y="24" text-anchor="end" font-size="10" fill="#f79009" font-weight="600">SCAFFOLD</text></g>
+  <path d="M 830 525 L 850 525" class="flow" marker-end="url(#arr)"/>
+
+  <text x="30" y="600" class="layer-label">Layer 5 — Execution</text>
+  <line x1="30" y1="610" x2="1170" y2="610" class="divider"/>
+  <g transform="translate(30,625)"><rect width="260" height="80" rx="8" class="box"/><text x="16" y="26" class="title">Workforce</text><text x="16" y="46" class="sub">Rosters · Shifts · Leave</text><text x="16" y="64" class="sub">Availability service</text><circle cx="240" cy="20" r="5" class="tag-partial"/><text x="230" y="24" text-anchor="end" font-size="10" fill="#f79009" font-weight="600">DONE ELSEWHERE</text></g>
+  <g transform="translate(310,625)"><rect width="260" height="80" rx="8" class="box"/><text x="16" y="26" class="title">Assets / Vehicles</text><text x="16" y="46" class="sub">Utilization · Maintenance</text><text x="16" y="64" class="sub">Synced from Maximo</text><circle cx="240" cy="20" r="5" class="tag-todo"/><text x="230" y="24" text-anchor="end" font-size="10" fill="#98a2b3" font-weight="600">TODO</text></g>
+  <g transform="translate(590,625)"><rect width="280" height="80" rx="8" class="box"/><text x="16" y="26" class="title">Work Orders / Route</text><text x="16" y="46" class="sub">Depot → stops → disposal</text><text x="16" y="64" class="sub">Planned + ad-hoc mixed</text><circle cx="260" cy="20" r="5" class="tag-todo"/><text x="250" y="24" text-anchor="end" font-size="10" fill="#98a2b3" font-weight="600">TODO</text></g>
+  <g transform="translate(890,625)"><rect width="280" height="80" rx="8" class="box"/><text x="16" y="26" class="title">Driver App</text><text x="16" y="46" class="sub">Start / complete work order</text><text x="16" y="64" class="sub">Timestamps + attendance</text><circle cx="260" cy="20" r="5" class="tag-todo"/><text x="250" y="24" text-anchor="end" font-size="10" fill="#98a2b3" font-weight="600">TODO</text></g>
+  <path d="M 700 565 L 700 625" class="flow" marker-end="url(#arr)"/>
+  <path d="M 570 665 L 590 665" class="flow" marker-end="url(#arr)"/>
+  <path d="M 870 665 L 890 665" class="flow" marker-end="url(#arr)"/>
+  <path d="M 160 625 Q 160 590 900 585 L 950 585" class="flow-dash" marker-end="url(#arr)"/>
+  <path d="M 440 625 Q 440 590 950 585" class="flow-dash" marker-end="url(#arr)"/>
+
+  <text x="30" y="740" class="layer-label">Layer 6 — Post-service</text>
+  <line x1="30" y1="750" x2="1170" y2="750" class="divider"/>
+  <g transform="translate(30,765)"><rect width="360" height="80" rx="8" class="box"/><text x="16" y="26" class="title">Reporting &amp; Invoicing</text><text x="16" y="46" class="sub">Compliance % · Monthly invoice</text><text x="16" y="64" class="sub">Derived from actual execution</text><circle cx="340" cy="20" r="5" class="tag-todo"/><text x="330" y="24" text-anchor="end" font-size="10" fill="#98a2b3" font-weight="600">TODO</text></g>
+  <g transform="translate(410,765)"><rect width="360" height="80" rx="8" class="box"/><text x="16" y="26" class="title">Incidents / Ticket feed</text><text x="16" y="46" class="sub">TAMM / IMS ad-hoc requests</text><text x="16" y="64" class="sub">Injected into active tours</text><circle cx="340" cy="20" r="5" class="tag-todo"/><text x="330" y="24" text-anchor="end" font-size="10" fill="#98a2b3" font-weight="600">TODO</text></g>
+  <g transform="translate(790,765)"><rect width="380" height="80" rx="8" class="box"/><text x="16" y="26" class="title">Dashboards / Live Monitoring</text><text x="16" y="46" class="sub">Ops cockpit · KPI heatmap</text><text x="16" y="64" class="sub">Compliance drill-down</text><circle cx="360" cy="20" r="5" class="tag-todo"/><text x="350" y="24" text-anchor="end" font-size="10" fill="#98a2b3" font-weight="600">TODO</text></g>
+  <path d="M 730 705 Q 210 730 210 765" class="flow" marker-end="url(#arr)"/>
+  <path d="M 590 705 L 590 765" class="flow" marker-end="url(#arr)"/>
+
+  <g transform="translate(30,870)">
+    <circle cx="6" cy="0" r="5" class="tag-built"/><text x="18" y="4" font-size="11" fill="#101828">Built</text>
+    <circle cx="90" cy="0" r="5" class="tag-partial"/><text x="102" y="4" font-size="11" fill="#101828">Scaffold / Partial</text>
+    <circle cx="240" cy="0" r="5" class="tag-todo"/><text x="252" y="4" font-size="11" fill="#101828">Todo</text>
+    <line x1="330" y1="0" x2="360" y2="0" class="flow-strong"/><text x="368" y="4" font-size="11" fill="#101828">Owned data flow</text>
+    <line x1="470" y1="0" x2="500" y2="0" class="flow-dash"/><text x="508" y="4" font-size="11" fill="#101828">Consumes / references</text>
+  </g>
+</svg>
