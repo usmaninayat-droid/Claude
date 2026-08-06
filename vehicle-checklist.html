@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0E1116">
+<title>FAMS — Pre-Collection Vehicle Checklist</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.24.0/dist/tabler-icons.min.css">
+<style>
+:root{
+  /* ==== Light in-cab theme (CarPlay / Android Auto day-mode, FAMS design-system palette) ==== */
+  --bg:#EEF1F5; --surface:#FFFFFF; --surface-2:#F4F6F9; --surface-3:#E9EDF2;
+  --line:#E6EAF0; --line-2:#D4DAE2;
+  --fg:#101828; --muted:#667085; --muted-2:#98A2B3;
+  --primary:#0072D6; --primary-soft:#E6F2FC; --primary-line:#99CDF3;
+  --success:#12B76A; --success-soft:#E7F8EF; --success-line:#A6E9C6;
+  --warning:#F79009; --warning-soft:#FEF3E2;
+  --error:#F04438; --error-soft:#FEECEA; --error-line:#F7B4AE;
+  --radius:4px; --radius-sm:4px; --radius-lg:4px;
+  --font:'Gilroy','Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;background:#DfE4EA;font-family:var(--font);overflow:hidden;}
+button{font-family:inherit;cursor:pointer;color:inherit;}
+.fit{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+.stage{position:relative;width:1280px;height:666px;transform-origin:center center;background:var(--bg);
+  color:var(--fg);display:flex;overflow:hidden;border-radius:4px;
+  background-image:radial-gradient(900px 520px at 84% -12%, rgba(0,114,214,.07), transparent 60%),
+                   radial-gradient(700px 520px at -6% 112%, rgba(18,183,106,.06), transparent 55%);}
+
+/* ---------------- LEFT RAIL ---------------- */
+.rail{width:300px;flex:none;border-right:1px solid var(--line);display:flex;flex-direction:column;
+  padding:22px 20px;gap:18px;background:var(--surface-2);}
+.veh{display:flex;align-items:center;gap:14px;background:var(--surface-2);border:1px solid var(--line);
+  border-radius:var(--radius);padding:14px;}
+.veh .ic{width:52px;height:52px;flex:none;border-radius:4px;background:var(--primary-soft);
+  color:var(--primary);display:flex;align-items:center;justify-content:center;}
+.veh .ic i{font-size:30px;}
+.veh h1{font-size:19px;font-weight:800;letter-spacing:-.2px;}
+.veh span{font-size:12.5px;color:var(--muted);letter-spacing:.2px;}
+
+.prog{display:flex;align-items:center;gap:14px;padding:2px 4px;}
+.ring{--p:0;width:48px;height:48px;flex:none;border-radius:50%;display:grid;place-items:center;
+  background:conic-gradient(var(--success) calc(var(--p)*1%), rgba(16,24,40,.10) 0);}
+.ring::after{content:'';position:absolute;width:36px;height:36px;border-radius:50%;background:var(--surface-2);}
+.ring b{position:relative;font-size:14px;font-weight:800;}
+.prog .t{font-size:13px;color:var(--muted);}
+.prog .t b{display:block;color:var(--fg);font-size:15px;font-weight:700;}
+
+.steps{display:flex;flex-direction:column;gap:8px;margin-top:2px;}
+.step{display:flex;align-items:center;gap:13px;padding:13px 12px;border-radius:var(--radius-sm);
+  background:transparent;border:1px solid transparent;text-align:left;width:100%;transition:background .2s var(--ease);}
+.step:hover{background:rgba(16,24,40,.04);}
+.step.active{background:var(--surface-3);border-color:var(--line-2);}
+.step .num{width:34px;height:34px;flex:none;border-radius:4px;background:var(--surface-3);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:var(--muted);
+  border:1px solid var(--line);}
+.step.active .num{background:var(--primary);color:#fff;border-color:transparent;}
+.step.done .num{background:var(--success);color:#fff;border-color:transparent;}
+.step .lbl{min-width:0;}
+.step .lbl b{display:block;font-size:14px;font-weight:700;letter-spacing:-.1px;line-height:1.2;}
+.step .lbl span{font-size:12px;color:var(--muted);}
+.step.active .lbl span{color:var(--primary);}
+
+.rail-foot{margin-top:auto;}
+.report{width:100%;display:flex;align-items:center;justify-content:center;gap:9px;height:56px;
+  border-radius:var(--radius-sm);border:1px solid var(--error-line);background:var(--error-soft);
+  color:var(--error);font-size:15px;font-weight:700;transition:transform .12s var(--ease),background .2s;}
+.report:active{transform:scale(.97);}
+.report i{font-size:20px;}
+
+/* ---------------- MAIN ---------------- */
+.main{flex:1;min-width:0;display:flex;flex-direction:column;}
+.topbar{height:80px;flex:none;display:flex;align-items:center;gap:16px;padding:0 26px;border-bottom:1px solid var(--line);}
+.topbar .h{flex:1;min-width:0;}
+.topbar .h h2{font-size:24px;font-weight:800;letter-spacing:-.4px;}
+.topbar .h p{font-size:13.5px;color:var(--muted);margin-top:1px;}
+.seg-mode{display:flex;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:4px;gap:4px;}
+.seg-mode button{border:none;background:transparent;color:var(--muted);font-size:13.5px;font-weight:700;
+  padding:9px 15px;border-radius:4px;display:flex;align-items:center;gap:7px;transition:.2s var(--ease);}
+.seg-mode button i{font-size:17px;}
+.seg-mode button.on{background:var(--surface-3);color:var(--fg);box-shadow:0 2px 8px rgba(0,0,0,.3);}
+.seg-mode button.on .dotc{color:var(--success);}
+.dotc{font-size:9px;}
+
+.content{flex:1;min-height:0;padding:22px 26px;overflow:hidden;}
+.grid1{display:grid;grid-template-columns:1fr 1.12fr;grid-template-rows:1fr auto;gap:16px;height:100%;}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:140px;gap:12px;height:100%;align-content:center;}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+  box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 20px rgba(16,24,40,.05);}
+.card-h{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.card-h .ci{width:38px;height:38px;flex:none;border-radius:4px;background:var(--surface-3);color:var(--muted);
+  display:flex;align-items:center;justify-content:center;}
+.card-h .ci i{font-size:21px;}
+.card-h h3{font-size:16px;font-weight:800;letter-spacing:-.2px;}
+.card-h .tag{margin-left:auto;font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:4px;display:flex;align-items:center;gap:6px;}
+.tag.conn{background:var(--success-soft);color:var(--success);}
+.tag.disc{background:rgba(255,255,255,.06);color:var(--muted);}
+
+/* driver + crew */
+.person{display:flex;align-items:center;gap:13px;padding:13px;border-radius:4px;background:var(--surface-2);border:1px solid var(--line);}
+.person .av{width:46px;height:46px;flex:none;border-radius:50%;background:var(--primary-soft);color:var(--primary);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;}
+.person b{font-size:15.5px;font-weight:700;display:block;}
+.person span{font-size:12.5px;color:var(--muted);}
+.person .role{margin-left:auto;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.crew{display:flex;flex-direction:column;gap:10px;}
+.addp{display:flex;align-items:center;gap:13px;padding:13px;border-radius:4px;background:transparent;
+  border:1.5px dashed var(--line-2);color:var(--muted);width:100%;transition:.15s var(--ease);}
+.addp:hover{border-color:var(--primary-line);color:var(--fg);}
+.addp:active{transform:scale(.98);}
+.addp .pl{width:46px;height:46px;flex:none;border-radius:50%;background:var(--surface-3);
+  display:flex;align-items:center;justify-content:center;}
+.addp .pl i{font-size:24px;}
+.addp b{font-size:15px;font-weight:700;}
+
+/* fuel gauge */
+.fuel-val{font-size:44px;font-weight:800;letter-spacing:-1px;line-height:1;}
+.fuel-val small{font-size:20px;color:var(--muted);font-weight:700;margin-left:2px;}
+.gauge{position:relative;height:56px;margin-top:18px;border-radius:4px;background:var(--surface-3);
+  border:1px solid var(--line);overflow:hidden;touch-action:none;user-select:none;}
+.gauge .gf{position:absolute;inset:0;width:50%;background:linear-gradient(90deg,#F97066,#FDB022 45%,#32D583);}
+.gauge .gk{position:absolute;top:5px;bottom:5px;width:34px;left:calc(50% - 17px);border-radius:4px;background:#fff;
+  box-shadow:0 4px 12px rgba(0,0,0,.5);cursor:grab;display:flex;align-items:center;justify-content:center;}
+.gauge .gk:active{cursor:grabbing;}
+.gauge .gk i{font-size:20px;color:#0E1116;}
+.gauge.snap .gf,.gauge.snap .gk{transition:width .25s var(--ease),left .25s var(--ease);}
+.ticks{display:flex;justify-content:space-between;margin-top:9px;font-size:12px;font-weight:700;color:var(--muted);}
+
+/* meter tumblers */
+.meter .odo{display:flex;gap:5px;align-items:center;}
+.digit{width:100%;aspect-ratio:.62;background:linear-gradient(#FFFFFF,#EDF1F6);border:1px solid var(--line-2);
+  border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;color:var(--fg);
+  font-variant-numeric:tabular-nums;box-shadow:inset 0 2px 5px rgba(16,24,40,.10);}
+.digit.dec{color:var(--warning);background:linear-gradient(#FFF7EA,#FDEFD6);border-color:#F5D9A8;}
+.odo{display:grid;grid-template-columns:repeat(var(--n,7),1fr);gap:5px;}
+.unit{font-size:14px;font-weight:800;color:var(--muted);margin-left:6px;letter-spacing:.5px;align-self:center;}
+.meter .foot{margin-top:12px;font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:7px;}
+
+/* check tiles (steps 2-4) — one uniform size on EVERY step, squared 4px corners */
+.tile{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:13px;
+  box-shadow:0 1px 2px rgba(16,24,40,.04),0 6px 16px rgba(16,24,40,.05);
+  display:flex;flex-direction:column;transition:border-color .2s var(--ease),background .2s var(--ease);}
+.tile.ok{border-color:var(--success-line);background:linear-gradient(180deg,var(--success-soft),transparent 60%);}
+.tile.issue{border-color:var(--error-line);background:linear-gradient(180deg,var(--error-soft),transparent 60%);}
+.tile.review{border-color:#F5C97A;background:linear-gradient(180deg,var(--warning-soft),transparent 60%);}
+.tile .ti-h{display:flex;align-items:center;gap:12px;margin-bottom:auto;}
+.tile.issue .ti-h,.tile.review .ti-h{padding-left:38px;}   /* clear the corner button (LHD → left) */
+.tile .tic{width:52px;height:52px;flex:none;border-radius:4px;background:var(--surface-3);color:var(--muted);
+  display:flex;align-items:center;justify-content:center;transition:.2s var(--ease);}
+.tile .tic i{font-size:32px;}
+.tile.ok .tic{background:var(--success-soft);color:var(--success);}
+.tile.issue .tic{background:var(--error-soft);color:var(--error);}
+.tile.review .tic{background:var(--warning-soft);color:var(--warning);}
+.tile .tname{font-size:15px;font-weight:700;letter-spacing:-.2px;line-height:1.15;}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px;}
+.seg button{height:46px;border-radius:4px;border:1px solid var(--line-2);background:var(--surface-2);
+  color:var(--muted);font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:7px;
+  transition:transform .1s var(--ease),background .18s,color .18s,border-color .18s;}
+.seg button i{font-size:19px;}
+.seg button:active{transform:scale(.96);}
+.seg .ok.sel{background:var(--success);color:#fff;border-color:transparent;}
+.seg .issue.sel{background:var(--error);color:#fff;border-color:transparent;}
+.tile.review .seg .issue.sel{background:var(--warning);color:#fff;border-color:transparent;}
+/* corner edit button on a flagged tile — opens the note/photo sheet.
+   state reads from colour: red pencil = reported, amber + = needs details */
+.tedit{position:absolute;top:9px;left:9px;width:34px;height:34px;border-radius:4px;display:flex;align-items:center;
+  justify-content:center;border:1px solid var(--line-2);background:var(--surface);transition:transform .1s var(--ease);}
+.tedit:active{transform:scale(.92);}
+.tedit i{font-size:19px;}
+.tile.issue .tedit{border-color:var(--error-line);color:var(--error);}
+.tile.review .tedit{border-color:transparent;background:var(--warning);color:#fff;}
+
+/* ===== ISSUE NOTE / PHOTO SHEET ===== */
+/* LHD driver: the sheet DOCKS to the left of the stage so every reason bubble
+   sits within thumb reach — Google-Maps-style "Add a report" panel. */
+/* LHD full-height left drawer — every reason lives in the driver's reach zone */
+.scrim{position:absolute;inset:0;background:rgba(16,24,40,.42);display:flex;align-items:stretch;justify-content:flex-start;
+  z-index:50;opacity:0;pointer-events:none;transition:opacity .2s var(--ease);}
+.scrim.on{opacity:1;pointer-events:auto;}
+.sheet{width:560px;height:100%;background:var(--surface);border:none;border-right:1px solid var(--line);border-radius:0;
+  box-shadow:12px 0 40px rgba(16,24,40,.22);display:flex;flex-direction:column;overflow:hidden;
+  transform:translateX(-24px);opacity:.001;transition:transform .28s var(--ease),opacity .18s;}
+.scrim.on .sheet{transform:none;opacity:1;}
+.sheet-h{display:flex;align-items:center;gap:13px;padding:20px 22px;border-bottom:1px solid var(--line);}
+.sheet-h .shic{width:48px;height:48px;flex:none;border-radius:4px;background:var(--error-soft);color:var(--error);
+  display:flex;align-items:center;justify-content:center;}
+.sheet-h .shic i{font-size:26px;}
+.sheet-h .h{flex:1;min-width:0;}
+.sheet-h h3{font-size:19px;font-weight:800;letter-spacing:-.2px;}
+.sheet-h p{font-size:13px;color:var(--muted);margin-top:1px;}
+.sheet-h .x{order:-1;width:42px;height:42px;flex:none;border-radius:4px;border:1px solid var(--line);
+  background:var(--surface-2);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:21px;}
+.sheet-b{padding:26px 26px 22px;overflow:auto;display:flex;flex-direction:column;gap:20px;}
+/* Google-Maps "Add a report" reason grid — 2 big cards per row, tap = commit */
+.reasons{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.reasons button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:22px 10px;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:4px;color:var(--fg);
+  font-size:17px;font-weight:800;letter-spacing:-.2px;transition:transform .1s var(--ease),background .15s;}
+.reasons button:active{transform:scale(.96);}
+.reasons button:hover{background:var(--surface-3);}
+.reasons .bubble{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:#fff;box-shadow:0 8px 20px rgba(16,24,40,.16),0 2px 4px rgba(16,24,40,.08);}
+.reasons .bubble i{font-size:46px;}
+.reasons .sev-red    .bubble{background:var(--error);}
+.reasons .sev-amber  .bubble{background:var(--warning);}
+.reasons .sev-gray   .bubble{background:#98A2B3;}
+.reasons button.on   .bubble{outline:4px solid var(--surface);box-shadow:0 0 0 6px currentColor,0 8px 18px rgba(16,24,40,.14);}
+.reasons .sev-red.on{color:var(--error);}
+.reasons .sev-amber.on{color:var(--warning);}
+.reasons .sev-gray.on{color:#667085;}
+
+/* photo + note = secondary, compact side actions under the grid */
+.sec{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.sec button{display:flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:22px;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--fg);font-size:13.5px;font-weight:700;
+  transition:transform .1s var(--ease),background .15s;}
+.sec button:active{transform:scale(.96);}
+.sec button i{font-size:19px;color:var(--muted);}
+.sec button.hide{display:none;}
+.photos{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.photos:empty{display:none;}
+.photos .ph{position:relative;width:56px;height:56px;border-radius:4px;overflow:hidden;border:1px solid var(--line-2);}
+.photos .ph img{width:100%;height:100%;object-fit:cover;display:block;}
+.photos .ph .rm{position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;border:none;
+  background:rgba(16,24,40,.62);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;}
+.sheet-b textarea{width:100%;min-height:60px;resize:none;border:1px solid var(--line-2);border-radius:4px;padding:12px;
+  font-family:inherit;font-size:14.5px;color:var(--fg);background:var(--surface-2);line-height:1.4;}
+.sheet-b textarea:focus{outline:none;border-color:var(--primary-line);background:var(--surface);}
+.sheet-b textarea[hidden]{display:none;}
+/* footer now carries only a subtle "Remove flag" for edit mode; hidden otherwise */
+.sheet-f{display:flex;align-items:center;padding:10px 22px;border-top:1px solid var(--line);background:var(--surface-2);min-height:56px;}
+.sheet-f.empty{display:none;}
+.sheet-f .clear{height:36px;padding:0 12px;border-radius:4px;border:1px solid var(--line-2);background:transparent;
+  color:var(--muted);font-size:13px;font-weight:700;display:flex;align-items:center;gap:7px;}
+.sheet-f .clear i{font-size:16px;}
+.sheet-f .clear:active{transform:scale(.95);}
+
+/* ---------------- BOTTOM BAR ---------------- */
+.bottombar{height:96px;flex:none;display:flex;align-items:center;gap:14px;padding:0 26px;border-top:1px solid var(--line);}
+/* LHD driver reaches from the left → primary actions live there.
+   Order in the DOM stays Back/Next; the dots get pushed to the far right. */
+.dots{display:flex;gap:8px;margin-left:auto;order:3;}
+#back{order:2;}
+#next{order:1;}
+.dots .d{width:38px;height:6px;border-radius:3px;background:rgba(16,24,40,.14);transition:.25s var(--ease);}
+.dots .d.on{background:var(--primary);width:52px;}
+.dots .d.done{background:var(--success);}
+.btn{height:60px;border-radius:4px;padding:0 30px;font-size:17px;font-weight:800;display:flex;align-items:center;gap:11px;
+  border:1px solid var(--line-2);background:var(--surface-2);color:var(--fg);transition:transform .12s var(--ease),filter .18s;}
+.btn i{font-size:22px;}
+.btn:active{transform:scale(.97);}
+.btn.ghost:disabled{opacity:.4;pointer-events:none;}
+.btn.primary{border-color:transparent;background:var(--primary);color:#fff;box-shadow:0 10px 26px rgba(46,144,250,.35);}
+.btn.go{background:var(--success);color:#fff;box-shadow:0 10px 26px rgba(18,183,106,.34);}
+
+@media (prefers-reduced-motion: reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="fit">
+  <div class="stage" id="stage">
+
+    <!-- ===== LEFT RAIL ===== -->
+    <aside class="rail">
+      <div class="veh">
+        <div class="ic"><i class="ti ti-truck"></i></div>
+        <div>
+          <h1>Compactor 7645</h1>
+          <span>Vehicle ID · 9876119870</span>
+        </div>
+      </div>
+
+      <div class="prog">
+        <div class="ring" id="ring"><b id="ringT">0/4</b></div>
+        <div class="t"><b>Checklist Progress</b>Complete all checks to start</div>
+      </div>
+
+      <nav class="steps" id="steps"></nav>
+
+      <div class="rail-foot">
+        <button class="report"><i class="ti ti-alert-triangle"></i> Report an Issue</button>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN ===== -->
+    <main class="main">
+      <header class="topbar">
+        <div class="h">
+          <h2 id="stTitle">Vehicle Details</h2>
+          <p id="stSub">Confirm crew and record meter readings</p>
+        </div>
+        <div class="seg-mode" id="mode">
+          <button data-mode="manual" class="on"><i class="ti ti-keyboard"></i> Manual</button>
+          <button data-mode="connected"><i class="ti ti-wifi"></i> Device <span class="dotc">●</span></button>
+        </div>
+      </header>
+
+      <section class="content" id="content"><!-- rendered by JS --></section>
+
+      <footer class="bottombar">
+        <div class="dots" id="dots"></div>
+        <button class="btn ghost" id="back" disabled><i class="ti ti-chevron-left"></i> Back</button>
+        <button class="btn primary" id="next">Next <i class="ti ti-chevron-right"></i></button>
+      </footer>
+    </main>
+
+    <!-- ===== ISSUE NOTE / PHOTO SHEET ===== -->
+    <div class="scrim" id="scrim">
+      <div class="sheet" role="dialog" aria-modal="true">
+        <div class="sheet-h">
+          <div class="shic"><i class="ti ti-alert-triangle" id="shIcon"></i></div>
+          <div class="h"><h3 id="shTitle">Report Issue</h3><p id="shSub">Tap what's wrong · add a photo</p></div>
+          <button class="x" id="shClose"><i class="ti ti-x"></i></button>
+        </div>
+        <div class="sheet-b">
+          <div class="reasons" id="shReasons"></div>
+          <div class="sec">
+            <button id="shPhotoBtn"><i class="ti ti-camera-plus"></i> Add photo</button>
+            <button id="shNoteToggle"><i class="ti ti-note"></i> Add note</button>
+            <div class="photos" id="shPhotos"></div>
+          </div>
+          <textarea id="shNote" placeholder="Optional note for the crew…" hidden></textarea>
+        </div>
+        <div class="sheet-f" id="shFoot">
+          <button class="clear" id="shClear"><i class="ti ti-trash"></i> Remove flag</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* fit stage to viewport */
+  var stage=document.getElementById('stage');
+  function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/666);stage.style.transform='scale('+s+')';}
+  fit();window.addEventListener('resize',fit);
+
+  /* ---- checklist model ---- */
+  var STEPS=[
+    {t:'Vehicle Details', s:'Confirm crew and record meter readings'},
+    {t:'Documents & Safety Equipment', s:'Verify paperwork and on-board safety gear'},
+    {t:'Exterior Condition & Lights', s:'Walk around — body, tyres, fluids and lamps'},
+    {t:'Mechanical & Operations Check', s:'Fluid levels and driving controls'}
+  ];
+  var ITEMS={
+    2:[['Valid Vehicle Registration','ti-license'],['Permits','ti-file-certificate'],['Route Sheet','ti-route'],['Fire Extinguisher','ti-flame'],
+       ['First Aid Box','ti-first-aid-kit'],['Safety Reflective Stickers','ti-sticker'],['Safety Warning Triangles','ti-triangle']],
+    3:[['Damages / Scratches','ti-car-crash'],['Vehicle Number Plate','ti-id'],['Tire Condition','ti-circle-dot'],['Tire Pressure','ti-gauge'],
+       ['Spare Tire & Jack','ti-tools'],['Fluid Leak','ti-droplet'],['Diesel Cap','ti-gas-station'],['Vehicle Cabin Clean','ti-sparkles'],
+       ['Vehicle Body Clean','ti-car'],['Mirrors','ti-viewfinder'],['Headlights / Taillights','ti-lamp-2'],['All Vehicle Lights','ti-bulb']],
+    4:[['Engine Oil Level','ti-engine'],['AdBlue Level','ti-flask'],['Coolant Level','ti-snowflake'],['Windshield Washer Fluid','ti-spray'],
+       ['Brakes','ti-disc'],['Parking / Hand Brake','ti-hand-stop'],['Clutch','ti-manual-gearbox'],['Horn','ti-volume'],
+       ['Battery Condition','ti-battery-3'],['Seat Belts','ti-shield-check'],['Steering','ti-steering-wheel'],['Windshield Wipers','ti-wiper']]
+  };
+  var st={ step:1, mode:'manual', fuel:50, fuelTouched:false, helpers:[],
+           odo:'0000000', hour:'00000000', ans:{2:{},3:{},4:{}} };
+
+  /* connected preset (mirrors the "Device online — Auto Input" Figma state) */
+  function applyMode(m){
+    st.mode=m;
+    if(m==='connected'){ st.fuel=72; st.fuelTouched=true; st.odo='0002448'; st.hour='00002448';
+      st.helpers=[{n:'Yusuf Karim',id:'ID 7687'},{n:'Omar Farah',id:'ID 5521'}]; }
+    else { st.fuel=50; st.fuelTouched=false; st.odo='0000000'; st.hour='00000000'; st.helpers=[]; }
+  }
+
+  /* ---- completion ---- */
+  /* an item counts as answered when it's OK, or an Issue that has been documented (red).
+     A flagged-but-undocumented "Review Issue" (amber) is intentionally NOT complete. */
+  function ansStatus(n,i){ var v=st.ans[n][i]; if(!v) return null; return v==='ok'?'ok':v.status; }
+  function itemDone(n,i){ var s=ansStatus(n,i); return s==='ok'||s==='reported'; }
+  function stepDone(n){
+    if(n===1) return st.mode==='connected' || st.fuelTouched;
+    var keys=ITEMS[n].length, c=0;
+    for(var i=0;i<keys;i++){ if(itemDone(n,i)) c++; }
+    return c===keys;
+  }
+  function doneCount(){var c=0;for(var i=1;i<=4;i++)if(stepDone(i))c++;return c;}
+
+  /* ---- renderers ---- */
+  var elSteps=document.getElementById('steps'),elContent=document.getElementById('content'),
+      elDots=document.getElementById('dots'),elBack=document.getElementById('back'),elNext=document.getElementById('next');
+
+  function renderRail(){
+    elSteps.innerHTML='';
+    STEPS.forEach(function(s,i){
+      var n=i+1,done=stepDone(n)&&n!==st.step,active=n===st.step;
+      var b=document.createElement('button');
+      b.className='step'+(active?' active':'')+(done?' done':'');
+      b.innerHTML='<div class="num">'+(done?'<i class="ti ti-check" style="font-size:19px"></i>':n)+'</div>'+
+        '<div class="lbl"><b>'+s.t+'</b><span>Step '+n+' of 4</span></div>';
+      b.onclick=function(){ st.step=n; render(); };
+      elSteps.appendChild(b);
+    });
+    var dc=doneCount();
+    var ring=document.getElementById('ring');
+    ring.style.setProperty('--p', (dc/4*100));
+    document.getElementById('ringT').textContent=dc+'/4';
+  }
+
+  function renderDots(){
+    elDots.innerHTML='';
+    for(var i=1;i<=4;i++){var d=document.createElement('div');
+      d.className='d'+(i===st.step?' on':'')+(stepDone(i)&&i!==st.step?' done':'');elDots.appendChild(d);}
+  }
+
+  function tag(conn){return conn?'<span class="tag conn"><i class="ti ti-circle-check-filled"></i> Auto</span>'
+                             :'<span class="tag disc"><i class="ti ti-plug-connected-x"></i> Manual</span>';}
+
+  function digits(str,decIndex){
+    var h='<div class="odo" style="--n:'+str.length+'">';
+    for(var i=0;i<str.length;i++){h+='<div class="digit'+(decIndex!=null&&i>=decIndex?' dec':'')+'">'+str[i]+'</div>';}
+    return h+'</div>';
+  }
+
+  function renderStep1(){
+    var conn=st.mode==='connected';
+    var crew='';
+    [0,1].forEach(function(i){
+      var h=st.helpers[i];
+      if(h){ crew+='<div class="person"><div class="av">'+h.n.split(' ').map(function(w){return w[0];}).join('')+
+        '</div><div><b>'+h.n+'</b><span>'+h.id+'</span></div><span class="role">Helper '+(i+1)+'</span></div>'; }
+      else { crew+='<button class="addp" data-add="'+i+'"><div class="pl"><i class="ti ti-user-plus"></i></div>'+
+        '<b>Add Helper '+(i+1)+'</b></button>'; }
+    });
+    elContent.innerHTML=
+    '<div class="grid1">'+
+      '<div class="card" style="grid-row:1/3;display:flex;flex-direction:column">'+
+        '<div class="card-h"><div class="ci"><i class="ti ti-users"></i></div><h3>Driver & Crew</h3>'+(conn?tag(true):'')+'</div>'+
+        '<div class="person" style="margin-bottom:12px"><div class="av">AR</div><div><b>Ahmed Al Rashid</b><span>ID 7687 · Lead Driver</span></div><span class="role">Driver</span></div>'+
+        '<div class="crew">'+crew+'</div>'+
+      '</div>'+
+      '<div class="card">'+
+        '<div class="card-h"><div class="ci"><i class="ti ti-gas-station"></i></div><h3>Fuel Level</h3>'+tag(conn)+'</div>'+
+        '<div class="fuel-val" id="fuelV">'+st.fuel+'<small>%</small></div>'+
+        '<div class="gauge" id="gauge"><div class="gf" id="gf"></div><div class="gk" id="gk"><i class="ti ti-grip-vertical"></i></div></div>'+
+        '<div class="ticks"><span>E</span><span>¼</span><span>½</span><span>¾</span><span>F</span></div>'+
+      '</div>'+
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">'+
+        '<div class="card meter"><div class="card-h"><div class="ci"><i class="ti ti-dashboard"></i></div><h3>Odometer</h3>'+tag(conn)+'</div>'+
+          digits(st.odo)+'<div class="unit" style="text-align:right;display:block">KM</div>'+
+          '<div class="foot"><i class="ti '+(conn?'ti-bolt':'ti-pencil')+'"></i>'+(conn?'Read from device':'Tap to enter reading')+'</div></div>'+
+        '<div class="card meter"><div class="card-h"><div class="ci"><i class="ti ti-clock-hour-4"></i></div><h3>Hour Meter</h3>'+tag(conn)+'</div>'+
+          digits(st.hour,6)+'<div class="unit" style="text-align:right;display:block">HRS</div>'+
+          '<div class="foot"><i class="ti '+(conn?'ti-bolt':'ti-pencil')+'"></i>'+(conn?'Read from device':'Tap to enter reading')+'</div></div>'+
+      '</div>'+
+    '</div>';
+    if(!conn){
+      // add helper buttons
+      elContent.querySelectorAll('[data-add]').forEach(function(b){
+        b.onclick=function(){ var i=+b.dataset.add;
+          st.helpers[i]={n:['Yusuf Karim','Omar Farah'][i],id:'ID '+(i?'5521':'7687')}; render(); };
+      });
+      wireGauge();
+    } else { positionGauge(); }
+  }
+
+  function positionGauge(){
+    var g=document.getElementById('gf'),k=document.getElementById('gk');
+    if(!g)return; g.style.width=st.fuel+'%'; k.style.left='calc('+st.fuel+'% - 17px)';
+    var v=document.getElementById('fuelV'); if(v)v.innerHTML=st.fuel+'<small>%</small>';
+  }
+  function wireGauge(){
+    positionGauge();
+    var gauge=document.getElementById('gauge'),k=document.getElementById('gk'),drag=false;
+    function set(clientX){ var r=gauge.getBoundingClientRect();
+      var pct=Math.max(0,Math.min(100,Math.round((clientX-r.left)/r.width*100)));
+      st.fuel=pct; st.fuelTouched=true; positionGauge(); }
+    function down(e){drag=true;gauge.classList.remove('snap');set(e.touches?e.touches[0].clientX:e.clientX);
+      renderRail();renderDots();e.preventDefault();}
+    function move(e){if(!drag)return;set(e.touches?e.touches[0].clientX:e.clientX);e.preventDefault();}
+    function up(){if(!drag)return;drag=false;renderRail();renderDots();}
+    k.addEventListener('pointerdown',down);gauge.addEventListener('pointerdown',down);
+    window.addEventListener('pointermove',move);window.addEventListener('pointerup',up);
+    gauge.addEventListener('touchstart',down,{passive:false});window.addEventListener('touchmove',move,{passive:false});
+    window.addEventListener('touchend',up);
+  }
+
+  function esc(s){ return (s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+  function issueSummary(d){                 /* text shown in the tile detail bar */
+    if(d.note && d.note.trim()) return d.note.trim();
+    if(d.tags && d.tags.length) return d.tags.join(', ');
+    return '';
+  }
+
+  function renderChecks(n){
+    var html='<div class="tiles">';
+    ITEMS[n].forEach(function(it,idx){
+      var s=ansStatus(n,idx);
+      var cls=s==='ok'?'ok':s==='reported'?'issue':s==='review'?'review':'';
+      var issueSel=(s==='review'||s==='reported');
+
+      /* flagged tiles carry a colour-coded corner button (pencil=reported, +=needs details) */
+      var tedit='';
+      if(s==='reported') tedit='<button class="tedit" data-edit="'+idx+'"><i class="ti ti-pencil"></i></button>';
+      else if(s==='review') tedit='<button class="tedit" data-edit="'+idx+'"><i class="ti ti-plus"></i></button>';
+
+      html+='<div class="tile'+(cls?' '+cls:'')+'" data-i="'+idx+'">'+tedit+
+        '<div class="ti-h"><div class="tic"><i class="ti '+it[1]+'"></i></div><div class="tname">'+it[0]+'</div></div>'+
+        '<div class="seg"><button class="ok'+(s==='ok'?' sel':'')+'" data-v="ok"><i class="ti ti-check"></i> OK</button>'+
+        '<button class="issue'+(issueSel?' sel':'')+'" data-v="issue"><i class="ti ti-x"></i> Issue</button></div>'+
+      '</div>';
+    });
+    elContent.innerHTML=html+'</div>';
+
+    elContent.querySelectorAll('.tile').forEach(function(tile){
+      var i=+tile.dataset.i;
+      tile.querySelector('.seg .ok').onclick=function(){
+        st.ans[n][i]= (ansStatus(n,i)==='ok'? null : 'ok');
+        afterAnswer(n);
+      };
+      tile.querySelector('.seg .issue').onclick=function(){
+        var s=ansStatus(n,i);
+        if(s==='review'||s==='reported'){ openSheet(n,i); }        /* already flagged → edit */
+        else { st.ans[n][i]={status:'review',tags:[],note:'',photos:[]}; openSheet(n,i); }
+      };
+      tile.querySelectorAll('[data-edit]').forEach(function(ed){
+        ed.onclick=function(){ openSheet(n,+ed.dataset.edit); };
+      });
+    });
+  }
+
+  function afterAnswer(n){ renderChecks(n); renderRail(); renderDots(); updateNav(); }
+
+  /* ---- issue sheet ---- */
+  /* Google-Maps-style reason bubbles: [label, icon, severity] — tap = commit.
+     Severity picks the fill colour: red = defect, amber = wear/maintenance, gray = misc. */
+  var REASONS=[
+    ['Damaged','ti-car-crash','red'], ['Broken','ti-ban','red'],
+    ['Missing','ti-square-x','red'], ['Leaking','ti-droplet','red'],
+    ['Low / empty','ti-battery-1','amber'], ['Worn out','ti-alert-triangle','amber'],
+    ['Dirty','ti-spray','amber'], ['Other','ti-dots','gray']
+  ];
+  var REASON_META={}; REASONS.forEach(function(r){REASON_META[r[0]]={icon:r[1],sev:r[2]};});
+  function reasonIcon(label){ return (REASON_META[label]||{icon:'ti-alert-circle'}).icon; }
+  function reasonSev(label){ return (REASON_META[label]||{sev:'red'}).sev; }
+  var sheet={n:null,i:null,work:null};
+  function photoThumb(idx){
+    var pal=[['#DCE3EA','#5B6B7B'],['#F6D9D5','#B42318'],['#FBE7C6','#B54708'],['#CFE6FA','#175CD3']];
+    var c=pal[idx%pal.length];
+    var svg='<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">'+
+      '<rect width="120" height="120" fill="'+c[0]+'"/>'+
+      '<rect x="34" y="42" width="52" height="40" rx="8" fill="none" stroke="'+c[1]+'" stroke-width="4"/>'+
+      '<rect x="50" y="36" width="20" height="10" rx="3" fill="'+c[1]+'"/>'+
+      '<circle cx="60" cy="62" r="13" fill="none" stroke="'+c[1]+'" stroke-width="4"/>'+
+      '<circle cx="60" cy="62" r="5" fill="'+c[1]+'"/>'+
+      '<text x="60" y="104" font-family="sans-serif" font-size="13" font-weight="700" fill="'+c[1]+'" text-anchor="middle">Photo '+(idx+1)+'</text></svg>';
+    return 'data:image/svg+xml,'+encodeURIComponent(svg);
+  }
+  var elScrim=document.getElementById('scrim');
+  function openSheet(n,i){
+    sheet.n=n; sheet.i=i;
+    var cur=st.ans[n][i]; var base=(cur&&cur!=='ok')?cur:{status:'review',tags:[],note:'',photos:[]};
+    /* tags is now single-select (Google-Maps model) — keep at most one */
+    sheet.work={status:base.status, tags:(base.tags||[]).slice(0,1), note:base.note||'', photos:(base.photos||[]).slice()};
+    var it=ITEMS[n][i];
+    document.getElementById('shTitle').textContent=it[0];
+    document.getElementById('shSub').textContent="Tap what's wrong";
+    document.getElementById('shIcon').className='ti '+it[1];
+    var note=document.getElementById('shNote'), toggle=document.getElementById('shNoteToggle');
+    note.value=sheet.work.note;
+    if(sheet.work.note && sheet.work.note.trim()){ note.hidden=false; toggle.classList.add('hide'); }
+    else { note.hidden=true; toggle.classList.remove('hide'); }
+    /* footer only visible when the tile is already REPORTED (has a reason).
+       A first-time flag is amber-review with no reason yet — no "Remove" needed. */
+    var isReported=(cur&&cur!=='ok'&&cur.status==='reported');
+    document.getElementById('shFoot').classList.toggle('empty', !isReported);
+    renderReasons(); renderPhotos();
+    elScrim.classList.add('on');
+  }
+  function closeSheet(){ elScrim.classList.remove('on'); }
+  /* commit path — writes work back to state, closes, refreshes */
+  function commitWork(){
+    var w=sheet.work; w.note=document.getElementById('shNote').value;
+    var documented=(w.note&&w.note.trim())||w.tags.length||w.photos.length;
+    w.status=documented?'reported':'review';
+    st.ans[sheet.n][sheet.i]={status:w.status,tags:w.tags,note:w.note,photos:w.photos};
+    closeSheet(); afterAnswer(sheet.n);
+  }
+  function renderReasons(){
+    var wrap=document.getElementById('shReasons'); wrap.innerHTML='';
+    REASONS.forEach(function(r){
+      var b=document.createElement('button');
+      var on=sheet.work.tags[0]===r[0];
+      b.className='sev-'+r[2]+(on?' on':'');
+      b.innerHTML='<span class="bubble"><i class="ti '+r[1]+'"></i></span>'+r[0];
+      /* single-tap = pick reason AND commit — Google Maps "Add a report" behaviour */
+      b.onclick=function(){ sheet.work.tags=[r[0]]; commitWork(); };
+      wrap.appendChild(b);
+    });
+  }
+  function renderPhotos(){
+    var wrap=document.getElementById('shPhotos'); wrap.innerHTML='';
+    sheet.work.photos.forEach(function(src,idx){
+      var d=document.createElement('div'); d.className='ph';
+      d.innerHTML='<img src="'+src+'" alt=""><button class="rm"><i class="ti ti-x"></i></button>';
+      d.querySelector('.rm').onclick=function(){ sheet.work.photos.splice(idx,1); renderPhotos(); };
+      wrap.appendChild(d);
+    });
+  }
+  document.getElementById('shPhotoBtn').onclick=function(){
+    sheet.work.photos.push(photoThumb(sheet.work.photos.length)); renderPhotos();
+  };
+  document.getElementById('shNoteToggle').onclick=function(){
+    var note=document.getElementById('shNote'); note.hidden=false; this.classList.add('hide'); note.focus();
+  };
+  document.getElementById('shClose').onclick=function(){ closeSheet(); afterAnswer(sheet.n); };
+  document.getElementById('shClear').onclick=function(){ st.ans[sheet.n][sheet.i]=null; closeSheet(); afterAnswer(sheet.n); };
+  elScrim.onclick=function(e){ if(e.target===elScrim){ closeSheet(); afterAnswer(sheet.n); } };
+
+  function updateNav(){
+    elBack.disabled = st.step===1;
+    if(st.step<4){ elNext.className='btn primary'; elNext.innerHTML='Next <i class="ti ti-chevron-right"></i>'; }
+    else {
+      var all=doneCount()===4;
+      elNext.className='btn '+(all?'go':'primary');
+      elNext.innerHTML=(all?'<i class="ti ti-player-play-filled"></i> Start Collection':'Review Checks <i class="ti ti-list-check"></i>');
+    }
+  }
+
+  function render(){
+    document.getElementById('stTitle').textContent=STEPS[st.step-1].t;
+    document.getElementById('stSub').textContent=STEPS[st.step-1].s;
+    if(st.step===1) renderStep1(); else renderChecks(st.step);
+    renderRail(); renderDots(); updateNav();
+  }
+
+  /* mode toggle */
+  document.getElementById('mode').querySelectorAll('button').forEach(function(b){
+    b.onclick=function(){
+      document.querySelectorAll('#mode button').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on'); applyMode(b.dataset.mode); render();
+    };
+  });
+  elBack.onclick=function(){ if(st.step>1){st.step--;render();} };
+  elNext.onclick=function(){
+    if(st.step<4){ st.step++; render(); }
+    else if(doneCount()===4){ window.location.href='driver-nav-collection.html'; }
+    else { // jump to first incomplete step
+      for(var i=1;i<=4;i++){ if(!stepDone(i)){ st.step=i; render(); break; } }
+    }
+  };
+
+  render();
+})();
+</script>
+</body>
+</html>

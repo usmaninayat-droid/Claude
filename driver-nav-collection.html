@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0072D6">
+<title>FAMS — Driver App · Heading to Collection Site</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.24.0/dist/tabler-icons.min.css">
+<style>
+:root{
+  /* ==== FAMS v5 design-system tokens (from service-assurance-zones.html) ==== */
+  --background:#F9FAFB; --foreground:#101828; --card:#FFFFFF; --card-foreground:#1D2939;
+  --primary:#0072D6; --primary-foreground:#FFFFFF; --primary-dark:#00478A;
+  --secondary:#E6F2FC; --secondary-foreground:#0072D6;
+  --muted:#F9FAFB; --muted-foreground:#667085;
+  --destructive:#F04438; --destructive-foreground:#FFFFFF;
+  --border:#EAECF0; --white:#FFFFFF; --black:#000000;
+  /* status */
+  --status-error:#F04438; --status-warning:#F79009; --status-success:#12B76A; --status-info:#0072D6;
+  /* gray ramp */
+  --gray-50:#F9FAFB; --gray-100:#F2F4F7; --gray-200:#EAECF0; --gray-300:#D0D5DD; --gray-400:#98A2B3;
+  --gray-500:#667085; --gray-600:#475467; --gray-700:#344054; --gray-800:#1D2939; --gray-900:#101828;
+  /* success ramp (500/700 shipped; 600/800 added for the branded map surfaces) */
+  --success-50:#ECFDF3; --success-100:#D1FADF; --success-500:#12B76A;
+  --success-600:#039855; --success-700:#027A48; --success-800:#05603A;
+  --warning-500:#F79009; --error-500:#F04438;
+  /* type */
+  --font-sans:'Gilroy','Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --fw-normal:400; --fw-medium:500; --fw-semibold:600; --fw-bold:700;
+  /* radius (design-system base is 6–8px for the admin console; the in-cab surface
+     keeps larger touch radii below, so these stay for reference) */
+  --radius-md:4px; --radius:6px; --radius-lg:8px;
+  /* elevation */
+  --elevation-md:0 2px 4px -2px rgba(16,24,40,.06),0 4px 8px -2px rgba(16,24,40,.10);
+  --elevation-lg:0 4px 6px -2px rgba(16,24,40,.03),0 12px 16px -4px rgba(16,24,40,.08);
+  --elevation-xl:0 8px 8px -4px rgba(16,24,40,.03),0 20px 24px -4px rgba(16,24,40,.08);
+  /* in-cab shadow lift (heavier than admin elevation — driver tablet, glanceable) */
+  --lift-btn:0 10px 26px rgba(16,24,40,.16),0 2px 6px rgba(16,24,40,.08);
+  --lift-card:0 26px 60px rgba(16,24,40,.22);
+  --lift-banner:0 18px 40px rgba(2,122,72,.28);
+}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;background:var(--gray-300);font-family:var(--font-sans);overflow:hidden;}
+  button{font-family:inherit;}
+  .fit{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+  /* Output resolution = 1280x666 (matches the other IWMP/FAMS prototypes). */
+  .stage{position:relative;width:1280px;height:666px;transform-origin:center center;background:var(--gray-100);overflow:hidden;}
+  /* Artwork authored on a 2000x1067 grid, mapped exactly onto the 1280x666 stage. */
+  .canvas{position:absolute;top:0;left:0;width:2000px;height:1067px;transform:scale(0.64,0.6242);transform-origin:top left;}
+
+  /* ---------- MAP ---------- */
+  .map{position:absolute;inset:0;z-index:0;}
+  .map svg{width:100%;height:100%;display:block;}
+  .land{fill:var(--gray-100);}
+  .bldg{fill:var(--gray-200);}
+  .road{fill:var(--gray-300);}
+  .road-minor{fill:var(--gray-200);}
+  .lbl{fill:var(--gray-500);font-weight:var(--fw-medium);}
+  .lbl-strong{fill:var(--gray-600);font-weight:var(--fw-bold);}
+  .lbl-faint{fill:var(--gray-400);font-weight:var(--fw-medium);}
+  .route{fill:var(--success-500);}
+  .pin-body{fill:var(--gray-500);}
+  .pin-dot{fill:var(--gray-100);}
+  .puck-halo{fill:var(--success-500);opacity:.18;}
+  .puck{fill:var(--success-500);stroke:var(--white);}
+  .puck-arrow{fill:var(--white);}
+
+  /* ---------- LEFT TOOLBAR ---------- */
+  .rail{position:absolute;left:28px;top:52px;z-index:6;display:flex;flex-direction:column;gap:28px;}
+  .fbtn{width:112px;height:112px;border-radius:4px;background:var(--card);border:none;
+        display:flex;align-items:center;justify-content:center;cursor:pointer;
+        box-shadow:var(--lift-btn);color:var(--gray-800);}
+  .fbtn i{font-size:44px;line-height:1;}
+  .fbtn.txt{font-size:38px;font-weight:var(--fw-bold);color:var(--gray-800);letter-spacing:.5px;}
+  .fbtn.warn i{color:var(--status-warning);}
+  .fbtn.sos{background:var(--destructive);color:var(--destructive-foreground);box-shadow:0 12px 28px rgba(240,68,56,.42);}
+  .fbtn.sos i{font-size:46px;}
+  .zoom{position:absolute;left:28px;bottom:52px;z-index:6;display:flex;flex-direction:column;gap:22px;}
+  .fbtn:active{transform:scale(.96);}
+
+  /* ---------- TURN BANNER ---------- */
+  .turn{position:absolute;left:184px;top:28px;z-index:6;}
+  .turn .head{display:flex;align-items:center;gap:26px;background:var(--success-600);
+        border-radius:4px;padding:22px 30px 22px 22px;min-width:560px;box-shadow:var(--lift-banner);}
+  .turn .glyph{width:112px;height:112px;border-radius:4px;background:var(--white);
+        display:flex;align-items:center;justify-content:center;flex:none;}
+  .turn .glyph svg{width:70px;height:70px;}
+  .turn .dist{color:var(--white);font-size:54px;font-weight:var(--fw-bold);line-height:1;letter-spacing:-.5px;}
+  .turn .instr{color:var(--success-50);font-size:33px;font-weight:var(--fw-medium);margin-top:8px;line-height:1.15;}
+  .turn .then{display:inline-flex;align-items:center;gap:16px;margin-left:26px;
+        background:var(--success-800);color:var(--success-50);border-radius:0 0 4px 4px;
+        padding:16px 34px;font-size:31px;font-weight:var(--fw-semibold);box-shadow:var(--elevation-lg);}
+  .turn .then svg{width:34px;height:34px;}
+
+  /* ---------- BOTTOM COLLECTION CARD ---------- */
+  .card{position:absolute;left:184px;bottom:34px;width:584px;z-index:6;
+        background:var(--card);border-radius:4px;padding:34px 36px 36px;box-shadow:var(--lift-card);}
+  .prog{display:flex;align-items:center;gap:14px;height:26px;}
+  .prog .seg{height:14px;border-radius:4px;background:var(--gray-200);flex:1;}
+  .prog .seg.on{background:var(--success-500);}
+  .prog .truck{flex:none;width:72px;height:34px;display:flex;align-items:center;justify-content:center;}
+  .prog .truck img{width:72px;height:auto;display:block;}
+  .card h2{font-size:38px;font-weight:var(--fw-bold);color:var(--foreground);margin-top:30px;letter-spacing:-.3px;}
+  .card .rule{height:2px;background:var(--border);margin:28px 0;border-radius:2px;}
+  .loc{display:flex;align-items:center;gap:26px;}
+  .loc .pin{width:92px;height:92px;border-radius:4px;background:var(--secondary);
+        display:flex;align-items:center;justify-content:center;flex:none;}
+  .loc .pin i{font-size:46px;color:var(--primary);}
+  .loc .t1{font-size:52px;font-weight:var(--fw-bold);color:var(--foreground);line-height:1.05;letter-spacing:-.5px;}
+  .loc .t2{font-size:32px;color:var(--muted-foreground);margin-top:6px;}
+  /* ---- slide-to-start (guards against accidental taps) ---- */
+  .slide{position:relative;margin-top:32px;width:100%;height:100px;border-radius:4px;overflow:hidden;
+        background:var(--gray-100);border:2px solid var(--border);
+        box-shadow:0 16px 30px rgba(2,122,72,.16);touch-action:none;user-select:none;-webkit-user-select:none;}
+  .slide .fill{position:absolute;top:0;left:0;bottom:0;width:112px;
+        background:linear-gradient(90deg,var(--success-700),var(--success-500));}
+  .slide .lbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+        font-size:33px;font-weight:var(--fw-bold);color:var(--muted-foreground);letter-spacing:.2px;
+        pointer-events:none;z-index:1;padding-left:100px;}
+  .slide .thumb{position:absolute;top:6px;bottom:6px;left:6px;width:112px;border:none;border-radius:4px;
+        background:var(--success-600);display:flex;align-items:center;justify-content:center;cursor:grab;z-index:2;
+        box-shadow:0 6px 16px rgba(2,122,72,.38);}
+  .slide .thumb:active{cursor:grabbing;}
+  .slide .thumb svg{width:46px;height:46px;stroke:var(--white);}
+  .slide .fill,.slide .thumb{transition:none;}
+  .slide.snapback .fill,.slide.snapback .thumb{transition:left .28s cubic-bezier(.22,1,.36,1),width .28s cubic-bezier(.22,1,.36,1);}
+  .slide.done .lbl{color:var(--white);padding-left:0;}
+  .slide.done .thumb{background:var(--white);}
+  .slide.done .thumb svg{stroke:var(--success-600);}
+</style>
+</head>
+<body>
+<div class="fit">
+  <div class="stage" id="stage">
+   <div class="canvas">
+
+    <!-- ===================== MAP ===================== -->
+    <div class="map">
+      <svg viewBox="0 0 2000 1067" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="var(--success-500)" stop-opacity="0"/>
+            <stop offset="1" stop-color="var(--success-500)" stop-opacity=".5"/>
+          </linearGradient>
+          <filter id="ms" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#101828" flood-opacity=".26"/>
+          </filter>
+        </defs>
+
+        <!-- land -->
+        <rect class="land" x="-50" y="-50" width="2100" height="1167"/>
+
+        <!-- buildings -->
+        <g class="bldg">
+          <rect x="360" y="0"    width="180" height="150" rx="10"/>
+          <rect x="800" y="30"   width="150" height="150" rx="10"/>
+          <rect x="985" y="70"   width="185" height="200" rx="10"/>
+          <rect x="1000" y="290" width="175" height="200" rx="10"/>
+          <rect x="640" y="240"  width="180" height="140" rx="10"/>
+          <rect x="770" y="380"  width="140" height="120" rx="10"/>
+          <rect x="360" y="470"  width="150" height="120" rx="10"/>
+          <rect x="800" y="640"  width="180" height="150" rx="10"/>
+          <rect x="1010" y="690" width="150" height="150" rx="10"/>
+          <rect x="820" y="860"  width="140" height="120" rx="10"/>
+          <rect x="1560" y="10"   width="180" height="150" rx="10"/>
+          <rect x="1800" y="10"   width="180" height="150" rx="10"/>
+          <rect x="1560" y="230"  width="180" height="190" rx="10"/>
+          <rect x="1800" y="230"  width="180" height="190" rx="10"/>
+          <rect x="1560" y="470"  width="180" height="150" rx="10"/>
+          <rect x="1800" y="470"  width="180" height="150" rx="10"/>
+          <rect x="1560" y="700"  width="180" height="160" rx="10"/>
+          <rect x="1800" y="700"  width="180" height="160" rx="10"/>
+          <rect x="1560" y="910"  width="180" height="160" rx="10"/>
+          <rect x="1800" y="910"  width="180" height="160" rx="10"/>
+        </g>
+
+        <!-- roads -->
+        <rect class="road" x="1300" y="-20" width="150" height="1110"/>
+        <rect class="road" x="-20" y="512" width="2040" height="86"/>
+        <rect class="road-minor" x="150" y="-20" width="44" height="1110"/>
+        <rect class="road-minor" x="700" y="180" width="30" height="360"/>
+
+        <!-- street labels -->
+        <text class="lbl" x="255" y="566" font-size="30" letter-spacing="1">شارع برج مانع</text>
+        <text class="lbl" x="760" y="566" font-size="30" letter-spacing="1">شارع برج مانع</text>
+        <text class="lbl-strong" x="1075" y="566" font-size="34" letter-spacing=".5">Burj Mani' St</text>
+        <text class="lbl" x="1352" y="985" font-size="30" font-weight="600" transform="rotate(90 1352 985)">Hadi</text>
+        <text class="lbl-faint" x="770" y="930" font-size="27">عامد بالساعة</text>
+
+        <!-- route (success green, down the avenue) -->
+        <rect class="route" x="1345" y="-20" width="60" height="880"/>
+
+        <!-- direction beam -->
+        <path d="M1375,830 L1560,1067 L1190,1067 Z" fill="url(#beam)"/>
+
+        <!-- collection-site pin -->
+        <g transform="translate(870,905)" filter="url(#ms)">
+          <path class="pin-body" d="M0,0 C-30,-42 -46,-64 -46,-92 A46,46 0 1 1 46,-92 C46,-64 30,-42 0,0 Z"/>
+          <circle class="pin-dot" cx="0" cy="-92" r="17"/>
+        </g>
+
+        <!-- navigation position marker -->
+        <g transform="translate(1375,830)">
+          <circle class="puck-halo" r="66"/>
+          <circle class="puck" r="52" stroke-width="8" filter="url(#ms)"/>
+          <path class="puck-arrow" d="M0,-24 L20,20 L0,8 L-20,20 Z"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- ===================== LEFT TOOLBAR ===================== -->
+    <div class="rail">
+      <button class="fbtn" aria-label="Messages"><i class="ti ti-message"></i></button>
+      <button class="fbtn" aria-label="Mute"><i class="ti ti-volume-off"></i></button>
+      <button class="fbtn txt">3D</button>
+      <button class="fbtn warn" aria-label="Report hazard"><i class="ti ti-alert-triangle"></i></button>
+      <button class="fbtn sos" aria-label="Emergency"><i class="ti ti-urgent"></i></button>
+    </div>
+    <div class="zoom">
+      <button class="fbtn" aria-label="Zoom in"><i class="ti ti-plus"></i></button>
+      <button class="fbtn" aria-label="Zoom out"><i class="ti ti-minus"></i></button>
+    </div>
+
+    <!-- ===================== TURN BANNER ===================== -->
+    <div class="turn">
+      <div class="head">
+        <div class="glyph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--success-600)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 21 V11 a4 4 0 0 1 4 -4 h8"/>
+            <path d="M13 3 l5 4 l-5 4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="dist">1.1 km</div>
+          <div class="instr">Turn left onto Al Khaleej St</div>
+        </div>
+      </div>
+      <div class="then">Then
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--success-50)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 20 V13 a3 3 0 0 1 3 -3 h9"/><path d="M13 6 l4 4 l-4 4"/>
+        </svg>
+        begin collection</div>
+    </div>
+
+    <!-- ===================== BOTTOM COLLECTION CARD ===================== -->
+    <div class="card">
+      <div class="prog">
+        <div class="seg on"></div>
+        <div class="seg on"></div>
+        <div class="truck">
+          <img src="truck-icon.png" alt="collection truck" />
+        </div>
+        <div class="seg"></div>
+        <div class="seg"></div>
+        <div class="seg"></div>
+        <div class="seg"></div>
+      </div>
+
+      <h2>Heading to Collection Site…</h2>
+      <div class="rule"></div>
+
+      <div class="loc">
+        <div class="pin"><i class="ti ti-map-pin"></i></div>
+        <div>
+          <div class="t1">Lot 2, Area 8</div>
+          <div class="t2">Collection Site</div>
+        </div>
+      </div>
+
+      <div class="slide" id="slide" role="slider" aria-label="Slide to start collection" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="fill"></div>
+        <div class="lbl">Slide to Start Collection</div>
+        <button class="thumb" aria-label="Slide to start collection">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 6 l6 6 l-6 6"/><path d="M13 6 l6 6 l-6 6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+   </div>
+  </div>
+</div>
+
+<script>
+  // Scale the fixed 1280x666 canvas to fit the viewport.
+  (function(){
+    var stage=document.getElementById('stage');
+    function fit(){
+      var s=Math.min(window.innerWidth/1280, window.innerHeight/666);
+      stage.style.transform='scale('+s+')';
+    }
+    fit(); window.addEventListener('resize',fit);
+  })();
+
+  // Slide-to-start: only fires when dragged to the end; snaps back otherwise.
+  (function(){
+    var slide=document.getElementById('slide'),
+        thumb=slide.querySelector('.thumb'),
+        fill=slide.querySelector('.fill'),
+        lbl=slide.querySelector('.lbl'),
+        pad=6, done=false, dragging=false, startX=0, startLeft=pad;
+
+    function maxLeft(){ return slide.clientWidth - thumb.offsetWidth - pad; }
+    function setLeft(x){
+      var lo=pad, hi=maxLeft(), l=Math.max(lo, Math.min(hi, x));
+      thumb.style.left=l+'px';
+      fill.style.width=(l+thumb.offsetWidth)+'px';
+      slide.setAttribute('aria-valuenow', Math.round((l-lo)/(hi-lo)*100));
+    }
+    function down(e){
+      if(done) return;
+      dragging=true; slide.classList.remove('snapback');
+      startX=(e.touches?e.touches[0].clientX:e.clientX);
+      startLeft=parseFloat(thumb.style.left)||pad;
+      if(thumb.setPointerCapture&&e.pointerId!=null){ try{thumb.setPointerCapture(e.pointerId);}catch(_){} }
+      e.preventDefault();
+    }
+    function move(e){
+      if(!dragging) return;
+      var x=(e.touches?e.touches[0].clientX:e.clientX);
+      setLeft(startLeft + (x-startX));
+      e.preventDefault();
+    }
+    function up(){
+      if(!dragging) return; dragging=false;
+      var hi=maxLeft(), l=parseFloat(thumb.style.left)||pad;
+      slide.classList.add('snapback');
+      if(l >= hi - 2){ finish(); }
+      else { setLeft(pad); }
+    }
+    function finish(){
+      done=true;
+      slide.classList.add('done');
+      setLeft(maxLeft());
+      lbl.textContent='Collection Started';
+      slide.setAttribute('aria-valuenow',100);
+    }
+    // pointer + touch fallbacks
+    thumb.addEventListener('pointerdown', down);
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    thumb.addEventListener('touchstart', down, {passive:false});
+    window.addEventListener('touchmove', move, {passive:false});
+    window.addEventListener('touchend', up);
+    window.addEventListener('resize', function(){ if(done) setLeft(maxLeft()); else setLeft(pad); });
+    // init
+    setLeft(pad);
+  })();
+</script>
+</body>
+</html>
