@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAJMEE'E — WFMC Blue Review (13 Aug 2026)</title>
+<!--
+  ============================================================================
+  WFMC BLUE REVIEW PROTOTYPE — for internal review 13 Aug 2026
+  ----------------------------------------------------------------------------
+  Covers the six BLUE (committed) workstreams from the 06-Aug design sync,
+  plus the Global Shift entity that blocks four of them.
+    1. Global Shift entity                     (settings)
+    2. Employee Master — field alignment       (workforce)
+    3. Document Expiry Alerts + Dispatch Block (alerts)
+    4. Training / Skill Matrix / Materials     (compliance)
+    5. Roster board + working-hours rules      (workforce)
+    6. Standby vs Reliever                     (workforce)
+    7. Attendance — two sources                (workforce)
+  Green (good-for-product) and Parked items are intentionally excluded.
+  Blue vs Green partitioning is preserved via the topbar banner and nav tags.
+  ============================================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --navy-900:#0B1F35; --navy-800:#10294A; --navy-700:#16345C; --navy-600:#1D4275;
+  --blue-500:#2563EB; --blue-100:#DBEAFE; --blue-50:#EFF6FF;
+  --green-500:#159570; --green-100:#D6F2E8;
+  --amber-500:#D97706; --amber-100:#FEF3C7;
+  --red-500:#DC2626;  --red-100:#FEE2E2;
+  --violet-500:#7C3AED; --violet-100:#EDE9FE;
+  --bg:#EEF1F6; --surface:#FFFFFF; --surface-2:#F7F9FC;
+  --line:#DFE5EE; --line-strong:#C6CFDD;
+  --ink:#12233B; --ink-2:#4A5B74; --ink-3:#8393A9;
+  --sidebar-bg:linear-gradient(180deg,#0B1F35 0%,#122E52 100%);
+  --sidebar-ink:#B9C7DB; --sidebar-active:#FFFFFF;
+  --shadow-1:0 1px 2px rgba(16,41,74,.06),0 1px 4px rgba(16,41,74,.05);
+  --shadow-2:0 4px 14px rgba(16,41,74,.10);
+  --shadow-3:0 16px 44px rgba(11,31,53,.22);
+  --radius:10px; --radius-lg:14px;
+  --font:'IBM Plex Sans',system-ui,sans-serif;
+}
+[data-theme="dark"]{
+  --bg:#0C1626; --surface:#132238; --surface-2:#182B45;
+  --line:#233A58; --line-strong:#33507A;
+  --ink:#E7EEF8; --ink-2:#A9BAD2; --ink-3:#6F86A6;
+  --sidebar-bg:linear-gradient(180deg,#081527 0%,#0E2440 100%);
+  --shadow-1:0 1px 2px rgba(0,0,0,.3); --shadow-2:0 4px 14px rgba(0,0,0,.35);
+  --blue-100:#1E3A5F; --blue-50:#152A45; --green-100:#123B31; --amber-100:#3D2E10; --red-100:#3D1717; --violet-100:#2A1F45;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5;overflow:hidden}
+button{font-family:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
+input,select,textarea{font-family:inherit;font-size:13.5px;color:inherit}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:6px}
+
+/* ================ LAYOUT ================ */
+.app{display:grid;grid-template-columns:260px 1fr;grid-template-rows:56px 40px 1fr;height:100vh;grid-template-areas:"sidebar topbar" "sidebar banner" "sidebar main"}
+.sidebar{grid-area:sidebar;background:var(--sidebar-bg);color:var(--sidebar-ink);padding:16px 0;overflow-y:auto}
+.sidebar .brand{padding:0 20px 16px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:12px}
+.sidebar .brand h1{color:#fff;font-size:15px;font-weight:700;letter-spacing:.3px}
+.sidebar .brand small{color:#8FA5C4;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+.nav-label{padding:14px 20px 6px;font-size:10.5px;color:#7B8DA8;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.nav-item{display:flex;align-items:center;gap:12px;padding:10px 20px;color:var(--sidebar-ink);cursor:pointer;font-size:13.5px;width:100%;text-align:left;transition:all .15s}
+.nav-item:hover{background:rgba(255,255,255,.05);color:#fff}
+.nav-item.active{background:rgba(37,99,235,.16);color:#fff;box-shadow:inset 3px 0 0 var(--blue-500)}
+.nav-item i{width:16px;text-align:center}
+.nav-item .tag{margin-left:auto;font-size:9.5px;padding:2px 6px;border-radius:4px;font-weight:600;letter-spacing:.4px}
+.tag.blue{background:rgba(37,99,235,.22);color:#93B8F5}
+.tag.green{background:rgba(21,149,112,.22);color:#7FD4B4}
+.tag.parked{background:rgba(131,147,169,.18);color:#B0BFD3}
+
+.topbar{grid-area:topbar;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 24px;gap:16px}
+.topbar .title{font-size:15px;font-weight:600}
+.topbar .crumb{color:var(--ink-3);font-size:12.5px;margin-left:8px}
+.topbar .spacer{flex:1}
+.topbar .action{padding:6px 12px;border-radius:8px;background:var(--surface-2);color:var(--ink-2);font-size:12.5px;font-weight:500;display:flex;align-items:center;gap:6px}
+.topbar .action:hover{background:var(--blue-50);color:var(--blue-500)}
+
+.banner{grid-area:banner;background:linear-gradient(90deg,rgba(37,99,235,.10),rgba(37,99,235,.02));border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 24px;gap:12px;font-size:12.5px;color:var(--ink-2)}
+.banner .pill{background:var(--blue-500);color:#fff;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:700;letter-spacing:.5px}
+.banner strong{color:var(--ink)}
+.banner .right{margin-left:auto;color:var(--ink-3);font-size:11.5px}
+
+.main{grid-area:main;overflow-y:auto;padding:24px 28px 60px}
+
+/* ================ COMPONENTS ================ */
+.page-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px}
+.page-head h2{font-size:20px;font-weight:700;margin-bottom:4px}
+.page-head .sub{color:var(--ink-2);font-size:13px;max-width:720px}
+.page-head .ref{margin-left:auto;background:var(--surface);border:1px solid var(--line);padding:6px 12px;border-radius:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-2)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-1);margin-bottom:18px}
+.card h3{font-size:14.5px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.card h3 .badge{font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;background:var(--blue-100);color:var(--blue-500);letter-spacing:.4px}
+.card h3 .badge.new{background:var(--green-100);color:var(--green-500)}
+.card h3 .sub{margin-left:auto;color:var(--ink-3);font-size:12px;font-weight:400}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;position:relative}
+.kpi .label{color:var(--ink-3);font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.kpi .value{font-size:26px;font-weight:700;margin-top:6px;letter-spacing:-.5px}
+.kpi .delta{margin-top:4px;font-size:11.5px;color:var(--ink-2)}
+.kpi.warn{border-color:var(--amber-500);background:var(--amber-100)}
+.kpi.warn .value{color:var(--amber-500)}
+.kpi.crit{border-color:var(--red-500);background:var(--red-100)}
+.kpi.crit .value{color:var(--red-500)}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 12px;background:var(--surface-2);color:var(--ink-2);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--line)}
+td{padding:11px 12px;border-bottom:1px solid var(--line);color:var(--ink)}
+tr:hover td{background:var(--surface-2)}
+.thin td{padding:8px 12px}
+
+/* Chips */
+.chip{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.chip.blue{background:var(--blue-100);color:var(--blue-500)}
+.chip.green{background:var(--green-100);color:var(--green-500)}
+.chip.amber{background:var(--amber-100);color:var(--amber-500)}
+.chip.red{background:var(--red-100);color:var(--red-500)}
+.chip.violet{background:var(--violet-100);color:var(--violet-500)}
+.chip.gray{background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line)}
+.chip.new-field{background:transparent;color:var(--green-500);border:1px dashed var(--green-500)}
+
+/* Buttons */
+.btn{padding:8px 14px;border-radius:8px;font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:all .15s;border:1px solid transparent}
+.btn.primary{background:var(--blue-500);color:#fff}
+.btn.primary:hover{background:#1D4ED8}
+.btn.ghost{background:var(--surface);border-color:var(--line);color:var(--ink-2)}
+.btn.ghost:hover{border-color:var(--blue-500);color:var(--blue-500)}
+.btn.danger{background:var(--red-500);color:#fff}
+.btn.subtle{background:var(--surface-2);color:var(--ink-2)}
+
+/* Forms */
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11.5px;font-weight:600;color:var(--ink-2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+.field label .req{color:var(--red-500);margin-left:2px}
+.field label .new{background:var(--green-100);color:var(--green-500);font-size:9.5px;padding:1px 5px;border-radius:3px;margin-left:6px;letter-spacing:.3px}
+.field input,.field select,.field textarea{width:100%;padding:9px 11px;border:1px solid var(--line-strong);border-radius:7px;background:var(--surface);transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--blue-500);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.field .hint{font-size:11px;color:var(--ink-3);margin-top:4px}
+.field.added{background:linear-gradient(90deg,rgba(21,149,112,.06),transparent);padding:8px;margin:0 -8px 6px;border-radius:6px}
+
+/* Modal */
+.modal-scrim{position:fixed;inset:0;background:rgba(11,31,53,.55);display:flex;align-items:center;justify-content:center;z-index:80;padding:20px}
+.modal{background:var(--surface);border-radius:var(--radius-lg);max-width:640px;width:100%;box-shadow:var(--shadow-3);max-height:90vh;overflow-y:auto}
+.modal .h{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.modal .h h4{font-size:15px;font-weight:700;flex:1}
+.modal .b{padding:20px 22px}
+.modal .f{padding:14px 22px;border-top:1px solid var(--line);display:flex;gap:10px;justify-content:flex-end;background:var(--surface-2)}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--navy-900);color:#fff;padding:12px 18px;border-radius:8px;box-shadow:var(--shadow-3);z-index:100;animation:slide .25s ease-out}
+@keyframes slide{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+
+/* Roster board */
+.roster{overflow-x:auto}
+.roster table{min-width:900px}
+.roster td.day{width:11.5%;padding:6px;vertical-align:top}
+.roster .emp{width:16%;min-width:170px}
+.roster .emp .name{font-weight:600;font-size:13px}
+.roster .emp .meta{font-size:11px;color:var(--ink-3)}
+.shift-chip{display:block;padding:6px 8px;border-radius:6px;font-size:11.5px;font-weight:600;cursor:grab;user-select:none;margin-bottom:4px}
+.shift-chip.morning{background:var(--blue-100);color:var(--blue-500)}
+.shift-chip.evening{background:var(--violet-100);color:var(--violet-500)}
+.shift-chip.night{background:#1F2937;color:#F3F4F6}
+.shift-chip.off{background:var(--surface-2);color:var(--ink-3);text-align:center;font-style:italic;cursor:not-allowed}
+.shift-chip.standby{background:var(--amber-100);color:var(--amber-500);border:1px dashed var(--amber-500)}
+.shift-chip.reliever{background:var(--green-100);color:var(--green-500);border:2px solid var(--green-500)}
+.shift-chip .rt{display:block;font-size:10px;font-weight:500;opacity:.85;margin-top:2px}
+td.warn-day{background:rgba(217,119,6,.08);position:relative}
+td.warn-day::after{content:'⚠';position:absolute;top:2px;right:4px;font-size:11px;color:var(--amber-500)}
+td.block-day{background:rgba(220,38,38,.06);position:relative}
+td.block-day::after{content:'\f023';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;top:4px;right:6px;font-size:10px;color:var(--red-500)}
+
+/* Skill matrix grid */
+.smx{display:grid;gap:2px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.smx > div{background:var(--surface);padding:8px 10px;font-size:11.5px;text-align:center;min-height:32px;display:flex;align-items:center;justify-content:center}
+.smx .head{background:var(--surface-2);font-weight:600;color:var(--ink-2);font-size:10.5px;text-transform:uppercase;letter-spacing:.3px}
+.smx .name{background:var(--surface-2);text-align:left;font-weight:600;font-size:12px}
+.smx .cell.on{background:var(--green-100);color:var(--green-500);font-weight:700}
+.smx .cell.exp{background:var(--red-100);color:var(--red-500);font-weight:700}
+.smx .cell.miss{color:var(--ink-3)}
+
+/* Source badges */
+.src{display:inline-flex;align-items:center;gap:5px;padding:2px 7px;border-radius:5px;font-size:10.5px;font-weight:600;letter-spacing:.2px}
+.src.plan{background:var(--blue-100);color:var(--blue-500)}
+.src.bio{background:var(--violet-100);color:var(--violet-500)}
+.src.none{background:var(--red-100);color:var(--red-500)}
+
+/* Pool cards */
+.pool-emp{display:flex;align-items:center;gap:10px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface-2);margin-bottom:6px}
+.pool-emp .av{width:30px;height:30px;border-radius:50%;background:var(--blue-500);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px}
+.pool-emp .info{flex:1}
+.pool-emp .info .n{font-weight:600;font-size:12.5px}
+.pool-emp .info .m{font-size:10.5px;color:var(--ink-3)}
+
+/* Alert bucket */
+.bucket{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;transition:all .15s}
+.bucket:hover{border-color:var(--blue-500);transform:translateX(2px)}
+.bucket .icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.bucket .icon.d90{background:var(--blue-100);color:var(--blue-500)}
+.bucket .icon.d60{background:var(--violet-100);color:var(--violet-500)}
+.bucket .icon.d30{background:var(--amber-100);color:var(--amber-500)}
+.bucket .icon.d7{background:var(--red-100);color:var(--red-500)}
+.bucket .icon.exp{background:#1F2937;color:#fff}
+.bucket .txt{flex:1}
+.bucket .txt .h{font-weight:600;font-size:13px}
+.bucket .txt .s{font-size:11.5px;color:var(--ink-3)}
+.bucket .cnt{font-size:22px;font-weight:700}
+
+/* Blocked employee state */
+.blocked-row{opacity:.55;position:relative;background:repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(220,38,38,.05) 6px,rgba(220,38,38,.05) 12px)}
+.blocked-row td:first-child::before{content:'\f023';font-family:'Font Awesome 6 Free';font-weight:900;color:var(--red-500);margin-right:6px}
+
+/* Section legend */
+.legend{display:flex;gap:14px;flex-wrap:wrap;padding:10px 14px;background:var(--surface-2);border-radius:8px;font-size:12px;color:var(--ink-2);margin-bottom:14px}
+.legend .item{display:flex;align-items:center;gap:6px}
+.legend .sw{width:14px;height:14px;border-radius:3px}
+
+.review-badge{position:fixed;bottom:20px;left:280px;background:var(--navy-900);color:#fff;padding:10px 14px;border-radius:8px;font-size:12px;box-shadow:var(--shadow-2);display:flex;gap:10px;align-items:center;z-index:50}
+.review-badge .dot{width:8px;height:8px;background:var(--blue-500);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.tab-bar{display:flex;gap:2px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.tab{padding:10px 16px;font-size:13px;font-weight:500;color:var(--ink-2);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab.active{color:var(--blue-500);border-bottom-color:var(--blue-500);font-weight:600}
+
+/* Two-column split */
+.split{display:grid;grid-template-columns:1.6fr 1fr;gap:18px}
+
+/* Empty state */
+.empty{text-align:center;padding:40px 20px;color:var(--ink-3)}
+.empty i{font-size:32px;margin-bottom:12px;color:var(--ink-3)}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <h1>TAJMEE'E · WFMC</h1>
+      <small>Blue Review · 13 Aug 2026</small>
+    </div>
+    <div class="nav-label">Overview</div>
+    <button class="nav-item" data-route="summary"><i class="fa-solid fa-flag-checkered"></i><span>Review Summary</span></button>
+
+    <div class="nav-label">Foundation</div>
+    <button class="nav-item" data-route="shift"><i class="fa-solid fa-clock"></i><span>Global Shift Entity</span><span class="tag blue">BLUE</span></button>
+
+    <div class="nav-label">Workforce</div>
+    <button class="nav-item" data-route="employee"><i class="fa-solid fa-users"></i><span>Employee Master</span><span class="tag blue">BLUE</span></button>
+    <button class="nav-item" data-route="roster"><i class="fa-solid fa-calendar-days"></i><span>Roster Board</span><span class="tag blue">BLUE</span></button>
+    <button class="nav-item" data-route="pools"><i class="fa-solid fa-user-shield"></i><span>Standby &amp; Reliever</span><span class="tag blue">BLUE</span></button>
+    <button class="nav-item" data-route="attendance"><i class="fa-solid fa-fingerprint"></i><span>Attendance · 2-source</span><span class="tag blue">BLUE</span></button>
+
+    <div class="nav-label">Compliance</div>
+    <button class="nav-item" data-route="alerts"><i class="fa-solid fa-bell"></i><span>Doc Expiry Alerts</span><span class="tag blue">BLUE</span></button>
+    <button class="nav-item" data-route="training"><i class="fa-solid fa-graduation-cap"></i><span>Training &amp; Skill</span><span class="tag blue">BLUE</span></button>
+
+    <div class="nav-label">Excluded from this review</div>
+    <button class="nav-item" data-route="excluded"><i class="fa-regular fa-eye-slash"></i><span>Green &amp; Parked scope</span><span class="tag parked">HIDE</span></button>
+  </aside>
+
+  <header class="topbar">
+    <span class="title" id="pageTitle">Review Summary</span>
+    <span class="crumb" id="pageCrumb">Home</span>
+    <div class="spacer"></div>
+    <button class="action" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i> Theme</button>
+    <button class="action" onclick="toast('Deck exported to Figma frame','ok')"><i class="fa-solid fa-share"></i> Share for review</button>
+  </header>
+
+  <div class="banner">
+    <span class="pill">BLUE · COMMITTED</span>
+    <span>Internal review only — <strong>due Thu 13 Aug 2026</strong>. Green scope reviewed separately on 20 Aug. Client exposure gated behind internal sign-off.</span>
+    <span class="right">v0.1 · 6 workstreams + Global Shift entity</span>
+  </div>
+
+  <main class="main" id="main"></main>
+</div>
+
+<div id="modalHost"></div>
+<div class="review-badge"><span class="dot"></span> Reviewers: <strong>Kashish · Benjamin · Abusufean</strong></div>
+
+<script>
+/* ================ ROUTER ================ */
+const routes = {};
+function route(id, fn, title, crumb){ routes[id] = {fn, title, crumb} }
+function go(id){
+  const r = routes[id] || routes.summary;
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active', b.dataset.route===id));
+  document.getElementById('pageTitle').textContent = r.title;
+  document.getElementById('pageCrumb').textContent = r.crumb;
+  document.getElementById('main').innerHTML = r.fn();
+  document.getElementById('main').scrollTop = 0;
+  location.hash = '#/' + id;
+}
+document.addEventListener('click', e=>{
+  const b = e.target.closest('.nav-item');
+  if (b) go(b.dataset.route);
+});
+
+function toggleTheme(){
+  const c = document.documentElement.getAttribute('data-theme');
+  document.documentElement.setAttribute('data-theme', c==='dark'?'light':'dark');
+}
+function toast(msg, kind){
+  const t = document.createElement('div');
+  t.className='toast'; t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(), 2400);
+}
+function modal(html){
+  document.getElementById('modalHost').innerHTML = `<div class="modal-scrim" onclick="if(event.target===this)closeModal()">${html}</div>`;
+}
+function closeModal(){ document.getElementById('modalHost').innerHTML=''; }
+
+/* ================ MOCK DATA ================ */
+const SHIFTS = [
+  {id:'S-M', name:'Morning Shift', icon:'sun', timings:[
+    {label:'Morning · Early', start:'05:00', end:'13:00'},
+    {label:'Morning · Late',  start:'06:00', end:'14:00'},
+  ]},
+  {id:'S-A', name:'Afternoon Shift', icon:'cloud-sun', timings:[
+    {label:'Afternoon · Standard', start:'13:00', end:'21:00'},
+    {label:'Afternoon · Extended', start:'14:00', end:'22:00'},
+  ]},
+  {id:'S-E', name:'Evening Shift', icon:'cloud-moon', timings:[
+    {label:'Evening', start:'17:00', end:'01:00'},
+  ]},
+  {id:'S-N', name:'Night Shift', icon:'moon', timings:[
+    {label:'Night · Core', start:'22:00', end:'06:00'},
+  ]},
+];
+
+const EMPS = [
+  {id:'TJ-4712', name:'Ahmed Al Sayed', role:'HD Driver', lot:'LOT 4', depot:'Musaffah', nat:'AE', wOff:'Fri', shift:'S-M', licExp:'2026-10-04', eidExp:'2027-02-11', ppExp:'2028-05-20', status:'active', src:'plan'},
+  {id:'TJ-4288', name:'Rashid Khan',    role:'HD Driver', lot:'LOT 4', depot:'Musaffah', nat:'PK', wOff:'Fri', shift:'S-M', licExp:'2026-08-18', eidExp:'2026-09-02', ppExp:'2027-04-11', status:'blocked-lic', src:'plan'},
+  {id:'TJ-4901', name:'Mohd Zubair',    role:'Labour',    lot:'LOT 4', depot:'Al Wathba', nat:'IN', wOff:'Fri', shift:'S-A', licExp:'—',          eidExp:'2026-11-22', ppExp:'2028-01-30', status:'active', src:'bio'},
+  {id:'TJ-4103', name:'Salim Hassan',   role:'Supervisor',lot:'LOT 3', depot:'Musaffah', nat:'AE', wOff:'Fri', shift:'S-M', licExp:'2027-01-14', eidExp:'2026-08-30', ppExp:'2028-03-05', status:'active', src:'bio'},
+  {id:'TJ-5044', name:'Bilal Iqbal',    role:'LD Driver', lot:'LOT 5', depot:'Al Ain',   nat:'PK', wOff:'Sun', shift:'S-N', licExp:'2026-12-12', eidExp:'2027-06-04', ppExp:'2028-11-08', status:'active', src:'plan'},
+  {id:'TJ-5122', name:'Kareem Anwar',   role:'HD Driver', lot:'LOT 5', depot:'Al Ain',   nat:'BD', wOff:'Fri', shift:'S-M', licExp:'2026-08-14', eidExp:'2027-01-19', ppExp:'2027-09-22', status:'blocked-lic', src:'plan'},
+  {id:'TJ-6001', name:'Nasir Ullah',    role:'Labour',    lot:'LOT 4', depot:'Al Wathba', nat:'PK', wOff:'Fri', shift:'S-A', licExp:'—',          eidExp:'2026-08-19', ppExp:'2027-05-10', status:'blocked-eid', src:'bio'},
+  {id:'TJ-6154', name:'Imran Baig',     role:'HD Driver', lot:'LOT 3', depot:'Musaffah', nat:'IN', wOff:'Fri', shift:'S-A', licExp:'2027-05-01', eidExp:'2027-08-08', ppExp:'2029-02-14', status:'active', src:'plan'},
+];
+
+const TRAININGS = [
+  {code:'HSE-101', title:'Waste Handling — General',       validity:24, mandatory:true,  safety:true},
+  {code:'HSE-102', title:'Confined Space Entry',           validity:12, mandatory:false, safety:true},
+  {code:'DRV-201', title:'Defensive Driving',              validity:24, mandatory:true,  safety:true},
+  {code:'DRV-210', title:'Heavy Vehicle Handling',         validity:36, mandatory:true,  safety:true},
+  {code:'CMP-005', title:'Compactor Operation',            validity:24, mandatory:false, safety:true},
+  {code:'FA-100',  title:'Basic First Aid',                validity:24, mandatory:true,  safety:false},
+  {code:'FA-110',  title:'Heat Stress Awareness',          validity:12, mandatory:true,  safety:false},
+  {code:'HR-050',  title:'Code of Conduct',                validity:0,  mandatory:true,  safety:false},
+];
+
+const SKILLS = ['Compactor','Hook Loader','Light Vehicle','Confined Space','Heat Stress','First Aid'];
+const EMP_TRAIN = { // employee → {trainingCode: status: on|exp|miss}
+  'TJ-4712':{'HSE-101':'on','DRV-201':'on','DRV-210':'on','CMP-005':'on','FA-100':'on','FA-110':'on','HR-050':'on'},
+  'TJ-4288':{'HSE-101':'on','DRV-201':'exp','DRV-210':'on','FA-100':'on','FA-110':'on','HR-050':'on'},
+  'TJ-4901':{'HSE-101':'on','FA-100':'on','FA-110':'exp','HR-050':'on'},
+  'TJ-4103':{'HSE-101':'on','HSE-102':'on','DRV-201':'on','FA-100':'on','FA-110':'on','HR-050':'on'},
+  'TJ-5044':{'HSE-101':'on','DRV-201':'on','DRV-210':'on','FA-100':'on','FA-110':'on','HR-050':'on'},
+};
+
+/* ================ VIEWS ================ */
+
+route('summary', ()=>`
+  <div class="page-head">
+    <div>
+      <h2>What's in this pack</h2>
+      <div class="sub">All seven items below were locked in as BLUE (committed) during the 06-Aug design sync. Kashish · Benjamin · Abusufean review Thursday 13 Aug; finalization Sun 17 Aug. Green scope is intentionally excluded from this deck.</div>
+    </div>
+    <div class="ref">MTG · 2026-08-06</div>
+  </div>
+  <div class="grid-4" style="margin-bottom:16px">
+    <div class="kpi"><div class="label">Days to review</div><div class="value">2</div><div class="delta">Due Thu 13 Aug</div></div>
+    <div class="kpi"><div class="label">Committed workstreams</div><div class="value">7</div><div class="delta">6 blue + Shift entity</div></div>
+    <div class="kpi"><div class="label">Screens in pack</div><div class="value">18</div><div class="delta">Interactive prototype</div></div>
+    <div class="kpi warn"><div class="label">Open dependencies</div><div class="value">3</div><div class="delta">Excel · shift draft · master source</div></div>
+  </div>
+  <div class="card">
+    <h3>Blue scope · what reviewers will see</h3>
+    <table>
+      <thead><tr><th style="width:34px">#</th><th>Workstream</th><th>Design output</th><th>Depends on</th><th style="width:80px">Status</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td><strong>Global Shift Entity</strong><div style="font-size:11px;color:var(--ink-3)">Foundation for 1, 3, 5, 6</div></td><td>Org shift list + create/edit form with Shift Name decoupled from Timings</td><td>—</td><td><span class="chip green">READY</span></td></tr>
+        <tr><td>1</td><td><strong>Employee Master</strong><div style="font-size:11px;color:var(--ink-3)">Field alignment, additive only</div></td><td>Master list + profile diff view with new fields flagged</td><td>Kashish Excel</td><td><span class="chip amber">WAIT</span></td></tr>
+        <tr><td>2</td><td><strong>Doc Expiry + Dispatch Block</strong></td><td>Alerts section (EID · Passport · Licence) at 90/60/30/7 + weekly/monthly digest + blocked state</td><td>Global Shift · Master</td><td><span class="chip green">READY</span></td></tr>
+        <tr><td>3</td><td><strong>Training · Skill · Materials</strong></td><td>Catalogue, records, derived skill matrix, new materials library</td><td>—</td><td><span class="chip green">READY</span></td></tr>
+        <tr><td>4</td><td><strong>Roster + Working-hours</strong></td><td>Day-6 warn, day-7 hard block, rostered-off unavailable state</td><td>Global Shift · Master</td><td><span class="chip green">READY</span></td></tr>
+        <tr><td>5</td><td><strong>Standby vs Reliever</strong></td><td>Two pools, distinct chip styles, planned vs reactive flows</td><td>Roster</td><td><span class="chip green">READY</span></td></tr>
+        <tr><td>6</td><td><strong>Attendance · Two-source</strong></td><td>Plan-login vs BioTime source column, source-aware punch popups</td><td>Master (role → source)</td><td><span class="chip green">READY</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>Reviewer checklist</h3>
+      <ul style="list-style:none;padding-left:0;font-size:13px">
+        <li style="padding:6px 0"><i class="fa-regular fa-square" style="margin-right:8px;color:var(--ink-3)"></i>Shift Name / Timings separation reads correctly across dropdowns</li>
+        <li style="padding:6px 0"><i class="fa-regular fa-square" style="margin-right:8px;color:var(--ink-3)"></i>Added employee-master fields are additive — nothing removed from platform master</li>
+        <li style="padding:6px 0"><i class="fa-regular fa-square" style="margin-right:8px;color:var(--ink-3)"></i>90/60/30/7 buckets + weekly/monthly digest config is present in Alerts</li>
+        <li style="padding:6px 0"><i class="fa-regular fa-square" style="margin-right:8px;color:var(--ink-3)"></i>Skill matrix cells are derived, not editable (tooltip shows source training)</li>
+        <li style="padding:6px 0"><i class="fa-regular fa-square" style="margin-right:8px;color:var(--ink-3)"></i>Day-7 shows a hard block, not a warning</li>
+        <li style="padding:6px 0"><i class="fa-regular fa-square" style="margin-right:8px;color:var(--ink-3)"></i>Standby vs Reliever are visually distinguishable on the roster</li>
+        <li style="padding:6px 0"><i class="fa-regular fa-square" style="margin-right:8px;color:var(--ink-3)"></i>Attendance shows source per employee (Plan-login vs BioTime)</li>
+        <li style="padding:6px 0"><i class="fa-regular fa-square" style="margin-right:8px;color:var(--ink-3)"></i>No Green or Parked scope leaks into the flow</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Explicitly excluded</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span class="chip gray">Camp Management</span>
+        <span class="chip gray">TBT Calendar</span>
+        <span class="chip gray">Disciplinary &amp; HSE</span>
+        <span class="chip gray">Employee of the Month</span>
+        <span class="chip gray">Timesheets → Oracle</span>
+        <span class="chip gray">Exit clearance</span>
+        <span class="chip gray">Encashment</span>
+        <span class="chip gray">Medical fitness alerts</span>
+        <span class="chip gray">Visa alerts</span>
+        <span class="chip gray">Labour card alerts</span>
+        <span class="chip gray">Probation / contract alerts</span>
+        <span class="chip gray">Birthday alerts</span>
+        <span class="chip gray">Org chart</span>
+        <span class="chip gray">Reports Center</span>
+        <span class="chip gray">Admin module</span>
+      </div>
+      <div style="margin-top:12px;font-size:12px;color:var(--ink-2)">Per Kashish (06 Aug): "green in function register stays separate from blue until internal approval." This pack is <strong>blue only</strong>.</div>
+    </div>
+  </div>
+`, 'Review Summary', 'Home');
+
+
+/* ---------- 0. GLOBAL SHIFT ENTITY ---------- */
+route('shift', ()=>{
+  const rows = SHIFTS.map(s=>`
+    <tr>
+      <td><i class="fa-solid fa-${s.icon}" style="color:var(--blue-500);margin-right:8px"></i><strong>${s.name}</strong><div style="font-size:11px;color:var(--ink-3)">${s.id}</div></td>
+      <td>${s.timings.length} timing variant${s.timings.length>1?'s':''}<div style="font-size:11px;color:var(--ink-3);margin-top:2px">${s.timings.map(t=>`${t.start}–${t.end}`).join(' · ')}</div></td>
+      <td><span class="chip blue">Consumed by 4 modules</span></td>
+      <td>Org · Tajmee'e</td>
+      <td><span class="chip green">Active</span></td>
+      <td><button class="btn ghost" onclick="editShift('${s.id}')"><i class="fa-regular fa-pen-to-square"></i></button></td>
+    </tr>
+  `).join('');
+  return `
+    <div class="page-head">
+      <div>
+        <h2>Global Shift entity <span class="chip blue" style="vertical-align:middle;margin-left:6px">Foundation</span></h2>
+        <div class="sub">Organisation-level shift catalogue. <strong>Shift Name is decoupled from Shift Timings</strong> — one shift name (e.g. "Afternoon Shift") can hold multiple timing variants so operations sees a single umbrella. Consumed by Master, Roster, Alerts and Attendance.</div>
+      </div>
+      <div class="ref">SHIFT · v1</div>
+    </div>
+
+    <div class="card">
+      <h3>How the two levels behave <span class="badge new">Structural change</span></h3>
+      <div class="grid-2">
+        <div style="padding:14px;background:var(--blue-50);border-radius:10px;border:1px solid var(--blue-100)">
+          <div style="font-size:11px;font-weight:700;color:var(--blue-500);letter-spacing:.4px">LEVEL 1 · SHIFT NAME</div>
+          <div style="font-size:18px;font-weight:700;margin:4px 0">Afternoon Shift</div>
+          <div style="font-size:12px;color:var(--ink-2)">The operational umbrella that appears on dashboards, master data, roster and reports. What managers actually think in.</div>
+        </div>
+        <div style="padding:14px;background:var(--violet-100);border-radius:10px;border:1px solid var(--line)">
+          <div style="font-size:11px;font-weight:700;color:var(--violet-500);letter-spacing:.4px">LEVEL 2 · TIMING VARIANTS</div>
+          <div style="font-size:13px;font-weight:600;margin:4px 0">Standard · 13:00–21:00<br>Extended · 14:00–22:00</div>
+          <div style="font-size:12px;color:var(--ink-2)">Precise start / end times. Individual employees bind to one variant; the umbrella still owns the name.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Shift catalogue <span class="sub">4 shift names · 7 timing variants</span>
+        <button class="btn primary" style="margin-left:auto" onclick="editShift(null)"><i class="fa-solid fa-plus"></i> Add shift</button>
+      </h3>
+      <table>
+        <thead><tr><th>Shift name</th><th>Timings</th><th>Consumed by</th><th>Scope</th><th>Status</th><th></th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Where it's referenced</h3>
+      <div class="grid-4">
+        <div class="kpi"><div class="label">Employee Master</div><div class="value">1,847</div><div class="delta">employees bind to a shift</div></div>
+        <div class="kpi"><div class="label">Roster Board</div><div class="value">Chip color</div><div class="delta">per shift name</div></div>
+        <div class="kpi"><div class="label">Attendance</div><div class="value">Window</div><div class="delta">grace derived from timing</div></div>
+        <div class="kpi"><div class="label">Contract Mgmt</div><div class="value">Dropdown</div><div class="delta">plan → shift binding</div></div>
+      </div>
+    </div>
+  `;
+}, 'Global Shift Entity', 'Settings › Organisation');
+
+function editShift(id){
+  const s = SHIFTS.find(x=>x.id===id) || {name:'',icon:'clock',timings:[{label:'',start:'',end:''}]};
+  const rows = s.timings.map((t,i)=>`
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 30px;gap:8px;margin-bottom:6px">
+      <input value="${t.label||''}" placeholder="Variant label · e.g. Early">
+      <input value="${t.start||''}" placeholder="Start · 06:00" type="time">
+      <input value="${t.end||''}" placeholder="End · 14:00" type="time">
+      <button class="btn ghost" style="padding:6px"><i class="fa-regular fa-trash-can"></i></button>
+    </div>
+  `).join('');
+  modal(`
+    <div class="modal">
+      <div class="h"><i class="fa-solid fa-clock" style="color:var(--blue-500)"></i><h4>${id?'Edit shift':'Add shift'}</h4><button class="btn ghost" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button></div>
+      <div class="b">
+        <div class="field"><label>Shift name <span class="req">*</span></label><input value="${s.name||''}" placeholder="e.g. Afternoon Shift"><div class="hint">The operational umbrella. This is what appears everywhere except attendance windows.</div></div>
+        <div class="grid-2">
+          <div class="field"><label>Icon</label><select><option>Sun</option><option>Cloud-sun</option><option>Cloud-moon</option><option>Moon</option><option>Clock</option></select></div>
+          <div class="field"><label>Chip colour</label><select><option>Blue</option><option>Violet</option><option>Amber</option><option>Green</option></select></div>
+        </div>
+        <div class="field"><label>Timing variants <span class="req">*</span></label>
+          ${rows}
+          <button class="btn ghost" style="margin-top:4px"><i class="fa-solid fa-plus"></i> Add variant</button>
+          <div class="hint">Each employee binds to one variant. Attendance grace windows derive from these times.</div>
+        </div>
+      </div>
+      <div class="f"><button class="btn ghost" onclick="closeModal()">Cancel</button><button class="btn primary" onclick="closeModal();toast('Shift saved','ok')">Save shift</button></div>
+    </div>
+  `);
+}
+
+
+/* ---------- 1. EMPLOYEE MASTER ---------- */
+route('employee', ()=>{
+  const rows = EMPS.map(e=>{
+    const s = SHIFTS.find(x=>x.id===e.shift);
+    const stat = e.status==='active' ? '<span class="chip green">Active</span>'
+               : e.status==='blocked-lic' ? '<span class="chip red">Licence exp</span>'
+               : e.status==='blocked-eid' ? '<span class="chip red">EID exp</span>'
+               : '<span class="chip gray">'+e.status+'</span>';
+    return `<tr onclick="empProfile('${e.id}')" style="cursor:pointer">
+      <td><strong>${e.id}</strong></td>
+      <td>${e.name}<div style="font-size:11px;color:var(--ink-3)">${e.role} · ${e.nat}</div></td>
+      <td>${e.lot}<div style="font-size:11px;color:var(--ink-3)">${e.depot}</div></td>
+      <td><span class="chip new-field">${e.wOff}</span></td>
+      <td><span class="chip new-field">${s?s.name:'—'}</span></td>
+      <td>${stat}</td>
+    </tr>`;
+  }).join('');
+  return `
+    <div class="page-head">
+      <div>
+        <h2>Employee Master · field alignment <span class="chip blue" style="vertical-align:middle;margin-left:6px">Additive</span></h2>
+        <div class="sub">Existing platform master preserved. Tajmee'e client-specific fields <strong>appended, never removed</strong>. Weekly off-day and shift timings are the two new mandatory fields; both feed the roster's working-hours rules.</div>
+      </div>
+      <div class="ref">EMP · v1</div>
+    </div>
+
+    <div class="legend">
+      <div class="item"><span class="sw" style="background:var(--surface);border:1px solid var(--line)"></span>Existing platform field</div>
+      <div class="item"><span class="sw" style="background:var(--green-100);border:1px dashed var(--green-500)"></span>New Tajmee'e field</div>
+      <div class="item"><i class="fa-solid fa-lock" style="color:var(--red-500)"></i> Rostering hard-blocked</div>
+    </div>
+
+    <div class="card">
+      <h3>Master list · 1,847 employees <span class="sub">2 new columns shown</span>
+        <button class="btn ghost" style="margin-left:auto"><i class="fa-solid fa-filter"></i> Filters</button>
+        <button class="btn ghost"><i class="fa-solid fa-file-export"></i> Export</button>
+        <button class="btn primary" onclick="empProfile('TJ-4712')"><i class="fa-solid fa-plus"></i> Add employee</button>
+      </h3>
+      <table>
+        <thead><tr><th>Employee ID</th><th>Name</th><th>LOT · Depot</th><th>Weekly off <span class="chip new-field" style="font-size:9px">NEW</span></th><th>Shift <span class="chip new-field" style="font-size:9px">NEW</span></th><th>Status</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Field-level diff <span class="badge new">What changed</span></h3>
+      <table class="thin">
+        <thead><tr><th style="width:30%">Field</th><th>Source</th><th>Change</th></tr></thead>
+        <tbody>
+          <tr><td>Employee ID, Name, Passport, EID, Licence, DOB, Nationality</td><td>Platform master</td><td>Unchanged</td></tr>
+          <tr><td>LOT, Depot, Position, Contractor, Cost centre</td><td>Platform master</td><td>Unchanged</td></tr>
+          <tr><td>Passport / EID / Licence expiry dates</td><td>Platform master</td><td>Now referenced by Doc Expiry Alerts</td></tr>
+          <tr style="background:var(--green-100)"><td><strong>Weekly off-day</strong></td><td>Tajmee'e</td><td>ADDED · required · single-day dropdown</td></tr>
+          <tr style="background:var(--green-100)"><td><strong>Assigned shift</strong></td><td>Tajmee'e</td><td>ADDED · required · bound to Global Shift entity</td></tr>
+          <tr style="background:var(--green-100)"><td><strong>Shift timing variant</strong></td><td>Tajmee'e</td><td>ADDED · optional · defaults to shift's first variant</td></tr>
+          <tr style="background:var(--green-100)"><td><strong>Attendance source</strong></td><td>Derived</td><td>ADDED · derived from role: Plan-login (drivers) / BioTime (helpers)</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:10px;padding:10px 12px;background:var(--amber-100);border-radius:8px;font-size:12px;color:var(--amber-500)"><i class="fa-solid fa-triangle-exclamation"></i> Blocked on: Kashish's 29-column Excel — remaining diff will land when the sheet is shared.</div>
+    </div>
+  `;
+}, 'Employee Master', 'Workforce › Employees');
+
+function empProfile(id){
+  const e = EMPS.find(x=>x.id===id) || EMPS[0];
+  const s = SHIFTS.find(x=>x.id===e.shift);
+  modal(`
+    <div class="modal" style="max-width:760px">
+      <div class="h">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--blue-500);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700">${e.name.split(' ').map(x=>x[0]).slice(0,2).join('')}</div>
+        <div style="flex:1"><h4>${e.name}</h4><div style="font-size:12px;color:var(--ink-3)">${e.id} · ${e.role} · ${e.lot} · ${e.depot}</div></div>
+        <button class="btn ghost" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="b">
+        <div class="tab-bar">
+          <div class="tab active">Overview</div><div class="tab">Documents</div><div class="tab">Attendance</div><div class="tab">Training</div><div class="tab">Timeline</div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <div class="field"><label>Employee ID</label><input value="${e.id}" disabled></div>
+            <div class="field"><label>Full name</label><input value="${e.name}"></div>
+            <div class="field"><label>Role</label><input value="${e.role}"></div>
+            <div class="field"><label>LOT · Depot</label><input value="${e.lot} · ${e.depot}"></div>
+          </div>
+          <div>
+            <div class="field added"><label>Weekly off-day <span class="new">NEW</span> <span class="req">*</span></label>
+              <select><option ${e.wOff==='Fri'?'selected':''}>Friday</option><option ${e.wOff==='Sun'?'selected':''}>Sunday</option><option>Saturday</option></select>
+              <div class="hint">Rostering hard-blocks assignment on this day.</div>
+            </div>
+            <div class="field added"><label>Assigned shift <span class="new">NEW</span> <span class="req">*</span></label>
+              <select>${SHIFTS.map(x=>`<option ${x.id===e.shift?'selected':''}>${x.name}</option>`).join('')}</select>
+              <div class="hint">Bound to Global Shift entity.</div>
+            </div>
+            <div class="field added"><label>Timing variant <span class="new">NEW</span></label>
+              <select>${s?s.timings.map(t=>`<option>${t.label} · ${t.start}–${t.end}</option>`).join(''):'<option>—</option>'}</select>
+              <div class="hint">Attendance grace window derives from this.</div>
+            </div>
+            <div class="field added"><label>Attendance source <span class="new">DERIVED</span></label>
+              <div style="padding:9px 11px;background:var(--surface-2);border-radius:7px">
+                ${e.src==='plan'?'<span class="src plan"><i class="fa-solid fa-route"></i> Plan-login</span> — driver executes route via app':'<span class="src bio"><i class="fa-solid fa-fingerprint"></i> BioTime</span> — biometric device at depot'}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="f"><button class="btn ghost" onclick="closeModal()">Close</button><button class="btn primary" onclick="closeModal();toast('Employee saved','ok')">Save</button></div>
+    </div>
+  `);
+}
+
+
+/* ---------- 2. DOCUMENT EXPIRY + DISPATCH BLOCK ---------- */
+route('alerts', ()=>{
+  const today = new Date('2026-08-12');
+  const buckets = {d90:[],d60:[],d30:[],d7:[],exp:[]};
+  EMPS.forEach(e=>{
+    ['licExp','eidExp','ppExp'].forEach(k=>{
+      if (e[k]==='—') return;
+      const d = new Date(e[k]);
+      const days = Math.round((d-today)/86400000);
+      const doc = k==='licExp'?'Driving Licence':(k==='eidExp'?'Emirates ID':'Passport');
+      const item = {emp:e, days, doc, exp:e[k]};
+      if (days<0) buckets.exp.push(item);
+      else if (days<=7) buckets.d7.push(item);
+      else if (days<=30) buckets.d30.push(item);
+      else if (days<=60) buckets.d60.push(item);
+      else if (days<=90) buckets.d90.push(item);
+    });
+  });
+  const bk = (id, cls, label, sub, items)=>`
+    <div class="bucket" onclick="showBucket('${id}')">
+      <div class="icon ${cls}"><i class="fa-regular fa-calendar${id==='exp'?'-xmark':''}"></i></div>
+      <div class="txt"><div class="h">${label}</div><div class="s">${sub}</div></div>
+      <div class="cnt" style="color:${cls==='exp'?'var(--red-500)':(cls==='d7'?'var(--red-500)':(cls==='d30'?'var(--amber-500)':'var(--ink)'))}">${items.length}</div>
+    </div>`;
+  window._buckets = buckets;
+  return `
+    <div class="page-head">
+      <div>
+        <h2>Document Expiry Alerts <span class="chip blue" style="vertical-align:middle;margin-left:6px">Scope-bounded</span></h2>
+        <div class="sub">Three credentials only for this phase: <strong>Emirates ID · Passport · Driving Licence</strong>. Buckets at 90/60/30/7 days. Notifications via weekly or monthly email digest. Expired safety-critical documents hard-block dispatch.</div>
+      </div>
+      <div class="ref">NTF · v1</div>
+    </div>
+
+    <div class="grid-4" style="margin-bottom:16px">
+      <div class="kpi"><div class="label">Monitored today</div><div class="value">${EMPS.length*3}</div><div class="delta">3 docs × ${EMPS.length} employees</div></div>
+      <div class="kpi warn"><div class="label">Expiring in 30 days</div><div class="value">${buckets.d30.length+buckets.d7.length}</div><div class="delta">Renewal action required</div></div>
+      <div class="kpi crit"><div class="label">Already expired</div><div class="value">${buckets.exp.length}</div><div class="delta">Dispatch blocked</div></div>
+      <div class="kpi"><div class="label">Next scan</div><div class="value">02:00</div><div class="delta">Nightly job · Asia/Dubai</div></div>
+    </div>
+
+    <div class="split">
+      <div class="card">
+        <h3>Expiry buckets · in Alerts module <span class="sub">Dedicated section for 3 credentials</span></h3>
+        ${bk('d90','d90','90 days out','Renewal paperwork should begin', buckets.d90)}
+        ${bk('d60','d60','60 days out','Follow up with PRO', buckets.d60)}
+        ${bk('d30','d30','30 days out — Amber','Escalate to HR', buckets.d30)}
+        ${bk('d7','d7','7 days out — Red','Urgent · notify supervisor', buckets.d7)}
+        ${bk('exp','exp','Expired · dispatch blocked','Employee cannot be rostered', buckets.exp)}
+      </div>
+      <div class="card">
+        <h3>Digest configuration <span class="badge">Config toggle</span></h3>
+        <div class="field"><label>Bell drawer alerts</label>
+          <select><option>Always on · counts always live</option></select>
+          <div class="hint">Counts stay live regardless of email digest cadence.</div>
+        </div>
+        <div class="field"><label>Email digest cadence <span class="req">*</span></label>
+          <select id="cadence"><option>Weekly · Sunday 07:00</option><option>Monthly · 1st 07:00</option></select>
+          <div class="hint">One toggle for this phase, per Kashish 06 Aug.</div>
+        </div>
+        <div class="field"><label>Recipients</label>
+          <div><span class="chip blue">HR Manager</span> <span class="chip blue">Operations Manager</span> <span class="chip blue">LOT Supervisors</span></div>
+        </div>
+        <div class="field"><label>Channels</label>
+          <div><span class="chip green"><i class="fa-solid fa-check"></i> Bell</span> <span class="chip green"><i class="fa-solid fa-check"></i> Email</span> <span class="chip gray">SMS · deferred</span> <span class="chip gray">Push · deferred</span></div>
+        </div>
+        <div class="field"><label>Auto-clear on renewal</label>
+          <div style="padding:9px 11px;background:var(--green-100);color:var(--green-500);border-radius:7px;font-size:12.5px"><i class="fa-solid fa-check-circle"></i> When a new expiry date is entered, alerts stop automatically. No manual dismissal.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Dispatch board · blocked-employee state <span class="badge new">New state</span></h3>
+      <table>
+        <thead><tr><th>Employee</th><th>Role</th><th>Shift</th><th>Reason</th><th style="width:100px">Assignable</th></tr></thead>
+        <tbody>
+          ${EMPS.map(e=>{
+            const blocked = e.status.startsWith('blocked');
+            const reason = e.status==='blocked-lic'?'<span class="chip red"><i class="fa-solid fa-id-card"></i> Licence expired 2026-08-14</span>':
+                           e.status==='blocked-eid'?'<span class="chip red"><i class="fa-solid fa-address-card"></i> EID expired 2026-08-19</span>':
+                           '<span class="chip green">All documents valid</span>';
+            return `<tr class="${blocked?'blocked-row':''}"><td>${e.name}</td><td>${e.role}</td><td>${SHIFTS.find(x=>x.id===e.shift).name}</td><td>${reason}</td><td>${blocked?'<span class="chip red">HARD BLOCK</span>':'<span class="chip green">Yes</span>'}</td></tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+      <div style="margin-top:12px;padding:12px 14px;background:var(--surface-2);border-radius:8px;font-size:12.5px;color:var(--ink-2)">
+        <strong>Operator error state:</strong> attempting to drag a blocked employee onto a shift shows an inline error — <em>"Licence expired 2026-08-14. Renew before assignment."</em> No override in this phase.
+      </div>
+    </div>
+  `;
+}, 'Doc Expiry Alerts', 'Compliance › Alerts');
+
+function showBucket(k){
+  const items = window._buckets[k]||[];
+  modal(`
+    <div class="modal" style="max-width:780px">
+      <div class="h"><i class="fa-regular fa-calendar" style="color:var(--blue-500)"></i><h4>${k==='exp'?'Expired documents':k.replace('d','')+' days'} · ${items.length} records</h4>
+      <div style="margin-left:auto;display:flex;gap:8px"><input placeholder="Filter…" style="padding:6px 10px;border:1px solid var(--line);border-radius:6px;width:180px"><button class="btn ghost"><i class="fa-solid fa-file-excel"></i></button><button class="btn ghost" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button></div></div>
+      <div class="b" style="padding:0">
+        <table>
+          <thead><tr><th>Employee</th><th>Document</th><th>Expires</th><th>Days</th><th></th></tr></thead>
+          <tbody>${items.map(i=>`<tr><td><strong>${i.emp.name}</strong><div style="font-size:11px;color:var(--ink-3)">${i.emp.id} · ${i.emp.lot}</div></td><td>${i.doc}</td><td>${i.exp}</td><td><strong style="color:${i.days<0?'var(--red-500)':(i.days<=7?'var(--red-500)':(i.days<=30?'var(--amber-500)':'var(--ink)'))}">${i.days<0?Math.abs(i.days)+' overdue':i.days+' days'}</strong></td><td><button class="btn ghost"><i class="fa-solid fa-bell"></i> Remind</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">No records</td></tr>'}</tbody>
+        </table>
+      </div>
+    </div>
+  `);
+}
+
+
+/* ---------- 3. TRAINING / SKILL / MATERIALS ---------- */
+route('training', ()=>{
+  return `
+    <div class="page-head">
+      <div>
+        <h2>Training · Skill Matrix · Materials <span class="chip blue" style="vertical-align:middle;margin-left:6px">Generalised</span></h2>
+        <div class="sub">Catalogue and per-employee records unchanged in shape but generalised. New: <strong>Materials Library</strong> repository. Skill matrix is <strong>derived from training history</strong>, not editable. TBT calendar is deferred.</div>
+      </div>
+      <div class="ref">TRN · v1</div>
+    </div>
+
+    <div class="tab-bar">
+      <div class="tab active" onclick="trnTab(this,'cat')">Catalogue</div>
+      <div class="tab" onclick="trnTab(this,'rec')">Records</div>
+      <div class="tab" onclick="trnTab(this,'skx')">Skill Matrix <span class="badge new" style="margin-left:6px;font-size:9px">DERIVED</span></div>
+      <div class="tab" onclick="trnTab(this,'lib')">Materials Library <span class="badge new" style="margin-left:6px;font-size:9px">NEW</span></div>
+    </div>
+    <div id="trnBody">${trnCatalogue()}</div>
+  `;
+}, 'Training & Skill', 'Compliance › Training');
+
+function trnTab(el, k){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('trnBody').innerHTML = ({cat:trnCatalogue,rec:trnRecords,skx:trnSkill,lib:trnLibrary})[k]();
+}
+
+function trnCatalogue(){
+  return `<div class="card">
+    <h3>Training catalogue · ${TRAININGS.length} courses <span class="sub">Master list · validity in months</span>
+      <button class="btn primary" style="margin-left:auto"><i class="fa-solid fa-plus"></i> Add course</button>
+    </h3>
+    <table><thead><tr><th>Code</th><th>Course</th><th>Validity</th><th>Type</th><th>Applies to</th></tr></thead>
+    <tbody>${TRAININGS.map(t=>`<tr>
+      <td><strong>${t.code}</strong></td>
+      <td>${t.title}</td>
+      <td>${t.validity?t.validity+' months':'No expiry'}</td>
+      <td>${t.mandatory?'<span class="chip red">Mandatory</span>':'<span class="chip gray">Recommended</span>'} ${t.safety?'<span class="chip amber">Safety-critical</span>':''}</td>
+      <td>All drivers · labourers</td>
+    </tr>`).join('')}</tbody></table>
+  </div>`;
+}
+function trnRecords(){
+  return `<div class="card"><h3>Records · Ahmed Al Sayed (TJ-4712)</h3>
+    <table><thead><tr><th>Course</th><th>Completion</th><th>Expiry</th><th>Certificate</th><th>Status</th><th style="width:200px">Manual actions</th></tr></thead>
+    <tbody>
+      <tr><td>HSE-101 · Waste Handling</td><td>2025-06-14</td><td>2027-06-14</td><td><i class="fa-solid fa-paperclip"></i> cert.pdf</td><td><span class="chip green">Valid</span></td><td><button class="btn ghost"><i class="fa-solid fa-check"></i> Mark reviewed</button></td></tr>
+      <tr><td>DRV-201 · Defensive Driving</td><td>2024-08-01</td><td>2026-08-01</td><td><i class="fa-solid fa-paperclip"></i> cert.pdf</td><td><span class="chip amber">Expiring soon</span></td><td><button class="btn ghost"><i class="fa-solid fa-check-double"></i> Mark completed</button></td></tr>
+      <tr><td>FA-110 · Heat Stress</td><td>2025-05-11</td><td>2026-05-11</td><td>—</td><td><span class="chip red">Expired</span></td><td><button class="btn ghost"><i class="fa-solid fa-upload"></i> Log new completion</button></td></tr>
+    </tbody></table>
+    <div style="margin-top:12px;padding:10px 12px;background:var(--surface-2);border-radius:8px;font-size:12px;color:var(--ink-2)"><i class="fa-solid fa-info-circle"></i> Per Kashish 06 Aug: no minute-by-minute engagement tracking. Users <strong>manually mark</strong> modules reviewed or courses completed.</div>
+  </div>`;
+}
+function trnSkill(){
+  const emps = EMPS.slice(0,5);
+  const skillMap = {
+    'Compactor':'CMP-005','Hook Loader':'DRV-210','Light Vehicle':'DRV-201',
+    'Confined Space':'HSE-102','Heat Stress':'FA-110','First Aid':'FA-100'
+  };
+  return `<div class="card">
+    <h3>Skill Matrix · derived from completed training <span class="badge new">Not editable</span></h3>
+    <div style="padding:10px 14px;background:var(--blue-50);border-radius:8px;font-size:12px;color:var(--ink-2);margin-bottom:12px;border-left:3px solid var(--blue-500)">
+      Cells below are auto-derived from each employee's training history. Hover a cell to see the source training. Skills cannot be added or removed manually — only completed trainings drive this grid.
+    </div>
+    <div class="smx" style="grid-template-columns:200px repeat(${SKILLS.length},1fr)">
+      <div class="head" style="text-align:left">Employee</div>
+      ${SKILLS.map(s=>`<div class="head">${s}</div>`).join('')}
+      ${emps.map(e=>{
+        const rec = EMP_TRAIN[e.id]||{};
+        return `<div class="name">${e.name}<div style="font-size:10px;color:var(--ink-3);font-weight:400">${e.role}</div></div>`
+        + SKILLS.map(s=>{
+            const code = skillMap[s];
+            const st = rec[code];
+            const cls = st==='on'?'cell on':(st==='exp'?'cell exp':'cell miss');
+            const val = st==='on'?'<i class="fa-solid fa-check"></i>':(st==='exp'?'EXP':'—');
+            const tip = st?`Derived from ${code}${st==='exp'?' (expired)':''}`:'No completed training for this skill';
+            return `<div class="${cls}" title="${tip}">${val}</div>`;
+          }).join('');
+      }).join('')}
+    </div>
+    <div class="legend" style="margin-top:14px">
+      <div class="item"><span class="sw" style="background:var(--green-100)"></span>Qualified (training valid)</div>
+      <div class="item"><span class="sw" style="background:var(--red-100)"></span>Training expired — skill removed automatically</div>
+      <div class="item"><span class="sw" style="background:var(--surface)"></span>No completed training</div>
+    </div>
+  </div>`;
+}
+function trnLibrary(){
+  const docs = [
+    {n:'HSE-101 · Waste Handling — English pack.pdf', sz:'2.4 MB', tp:'PDF', tg:'HSE-101'},
+    {n:'HSE-101 · Waste Handling — Hindi pack.pdf', sz:'2.6 MB', tp:'PDF', tg:'HSE-101'},
+    {n:'HSE-101 · Waste Handling — Urdu pack.pdf', sz:'2.5 MB', tp:'PDF', tg:'HSE-101'},
+    {n:'DRV-201 · Defensive Driving handbook.pdf', sz:'4.1 MB', tp:'PDF', tg:'DRV-201'},
+    {n:'DRV-210 · Heavy vehicle checklist.docx', sz:'88 KB', tp:'DOC', tg:'DRV-210'},
+    {n:'FA-110 · Heat Stress awareness video.mp4', sz:'104 MB', tp:'VIDEO', tg:'FA-110'},
+    {n:'HR-050 · Code of Conduct.pdf', sz:'610 KB', tp:'PDF', tg:'HR-050'},
+  ];
+  return `<div class="card">
+    <h3>Materials Library <span class="badge new">NEW · repository</span>
+      <button class="btn primary" style="margin-left:auto"><i class="fa-solid fa-cloud-arrow-up"></i> Upload material</button>
+    </h3>
+    <div style="padding:12px 14px;background:var(--green-100);color:var(--green-500);border-radius:8px;font-size:12.5px;margin-bottom:14px;border-left:3px solid var(--green-500)">
+      <strong>New in this phase.</strong> Admins upload educational and compliance material here. Employees / supervisors can view and manually mark items as reviewed. Explicitly no engagement analytics.
+    </div>
+    <table><thead><tr><th>Document</th><th>Type</th><th>Linked course</th><th>Size</th><th></th></tr></thead>
+      <tbody>${docs.map(d=>`<tr><td><i class="fa-regular fa-file-${d.tp==='VIDEO'?'video':(d.tp==='DOC'?'word':'pdf')}" style="margin-right:8px;color:var(--blue-500)"></i>${d.n}</td><td><span class="chip gray">${d.tp}</span></td><td><span class="chip blue">${d.tg}</span></td><td>${d.sz}</td><td><button class="btn ghost"><i class="fa-solid fa-eye"></i></button><button class="btn ghost"><i class="fa-solid fa-download"></i></button></td></tr>`).join('')}</tbody></table>
+  </div>`;
+}
+
+
+/* ---------- 4. ROSTER + WORKING HOURS ---------- */
+route('roster', ()=>{
+  const days = ['Mon 11','Tue 12','Wed 13','Thu 14','Fri 15','Sat 16','Sun 17'];
+  // rows: employee × 7 days
+  const layout = [
+    {emp:'TJ-4712', pattern:['S-M','S-M','S-M','S-M','S-M','warn','block']}, // 6 consec then day 7
+    {emp:'TJ-4288', pattern:['blocked','blocked','blocked','blocked','blocked','blocked','blocked']}, // licence expired
+    {emp:'TJ-4103', pattern:['S-M','S-M','off','S-M','S-M','S-M','off']},
+    {emp:'TJ-5044', pattern:['S-N','S-N','S-N','S-N','off','S-N','S-N']},
+    {emp:'TJ-6154', pattern:['S-A','S-A','S-A','off','S-A','S-A','S-A']},
+    {emp:'STANDBY-1', standby:true, pattern:['sb','sb','sb','sb','sb','sb','sb']},
+    {emp:'RELIEVER-1', reliever:true, pattern:['rv','rv','rv','rv','rv','rv','rv']},
+  ];
+  const dayHdr = days.map(d=>`<th class="day" style="width:11.5%">${d}</th>`).join('');
+  const chip = (kind, route='R-14')=>{
+    if (kind==='off') return `<div class="shift-chip off">Weekly off</div>`;
+    if (kind==='warn') return `<div class="shift-chip morning">MOR<span class="rt">Route ${route}</span></div>`;
+    if (kind==='block') return `<div style="font-size:10.5px;color:var(--red-500);font-weight:600;text-align:center;padding:12px 4px"><i class="fa-solid fa-lock"></i><br>Day 7<br>hard-block</div>`;
+    if (kind==='blocked') return `<div class="shift-chip" style="background:repeating-linear-gradient(45deg,var(--red-100),var(--red-100) 4px,transparent 4px,transparent 8px);color:var(--red-500);text-align:center"><i class="fa-solid fa-lock"></i> Doc block</div>`;
+    if (kind==='sb') return `<div class="shift-chip standby">STANDBY<span class="rt">Approved leave cover</span></div>`;
+    if (kind==='rv') return `<div class="shift-chip reliever">RELIEVER<span class="rt">Buffer · no-show cover</span></div>`;
+    const s = SHIFTS.find(x=>x.id===kind);
+    const cls = kind==='S-M'?'morning':(kind==='S-A'?'evening':(kind==='S-N'?'night':'morning'));
+    return `<div class="shift-chip ${cls}">${s?s.name.split(' ')[0].toUpperCase():'—'}<span class="rt">Route ${route}</span></div>`;
+  };
+  const rowHtml = layout.map(r=>{
+    let e;
+    if (r.standby) e={id:'STANDBY POOL', name:'Standby #1 — Farid',role:'HD Driver · Reserve',lot:'LOT 4'};
+    else if (r.reliever) e={id:'RELIEVER POOL', name:'Reliever #1 — Yusuf', role:'HD Driver · Buffer',lot:'LOT 4'};
+    else e = EMPS.find(x=>x.id===r.emp);
+    const cells = r.pattern.map((k,i)=>{
+      let cls='day';
+      if (k==='warn') cls+=' warn-day';
+      if (k==='block') cls+=' block-day';
+      return `<td class="${cls}">${chip(k)}</td>`;
+    }).join('');
+    return `<tr>
+      <td class="emp"><div class="name">${e.name}</div><div class="meta">${e.id} · ${e.role}</div></td>
+      ${cells}
+    </tr>`;
+  }).join('');
+
+  return `
+    <div class="page-head">
+      <div>
+        <h2>Weekly Roster Board <span class="chip blue" style="vertical-align:middle;margin-left:6px">With rules</span></h2>
+        <div class="sub">Working-hours rule: <strong>6 consecutive days → day 7 auto-blocked</strong> as mandatory off. Rostered-off and document-blocked employees cannot be assigned. Standby and reliever pools are surfaced as dedicated lanes.</div>
+      </div>
+      <div class="ref">ROS · v1 · Week 33 · LOT 4</div>
+    </div>
+
+    <div class="legend">
+      <div class="item"><span class="sw" style="background:var(--blue-100)"></span>Morning shift</div>
+      <div class="item"><span class="sw" style="background:var(--violet-100)"></span>Afternoon</div>
+      <div class="item"><span class="sw" style="background:#1F2937"></span>Night</div>
+      <div class="item"><span class="sw" style="background:var(--surface-2);border:1px solid var(--line)"></span>Weekly off</div>
+      <div class="item"><span class="sw" style="background:rgba(217,119,6,.15);border:1px solid var(--amber-500)"></span>Day-6 warn</div>
+      <div class="item"><span class="sw" style="background:rgba(220,38,38,.10);border:1px solid var(--red-500)"></span>Day-7 hard-block</div>
+      <div class="item"><span class="sw" style="background:var(--amber-100);border:1px dashed var(--amber-500)"></span>Standby (planned)</div>
+      <div class="item"><span class="sw" style="background:var(--green-100);border:2px solid var(--green-500)"></span>Reliever (reactive)</div>
+    </div>
+
+    <div class="card">
+      <h3>Roster · Week 33 (10–16 Aug 2026) · LOT 4
+        <span class="sub">${EMPS.filter(e=>e.lot==='LOT 4').length} employees · 2 pool lanes</span>
+        <button class="btn ghost" style="margin-left:auto"><i class="fa-solid fa-magnifying-glass"></i> Conflicts</button>
+        <button class="btn ghost"><i class="fa-regular fa-eye"></i> Coverage</button>
+        <button class="btn primary" onclick="toast('Roster published — job cards pushed','ok')"><i class="fa-solid fa-paper-plane"></i> Publish</button>
+      </h3>
+      <div class="roster">
+        <table>
+          <thead><tr><th class="emp">Employee</th>${dayHdr}</tr></thead>
+          <tbody>${rowHtml}</tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Working-hours rule · demo <span class="badge new">Hard block</span></h3>
+        <div style="font-size:12.5px;color:var(--ink-2);margin-bottom:12px">Try assigning <strong>Ahmed Al Sayed</strong> to Sun 17 Aug — he already has 6 consecutive days.</div>
+        <button class="btn primary" onclick="showWorkingHoursBlock()"><i class="fa-solid fa-hand-point-up"></i> Attempt day-7 assignment</button>
+        <div style="margin-top:14px;padding:12px;background:var(--amber-100);border-radius:8px;font-size:12px;color:var(--amber-500)"><i class="fa-solid fa-triangle-exclamation"></i> Day 6 shows an amber warning — the tipping-point cell — so planners see the risk before they try.</div>
+      </div>
+      <div class="card">
+        <h3>Route auto-assign · rostered-off exclusion</h3>
+        <div style="font-size:12.5px;color:var(--ink-2);margin-bottom:10px">When smart-planning generates Route R-27 for Fri 15 Aug, this pick list is what the operator sees:</div>
+        <div class="pool-emp"><div class="av">AS</div><div class="info"><div class="n">Ahmed Al Sayed</div><div class="m">HD Driver · Available · Certified</div></div><span class="chip green">Select</span></div>
+        <div class="pool-emp" style="opacity:.5"><div class="av" style="background:var(--ink-3)">RK</div><div class="info"><div class="n">Rashid Khan</div><div class="m" style="color:var(--red-500)"><i class="fa-solid fa-lock"></i> Licence expired · unavailable</div></div><span class="chip red">Blocked</span></div>
+        <div class="pool-emp" style="opacity:.5"><div class="av" style="background:var(--ink-3)">BI</div><div class="info"><div class="n">Bilal Iqbal</div><div class="m" style="color:var(--ink-3)"><i class="fa-solid fa-bed"></i> Rostered off (Sun)</div></div><span class="chip gray">Off day</span></div>
+        <div class="pool-emp" style="opacity:.5"><div class="av" style="background:var(--ink-3)">MZ</div><div class="info"><div class="n">Mohd Zubair</div><div class="m" style="color:var(--ink-3)">6 consecutive days · day 7 blocked</div></div><span class="chip amber">Hour limit</span></div>
+      </div>
+    </div>
+  `;
+}, 'Roster Board', 'Workforce › Roster');
+
+function showWorkingHoursBlock(){
+  modal(`
+    <div class="modal" style="max-width:520px">
+      <div class="h" style="background:var(--red-100)"><i class="fa-solid fa-lock" style="color:var(--red-500);font-size:18px"></i><h4 style="color:var(--red-500)">Cannot assign · working-hours rule</h4><button class="btn ghost" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button></div>
+      <div class="b">
+        <div style="font-size:15px;font-weight:600;margin-bottom:10px">Ahmed Al Sayed (TJ-4712) has worked 6 consecutive days.</div>
+        <div style="font-size:13px;color:var(--ink-2);margin-bottom:14px">Day 7 is a <strong>mandatory off-day</strong> under UAE Labour Law. This is a hard block — no override in this phase.</div>
+        <div style="padding:12px;background:var(--surface-2);border-radius:8px">
+          <div style="font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Consecutive days worked</div>
+          <div style="display:flex;gap:4px">
+            ${['Mon','Tue','Wed','Thu','Fri','Sat'].map(d=>`<div style="flex:1;padding:8px;background:var(--blue-100);color:var(--blue-500);border-radius:5px;text-align:center;font-weight:600;font-size:11px">${d} ✓</div>`).join('')}
+            <div style="flex:1;padding:8px;background:var(--red-100);color:var(--red-500);border-radius:5px;text-align:center;font-weight:600;font-size:11px">Sun ✗</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;font-size:12.5px;color:var(--ink-2)"><strong>What to do:</strong> pick an employee from the Reliever pool, or reassign one of Ahmed's earlier shifts to create a rest gap.</div>
+      </div>
+      <div class="f"><button class="btn ghost" onclick="closeModal()">Cancel</button><button class="btn primary" onclick="closeModal();toast('Reliever pool opened','ok')">Open reliever pool</button></div>
+    </div>
+  `);
+}
+
+
+/* ---------- 5. STANDBY vs RELIEVER ---------- */
+route('pools', ()=>{
+  return `
+    <div class="page-head">
+      <div>
+        <h2>Standby &amp; Reliever pools <span class="chip blue" style="vertical-align:middle;margin-left:6px">Two absence types</span></h2>
+        <div class="sub">Two structurally different substitutions. <strong>Standby</strong> covers planned absence (approved leave) — assigned before the fact. <strong>Reliever</strong> covers unplanned absence (no-show) — assigned live on the roster.</div>
+      </div>
+      <div class="ref">POOL · v1</div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:18px">
+      <div class="card" style="border-left:4px solid var(--amber-500)">
+        <h3><i class="fa-regular fa-calendar-check" style="color:var(--amber-500)"></i> Standby Workforce · planned</h3>
+        <div style="font-size:12.5px;color:var(--ink-2);margin-bottom:12px">Triggered when a <strong>leave request is approved</strong>. The gap in the roster is flagged; a planner picks a standby before the shift date.</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">
+          <div class="kpi"><div class="label">Pool size</div><div class="value" style="font-size:20px">12</div></div>
+          <div class="kpi"><div class="label">Assigned</div><div class="value" style="font-size:20px">4</div></div>
+          <div class="kpi"><div class="label">Available</div><div class="value" style="font-size:20px;color:var(--green-500)">8</div></div>
+          <div class="kpi"><div class="label">Gaps this week</div><div class="value" style="font-size:20px">3</div></div>
+        </div>
+        <div style="font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.4px;font-weight:600;margin-bottom:8px">Assigned this week</div>
+        <div class="pool-emp"><div class="av" style="background:var(--amber-500)">FA</div><div class="info"><div class="n">Farid Ahmed · covering Salim Hassan</div><div class="m">Leave: 14–18 Aug · Route R-08</div></div><span class="chip amber">Locked</span></div>
+        <div class="pool-emp"><div class="av" style="background:var(--amber-500)">JI</div><div class="info"><div class="n">Junaid Iqbal · covering Nasir Ullah</div><div class="m">Leave: 15–20 Aug · Route R-22</div></div><span class="chip amber">Locked</span></div>
+      </div>
+
+      <div class="card" style="border-left:4px solid var(--green-500)">
+        <h3><i class="fa-solid fa-bolt" style="color:var(--green-500)"></i> Reliever Workforce · reactive</h3>
+        <div style="font-size:12.5px;color:var(--ink-2);margin-bottom:12px">Pre-rostered <strong>buffer</strong> that reports every shift with no route. Absorbs unauthorised no-shows discovered after shift start. Cost of never sending a route out short-crewed.</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">
+          <div class="kpi"><div class="label">On duty today</div><div class="value" style="font-size:20px">3+5</div><div class="delta">drivers + helpers</div></div>
+          <div class="kpi"><div class="label">Deployed</div><div class="value" style="font-size:20px">1</div></div>
+          <div class="kpi"><div class="label">Idle</div><div class="value" style="font-size:20px;color:var(--green-500)">7</div></div>
+          <div class="kpi"><div class="label">Avg deploy time</div><div class="value" style="font-size:20px">14m</div></div>
+        </div>
+        <div style="font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.4px;font-weight:600;margin-bottom:8px">Reliever pool · reporting 06:00 today</div>
+        <div class="pool-emp"><div class="av" style="background:var(--green-500)">YM</div><div class="info"><div class="n">Yusuf Malik</div><div class="m">HD Driver · Certified all routes · <strong style="color:var(--red-500)">Deployed 06:14 → R-27 (Rashid no-show)</strong></div></div><span class="chip red">Deployed</span></div>
+        <div class="pool-emp"><div class="av" style="background:var(--green-500)">SK</div><div class="info"><div class="n">Sameer Khan</div><div class="m">HD Driver · Available</div></div><span class="chip green">Ready</span></div>
+        <div class="pool-emp"><div class="av" style="background:var(--green-500)">TR</div><div class="info"><div class="n">Tariq Rehman</div><div class="m">LD Driver · Available</div></div><span class="chip green">Ready</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Decision matrix · which pool applies?</h3>
+      <table>
+        <thead><tr><th style="width:30%">Scenario</th><th>Detected when</th><th>Covered by</th><th>Chip on roster</th></tr></thead>
+        <tbody>
+          <tr><td>Annual / sick / Hajj leave (approved)</td><td>Approval workflow · before shift date</td><td><strong>Standby pool</strong></td><td><span class="shift-chip standby" style="display:inline-block">STANDBY</span></td></tr>
+          <tr><td>No-show at shift start</td><td>Attendance ingestion · 15 min past shift start</td><td><strong>Reliever pool</strong></td><td><span class="shift-chip reliever" style="display:inline-block">RELIEVER</span></td></tr>
+          <tr><td>Emergency mid-shift absence</td><td>Supervisor logs incident · live</td><td><strong>Reliever pool</strong></td><td><span class="shift-chip reliever" style="display:inline-block">RELIEVER</span></td></tr>
+          <tr><td>Document expiry (permanent)</td><td>Nightly compliance scan</td><td>Standby (if planned) or Reliever (if surprise)</td><td>Both possible</td></tr>
+        </tbody>
+      </table>
+    </div>
+  `;
+}, 'Standby & Reliever', 'Workforce › Pools');
+
+
+/* ---------- 6. ATTENDANCE TWO-SOURCE ---------- */
+route('attendance', ()=>{
+  return `
+    <div class="page-head">
+      <div>
+        <h2>Attendance · two data sources <span class="chip blue" style="vertical-align:middle;margin-left:6px">Source-aware</span></h2>
+        <div class="sub">Drivers: attendance derived from <strong>Plan-login</strong> (opening and executing their route in the app). Helpers &amp; terminal workforce: <strong>BioTime</strong> biometric only. The register never pretends these are the same event.</div>
+      </div>
+      <div class="ref">ATT · v1</div>
+    </div>
+
+    <div class="grid-4" style="margin-bottom:16px">
+      <div class="kpi"><div class="label">Rostered today</div><div class="value">${EMPS.length}</div></div>
+      <div class="kpi"><div class="label">Plan-login</div><div class="value" style="color:var(--blue-500)">${EMPS.filter(e=>e.src==='plan').length}</div><div class="delta">Drivers · route-based</div></div>
+      <div class="kpi"><div class="label">BioTime</div><div class="value" style="color:var(--violet-500)">${EMPS.filter(e=>e.src==='bio').length}</div><div class="delta">Helpers / terminal</div></div>
+      <div class="kpi warn"><div class="label">Missing source</div><div class="value">1</div><div class="delta">Expected but no signal</div></div>
+    </div>
+
+    <div class="card">
+      <h3>Daily attendance register · 12 Aug 2026</h3>
+      <table>
+        <thead><tr><th>Employee</th><th>Role</th><th>Shift</th><th>Source</th><th>In</th><th>Out</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+          ${EMPS.map(e=>{
+            const src = e.src==='plan'?'<span class="src plan"><i class="fa-solid fa-route"></i> Plan-login</span>':'<span class="src bio"><i class="fa-solid fa-fingerprint"></i> BioTime</span>';
+            const inT = e.src==='plan' ? '06:04' : '05:58';
+            const outT = e.src==='plan' ? '14:12' : '14:03';
+            const stat = e.status.startsWith('blocked') ? '<span class="chip red">Blocked</span>' : '<span class="chip green">Present</span>';
+            return `<tr><td><strong>${e.name}</strong><div style="font-size:11px;color:var(--ink-3)">${e.id}</div></td><td>${e.role}</td><td>${SHIFTS.find(x=>x.id===e.shift).name}</td><td>${src}</td><td>${inT}</td><td>${outT}</td><td>${stat}</td><td><button class="btn ghost" onclick="showPunch('${e.id}')"><i class="fa-solid fa-magnifying-glass-plus"></i></button></td></tr>`;
+          }).join('')}
+          <tr style="background:var(--red-100)"><td><strong>Kareem Anwar</strong><div style="font-size:11px;color:var(--ink-3)">TJ-5122</div></td><td>HD Driver</td><td>Morning Shift</td><td><span class="src none"><i class="fa-solid fa-circle-question"></i> No signal</span></td><td>—</td><td>—</td><td><span class="chip red">Absent · plan not opened</span></td><td><button class="btn ghost"><i class="fa-solid fa-magnifying-glass-plus"></i></button></td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px;padding:12px 14px;background:var(--surface-2);border-radius:8px;font-size:12.5px;color:var(--ink-2)">
+        <strong>Missing-source state:</strong> a driver expected on Plan-login who never opened the app shows as <em>"Absent · plan not opened"</em> — never as a BioTime miss. The two sources are never conflated.
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card" style="border-left:4px solid var(--blue-500)">
+        <h3><span class="src plan"><i class="fa-solid fa-route"></i> Plan-login</span> · how it works</h3>
+        <ol style="padding-left:20px;font-size:12.5px;color:var(--ink-2);line-height:1.9">
+          <li>Driver opens the app for their published plan</li>
+          <li>App confirms identity + route</li>
+          <li>Login timestamp = attendance In</li>
+          <li>Route completion = attendance Out</li>
+          <li>Deviation from shift window flagged via grace rules from the shift's timing variant</li>
+        </ol>
+        <div style="margin-top:10px;font-size:11.5px;color:var(--ink-3)">Applies to: HD Driver, LD Driver</div>
+      </div>
+      <div class="card" style="border-left:4px solid var(--violet-500)">
+        <h3><span class="src bio"><i class="fa-solid fa-fingerprint"></i> BioTime</span> · how it works</h3>
+        <ol style="padding-left:20px;font-size:12.5px;color:var(--ink-2);line-height:1.9">
+          <li>Employee taps their card at depot device</li>
+          <li>Device polls WFMC every 10 minutes</li>
+          <li>Punch matched to employee &amp; shift</li>
+          <li>In / Out derived from first / last punch</li>
+          <li>Missed punches route to regularization workflow</li>
+        </ol>
+        <div style="margin-top:10px;font-size:11.5px;color:var(--ink-3)">Applies to: Labour, Helper, Supervisor, Terminal staff</div>
+      </div>
+    </div>
+  `;
+}, 'Attendance', 'Workforce › Attendance');
+
+function showPunch(id){
+  const e = EMPS.find(x=>x.id===id);
+  const isPlan = e.src==='plan';
+  modal(`
+    <div class="modal" style="max-width:520px">
+      <div class="h">
+        ${isPlan?'<span class="src plan"><i class="fa-solid fa-route"></i> Plan-login</span>':'<span class="src bio"><i class="fa-solid fa-fingerprint"></i> BioTime</span>'}
+        <h4>${e.name} · punch detail</h4><button class="btn ghost" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="b">
+        ${isPlan?`
+          <div class="field"><label>Plan ID</label><input value="PLN-2026-08-12-R14" disabled></div>
+          <div class="field"><label>Login timestamp</label><input value="06:04:12 · 12 Aug 2026" disabled></div>
+          <div class="field"><label>Route executed</label><input value="R-14 · Musaffah Sector 3" disabled></div>
+          <div class="field"><label>Completion</label><input value="14:12:44 · 118 bins collected" disabled></div>
+        `:`
+          <div class="field"><label>Device</label><input value="BIO-MSF-01 · Musaffah gate" disabled></div>
+          <div class="field"><label>First punch</label><input value="05:58:20 · 12 Aug 2026" disabled></div>
+          <div class="field"><label>Shift window</label><input value="Morning · Early · 05:00–13:00" disabled></div>
+          <div class="field"><label>Exception</label><input value="None · within grace" disabled></div>
+        `}
+        <div class="field"><label>Actions</label>
+          <div style="display:flex;gap:8px"><button class="btn ghost"><i class="fa-solid fa-download"></i> Timesheet</button><button class="btn ghost"><i class="fa-regular fa-pen-to-square"></i> Regularization</button></div>
+        </div>
+      </div>
+    </div>
+  `);
+}
+
+
+/* ---------- EXCLUDED ---------- */
+route('excluded', ()=>`
+  <div class="page-head">
+    <div>
+      <h2>Green &amp; Parked scope · not in this deck</h2>
+      <div class="sub">Kept in the register but visually and structurally partitioned from the blue review, per Kashish's 06-Aug ask. Green reviewed 20 Aug. Parked awaits BRD v1.3.</div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card" style="border-left:4px solid var(--green-500)">
+      <h3><span class="tag green" style="padding:2px 8px;border-radius:4px;background:var(--green-100);color:var(--green-500)">GREEN</span> Good for product · review 20 Aug</h3>
+      <ul style="list-style:none;padding-left:0;font-size:13px;line-height:2">
+        <li><i class="fa-regular fa-circle-dot" style="color:var(--green-500);margin-right:8px"></i>Weekly rostering board polish · conflict detail views</li>
+        <li><i class="fa-regular fa-circle-dot" style="color:var(--green-500);margin-right:8px"></i>Eligibility gate at roster time (docs + training)</li>
+        <li><i class="fa-regular fa-circle-dot" style="color:var(--green-500);margin-right:8px"></i>Attendance vs roster reconciliation</li>
+        <li><i class="fa-regular fa-circle-dot" style="color:var(--green-500);margin-right:8px"></i>Approved-leave → roster gap auto-flag</li>
+        <li><i class="fa-regular fa-circle-dot" style="color:var(--green-500);margin-right:8px"></i>Reliever visual differentiation in dispatch UI</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:4px solid var(--ink-3)">
+      <h3><span class="tag parked" style="padding:2px 8px;border-radius:4px;background:var(--surface-2);color:var(--ink-2)">PARKED</span> Tajmee'e custom · needs BRD change note</h3>
+      <ul style="list-style:none;padding-left:0;font-size:13px;line-height:2">
+        <li><i class="fa-regular fa-square" style="color:var(--ink-3);margin-right:8px"></i>Camp Management (10 Musts · 03 Aug addition)</li>
+        <li><i class="fa-regular fa-square" style="color:var(--ink-3);margin-right:8px"></i>TBT Calendar (create · publish · yearly view)</li>
+        <li><i class="fa-regular fa-square" style="color:var(--ink-3);margin-right:8px"></i>Disciplinary &amp; HSE (incident · CAPA · warning ladder)</li>
+        <li><i class="fa-regular fa-square" style="color:var(--ink-3);margin-right:8px"></i>Employee of the Month workflow</li>
+        <li><i class="fa-regular fa-square" style="color:var(--ink-3);margin-right:8px"></i>Timesheets · OT/night/holiday · Oracle payroll export</li>
+        <li><i class="fa-regular fa-square" style="color:var(--ink-3);margin-right:8px"></i>Extra notification triggers (medical, visa, labour card, probation, contract, birthday)</li>
+        <li><i class="fa-regular fa-square" style="color:var(--ink-3);margin-right:8px"></i>Employee lifecycle extras (bulk wizard, exit / final clearance, org chart)</li>
+      </ul>
+    </div>
+  </div>
+`, 'Excluded scope', 'Register');
+
+/* ---------- BOOT ---------- */
+const start = (location.hash||'#/summary').replace('#/','');
+go(routes[start]?start:'summary');
+</script>
+</body>
+</html>

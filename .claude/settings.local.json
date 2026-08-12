@@ -57,7 +57,9 @@
       "Bash(pkill -f \"localhost.run\")",
       "mcp__9306819b-1ac5-425e-ae15-73f773924fab__whoami",
       "Bash(curl -sL -o figma-wip.png \"https://www.figma.com/api/mcp/asset/deda8c56-2946-4bb0-9cc3-2705ca024f31\")",
-      "Bash(python3)"
+      "Bash(python3)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:5180/maintenance-report.html)",
+      "Bash(lsof -nP -iTCP:5180 -sTCP:LISTEN)"
     ]
   }
 }
