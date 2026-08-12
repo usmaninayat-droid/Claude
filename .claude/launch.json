@@ -12,6 +12,26 @@
       "runtimeExecutable": "node",
       "runtimeArgs": ["C:\\Users\\Shah G\\Desktop\\Claude\\v5-design-system-ai-main\\node_modules\\vite\\bin\\vite.js", "C:\\Users\\Shah G\\Desktop\\Claude\\v5-design-system-ai-main", "--port", "5180", "--host", "127.0.0.1"],
       "port": 5180
+    },
+    {
+      "name": "v5-maintenance",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd '/private/tmp/claude-501/-Users-apple-Documents-GitHub-Claude/85b90f41-8a32-4fc4-8644-13cf9535a794/scratchpad/v5' && exec ./node_modules/.bin/vite --port 5180 --strictPort --host 127.0.0.1"
+      ],
+      "port": 5180,
+      "url": "http://127.0.0.1:5180"
+    },
+    {
+      "name": "v5-templates",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd '/private/tmp/claude-501/-Users-apple-Documents-GitHub-Claude/83057d90-b2b6-4b62-a903-e889fefc2a9b/scratchpad/v5-templates' && exec python3 -m http.server 8777 --bind 127.0.0.1"
+      ],
+      "port": 8777,
+      "url": "http://127.0.0.1:8777"
     }
   ]
 }
