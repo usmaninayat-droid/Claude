@@ -22,34 +22,42 @@
   ============================================================================
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
+/* ============================================================================
+   TAJMEE'E / IWMP BRANDING — tokens mirror contract-management/index.html
+   Primary #22c882 (IWMP green) · blue→green gradient rail · Gilroy → Inter fallback
+   ============================================================================ */
 :root{
-  --navy-900:#0B1F35; --navy-800:#10294A; --navy-700:#16345C; --navy-600:#1D4275;
-  --blue-500:#2563EB; --blue-100:#DBEAFE; --blue-50:#EFF6FF;
-  --green-500:#159570; --green-100:#D6F2E8;
-  --amber-500:#D97706; --amber-100:#FEF3C7;
-  --red-500:#DC2626;  --red-100:#FEE2E2;
-  --violet-500:#7C3AED; --violet-100:#EDE9FE;
-  --bg:#EEF1F6; --surface:#FFFFFF; --surface-2:#F7F9FC;
-  --line:#DFE5EE; --line-strong:#C6CFDD;
-  --ink:#12233B; --ink-2:#4A5B74; --ink-3:#8393A9;
-  --sidebar-bg:linear-gradient(180deg,#0B1F35 0%,#122E52 100%);
-  --sidebar-ink:#B9C7DB; --sidebar-active:#FFFFFF;
-  --shadow-1:0 1px 2px rgba(16,41,74,.06),0 1px 4px rgba(16,41,74,.05);
-  --shadow-2:0 4px 14px rgba(16,41,74,.10);
-  --shadow-3:0 16px 44px rgba(11,31,53,.22);
-  --radius:10px; --radius-lg:14px;
-  --font:'IBM Plex Sans',system-ui,sans-serif;
+  --fams:#0072D6; --fams-hover:#005CAB; --fams-50:#E6F1FB; --fams-200:#8ABEEC;
+  --primary:#22c882; --primary-hover:#43d095; --primary-lightest:#e9faf3;
+  --blue-500:#0072d6; --blue-100:#e6f2fc; --blue-50:#eaf4fd;   /* info accent */
+  --green-500:#12b76a; --green-100:#e7f9f1;                     /* success tint */
+  --amber-500:#f79009; --amber-100:#fef3e6;                     /* warning tint */
+  --red-500:#f04438;   --red-100:#feecec;                       /* error tint */
+  --violet-500:#444ce7; --violet-100:#eceefd;                   /* indigo tint */
+  --bg:#f9fafb; --surface:#ffffff; --surface-2:#f9fafb;
+  --line:#eaecf0; --line-strong:#d0d5dd;
+  --ink:#101828; --ink-2:#344054; --ink-3:#98a2b3;
+  --sidebar:linear-gradient(180deg,#0a8bc4 0%,#19b09d 30%,#22c784 70%,#26d07c 100%);
+  --sidebar-ink:rgba(255,255,255,.75); --sidebar-active:#FFFFFF;
+  --module-rail:#FFFFFF;
+  --shadow-xs:0 1px 2px rgba(16,24,40,.05);
+  --shadow-1:0 1px 3px rgba(16,24,40,.10),0 1px 2px rgba(16,24,40,.06);
+  --shadow-2:0 4px 8px -2px rgba(16,24,40,.10),0 2px 4px -2px rgba(16,24,40,.06);
+  --shadow-3:0 20px 48px rgba(16,24,40,.16);
+  --radius:4px; --radius-lg:8px; --radius-full:999px;
+  --font:'Gilroy','Inter',system-ui,-apple-system,sans-serif;
 }
 [data-theme="dark"]{
-  --bg:#0C1626; --surface:#132238; --surface-2:#182B45;
-  --line:#233A58; --line-strong:#33507A;
-  --ink:#E7EEF8; --ink-2:#A9BAD2; --ink-3:#6F86A6;
-  --sidebar-bg:linear-gradient(180deg,#081527 0%,#0E2440 100%);
-  --shadow-1:0 1px 2px rgba(0,0,0,.3); --shadow-2:0 4px 14px rgba(0,0,0,.35);
-  --blue-100:#1E3A5F; --blue-50:#152A45; --green-100:#123B31; --amber-100:#3D2E10; --red-100:#3D1717; --violet-100:#2A1F45;
+  --bg:#0C1220; --surface:#131A2A; --surface-2:#1A2338;
+  --line:#25304A; --line-strong:#374561;
+  --ink:#F5F7FA; --ink-2:#B4BFD1; --ink-3:#7A879E;
+  --sidebar:linear-gradient(180deg,#0a5a7c 0%,#0f6d5a 60%,#12805a 100%);
+  --module-rail:#131A2A;
+  --shadow-1:0 1px 2px rgba(0,0,0,.3); --shadow-2:0 4px 12px rgba(0,0,0,.35);
+  --blue-100:#0F3253; --blue-50:#0B2340; --green-100:#0F3B29; --amber-100:#3D2B10; --red-100:#3D1E1A; --violet-100:#231C45;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -59,31 +67,68 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:inherit}
 ::-webkit-scrollbar{width:9px;height:9px}
 ::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:6px}
 
-/* ================ LAYOUT ================ */
-.app{display:grid;grid-template-columns:260px 1fr;grid-template-rows:56px 40px 1fr;height:100vh;grid-template-areas:"sidebar topbar" "sidebar banner" "sidebar main"}
-.sidebar{grid-area:sidebar;background:var(--sidebar-bg);color:var(--sidebar-ink);padding:16px 0;overflow-y:auto}
-.sidebar .brand{padding:0 20px 16px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:12px}
-.sidebar .brand h1{color:#fff;font-size:15px;font-weight:700;letter-spacing:.3px}
-.sidebar .brand small{color:#8FA5C4;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
-.nav-label{padding:14px 20px 6px;font-size:10.5px;color:#7B8DA8;text-transform:uppercase;letter-spacing:1px;font-weight:600}
-.nav-item{display:flex;align-items:center;gap:12px;padding:10px 20px;color:var(--sidebar-ink);cursor:pointer;font-size:13.5px;width:100%;text-align:left;transition:all .15s}
-.nav-item:hover{background:rgba(255,255,255,.05);color:#fff}
-.nav-item.active{background:rgba(37,99,235,.16);color:#fff;box-shadow:inset 3px 0 0 var(--blue-500)}
-.nav-item i{width:16px;text-align:center}
-.nav-item .tag{margin-left:auto;font-size:9.5px;padding:2px 6px;border-radius:4px;font-weight:600;letter-spacing:.4px}
-.tag.blue{background:rgba(37,99,235,.22);color:#93B8F5}
-.tag.green{background:rgba(21,149,112,.22);color:#7FD4B4}
-.tag.parked{background:rgba(131,147,169,.18);color:#B0BFD3}
+/* ================ LAYOUT — IWMP dual rail: 52px gradient + 66px white ================ */
+.app{display:grid;grid-template-columns:52px 66px 1fr;grid-template-rows:1fr;height:100vh;
+     grid-template-areas:"apprail modrail main"}
+
+/* Primary rail — 52px, tadweer gradient, 1:1 port of contract-management .sidenav-primary */
+.apprail{grid-area:apprail;background:var(--sidebar);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:16px 12px;z-index:20}
+.apprail-top{display:flex;flex-direction:column;align-items:flex-start;gap:28px;width:28px;flex:none}
+/* Tadweer logo — ring-mask.svg (masked white) + logo-text.svg (image below) */
+.tadweer{position:relative;width:28px;height:34px;flex:none}
+.tadweer .ring{position:absolute;left:5px;top:1px;width:18.51px;height:19.92px;background:#ffffff;
+               -webkit-mask-image:url('./contract-management/icons/ring-mask.svg');mask-image:url('./contract-management/icons/ring-mask.svg');
+               -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%}
+.tadweer .txt{position:absolute;left:0;top:23.09px;width:28px;height:10.05px;display:block}
+.apprail-apps{display:flex;flex-direction:column;align-items:flex-start;gap:16px;width:28px;flex:none}
+.apptile{position:relative;width:28px;height:28px;border-radius:var(--radius);flex:none;
+         display:flex;align-items:center;justify-content:center;cursor:pointer}
+.apptile.active{background:#ffffff;border-left:2px solid rgba(34,200,130,.3)}
+.apptile.tile2{background:rgba(255,255,255,.4);border-left:2px solid rgba(34,200,130,.2)}
+.apptile img{width:18px;height:18px;object-fit:contain;display:block}
+.apprail-bottom{display:flex;flex-direction:column;align-items:center;gap:12px;flex:none}
+.apprail .foot{width:28px;height:28px;border-radius:41px;background:rgba(255,255,255,.20);
+               display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none;transition:background .15s,box-shadow .15s}
+.apprail .foot:hover{background:rgba(255,255,255,.30)}
+.apprail .foot.active{background:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.4)}
+.apprail .foot.active img{filter:brightness(0) saturate(1) invert(58%) sepia(78%) saturate(400%) hue-rotate(105deg) brightness(92%) contrast(88%)}
+.apprail .foot img{width:18px;height:18px;object-fit:contain;display:block}
+
+/* Secondary rail — 66px white, 1:1 port of contract-management .sidenav-secondary */
+.modrail{grid-area:modrail;background:var(--module-rail);border-right:1px solid var(--line-strong);
+         display:flex;flex-direction:column;align-items:center;padding:16px;gap:16px;overflow-y:auto;z-index:19}
+.modrail .brand{display:none}
+.nav-label{display:none}
+
+/* .nav-item styled exactly like contract-management .sidenav-item */
+.nav-item{position:relative;width:34px;height:34px;border-radius:var(--radius);flex:none;
+          display:flex;align-items:center;justify-content:center;cursor:pointer;
+          background:transparent;border:none;padding:0;transition:background .15s}
+.nav-item:hover{background:var(--surface-2)}
+.nav-item.active{background:var(--primary)}
+.nav-item.active img{filter:brightness(0) invert(1)}
+.nav-item:not(.active){filter:drop-shadow(0 .944px .944px rgba(16,24,40,.05))}
+.nav-item img{width:18px;height:18px;object-fit:contain;display:block}
+.nav-item i{display:none}      /* FontAwesome fallback hidden — SVG imgs win */
+.nav-item .item-label{display:none}
+.nav-item .tag{display:none}
+
+/* Tooltip on hover — 24px right of tile, ink pill */
+.nav-item::after{content:attr(data-tt);position:absolute;left:calc(100% + 24px);top:50%;transform:translateY(-50%);
+                 background:var(--ink);color:#fff;font-size:12px;font-weight:600;padding:6px 10px;border-radius:var(--radius);
+                 white-space:nowrap;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .12s;
+                 box-shadow:var(--shadow-1);z-index:30}
+.nav-item:hover::after{opacity:1;visibility:visible}
 
 .topbar{grid-area:topbar;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 24px;gap:16px}
-.topbar .title{font-size:15px;font-weight:600}
-.topbar .crumb{color:var(--ink-3);font-size:12.5px;margin-left:8px}
+.topbar .title{font-size:14px;font-weight:600;color:var(--ink)}
+.topbar .crumb{color:var(--ink-3);font-size:12.5px;margin-left:6px}
 .topbar .spacer{flex:1}
-.topbar .action{padding:6px 12px;border-radius:8px;background:var(--surface-2);color:var(--ink-2);font-size:12.5px;font-weight:500;display:flex;align-items:center;gap:6px}
-.topbar .action:hover{background:var(--blue-50);color:var(--blue-500)}
+.topbar .action{padding:6px 12px;border-radius:var(--radius);background:transparent;border:1px solid var(--line-strong);color:var(--ink-2);font-size:12.5px;font-weight:500;display:flex;align-items:center;gap:6px;box-shadow:var(--shadow-xs)}
+.topbar .action:hover{background:var(--primary-lightest);color:var(--primary);border-color:var(--primary)}
 
-.banner{grid-area:banner;background:linear-gradient(90deg,rgba(37,99,235,.10),rgba(37,99,235,.02));border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 24px;gap:12px;font-size:12.5px;color:var(--ink-2)}
-.banner .pill{background:var(--blue-500);color:#fff;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:700;letter-spacing:.5px}
+.banner{grid-area:banner;background:var(--primary-lightest);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 24px;gap:12px;font-size:12.5px;color:var(--ink-2)}
+.banner .pill{background:var(--primary);color:#fff;padding:2px 10px;border-radius:var(--radius-full);font-size:10px;font-weight:700;letter-spacing:.5px}
 .banner strong{color:var(--ink)}
 .banner .right{margin-left:auto;color:var(--ink-3);font-size:11.5px}
 
@@ -95,9 +140,9 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:inherit}
 .page-head .sub{color:var(--ink-2);font-size:13px;max-width:720px}
 .page-head .ref{margin-left:auto;background:var(--surface);border:1px solid var(--line);padding:6px 12px;border-radius:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-2)}
 
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-1);margin-bottom:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px;box-shadow:none;margin-bottom:16px}
 .card h3{font-size:14.5px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.card h3 .badge{font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;background:var(--blue-100);color:var(--blue-500);letter-spacing:.4px}
+.card h3 .badge{font-size:10px;font-weight:700;padding:2px 6px;border-radius:var(--radius);background:var(--blue-100);color:var(--primary);letter-spacing:.4px}
 .card h3 .badge.new{background:var(--green-100);color:var(--green-500)}
 .card h3 .sub{margin-left:auto;color:var(--ink-3);font-size:12px;font-weight:400}
 
@@ -122,31 +167,32 @@ tr:hover td{background:var(--surface-2)}
 .thin td{padding:8px 12px}
 
 /* Chips */
-.chip{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:var(--radius-full);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
 .chip.blue{background:var(--blue-100);color:var(--blue-500)}
 .chip.green{background:var(--green-100);color:var(--green-500)}
 .chip.amber{background:var(--amber-100);color:var(--amber-500)}
 .chip.red{background:var(--red-100);color:var(--red-500)}
 .chip.violet{background:var(--violet-100);color:var(--violet-500)}
-.chip.gray{background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line)}
-.chip.new-field{background:transparent;color:var(--green-500);border:1px dashed var(--green-500)}
+.chip.gray{background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line-strong)}
+.chip.new-field{background:transparent;color:var(--green-500);border:1px dashed var(--green-500);text-transform:none}
 
 /* Buttons */
-.btn{padding:8px 14px;border-radius:8px;font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:all .15s;border:1px solid transparent}
-.btn.primary{background:var(--blue-500);color:#fff}
-.btn.primary:hover{background:#1D4ED8}
-.btn.ghost{background:var(--surface);border-color:var(--line);color:var(--ink-2)}
-.btn.ghost:hover{border-color:var(--blue-500);color:var(--blue-500)}
+.btn{padding:8px 14px;border-radius:var(--radius);font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:8px;transition:all .15s;border:1px solid transparent;line-height:1.2;box-shadow:var(--shadow-xs)}
+.btn.primary{background:var(--primary);color:#fff}
+.btn.primary:hover{background:var(--primary-hover)}
+.btn.ghost{background:var(--surface);border-color:var(--line-strong);color:var(--ink)}
+.btn.ghost:hover{background:var(--surface-2);border-color:var(--line-strong)}
 .btn.danger{background:var(--red-500);color:#fff}
-.btn.subtle{background:var(--surface-2);color:var(--ink-2)}
+.btn.subtle{background:var(--surface-2);color:var(--ink-2);border-color:var(--line)}
+.btn:focus-visible{outline:none;box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--primary-lightest)}
 
 /* Forms */
 .field{margin-bottom:14px}
 .field label{display:block;font-size:11.5px;font-weight:600;color:var(--ink-2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
 .field label .req{color:var(--red-500);margin-left:2px}
 .field label .new{background:var(--green-100);color:var(--green-500);font-size:9.5px;padding:1px 5px;border-radius:3px;margin-left:6px;letter-spacing:.3px}
-.field input,.field select,.field textarea{width:100%;padding:9px 11px;border:1px solid var(--line-strong);border-radius:7px;background:var(--surface);transition:border .15s}
-.field input:focus,.field select:focus{outline:none;border-color:var(--blue-500);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.field input,.field select,.field textarea{width:100%;padding:8px 12px;border:1px solid var(--line-strong);border-radius:var(--radius);background:var(--surface);transition:border .15s;color:var(--ink)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-lightest)}
 .field .hint{font-size:11px;color:var(--ink-3);margin-top:4px}
 .field.added{background:linear-gradient(90deg,rgba(21,149,112,.06),transparent);padding:8px;margin:0 -8px 6px;border-radius:6px}
 
@@ -159,7 +205,7 @@ tr:hover td{background:var(--surface-2)}
 .modal .f{padding:14px 22px;border-top:1px solid var(--line);display:flex;gap:10px;justify-content:flex-end;background:var(--surface-2)}
 
 /* Toast */
-.toast{position:fixed;bottom:24px;right:24px;background:var(--navy-900);color:#fff;padding:12px 18px;border-radius:8px;box-shadow:var(--shadow-3);z-index:100;animation:slide .25s ease-out}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--ink);color:#fff;padding:12px 18px;border-radius:var(--radius);box-shadow:var(--shadow-3);z-index:100;animation:slide .25s ease-out}
 @keyframes slide{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
 
 /* Roster board */
@@ -199,14 +245,14 @@ td.block-day::after{content:'\f023';font-family:'Font Awesome 6 Free';font-weigh
 
 /* Pool cards */
 .pool-emp{display:flex;align-items:center;gap:10px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface-2);margin-bottom:6px}
-.pool-emp .av{width:30px;height:30px;border-radius:50%;background:var(--blue-500);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px}
+.pool-emp .av{width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px}
 .pool-emp .info{flex:1}
 .pool-emp .info .n{font-weight:600;font-size:12.5px}
 .pool-emp .info .m{font-size:10.5px;color:var(--ink-3)}
 
 /* Alert bucket */
 .bucket{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;transition:all .15s}
-.bucket:hover{border-color:var(--blue-500);transform:translateX(2px)}
+.bucket:hover{border-color:var(--primary);transform:translateX(2px)}
 .bucket .icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
 .bucket .icon.d90{background:var(--blue-100);color:var(--blue-500)}
 .bucket .icon.d60{background:var(--violet-100);color:var(--violet-500)}
@@ -227,13 +273,14 @@ td.block-day::after{content:'\f023';font-family:'Font Awesome 6 Free';font-weigh
 .legend .item{display:flex;align-items:center;gap:6px}
 .legend .sw{width:14px;height:14px;border-radius:3px}
 
-.review-badge{position:fixed;bottom:20px;left:280px;background:var(--navy-900);color:#fff;padding:10px 14px;border-radius:8px;font-size:12px;box-shadow:var(--shadow-2);display:flex;gap:10px;align-items:center;z-index:50}
-.review-badge .dot{width:8px;height:8px;background:var(--blue-500);border-radius:50%;animation:pulse 2s infinite}
+.review-badge{position:fixed;bottom:20px;left:138px;background:var(--ink);color:#fff;padding:10px 14px;border-radius:var(--radius);font-size:12px;box-shadow:var(--shadow-2);display:flex;gap:10px;align-items:center;z-index:50}
+.review-badge .dot{width:8px;height:8px;background:var(--primary);border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
 .tab-bar{display:flex;gap:2px;border-bottom:1px solid var(--line);margin-bottom:16px}
 .tab{padding:10px 16px;font-size:13px;font-weight:500;color:var(--ink-2);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
-.tab.active{color:var(--blue-500);border-bottom-color:var(--blue-500);font-weight:600}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:600}
+.tab:hover{color:var(--primary)}
 
 /* Two-column split */
 .split{display:grid;grid-template-columns:1.6fr 1fr;gap:18px}
@@ -241,54 +288,251 @@ td.block-day::after{content:'\f023';font-family:'Font Awesome 6 Free';font-weigh
 /* Empty state */
 .empty{text-align:center;padding:40px 20px;color:var(--ink-3)}
 .empty i{font-size:32px;margin-bottom:12px;color:var(--ink-3)}
+
+/* ============================================================================
+   SHIFT CONFIGURATION SCREEN — pixel-match to Figma node 2073:33843 (FAMS Blue)
+   ============================================================================ */
+@font-face{font-family:'Gilroy';font-weight:300;font-style:normal;src:url('./contract-management/fonts/Gilroy-Light.otf') format('opentype')}
+@font-face{font-family:'Gilroy';font-weight:400;font-style:normal;src:url('./contract-management/fonts/Gilroy-Regular.otf') format('opentype')}
+@font-face{font-family:'Gilroy';font-weight:500;font-style:normal;src:url('./contract-management/fonts/Gilroy-Medium.otf') format('opentype')}
+@font-face{font-family:'Gilroy';font-weight:600;font-style:normal;src:url('./contract-management/fonts/Gilroy-Semibold.otf') format('opentype')}
+@font-face{font-family:'Gilroy';font-weight:700;font-style:normal;src:url('./contract-management/fonts/Gilroy-Bold.otf') format('opentype')}
+
+.shift-screen{display:grid;grid-template-columns:274px 1fr;gap:0;margin:-24px -28px -60px;
+              min-height:100vh;background:#fff;position:relative;font-family:'Gilroy',var(--font)}
+
+/* Left sub-nav — 274px, "Settings" header + 2 groups */
+.shift-nav{border-right:1px solid var(--line-strong);padding:32px 28px;display:flex;flex-direction:column;gap:32px;overflow-y:auto}
+.shift-nav .head{display:flex;flex-direction:column;gap:12px}
+.shift-nav .back{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--ink-3);font-weight:500;cursor:pointer;background:none;border:none;padding:0}
+.shift-nav .back i{font-size:8px}
+.shift-nav .brand-row{display:flex;align-items:center;gap:8px}
+.shift-nav .brand-icn{width:28px;height:28px;border-radius:2px;background:rgba(138,190,236,.40);display:flex;align-items:center;justify-content:center;flex:none}
+.shift-nav .brand-icn img{width:20px;height:20px;display:block;object-fit:contain}
+.settings-group{display:flex;flex-direction:column;gap:0}
+.settings-group .group-label{font-size:12px;font-weight:600;color:var(--ink-3);padding:8px 0;font-family:'Gilroy',var(--font)}
+.settings-nav-item{display:flex;align-items:center;gap:12px;padding:12px;height:40px;border-radius:4px;font-size:14px;color:#475467;font-weight:400;cursor:pointer;background:transparent;border:none;text-align:left;font-family:'Gilroy',var(--font);white-space:nowrap;line-height:1}
+.settings-nav-item:hover{background:var(--surface-2)}
+.settings-nav-item.active{background:var(--fams-50);color:#000;font-weight:500}
+.settings-nav-item img{width:16px;height:16px;display:block;flex:none;object-fit:contain}
+
+/* Right main pane */
+.shift-main{padding:20px 28px 40px;position:relative;min-width:0}
+.shift-crumb{display:inline-flex;align-items:center;gap:6px;font-size:10px;color:var(--ink-3);font-weight:500;font-family:'Gilroy',var(--font);margin-bottom:44px}
+.shift-crumb i{font-size:7px;color:var(--ink-3)}
+.shift-search{position:absolute;top:20px;right:28px;width:367px;height:32px;border:1px solid var(--line-strong);border-radius:4px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 12px}
+.shift-search i{color:var(--ink-3);font-size:12px}
+.shift-search input{border:none;outline:none;background:transparent;font-size:10px;flex:1;color:var(--ink);font-family:'Gilroy',var(--font);font-weight:500}
+.shift-search input::placeholder{color:var(--ink-3);font-size:10px}
+.shift-header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:28px}
+.shift-header h1{font-size:24px;font-weight:700;color:#000;margin:0 0 4px;line-height:30px;font-family:'Gilroy',var(--font)}
+.shift-header .subtitle{font-size:14px;color:#98A2B3;font-weight:300;max-width:773px;line-height:normal;font-family:'Gilroy',var(--font)}
+.configure-btn{background:var(--primary);color:#fff;padding:10px 16px;border-radius:4px;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;box-shadow:0 1px 2px rgba(16,24,40,.05);font-family:'Gilroy',var(--font);flex:none}
+.configure-btn:hover{background:var(--primary-hover)}
+.configure-btn i{font-size:14px}
+
+.shift-list{display:flex;flex-direction:column;gap:16px}
+.shift-row{background:#fff;border:1px solid var(--line-strong);border-radius:4px;padding:12px 20px;display:flex;align-items:center;gap:20px}
+.shift-cell{display:flex;flex-direction:column;gap:4px;min-width:0;flex:none}
+.shift-cell .lbl{font-size:11px;color:var(--ink-3);font-weight:500;font-family:'Gilroy',var(--font);line-height:normal;text-transform:none;letter-spacing:0}
+.shift-cell .val{font-size:14px;color:#000;font-weight:500;text-transform:uppercase;font-family:'Gilroy',var(--font);line-height:normal;white-space:nowrap;letter-spacing:.02em}
+.shift-cell.name{flex:0 0 160px}
+.shift-cell.name .val{text-transform:none;letter-spacing:0}
+.name-with-icon{display:flex;align-items:center;gap:8px}
+.name-with-icon img{width:18px;height:18px;object-fit:contain;flex:none}
+.shift-cell.sub-orgs-cell{flex:1 1 auto;min-width:200px}
+.sub-orgs-pills{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.pill-sub-org{display:inline-block;padding:3px 10px;border-radius:4px;background:var(--primary-lightest);color:var(--primary-hover);font-size:11.5px;font-weight:600;font-family:'Gilroy',var(--font);letter-spacing:.02em;white-space:nowrap;line-height:16px;border:1px solid rgba(34,200,130,.2)}
+.pill-add{width:22px;height:22px;border-radius:4px;background:var(--primary-lightest);color:var(--primary);border:1px dashed rgba(34,200,130,.4);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:10px;padding:0}
+.pill-add:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.date-val{color:#000;font-weight:500;text-transform:none;letter-spacing:0}
+
+/* Varies-value — first day's value shown truncated with hover popover for full per-day breakdown */
+.time-cell,.brk-cell{position:relative}
+.varies-value{display:inline-flex;align-items:baseline;gap:2px;cursor:help;position:relative;outline:none}
+.varies-value .varies-more{color:var(--ink-3);font-weight:700;font-size:13px;letter-spacing:0;line-height:1}
+.varies-pop{position:absolute;top:calc(100% + 8px);left:0;background:#fff;border:1px solid var(--line-strong);border-radius:6px;box-shadow:0 8px 24px rgba(16,24,40,.14);padding:12px 14px;min-width:280px;opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s;z-index:40;pointer-events:none}
+.varies-value:hover .varies-pop,
+.varies-value:focus .varies-pop{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+.varies-pop .vp-head{font-size:11px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;font-family:'Gilroy',var(--font)}
+.varies-pop table{width:100%;border-collapse:collapse;font-family:'Gilroy',var(--font)}
+.varies-pop td{padding:5px 0;font-size:12.5px;color:var(--ink);border:none;text-transform:none;letter-spacing:0;font-weight:500}
+.varies-pop .td-day{font-weight:700;color:#000;width:44px;letter-spacing:.02em}
+.varies-pop .td-time{color:var(--ink)}
+.varies-pop .td-brk{color:var(--ink-3);text-align:right;font-size:11.5px}
+.shift-toggle-cell{display:flex;align-items:center;flex:none;margin-left:auto}
+.shift-toggle{width:36px;height:20px;border-radius:12px;background:var(--primary);padding:2px;display:inline-flex;align-items:center;justify-content:flex-end;cursor:pointer;border:none;transition:background .15s}
+.shift-toggle.off{background:#EAECF0;justify-content:flex-start}
+.shift-toggle .knob{width:16px;height:16px;background:#fff;border-radius:50%;box-shadow:0 1px 3px rgba(16,24,40,.15)}
+
+/* Right sidesheet — Configure New Shift */
+.sheet-scrim{position:fixed;inset:0;background:rgba(16,24,40,.5);z-index:100;opacity:0;pointer-events:none;transition:opacity .25s}
+.sheet-scrim.open{opacity:1;pointer-events:auto}
+.sheet-close{position:fixed;top:24px;right:876px;width:40px;height:40px;background:#fff;border-radius:50%;border:none;cursor:pointer;box-shadow:0 4px 12px rgba(16,24,40,.2);display:flex;align-items:center;justify-content:center;color:var(--ink-2);font-size:16px;z-index:102;opacity:0;pointer-events:none;transition:opacity .25s}
+.sheet-close.open{opacity:1;pointer-events:auto}
+.sidesheet{position:fixed;top:0;right:0;bottom:0;width:860px;background:#fff;z-index:101;transform:translateX(100%);transition:transform .28s ease-out;display:flex;flex-direction:column;font-family:'Gilroy',var(--font)}
+.sidesheet.open{transform:none}
+.sheet-head{padding:32px 40px 16px}
+.sheet-head h2{font-size:24px;font-weight:700;color:#000;margin:0 0 4px;font-family:'Gilroy',var(--font)}
+.sheet-head p{font-size:14px;color:var(--ink-3);font-weight:500;margin:0;font-family:'Gilroy',var(--font)}
+.sheet-tabs{display:flex;gap:32px;border-bottom:1px solid var(--line);padding:0 40px}
+.sheet-tab{padding:12px 0;font-size:14px;color:var(--ink-3);font-weight:500;cursor:pointer;background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;font-family:'Gilroy',var(--font)}
+.sheet-tab:hover{color:var(--fams)}
+.sheet-tab.active{color:var(--fams);font-weight:700;border-bottom-color:var(--fams)}
+.sheet-body{flex:1;padding:28px 40px 32px;overflow-y:auto}
+.sheet-section h3{font-size:18px;font-weight:700;color:#000;margin:0 0 20px;font-family:'Gilroy',var(--font)}
+.sheet-row{display:flex;gap:24px;margin-bottom:16px}
+.sheet-field{flex:1;position:relative;min-width:0}
+.sheet-field.narrow{flex:0 0 106px}
+.sheet-field .picker-label{font-size:11px;font-weight:500;color:var(--ink-2);font-family:'Gilroy',var(--font);display:block;margin-bottom:8px}
+/* Design-system input — label INSIDE the box, tiny grey caption above the value.
+   Matches Figma frame 2073:34022 (Configure New Shift → Basic Info) */
+.ds-input{background:#fff;border:1px solid var(--line-strong);border-radius:4px;padding:8px 12px;min-height:54px;
+          display:flex;flex-direction:column;gap:4px;justify-content:center;position:relative;transition:border-color .15s,box-shadow .15s;font-family:'Gilroy',var(--font)}
+.ds-input:focus-within{border-color:var(--fams);box-shadow:0 0 0 2px var(--fams-50)}
+.ds-input .ds-label{font-family:'Gilroy',var(--font);font-weight:600;font-size:10px;color:#98A2B3;line-height:normal;text-transform:none;letter-spacing:0}
+.ds-input input,.ds-input textarea,.ds-input select{font-family:'Gilroy',var(--font);font-weight:500;font-size:14px;color:#000;
+                                                     line-height:normal;border:none;outline:none;padding:0;background:transparent;width:100%;resize:none}
+.ds-input textarea{min-height:96px;resize:vertical;font-family:'Gilroy',var(--font)}
+.ds-input.has-pin{padding-left:34px}
+.ds-input .pin{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink-3);font-size:14px}
+.ds-input .stepper{position:absolute;right:8px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;color:var(--ink-3);font-size:9px;gap:2px;cursor:pointer}
+.ds-input.textarea{min-height:auto;padding:12px}
+.ds-input.textarea .ds-label{margin-bottom:2px}
+.ds-input input:disabled,.ds-input select:disabled{color:var(--ink-2);cursor:not-allowed;-webkit-text-fill-color:var(--ink-2);opacity:1}
+.ds-input.disabled{background:#F9FAFB}
+.ds-input select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'><path d='M1 1l5 5 5-5' stroke='%2398A2B3' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");background-repeat:no-repeat;background-position:right center;padding-right:20px}
+.sheet-foot{padding:20px 40px;border-top:1px solid var(--line);background:#fff}
+.sheet-save{width:100%;background:var(--fams);color:#fff;padding:14px;border-radius:4px;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'Gilroy',var(--font)}
+.sheet-save:hover{background:var(--fams-hover)}
+.sheet-input-wrap select{width:100%;padding:11px 12px;border:none;outline:none;font-size:14px;color:#000;font-family:'Gilroy',var(--font);background:transparent;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'><path d='M1 1l5 5 5-5' stroke='%2398A2B3' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+.sheet-input-wrap input:disabled{color:var(--ink-2);background:#F9FAFB;cursor:not-allowed}
+.scope-hint{display:flex;align-items:flex-start;gap:8px;padding:10px 12px;background:var(--fams-50);border-radius:4px;font-size:12.5px;color:var(--ink-2);font-family:'Gilroy',var(--font);margin:-4px 0 16px;line-height:1.5}
+.scope-hint i{color:var(--fams);font-size:14px;margin-top:2px}
+.lbl-hint{color:var(--ink-3);font-weight:400}
+/* ---- Schedule form (finalized) ---- */
+.section-heading{font-size:16px;font-weight:600;color:#000;margin:28px 0 14px;font-family:'Gilroy',var(--font);letter-spacing:0}
+.section-heading:first-child{margin-top:0}
+
+.sheet-field.narrow-icon{flex:0 0 54px}
+.ds-shift-icon{width:54px;height:54px;border:1px solid var(--line-strong);border-radius:4px;display:flex;align-items:center;justify-content:center;background:#fff;cursor:pointer;position:relative;padding:6px;transition:border-color .15s,box-shadow .15s}
+.ds-shift-icon:hover{border-color:var(--fams);box-shadow:0 0 0 2px var(--fams-50)}
+.ds-shift-icon img{width:24px;height:24px;object-fit:contain}
+.ds-shift-icon::after{content:"\f078";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;bottom:4px;right:5px;font-size:7px;color:var(--ink-3)}
+
+.freq-hint{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:var(--fams-50);border-left:3px solid var(--fams);border-radius:4px;font-size:13px;color:var(--ink);font-family:'Gilroy',var(--font);margin-bottom:16px;line-height:1.5;font-weight:400}
+.freq-hint i{color:var(--fams);font-size:14px;margin-top:2px;flex:none}
+.freq-hint strong{font-weight:600}
+.days-label{font-size:11px;font-weight:600;color:var(--ink-2);margin-bottom:10px;font-family:'Gilroy',var(--font);text-transform:uppercase;letter-spacing:.04em}
+
+.day-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.day-check{display:flex;align-items:center;gap:8px;width:80px;flex:none}
+.day-check input[type="checkbox"]{width:18px;height:18px;accent-color:var(--fams);cursor:pointer;margin:0;flex:none}
+.day-check label{font-size:14px;font-weight:500;color:#000;cursor:pointer;font-family:'Gilroy',var(--font)}
+.day-row.inactive .day-check label{color:var(--ink-3)}
+
+.time-fields{display:flex;gap:12px;flex:1;min-width:0}
+.time-fields.solo{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
+.time-fields > .ds-input{flex:1;min-width:0;min-height:auto;height:54px;padding:8px 32px 8px 12px;position:relative}
+.day-row.inactive .time-fields > .ds-input{opacity:.5}
+.time-fields > .ds-input input:disabled{cursor:not-allowed}
+
+.ds-input .clear-x{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:18px;height:18px;border-radius:50%;background:transparent;color:var(--ink-3);border:none;cursor:pointer;display:none;align-items:center;justify-content:center;font-size:10px;padding:0;opacity:0;transition:opacity .12s}
+.ds-input:hover .clear-x{display:flex;opacity:1}
+.ds-input .clear-x:hover{background:rgba(240,68,56,.1);color:#F04438}
+.ds-input.readonly{background:linear-gradient(135deg,var(--fams-50) 0%,#F0F7FE 100%);pointer-events:none;border-color:#C9DDF3}
+.ds-input.readonly .ds-label{color:var(--fams)}
+.ds-input.readonly .wh-val{font-size:15px;font-weight:600;color:var(--fams);font-family:'Gilroy',var(--font);line-height:normal;display:flex;align-items:center;gap:6px}
+.ds-input.readonly .wh-val::before{content:"\f017";font-family:"Font Awesome 6 Free";font-weight:400;font-size:12px;opacity:.7}
+/* Hide native time picker icon in Chrome/Edge — we already have the label pattern */
+input[type=time]::-webkit-calendar-picker-indicator{opacity:.35;cursor:pointer;filter:invert(60%)}
+input[type=date]::-webkit-calendar-picker-indicator{opacity:0;position:absolute;right:0;width:20px;cursor:pointer}
+
+.week-block{margin-bottom:24px;padding:16px;background:#F9FAFB;border:1px solid var(--line);border-radius:6px}
+.week-block:last-child{margin-bottom:0}
+.week-header{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:#000;margin-bottom:14px;font-family:'Gilroy',var(--font)}
+.week-badge{width:26px;height:26px;border-radius:6px;background:var(--fams);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.week-badge.b{background:#7C3AED}
+
+.date-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:8px}
+.date-cell{height:38px;border:1px solid var(--line-strong);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;cursor:pointer;background:#fff;color:var(--ink);font-family:'Gilroy',var(--font);padding:0;transition:all .12s}
+.date-cell:hover{border-color:var(--fams);background:var(--fams-50)}
+.date-cell.selected{background:var(--fams);color:#fff;border-color:var(--fams);font-weight:600}
+.date-cell.wide{grid-column:span 4;font-size:12px}
+
+.custom-date-row{display:flex;align-items:center;gap:12px;padding:14px;background:#F9FAFB;border:1px solid var(--line);border-radius:6px;margin-bottom:8px}
+.cdr-date{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#000;width:150px;flex:none;font-family:'Gilroy',var(--font)}
+.cdr-date i{color:var(--fams);font-size:12px}
+.row-remove{background:#fff;border:1px solid var(--line-strong);color:#F04438;width:38px;height:38px;border-radius:4px;cursor:pointer;flex:none;display:flex;align-items:center;justify-content:center;font-size:13px}
+.row-remove:hover{background:#FEECEC;border-color:#F04438}
+.btn-add-date{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:transparent;border:1px dashed var(--line-strong);border-radius:4px;color:var(--fams);font-weight:600;font-size:13px;cursor:pointer;font-family:'Gilroy',var(--font);margin-top:4px}
+.btn-add-date:hover{background:var(--fams-50);border-color:var(--fams)}
+
+/* Custom recurrence controls — Google Calendar-style compact panel */
+.custom-freq-block{padding:20px;border:1px solid var(--line);border-radius:6px;background:#F9FAFB;display:flex;flex-direction:column;gap:20px}
+.cfb-inline{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cfb-inline-label{font-size:14px;color:var(--ink);font-weight:500;font-family:'Gilroy',var(--font)}
+.repeat-every{display:flex;gap:12px;align-items:center}
+.repeat-every > .ds-input{min-height:44px;height:44px}
+.ds-input.narrow-num{flex:0 0 72px}
+.ds-input.narrow-num input{text-align:center;font-weight:600;padding-right:0}
+.day-toggles{display:flex;gap:8px;flex-wrap:wrap}
+.day-toggle{width:38px;height:38px;border:1px solid var(--line-strong);border-radius:50%;background:#fff;font-family:'Gilroy',var(--font);font-weight:600;font-size:13px;color:var(--ink-2);cursor:pointer;transition:all .12s;
+            display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0}
+.day-toggle:hover{border-color:var(--fams);color:var(--fams)}
+.day-toggle.selected{background:var(--fams);color:#fff;border-color:var(--fams)}
+.ends-row{display:flex;flex-direction:column;gap:8px}
+.radio-row{display:flex;align-items:center;gap:8px;font-size:14px;font-family:'Gilroy',var(--font);color:var(--ink);cursor:pointer}
+.radio-row input[type=radio]{accent-color:var(--fams);width:16px;height:16px}
+.mini-date,.mini-num{padding:6px 10px;border:1px solid var(--line-strong);border-radius:4px;font-family:'Gilroy',var(--font);font-size:13px;color:var(--ink);background:#fff}
+.mini-num{width:64px;text-align:center}
+.mini-date{width:150px}
+
+.icon-picker{display:flex;gap:10px}
+.icon-swatch{width:44px;height:44px;border-radius:4px;border:1px solid var(--line-strong);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .12s;padding:0}
+.icon-swatch:hover{border-color:var(--fams)}
+.icon-swatch.selected{border-color:var(--fams);background:var(--fams-50);box-shadow:0 0 0 2px rgba(0,114,214,.15)}
+.icon-swatch img{width:22px;height:22px;object-fit:contain;display:block}
 </style>
 </head>
 <body>
 <div class="app">
-  <aside class="sidebar">
-    <div class="brand">
-      <h1>TAJMEE'E · WFMC</h1>
-      <small>Blue Review · 13 Aug 2026</small>
+  <!-- Primary rail (52px) — tadweer logo + WFMC active app + settings/user, real SVG assets -->
+  <aside class="apprail" aria-label="Applications">
+    <div class="apprail-top">
+      <div class="tadweer" title="Tadweer Group">
+        <div class="ring"></div>
+        <img class="txt" src="./contract-management/icons/logo-text.svg" alt="tajmee'e tadweer collection">
+      </div>
+      <div class="apprail-apps">
+        <div class="apptile active" title="Workforce · WFMC">
+          <img src="./contract-management/icons/wfmc-app.svg" alt="">
+        </div>
+      </div>
     </div>
-    <div class="nav-label">Overview</div>
-    <button class="nav-item" data-route="summary"><i class="fa-solid fa-flag-checkered"></i><span>Review Summary</span></button>
-
-    <div class="nav-label">Foundation</div>
-    <button class="nav-item" data-route="shift"><i class="fa-solid fa-clock"></i><span>Global Shift Entity</span><span class="tag blue">BLUE</span></button>
-
-    <div class="nav-label">Workforce</div>
-    <button class="nav-item" data-route="employee"><i class="fa-solid fa-users"></i><span>Employee Master</span><span class="tag blue">BLUE</span></button>
-    <button class="nav-item" data-route="roster"><i class="fa-solid fa-calendar-days"></i><span>Roster Board</span><span class="tag blue">BLUE</span></button>
-    <button class="nav-item" data-route="pools"><i class="fa-solid fa-user-shield"></i><span>Standby &amp; Reliever</span><span class="tag blue">BLUE</span></button>
-    <button class="nav-item" data-route="attendance"><i class="fa-solid fa-fingerprint"></i><span>Attendance · 2-source</span><span class="tag blue">BLUE</span></button>
-
-    <div class="nav-label">Compliance</div>
-    <button class="nav-item" data-route="alerts"><i class="fa-solid fa-bell"></i><span>Doc Expiry Alerts</span><span class="tag blue">BLUE</span></button>
-    <button class="nav-item" data-route="training"><i class="fa-solid fa-graduation-cap"></i><span>Training &amp; Skill</span><span class="tag blue">BLUE</span></button>
-
-    <div class="nav-label">Excluded from this review</div>
-    <button class="nav-item" data-route="excluded"><i class="fa-regular fa-eye-slash"></i><span>Green &amp; Parked scope</span><span class="tag parked">HIDE</span></button>
+    <div class="apprail-bottom">
+      <div class="foot" id="footSettings" title="Settings · Shift configuration" onclick="go('shift')"><img src="./contract-management/icons/settings.svg" alt="Settings"></div>
+      <div class="foot" title="User"><img src="./contract-management/icons/user.svg" alt="User"></div>
+    </div>
   </aside>
 
-  <header class="topbar">
-    <span class="title" id="pageTitle">Review Summary</span>
-    <span class="crumb" id="pageCrumb">Home</span>
-    <div class="spacer"></div>
-    <button class="action" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i> Theme</button>
-    <button class="action" onclick="toast('Deck exported to Figma frame','ok')"><i class="fa-solid fa-share"></i> Share for review</button>
-  </header>
-
-  <div class="banner">
-    <span class="pill">BLUE · COMMITTED</span>
-    <span>Internal review only — <strong>due Thu 13 Aug 2026</strong>. Green scope reviewed separately on 20 Aug. Client exposure gated behind internal sign-off.</span>
-    <span class="right">v0.1 · 6 workstreams + Global Shift entity</span>
-  </div>
+  <!-- Secondary rail (66px) — icon-only SVGs from contract-management/icons, tooltip on hover -->
+  <aside class="modrail" aria-label="Modules">
+    <button class="nav-item" data-route="summary" data-tt="Review Summary"><img src="./contract-management/icons/report.svg" alt=""></button>
+    <button class="nav-item" data-route="shift" data-tt="Global Shift Entity"><img src="./contract-management/icons/kpi-clock.svg" alt=""></button>
+    <button class="nav-item" data-route="employee" data-tt="Employee Master"><img src="./contract-management/icons/users.svg" alt=""></button>
+    <button class="nav-item" data-route="roster" data-tt="Roster Board"><img src="./contract-management/icons/tour-map.svg" alt=""></button>
+    <button class="nav-item" data-route="pools" data-tt="Standby &amp; Reliever"><img src="./contract-management/icons/user.svg" alt=""></button>
+    <button class="nav-item" data-route="attendance" data-tt="Attendance · 2-source"><img src="./contract-management/icons/signal.svg" alt=""></button>
+    <button class="nav-item" data-route="alerts" data-tt="Doc Expiry Alerts"><img src="./contract-management/icons/kpi-alert.svg" alt=""></button>
+    <button class="nav-item" data-route="training" data-tt="Training &amp; Skill"><img src="./contract-management/icons/file-07.svg" alt=""></button>
+    <button class="nav-item" data-route="excluded" data-tt="Green &amp; Parked scope"><img src="./contract-management/icons/folder.svg" alt=""></button>
+  </aside>
 
   <main class="main" id="main"></main>
 </div>
 
 <div id="modalHost"></div>
-<div class="review-badge"><span class="dot"></span> Reviewers: <strong>Kashish · Benjamin · Abusufean</strong></div>
 
 <script>
 /* ================ ROUTER ================ */
@@ -297,8 +541,9 @@ function route(id, fn, title, crumb){ routes[id] = {fn, title, crumb} }
 function go(id){
   const r = routes[id] || routes.summary;
   document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active', b.dataset.route===id));
-  document.getElementById('pageTitle').textContent = r.title;
-  document.getElementById('pageCrumb').textContent = r.crumb;
+  const fs = document.getElementById('footSettings'); if (fs) fs.classList.toggle('active', id==='shift');
+  const pt = document.getElementById('pageTitle'); if (pt) pt.textContent = r.title;
+  const pc = document.getElementById('pageCrumb'); if (pc) pc.textContent = r.crumb;
   document.getElementById('main').innerHTML = r.fn();
   document.getElementById('main').scrollTop = 0;
   location.hash = '#/' + id;
@@ -442,64 +687,367 @@ route('summary', ()=>`
 `, 'Review Summary', 'Home');
 
 
-/* ---------- 0. GLOBAL SHIFT ENTITY ---------- */
+/* ---------- 0. GLOBAL SHIFT ENTITY — pixel-match to Figma 2073:33843 ---------- */
+const SETTINGS_NAV = [
+  { key:'tags',      svg:'tag',                       label:'Tags & Categories' },
+  { key:'roles',     svg:'check-done',                label:'Roles Management' },
+  { key:'appmgmt',   svg:'presentation-chart',        label:'Application Management' },
+  { key:'pipeline',  svg:'layout-grid',               label:'Pipeline Configuration' },
+  { key:'events',    svg:'alert-triangle',            label:'Event Configuration' },
+  { key:'entity',    svg:'cube',                      label:'Entity Configuration' },
+  { key:'widget',    svg:'pie-chart',                 label:'Widget Management' },
+  { key:'appear',    svg:'colors',                    label:'Appearance' },
+  { key:'subs',      svg:'bell-plus',                 label:'Subscriptions' },
+  { key:'billing',   svg:'bank-note',                 label:'Billing & License' },
+];
+const ORG_NAV = [
+  { key:'users',     svg:'user-03',                   label:'User Accounts' },
+  { key:'orgset',    svg:'settings-04',               label:'Organization Settings' },
+  { key:'suborg',    svg:'building',                  label:'Sub-Organization' },
+  { key:'shifts',    svg:'clock-active',              label:'Shifts Configuration', active:true },
+];
+/* Per-day schedule model. `on` toggles the day; when `on`, start/end/brk apply. */
+const SHIFT_ROWS = [
+  { name:'Morning Shift', icon:'shift-morning',   dateRange:'02 JAN – 02 DEC, 2025', frequency:'DAILY',
+    schedule: [
+      { day:'MON', on:true, start:'09:00 AM', end:'06:00 PM', brk:'1 HOUR' },
+      { day:'TUE', on:true, start:'09:00 AM', end:'06:00 PM', brk:'1 HOUR' },
+      { day:'WED', on:true, start:'09:00 AM', end:'06:00 PM', brk:'1 HOUR' },
+      { day:'THU', on:true, start:'09:00 AM', end:'06:00 PM', brk:'1 HOUR' },
+      { day:'FRI', on:true, start:'09:00 AM', end:'06:00 PM', brk:'1 HOUR' },
+      { day:'SAT', on:true, start:'09:00 AM', end:'06:00 PM', brk:'1 HOUR' },
+      { day:'SUN', on:true, start:'09:00 AM', end:'06:00 PM', brk:'1 HOUR' }
+    ], subOrgs:['Alphamed - Lot 1','Averda'], on:true },
+  { name:'Mid Day Shift', icon:'shift-afternoon', dateRange:'02 JAN – 02 DEC, 2025', frequency:'WEEKDAYS',
+    schedule: ['MON','TUE','WED','THU','FRI'].map(d => ({ day:d, on:true, start:'09:00 AM', end:'06:00 PM', brk:'1 HOUR' }))
+      .concat([{ day:'SAT', on:false }, { day:'SUN', on:false }]),
+    subOrgs:['Alphamed - Lot 1','Averda'], on:true },
+  { name:'Night Shift',   icon:'shift-night',     dateRange:'02 JAN – 02 DEC, 2025', frequency:'CUSTOM',
+    schedule: [
+      { day:'MON', on:true,  start:'07:00 PM', end:'10:00 PM', brk:'1 HOUR' },
+      { day:'TUE', on:true,  start:'07:00 PM', end:'10:00 PM', brk:'1 HOUR' },
+      { day:'WED', on:true,  start:'08:00 PM', end:'11:00 PM', brk:'30 MIN' },  // varies
+      { day:'THU', on:false },
+      { day:'FRI', on:true,  start:'06:00 PM', end:'12:00 AM', brk:'1 HOUR' },  // varies
+      { day:'SAT', on:false },
+      { day:'SUN', on:false }
+    ], subOrgs:['Alphamed - Lot 1','Averda'], on:true }
+];
+
+/* ---- Listing summarizers ---- */
+const DAY_ORDER = ['MON','TUE','WED','THU','FRI','SAT','SUN'];
+function formatDaysList(activeDays){
+  const idx = activeDays.map(d => DAY_ORDER.indexOf(d)).sort((a,b)=>a-b);
+  if (idx.length === 0) return '—';
+  if (idx.length === 7) return 'MON - SUN';
+  if (idx.length === 5 && idx[0] === 0 && idx[4] === 4) return 'MON - FRI';
+  const isCont = idx.every((v,i) => i === 0 || v === idx[i-1] + 1);
+  if (isCont) return `${DAY_ORDER[idx[0]]} - ${DAY_ORDER[idx[idx.length-1]]}`;
+  return idx.map(i => DAY_ORDER[i]).join(', ');
+}
+function summarizeSchedule(sh){
+  const active = sh.schedule.filter(d => d.on);
+  const daysStr = formatDaysList(active.map(d => d.day));
+  const startsUniq = new Set(active.map(d => d.start));
+  const endsUniq = new Set(active.map(d => d.end));
+  const brksUniq = new Set(active.map(d => d.brk));
+  const timeConsistent = startsUniq.size === 1 && endsUniq.size === 1;
+  const brkConsistent = brksUniq.size === 1;
+  return {
+    days: daysStr,
+    time: timeConsistent ? `${active[0].start} - ${active[0].end}` : null,
+    brk:  brkConsistent  ? active[0].brk : null,
+    active
+  };
+}
+function scheduleTooltip(active){
+  const rows = active.map(d => `<tr><td class="td-day">${d.day}</td><td class="td-time">${d.start} – ${d.end}</td><td class="td-brk">${d.brk} break</td></tr>`).join('');
+  return `<div class="varies-pop"><div class="vp-head">Per-day schedule</div><table>${rows}</table></div>`;
+}
 route('shift', ()=>{
-  const rows = SHIFTS.map(s=>`
-    <tr>
-      <td><i class="fa-solid fa-${s.icon}" style="color:var(--blue-500);margin-right:8px"></i><strong>${s.name}</strong><div style="font-size:11px;color:var(--ink-3)">${s.id}</div></td>
-      <td>${s.timings.length} timing variant${s.timings.length>1?'s':''}<div style="font-size:11px;color:var(--ink-3);margin-top:2px">${s.timings.map(t=>`${t.start}–${t.end}`).join(' · ')}</div></td>
-      <td><span class="chip blue">Consumed by 4 modules</span></td>
-      <td>Org · Tajmee'e</td>
-      <td><span class="chip green">Active</span></td>
-      <td><button class="btn ghost" onclick="editShift('${s.id}')"><i class="fa-regular fa-pen-to-square"></i></button></td>
-    </tr>
-  `).join('');
+  const navHtml = (arr) => arr.map(n =>
+    `<button class="settings-nav-item${n.active?' active':''}"><img src="./settings-icons/${n.svg}.svg" alt="">${n.label}</button>`
+  ).join('');
+  const rowsHtml = SHIFT_ROWS.map(s => {
+    const sum = summarizeSchedule(s);
+    const subOrgPills = s.subOrgs.map(o => `<span class="pill-sub-org">${o}</span>`).join('') +
+      `<button class="pill-add" type="button" title="Add sub-organization"><i class="fa-solid fa-plus"></i></button>`;
+    const timeCell = sum.time
+      ? `<div class="val">${sum.time}</div>`
+      : `<div class="val varies-value" tabindex="0">${sum.active[0].start} - ${sum.active[0].end}<span class="varies-more">…</span>${scheduleTooltip(sum.active)}</div>`;
+    const brkCell = sum.brk
+      ? `<div class="val">${sum.brk}</div>`
+      : `<div class="val varies-value" tabindex="0">${sum.active[0].brk}<span class="varies-more">…</span>${scheduleTooltip(sum.active)}</div>`;
+    return `
+      <div class="shift-row">
+        <div class="shift-cell name">
+          <div class="lbl">Shift Name</div>
+          <div class="val name-with-icon"><img src="./settings-icons/${s.icon}.svg" alt=""><span>${s.name}</span></div>
+        </div>
+        <div class="shift-cell"><div class="lbl">Start End Date</div><div class="val date-val">${s.dateRange}</div></div>
+        <div class="shift-cell"><div class="lbl">Frequency</div><div class="val">${s.frequency}</div></div>
+        <div class="shift-cell"><div class="lbl">Days</div><div class="val">${sum.days}</div></div>
+        <div class="shift-cell time-cell"><div class="lbl">Shift Time</div>${timeCell}</div>
+        <div class="shift-cell brk-cell"><div class="lbl">Break Time</div>${brkCell}</div>
+        <div class="shift-cell sub-orgs-cell">
+          <div class="lbl">Sub-Organizations</div>
+          <div class="sub-orgs-pills">${subOrgPills}</div>
+        </div>
+        <div class="shift-toggle-cell">
+          <button class="shift-toggle${s.on?'':' off'}" onclick="this.classList.toggle('off')"><span class="knob"></span></button>
+        </div>
+      </div>`;
+  }).join('');
   return `
-    <div class="page-head">
-      <div>
-        <h2>Global Shift entity <span class="chip blue" style="vertical-align:middle;margin-left:6px">Foundation</span></h2>
-        <div class="sub">Organisation-level shift catalogue. <strong>Shift Name is decoupled from Shift Timings</strong> — one shift name (e.g. "Afternoon Shift") can hold multiple timing variants so operations sees a single umbrella. Consumed by Master, Roster, Alerts and Attendance.</div>
-      </div>
-      <div class="ref">SHIFT · v1</div>
-    </div>
-
-    <div class="card">
-      <h3>How the two levels behave <span class="badge new">Structural change</span></h3>
-      <div class="grid-2">
-        <div style="padding:14px;background:var(--blue-50);border-radius:10px;border:1px solid var(--blue-100)">
-          <div style="font-size:11px;font-weight:700;color:var(--blue-500);letter-spacing:.4px">LEVEL 1 · SHIFT NAME</div>
-          <div style="font-size:18px;font-weight:700;margin:4px 0">Afternoon Shift</div>
-          <div style="font-size:12px;color:var(--ink-2)">The operational umbrella that appears on dashboards, master data, roster and reports. What managers actually think in.</div>
+    <div class="shift-screen">
+      <aside class="shift-nav">
+        <div class="head">
+          <button class="back"><i class="fa-solid fa-chevron-left"></i> Go Back</button>
+          <div class="brand-row"><div class="brand-icn"><img src="./settings-icons/settings-brand.svg" alt=""></div></div>
         </div>
-        <div style="padding:14px;background:var(--violet-100);border-radius:10px;border:1px solid var(--line)">
-          <div style="font-size:11px;font-weight:700;color:var(--violet-500);letter-spacing:.4px">LEVEL 2 · TIMING VARIANTS</div>
-          <div style="font-size:13px;font-weight:600;margin:4px 0">Standard · 13:00–21:00<br>Extended · 14:00–22:00</div>
-          <div style="font-size:12px;color:var(--ink-2)">Precise start / end times. Individual employees bind to one variant; the umbrella still owns the name.</div>
+        <div class="settings-group">${navHtml(SETTINGS_NAV)}</div>
+        <div class="settings-group">
+          <div class="group-label">Organization Settings</div>
+          ${navHtml(ORG_NAV)}
         </div>
+      </aside>
+      <div class="shift-main">
+        <div class="shift-crumb">Settings <i class="fa-solid fa-chevron-right"></i> Shifts Configuration</div>
+        <div class="shift-search"><i class="fa-solid fa-magnifying-glass"></i><input placeholder="Settings Search: Search shifts"></div>
+        <div class="shift-header">
+          <div>
+            <h1>Shifts Configuration</h1>
+            <div class="subtitle">Set up your team's work schedules with Shifts Configuration. Customize shift timings, assign roles, and ensure seamless coordination for optimal productivity.</div>
+          </div>
+          <button class="configure-btn" onclick="openConfigureShift()"><i class="fa-solid fa-plus"></i> Configure New Shift</button>
+        </div>
+        <div class="shift-list">${rowsHtml}</div>
       </div>
     </div>
 
-    <div class="card">
-      <h3>Shift catalogue <span class="sub">4 shift names · 7 timing variants</span>
-        <button class="btn primary" style="margin-left:auto" onclick="editShift(null)"><i class="fa-solid fa-plus"></i> Add shift</button>
-      </h3>
-      <table>
-        <thead><tr><th>Shift name</th><th>Timings</th><th>Consumed by</th><th>Scope</th><th>Status</th><th></th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>
-
-    <div class="card">
-      <h3>Where it's referenced</h3>
-      <div class="grid-4">
-        <div class="kpi"><div class="label">Employee Master</div><div class="value">1,847</div><div class="delta">employees bind to a shift</div></div>
-        <div class="kpi"><div class="label">Roster Board</div><div class="value">Chip color</div><div class="delta">per shift name</div></div>
-        <div class="kpi"><div class="label">Attendance</div><div class="value">Window</div><div class="delta">grace derived from timing</div></div>
-        <div class="kpi"><div class="label">Contract Mgmt</div><div class="value">Dropdown</div><div class="delta">plan → shift binding</div></div>
+    <div class="sheet-scrim" id="sheetScrim" onclick="closeConfigureShift()"></div>
+    <button class="sheet-close" id="sheetClose" onclick="closeConfigureShift()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <aside class="sidesheet" id="sidesheet" aria-hidden="true">
+      <div class="sheet-head">
+        <h2>Configure New Shift</h2>
       </div>
-    </div>
+      <div class="sheet-body" id="sheetBody"></div>
+      <div class="sheet-foot"><button class="sheet-save">Save and Continue</button></div>
+    </aside>
   `;
 }, 'Global Shift Entity', 'Settings › Organisation');
+
+function openConfigureShift(){
+  document.getElementById('sheetScrim').classList.add('open');
+  document.getElementById('sheetClose').classList.add('open');
+  document.getElementById('sidesheet').classList.add('open');
+  document.getElementById('sheetBody').innerHTML = renderShiftForm();
+}
+function closeConfigureShift(){
+  document.getElementById('sheetScrim').classList.remove('open');
+  document.getElementById('sheetClose').classList.remove('open');
+  document.getElementById('sidesheet').classList.remove('open');
+}
+document.addEventListener('click', (e) => {
+  const sw = e.target.closest('.icon-swatch');
+  if (!sw) return;
+  const picker = sw.parentElement;
+  picker.querySelectorAll('.icon-swatch').forEach(s => s.classList.remove('selected'));
+  sw.classList.add('selected');
+});
+function updateShiftFrequency(freq){
+  document.getElementById('timingsBody').innerHTML = renderTimings(freq);
+}
+
+/* ---- Single flattened form (finalized Figma 6520:54898) ---- */
+function renderShiftForm(){
+  return `
+    <div class="sheet-section">
+      <h4 class="section-heading">Basic Info</h4>
+      <div class="sheet-row">
+        <div class="sheet-field"><div class="ds-input"><span class="ds-label">Shift Name</span><input value="Morning Shift"></div></div>
+        <div class="sheet-field narrow-icon"><div class="ds-shift-icon" title="Morning Shift"><img src="./settings-icons/shift-morning.svg" alt=""></div></div>
+      </div>
+      <div class="sheet-row">
+        <div class="sheet-field"><div class="ds-input disabled"><span class="ds-label">Organization</span><input value="Tajmee" disabled></div></div>
+        <div class="sheet-field"><div class="ds-input"><span class="ds-label">Sub-Organization</span><select><option>Alphamed - Lot 1</option><option>Alphamed - Lot 2</option><option>Beah</option><option>Acme Cooperation</option></select></div></div>
+      </div>
+      <div class="sheet-row">
+        <div class="sheet-field"><div class="ds-input has-pin"><i class="fa-regular fa-calendar pin"></i><span class="ds-label">Start Date</span><input type="date" data-t="startdate" value="2026-08-12"><button class="clear-x" type="button"><i class="fa-solid fa-xmark"></i></button></div></div>
+        <div class="sheet-field"><div class="ds-input has-pin"><i class="fa-regular fa-calendar pin"></i><span class="ds-label">End Date</span><input type="date" data-t="enddate" value="2026-10-31"><button class="clear-x" type="button"><i class="fa-solid fa-xmark"></i></button></div></div>
+      </div>
+
+      <h4 class="section-heading">Frequency</h4>
+      <div class="sheet-row">
+        <div class="sheet-field">
+          <div class="ds-input"><span class="ds-label">Frequency</span>
+            <select id="freqSelect" onchange="updateShiftFrequency(this.value)">${renderFreqOptions('daily')}</select>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="section-heading">Shift Timings</h4>
+      <div id="timingsBody">${renderTimings('daily')}</div>
+    </div>`;
+}
+
+/* ---- Timing render per frequency ---- */
+const BREAK_OPTS = ['0 min','15 min','30 min','45 min','1 hour','1.5 hour','2 hour'];
+function breakSelect(sel, disabled=false){
+  return BREAK_OPTS.map(o => `<option${o===sel?' selected':''}>${o}</option>`).join('');
+}
+function timeGroup(start, end, brk, working, disabled=false){
+  const d = disabled ? 'disabled' : '';
+  return `
+    <div class="ds-input"><span class="ds-label">Start Time</span><input type="time" data-t="start" value="${start}" ${d}><button class="clear-x" type="button" tabindex="-1"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="ds-input"><span class="ds-label">End Time</span><input type="time" data-t="end" value="${end}" ${d}><button class="clear-x" type="button" tabindex="-1"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="ds-input"><span class="ds-label">Break Time</span><select data-t="break" ${d}>${breakSelect(brk)}</select></div>
+    <div class="ds-input readonly"><span class="ds-label">Working hours</span><span class="wh-val">${working}</span></div>`;
+}
+function renderTimeRow(day, active, times) {
+  return `
+    <div class="day-row ${active?'':'inactive'}">
+      <div class="day-check"><input type="checkbox" ${active?'checked':''}><label>${day}</label></div>
+      <div class="time-fields">${timeGroup(active?times.start:'', active?times.end:'', active?times.brk:'0 min', active?times.working:'—', !active)}</div>
+    </div>`;
+}
+
+/* ---- Google Calendar-style contextual frequency ---- */
+function getStartDate(){
+  const inp = document.querySelector('#sheetBody input[data-t="startdate"]');
+  if (inp && inp.value) {
+    const d = new Date(inp.value);
+    if (!isNaN(d)) return d;
+  }
+  return new Date(2026, 7, 12); // default: Wed 12 Aug 2026
+}
+function ordinal(n){ if (n>=11 && n<=13) return `${n}th`; return `${n}${['th','st','nd','rd','th','th','th','th','th','th'][n%10]}`; }
+function nthWeekdayLabel(d){
+  const nth = Math.ceil(d.getDate() / 7);
+  return ['first','second','third','fourth','fifth'][nth-1] || 'last';
+}
+function renderFreqOptions(selected){
+  const opts = [
+    { v:'daily',    l:'Daily' },
+    { v:'weekdays', l:'Weekdays (Monday – Friday)' },
+    { v:'custom',   l:'Custom…' }
+  ];
+  return opts.map(o => `<option value="${o.v}"${o.v===selected?' selected':''}>${o.l}</option>`).join('');
+}
+function updateFreqLabels(){ /* labels no longer depend on Start Date — no-op kept for backward wiring */ }
+
+/* ---- Timing render per frequency ---- */
+const FREQ_HINTS = {
+  'daily':    `<i class="fa-solid fa-circle-info"></i> Runs the same time <strong>every day</strong> across the date range.`,
+  'weekdays': `<i class="fa-solid fa-circle-info"></i> Runs <strong>Monday through Friday</strong>. Weekends are off.`
+};
+
+function renderTimings(freq) {
+  const std = { start:'19:00', end:'22:00', brk:'1 hour', working:'2 hours' };
+  if (freq === 'custom') return renderCustomFreq(std);
+  const hint = FREQ_HINTS[freq] || '';
+  return `
+    ${hint ? `<div class="freq-hint">${hint}</div>` : ''}
+    <div class="days-label">Timing</div>
+    <div class="time-fields solo">${timeGroup(std.start, std.end, std.brk, std.working)}</div>`;
+}
+
+function renderCustomFreq(std){
+  return `
+    ${['Mon','Tue','Wed','Thu','Fri'].map(d => renderTimeRow(d, true, std)).join('')}
+    ${['Sat','Sun'].map(d => renderTimeRow(d, false, std)).join('')}`;
+}
+
+/* ---- Interactive behaviour ---- */
+function parseTime(v){
+  if (!v) return null;
+  const m = v.match(/^(\d{1,2}):(\d{2})/);
+  if (!m) return null;
+  return parseInt(m[1])*60 + parseInt(m[2]);
+}
+function parseBreak(v){
+  if (!v) return 0;
+  const m = v.match(/^([\d.]+)\s*(hour|min)/i);
+  if (!m) return 0;
+  return m[2].toLowerCase()==='hour' ? Math.round(parseFloat(m[1])*60) : parseInt(m[1]);
+}
+function computeWorkingHours(start, end, brk){
+  const s = parseTime(start), e = parseTime(end);
+  if (s === null || e === null) return '—';
+  let diff = e - s;
+  if (diff <= 0) diff += 24*60; // overnight
+  diff -= parseBreak(brk);
+  if (diff <= 0) return '—';
+  const h = Math.floor(diff/60), m = diff%60;
+  return m === 0 ? `${h} hour${h===1?'':'s'}` : `${h}h ${m}m`;
+}
+function containerFor(el){
+  const tf = el.closest('.time-fields');
+  if (!tf) return null;
+  if (tf.classList.contains('solo')) return tf;
+  return el.closest('.day-row, .custom-date-row');
+}
+function recomputeWH(container){
+  if (!container) return;
+  const s = container.querySelector('[data-t="start"]')?.value || '';
+  const e = container.querySelector('[data-t="end"]')?.value || '';
+  const b = container.querySelector('[data-t="break"]')?.value || '';
+  const whEl = container.querySelector('.wh-val');
+  if (whEl) whEl.textContent = computeWorkingHours(s, e, b);
+}
+document.addEventListener('input', (e) => {
+  if (!e.target.matches('[data-t]')) return;
+  recomputeWH(containerFor(e.target));
+});
+document.addEventListener('change', (e) => {
+  if (e.target.matches('[data-t="break"]')) { recomputeWH(containerFor(e.target)); return; }
+  const row = e.target.closest('.day-row');
+  if (row && e.target.type === 'checkbox') {
+    row.classList.toggle('inactive', !e.target.checked);
+    row.querySelectorAll('.time-fields input, .time-fields select').forEach(el => el.disabled = !e.target.checked);
+    if (e.target.checked) recomputeWH(row);
+    else row.querySelector('.wh-val').textContent = '—';
+  }
+});
+document.addEventListener('click', (e) => {
+  // Clear-x button
+  const clr = e.target.closest('.clear-x');
+  if (clr) {
+    e.preventDefault();
+    const inp = clr.parentElement.querySelector('input');
+    if (inp) { inp.value = ''; recomputeWH(containerFor(inp)); }
+    return;
+  }
+  // Date cell toggle (Monthly)
+  const cell = e.target.closest('.date-cell');
+  if (cell) {
+    cell.classList.toggle('selected');
+    const cnt = document.getElementById('mDayCount');
+    if (cnt) cnt.textContent = document.querySelectorAll('.date-cell.selected').length;
+    return;
+  }
+  // Remove custom date
+  const rm = e.target.closest('.row-remove');
+  if (rm) { rm.closest('.custom-date-row').remove(); return; }
+  // Day-of-week toggle in Custom freq
+  const dt = e.target.closest('.day-toggle');
+  if (dt) { dt.classList.toggle('selected'); return; }
+});
+let customDateCounter = 0;
+function addCustomDate(){
+  const list = document.getElementById('customList');
+  if (!list) return;
+  customDateCounter++;
+  const base = new Date(2025, 1, 10 + customDateCounter * 5);
+  const dateStr = base.toLocaleDateString('en-US', { weekday:'short', day:'2-digit', month:'short', year:'numeric' });
+  const div = document.createElement('div');
+  div.className = 'custom-date-row';
+  div.innerHTML = `
+    <div class="cdr-date"><i class="fa-regular fa-calendar"></i> ${dateStr}</div>
+    <div class="time-fields grow">${timeGroup('19:00','22:00','1 hour','2 hours')}</div>
+    <button class="row-remove" type="button" title="Remove date"><i class="fa-solid fa-trash-can"></i></button>`;
+  list.appendChild(div);
+}
 
 function editShift(id){
   const s = SHIFTS.find(x=>x.id===id) || {name:'',icon:'clock',timings:[{label:'',start:'',end:''}]};

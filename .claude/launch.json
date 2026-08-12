@@ -2,6 +2,13 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "wfmc-blue-review",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8790", "--bind", "127.0.0.1"],
+      "port": 8790,
+      "url": "http://127.0.0.1:8790/"
+    },
+    {
       "name": "entity-selector",
       "runtimeExecutable": "python3",
       "runtimeArgs": ["/private/tmp/claude-501/-Users-apple-Desktop-Claude/99f1ae1f-8c3a-4460-87f4-a251273391fe/scratchpad/serve.py"],
