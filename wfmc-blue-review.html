@@ -290,6 +290,265 @@ td.block-day::after{content:'\f023';font-family:'Font Awesome 6 Free';font-weigh
 .empty i{font-size:32px;margin-bottom:12px;color:var(--ink-3)}
 
 /* ============================================================================
+   EMPLOYEE MASTER — matches Figma 6493:31482 (List) and 6493:32075 (Overview)
+   ============================================================================ */
+.emp-screen{margin:-24px -28px -60px;min-height:100vh;background:#F7F8FA;font-family:'Gilroy',var(--font);display:flex;flex-direction:column}
+.emp-header{background:#fff;border-bottom:1px solid var(--line);padding:14px 24px;display:flex;align-items:center;gap:24px}
+.emp-header h1{font-size:18px;font-weight:700;color:#000;margin:0;font-family:'Gilroy',var(--font)}
+.emp-tab-strip{display:flex;align-items:center;gap:2px}
+.emp-tab-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:4px;background:#F2F4F7;border:none;color:var(--ink);font-size:12.5px;font-weight:600;cursor:pointer;font-family:'Gilroy',var(--font)}
+.emp-tab-pill.active{background:#E7F9F1;color:var(--primary)}
+.emp-tab-pill i{font-size:12px}
+.emp-tab-pill-add{width:28px;height:28px;border-radius:4px;background:transparent;border:1px dashed var(--line-strong);color:var(--ink-3);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;margin-left:4px}
+.emp-tab-pill-add:hover{border-color:var(--primary);color:var(--primary)}
+
+.emp-toolbar{padding:18px 24px 14px;display:flex;align-items:center;gap:10px}
+.emp-search{flex:0 0 320px;height:36px;background:#fff;border:1px solid var(--line-strong);border-radius:6px;display:flex;align-items:center;gap:8px;padding:0 12px}
+.emp-search i{color:var(--ink-3);font-size:12px}
+.emp-search input{border:none;outline:none;background:transparent;font-size:13px;color:var(--ink);flex:1;font-family:'Gilroy',var(--font);padding:0}
+.emp-search input::placeholder{color:var(--ink-3)}
+.emp-filter-btn{width:36px;height:36px;border-radius:6px;background:#fff;border:1px solid var(--line-strong);color:var(--ink-2);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.emp-filter-btn:hover{border-color:var(--primary);color:var(--primary)}
+.emp-toolbar-spacer{flex:1}
+.emp-add-btn{display:inline-flex;align-items:center;gap:8px;padding:0 16px;height:36px;background:var(--primary);color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Gilroy',var(--font);box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.emp-add-btn:hover{background:var(--primary-hover)}
+.emp-add-btn i{font-size:12px}
+
+.emp-table-wrap{flex:1;margin:0 24px 24px;background:#fff;border:1px solid var(--line);border-radius:8px;overflow-x:auto}
+.emp-table{width:100%;border-collapse:collapse;font-family:'Gilroy',var(--font);min-width:1600px}
+.emp-table th{text-align:left;padding:12px 14px;font-size:10px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;background:#fff;border-bottom:1px solid var(--line);white-space:nowrap}
+.emp-table th.th-new{position:relative;color:var(--primary)}
+.emp-table th.th-new::after{content:"NEW";position:absolute;top:8px;right:8px;background:var(--primary);color:#fff;font-size:8px;padding:1px 5px;border-radius:3px;font-weight:700;letter-spacing:.04em}
+.emp-table td{padding:14px;font-size:12.5px;color:var(--ink);border-bottom:1px solid var(--line);white-space:nowrap;line-height:1.3;font-weight:500;background:#fff}
+.emp-row{cursor:pointer;transition:background .1s}
+.emp-row:hover td{background:#F9FAFB}
+.emp-row:last-child td{border-bottom:none}
+
+.emp-cell-name{display:flex;align-items:center;gap:10px;min-width:170px}
+.emp-avatar{width:26px;height:26px;border-radius:50%;background:var(--primary);color:#fff;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none;letter-spacing:.02em}
+.emp-name-text{font-weight:500;color:#000}
+.emp-email{color:var(--ink-2)}
+.emp-addr{color:var(--ink-2)}
+.emp-new-cell{position:relative;font-weight:600;color:#000}
+.emp-new-badge{display:inline-block;margin-left:6px;background:var(--primary);color:#fff;font-size:8px;padding:1px 5px;border-radius:3px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;vertical-align:middle;line-height:12px}
+.emp-tags-cell{display:flex;align-items:center;gap:6px}
+.emp-tag{background:#FEF3E6;color:#F79009;padding:3px 8px;border-radius:4px;font-size:10.5px;font-weight:600;letter-spacing:.02em;font-family:'Gilroy',var(--font);text-transform:uppercase}
+.emp-tag-more{background:var(--primary-lightest);color:var(--primary);padding:3px 8px;border-radius:4px;font-size:10.5px;font-weight:600;font-family:'Gilroy',var(--font);border:1px solid rgba(34,200,130,.25)}
+
+/* Employee profile sheet */
+.emp-sheet-scrim{position:fixed;inset:0;background:rgba(16,24,40,.4);z-index:100;opacity:0;pointer-events:none;transition:opacity .25s;font-family:'Gilroy',var(--font)}
+.emp-sheet-scrim.open{opacity:1;pointer-events:auto}
+.emp-sheet{position:fixed;top:0;right:0;bottom:0;width:1120px;max-width:96vw;background:#F7F8FA;z-index:101;transform:translateX(100%);transition:transform .28s ease-out;display:flex;flex-direction:column;font-family:'Gilroy',var(--font);box-shadow:-8px 0 32px rgba(16,24,40,.15)}
+.emp-sheet.open{transform:none}
+.emp-sheet-topbar{background:#EDEEF0;padding:10px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+.emp-sheet-close{position:absolute;top:10px;right:20px;background:#fff;border:1px solid var(--line-strong);color:var(--ink-2);width:28px;height:28px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px}
+.emp-sheet-close:hover{color:#F04438;border-color:#F04438}
+.emp-sheet-crumb{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink)}
+.emp-sheet-crumb .crumb-mut{color:var(--ink-3);font-weight:500}
+.emp-sheet-crumb i{font-size:9px;color:var(--ink-3)}
+.crumb-name{display:inline-flex;align-items:center;gap:6px;font-weight:600}
+.crumb-dot{width:14px;height:14px;border-radius:50%;display:inline-block}
+
+.emp-sheet-body{flex:1;display:grid;grid-template-columns:280px 1fr;gap:0;overflow:hidden;background:#fff}
+.emp-profile-col{background:#fff;border-right:1px solid var(--line);padding:20px 20px 24px;overflow-y:auto}
+.emp-profile-photo{position:relative;width:100%;height:200px;background:#F2F4F7;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;overflow:hidden}
+.status-chip{position:absolute;top:10px;left:10px;background:var(--primary);color:#fff;padding:3px 8px;border-radius:4px;font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;z-index:2}
+.rank-chip{position:absolute;top:10px;right:10px;background:#000;color:#fff;padding:3px 8px;border-radius:4px;font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;z-index:2}
+.photo-placeholder{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:52px}
+.emp-profile-name{font-size:20px;font-weight:700;color:#000;margin:0 0 2px}
+.emp-profile-id{font-size:12px;color:var(--ink-3);margin-bottom:14px}
+.emp-profile-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.emp-profile-tag{background:var(--primary-lightest);color:var(--primary);padding:4px 10px;border-radius:4px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;font-family:'Gilroy',var(--font)}
+.emp-profile-tag-add{width:24px;height:24px;border-radius:4px;background:transparent;border:1px dashed var(--line-strong);color:var(--ink-3);cursor:pointer;font-size:12px}
+.emp-profile-tag-add:hover{border-color:var(--primary);color:var(--primary)}
+.emp-profile-detail-heading{font-size:11px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.emp-profile-dl{display:flex;flex-direction:column;gap:0;font-family:'Gilroy',var(--font)}
+.emp-profile-dl .row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+.emp-profile-dl .row:last-child{border-bottom:none}
+.emp-profile-dl dt{color:var(--ink-3);font-weight:500}
+.emp-profile-dl dd{color:#000;font-weight:600;margin:0;text-align:right}
+.emp-profile-dl .new-row{background:rgba(34,200,130,.05)}
+.emp-profile-dl .new-row dt{color:var(--primary)}
+.mini-new{display:inline-block;background:var(--primary);color:#fff;font-size:8px;padding:1px 5px;border-radius:3px;font-weight:700;margin-left:6px;letter-spacing:.04em;vertical-align:middle}
+
+.emp-detail-col{overflow-y:auto;background:#fff;display:flex;flex-direction:column}
+.emp-sheet-tabs{display:flex;gap:20px;border-bottom:1px solid var(--line);padding:0 24px;background:#fff;position:sticky;top:0;z-index:5}
+.emp-sheet-tab{padding:14px 4px;font-size:14px;font-weight:600;color:var(--ink-3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:'Gilroy',var(--font);margin-bottom:-1px}
+.emp-sheet-tab:hover{color:var(--primary)}
+.emp-sheet-tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.emp-sheet-content{padding:20px 24px 32px;flex:1;background:#F7F8FA}
+
+.emp-alert-bar{background:#EAF4FD;border:1px solid #D6EBFC;color:var(--ink);border-radius:6px;padding:10px 14px;font-size:12.5px;display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.emp-alert-bar i{color:#0BA5EC}
+.emp-alert-bar .alert-meta{margin-left:auto;color:var(--ink-3);font-size:11.5px}
+
+.emp-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:16px;font-family:'Gilroy',var(--font)}
+.emp-card-head{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#000;margin-bottom:14px}
+.emp-card-head i{font-size:14px}
+.emp-card-title{font-size:14px;font-weight:700;color:#000;margin:0 0 14px;font-family:'Gilroy',var(--font)}
+.chart-legend{margin-left:auto;display:flex;gap:12px;font-size:11px;color:var(--ink-2);font-weight:500}
+.chart-legend .lg{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:middle}
+.chart-legend .lg.planned{background:#F79009}
+.chart-legend .lg.actual{background:#0BA5EC}
+.mini-chart{position:relative}
+.mini-chart svg{width:100%;height:120px;display:block}
+.chart-x{display:flex;justify-content:space-between;font-size:8.5px;color:var(--ink-3);margin-top:6px;padding:0 4px;font-family:'Gilroy',var(--font);letter-spacing:.5px}
+
+.emp-two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.donut-wrap{display:flex;align-items:center;gap:20px}
+.donut{width:180px;height:180px}
+.donut-legend{flex:1;display:flex;flex-direction:column;gap:8px;font-size:12px}
+.donut-legend div{display:flex;align-items:center;gap:8px;color:var(--ink-2)}
+.donut-legend b{margin-left:auto;color:#000}
+.d-dot{width:10px;height:10px;border-radius:2px}
+.donut-delta{font-size:11px;color:var(--primary);margin-top:12px}
+.donut-delta i{margin-right:4px}
+
+.event-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-family:'Gilroy',var(--font)}
+.event-list li{display:flex;align-items:center;gap:12px;padding:10px;border:1px solid var(--line);border-radius:6px}
+.ev-icon{width:32px;height:32px;border-radius:6px;background:#F2F4F7;color:var(--ink-2);display:flex;align-items:center;justify-content:center;flex:none}
+.ev-body{flex:1;min-width:0}
+.ev-title{font-size:13px;font-weight:600;color:#000}
+.ev-meta{font-size:11px;color:var(--ink-3)}
+.ev-time{font-size:11px;color:var(--ink-2);text-align:right;line-height:1.35}
+
+/* Details tab */
+.detail-dl{display:flex;flex-direction:column;gap:0;font-family:'Gilroy',var(--font)}
+.detail-dl > div{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+.detail-dl > div:last-child{border-bottom:none}
+.detail-dl dt{color:var(--ink-3);font-weight:500}
+.detail-dl dd{color:#000;font-weight:600;margin:0}
+.chip-mini{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.chip-mini.green{background:var(--primary-lightest);color:var(--primary)}
+.src-chip{padding:3px 8px;border-radius:4px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.src-chip.plan{background:#EAF4FD;color:#0BA5EC}
+.src-chip.bio{background:#EBE9FE;color:#7C3AED}
+.new-fields-card{border:1px solid var(--primary);background:rgba(34,200,130,.03)}
+
+.tab-placeholder{text-align:center;padding:60px 20px;color:var(--ink-3);font-family:'Gilroy',var(--font)}
+.tab-placeholder i{font-size:32px;margin-bottom:12px;color:var(--ink-3)}
+.tab-placeholder h3{font-size:16px;color:#000;margin:8px 0}
+
+/* Training tab */
+.tr-tab{font-family:'Gilroy',var(--font);color:var(--ink)}
+.tr-tab-head{margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.tr-tab-title{font-size:15px;font-weight:700;color:#000;margin:0 0 2px}
+.tr-tab-sub{font-size:11px;color:var(--ink-3);margin:0}
+.tr-section-lbl{font-size:11px;font-weight:700;color:var(--ink-2);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 10px;display:flex;align-items:center;gap:8px}
+.tr-section-lbl .tr-count{font-size:10.5px;font-weight:600;padding:1px 8px;border-radius:10px;background:#F2F4F7;color:var(--ink-2);text-transform:none;letter-spacing:0}
+.tr-section-lbl .tr-count.crit{background:#FCEBEB;color:#A32D2D}
+
+.tr-meter{background:#F9FAFB;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:12px}
+.tr-meter-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;gap:12px;flex-wrap:wrap}
+.tr-meter-h{font-size:13.5px;font-weight:600;color:#000}
+.tr-meter-stats{font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.tr-meter-stats b{color:#000;font-size:14px;font-weight:700}
+.tr-meter-track{height:8px;background:#EAECF0;border-radius:4px;overflow:hidden;display:flex}
+.tr-meter-fill{height:100%}
+.tr-meter-fill.ok{background:#22C882}
+.tr-meter-fill.warn{background:#EF9F27}
+.tr-meter-fill.crit{background:#E24B4A}
+.tr-meter-legend{display:flex;gap:14px;margin-top:10px;font-size:11px;color:var(--ink-2)}
+.tr-meter-legend .dot{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:5px;vertical-align:middle}
+.tr-meter-legend b{color:#000;font-weight:700;margin-left:2px}
+
+.tr-course-row{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:6px;background:#fff;border:1px solid var(--line);margin-bottom:6px}
+.tr-course-row.missing{border:1px dashed #F09595;background:#FEF5F5}
+.tr-course-row.expiring{border-left:2px solid #EF9F27}
+.tr-course-icn{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex:none}
+.tr-course-icn.done{background:#DCFAE6;color:#12B76A}
+.tr-course-icn.warn{background:#FEF3E6;color:#EF9F27}
+.tr-course-icn.miss{background:#FEECEC;color:#E24B4A}
+.tr-course-body{flex:1;min-width:0}
+.tr-course-title{font-size:13.5px;font-weight:600;color:#000;margin:0;line-height:1.3}
+.tr-course-meta{font-size:11px;color:var(--ink-2);margin-top:2px}
+.tr-code{font-family:'IBM Plex Mono',ui-monospace,monospace;color:var(--ink-3);letter-spacing:.02em;font-weight:600}
+.tr-pill{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.04em;flex:none}
+.tr-pill.ok{background:#DCFAE6;color:#0F6E56}
+.tr-pill.warn{background:#FEF3E6;color:#854F0B}
+.tr-pill.miss{background:#FEECEC;color:#A32D2D}
+.tr-pill.opt{background:#F2F4F7;color:var(--ink-2);border:1px solid var(--line)}
+.tr-mark-btn{font-size:11.5px;padding:5px 10px;border-radius:4px;border:1px solid var(--line-strong);background:#fff;color:var(--ink);cursor:pointer;font-family:'Gilroy',var(--font);font-weight:600;display:inline-flex;align-items:center;gap:4px;flex:none}
+.tr-mark-btn:hover{background:#DCFAE6;border-color:#12B76A;color:#0F6E56}
+.tr-mark-btn i{font-size:10px}
+
+.tr-skill-cat{margin-bottom:12px}
+.tr-skill-cat-hd{font-size:11.5px;font-weight:600;color:var(--ink-2);margin-bottom:8px}
+.tr-skill-row{display:flex;flex-wrap:wrap;gap:6px}
+.tr-skill-badge{font-size:11.5px;padding:5px 12px;border-radius:14px;background:#fff;color:var(--ink);border:1px solid var(--line);display:inline-flex;align-items:center;gap:6px;font-weight:600;font-family:'Gilroy',var(--font)}
+.tr-skill-badge.strong{background:#DCFAE6;color:#0F6E56;border-color:transparent}
+.tr-skill-badge.dim{color:var(--ink-3);background:transparent;border-style:dashed;font-weight:500}
+.tr-skill-badge i{font-size:11px}
+.tr-skill-note{font-size:11px;color:var(--ink-3);margin-top:8px;font-style:italic;line-height:1.5}
+
+.tr-tab-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.tr-score-block{display:flex;flex-direction:column;align-items:flex-end;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:#F9FAFB;flex:none}
+.tr-score-block.ok{background:#DCFAE6;border-color:#84E1BC}
+.tr-score-block.warn{background:#FEF3E6;border-color:#FCC773}
+.tr-score-block.crit{background:#FEECEC;border-color:#F7A6A6}
+.tr-score-lbl{font-size:10px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
+.tr-score-val{font-size:26px;font-weight:800;color:#000;line-height:1.1;margin-top:2px}
+.tr-score-block.ok   .tr-score-val{color:#0F6E56}
+.tr-score-block.warn .tr-score-val{color:#854F0B}
+.tr-score-block.crit .tr-score-val{color:#A32D2D}
+.tr-score-unit{font-size:12px;font-weight:600;color:var(--ink-3);margin-left:2px}
+
+.tr-dispatch-alert{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:#FEECEC;border:1px solid #F09595;border-radius:8px;color:#4A1B0C;font-size:12.5px;line-height:1.5;margin:14px 0 0;font-family:'Gilroy',var(--font)}
+.tr-dispatch-alert i{color:#A32D2D;font-size:14px;margin-top:2px;flex:none}
+.tr-dispatch-alert strong{color:#A32D2D;font-weight:700}
+.tr-dispatch-alert em{font-style:normal;color:var(--ink-3);font-size:11.5px}
+
+/* Fleet-Availability-style compliance widget */
+.tr-avail-widget{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:10px;font-family:'Gilroy',var(--font)}
+.tr-avail-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line);gap:12px}
+.tr-avail-title-wrap{display:flex;align-items:center;gap:12px;min-width:0}
+.tr-avail-icon{width:36px;height:36px;border-radius:50%;background:var(--primary-lightest);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:15px;flex:none}
+.tr-avail-title{font-size:16px;font-weight:700;color:#000;line-height:1.2}
+.tr-avail-sub{font-size:11.5px;color:var(--ink-3);font-weight:500;margin-top:2px}
+.tr-avail-filter select{background:#fff;border:1px solid var(--line-strong);border-radius:6px;padding:7px 32px 7px 12px;font-size:12.5px;color:var(--ink-2);font-family:'Gilroy',var(--font);font-weight:600;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%2398A2B3' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");background-repeat:no-repeat;background-position:right 10px center;cursor:pointer;flex:none}
+.tr-avail-kpis{display:flex;padding:16px 0 14px}
+.tr-avail-kpi{flex:1;text-align:center;padding:0 12px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:6px;align-items:center}
+.tr-avail-kpi:last-child{border-right:none}
+.tr-avail-lbl{font-size:12px;color:var(--ink-2);font-weight:500;font-family:'Gilroy',var(--font)}
+.tr-avail-val{font-size:26px;font-weight:700;font-family:'Gilroy',var(--font);font-variant-numeric:tabular-nums;line-height:1;letter-spacing:.5px}
+.tr-avail-val.neutral{color:#000}
+.tr-avail-val.valid{color:#22C882}
+.tr-avail-val.expiring{color:#EF9F27}
+.tr-avail-val.expired{color:#F04438}
+.tr-avail-val.missing{color:#98A2B3}
+.tr-avail-bar{display:flex;height:6px;margin:2px 18px 18px;border-radius:3px;overflow:hidden;background:#F2F4F7}
+.tr-avail-seg{height:100%;transition:width .2s}
+.tr-avail-seg.valid{background:#22C882}
+.tr-avail-seg.expiring{background:#EF9F27}
+.tr-avail-seg.expired{background:#F04438}
+.tr-avail-seg.missing{background:#98A2B3}
+
+.tr-kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px}
+.tr-kpi{border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;background:#F9FAFB}
+.tr-kpi.dim{background:#F9FAFB;border-color:var(--line)}
+.tr-kpi.ok{background:#DCFAE6;border-color:#84E1BC}
+.tr-kpi.warn{background:#FEF3E6;border-color:#FCC773}
+.tr-kpi.crit{background:#FEECEC;border-color:#F7A6A6}
+.tr-kpi-head{display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-family:'Gilroy',var(--font)}
+.tr-kpi-head i{font-size:11px;color:var(--ink-2)}
+.tr-kpi.ok   .tr-kpi-head, .tr-kpi.ok   .tr-kpi-head i{color:#0F6E56}
+.tr-kpi.warn .tr-kpi-head, .tr-kpi.warn .tr-kpi-head i{color:#854F0B}
+.tr-kpi.crit .tr-kpi-head, .tr-kpi.crit .tr-kpi-head i{color:#A32D2D}
+.tr-kpi-val{font-size:26px;font-weight:800;color:#000;line-height:1.1;font-family:'Gilroy',var(--font);font-variant-numeric:tabular-nums}
+.tr-kpi.ok   .tr-kpi-val{color:#0F6E56}
+.tr-kpi.warn .tr-kpi-val{color:#854F0B}
+.tr-kpi.crit .tr-kpi-val{color:#A32D2D}
+.tr-kpi-sub{font-size:11px;color:var(--ink-3);font-weight:500;line-height:1.3;margin-top:1px;font-family:'Gilroy',var(--font)}
+.tr-kpi.ok   .tr-kpi-sub{color:#0F6E56;opacity:.75}
+.tr-kpi.warn .tr-kpi-sub{color:#854F0B;opacity:.8}
+.tr-kpi.crit .tr-kpi-sub{color:#A32D2D;opacity:.8}
+
+.tr-tbt-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;margin-bottom:6px}
+.tr-tbt-date{width:100px;flex:none;font-size:11.5px;color:var(--ink-2);font-weight:600;font-variant-numeric:tabular-nums}
+.tr-tbt-subject{flex:1;font-size:13px;color:#000;font-weight:500}
+.tr-empty{padding:14px;background:#F9FAFB;border:1px dashed var(--line-strong);border-radius:6px;font-size:12px;color:var(--ink-3);text-align:center;font-family:'Gilroy',var(--font)}
+
+/* ============================================================================
    SHIFT CONFIGURATION SCREEN — pixel-match to Figma node 2073:33843 (FAMS Blue)
    ============================================================================ */
 @font-face{font-family:'Gilroy';font-weight:300;font-style:normal;src:url('./contract-management/fonts/Gilroy-Light.otf') format('opentype')}
@@ -587,35 +846,126 @@ const SHIFTS = [
 ];
 
 const EMPS = [
-  {id:'TJ-4712', name:'Ahmed Al Sayed', role:'HD Driver', lot:'LOT 4', depot:'Musaffah', nat:'AE', wOff:'Fri', shift:'S-M', licExp:'2026-10-04', eidExp:'2027-02-11', ppExp:'2028-05-20', status:'active', src:'plan'},
-  {id:'TJ-4288', name:'Rashid Khan',    role:'HD Driver', lot:'LOT 4', depot:'Musaffah', nat:'PK', wOff:'Fri', shift:'S-M', licExp:'2026-08-18', eidExp:'2026-09-02', ppExp:'2027-04-11', status:'blocked-lic', src:'plan'},
-  {id:'TJ-4901', name:'Mohd Zubair',    role:'Labour',    lot:'LOT 4', depot:'Al Wathba', nat:'IN', wOff:'Fri', shift:'S-A', licExp:'—',          eidExp:'2026-11-22', ppExp:'2028-01-30', status:'active', src:'bio'},
-  {id:'TJ-4103', name:'Salim Hassan',   role:'Supervisor',lot:'LOT 3', depot:'Musaffah', nat:'AE', wOff:'Fri', shift:'S-M', licExp:'2027-01-14', eidExp:'2026-08-30', ppExp:'2028-03-05', status:'active', src:'bio'},
-  {id:'TJ-5044', name:'Bilal Iqbal',    role:'LD Driver', lot:'LOT 5', depot:'Al Ain',   nat:'PK', wOff:'Sun', shift:'S-N', licExp:'2026-12-12', eidExp:'2027-06-04', ppExp:'2028-11-08', status:'active', src:'plan'},
-  {id:'TJ-5122', name:'Kareem Anwar',   role:'HD Driver', lot:'LOT 5', depot:'Al Ain',   nat:'BD', wOff:'Fri', shift:'S-M', licExp:'2026-08-14', eidExp:'2027-01-19', ppExp:'2027-09-22', status:'blocked-lic', src:'plan'},
-  {id:'TJ-6001', name:'Nasir Ullah',    role:'Labour',    lot:'LOT 4', depot:'Al Wathba', nat:'PK', wOff:'Fri', shift:'S-A', licExp:'—',          eidExp:'2026-08-19', ppExp:'2027-05-10', status:'blocked-eid', src:'bio'},
-  {id:'TJ-6154', name:'Imran Baig',     role:'HD Driver', lot:'LOT 3', depot:'Musaffah', nat:'IN', wOff:'Fri', shift:'S-A', licExp:'2027-05-01', eidExp:'2027-08-08', ppExp:'2029-02-14', status:'active', src:'plan'},
+  {id:'TJ-4712', name:'Ahmed Al Sayed', role:'HD Driver',  lot:'LOT 4', depot:'Musaffah',  nat:'Emirati',    natCode:'AE', wOff:'Fri', shift:'S-M', licExp:'2026-10-04', eidExp:'2027-02-11', ppExp:'2028-05-20', status:'active',      src:'plan', avatar:'A', color:'#12B76A', dob:'22 Apr, 85', religion:'Islam',     lang:'English', email:'ahmed.alsayed@tadweer.ae',  gender:'Male', joinDate:'15 Feb, 2024', address:'8080 Railroad St.', tags:['Certified','Long Haul','Senior'], rank:14, team:'Fleet', tenure:'1 year 5 months', exp:'8 years 2 months', phone:'+971 50 123 4567', age:39, education:'High School', maritalStatus:'Married', employmentType:'Permanent', empNo:'245'},
+  {id:'TJ-4288', name:'Rashid Khan',    role:'HD Driver',  lot:'LOT 4', depot:'Musaffah',  nat:'Pakistani',  natCode:'PK', wOff:'Fri', shift:'S-M', licExp:'2026-08-18', eidExp:'2026-09-02', ppExp:'2027-04-11', status:'blocked-lic', src:'plan', avatar:'R', color:'#F04438', dob:'11 Jun, 89', religion:'Islam',     lang:'Urdu',    email:'rashid.khan@tadweer.ae',    gender:'Male', joinDate:'29 Feb, 2024', address:'8080 Railroad St.', tags:['Route Champ','Night'],           rank:22, team:'Fleet', tenure:'1 year 4 months', exp:'6 years 1 month',  phone:'+971 50 234 5678', age:35, education:'Diploma',     maritalStatus:'Single',  employmentType:'Permanent', empNo:'246'},
+  {id:'TJ-4901', name:'Mohd Zubair',    role:'Labour',     lot:'LOT 4', depot:'Al Wathba', nat:'Indian',     natCode:'IN', wOff:'Fri', shift:'S-A', licExp:'—',          eidExp:'2026-11-22', ppExp:'2028-01-30', status:'active',      src:'bio',  avatar:'V', color:'#7C3AED', dob:'03 Jan, 92', religion:'Hindu',     lang:'Hindi',   email:'mohd.zubair@tadweer.ae',     gender:'Male', joinDate:'23 Nov, 2024', address:'8080 Railroad St.', tags:['Baler'],                          rank:38, team:'Depot', tenure:'8 months',       exp:'3 years 8 months', phone:'+971 50 345 6789', age:32, education:'High School', maritalStatus:'Married', employmentType:'Permanent', empNo:'247'},
+  {id:'TJ-4103', name:'Salim Hassan',   role:'Supervisor', lot:'LOT 3', depot:'Musaffah',  nat:'Emirati',    natCode:'AE', wOff:'Fri', shift:'S-M', licExp:'2027-01-14', eidExp:'2026-08-30', ppExp:'2028-03-05', status:'active',      src:'bio',  avatar:'A', color:'#F79009', dob:'14 Sep, 82', religion:'Islam',     lang:'Arabic',  email:'salim.hassan@tadweer.ae',    gender:'Male', joinDate:'3 May, 2024',  address:'8080 Railroad St.', tags:['Supervisor','Senior'],            rank:5,  team:'Fleet', tenure:'1 year 3 months', exp:'12 years',         phone:'+971 50 456 7890', age:42, education:'Bachelors',   maritalStatus:'Married', employmentType:'Permanent', empNo:'248'},
+  {id:'TJ-5044', name:'Bilal Iqbal',    role:'LD Driver',  lot:'LOT 5', depot:'Al Ain',    nat:'Pakistani',  natCode:'PK', wOff:'Sun', shift:'S-N', licExp:'2026-12-12', eidExp:'2027-06-04', ppExp:'2028-11-08', status:'active',      src:'plan', avatar:'N', color:'#0BA5EC', dob:'27 Dec, 90', religion:'Islam',     lang:'Urdu',    email:'bilal.iqbal@tadweer.ae',     gender:'Male', joinDate:'21 Apr, 2024', address:'8080 Railroad St.', tags:['Night','Compactor'],              rank:19, team:'Fleet', tenure:'1 year 4 months', exp:'5 years 6 months', phone:'+971 50 567 8901', age:34, education:'Diploma',     maritalStatus:'Married', employmentType:'Permanent', empNo:'249'},
+  {id:'TJ-5122', name:'Kareem Anwar',   role:'HD Driver',  lot:'LOT 5', depot:'Al Ain',    nat:'Bangladeshi',natCode:'BD', wOff:'Fri', shift:'S-M', licExp:'2026-08-14', eidExp:'2027-01-19', ppExp:'2027-09-22', status:'blocked-lic', src:'plan', avatar:'K', color:'#EC4899', dob:'19 Aug, 88', religion:'Islam',     lang:'Bengali', email:'kareem.anwar@tadweer.ae',    gender:'Male', joinDate:'4 Dec, 2024',  address:'8080 Railroad St.', tags:['Route Champ','Compactor'],        rank:31, team:'Fleet', tenure:'8 months',       exp:'4 years 2 months', phone:'+971 50 678 9012', age:36, education:'High School', maritalStatus:'Single',  employmentType:'Permanent', empNo:'250'},
+  {id:'TJ-6001', name:'Nasir Ullah',    role:'Labour',     lot:'LOT 4', depot:'Al Wathba', nat:'Pakistani',  natCode:'PK', wOff:'Fri', shift:'S-A', licExp:'—',          eidExp:'2026-08-19', ppExp:'2027-05-10', status:'blocked-eid', src:'bio',  avatar:'R', color:'#12B76A', dob:'05 Nov, 91', religion:'Islam',     lang:'Urdu',    email:'nasir.ullah@tadweer.ae',     gender:'Male', joinDate:'14 Aug, 2024', address:'8080 Railroad St.', tags:['Recycling'],                       rank:44, team:'Depot', tenure:'11 months',      exp:'2 years 7 months', phone:'+971 50 789 0123', age:33, education:'High School', maritalStatus:'Married', employmentType:'Permanent', empNo:'251'},
+  {id:'TJ-6154', name:'Imran Baig',     role:'HD Driver',  lot:'LOT 3', depot:'Musaffah',  nat:'Indian',     natCode:'IN', wOff:'Fri', shift:'S-A', licExp:'2027-05-01', eidExp:'2027-08-08', ppExp:'2029-02-14', status:'active',      src:'plan', avatar:'S', color:'#F04438', dob:'30 May, 87', religion:'Christian', lang:'English', email:'imran.baig@tadweer.ae',      gender:'Male', joinDate:'17 Jan, 2024', address:'8080 Railroad St.', tags:['Certified','Long Haul'],           rank:11, team:'Fleet', tenure:'1 year 7 months', exp:'9 years 3 months', phone:'+971 50 890 1234', age:37, education:'Bachelors',   maritalStatus:'Married', employmentType:'Permanent', empNo:'252'},
 ];
 
+/* Training catalogue — 10 course types per BRD TRN-01 (approx. 10, validity periods, safety-critical flag).
+   safety=true means expired cert flags the employee on the roster (TRN-05). */
 const TRAININGS = [
-  {code:'HSE-101', title:'Waste Handling — General',       validity:24, mandatory:true,  safety:true},
-  {code:'HSE-102', title:'Confined Space Entry',           validity:12, mandatory:false, safety:true},
-  {code:'DRV-201', title:'Defensive Driving',              validity:24, mandatory:true,  safety:true},
-  {code:'DRV-210', title:'Heavy Vehicle Handling',         validity:36, mandatory:true,  safety:true},
-  {code:'CMP-005', title:'Compactor Operation',            validity:24, mandatory:false, safety:true},
-  {code:'FA-100',  title:'Basic First Aid',                validity:24, mandatory:true,  safety:false},
-  {code:'FA-110',  title:'Heat Stress Awareness',          validity:12, mandatory:true,  safety:false},
-  {code:'HR-050',  title:'Code of Conduct',                validity:0,  mandatory:true,  safety:false},
+  {code:'HSE-101', title:'Waste Handling — General',       validity:24, safety:true },
+  {code:'HSE-102', title:'Confined Space Entry',           validity:12, safety:true },
+  {code:'HSE-115', title:'Emergency Response',             validity:24, safety:true },
+  {code:'DRV-201', title:'Defensive Driving',              validity:24, safety:true },
+  {code:'DRV-210', title:'Heavy Vehicle Handling',         validity:36, safety:true },
+  {code:'DRV-115', title:'Route Hazard Awareness',         validity:24, safety:true },
+  {code:'CMP-005', title:'Compactor Operation',            validity:24, safety:true },
+  {code:'FA-100',  title:'Basic First Aid',                validity:24, safety:false},
+  {code:'FA-110',  title:'Heat Stress Awareness',          validity:12, safety:false},
+  {code:'HR-050',  title:'Code of Conduct',                validity:0,  safety:false},
 ];
 
-const SKILLS = ['Compactor','Hook Loader','Light Vehicle','Confined Space','Heat Stress','First Aid'];
-const EMP_TRAIN = { // employee → {trainingCode: status: on|exp|miss}
-  'TJ-4712':{'HSE-101':'on','DRV-201':'on','DRV-210':'on','CMP-005':'on','FA-100':'on','FA-110':'on','HR-050':'on'},
-  'TJ-4288':{'HSE-101':'on','DRV-201':'exp','DRV-210':'on','FA-100':'on','FA-110':'on','HR-050':'on'},
-  'TJ-4901':{'HSE-101':'on','FA-100':'on','FA-110':'exp','HR-050':'on'},
-  'TJ-4103':{'HSE-101':'on','HSE-102':'on','DRV-201':'on','FA-100':'on','FA-110':'on','HR-050':'on'},
-  'TJ-5044':{'HSE-101':'on','DRV-201':'on','DRV-210':'on','FA-100':'on','FA-110':'on','HR-050':'on'},
+/* Role → required trainings (drives which courses count toward compliance for an employee). */
+const ROLE_REQUIREMENTS = {
+  'HD Driver':  ['HSE-101','HSE-102','HSE-115','DRV-201','DRV-210','DRV-115','FA-100','FA-110','HR-050'],
+  'LD Driver':  ['HSE-101','HSE-115','DRV-201','DRV-115','FA-100','FA-110','HR-050'],
+  'Supervisor': ['HSE-101','HSE-102','HSE-115','FA-100','FA-110','HR-050'],
+  'Labour':     ['HSE-101','HSE-115','FA-100','FA-110','HR-050'],
 };
+
+/* Skill unlocks — competency matrix per BRD TRN-04. Each skill is unlocked by ANY of its listed courses.
+   Categories drive the per-category score groupings. */
+const SKILL_UNLOCKS = [
+  { category:'Safety', name:'Waste handling',     icon:'shield-halved',       courses:['HSE-101'] },
+  { category:'Safety', name:'Confined space',     icon:'shield-halved',       courses:['HSE-102'] },
+  { category:'Safety', name:'Emergency response', icon:'shield-halved',       courses:['HSE-115'] },
+  { category:'Safety', name:'Heat stress',        icon:'temperature-half',    courses:['FA-110']  },
+  { category:'Safety', name:'First aid',          icon:'briefcase-medical',   courses:['FA-100']  },
+  { category:'Operational', name:'Defensive driving', icon:'car',            courses:['DRV-201'] },
+  { category:'Operational', name:'Heavy vehicle',     icon:'truck',          courses:['DRV-210'] },
+  { category:'Operational', name:'Route hazard',      icon:'route',          courses:['DRV-115'] },
+  { category:'Operational', name:'Compactor',         icon:'gears',          courses:['CMP-005'] },
+  { category:'Compliance',  name:'Code of Conduct',   icon:'file-signature', courses:['HR-050']  },
+];
+
+/* Per-employee training records — { code: { status:'on|exp|miss', completed?, expires?, daysLeft? } }
+   Each employee only has entries for courses they've engaged with; anything not present = missing.
+   Dates chosen relative to today = 2026-08-13. */
+const EMP_TRAIN = {
+  'TJ-4712':{
+    'HSE-101':{status:'on',  completed:'22 Feb 2025', expires:'22 Feb 2027'},
+    'DRV-201':{status:'exp', completed:'14 Aug 2024', expires:'14 Aug 2026', daysLeft:1},
+    'DRV-210':{status:'on',  completed:'09 May 2024', expires:'09 May 2027'},
+    'DRV-115':{status:'on',  completed:'05 Jul 2025', expires:'05 Jul 2027'},
+    'FA-100' :{status:'on',  completed:'01 Mar 2025', expires:'01 Mar 2027'},
+    'FA-110' :{status:'on',  completed:'19 Jun 2026', expires:'19 Jun 2027'},
+    'HR-050' :{status:'on',  completed:'11 Jan 2024', expires:'—'},
+  },
+  'TJ-4288':{
+    'HSE-101':{status:'on',  completed:'04 Nov 2024', expires:'04 Nov 2026'},
+    'DRV-201':{status:'exp', completed:'20 Jul 2024', expires:'20 Jul 2026', daysLeft:-24},
+    'DRV-210':{status:'on',  completed:'12 Apr 2025', expires:'12 Apr 2028'},
+    'FA-100' :{status:'on',  completed:'06 Aug 2025', expires:'06 Aug 2027'},
+    'FA-110' :{status:'on',  completed:'02 Jul 2026', expires:'02 Jul 2027'},
+    'HR-050' :{status:'on',  completed:'29 Feb 2024', expires:'—'},
+  },
+  'TJ-4901':{
+    'HSE-101':{status:'on',  completed:'23 Nov 2024', expires:'23 Nov 2026'},
+    'FA-100' :{status:'on',  completed:'23 Nov 2024', expires:'23 Nov 2026'},
+    'FA-110' :{status:'exp', completed:'23 Nov 2024', expires:'23 Nov 2025', daysLeft:-263},
+    'HR-050' :{status:'on',  completed:'23 Nov 2024', expires:'—'},
+  },
+  'TJ-4103':{
+    'HSE-101':{status:'on',  completed:'03 May 2024', expires:'03 May 2026', daysLeft:-102},
+    'HSE-102':{status:'on',  completed:'03 May 2024', expires:'03 May 2025', daysLeft:-467},
+    'FA-100' :{status:'on',  completed:'03 May 2024', expires:'03 May 2026', daysLeft:-102},
+    'FA-110' :{status:'on',  completed:'19 Jun 2026', expires:'19 Jun 2027'},
+    'HR-050' :{status:'on',  completed:'03 May 2024', expires:'—'},
+  },
+  'TJ-5044':{
+    'HSE-101':{status:'on',  completed:'21 Apr 2025', expires:'21 Apr 2027'},
+    'DRV-201':{status:'on',  completed:'21 Apr 2025', expires:'21 Apr 2027'},
+    'DRV-115':{status:'on',  completed:'21 Apr 2025', expires:'21 Apr 2027'},
+    'FA-100' :{status:'on',  completed:'21 Apr 2025', expires:'21 Apr 2027'},
+    'FA-110' :{status:'on',  completed:'01 Jun 2026', expires:'01 Jun 2027'},
+    'HR-050' :{status:'on',  completed:'21 Apr 2025', expires:'—'},
+  },
+  'TJ-5122':{
+    'HSE-101':{status:'on',  completed:'04 Dec 2024', expires:'04 Dec 2026'},
+    'DRV-201':{status:'on',  completed:'04 Dec 2024', expires:'04 Dec 2026'},
+    'DRV-210':{status:'on',  completed:'04 Dec 2024', expires:'04 Dec 2027'},
+    'FA-100' :{status:'on',  completed:'04 Dec 2024', expires:'04 Dec 2026'},
+    'HR-050' :{status:'on',  completed:'04 Dec 2024', expires:'—'},
+  },
+  'TJ-6001':{
+    'HSE-101':{status:'on',  completed:'14 Aug 2024', expires:'14 Aug 2026', daysLeft:1},
+    'FA-100' :{status:'on',  completed:'14 Aug 2024', expires:'14 Aug 2026', daysLeft:1},
+    'HR-050' :{status:'on',  completed:'14 Aug 2024', expires:'—'},
+  },
+  'TJ-6154':{
+    'HSE-101':{status:'on',  completed:'17 Jan 2024', expires:'17 Jan 2026', daysLeft:-208},
+    'DRV-201':{status:'on',  completed:'17 Jan 2024', expires:'17 Jan 2026', daysLeft:-208},
+    'DRV-210':{status:'on',  completed:'17 Jan 2024', expires:'17 Jan 2027'},
+    'DRV-115':{status:'on',  completed:'05 Jul 2025', expires:'05 Jul 2027'},
+    'FA-100' :{status:'on',  completed:'17 Jan 2024', expires:'17 Jan 2026', daysLeft:-208},
+    'FA-110' :{status:'on',  completed:'19 Jun 2026', expires:'19 Jun 2027'},
+    'HR-050' :{status:'on',  completed:'17 Jan 2024', expires:'—'},
+  },
+};
+
+/* TBT delivery log per employee (TRN-12: attended/no-show against published sessions). Shared demo log. */
+const EMP_TBT_LOG = [
+  { date:'02 Aug 2026', subject:'Heat stress — hydration & shift breaks',   attended:true  },
+  { date:'19 Jul 2026', subject:'Compactor pinch-point hazards',            attended:true  },
+  { date:'05 Jul 2026', subject:'Route hazard reporting refresher',         attended:false },
+  { date:'21 Jun 2026', subject:'Emergency evacuation — depot Musaffah',    attended:true  },
+];
 
 /* ================ VIEWS ================ */
 
@@ -1084,110 +1434,452 @@ function editShift(id){
 route('employee', ()=>{
   const rows = EMPS.map(e=>{
     const s = SHIFTS.find(x=>x.id===e.shift);
-    const stat = e.status==='active' ? '<span class="chip green">Active</span>'
-               : e.status==='blocked-lic' ? '<span class="chip red">Licence exp</span>'
-               : e.status==='blocked-eid' ? '<span class="chip red">EID exp</span>'
-               : '<span class="chip gray">'+e.status+'</span>';
-    return `<tr onclick="empProfile('${e.id}')" style="cursor:pointer">
-      <td><strong>${e.id}</strong></td>
-      <td>${e.name}<div style="font-size:11px;color:var(--ink-3)">${e.role} · ${e.nat}</div></td>
-      <td>${e.lot}<div style="font-size:11px;color:var(--ink-3)">${e.depot}</div></td>
-      <td><span class="chip new-field">${e.wOff}</span></td>
-      <td><span class="chip new-field">${s?s.name:'—'}</span></td>
-      <td>${stat}</td>
-    </tr>`;
+    const shiftName = s ? s.name : '—';
+    const visibleTags = e.tags.slice(0,1).map(t => `<span class="emp-tag">${t}</span>`).join('');
+    const more = e.tags.length > 1 ? `<span class="emp-tag-more">+${e.tags.length - 1}</span>` : '';
+    return `
+      <tr onclick="empProfile('${e.id}')" class="emp-row">
+        <td class="emp-cell-name">
+          <div class="emp-avatar" style="background:${e.color}">${e.avatar}</div>
+          <span class="emp-name-text">${e.name}</span>
+        </td>
+        <td>${e.dob}</td>
+        <td>${e.religion}</td>
+        <td>${e.lang}</td>
+        <td class="emp-email">${e.email}</td>
+        <td>${e.gender}</td>
+        <td>${e.nat}</td>
+        <td>${e.id.replace('TJ-','')}</td>
+        <td>${e.role}</td>
+        <td class="emp-new-cell">${e.wOff}<span class="emp-new-badge">NEW</span></td>
+        <td class="emp-new-cell">${shiftName}<span class="emp-new-badge">NEW</span></td>
+        <td>${e.joinDate}</td>
+        <td class="emp-addr">${e.address}</td>
+        <td class="emp-tags-cell">${visibleTags}${more}</td>
+      </tr>`;
   }).join('');
   return `
-    <div class="page-head">
-      <div>
-        <h2>Employee Master · field alignment <span class="chip blue" style="vertical-align:middle;margin-left:6px">Additive</span></h2>
-        <div class="sub">Existing platform master preserved. Tajmee'e client-specific fields <strong>appended, never removed</strong>. Weekly off-day and shift timings are the two new mandatory fields; both feed the roster's working-hours rules.</div>
+    <div class="emp-screen">
+      <div class="emp-header">
+        <h1>Employees</h1>
+        <div class="emp-tab-strip">
+          <button class="emp-tab-pill active"><i class="fa-solid fa-table-list"></i> List View</button>
+          <button class="emp-tab-pill-add"><i class="fa-solid fa-plus"></i></button>
+        </div>
       </div>
-      <div class="ref">EMP · v1</div>
-    </div>
 
-    <div class="legend">
-      <div class="item"><span class="sw" style="background:var(--surface);border:1px solid var(--line)"></span>Existing platform field</div>
-      <div class="item"><span class="sw" style="background:var(--green-100);border:1px dashed var(--green-500)"></span>New Tajmee'e field</div>
-      <div class="item"><i class="fa-solid fa-lock" style="color:var(--red-500)"></i> Rostering hard-blocked</div>
-    </div>
+      <div class="emp-toolbar">
+        <div class="emp-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input placeholder="Search anything here" />
+        </div>
+        <button class="emp-filter-btn" title="Filter"><i class="fa-solid fa-filter"></i></button>
+        <div class="emp-toolbar-spacer"></div>
+        <button class="emp-add-btn" onclick="empProfile('TJ-4712')"><i class="fa-solid fa-plus"></i> Add New Driver</button>
+      </div>
 
-    <div class="card">
-      <h3>Master list · 1,847 employees <span class="sub">2 new columns shown</span>
-        <button class="btn ghost" style="margin-left:auto"><i class="fa-solid fa-filter"></i> Filters</button>
-        <button class="btn ghost"><i class="fa-solid fa-file-export"></i> Export</button>
-        <button class="btn primary" onclick="empProfile('TJ-4712')"><i class="fa-solid fa-plus"></i> Add employee</button>
-      </h3>
-      <table>
-        <thead><tr><th>Employee ID</th><th>Name</th><th>LOT · Depot</th><th>Weekly off <span class="chip new-field" style="font-size:9px">NEW</span></th><th>Shift <span class="chip new-field" style="font-size:9px">NEW</span></th><th>Status</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>
-
-    <div class="card">
-      <h3>Field-level diff <span class="badge new">What changed</span></h3>
-      <table class="thin">
-        <thead><tr><th style="width:30%">Field</th><th>Source</th><th>Change</th></tr></thead>
-        <tbody>
-          <tr><td>Employee ID, Name, Passport, EID, Licence, DOB, Nationality</td><td>Platform master</td><td>Unchanged</td></tr>
-          <tr><td>LOT, Depot, Position, Contractor, Cost centre</td><td>Platform master</td><td>Unchanged</td></tr>
-          <tr><td>Passport / EID / Licence expiry dates</td><td>Platform master</td><td>Now referenced by Doc Expiry Alerts</td></tr>
-          <tr style="background:var(--green-100)"><td><strong>Weekly off-day</strong></td><td>Tajmee'e</td><td>ADDED · required · single-day dropdown</td></tr>
-          <tr style="background:var(--green-100)"><td><strong>Assigned shift</strong></td><td>Tajmee'e</td><td>ADDED · required · bound to Global Shift entity</td></tr>
-          <tr style="background:var(--green-100)"><td><strong>Shift timing variant</strong></td><td>Tajmee'e</td><td>ADDED · optional · defaults to shift's first variant</td></tr>
-          <tr style="background:var(--green-100)"><td><strong>Attendance source</strong></td><td>Derived</td><td>ADDED · derived from role: Plan-login (drivers) / BioTime (helpers)</td></tr>
-        </tbody>
-      </table>
-      <div style="margin-top:10px;padding:10px 12px;background:var(--amber-100);border-radius:8px;font-size:12px;color:var(--amber-500)"><i class="fa-solid fa-triangle-exclamation"></i> Blocked on: Kashish's 29-column Excel — remaining diff will land when the sheet is shared.</div>
+      <div class="emp-table-wrap">
+        <table class="emp-table">
+          <thead>
+            <tr>
+              <th>Employee</th>
+              <th>Date of Birth</th>
+              <th>Religion</th>
+              <th>Language</th>
+              <th>Email</th>
+              <th>Gender</th>
+              <th>Nationality</th>
+              <th>ID</th>
+              <th>Designation</th>
+              <th class="th-new">Weekly Off</th>
+              <th class="th-new">Assigned Shift</th>
+              <th>Join Date</th>
+              <th>Address</th>
+              <th>Tags</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
     </div>
   `;
 }, 'Employee Master', 'Workforce › Employees');
 
+let currentEmpId = null;
 function empProfile(id){
+  currentEmpId = id;
+  const host = document.getElementById('modalHost');
+  host.innerHTML = renderEmpSheet(id);
+  requestAnimationFrame(() => {
+    document.getElementById('empSheetScrim').classList.add('open');
+    document.getElementById('empSheet').classList.add('open');
+  });
+}
+function closeEmpSheet(){
+  const scrim = document.getElementById('empSheetScrim');
+  const sheet = document.getElementById('empSheet');
+  if (scrim) scrim.classList.remove('open');
+  if (sheet) sheet.classList.remove('open');
+  setTimeout(() => { document.getElementById('modalHost').innerHTML = ''; }, 250);
+}
+function switchEmpTab(btn, tab){
+  document.querySelectorAll('.emp-sheet-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  const e = EMPS.find(x=>x.id===currentEmpId) || EMPS[0];
+  document.getElementById('empSheetContent').innerHTML = renderEmpTab(tab, e);
+}
+function renderEmpSheet(id){
   const e = EMPS.find(x=>x.id===id) || EMPS[0];
+  return `
+    <div class="emp-sheet-scrim" id="empSheetScrim" onclick="closeEmpSheet()"></div>
+    <aside class="emp-sheet" id="empSheet" aria-hidden="false">
+      <div class="emp-sheet-topbar">
+        <div class="emp-sheet-crumb"><span class="crumb-mut">Drivers</span> <i class="fa-solid fa-chevron-right"></i> <span class="crumb-name"><span class="crumb-dot" style="background:${e.color}"></span>${e.name}</span></div>
+        <button class="emp-sheet-close" onclick="closeEmpSheet()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="emp-sheet-body">
+        <aside class="emp-profile-col">${renderEmpProfileCol(e)}</aside>
+        <div class="emp-detail-col">
+          <div class="emp-sheet-tabs">
+            <button class="emp-sheet-tab active" onclick="switchEmpTab(this,'overview')">Overview</button>
+            <button class="emp-sheet-tab" onclick="switchEmpTab(this,'details')">Details</button>
+            <button class="emp-sheet-tab" onclick="switchEmpTab(this,'documents')">Documents</button>
+            <button class="emp-sheet-tab" onclick="switchEmpTab(this,'attendance')">Attendance</button>
+            <button class="emp-sheet-tab" onclick="switchEmpTab(this,'training')">Training</button>
+            <button class="emp-sheet-tab" onclick="switchEmpTab(this,'timeline')">Timeline</button>
+          </div>
+          <div class="emp-sheet-content" id="empSheetContent">${renderEmpTab('overview', e)}</div>
+        </div>
+      </div>
+    </aside>`;
+}
+function renderEmpProfileCol(e){
   const s = SHIFTS.find(x=>x.id===e.shift);
-  modal(`
-    <div class="modal" style="max-width:760px">
-      <div class="h">
-        <div style="width:40px;height:40px;border-radius:50%;background:var(--blue-500);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700">${e.name.split(' ').map(x=>x[0]).slice(0,2).join('')}</div>
-        <div style="flex:1"><h4>${e.name}</h4><div style="font-size:12px;color:var(--ink-3)">${e.id} · ${e.role} · ${e.lot} · ${e.depot}</div></div>
-        <button class="btn ghost" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="b">
-        <div class="tab-bar">
-          <div class="tab active">Overview</div><div class="tab">Documents</div><div class="tab">Attendance</div><div class="tab">Training</div><div class="tab">Timeline</div>
-        </div>
-        <div class="grid-2">
-          <div>
-            <div class="field"><label>Employee ID</label><input value="${e.id}" disabled></div>
-            <div class="field"><label>Full name</label><input value="${e.name}"></div>
-            <div class="field"><label>Role</label><input value="${e.role}"></div>
-            <div class="field"><label>LOT · Depot</label><input value="${e.lot} · ${e.depot}"></div>
-          </div>
-          <div>
-            <div class="field added"><label>Weekly off-day <span class="new">NEW</span> <span class="req">*</span></label>
-              <select><option ${e.wOff==='Fri'?'selected':''}>Friday</option><option ${e.wOff==='Sun'?'selected':''}>Sunday</option><option>Saturday</option></select>
-              <div class="hint">Rostering hard-blocks assignment on this day.</div>
-            </div>
-            <div class="field added"><label>Assigned shift <span class="new">NEW</span> <span class="req">*</span></label>
-              <select>${SHIFTS.map(x=>`<option ${x.id===e.shift?'selected':''}>${x.name}</option>`).join('')}</select>
-              <div class="hint">Bound to Global Shift entity.</div>
-            </div>
-            <div class="field added"><label>Timing variant <span class="new">NEW</span></label>
-              <select>${s?s.timings.map(t=>`<option>${t.label} · ${t.start}–${t.end}</option>`).join(''):'<option>—</option>'}</select>
-              <div class="hint">Attendance grace window derives from this.</div>
-            </div>
-            <div class="field added"><label>Attendance source <span class="new">DERIVED</span></label>
-              <div style="padding:9px 11px;background:var(--surface-2);border-radius:7px">
-                ${e.src==='plan'?'<span class="src plan"><i class="fa-solid fa-route"></i> Plan-login</span> — driver executes route via app':'<span class="src bio"><i class="fa-solid fa-fingerprint"></i> BioTime</span> — biometric device at depot'}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="f"><button class="btn ghost" onclick="closeModal()">Close</button><button class="btn primary" onclick="closeModal();toast('Employee saved','ok')">Save</button></div>
+  const shiftName = s ? s.name : '—';
+  const tags = e.tags.map(t => `<span class="emp-profile-tag">${t}</span>`).join('') + '<button class="emp-profile-tag-add">+</button>';
+  return `
+    <div class="emp-profile-photo">
+      <span class="status-chip">ACTIVE</span>
+      <span class="rank-chip">DRIVER RANK: ${e.rank}</span>
+      <div class="photo-placeholder" style="background:${e.color}22;color:${e.color}"><i class="fa-solid fa-user"></i></div>
     </div>
-  `);
+    <div class="emp-profile-name">${e.name}</div>
+    <div class="emp-profile-id">ID# #${e.id.replace('TJ-','9232')}</div>
+    <div class="emp-profile-tags">${tags}</div>
+    <div class="emp-profile-detail-heading">Employee Details</div>
+    <dl class="emp-profile-dl">
+      <div class="row"><dt>Designation</dt><dd>${e.role}</dd></div>
+      <div class="row"><dt>Team</dt><dd>${e.team}</dd></div>
+      <div class="row"><dt>Employment Tenure</dt><dd>${e.tenure}</dd></div>
+      <div class="row"><dt>Overall Experience</dt><dd>${e.exp}</dd></div>
+      <div class="row"><dt>Phone Number</dt><dd>${e.phone}</dd></div>
+      <div class="row"><dt>Email</dt><dd>${e.email}</dd></div>
+      <div class="row"><dt>Address</dt><dd>${e.address}</dd></div>
+      <div class="row"><dt>Nationality</dt><dd>${e.nat}</dd></div>
+      <div class="row"><dt>Join Date</dt><dd>${e.joinDate}</dd></div>
+      <div class="row new-row"><dt>Weekly Off <span class="mini-new">NEW</span></dt><dd><strong>${e.wOff}</strong></dd></div>
+      <div class="row new-row"><dt>Assigned Shift <span class="mini-new">NEW</span></dt><dd><strong>${shiftName}</strong></dd></div>
+    </dl>`;
+}
+function renderEmpTab(tab, e){
+  if (tab === 'overview') return renderEmpOverview(e);
+  if (tab === 'details')  return renderEmpDetails(e);
+  if (tab === 'training') return renderEmpTraining(e);
+  return `<div class="tab-placeholder"><i class="fa-solid fa-circle-notch"></i><h3>${tab.charAt(0).toUpperCase()+tab.slice(1)}</h3><p>This tab is scaffolded — the finalized Figma frames land next.</p></div>`;
+}
+
+/* Training tab — computed live from TRAININGS + EMP_TRAIN + ROLE_REQUIREMENTS + SKILL_UNLOCKS.
+   Matches BRD §7.7 (FR-TRN): catalogue (TRN-01), competency matrix + score (TRN-04),
+   safety-critical expiry flags dispatch (TRN-05), TBT delivery log (TRN-12).
+   TBT calendar / session scheduling are module-level, not per-employee. */
+
+function pad2(n){ return n < 10 ? '0' + n : String(n); }
+
+/* Classify certificate state — returns 'valid' | 'expiring' | 'expired' | 'missing'.
+   Expiring threshold matches the doc-expiry alerts contract (30 days). */
+function trnStatus(rec){
+  if (!rec) return 'missing';
+  if (rec.status === 'exp') return 'expired';
+  if (typeof rec.daysLeft === 'number' && rec.daysLeft < 0) return 'expired';
+  if (typeof rec.daysLeft === 'number' && rec.daysLeft <= 30) return 'expiring';
+  return 'valid';
+}
+
+/* Compute per-employee training rollup: required course list w/ state, competency score,
+   held skills, additional (non-required) certs and dispatch-block flag (TRN-05). */
+function computeTrainingRollup(e){
+  const emp = EMP_TRAIN[e.id] || {};
+  const requiredCodes = ROLE_REQUIREMENTS[e.role] || [];
+  const required = requiredCodes.map(code => {
+    const tr = TRAININGS.find(t => t.code === code);
+    const rec = emp[code];
+    return { ...tr, rec, state: trnStatus(rec) };
+  });
+  const additionalCerts = Object.keys(emp)
+    .filter(c => !requiredCodes.includes(c))
+    .map(c => ({ ...TRAININGS.find(t=>t.code===c), rec: emp[c], state: trnStatus(emp[c]) }));
+
+  const validCount    = required.filter(r => r.state === 'valid').length;
+  const expiringCount = required.filter(r => r.state === 'expiring').length;
+  const expiredCount  = required.filter(r => r.state === 'expired').length;
+  const missingCount  = required.filter(r => r.state === 'missing').length;
+  const total = required.length;
+  const score = total ? Math.round(((validCount + expiringCount * 0.5) / total) * 100) : 0;
+
+  // Dispatch block per TRN-05: any safety-critical required course expired or missing.
+  const blockingCourses = required.filter(r => r.safety && (r.state === 'expired' || r.state === 'missing'));
+
+  // Skills derived from actually-held (valid or expiring) courses.
+  const heldCourses = new Set([...required, ...additionalCerts]
+    .filter(r => r.state === 'valid' || r.state === 'expiring')
+    .map(r => r.code));
+  const categories = [...new Set(SKILL_UNLOCKS.map(s => s.category))];
+  const skillMatrix = categories.map(cat => ({
+    category: cat,
+    items: SKILL_UNLOCKS.filter(s => s.category === cat)
+      .map(s => ({ ...s, held: s.courses.some(c => heldCourses.has(c)) }))
+  }));
+
+  return {
+    total, validCount, expiringCount, expiredCount, missingCount,
+    score, blockingCourses,
+    required, additional: additionalCerts, skillMatrix,
+  };
+}
+
+function courseRowHtml(r){
+  const meta = r.rec
+    ? `<span class="tr-code">${r.code}</span> · ${r.safety?'Safety-critical · ':''}Completed ${r.rec.completed}${r.rec.expires && r.rec.expires !== '—' ? ' · Expires '+r.rec.expires : ''}${typeof r.rec.daysLeft==='number' ? ' · '+(r.rec.daysLeft<0?`${-r.rec.daysLeft}d overdue`:`${r.rec.daysLeft}d left`) : ''}`
+    : `<span class="tr-code">${r.code}</span> · ${r.safety?'Safety-critical · ':''}Validity ${r.validity} mo`;
+  if (r.state === 'missing') return `
+    <div class="tr-course-row missing">
+      <div class="tr-course-icn miss"><i class="fa-solid fa-xmark"></i></div>
+      <div class="tr-course-body"><div class="tr-course-title">${r.title}</div><div class="tr-course-meta">${meta}</div></div>
+      ${r.safety?'<span class="tr-pill miss">Blocks dispatch</span>':'<span class="tr-pill miss">Missing</span>'}
+      <button class="tr-mark-btn"><i class="fa-solid fa-check"></i> Mark complete</button>
+    </div>`;
+  if (r.state === 'expired') return `
+    <div class="tr-course-row missing">
+      <div class="tr-course-icn miss"><i class="fa-solid fa-triangle-exclamation"></i></div>
+      <div class="tr-course-body"><div class="tr-course-title">${r.title}</div><div class="tr-course-meta">${meta}</div></div>
+      ${r.safety?'<span class="tr-pill miss">Blocks dispatch</span>':'<span class="tr-pill miss">Expired</span>'}
+      <button class="tr-mark-btn"><i class="fa-solid fa-rotate"></i> Renew</button>
+    </div>`;
+  if (r.state === 'expiring') return `
+    <div class="tr-course-row expiring">
+      <div class="tr-course-icn warn"><i class="fa-solid fa-triangle-exclamation"></i></div>
+      <div class="tr-course-body"><div class="tr-course-title">${r.title}</div><div class="tr-course-meta">${meta}</div></div>
+      <span class="tr-pill warn">Expiring</span>
+    </div>`;
+  return `
+    <div class="tr-course-row">
+      <div class="tr-course-icn done"><i class="fa-solid fa-check"></i></div>
+      <div class="tr-course-body"><div class="tr-course-title">${r.title}</div><div class="tr-course-meta">${meta}</div></div>
+      <span class="tr-pill ok">Valid</span>
+    </div>`;
+}
+
+function renderEmpTraining(e){
+  const s = computeTrainingRollup(e);
+  const okPct  = s.total ? Math.round(s.validCount    / s.total * 100) : 0;
+  const wnPct  = s.total ? Math.round(s.expiringCount / s.total * 100) : 0;
+  const csPct  = s.total ? Math.round((s.expiredCount + s.missingCount) / s.total * 100) : 0;
+  const dispatchBlock = s.blockingCourses.length > 0;
+  const scoreBadge = s.score >= 90 ? 'ok' : (s.score >= 70 ? 'warn' : 'crit');
+  const requiredHtml   = s.required.map(courseRowHtml).join('');
+  const skillsHtml     = s.skillMatrix.map(cat => `
+    <div class="tr-skill-cat">
+      <div class="tr-skill-cat-hd">${cat.category} · ${cat.items.filter(x=>x.held).length}/${cat.items.length} held</div>
+      <div class="tr-skill-row">
+        ${cat.items.map(sk => `<span class="tr-skill-badge${sk.held?' strong':' dim'}" title="Unlocked by ${sk.courses.join(', ')}"><i class="fa-solid fa-${sk.icon}"></i>${sk.name}</span>`).join('')}
+      </div>
+    </div>`).join('');
+  const additionalHtml = s.additional.length
+    ? s.additional.map(a => `
+      <div class="tr-course-row">
+        <div class="tr-course-icn done"><i class="fa-solid fa-check"></i></div>
+        <div class="tr-course-body"><div class="tr-course-title">${a.title}</div><div class="tr-course-meta"><span class="tr-code">${a.code}</span> · Completed ${a.rec.completed}</div></div>
+        <span class="tr-pill opt">Optional</span>
+      </div>`).join('')
+    : `<div class="tr-empty">No additional courses beyond role requirements.</div>`;
+  const tbtHtml = EMP_TBT_LOG.map(t => `
+    <div class="tr-tbt-row">
+      <div class="tr-tbt-date">${t.date}</div>
+      <div class="tr-tbt-subject">${t.subject}</div>
+      <span class="tr-pill ${t.attended?'ok':'miss'}">${t.attended?'Attended':'No-show'}</span>
+    </div>`).join('');
+
+  return `
+    <div class="tr-tab">
+      <div class="tr-tab-head">
+        <div>
+          <div class="tr-tab-title">Training</div>
+          <div class="tr-tab-sub">${e.role} · ${e.depot} depot · ${e.lot} · role registry v1.4</div>
+        </div>
+        <div class="tr-score-block ${scoreBadge}">
+          <div class="tr-score-lbl">Competency score</div>
+          <div class="tr-score-val">${s.score}<span class="tr-score-unit">/100</span></div>
+        </div>
+      </div>
+
+      ${dispatchBlock ? `
+        <div class="tr-dispatch-alert">
+          <i class="fa-solid fa-ban"></i>
+          <div>
+            <strong>Dispatch blocked</strong> — ${s.blockingCourses.length} safety-critical certificate${s.blockingCourses.length>1?'s are':' is'} expired or missing. Roster hides this driver from assignment until ${s.blockingCourses.map(c=>c.code).join(', ')} ${s.blockingCourses.length>1?'are':'is'} renewed. <em>(TRN-05)</em>
+          </div>
+        </div>` : ''}
+
+      <div class="tr-avail-widget">
+        <div class="tr-avail-head">
+          <div class="tr-avail-title-wrap">
+            <div class="tr-avail-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>
+              <div class="tr-avail-title">Compliance summary</div>
+              <div class="tr-avail-sub">${s.validCount + s.expiringCount} of ${s.total} required valid · ${s.total?Math.round((s.validCount + s.expiringCount)/s.total*100):0}% ready</div>
+            </div>
+          </div>
+          <div class="tr-avail-filter">
+            <select><option>All courses</option><option>Safety only</option><option>Operational only</option><option>Compliance only</option></select>
+          </div>
+        </div>
+        <div class="tr-avail-kpis">
+          <div class="tr-avail-kpi">
+            <div class="tr-avail-lbl">Required</div>
+            <div class="tr-avail-val neutral">${pad2(s.total)}</div>
+          </div>
+          <div class="tr-avail-kpi">
+            <div class="tr-avail-lbl">Valid</div>
+            <div class="tr-avail-val valid">${pad2(s.validCount)}</div>
+          </div>
+          <div class="tr-avail-kpi">
+            <div class="tr-avail-lbl">Expiring</div>
+            <div class="tr-avail-val expiring">${pad2(s.expiringCount)}</div>
+          </div>
+          <div class="tr-avail-kpi">
+            <div class="tr-avail-lbl">Expired</div>
+            <div class="tr-avail-val expired">${pad2(s.expiredCount)}</div>
+          </div>
+          <div class="tr-avail-kpi">
+            <div class="tr-avail-lbl">Missing</div>
+            <div class="tr-avail-val missing">${pad2(s.missingCount)}</div>
+          </div>
+        </div>
+        <div class="tr-avail-bar">
+          <div class="tr-avail-seg valid"    style="width:${okPct}%"    title="Valid ${s.validCount}"></div>
+          <div class="tr-avail-seg expiring" style="width:${wnPct}%"    title="Expiring ${s.expiringCount}"></div>
+          <div class="tr-avail-seg expired"  style="width:${s.total?Math.round(s.expiredCount/s.total*100):0}%" title="Expired ${s.expiredCount}"></div>
+          <div class="tr-avail-seg missing"  style="width:${s.total?Math.round(s.missingCount/s.total*100):0}%" title="Missing ${s.missingCount}"></div>
+        </div>
+      </div>
+
+      <div class="tr-section-lbl">Required for role · ${e.role} <span class="tr-count${(s.missingCount + s.expiredCount)?' crit':''}">${s.missingCount + s.expiredCount ? (s.missingCount + s.expiredCount) + ' gap' + ((s.missingCount + s.expiredCount)===1?'':'s') : 'all held'}</span></div>
+      ${requiredHtml}
+
+      <div class="tr-section-lbl">Competency matrix <span class="tr-count">TRN-04 · Read-only</span></div>
+      ${skillsHtml}
+      <div class="tr-skill-note">Skills unlock automatically from completed courses. The score above weights valid at 100% and expiring at 50%. Not editable per 06-Aug decision.</div>
+
+      <div class="tr-section-lbl">Additional courses</div>
+      ${additionalHtml}
+
+      <div class="tr-section-lbl">TBT delivery log <span class="tr-count">${EMP_TBT_LOG.filter(t=>t.attended).length}/${EMP_TBT_LOG.length} attended</span></div>
+      ${tbtHtml}
+    </div>`;
+}
+function renderEmpOverview(e){
+  return `
+    <div class="emp-alert-bar"><i class="fa-solid fa-circle-info"></i> There is an upcoming plan for the workforce. <span class="alert-meta">#231454 · 22 Jul, 2025 · 12:00pm</span></div>
+    <div class="emp-card">
+      <div class="emp-card-head"><i class="fa-solid fa-chart-line" style="color:var(--primary)"></i><span>Attendance Over Time</span><div class="chart-legend"><span class="lg planned"></span>Planned<span class="lg actual"></span>Actual</div></div>
+      <div class="mini-chart"><svg viewBox="0 0 600 120" preserveAspectRatio="none"><polyline points="0,60 25,58 50,62 75,55 100,50 125,48 150,45 175,40 200,42 225,44 250,42 275,50 300,48 325,52 350,55 375,60 400,62 425,58 450,55 475,52 500,50 525,55 550,58 575,55 600,52" fill="none" stroke="#0BA5EC" stroke-width="2"/><polyline points="0,55 25,52 50,55 75,50 100,45 125,44 150,42 175,38 200,40 225,42 250,40 275,48 300,45 325,50 350,52 375,58 400,60 425,55 450,52 475,50 500,48 525,52 550,55 575,52 600,50" fill="none" stroke="#22C882" stroke-width="2"/><rect x="145" y="30" width="10" height="70" fill="#0BA5EC" opacity=".2" rx="2"/><text x="150" y="26" text-anchor="middle" font-size="9" font-family="Gilroy" font-weight="700" fill="#0BA5EC">8 Hours</text></svg><div class="chart-x">${Array.from({length:30},(_,i)=>i+1).join(' ')}</div></div>
+    </div>
+    <div class="emp-card">
+      <div class="emp-card-head"><i class="fa-solid fa-chart-line" style="color:#EC4899"></i><span>Compliance Over Time</span></div>
+      <div class="mini-chart"><svg viewBox="0 0 600 120" preserveAspectRatio="none"><polyline points="0,50 30,48 60,45 90,42 120,38 150,35 180,40 210,42 240,38 270,42 300,45 330,42 360,40 390,42 420,45 450,42 480,40 510,42 540,45 570,42 600,40" fill="none" stroke="#EC4899" stroke-width="2"/><circle cx="150" cy="35" r="6" fill="#EC4899"/><text x="150" y="20" text-anchor="middle" font-size="10" font-family="Gilroy" font-weight="700" fill="#EC4899">82%</text></svg><div class="chart-x">${Array.from({length:30},(_,i)=>i+1).join(' ')}</div></div>
+    </div>
+    <div class="emp-two-col">
+      <div class="emp-card">
+        <div class="emp-card-head"><i class="fa-solid fa-triangle-exclamation" style="color:#F79009"></i><span>Critical Event Distribution</span></div>
+        <div class="donut-wrap">
+          <svg viewBox="0 0 200 200" class="donut">
+            <circle cx="100" cy="100" r="60" fill="none" stroke="#F04438" stroke-width="26" stroke-dasharray="94 283" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="60" fill="none" stroke="#F79009" stroke-width="26" stroke-dasharray="66 283" stroke-dashoffset="-94" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="60" fill="none" stroke="#22C882" stroke-width="26" stroke-dasharray="66 283" stroke-dashoffset="-160" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="60" fill="none" stroke="#0BA5EC" stroke-width="26" stroke-dasharray="57 283" stroke-dashoffset="-226" transform="rotate(-90 100 100)"/>
+            <text x="100" y="98" text-anchor="middle" font-size="28" font-weight="700" fill="#000" font-family="Gilroy">36</text>
+            <text x="100" y="115" text-anchor="middle" font-size="9" fill="var(--ink-3)" font-family="Gilroy">Total Critical Events</text>
+          </svg>
+          <div class="donut-legend">
+            <div><span class="d-dot" style="background:#F04438"></span>Overspeeding <b>12</b></div>
+            <div><span class="d-dot" style="background:#F79009"></span>Low Speed Alarm <b>6</b></div>
+            <div><span class="d-dot" style="background:#22C882"></span>Harsh Cornering <b>9</b></div>
+            <div><span class="d-dot" style="background:#0BA5EC"></span>Eyes Closed <b>9</b></div>
+          </div>
+        </div>
+        <div class="donut-delta"><i class="fa-solid fa-arrow-down"></i> 3% vs last month</div>
+      </div>
+      <div class="emp-card">
+        <div class="emp-card-head"><i class="fa-solid fa-calendar-days" style="color:var(--primary)"></i><span>Last 10 Events</span></div>
+        <ul class="event-list">
+          <li><div class="ev-icon"><i class="fa-solid fa-gauge"></i></div><div class="ev-body"><div class="ev-title">Harsh Braking</div><div class="ev-meta">METI, Abu Dhabi</div></div><div class="ev-time">3 Sep, 25<br>05:32 PM</div></li>
+          <li><div class="ev-icon"><i class="fa-solid fa-triangle-exclamation"></i></div><div class="ev-body"><div class="ev-title">Harsh Acceleration</div><div class="ev-meta">123 Oasis Road</div></div><div class="ev-time">3 Sep, 25<br>03:04 PM</div></li>
+          <li><div class="ev-icon"><i class="fa-solid fa-phone"></i></div><div class="ev-body"><div class="ev-title">Phone call</div><div class="ev-meta">456 Desert View</div></div><div class="ev-time">3 Sep, 25<br>02:49 PM</div></li>
+          <li><div class="ev-icon"><i class="fa-solid fa-smoking"></i></div><div class="ev-body"><div class="ev-title">Smoking</div><div class="ev-meta">789 Palm Ave</div></div><div class="ev-time">1 Sep, 25<br>02:49 PM</div></li>
+          <li><div class="ev-icon"><i class="fa-solid fa-mug-hot"></i></div><div class="ev-body"><div class="ev-title">Drinking Water</div><div class="ev-meta">321 Marina Bay</div></div><div class="ev-time">1 Sep, 25<br>02:49 PM</div></li>
+        </ul>
+      </div>
+    </div>`;
+}
+function renderEmpDetails(e){
+  const s = SHIFTS.find(x=>x.id===e.shift);
+  return `
+    <div class="emp-two-col">
+      <div class="emp-card">
+        <h3 class="emp-card-title">Personal</h3>
+        <dl class="detail-dl">
+          <div><dt>Age</dt><dd>${e.age}</dd></div>
+          <div><dt>Department</dt><dd>${e.role}</dd></div>
+          <div><dt>Nationality</dt><dd>${e.nat}</dd></div>
+          <div><dt>Education</dt><dd>${e.education}</dd></div>
+          <div><dt>Gender</dt><dd>${e.gender}</dd></div>
+          <div><dt>Marital Status</dt><dd>${e.maritalStatus}</dd></div>
+          <div><dt>Religion</dt><dd>${e.religion}</dd></div>
+          <div><dt>Language</dt><dd>${e.lang}</dd></div>
+        </dl>
+      </div>
+      <div class="emp-card">
+        <h3 class="emp-card-title">Employment</h3>
+        <dl class="detail-dl">
+          <div><dt>Employee ID</dt><dd>${e.id.replace('TJ-','98761')}0</dd></div>
+          <div><dt>Employee No.</dt><dd>${e.empNo}</dd></div>
+          <div><dt>Employee Type</dt><dd>${e.employmentType}</dd></div>
+          <div><dt>Extension Name</dt><dd>—</dd></div>
+          <div><dt>Flags</dt><dd>—</dd></div>
+          <div><dt>Status</dt><dd><span class="chip-mini green">Working</span></dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="emp-two-col">
+      <div class="emp-card">
+        <h3 class="emp-card-title">Job</h3>
+        <dl class="detail-dl">
+          <div><dt>Hire Date</dt><dd>${e.joinDate}</dd></div>
+          <div><dt>Experience</dt><dd>${e.exp}</dd></div>
+          <div><dt>LOT</dt><dd>${e.lot}</dd></div>
+          <div><dt>Depot</dt><dd>${e.depot}</dd></div>
+        </dl>
+      </div>
+      <div class="emp-card new-fields-card">
+        <h3 class="emp-card-title">Roster Bindings <span class="mini-new">NEW</span></h3>
+        <dl class="detail-dl">
+          <div><dt>Weekly Off Day</dt><dd><strong>${e.wOff}</strong></dd></div>
+          <div><dt>Assigned Shift</dt><dd><strong>${s?s.name:'—'}</strong></dd></div>
+          <div><dt>Timing Variant</dt><dd>${s&&s.timings?`${s.timings[0].label} · ${s.timings[0].start}–${s.timings[0].end}`:'—'}</dd></div>
+          <div><dt>Attendance Source</dt><dd>${e.src==='plan'?'<span class="src-chip plan">Plan-login</span>':'<span class="src-chip bio">BioTime</span>'}</dd></div>
+        </dl>
+      </div>
+    </div>`;
 }
 
 
