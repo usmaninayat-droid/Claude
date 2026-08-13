@@ -549,6 +549,81 @@ td.block-day::after{content:'\f023';font-family:'Font Awesome 6 Free';font-weigh
 .tr-empty{padding:14px;background:#F9FAFB;border:1px dashed var(--line-strong);border-radius:6px;font-size:12px;color:var(--ink-3);text-align:center;font-family:'Gilroy',var(--font)}
 
 /* ============================================================================
+   ROSTER & JOB ASSIGNMENT — production-grade shell (FR-ROS §7.4)
+   ============================================================================ */
+.ros-screen{margin:-24px -28px -60px;min-height:100vh;background:#F7F8FA;font-family:'Gilroy',var(--font);display:flex;flex-direction:column}
+.ros-header{background:#fff;border-bottom:1px solid var(--line);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.ros-header h1{font-size:18px;font-weight:700;color:#000;margin:0;font-family:'Gilroy',var(--font)}
+.ros-hd-sub{font-size:11.5px;color:var(--ink-3);font-weight:500;margin-top:2px}
+.ros-tab-strip{display:flex;align-items:center;gap:6px}
+.ros-tab-pill{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:4px;background:#F2F4F7;border:none;color:var(--ink);font-size:12.5px;font-weight:600;cursor:pointer;font-family:'Gilroy',var(--font)}
+.ros-tab-pill.active{background:var(--primary-lightest);color:var(--primary)}
+.ros-tab-pill i{font-size:11px}
+.ros-tab-count{background:#F04438;color:#fff;font-size:9.5px;font-weight:800;padding:1px 6px;border-radius:8px;line-height:1.4;letter-spacing:.03em}
+
+.ros-toolbar{padding:14px 24px;display:flex;align-items:center;gap:10px}
+.ros-week-nav-group{display:flex;align-items:center;gap:4px;background:#fff;border:1px solid var(--line-strong);border-radius:6px;padding:2px}
+.ros-icon-btn{width:28px;height:28px;border-radius:4px;background:transparent;border:none;color:var(--ink-2);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:11px}
+.ros-icon-btn:hover{background:var(--primary-lightest);color:var(--primary)}
+.ros-week-lbl{display:inline-flex;align-items:center;gap:6px;padding:0 12px;font-size:12.5px;font-weight:600;color:#000;white-space:nowrap;height:28px}
+.ros-week-lbl i{color:var(--primary);font-size:11px}
+.ros-filter-group{display:flex;gap:8px}
+.ros-select{background:#fff;border:1px solid var(--line-strong);border-radius:6px;padding:8px 32px 8px 12px;font-size:12.5px;color:var(--ink);font-family:'Gilroy',var(--font);font-weight:600;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%2398A2B3' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");background-repeat:no-repeat;background-position:right 10px center;cursor:pointer;height:34px}
+.ros-toolbar-spacer{flex:1}
+.ros-secondary-btn{display:inline-flex;align-items:center;gap:6px;padding:0 14px;height:34px;background:#fff;border:1px solid var(--line-strong);border-radius:6px;color:var(--ink);font-size:12.5px;font-weight:600;cursor:pointer;font-family:'Gilroy',var(--font)}
+.ros-secondary-btn:hover{border-color:var(--primary);color:var(--primary)}
+.ros-primary-btn{display:inline-flex;align-items:center;gap:6px;padding:0 16px;height:34px;background:var(--primary);border:none;border-radius:6px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 1px 2px rgba(16,24,40,.05);font-family:'Gilroy',var(--font)}
+.ros-primary-btn:hover{background:var(--primary-hover)}
+
+.ros-alert{margin:0 24px 16px;display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:#FEECEC;border:1px solid #F09595;border-radius:8px;color:#4A1B0C;font-size:12.5px;line-height:1.5}
+.ros-alert i{color:#A32D2D;font-size:14px;margin-top:2px;flex:none}
+.ros-alert strong{color:#A32D2D;font-weight:700}
+.ros-alert em{font-style:normal;color:var(--ink-3);font-size:11.5px}
+
+.ros-board-card{margin:0 24px 16px;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.ros-board-hd{display:flex;align-items:flex-start;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line);gap:16px}
+.ros-board-title{font-size:15px;font-weight:700;color:#000;font-family:'Gilroy',var(--font)}
+.ros-board-sub{font-size:11.5px;color:var(--ink-3);font-weight:500;margin-top:2px;line-height:1.5}
+.ros-board-sub em{font-style:normal;color:var(--ink-3);font-size:10.5px}
+.ros-legend{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:var(--ink-2);align-items:center;max-width:520px;justify-content:flex-end}
+.ros-legend span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-weight:500}
+.ros-sw{width:14px;height:12px;border-radius:2px;display:inline-block}
+.ros-board-body{padding:14px 20px 20px}
+
+.ros-pools-grid,.ros-demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 24px 16px}
+.ros-pool-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px 18px;font-family:'Gilroy',var(--font)}
+.ros-pool-hd{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+.ros-pool-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex:none}
+.ros-pool-icon.standby{background:#FEF3E6;color:#EF9F27}
+.ros-pool-icon.reliever{background:#DCFAE6;color:#22C882}
+.ros-pool-title{font-size:14px;font-weight:700;color:#000;display:flex;align-items:center;gap:8px}
+.ros-pool-cnt{font-size:10.5px;font-weight:600;color:var(--ink-3);background:#F2F4F7;padding:2px 8px;border-radius:10px;text-transform:none;letter-spacing:0}
+.ros-pool-sub{font-size:11.5px;color:var(--ink-3);font-weight:500;margin-top:2px;line-height:1.5}
+.ros-pool-body{display:flex;flex-direction:column;gap:6px}
+.ros-pool-emp{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#F9FAFB}
+.ros-pool-av{width:32px;height:32px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex:none;letter-spacing:.02em}
+.ros-pool-info{flex:1;min-width:0}
+.ros-pool-info .n{font-size:13px;font-weight:600;color:#000}
+.ros-pool-info .m{font-size:11px;color:var(--ink-3);margin-top:2px}
+.ros-pool-pill{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.04em;flex:none}
+.ros-pool-pill.amber{background:#FEF3E6;color:#854F0B;border:1px dashed #EF9F27}
+.ros-pool-pill.green{background:#DCFAE6;color:#0F6E56;border:2px solid #22C882}
+.ros-pool-pill.red{background:#FEECEC;color:#A32D2D}
+.ros-pool-pill.gray{background:#F2F4F7;color:var(--ink-2);border:1px solid var(--line-strong)}
+
+.ros-demo-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px 18px;font-family:'Gilroy',var(--font)}
+.ros-demo-hd{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ros-demo-hd h4{font-size:14px;font-weight:700;color:#000;margin:0;flex:1}
+.ros-demo-hd i{font-size:14px}
+.ros-demo-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:#FEECEC;color:#A32D2D;text-transform:uppercase;letter-spacing:.04em}
+.ros-demo-card p{font-size:12.5px;color:var(--ink-2);margin:0 0 12px;line-height:1.5}
+.ros-demo-note{margin-top:12px;padding:10px 12px;background:#FEF3E6;border-radius:6px;font-size:11.5px;color:#854F0B;display:flex;gap:8px;align-items:flex-start}
+.ros-demo-note i{color:#EF9F27;margin-top:2px}
+.ros-picker{display:flex;flex-direction:column;gap:6px}
+.ros-pick-row{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:6px;background:#F9FAFB}
+.ros-pick-row.muted{opacity:.65}
+
+/* ============================================================================
    SHIFT CONFIGURATION SCREEN — pixel-match to Figma node 2073:33843 (FAMS Blue)
    ============================================================================ */
 @font-face{font-family:'Gilroy';font-weight:300;font-style:normal;src:url('./contract-management/fonts/Gilroy-Light.otf') format('opentype')}
@@ -2104,8 +2179,14 @@ function trnLibrary(){
 
 
 /* ---------- 4. ROSTER + WORKING HOURS ---------- */
+/* ================ ROSTER & JOB ASSIGNMENT — BRD FR-ROS §7.4 ================
+   ROS-01 weekly board · ROS-02 drag+rule enforcement · ROS-03 conflict check
+   ROS-04 daily assignment · ROS-05 publish/republish · ROS-06 headcount planner
+   Meeting decisions: Day-6 warn, Day-7 hard block, Standby vs Reliever pools,
+   dispatch-block on expired safety-critical certs (TRN-05 linkage). */
 route('roster', ()=>{
   const days = ['Mon 11','Tue 12','Wed 13','Thu 14','Fri 15','Sat 16','Sun 17'];
+  const shortDays = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
   // rows: employee × 7 days
   const layout = [
     {emp:'TJ-4712', pattern:['S-M','S-M','S-M','S-M','S-M','warn','block']}, // 6 consec then day 7
@@ -2116,6 +2197,20 @@ route('roster', ()=>{
     {emp:'STANDBY-1', standby:true, pattern:['sb','sb','sb','sb','sb','sb','sb']},
     {emp:'RELIEVER-1', reliever:true, pattern:['rv','rv','rv','rv','rv','rv','rv']},
   ];
+
+  // Coverage KPIs computed from the pattern grid (headcount planner hook — ROS-06)
+  const workingCells   = layout.slice(0,5).flatMap(r=>r.pattern).filter(k=>k==='S-M'||k==='S-A'||k==='S-N'||k==='warn').length;
+  const offCells       = layout.slice(0,5).flatMap(r=>r.pattern).filter(k=>k==='off').length;
+  const blockedCells   = layout.slice(0,5).flatMap(r=>r.pattern).filter(k=>k==='blocked').length;
+  const hardBlockCells = layout.slice(0,5).flatMap(r=>r.pattern).filter(k=>k==='block').length;
+  const rosterHeadcount = 5;
+  const standbyCount   = 2;
+  const relieverCount  = 1;
+  const totalCells     = rosterHeadcount * 7;
+  const validPct       = Math.round(workingCells / totalCells * 100);
+  const offPct         = Math.round(offCells / totalCells * 100);
+  const blockPct       = Math.round((blockedCells + hardBlockCells) / totalCells * 100);
+  const conflictCount  = blockedCells + hardBlockCells; // week-level rule violations (ROS-03)
   const dayHdr = days.map(d=>`<th class="day" style="width:11.5%">${d}</th>`).join('');
   const chip = (kind, route='R-14')=>{
     if (kind==='off') return `<div class="shift-chip off">Weekly off</div>`;
@@ -2146,54 +2241,140 @@ route('roster', ()=>{
   }).join('');
 
   return `
-    <div class="page-head">
-      <div>
-        <h2>Weekly Roster Board <span class="chip blue" style="vertical-align:middle;margin-left:6px">With rules</span></h2>
-        <div class="sub">Working-hours rule: <strong>6 consecutive days → day 7 auto-blocked</strong> as mandatory off. Rostered-off and document-blocked employees cannot be assigned. Standby and reliever pools are surfaced as dedicated lanes.</div>
+    <div class="ros-screen">
+      <div class="ros-header">
+        <div>
+          <h1>Roster &amp; Job Assignment</h1>
+          <div class="ros-hd-sub">FR-ROS · Week 33 · 10–16 Aug 2026 · LOT 4 · Musaffah depot</div>
+        </div>
+        <div class="ros-tab-strip">
+          <button class="ros-tab-pill active"><i class="fa-solid fa-table-cells-large"></i> Board</button>
+          <button class="ros-tab-pill"><i class="fa-solid fa-fire"></i> Coverage</button>
+          <button class="ros-tab-pill"><i class="fa-solid fa-triangle-exclamation"></i> Conflicts <span class="ros-tab-count">${conflictCount}</span></button>
+        </div>
       </div>
-      <div class="ref">ROS · v1 · Week 33 · LOT 4</div>
-    </div>
 
-    <div class="legend">
-      <div class="item"><span class="sw" style="background:var(--blue-100)"></span>Morning shift</div>
-      <div class="item"><span class="sw" style="background:var(--violet-100)"></span>Afternoon</div>
-      <div class="item"><span class="sw" style="background:#1F2937"></span>Night</div>
-      <div class="item"><span class="sw" style="background:var(--surface-2);border:1px solid var(--line)"></span>Weekly off</div>
-      <div class="item"><span class="sw" style="background:rgba(217,119,6,.15);border:1px solid var(--amber-500)"></span>Day-6 warn</div>
-      <div class="item"><span class="sw" style="background:rgba(220,38,38,.10);border:1px solid var(--red-500)"></span>Day-7 hard-block</div>
-      <div class="item"><span class="sw" style="background:var(--amber-100);border:1px dashed var(--amber-500)"></span>Standby (planned)</div>
-      <div class="item"><span class="sw" style="background:var(--green-100);border:2px solid var(--green-500)"></span>Reliever (reactive)</div>
-    </div>
-
-    <div class="card">
-      <h3>Roster · Week 33 (10–16 Aug 2026) · LOT 4
-        <span class="sub">${EMPS.filter(e=>e.lot==='LOT 4').length} employees · 2 pool lanes</span>
-        <button class="btn ghost" style="margin-left:auto"><i class="fa-solid fa-magnifying-glass"></i> Conflicts</button>
-        <button class="btn ghost"><i class="fa-regular fa-eye"></i> Coverage</button>
-        <button class="btn primary" onclick="toast('Roster published — job cards pushed','ok')"><i class="fa-solid fa-paper-plane"></i> Publish</button>
-      </h3>
-      <div class="roster">
-        <table>
-          <thead><tr><th class="emp">Employee</th>${dayHdr}</tr></thead>
-          <tbody>${rowHtml}</tbody>
-        </table>
+      <div class="ros-toolbar">
+        <div class="ros-week-nav-group">
+          <button class="ros-icon-btn" title="Previous week"><i class="fa-solid fa-chevron-left"></i></button>
+          <div class="ros-week-lbl"><i class="fa-regular fa-calendar"></i> Week 33 · 10–16 Aug 2026</div>
+          <button class="ros-icon-btn" title="Next week"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <div class="ros-filter-group">
+          <select class="ros-select"><option>LOT 4</option><option>LOT 3</option><option>LOT 5</option><option>All LOTs</option></select>
+          <select class="ros-select"><option>Musaffah depot</option><option>Al Wathba</option><option>Al Ain</option><option>All depots</option></select>
+        </div>
+        <div class="ros-toolbar-spacer"></div>
+        <button class="ros-secondary-btn" onclick="toast('Roster saved as draft','ok')"><i class="fa-regular fa-floppy-disk"></i> Save draft</button>
+        <button class="ros-primary-btn" onclick="toast('Roster published — job cards pushed to driver tablets','ok')"><i class="fa-solid fa-paper-plane"></i> Publish</button>
       </div>
-    </div>
 
-    <div class="grid-2">
-      <div class="card">
-        <h3>Working-hours rule · demo <span class="badge new">Hard block</span></h3>
-        <div style="font-size:12.5px;color:var(--ink-2);margin-bottom:12px">Try assigning <strong>Ahmed Al Sayed</strong> to Sun 17 Aug — he already has 6 consecutive days.</div>
-        <button class="btn primary" onclick="showWorkingHoursBlock()"><i class="fa-solid fa-hand-point-up"></i> Attempt day-7 assignment</button>
-        <div style="margin-top:14px;padding:12px;background:var(--amber-100);border-radius:8px;font-size:12px;color:var(--amber-500)"><i class="fa-solid fa-triangle-exclamation"></i> Day 6 shows an amber warning — the tipping-point cell — so planners see the risk before they try.</div>
+      <!-- Coverage widget · Fleet-Availability shape · ROS-06 headcount planner -->
+      <div class="tr-avail-widget" style="margin:0 24px 16px">
+        <div class="tr-avail-head">
+          <div class="tr-avail-title-wrap">
+            <div class="tr-avail-icon"><i class="fa-solid fa-people-group"></i></div>
+            <div>
+              <div class="tr-avail-title">Coverage — Week 33</div>
+              <div class="tr-avail-sub">${rosterHeadcount} rostered · ${standbyCount} standby · ${relieverCount} reliever · ${validPct}% shift-cell coverage</div>
+            </div>
+          </div>
+          <div class="tr-avail-filter">
+            <select><option>All shifts</option><option>Morning only</option><option>Afternoon only</option><option>Night only</option></select>
+          </div>
+        </div>
+        <div class="tr-avail-kpis">
+          <div class="tr-avail-kpi"><div class="tr-avail-lbl">Rostered</div><div class="tr-avail-val neutral">${pad2(rosterHeadcount)}</div></div>
+          <div class="tr-avail-kpi"><div class="tr-avail-lbl">Assigned</div><div class="tr-avail-val valid">${pad2(workingCells)}</div></div>
+          <div class="tr-avail-kpi"><div class="tr-avail-lbl">Weekly off</div><div class="tr-avail-val" style="color:#7C3AED">${pad2(offCells)}</div></div>
+          <div class="tr-avail-kpi"><div class="tr-avail-lbl">Doc-blocked</div><div class="tr-avail-val expired">${pad2(blockedCells)}</div></div>
+          <div class="tr-avail-kpi"><div class="tr-avail-lbl">Hour-limit</div><div class="tr-avail-val" style="color:#EF9F27">${pad2(hardBlockCells)}</div></div>
+          <div class="tr-avail-kpi"><div class="tr-avail-lbl">Standby pool</div><div class="tr-avail-val" style="color:#0BA5EC">${pad2(standbyCount)}</div></div>
+        </div>
+        <div class="tr-avail-bar">
+          <div class="tr-avail-seg valid"    style="width:${validPct}%"  title="Assigned ${workingCells}"></div>
+          <div class="tr-avail-seg" style="width:${offPct}%;background:#7C3AED"    title="Weekly off ${offCells}"></div>
+          <div class="tr-avail-seg expired"  style="width:${blockPct}%"  title="Blocked ${blockedCells + hardBlockCells}"></div>
+        </div>
       </div>
-      <div class="card">
-        <h3>Route auto-assign · rostered-off exclusion</h3>
-        <div style="font-size:12.5px;color:var(--ink-2);margin-bottom:10px">When smart-planning generates Route R-27 for Fri 15 Aug, this pick list is what the operator sees:</div>
-        <div class="pool-emp"><div class="av">AS</div><div class="info"><div class="n">Ahmed Al Sayed</div><div class="m">HD Driver · Available · Certified</div></div><span class="chip green">Select</span></div>
-        <div class="pool-emp" style="opacity:.5"><div class="av" style="background:var(--ink-3)">RK</div><div class="info"><div class="n">Rashid Khan</div><div class="m" style="color:var(--red-500)"><i class="fa-solid fa-lock"></i> Licence expired · unavailable</div></div><span class="chip red">Blocked</span></div>
-        <div class="pool-emp" style="opacity:.5"><div class="av" style="background:var(--ink-3)">BI</div><div class="info"><div class="n">Bilal Iqbal</div><div class="m" style="color:var(--ink-3)"><i class="fa-solid fa-bed"></i> Rostered off (Sun)</div></div><span class="chip gray">Off day</span></div>
-        <div class="pool-emp" style="opacity:.5"><div class="av" style="background:var(--ink-3)">MZ</div><div class="info"><div class="n">Mohd Zubair</div><div class="m" style="color:var(--ink-3)">6 consecutive days · day 7 blocked</div></div><span class="chip amber">Hour limit</span></div>
+
+      ${conflictCount > 0 ? `
+        <div class="ros-alert">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <div>
+            <strong>${conflictCount} rule violation${conflictCount>1?'s':''} on this week's board</strong> — ${blockedCells>0?`${blockedCells} doc-blocked cell${blockedCells>1?'s':''} (safety-critical certificate expired · TRN-05 linkage)`:''}${blockedCells>0 && hardBlockCells>0?' · ':''}${hardBlockCells>0?`${hardBlockCells} day-7 hard block${hardBlockCells>1?'s':''} (6 consecutive days breached)`:''}. Publish is disabled until these are resolved or overridden by Operations. <em>(ROS-03)</em>
+          </div>
+        </div>` : ''}
+
+      <div class="ros-board-card">
+        <div class="ros-board-hd">
+          <div>
+            <div class="ros-board-title">Weekly board</div>
+            <div class="ros-board-sub">Drag shift chips to reassign · double assignment blocked · drop on weekly-off raises OT approval <em>(ROS-02)</em></div>
+          </div>
+          <div class="ros-legend">
+            <span><i class="ros-sw" style="background:#D6EAFA"></i>Morning</span>
+            <span><i class="ros-sw" style="background:#EBE9FE"></i>Afternoon</span>
+            <span><i class="ros-sw" style="background:#1F2937"></i>Night</span>
+            <span><i class="ros-sw" style="background:#F9FAFB;border:1px solid var(--line-strong)"></i>Weekly off</span>
+            <span><i class="ros-sw" style="background:rgba(239,159,39,.15);border:1px solid #EF9F27"></i>Day-6 warn</span>
+            <span><i class="ros-sw" style="background:rgba(240,68,56,.10);border:1px solid #F04438"></i>Day-7 hard-block</span>
+            <span><i class="ros-sw" style="background:rgba(240,68,56,.10);border:1px dashed #F04438"></i>Doc block</span>
+          </div>
+        </div>
+        <div class="roster ros-board-body">
+          <table>
+            <thead><tr><th class="emp">Employee</th>${dayHdr}</tr></thead>
+            <tbody>${rowHtml}</tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="ros-pools-grid">
+        <div class="ros-pool-card">
+          <div class="ros-pool-hd">
+            <div class="ros-pool-icon standby"><i class="fa-regular fa-calendar-check"></i></div>
+            <div>
+              <div class="ros-pool-title">Standby pool <span class="ros-pool-cnt">${standbyCount} employees</span></div>
+              <div class="ros-pool-sub">Planned leave cover · pre-rostered · dispatched before shift start</div>
+            </div>
+          </div>
+          <div class="ros-pool-body">
+            <div class="ros-pool-emp"><div class="ros-pool-av" style="background:#F79009">FA</div><div class="ros-pool-info"><div class="n">Farid Al Aziz</div><div class="m">TJ-9001 · HD Driver · Musaffah</div></div><span class="ros-pool-pill amber">Approved leave cover</span></div>
+            <div class="ros-pool-emp"><div class="ros-pool-av" style="background:#F79009">MA</div><div class="ros-pool-info"><div class="n">Mahmoud Ali</div><div class="m">TJ-9002 · LD Driver · Musaffah</div></div><span class="ros-pool-pill amber">Approved leave cover</span></div>
+          </div>
+        </div>
+        <div class="ros-pool-card">
+          <div class="ros-pool-hd">
+            <div class="ros-pool-icon reliever"><i class="fa-solid fa-user-shield"></i></div>
+            <div>
+              <div class="ros-pool-title">Reliever pool <span class="ros-pool-cnt">${relieverCount} employee${relieverCount>1?'s':''}</span></div>
+              <div class="ros-pool-sub">No-show buffer · reactive · dispatched after shift start when a driver doesn't punch in</div>
+            </div>
+          </div>
+          <div class="ros-pool-body">
+            <div class="ros-pool-emp"><div class="ros-pool-av" style="background:#22C882">YM</div><div class="ros-pool-info"><div class="n">Yusuf Malik</div><div class="m">TJ-9003 · HD Driver · Musaffah · On-call</div></div><span class="ros-pool-pill green">No-show cover</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ros-demo-grid">
+        <div class="ros-demo-card">
+          <div class="ros-demo-hd"><i class="fa-solid fa-hand-point-up" style="color:var(--primary)"></i><h4>Working-hours rule · try it</h4><span class="ros-demo-badge">Hard block</span></div>
+          <p>Attempt to assign <strong>Ahmed Al Sayed</strong> to Sun 17 Aug — he already has 6 consecutive days.</p>
+          <button class="ros-secondary-btn" onclick="showWorkingHoursBlock()"><i class="fa-solid fa-play"></i> Trigger day-7 assignment</button>
+          <div class="ros-demo-note"><i class="fa-solid fa-triangle-exclamation"></i> Day 6 shows an amber warning — the tipping-point cell — so planners see the risk before they try.</div>
+        </div>
+        <div class="ros-demo-card">
+          <div class="ros-demo-hd"><i class="fa-solid fa-route" style="color:var(--primary)"></i><h4>Route auto-assign · rostered-off exclusion</h4></div>
+          <p>When smart planning generates <strong>Route R-27</strong> for Fri 15 Aug, this is the pick list the operator sees:</p>
+          <div class="ros-picker">
+            <div class="ros-pick-row"><div class="ros-pool-av" style="background:#22C882">AS</div><div class="ros-pool-info"><div class="n">Ahmed Al Sayed</div><div class="m">HD Driver · Available · Certified</div></div><span class="ros-pool-pill green">Available</span></div>
+            <div class="ros-pick-row muted"><div class="ros-pool-av" style="background:#98A2B3">RK</div><div class="ros-pool-info"><div class="n">Rashid Khan</div><div class="m" style="color:#F04438"><i class="fa-solid fa-lock"></i> Licence expired · unavailable</div></div><span class="ros-pool-pill red">Doc blocked</span></div>
+            <div class="ros-pick-row muted"><div class="ros-pool-av" style="background:#98A2B3">BI</div><div class="ros-pool-info"><div class="n">Bilal Iqbal</div><div class="m" style="color:var(--ink-3)"><i class="fa-solid fa-bed"></i> Rostered off (Sun)</div></div><span class="ros-pool-pill gray">Off day</span></div>
+            <div class="ros-pick-row muted"><div class="ros-pool-av" style="background:#98A2B3">MZ</div><div class="ros-pool-info"><div class="n">Mohd Zubair</div><div class="m" style="color:var(--ink-3)">6 consecutive days · day 7 blocked</div></div><span class="ros-pool-pill amber">Hour limit</span></div>
+          </div>
+        </div>
       </div>
     </div>
   `;
