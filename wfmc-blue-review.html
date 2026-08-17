@@ -30,6 +30,7 @@
    Primary #22c882 (IWMP green) · blue→green gradient rail · Gilroy → Inter fallback
    ============================================================================ */
 :root{
+  /* ── Colors (unchanged — IWMP/Tadweer palette) ── */
   --fams:#0072D6; --fams-hover:#005CAB; --fams-50:#E6F1FB; --fams-200:#8ABEEC;
   --primary:#22c882; --primary-hover:#43d095; --primary-lightest:#e9faf3;
   --blue-500:#0072d6; --blue-100:#e6f2fc; --blue-50:#eaf4fd;   /* info accent */
@@ -43,12 +44,37 @@
   --sidebar:linear-gradient(180deg,#0a8bc4 0%,#19b09d 30%,#22c784 70%,#26d07c 100%);
   --sidebar-ink:rgba(255,255,255,.75); --sidebar-active:#FFFFFF;
   --module-rail:#FFFFFF;
+
+  /* ── Elevation — FAMS V5 Figma Standard ladder ── */
   --shadow-xs:0 1px 2px rgba(16,24,40,.05);
-  --shadow-1:0 1px 3px rgba(16,24,40,.10),0 1px 2px rgba(16,24,40,.06);
-  --shadow-2:0 4px 8px -2px rgba(16,24,40,.10),0 2px 4px -2px rgba(16,24,40,.06);
-  --shadow-3:0 20px 48px rgba(16,24,40,.16);
-  --radius:4px; --radius-lg:8px; --radius-full:999px;
+  --shadow-1:0px 1px 2px 0px rgba(16,24,40,.06), 0px 1px 3px 0px rgba(16,24,40,.10);
+  --shadow-2:0px 2px 4px -2px rgba(16,24,40,.06), 0px 4px 8px -2px rgba(16,24,40,.10);
+  --shadow-3:0px 4px 6px -2px rgba(16,24,40,.03), 0px 12px 16px -4px rgba(16,24,40,.08);
+  --shadow-4:0px 8px 8px -4px rgba(16,24,40,.03), 0px 20px 24px -4px rgba(16,24,40,.08);
+  --shadow-5:0px 24px 48px -12px rgba(16,24,40,.18);
+  --shadow-6:0px 32px 64px -12px rgba(16,24,40,.14);
+
+  /* ── Radius — FAMS V5 (6px default; 2/4/8 ladder) ── */
+  --radius-sm:2px; --radius-md:4px; --radius:6px; --radius-lg:8px; --radius-xl:8px; --radius-full:999px;
+
+  /* ── Typography ── */
   --font:'Gilroy','Inter',system-ui,-apple-system,sans-serif;
+  --fw-regular:400; --fw-medium:500; --fw-semibold:600; --fw-bold:700;
+
+  /* Semantic size scale (Figma V2 aligned) */
+  --text-h1:48px;      --lh-h1:56px;
+  --text-h2:40px;      --lh-h2:48px;
+  --text-h3:32px;      --lh-h3:40px;
+  --text-h4:28px;      --lh-h4:36px;
+  --text-h5:24px;      --lh-h5:32px;
+  --text-h6:20px;      --lh-h6:26px;
+  --text-body-xl:20px; --lh-body-xl:26px;
+  --text-body-lg:18px; --lh-body-lg:26px;
+  --text-body-md:16px; --lh-body-md:24px;
+  --text-body-sm:14px; --lh-body-sm:20px;
+  --text-body-xs:12px; --lh-body-xs:18px;
+  --text-caption:12px; --lh-caption:14px;   /* platform 12px minimum */
+  --lh-base:1.5;
 }
 [data-theme="dark"]{
   --bg:#0C1220; --surface:#131A2A; --surface-2:#1A2338;
@@ -59,11 +85,23 @@
   --shadow-1:0 1px 2px rgba(0,0,0,.3); --shadow-2:0 4px 12px rgba(0,0,0,.35);
   --blue-100:#0F3253; --blue-50:#0B2340; --green-100:#0F3B29; --amber-100:#3D2B10; --red-100:#3D1E1A; --violet-100:#231C45;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5;overflow:hidden}
-button{font-family:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
-input,select,textarea{font-family:inherit;font-size:13.5px;color:inherit}
+*{margin:0;padding:0;box-sizing:border-box;border-color:var(--line)}
+html{scroll-behavior:smooth;font-family:var(--font)}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);
+     font-size:var(--text-body-sm);line-height:var(--lh-base);
+     font-weight:var(--fw-regular);overflow:hidden;
+     -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+     font-feature-settings:"cv02","cv03","cv04","cv11";}
+button{font-family:inherit;cursor:pointer;border:0;background:transparent;color:inherit;font-weight:var(--fw-medium)}
+input,select,textarea{font-family:inherit;font-size:var(--text-body-sm);color:inherit;font-weight:var(--fw-regular)}
+/* Base heading defaults (only apply where no explicit text-* class is set) */
+h1{font-size:var(--text-h1);line-height:var(--lh-h1);font-weight:var(--fw-semibold);font-family:var(--font)}
+h2{font-size:var(--text-h2);line-height:var(--lh-h2);font-weight:var(--fw-semibold);font-family:var(--font)}
+h3{font-size:var(--text-h3);line-height:var(--lh-h3);font-weight:var(--fw-semibold);font-family:var(--font)}
+h4{font-size:var(--text-h4);line-height:var(--lh-h4);font-weight:var(--fw-semibold);font-family:var(--font)}
+h5{font-size:var(--text-h5);line-height:var(--lh-h5);font-weight:var(--fw-semibold);font-family:var(--font)}
+h6{font-size:var(--text-h6);line-height:var(--lh-h6);font-weight:var(--fw-semibold);font-family:var(--font)}
+label{font-size:var(--text-caption);line-height:var(--lh-caption);font-weight:var(--fw-semibold);font-family:var(--font)}
 ::-webkit-scrollbar{width:9px;height:9px}
 ::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:6px}
 

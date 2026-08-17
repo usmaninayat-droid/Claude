@@ -1,0 +1,7 @@
+[
+  { "id": "ITM-01", "uniqueidentifier": "ITM-01", "title": "Sample item one",   "status": "reported",    "systemcol1": "Standard", "systemcol2": "High",   "systemcol3": "Category A", "systemcol6": "u_agent",   "systemcol7": "12 Jun, 2026" },
+  { "id": "ITM-02", "uniqueidentifier": "ITM-02", "title": "Sample item two",   "status": "in_progress", "systemcol1": "Urgent",   "systemcol2": "High",   "systemcol3": "Category B", "systemcol6": "u_manager", "systemcol7": "13 Jun, 2026" },
+  { "id": "ITM-03", "uniqueidentifier": "ITM-03", "title": "Sample item three", "status": "review",      "systemcol1": "Standard", "systemcol2": "Medium", "systemcol3": "Category A", "systemcol6": "u_agent",   "systemcol7": "11 Jun, 2026" },
+  { "id": "ITM-04", "uniqueidentifier": "ITM-04", "title": "Sample item four",  "status": "in_progress", "systemcol1": "Standard", "systemcol2": "Low",    "systemcol3": "Category C", "systemcol6": "u_manager", "systemcol7": "14 Jun, 2026" },
+  { "id": "ITM-05", "uniqueidentifier": "ITM-05", "title": "Sample item five",  "status": "done",        "systemcol1": "Standard", "systemcol2": "Medium", "systemcol3": "Category B", "systemcol6": "u_agent",   "systemcol7": "08 Jun, 2026" }
+]

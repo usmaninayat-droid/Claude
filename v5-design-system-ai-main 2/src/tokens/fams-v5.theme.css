@@ -1,0 +1,39 @@
+/*
+ * Tenant · FAMS V5 (default)
+ * --------------------------
+ * Confirms the production sidebar pattern:
+ *   - Solid #0072D6 rail
+ *   - ACTIVE item = solid WHITE pill with brand-blue icon (Pattern #01)
+ *   - HOVER       = subtle white overlay
+ *
+ * This file is a no-op vs theme.css today, but exists so every app's import
+ * contract is symmetric and you can swap to ead-rms / tadweer by changing
+ * one line.
+ *
+ * Source: knowledge-base/live-product-references/10-real-tokens.md
+ *         + user-provided side-nav screenshot (2026-06-08)
+ */
+
+:root {
+  --primary: rgba(0, 114, 214, 1);                   /* #0072D6 */
+  --primary-foreground: #FFFFFF;
+
+  --secondary: rgba(230, 242, 252, 1);               /* #E6F2FC */
+  --secondary-foreground: rgba(0, 114, 214, 1);
+
+  --accent: rgba(0, 114, 214, 1);
+  --accent-foreground: #FFFFFF;
+
+  --ring: rgba(230, 242, 252, 1);
+
+  --sidebar: rgba(0, 114, 214, 1);                   /* #0072D6 — solid */
+  --sidebar-foreground: rgba(255, 255, 255, 1);
+  --sidebar-primary: rgba(255, 255, 255, 1);         /* WHITE active pill */
+  --sidebar-primary-foreground: rgba(0, 114, 214, 1);/* blue icon on white */
+  --sidebar-accent: rgba(255, 255, 255, 0.15);       /* subtle hover */
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: rgba(255, 255, 255, 0.2);
+  --sidebar-ring: rgba(255, 255, 255, 0.4);
+
+  --sidebar-gradient: none;
+}

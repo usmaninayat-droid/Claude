@@ -1,0 +1,109 @@
+# QA Anti-Patterns (defect catalog — seeds gates G2/G3/G4/G5)
+
+> If a build exhibits any of these, file a defect. High-severity first.
+
+## Critical / High
+
+- [Navigation] avoid: Jump directly without transition  -> want: Use scroll-behavior: smooth on html element
+- [Navigation] avoid: Break browser/app back button behavior  -> want: Preserve navigation history properly
+- [Animation] avoid: Animate everything that moves  -> want: Animate 1-2 key elements per view maximum
+- [Animation] avoid: Ignore accessibility motion settings  -> want: Check prefers-reduced-motion media query
+- [Animation] avoid: Leave UI frozen with no feedback  -> want: Use skeleton screens or spinners
+- [Animation] avoid: Rely only on hover for important actions  -> want: Use click/tap for primary interactions
+- [Layout] avoid: Use arbitrary large z-index values  -> want: Define z-index scale system (10 20 30 50)
+- [Layout] avoid: Let images/content push layout around  -> want: Reserve space for async content
+- [Touch] avoid: Tiny clickable areas  -> want: Minimum 44x44px touch targets
+- [Interaction] avoid: Remove focus outline without replacement  -> want: Use visible focus rings on interactive elements
+- [Interaction] avoid: Allow multiple clicks during processing  -> want: Disable button and show loading state
+- [Interaction] avoid: Silent failures with no feedback  -> want: Show clear error messages near problem
+- [Interaction] avoid: Delete without confirmation  -> want: Confirm before delete/irreversible actions
+- [Accessibility] avoid: Low contrast text  -> want: Minimum 4.5:1 ratio for normal text
+- [Accessibility] avoid: Red/green only for error/success  -> want: Use icons/text in addition to color
+- [Accessibility] avoid: Empty or missing alt attributes  -> want: Descriptive alt text for meaningful images
+- [Accessibility] avoid: Icon buttons without labels  -> want: Add aria-label for icon-only buttons
+- [Accessibility] avoid: Keyboard traps or illogical tab order  -> want: Tab order matches visual order
+- [Accessibility] avoid: Placeholder-only inputs  -> want: Use label with for attribute or wrap input
+- [Accessibility] avoid: Visual-only error indication  -> want: Use aria-live or role=alert for errors
+- [Performance] avoid: Unoptimized full-size images  -> want: Use appropriate size and format (WebP)
+- [Forms] avoid: Placeholder as only label  -> want: Always show label above or beside input
+- [Forms] avoid: No feedback after submit  -> want: Show loading then success/error state
+- [Responsive] avoid: Same tiny buttons on mobile  -> want: Increase touch targets on mobile
+- [Responsive] avoid: Tiny text on mobile  -> want: Minimum 16px body text on mobile
+- [Responsive] avoid: Missing or incorrect viewport  -> want: Use width=device-width initial-scale=1
+- [Responsive] avoid: Content wider than viewport  -> want: Ensure content fits viewport width
+- [Typography] avoid: Gray text on gray background  -> want: Use darker text on light backgrounds
+- [Feedback] avoid: No feedback during loading  -> want: Show spinner/skeleton for operations > 300ms
+- [AI Interaction] avoid: Present AI as human  -> want: Clearly label AI generated content
+- [Spatial UI] avoid: Static element until pinch  -> want: Scale/highlight element on look
+- [Accessibility] avoid: Force scroll effects  -> want: Respect prefers-reduced-motion
+
+## Medium / Low
+
+- [Navigation] avoid: Let nav overlap first section content  -> want: Add padding-top to body equal to nav height
+- [Navigation] avoid: No visual feedback on current location  -> want: Highlight active nav item with color/underline
+- [Navigation] avoid: Static URLs for dynamic content  -> want: Update URL on state/view changes
+- [Navigation] avoid: Use for flat single-level sites  -> want: Use for sites with 3+ levels of depth
+- [Animation] avoid: Use animations longer than 500ms for UI  -> want: Use 150-300ms for micro-interactions
+- [Animation] avoid: Use for decorative elements  -> want: Use for loading indicators only
+- [Animation] avoid: Animate width/height/top/left properties  -> want: Use transform and opacity for animations
+- [Animation] avoid: Use linear for UI transitions  -> want: Use ease-out for entering ease-in for exiting
+- [Layout] avoid: Blindly apply overflow-hidden  -> want: Test all content fits within containers
+- [Layout] avoid: Stack multiple fixed elements carelessly  -> want: Account for safe areas and other fixed elements
+- [Layout] avoid: Expect z-index to work across contexts  -> want: Understand what creates new stacking context
+- [Layout] avoid: Use 100vh for full-screen mobile layouts  -> want: Use dvh or account for mobile browser chrome
+- [Layout] avoid: Let text span full viewport width  -> want: Limit max-width for text content (65-75ch)
+- [Touch] avoid: Tightly packed clickable elements  -> want: Minimum 8px gap between touch targets
+- [Touch] avoid: Override system gestures  -> want: Avoid horizontal swipe on main content
+- [Touch] avoid: Default mobile tap handling  -> want: Use touch-action CSS or fastclick
+- [Touch] avoid: Enable by default everywhere  -> want: Disable where not needed
+- [Touch] avoid: Overuse vibration feedback  -> want: Use for confirmations and important actions
+- [Interaction] avoid: No hover feedback on clickable elements  -> want: Change cursor and add subtle visual change
+- [Interaction] avoid: No feedback during interaction  -> want: Add pressed/active state visual change
+- [Interaction] avoid: Confuse disabled with normal state  -> want: Reduce opacity and change cursor
+- [Interaction] avoid: No confirmation of completed action  -> want: Show success message or visual change
+- [Accessibility] avoid: Skip heading levels or misuse for styling  -> want: Use sequential heading levels h1-h6
+- [Accessibility] avoid: Div soup with no semantics  -> want: Use semantic HTML and ARIA properly
+- [Accessibility] avoid: No skip link on nav-heavy pages  -> want: Provide skip to main content link
+- [Performance] avoid: Load everything upfront  -> want: Lazy load below-fold images and content
+- [Performance] avoid: Single large bundle  -> want: Split code by route/feature
+- [Performance] avoid: No caching strategy  -> want: Set appropriate cache headers
+- [Performance] avoid: Invisible text during font load  -> want: Use font-display swap or optional
+- [Performance] avoid: Synchronous third-party scripts  -> want: Load non-critical scripts async/defer
+- [Performance] avoid: Ignore bundle size growth  -> want: Monitor and minimize bundle size
+- [Performance] avoid: Large blocking CSS files  -> want: Inline critical CSS defer non-critical
+- [Forms] avoid: Single error message at top of form  -> want: Show error below related input
+- [Forms] avoid: Validate only on submit  -> want: Validate on blur for most fields
+- [Forms] avoid: Text input for everything  -> want: Use email tel number url etc
+- [Forms] avoid: Block or ignore autofill  -> want: Use autocomplete attribute properly
+- [Forms] avoid: No indication of required fields  -> want: Use asterisk or (required) text
+- [Forms] avoid: No visibility toggle  -> want: Toggle to show/hide password
+- [Forms] avoid: Inputs that look like plain text  -> want: Use distinct input styling
+- [Forms] avoid: Default keyboard for all inputs  -> want: Use inputmode attribute
+- [Responsive] avoid: Desktop-first causing mobile issues  -> want: Start with mobile styles then add breakpoints
+- [Responsive] avoid: Only test on your device  -> want: Test at 320 375 414 768 1024 1440
+- [Responsive] avoid: Fixed width images overflow  -> want: Use max-width: 100% on images
+- [Responsive] avoid: Wide tables breaking layout  -> want: Use horizontal scroll or card layout
+- [Typography] avoid: Cramped or excessive line height  -> want: Use 1.5-1.75 for body text
+- [Typography] avoid: Full-width text on large screens  -> want: Limit to 65-75 characters per line
+- [Typography] avoid: Random font sizes  -> want: Use consistent modular scale
+- [Typography] avoid: Layout shift when fonts load  -> want: Reserve space with fallback font
+- [Typography] avoid: Headings similar to body text  -> want: Clear size/weight difference
+- [Feedback] avoid: Blank empty screens  -> want: Show helpful message and action
+- [Feedback] avoid: Error without recovery path  -> want: Provide clear next steps
+- [Feedback] avoid: No indication of progress  -> want: Step indicators or progress bar
+- [Feedback] avoid: Toasts that never disappear  -> want: Auto-dismiss after 3-5 seconds
+- [Feedback] avoid: Silent success  -> want: Brief success message
+- [Content] avoid: Overflow or broken layout  -> want: Truncate with ellipsis and expand option
+- [Content] avoid: Ambiguous date formats  -> want: Use relative or locale-aware dates
+- [Content] avoid: Long unformatted numbers  -> want: Use thousand separators or abbreviations
+- [Content] avoid: Lorem ipsum everywhere  -> want: Use realistic sample data
+- [Onboarding] avoid: Force linear unskippable tour  -> want: Provide Skip and Back buttons
+- [Search] avoid: Require full type and enter  -> want: Show predictions as user types
+- [Search] avoid: Blank screen or '0 results'  -> want: Show 'No results' with suggestions
+- [Data Entry] avoid: Single row actions only  -> want: Allow multi-select and bulk edit
+- [AI Interaction] avoid: Show loading spinner for 10s+  -> want: Stream text response token by token
+- [Spatial UI] avoid: Flat opaque panels blocking view  -> want: Use glass material and z-offset
+- [Sustainability] avoid: Auto-play high-res video loops  -> want: Click-to-play or pause when off-screen
+- [Sustainability] avoid: Load 50MB textures  -> want: Compress and lazy load 3D models
+- [AI Interaction] avoid: Static output only  -> want: Thumps up/down or 'Regenerate'
+

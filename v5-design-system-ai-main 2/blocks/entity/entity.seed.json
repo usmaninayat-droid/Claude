@@ -1,0 +1,7 @@
+[
+  { "id": "REC-01", "uniqueidentifier": "REC-01", "title": "Sample Record One",   "status": "Active",   "systemcol1": "Type A", "systemcol2": "Alex Carter",  "systemcol3": "12 Jun, 2026" },
+  { "id": "REC-02", "uniqueidentifier": "REC-02", "title": "Sample Record Two",   "status": "Active",   "systemcol1": "Type B", "systemcol2": "Sara Nasser", "systemcol3": "13 Jun, 2026" },
+  { "id": "REC-03", "uniqueidentifier": "REC-03", "title": "Sample Record Three", "status": "Inactive", "systemcol1": "Type A", "systemcol2": "Alex Carter",  "systemcol3": "09 Jun, 2026" },
+  { "id": "REC-04", "uniqueidentifier": "REC-04", "title": "Sample Record Four",  "status": "Active",   "systemcol1": "Type C", "systemcol2": "Omar Aziz",   "systemcol3": "14 Jun, 2026" },
+  { "id": "REC-05", "uniqueidentifier": "REC-05", "title": "Sample Record Five",  "status": "Active",   "systemcol1": "Type B", "systemcol2": "Sara Nasser", "systemcol3": "15 Jun, 2026" }
+]

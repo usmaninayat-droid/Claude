@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fams-v5.local/schemas/TenantConfig.schema.json",
+  "title": "TenantConfig",
+  "description": "Per-tenant theme + brand configuration. Maps to the 3-axis white-label contract (color + gradient + logo) — Pattern #04, #47.",
+  "type": "object",
+  "required": ["id", "name", "primaryColor"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Maps to packages/tokens/tenants/<id>.theme.css"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable tenant name (e.g., 'FAMS V5', 'EAD RMS', 'Tadweer')."
+    },
+
+    "primaryColor": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$",
+      "description": "Brand `--primary` hex. Drives sidebar (if solid), CTAs, accents."
+    },
+    "secondaryColor": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$",
+      "description": "Lightest tint of primary, used for selected-row bg, focus rings."
+    },
+    "accentColor": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$",
+      "description": "Usually = primary; EAD diverges (orange)."
+    },
+
+    "sidebarGradientStops": {
+      "type": "array",
+      "description": "Pattern #47 — multi-stop linear-gradient stop list. Omit for solid-sidebar tenants.",
+      "items": {
+        "type": "object",
+        "required": ["color", "position"],
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "type": "string",
+            "description": "Any valid CSS color (hex or rgb())."
+          },
+          "position": {
+            "type": "string",
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?%$",
+            "description": "Stop position in %."
+          }
+        }
+      }
+    },
+    "sidebarGradientAngle": {
+      "type": "string",
+      "default": "149.7deg",
+      "description": "Linear-gradient angle."
+    },
+
+    "logoSvgPath": {
+      "type": "string",
+      "description": "Absolute or import-resolvable path to the tenant logo SVG."
+    },
+    "logoIconSvgPath": {
+      "type": "string",
+      "description": "Square icon-only version of the logo (top-left collapsed sidebar)."
+    },
+
+    "fontFamily": {
+      "type": "string",
+      "default": "Gilroy",
+      "description": "Tenant-immutable today; here for future overrides."
+    },
+
+    "chartPalette": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "type": "string",
+        "pattern": "^#[0-9A-Fa-f]{6}$"
+      },
+      "description": "Override the default 5-color chart palette."
+    },
+
+    "modules": {
+      "type": "array",
+      "description": "Module ids enabled for this tenant. Used by ModuleRegistry to render nav.",
+      "items": { "type": "string" }
+    }
+  }
+}

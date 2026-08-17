@@ -1,0 +1,65 @@
+/*
+ * Tenant · Tadweer (Abu Dhabi waste-collection authority)
+ * -------------------------------------------------------
+ * Green primary + 5-stop diagonal gradient app rail (Pattern #47).
+ * Source:
+ *   - knowledge-base/live-product-references/10-real-tokens.md §Tenant variants
+ *   - knowledge-base/live-product-references/tadweer/10-brand-override.md
+ *
+ * Gradient stops captured verbatim from Figma file `AKU5PLaqjO1QBakY9pUAH1`,
+ * Side Nav node `9:7006`. Stop percentages are out-of-order as Figma exports
+ * them in author-order — visual order top→bottom is blue → teal → green.
+ *
+ * LOGO ASSET (Axis 3 of white-label, not a CSS token):
+ *   File: `packages/logos/tadweer-logo.svg` (or `.png` — wordmark + symbol)
+ *   Source: Figma file `AKU5PLaqjO1QBakY9pUAH1`, image asset hash `bf1dc011…`
+ *   Wire: pass to `<TenantProvider logo={…}>` or `<SideNav logo={…}>`.
+ *   See `10-brand-override.md` §"Other side-nav details" → Logo row.
+ */
+
+:root {
+  --primary: #22C882;                                /* Tadweer green */
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #DCFAE6;                              /* Light green tint (best-fit; not yet captured production-side) */
+  --secondary-foreground: #22C882;
+
+  --accent: #22C882;                                 /* = primary */
+  --accent-foreground: #FFFFFF;
+
+  --ring: #DCFAE6;
+
+  /*
+   * Sidebar visual base = the bottom-most stop of the gradient.
+   * Components that don't render the gradient (legacy paths, snapshot tools)
+   * still get a sensible solid green fallback.
+   */
+  --sidebar: #22C882;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #22C882;                        /* active item = SOLID primary on the gradient */
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: rgba(255, 255, 255, 0.2);
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: rgba(255, 255, 255, 0.2);
+  --sidebar-ring: rgba(255, 255, 255, 0.4);
+
+  /*
+   * The load-bearing finding: app rail is a 5-stop diagonal gradient,
+   * NOT a solid color. Pattern #47.
+   *
+   * Stops preserved in original (Figma-author) order; visual order is
+   *   rgb(0,114,224)   blue   (top)
+   *   rgb(10,139,196)  teal
+   *   rgb(25,176,157)  sea-green
+   *   rgb(34,199,132)  Tadweer primary
+   *   rgb(38,208,124)  light green  (bottom)
+   */
+  --sidebar-gradient: linear-gradient(
+    149.70794718456867deg,
+    rgb(0, 114, 224)   41.365%,
+    rgb(10, 139, 196)  11.262%,
+    rgb(25, 176, 157)  37.477%,
+    rgb(34, 199, 132)  77.614%,
+    rgb(38, 208, 124) 101.98%
+  );
+}

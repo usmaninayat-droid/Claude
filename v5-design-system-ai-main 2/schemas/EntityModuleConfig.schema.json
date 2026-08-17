@@ -1,0 +1,188 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://fams.com/schemas/EntityModuleConfig.schema.json",
+  "title": "EntityModuleConfig",
+  "description": "Config for one Entity module (a list of things — companies, contacts, vehicles…). Faithful EAV shape: systemcolN field definitions + uiConfig + listcolumns — exactly what src/sim registers and src/runtime/config-render.ts derives views from (mirrors EntityConfig in src/sim/engine/types.ts).",
+  "type": "object",
+  "required": ["code", "name", "systemcolumns", "uiConfig", "listcolumns"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "kind": { "const": "entity" },
+    "code": { "type": "string", "description": "Entity code in the store, e.g. crm/companies." },
+    "name": { "type": "string" },
+    "uidPrefix": { "type": "string" },
+    "systemcolumns": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/SystemColumn" }
+    },
+    "uiConfig": { "$ref": "#/definitions/UiConfig" },
+    "listcolumns": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/FieldPlacement" }
+    }
+  },
+  "definitions": {
+    "SystemColumn": {
+      "type": "object",
+      "required": ["col", "name", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "col": { "type": "string", "description": "title | status | uniqueidentifier | tags | systemcol1..50 | usercol1..50" },
+        "name": { "type": "string" },
+        "type": {
+          "enum": ["SmallText", "LongText", "Date", "DateTime", "SingleReference", "MultiReference", "SingleSelect", "MultiSelect", "Currency", "Number", "Boolean", "tags"]
+        },
+        "required": { "type": "boolean" },
+        "default": {},
+        "listValues": { "type": "array", "items": { "type": "string" } },
+        "refModule": { "type": "string" }
+      }
+    },
+    "StatusDef": {
+      "type": "object",
+      "required": ["key", "label", "color"],
+      "additionalProperties": false,
+      "properties": {
+        "key": { "type": "string" },
+        "label": { "type": "string" },
+        "color": { "type": "string" },
+        "bgColor": { "type": "string" },
+        "chipColor": { "type": "string" }
+      }
+    },
+    "FieldPlacement": {
+      "type": "object",
+      "required": ["col"],
+      "additionalProperties": false,
+      "properties": {
+        "col": { "type": "string" },
+        "pos": { "enum": ["left", "right"] },
+        "order": { "type": "number" },
+        "showLabel": { "type": "boolean" },
+        "name": { "type": "string" },
+        "component": {
+          "type": "object",
+          "required": ["name"],
+          "additionalProperties": false,
+          "properties": {
+            "name": { "type": "string" },
+            "props": { "type": "object" }
+          }
+        }
+      }
+    },
+    "FilterDef": {
+      "type": "object",
+      "required": ["col"],
+      "additionalProperties": false,
+      "properties": {
+        "col": { "type": "string" },
+        "order": { "type": "number" },
+        "name": { "type": "string" },
+        "boolean": { "type": "boolean" },
+        "booleanOptions": {
+          "type": "object",
+          "required": ["trueLabel", "falseLabel"],
+          "additionalProperties": false,
+          "properties": {
+            "trueLabel": { "type": "string" },
+            "falseLabel": { "type": "string" }
+          }
+        },
+        "userTypes": { "type": "array", "items": { "type": "string" } },
+        "orgUsers": { "type": "boolean" },
+        "visibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "excludeRoles": { "type": "array", "items": { "type": "string" } },
+            "includeRoles": { "type": "array", "items": { "type": "string" } },
+            "requirePrivileges": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "UiConfig": {
+      "type": "object",
+      "required": ["statusList"],
+      "additionalProperties": false,
+      "properties": {
+        "statusList": { "type": "array", "items": { "$ref": "#/definitions/StatusDef" } },
+        "statusChangeRule": {
+          "type": "object",
+          "additionalProperties": { "type": "array", "items": { "type": "string" } }
+        },
+        "kanbanCard": {
+          "type": "object",
+          "required": ["header", "body", "footer"],
+          "additionalProperties": false,
+          "properties": {
+            "header": { "type": "array", "items": { "$ref": "#/definitions/FieldPlacement" } },
+            "body": { "type": "array", "items": { "$ref": "#/definitions/FieldPlacement" } },
+            "footer": { "type": "array", "items": { "$ref": "#/definitions/FieldPlacement" } }
+          }
+        },
+        "profile": {
+          "type": "object",
+          "required": ["title", "details", "sections"],
+          "additionalProperties": false,
+          "properties": {
+            "title": { "$ref": "#/definitions/FieldPlacement" },
+            "details": { "type": "array", "items": { "$ref": "#/definitions/FieldPlacement" } },
+            "sections": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name", "order", "fields"],
+                "additionalProperties": false,
+                "properties": {
+                  "name": { "type": "string" },
+                  "order": { "type": "number" },
+                  "fields": { "type": "array", "items": { "$ref": "#/definitions/FieldPlacement" } }
+                }
+              }
+            },
+            "rightPanel": {
+              "type": "object",
+              "required": ["type", "tabs"],
+              "additionalProperties": false,
+              "properties": {
+                "type": { "const": "tab" },
+                "tabs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["key", "title", "order", "component"],
+                    "additionalProperties": false,
+                    "properties": {
+                      "key": { "type": "string" },
+                      "title": { "type": "string" },
+                      "order": { "type": "number" },
+                      "component": {
+                        "type": "object",
+                        "required": ["name"],
+                        "additionalProperties": false,
+                        "properties": { "name": { "type": "string" }, "props": { "type": "object" } }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "filters": { "type": "array", "items": { "$ref": "#/definitions/FilterDef" } },
+        "search": {
+          "type": "object",
+          "required": ["columns"],
+          "additionalProperties": false,
+          "properties": {
+            "columns": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    }
+  }
+}

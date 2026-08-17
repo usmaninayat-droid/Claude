@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://fams.com/schemas/PipelineModuleConfig.schema.json",
+  "title": "PipelineModuleConfig",
+  "description": "Config for one Pipeline module (work moving through stages — deals, leads, job orders…). Same faithful EAV shape as EntityModuleConfig, but a kanbanCard + non-empty statusList are required so the kanban view can derive. Stage transitions + RBAC live in the sibling *.rules.json (PipelineRules), referenced from the recipe's `rules` registry.",
+  "type": "object",
+  "required": ["code", "name", "systemcolumns", "uiConfig", "listcolumns"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "kind": { "const": "pipeline" },
+    "code": { "type": "string", "description": "Entity code in the store, e.g. crm/deals." },
+    "name": { "type": "string" },
+    "uidPrefix": { "type": "string" },
+    "systemcolumns": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "EntityModuleConfig.schema.json#/definitions/SystemColumn" }
+    },
+    "uiConfig": {
+      "allOf": [
+        { "$ref": "EntityModuleConfig.schema.json#/definitions/UiConfig" },
+        {
+          "type": "object",
+          "required": ["statusList", "kanbanCard"],
+          "properties": {
+            "statusList": { "type": "array", "minItems": 2 }
+          }
+        }
+      ]
+    },
+    "listcolumns": {
+      "type": "array",
+      "items": { "$ref": "EntityModuleConfig.schema.json#/definitions/FieldPlacement" }
+    }
+  }
+}

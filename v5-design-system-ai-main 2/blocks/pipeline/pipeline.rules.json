@@ -1,0 +1,23 @@
+{
+  "statuses": ["reported", "in_progress", "review", "done"],
+  "transitions": {
+    "reported": ["in_progress"],
+    "in_progress": ["review", "reported"],
+    "review": ["done", "in_progress"],
+    "done": []
+  },
+  "transition_rules": {
+    "review->done": { "$.user.roles": { "$in": ["Manager"] } }
+  },
+  "task_rules": {
+    "view": [
+      { "$.user.roles": { "$in": ["Manager"] } },
+      {
+        "$and": [
+          { "$.user.roles": { "$in": ["Agent"] } },
+          { "$.task.systemcol6": { "$eq": "u_agent" } }
+        ]
+      }
+    ]
+  }
+}

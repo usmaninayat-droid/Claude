@@ -1,0 +1,125 @@
+/*
+ * FAMS Design System V2 — Figma colour palette as CSS custom properties.
+ * Generated from figma-tokens.ts (exact values from Figma file 4FS7S3tHKzZZpdFBA0aGkt).
+ * Naming mirrors the Figma collection paths: --fig-<group>-<family>-<stop>.
+ */
+:root {
+  /* Base */
+  --fig-base-white: #ffffff;
+  --fig-base-black: #000000;
+  /* Surface */
+  --fig-surface-primary: #ffffff;
+  --fig-surface-minimal: #f9fafb;
+  --fig-surface-secondary: #e6f2fc;
+  --fig-surface-low-contrast: #eaecf0;
+  /* Brand/Primary (Secondary aliases identical in FAMS mode) */
+  --fig-brand-lightest: #e6f2fc;
+  --fig-brand-light: #99cdf3;
+  --fig-brand-normal: #0072d6;
+  --fig-brand-dark: #00478a;
+  --fig-brand-darkest: #001c3f;
+  /* Border */
+  --fig-border-lightest: #eaecf0;
+  --fig-border-light: #d0d5dd;
+  --fig-border-normal: #98a2b3;
+  --fig-border-dark: #344054;
+  --fig-border-darkest: #101828;
+  /* Neutral */
+  --fig-neutral-lightest: #f9fafb;
+  --fig-neutral-lighter: #eaecf0;
+  --fig-neutral-x-light: #d0d5dd;
+  --fig-neutral-light: #98a2b3;
+  --fig-neutral-normal: #667085;
+  --fig-neutral-dark: #475467;
+  --fig-neutral-darker: #344054;
+  --fig-neutral-darkest: #101828;
+  /* Default Text */
+  --fig-text-lightest: #f9fafb;
+  --fig-text-lighter: #98a2b3;
+  --fig-text-light: #667085;
+  --fig-text-normal: #475467;
+  --fig-text-dark: #344054;
+  --fig-text-darker: #1d2939;
+  --fig-text-darkest: #101828;
+  /* Accent families (16 × 5 stops) */
+  --fig-accent-error-lightest: #fef3f2;
+  --fig-accent-error-light: #fee4e2;
+  --fig-accent-error-normal: #f04438;
+  --fig-accent-error-dark: #b42318;
+  --fig-accent-error-darkest: #7a271a;
+  --fig-accent-success-lightest: #ecfdf3;
+  --fig-accent-success-light: #d1fadf;
+  --fig-accent-success-normal: #12b76a;
+  --fig-accent-success-dark: #027a48;
+  --fig-accent-success-darkest: #054f31;
+  --fig-accent-warning-lightest: #fffaeb;
+  --fig-accent-warning-light: #fef0c7;
+  --fig-accent-warning-normal: #f79009;
+  --fig-accent-warning-dark: #b54708;
+  --fig-accent-warning-darkest: #7a2e0e;
+  --fig-accent-info-lightest: #e6f2fc;
+  --fig-accent-info-light: #cce6f9;
+  --fig-accent-info-normal: #0072d6;
+  --fig-accent-info-dark: #00478a;
+  --fig-accent-info-darkest: #001c3f;
+  --fig-accent-cyan-lightest: #ecfeff;
+  --fig-accent-cyan-light: #cffafe;
+  --fig-accent-cyan-normal: #06b6d4;
+  --fig-accent-cyan-dark: #0e7490;
+  --fig-accent-cyan-darkest: #164e63;
+  --fig-accent-gray-blue-lightest: #f3f5fc;
+  --fig-accent-gray-blue-light: #e6e9f7;
+  --fig-accent-gray-blue-normal: #4e5ba6;
+  --fig-accent-gray-blue-dark: #353f73;
+  --fig-accent-gray-blue-darkest: #1a203a;
+  --fig-accent-azure-lightest: #eff6ff;
+  --fig-accent-azure-light: #dbeafe;
+  --fig-accent-azure-normal: #3b82f6;
+  --fig-accent-azure-dark: #1d4ed8;
+  --fig-accent-azure-darkest: #1e3a8a;
+  --fig-accent-lavender-lightest: #f9f5ff;
+  --fig-accent-lavender-light: #f4ebff;
+  --fig-accent-lavender-normal: #9e77ed;
+  --fig-accent-lavender-dark: #6941c6;
+  --fig-accent-lavender-darkest: #42307d;
+  --fig-accent-plum-lightest: #fdf4ff;
+  --fig-accent-plum-light: #fae8ff;
+  --fig-accent-plum-normal: #d946ef;
+  --fig-accent-plum-dark: #a21caf;
+  --fig-accent-plum-darkest: #701a75;
+  --fig-accent-pink-lightest: #fdf2fa;
+  --fig-accent-pink-light: #fce7f6;
+  --fig-accent-pink-normal: #ee46bc;
+  --fig-accent-pink-dark: #c11574;
+  --fig-accent-pink-darkest: #851651;
+  --fig-accent-rose-lightest: #fff1f3;
+  --fig-accent-rose-light: #ffe4e8;
+  --fig-accent-rose-normal: #f63d68;
+  --fig-accent-rose-dark: #c01048;
+  --fig-accent-rose-darkest: #89123e;
+  --fig-accent-lime-lightest: #f7fee7;
+  --fig-accent-lime-light: #ecfccb;
+  --fig-accent-lime-normal: #84cc16;
+  --fig-accent-lime-dark: #4d7c0f;
+  --fig-accent-lime-darkest: #365314;
+  --fig-accent-aqua-green-lightest: #e0fcf9;
+  --fig-accent-aqua-green-light: #b3f5ed;
+  --fig-accent-aqua-green-normal: #14b8a6;
+  --fig-accent-aqua-green-dark: #0d776e;
+  --fig-accent-aqua-green-darkest: #063f39;
+  --fig-accent-flame-lightest: #fff7f0;
+  --fig-accent-flame-light: #ffead5;
+  --fig-accent-flame-normal: #ff6a1a;
+  --fig-accent-flame-dark: #b74300;
+  --fig-accent-flame-darkest: #661f00;
+  --fig-accent-yellow-lightest: #fff9e8;
+  --fig-accent-yellow-light: #faf3e1;
+  --fig-accent-yellow-normal: #f5bb2a;
+  --fig-accent-yellow-dark: #b78314;
+  --fig-accent-yellow-darkest: #6e4d0b;
+  --fig-accent-bronze-lightest: #f9f5f1;
+  --fig-accent-bronze-light: #eedfcf;
+  --fig-accent-bronze-normal: #8b6439;
+  --fig-accent-bronze-dark: #5c3920;
+  --fig-accent-bronze-darkest: #2f180f;
+}

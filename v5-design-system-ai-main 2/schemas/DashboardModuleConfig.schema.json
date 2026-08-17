@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fams-v5.local/schemas/DashboardModuleConfig.schema.json",
+  "title": "DashboardModuleConfig",
+  "description": "Configuration for a Dashboards module — sibling to Entity modules (Pattern #23). Composes a KPI strip + filter pills + widget grid.",
+  "type": "object",
+  "required": ["id", "displayName", "widgetGrid"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+    "displayName": {
+      "type": "object",
+      "required": ["singular"],
+      "additionalProperties": false,
+      "properties": {
+        "singular": { "type": "string" },
+        "plural":   { "type": "string" }
+      }
+    },
+    "icon": { "type": "string" },
+    "description": { "type": "string" },
+
+    "kpiStrip": {
+      "type": "array",
+      "description": "Top KPI strip — small big-number cards (Pattern #49 for actual/target).",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "type"],
+        "additionalProperties": false,
+        "properties": {
+          "id":    { "type": "string" },
+          "label": { "type": "string" },
+          "icon":  { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["stat", "stat-with-target", "delta", "trend"]
+          },
+          "targetFieldId": { "type": "string" },
+          "format": {
+            "type": "string",
+            "description": "e.g. 'integer', 'currency-AED', 'percent', 'tons'"
+          }
+        }
+      }
+    },
+
+    "filterPills": {
+      "type": "array",
+      "description": "Filter-pill bar (Time / Driver / Vehicle / Group By).",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "type"],
+        "additionalProperties": false,
+        "properties": {
+          "id":    { "type": "string" },
+          "label": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["time-range", "single-select", "multi-select", "group-by"]
+          },
+          "entityId": { "type": "string" },
+          "defaultValue": {}
+        }
+      }
+    },
+
+    "widgetGrid": {
+      "type": "array",
+      "description": "Main 2-column widget grid — gauges, charts, lists.",
+      "items": { "$ref": "#/$defs/DashboardWidget" }
+    },
+
+    "views": {
+      "type": "array",
+      "description": "Saved-view declarations (Pattern #02). Each dashboard tab is itself a saved view.",
+      "items": {
+        "type": "object",
+        "required": ["id", "label"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "isDefault": { "type": "boolean", "default": false }
+        }
+      }
+    },
+
+    "rbac": {
+      "type": "object",
+      "description": "RBAC config — which roles see this dashboard. (Was a dangling $ref to EntityModuleConfig#/$defs/Rbac, which does not exist — kept permissive like ReportsModuleConfig until a shared Rbac def lands.)",
+      "additionalProperties": true
+    }
+  },
+
+  "$defs": {
+    "DashboardWidget": {
+      "type": "object",
+      "required": ["id", "type"],
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": [
+            "donut", "bar", "line", "stacked-bar", "area",
+            "compliance-gauge", "heatmap-calendar", "geospatial-heatmap",
+            "leaderboard", "list",
+            "kpi-card", "stat-with-target",
+            "sparkline-table",
+            "map-live", "hybrid-map-list"
+          ]
+        },
+        "span": { "type": "integer", "minimum": 1, "maximum": 12, "default": 6 },
+        "dataSource": {
+          "type": "object",
+          "description": "Free-form data binding hint — entity id + aggregation rule.",
+          "additionalProperties": true
+        }
+      }
+    }
+  }
+}

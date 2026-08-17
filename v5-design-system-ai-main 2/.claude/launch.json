@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "v5-ds",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 5173
+    },
+    {
+      "name": "telematics",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["-C", "D:/Claude Projects/Code/telematics", "dev"],
+      "port": 5194
+    },
+    {
+      "name": "ifm-workforce",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["-C", "D:/Claude Projects/Code/ifm-workforce", "dev"],
+      "port": 5197
+    },
+    {
+      "name": "hrms-app",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["-C", "D:/Claude Projects/Code/hrms-app", "dev"],
+      "port": 5198
+    }
+  ]
+}

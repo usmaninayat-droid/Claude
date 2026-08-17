@@ -1,0 +1,57 @@
+{
+  "$schema": "../../schemas/EntityModuleConfig.schema.json",
+  "kind": "entity",
+  "code": "blocks/records",
+  "name": "Records",
+  "uidPrefix": "REC",
+  "systemcolumns": [
+    { "col": "title", "name": "Name", "type": "SmallText", "required": true },
+    { "col": "status", "name": "Status", "type": "SingleSelect", "listValues": ["Active", "Inactive"] },
+    { "col": "systemcol1", "name": "Category", "type": "SingleSelect", "listValues": ["Type A", "Type B", "Type C"] },
+    { "col": "systemcol2", "name": "Owner", "type": "SmallText" },
+    { "col": "systemcol3", "name": "Date", "type": "SmallText" }
+  ],
+  "uiConfig": {
+    "statusList": [
+      { "key": "Active", "label": "Active", "color": "#16a34a" },
+      { "key": "Inactive", "label": "Inactive", "color": "#94a3b8" }
+    ],
+    "profile": {
+      "title": { "col": "title", "pos": "left" },
+      "details": [
+        { "col": "uniqueidentifier", "pos": "left", "order": 1, "name": "ID", "component": { "name": "LinkView" } },
+        { "col": "status", "pos": "right", "order": 1, "component": { "name": "StatusList" } },
+        { "col": "systemcol1", "pos": "left", "order": 2 },
+        { "col": "systemcol2", "pos": "right", "order": 2, "component": { "name": "AssigneeList" } },
+        { "col": "systemcol3", "pos": "left", "order": 3 }
+      ],
+      "sections": [],
+      "overview": [
+        { "kind": "stat", "span": 4, "label": "Total", "value": "128", "trend": "up", "trendValue": "+6 this month" },
+        { "kind": "stat", "span": 4, "label": "Active", "value": "112", "trend": "up", "trendValue": "+4 vs last week" },
+        { "kind": "stat", "span": 4, "label": "Needs Attention", "value": "9", "trend": "down", "trendValue": "-2 vs last week" },
+        { "kind": "gauge", "title": "Health", "span": 4, "value": 82 },
+        { "kind": "donut", "title": "Breakdown", "span": 4, "centerValue": "5", "data": [
+          { "name": "Active", "value": 4, "color": "var(--status-success)" },
+          { "name": "Inactive", "value": 1, "color": "var(--muted-foreground)" }
+        ] },
+        { "kind": "bar", "title": "Trend", "span": 4, "xKey": "m", "series": [{ "dataKey": "v", "color": "var(--primary)", "name": "Count" }], "data": [
+          { "m": "Jan", "v": 3 }, { "m": "Feb", "v": 4 }, { "m": "Mar", "v": 4 }, { "m": "Apr", "v": 5 }, { "m": "May", "v": 5 }, { "m": "Jun", "v": 6 }
+        ] }
+      ]
+    },
+    "filters": [
+      { "col": "status", "order": 1 },
+      { "col": "systemcol1", "order": 2 }
+    ],
+    "search": { "columns": ["title", "systemcol1", "systemcol2"] }
+  },
+  "listcolumns": [
+    { "col": "uniqueidentifier", "name": "ID", "component": { "name": "TextView" } },
+    { "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "col": "status", "component": { "name": "StatusList" } },
+    { "col": "systemcol1", "component": { "name": "TextView" } },
+    { "col": "systemcol2", "component": { "name": "AssigneeList" } },
+    { "col": "systemcol3", "component": { "name": "TextView" } }
+  ]
+}

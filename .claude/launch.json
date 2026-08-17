@@ -3,10 +3,12 @@
   "configurations": [
     {
       "name": "wfmc-blue-review",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8790", "--bind", "127.0.0.1"],
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/28a7d7ba-78f3-4924-bbeb-43cda99087a7/scratchpad/serve.py"
+      ],
       "port": 8790,
-      "url": "http://127.0.0.1:8790/"
+      "url": "http://127.0.0.1:8790"
     },
     {
       "name": "entity-selector",

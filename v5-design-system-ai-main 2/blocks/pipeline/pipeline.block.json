@@ -1,0 +1,71 @@
+{
+  "$schema": "../../schemas/PipelineModuleConfig.schema.json",
+  "kind": "pipeline",
+  "code": "blocks/items",
+  "name": "Items",
+  "uidPrefix": "ITM",
+  "systemcolumns": [
+    { "col": "title", "name": "Title", "type": "SmallText", "required": true },
+    { "col": "status", "name": "Stage", "type": "SingleSelect" },
+    { "col": "systemcol1", "name": "Type", "type": "SingleSelect", "listValues": ["Standard", "Urgent"] },
+    { "col": "systemcol2", "name": "Priority", "type": "SingleSelect", "listValues": ["High", "Medium", "Low"] },
+    { "col": "systemcol3", "name": "Category", "type": "SmallText" },
+    { "col": "systemcol6", "name": "Owner", "type": "SingleReference", "refModule": "user" },
+    { "col": "systemcol7", "name": "Date", "type": "SmallText" }
+  ],
+  "uiConfig": {
+    "statusList": [
+      { "key": "reported", "label": "Reported", "color": "#94a3b8" },
+      { "key": "in_progress", "label": "In Progress", "color": "#0072d6" },
+      { "key": "review", "label": "Review", "color": "#f79009" },
+      { "key": "done", "label": "Done", "color": "#16a34a" }
+    ],
+    "kanbanCard": {
+      "header": [
+        { "col": "systemcol2", "pos": "left", "order": 1, "component": { "name": "PriorityFlag" } },
+        { "col": "systemcol1", "pos": "left", "order": 2 },
+        { "col": "uniqueidentifier", "pos": "right", "order": 1 },
+        { "col": "title", "pos": "left", "order": 3 }
+      ],
+      "body": [
+        { "col": "systemcol3", "pos": "left", "order": 1 },
+        { "col": "status", "pos": "left", "order": 2, "component": { "name": "StageProgress" } }
+      ],
+      "footer": [
+        { "col": "systemcol6", "pos": "left", "order": 1, "component": { "name": "AssigneeList", "props": { "avatarOnly": true } } },
+        { "col": "systemcol7", "pos": "right", "order": 1, "component": { "name": "DateView" } }
+      ]
+    },
+    "profile": {
+      "title": { "col": "title", "pos": "left" },
+      "details": [
+        { "col": "uniqueidentifier", "pos": "left", "order": 1, "name": "ID", "component": { "name": "LinkView" } },
+        { "col": "status", "pos": "right", "order": 1, "component": { "name": "StatusList", "props": { "editable": true } } },
+        { "col": "systemcol2", "pos": "left", "order": 2, "component": { "name": "PriorityFlag" } },
+        { "col": "systemcol6", "pos": "right", "order": 2, "component": { "name": "AssigneeSelector", "props": { "editable": true } } },
+        { "col": "systemcol3", "pos": "left", "order": 3 },
+        { "col": "systemcol7", "pos": "right", "order": 3 }
+      ],
+      "sections": [],
+      "rightPanel": { "type": "tab", "tabs": [
+        { "key": "timeline", "title": "Timeline", "order": 1, "component": { "name": "PipelineTimeline" } },
+        { "key": "activity", "title": "Activity", "order": 2, "component": { "name": "ActivityFeed" } },
+        { "key": "linked", "title": "Linked", "order": 3, "component": { "name": "LinkedItems" } },
+        { "key": "attachments", "title": "Files", "order": 4, "component": { "name": "Attachments" } }
+      ] }
+    },
+    "filters": [
+      { "col": "status", "order": 1 },
+      { "col": "systemcol2", "order": 2 }
+    ],
+    "search": { "columns": ["title", "uniqueidentifier", "systemcol3"] }
+  },
+  "listcolumns": [
+    { "col": "uniqueidentifier", "name": "ID", "component": { "name": "TextView" } },
+    { "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "col": "status", "component": { "name": "StatusList" } },
+    { "col": "systemcol2", "component": { "name": "PriorityFlag" } },
+    { "col": "systemcol6", "component": { "name": "AssigneeList" } },
+    { "col": "systemcol7", "component": { "name": "DateView" } }
+  ]
+}
