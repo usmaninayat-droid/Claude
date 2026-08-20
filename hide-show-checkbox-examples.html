@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hide &amp; Show Checkboxes — Real Patterns</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --panel:#fff; --line:#e6e8ec; --line-strong:#d6d9df;
+    --text:#1f2430; --muted:#8a91a0; --muted-2:#6b7280;
+    --brand:#2f6bff; --brand-ink:#1b4fd6; --brand-050:#eef3ff; --brand-100:#dbe6ff;
+    --active-bg:#e7f8ef; --active-ink:#12a05c;
+    --shadow:0 10px 30px rgba(20,26,45,.16);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--text);font-size:13px;padding:26px 22px 60px}
+  h1{font-size:19px;margin:0 0 5px}
+  p.lead{color:var(--muted-2);margin:0 0 8px;max-width:760px;line-height:1.55}
+  .try{display:inline-block;background:var(--active-bg);color:var(--active-ink);font-weight:650;font-size:11.5px;padding:3px 10px;border-radius:20px;margin-bottom:26px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:20px;max-width:1180px}
+  .ex{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  .ex header{padding:14px 16px 12px;border-bottom:1px solid var(--line)}
+  .ex .who{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+  .ex .who b{font-size:14px}
+  .ex .badge{font-size:10px;font-weight:700;border-radius:20px;padding:2px 9px;background:var(--brand-050);color:var(--brand-ink)}
+  .ex .desc{font-size:12px;color:var(--muted-2);line-height:1.5;margin:0}
+  .ex .hint{font-size:11px;color:var(--brand-ink);background:var(--brand-050);padding:7px 12px;font-weight:600}
+  .ex footer{margin-top:auto;padding:10px 16px;border-top:1px solid var(--line);font-size:11px}
+  .ex footer a{color:var(--muted-2)}
+
+  /* toolbar inside example */
+  .minibar{display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fbfbfc;border-bottom:1px solid var(--line);min-height:44px}
+  .minibar .sp{flex:1}
+  .lnk{color:var(--brand-ink);font-weight:600;cursor:pointer;font-size:12px;user-select:none}
+  .btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line-strong);background:#fff;border-radius:7px;padding:6px 11px;font-size:12px;font-weight:550;cursor:pointer}
+  .btn.on{background:var(--brand-050);border-color:#bcd0ff;color:var(--brand-ink)}
+
+  table{width:100%;border-collapse:collapse}
+  td{padding:9px 12px;border-bottom:1px solid var(--line);font-size:12.5px}
+  tr:last-child td{border-bottom:none}
+  tbody tr{transition:background .12s}
+  tbody tr:hover{background:#fafbfe}
+  tr.sel{background:var(--brand-050)!important}
+  .fname{display:flex;align-items:center;gap:9px}
+  .ico{width:22px;height:22px;border-radius:5px;background:#eef1f5;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex:0 0 auto}
+  .muted{color:var(--muted-2)}
+  input[type=checkbox]{width:15px;height:15px;accent-color:var(--brand);cursor:pointer;margin:0}
+  .cbcell{width:34px;padding-right:0;position:relative}
+  .cbwrap{display:inline-flex}
+
+  /* pattern A: hover-reveal (icon swaps to checkbox) */
+  .hoverswap .ico{transition:opacity .12s}
+  .hoverswap .cbwrap{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:0;transition:opacity .12s}
+  .hoverswap tr:hover .cbwrap,.hoverswap tr.sel .cbwrap{opacity:1}
+  .hoverswap tr:hover .ico,.hoverswap tr.sel .ico{opacity:0}
+  .hoverswap thead .cbwrap{position:static;transform:none;opacity:.5}
+  .hoverswap thead .cbwrap:hover{opacity:1}
+
+  /* pattern B: Select button mode (hidden until mode on) */
+  .modebtn .cbcell{display:none}
+  .modebtn.on .cbcell{display:table-cell}
+
+  /* pattern C: hover-reveal simple fade (no icon swap) */
+  .fade .cbwrap{opacity:0;transition:opacity .12s}
+  .fade tr:hover .cbwrap,.fade tr.sel .cbwrap{opacity:1}
+  .fade thead .cbwrap{opacity:.5}
+
+  /* pattern D: long-press / persistent (touch) */
+  .press .cbcell{display:none}
+  .press.on .cbcell{display:table-cell}
+  .press .presshint{font-size:11px;color:var(--muted)}
+</style>
+</head>
+<body>
+  <h1>How real products hide &amp; show selection checkboxes</h1>
+  <p class="lead">Four patterns that leading tools use to keep checkboxes hidden until needed — exactly the opt-in behaviour your ticket asks for. Each demo below <b>works</b>: interact with it to watch the checkboxes appear and disappear. Source link under each.</p>
+  <div class="try">↓ Hover the rows / click the buttons to see them hide &amp; show</div>
+
+  <div class="grid">
+
+    <!-- A: Notion / Google Drive — hover, icon → checkbox -->
+    <div class="ex">
+      <header>
+        <div class="who"><b>Notion · Google Drive</b><span class="badge">Hover-reveal</span></div>
+        <p class="desc">The row shows a file/type <b>icon</b> by default. Hover a row and the icon <b>swaps into a checkbox</b>. No button, no wasted column — the checkbox lives exactly where the icon was. Header select-all is faint until hovered.</p>
+      </header>
+      <div class="hint">Hover any row →</div>
+      <table class="hoverswap" id="exA">
+        <thead><tr><td class="cbcell"><span class="cbwrap"><input type="checkbox" onclick="allA(this)"></span></td><td>Name</td><td>Owner</td></tr></thead>
+        <tbody></tbody>
+      </table>
+      <footer><a href="https://www.notion.com/help/tables" target="_blank">notion.com/help/tables</a> · <a href="https://support.google.com/drive/answer/13318592" target="_blank">Drive help</a></footer>
+    </div>
+
+    <!-- B: iOS Mail / Gmail — Select button reveals all -->
+    <div class="ex">
+      <header>
+        <div class="who"><b>iOS Mail · Gmail mobile</b><span class="badge">Select button</span></div>
+        <p class="desc">No checkboxes at rest. A <b>Select</b> button reveals a checkbox on every row at once and enters selection mode; <b>Cancel</b> hides them again. The clearest opt-in on touch, where there's no hover.</p>
+      </header>
+      <div class="minibar">
+        <span class="sp"></span>
+        <button class="btn" id="btnB" onclick="toggleB()">Select</button>
+      </div>
+      <table class="modebtn" id="exB">
+        <tbody></tbody>
+      </table>
+      <footer><a href="https://support.apple.com/guide/iphone/iph8b7f2f0a6/ios" target="_blank">Apple – Mail</a> · <a href="https://support.google.com/mail" target="_blank">Gmail help</a></footer>
+    </div>
+
+    <!-- C: Linear / Shopify Polaris — fade on hover + header always -->
+    <div class="ex">
+      <header>
+        <div class="who"><b>Linear · Shopify Polaris</b><span class="badge">Hover-reveal</span></div>
+        <p class="desc">Checkbox column is reserved but <b>invisible</b> until you hover a row, then it fades in. Polaris keeps the header select-all visible for discoverability; Linear adds keyboard (X to select, ⌘A for all).</p>
+      </header>
+      <div class="hint">Hover any row →</div>
+      <table class="fade" id="exC">
+        <thead><tr><td class="cbcell"><span class="cbwrap"><input type="checkbox" onclick="allC(this)"></span></td><td>Issue</td><td>Status</td></tr></thead>
+        <tbody></tbody>
+      </table>
+      <footer><a href="https://linear.app/docs/select-issues" target="_blank">linear.app/docs/select-issues</a> · <a href="https://polaris.shopify.com/components/tables/index-table" target="_blank">Polaris IndexTable</a></footer>
+    </div>
+
+    <!-- D: Android / Google Photos — long-press to enter -->
+    <div class="ex">
+      <header>
+        <div class="who"><b>Android · Google Photos</b><span class="badge">Long-press</span></div>
+        <p class="desc">Press &amp; hold a row to <b>enter selection mode</b> — checkboxes appear on every row and stay until you exit. The standard touch gesture where hover doesn't exist. (Click &amp; hold a row below to simulate.)</p>
+      </header>
+      <div class="minibar"><span class="presshint" id="hintD">Press &amp; hold a row ↓</span><span class="sp"></span><span class="lnk" id="doneD" style="display:none" onclick="exitD()">Done</span></div>
+      <table class="press" id="exD">
+        <tbody></tbody>
+      </table>
+      <footer><a href="https://support.google.com/photos/answer/6128850" target="_blank">Google Photos help</a></footer>
+    </div>
+
+  </div>
+
+<script>
+  const FILES=[['Fleet report.pdf','You'],['Route map.png','Devon Lane'],['Vehicles.csv','Arlene McCoy'],['Insurance.doc','Jacob Jones']];
+  const ISSUES=[['Zone colours missing','In Progress'],['Bulk upload 5k zones','Todo'],['Tag sync fails','In Review'],['Endpoint 404','Done']];
+
+  // ---- A ----
+  const sA=new Set();
+  function drawA(){const b=document.querySelector('#exA tbody');b.innerHTML='';
+    FILES.forEach((f,i)=>{const on=sA.has(i);b.insertAdjacentHTML('beforeend',
+      `<tr class="${on?'sel':''}"><td class="cbcell"><span class="ico">📄</span><span class="cbwrap"><input type="checkbox" ${on?'checked':''} onclick="rowA(${i},this)"></span></td><td><div class="fname">${f[0]}</div></td><td class="muted">${f[1]}</td></tr>`);});}
+  function rowA(i,el){el.checked?sA.add(i):sA.delete(i);drawA();}
+  function allA(el){el.checked?FILES.forEach((_,i)=>sA.add(i)):sA.clear();drawA();}
+
+  // ---- B ----
+  const sB=new Set();let modeB=false;
+  function drawB(){const b=document.querySelector('#exB tbody');b.innerHTML='';
+    FILES.forEach((f,i)=>{const on=sB.has(i);b.insertAdjacentHTML('beforeend',
+      `<tr class="${on?'sel':''}"><td class="cbcell"><span class="cbwrap"><input type="checkbox" ${on?'checked':''} onclick="rowB(${i},this)"></span></td><td><div class="fname"><span class="ico">📄</span>${f[0]}</div></td><td class="muted">${f[1]}</td></tr>`);});}
+  function toggleB(){modeB=!modeB;const t=document.getElementById('exB'),btn=document.getElementById('btnB');
+    t.classList.toggle('on',modeB);btn.textContent=modeB?'Cancel':'Select';btn.classList.toggle('on',modeB);if(!modeB)sB.clear();drawB();}
+  function rowB(i,el){el.checked?sB.add(i):sB.delete(i);drawB();}
+
+  // ---- C ----
+  const sC=new Set();
+  function drawC(){const b=document.querySelector('#exC tbody');b.innerHTML='';
+    ISSUES.forEach((f,i)=>{const on=sC.has(i);b.insertAdjacentHTML('beforeend',
+      `<tr class="${on?'sel':''}"><td class="cbcell"><span class="cbwrap"><input type="checkbox" ${on?'checked':''} onclick="rowC(${i},this)"></span></td><td>${f[0]}</td><td class="muted">${f[1]}</td></tr>`);});}
+  function rowC(i,el){el.checked?sC.add(i):sC.delete(i);drawC();}
+  function allC(el){el.checked?ISSUES.forEach((_,i)=>sC.add(i)):sC.clear();drawC();}
+
+  // ---- D (long-press) ----
+  const sD=new Set();let modeD=false,timer=null;
+  function drawD(){const b=document.querySelector('#exD tbody');b.innerHTML='';
+    FILES.forEach((f,i)=>{const on=sD.has(i);b.insertAdjacentHTML('beforeend',
+      `<tr class="${on?'sel':''}" onmousedown="pressD(${i})" onmouseup="cancelPress()" onmouseleave="cancelPress()" ontouchstart="pressD(${i})" ontouchend="cancelPress()"><td class="cbcell"><span class="cbwrap"><input type="checkbox" ${on?'checked':''} onclick="rowD(${i},this)"></span></td><td><div class="fname"><span class="ico">📄</span>${f[0]}</div></td><td class="muted">${f[1]}</td></tr>`);});}
+  function pressD(i){timer=setTimeout(()=>{if(!modeD){modeD=true;document.getElementById('exD').classList.add('on');document.getElementById('hintD').textContent='Selection mode — tap rows';document.getElementById('doneD').style.display='';}sD.add(i);drawD();},450);}
+  function cancelPress(){clearTimeout(timer);}
+  function rowD(i,el){el.checked?sD.add(i):sD.delete(i);drawD();}
+  function exitD(){modeD=false;sD.clear();document.getElementById('exD').classList.remove('on');document.getElementById('hintD').textContent='Press & hold a row ↓';document.getElementById('doneD').style.display='none';drawD();}
+
+  drawA();drawB();drawC();drawD();
+</script>
+</body>
+</html>

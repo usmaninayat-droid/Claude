@@ -2,15 +2,37 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "wfmc-blue-review",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-I",
+        "-c",
+        "import http.server,functools; h=functools.partial(http.server.SimpleHTTPRequestHandler, directory='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/28a7d7ba-78f3-4924-bbeb-43cda99087a7/scratchpad/site'); print('serving on 8790',flush=True); http.server.HTTPServer(('127.0.0.1',8790),h).serve_forever()"
+      ],
+      "port": 8790,
+      "url": "http://127.0.0.1:8790"
+    },
+    {
       "name": "static-preview",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8765"],
-      "port": 8765
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-I",
+        "-c",
+        "import http.server,functools,os; root='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/3b49e090-9182-44ee-adc4-42a95b51a779/scratchpad/preview'; port=int(os.environ.get('PORT') or 0); h=functools.partial(http.server.SimpleHTTPRequestHandler, directory=root); s=http.server.HTTPServer(('127.0.0.1',port),h); print('serving %s on http://127.0.0.1:%d'%(root,s.server_address[1]),flush=True); s.serve_forever()"
+      ],
+      "autoPort": true
     },
     {
       "name": "v5-design-system",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["C:\\Users\\Shah G\\Desktop\\Claude\\v5-design-system-ai-main\\node_modules\\vite\\bin\\vite.js", "C:\\Users\\Shah G\\Desktop\\Claude\\v5-design-system-ai-main", "--port", "5180", "--host", "127.0.0.1"],
+      "runtimeArgs": [
+        "C:\\Users\\Shah G\\Desktop\\Claude\\v5-design-system-ai-main\\node_modules\\vite\\bin\\vite.js",
+        "C:\\Users\\Shah G\\Desktop\\Claude\\v5-design-system-ai-main",
+        "--port",
+        "5180",
+        "--host",
+        "127.0.0.1"
+      ],
       "port": 5180
     }
   ]

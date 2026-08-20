@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Selection UX — 3 Directions</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --panel:#fff; --line:#e6e8ec; --line-strong:#d6d9df;
+    --text:#1f2430; --muted:#8a91a0; --muted-2:#6b7280;
+    --brand:#2f6bff; --brand-ink:#1b4fd6; --brand-050:#eef3ff; --brand-100:#dbe6ff;
+    --active-bg:#e7f8ef; --active-ink:#12a05c; --danger:#e5484d; --danger-050:#fdecec;
+    --tag-bg:#fff3d6; --tag-ink:#a9791f;
+    --shadow:0 10px 34px rgba(20,26,45,.18);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--text);font-size:13px;padding:26px 22px 80px}
+  h2.page{font-size:18px;margin:0 0 4px}
+  p.sub{color:var(--muted-2);margin:0 0 26px;max-width:720px;line-height:1.5}
+
+  .variant{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:26px;box-shadow:0 1px 2px rgba(20,26,45,.04)}
+  .vhead{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:12px}
+  .vnum{flex:0 0 26px;height:26px;border-radius:8px;background:var(--brand);color:#fff;font-weight:700;
+        display:flex;align-items:center;justify-content:center;font-size:13px}
+  .vhead h3{margin:0 0 3px;font-size:14.5px}
+  .vhead .pill{font-size:10.5px;font-weight:700;color:var(--active-ink);background:var(--active-bg);border-radius:20px;padding:2px 9px;margin-left:8px;vertical-align:middle}
+  .vhead p{margin:0;color:var(--muted-2);font-size:12px;line-height:1.5;max-width:760px}
+
+  /* toolbar */
+  .toolbar{display:flex;align-items:center;gap:10px;padding:12px 16px}
+  .search{position:relative;flex:1;max-width:280px}
+  .search input{width:100%;padding:8px 12px 8px 30px;border:1px solid var(--line-strong);border-radius:8px;font-size:12.5px}
+  .search svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--muted)}
+  .spacer{flex:1}
+  .btn{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:8px;border:1px solid var(--line-strong);
+       background:#fff;color:var(--text);font-size:12.5px;font-weight:550;cursor:pointer;white-space:nowrap;transition:.16s;-webkit-tap-highlight-color:transparent}
+  .btn:hover{background:#f7f8fa}
+  .btn:active{transform:scale(.97)}
+  .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+  .btn.primary:hover{background:var(--brand-ink)}
+  .btn.icon{padding:8px;width:34px;justify-content:center}
+
+  /* table */
+  table{width:100%;border-collapse:collapse}
+  th{font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:left;padding:9px 14px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fbfbfc}
+  td{padding:10px 14px;border-bottom:1px solid var(--line);font-size:12.5px;vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  tbody tr{transition:background .12s}
+  tbody tr:hover{background:#fafbfe}
+  .asset{display:flex;align-items:center;gap:9px}
+  .thumb{width:32px;height:22px;border-radius:5px;background:#e9edf3;display:flex;align-items:center;justify-content:center;font-size:11px}
+  .tag{display:inline-block;background:var(--tag-bg);color:var(--tag-ink);border-radius:5px;padding:2px 7px;font-size:10px;font-weight:600}
+  .swatch{display:inline-flex;align-items:center;gap:7px}
+  .swatch i{width:12px;height:12px;border-radius:4px;border:1px solid rgba(0,0,0,.12)}
+  .status{background:var(--active-bg);color:var(--active-ink);border-radius:6px;padding:3px 9px;font-size:10px;font-weight:650}
+  .muted{color:var(--muted-2)}
+  input[type=checkbox]{width:15px;height:15px;accent-color:var(--brand);cursor:pointer;margin:0}
+  tr.sel{background:var(--brand-050)!important}
+  .col-check{width:34px;padding-right:0}
+
+  /* ============ VARIANT 1 : hover reveal ============ */
+  .v1 .cbwrap{opacity:0;transition:opacity .13s}
+  .v1 tbody tr:hover .cbwrap{opacity:1}
+  .v1 tr.sel .cbwrap{opacity:1}
+  .v1 .th-check .cbwrap{opacity:0;transition:opacity .13s}
+  .v1 .card:hover .th-check .cbwrap,.v1.has-sel .th-check .cbwrap{opacity:1}
+  /* index number shows in place of checkbox until hover (optional nicety) */
+  .v1 .rownum{position:absolute;font-size:11px;color:var(--muted);pointer-events:none;transition:opacity .13s}
+  .v1 tbody tr:hover .rownum,.v1 tr.sel .rownum{opacity:0}
+  .v1 .cbcell{position:relative}
+
+  /* ============ VARIANT 2 : toolbar morph ============ */
+  .v2 .seltoolbar{display:none;align-items:center;gap:8px;padding:12px 16px;background:var(--brand-050);border-bottom:1px solid var(--brand-100)}
+  .v2.mode .seltoolbar{display:flex}
+  .v2.mode .normaltoolbar{display:none}
+  .v2 .seltoolbar .count{font-weight:700;color:var(--brand-ink)}
+  .v2 .seltoolbar .divider{width:1px;height:20px;background:var(--brand-100);margin:0 3px}
+  .v2 .seltoolbar .act{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:8px;cursor:pointer;font-weight:550;font-size:12.5px;color:var(--text);background:#fff;border:1px solid var(--line-strong)}
+  .v2 .seltoolbar .act:hover{background:#f7f8fa}
+  .v2 .seltoolbar .act.danger{color:var(--danger);border-color:transparent;background:transparent}
+  .v2 .seltoolbar .act.danger:hover{background:var(--danger-050)}
+  .v2 .seltoolbar .done{margin-left:auto;color:var(--brand-ink);font-weight:650;cursor:pointer;padding:7px 10px;border-radius:8px}
+  .v2 .seltoolbar .done:hover{background:var(--brand-100)}
+  .v2 .col-check{display:none}
+  .v2.mode .col-check{display:table-cell}
+
+  /* ============ VARIANT 3 : floating pill launcher ============ */
+  .v3 .col-check{display:none}
+  .v3.mode .col-check{display:table-cell}
+  .v3 .launcher{position:sticky;bottom:14px;display:flex;justify-content:center;pointer-events:none;margin-top:-2px}
+  .v3 .actionbar{display:inline-flex;align-items:center;gap:3px;background:#0b1b3b;color:#fff;border-radius:30px;
+                 box-shadow:var(--shadow);padding:6px 8px 6px 16px;pointer-events:auto;transform:translateY(8px);opacity:0;transition:.2s}
+  .v3.mode .actionbar{transform:translateY(0);opacity:1}
+  .v3 .actionbar .count{font-weight:650;font-size:12.5px;white-space:nowrap;padding-right:6px}
+  .v3 .actionbar .sep{width:1px;height:18px;background:rgba(255,255,255,.18);margin:0 4px}
+  .v3 .actionbar .act{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:20px;cursor:pointer;font-size:12.5px;font-weight:550;color:#dbe4ff}
+  .v3 .actionbar .act:hover{background:rgba(255,255,255,.12);color:#fff}
+  .v3 .actionbar .act.danger{color:#ff9a9d}
+  .v3 .actionbar .act.danger:hover{background:rgba(229,72,77,.22);color:#fff}
+  .v3 .actionbar .close{margin-left:2px;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:#aab6d6}
+  .v3 .actionbar .close:hover{background:rgba(255,255,255,.14);color:#fff}
+  .badge-blocked{font-size:8.5px;background:#fff3d6;color:#a9791f;border-radius:4px;padding:1px 5px;font-weight:700}
+
+  /* ============ VARIANT 4 : toggle switch ============ */
+  .switchwrap{display:inline-flex;align-items:center;gap:10px;padding:7px 13px;border:1px solid var(--line-strong);border-radius:8px;background:#fff;cursor:pointer;user-select:none;font-size:12.5px;font-weight:550;transition:background .16s,border-color .16s,color .16s;-webkit-tap-highlight-color:transparent}
+  .switchwrap:hover{background:#f7f8fa}
+  .switchwrap:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(47,107,255,.32)}
+  .switchwrap.on{background:var(--brand-050);border-color:#bcd0ff;color:var(--brand-ink)}
+  .switchwrap .switch{position:relative;width:34px;height:20px;border-radius:20px;background:#cfd4dd;transition:background .18s;flex:0 0 auto}
+  .switchwrap.on .switch{background:var(--brand)}
+  .switchwrap .knob{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .18s;box-shadow:0 1px 2px rgba(0,0,0,.28)}
+  .switchwrap.on .knob{transform:translateX(14px)}
+  .v4 .col-check{display:none}
+  .v4.mode .col-check{display:table-cell}
+  .v4 .launcher{position:sticky;bottom:14px;display:flex;justify-content:center;pointer-events:none;margin-top:-2px}
+  .v4 .actionbar{display:inline-flex;align-items:center;gap:3px;background:#0b1b3b;color:#fff;border-radius:30px;box-shadow:var(--shadow);padding:6px 14px;pointer-events:auto;transform:translateY(8px);opacity:0;transition:.2s}
+  .v4.mode .actionbar{transform:translateY(0);opacity:1}
+  .v4 .actionbar .count{font-weight:650;font-size:12.5px;white-space:nowrap;padding-right:6px}
+  .v4 .actionbar .sep{width:1px;height:18px;background:rgba(255,255,255,.18);margin:0 4px}
+  .v4 .actionbar .act{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:20px;cursor:pointer;font-size:12.5px;font-weight:550;color:#dbe4ff}
+  .v4 .actionbar .act:hover{background:rgba(255,255,255,.12);color:#fff}
+  .v4 .actionbar .act.danger{color:#ff9a9d}
+  .v4 .actionbar .act.danger:hover{background:rgba(229,72,77,.22);color:#fff}
+  @media (prefers-reduced-motion:reduce){.switchwrap,.switchwrap .switch,.switchwrap .knob,.v4 .actionbar{transition:none}}
+
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0b1b3b;color:#fff;padding:9px 15px;border-radius:9px;font-size:12.5px;opacity:0;transition:.2s;pointer-events:none;z-index:80}
+  .toast.show{opacity:1}
+  code{background:#eef0f3;padding:1px 5px;border-radius:4px;font-size:11px}
+</style>
+</head>
+<body>
+  <h2 class="page">Selection UX — three directions</h2>
+  <p class="sub">All three are opt-in (no permanent checkbox column) and carry the same guardrails. They differ in <b>how you turn selection on</b>. Hover a row, tick a box, and watch each one. Pick the feel you want and I'll make it the single canonical pattern.</p>
+
+  <!-- ============ VARIANT 1 ============ -->
+  <section class="variant v1" id="v1">
+    <div class="vhead">
+      <span class="vnum">1</span>
+      <div>
+        <h3>Hover-reveal — no button at all <span class="pill">Recommended</span></h3>
+        <p>There is no Select/Cancel button. Checkboxes are invisible until you hover a row, then fade in. Ticking one enters selection mode implicitly; the action bar appears. This is the Linear / Notion / Gmail pattern — zero chrome for the 90% who never bulk-edit, instant for those who do. Touch devices get a long-press fallback (not shown).</p>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="search"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><input placeholder="Search"></div>
+      <div class="spacer"></div>
+      <button class="btn">↧ Export</button>
+      <button class="btn primary">+ Add New Asset</button>
+    </div>
+    <div class="card">
+      <table>
+        <thead><tr>
+          <th class="col-check th-check"><span class="cbwrap"><input type="checkbox" onclick="v1All(this)"></span></th>
+          <th>Asset</th><th>Tags</th><th>VIN</th><th>Model</th><th>Colour</th><th>Assigned To</th><th>Status</th>
+        </tr></thead>
+        <tbody id="v1body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ VARIANT 2 ============ -->
+  <section class="variant v2" id="v2">
+    <div class="vhead">
+      <span class="vnum">2</span>
+      <div>
+        <h3>Toolbar morph — Gmail style</h3>
+        <p>A small <b>Select</b> icon-button sits in the toolbar. Clicking it slides the entire toolbar into a dedicated blue <b>selection toolbar</b> (count + actions + Done), and the checkbox column appears. The whole header changing colour is the strongest possible "you are in a different mode" signal — impossible to miss, no floating element.</p>
+      </div>
+    </div>
+    <div class="toolbar normaltoolbar">
+      <div class="search"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><input placeholder="Search"></div>
+      <div class="spacer"></div>
+      <button class="btn icon" title="Select rows" onclick="v2enter()" aria-label="Select rows">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </button>
+      <button class="btn">↧ Export</button>
+      <button class="btn primary">+ Add New Asset</button>
+    </div>
+    <div class="seltoolbar">
+      <span class="count" id="v2count">0 selected</span>
+      <span class="divider"></span>
+      <span class="act" onclick="toast('Assign tags')">🏷 Assign Tags</span>
+      <span class="act" onclick="toast('Set colour — needs bulk endpoint')">🎨 Set Colour <span class="badge-blocked">backend</span></span>
+      <span class="act danger" onclick="toast('Delete')">🗑 Delete</span>
+      <span class="done" onclick="v2exit()">Done</span>
+    </div>
+    <div class="card">
+      <table>
+        <thead><tr>
+          <th class="col-check"><input type="checkbox" onclick="v2All(this)"></th>
+          <th>Asset</th><th>Tags</th><th>VIN</th><th>Model</th><th>Colour</th><th>Assigned To</th><th>Status</th>
+        </tr></thead>
+        <tbody id="v2body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ VARIANT 3 ============ -->
+  <section class="variant v3" id="v3">
+    <div class="vhead">
+      <span class="vnum">3</span>
+      <div>
+        <h3>Refined floating bar — dark command pill</h3>
+        <p>Closest to your current build, but elevated. A <b>Select</b> icon-button reveals the checkboxes, and a single dark, rounded <b>command pill</b> floats up from the bottom with the count and actions. Feels like a focused mini-app while active; the ✕ dismisses it. Good if you want the table itself to stay visually untouched.</p>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="search"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><input placeholder="Search"></div>
+      <div class="spacer"></div>
+      <button class="btn icon" id="v3btn" title="Select rows" onclick="v3toggle()" aria-label="Select rows">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </button>
+      <button class="btn">↧ Export</button>
+      <button class="btn primary">+ Add New Asset</button>
+    </div>
+    <div class="card">
+      <table>
+        <thead><tr>
+          <th class="col-check"><input type="checkbox" onclick="v3All(this)"></th>
+          <th>Asset</th><th>Tags</th><th>VIN</th><th>Model</th><th>Colour</th><th>Assigned To</th><th>Status</th>
+        </tr></thead>
+        <tbody id="v3body"></tbody>
+      </table>
+    </div>
+    <div class="launcher">
+      <div class="actionbar">
+        <span class="count" id="v3count">0 selected</span>
+        <span class="sep"></span>
+        <span class="act" onclick="toast('Assign tags')">🏷 Tags</span>
+        <span class="act" onclick="toast('Set colour — needs bulk endpoint')">🎨 Colour <span class="badge-blocked">backend</span></span>
+        <span class="act danger" onclick="toast('Delete')">🗑 Delete</span>
+        <span class="close" onclick="v3toggle()" aria-label="Exit selection">✕</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VARIANT 4 ============ -->
+  <section class="variant v4" id="v4">
+    <div class="vhead">
+      <span class="vnum">4</span>
+      <div>
+        <h3>Toggle switch — persistent on/off</h3>
+        <p>A labelled <b>Bulk edit</b> switch in the toolbar. Flip it on and the checkbox column + action bar appear; the switch stays visibly "on" the whole time, so the mode is legible even when nothing is selected yet. The label names the mode's <i>purpose</i> (tags, colour, delete) rather than the verb "Select". Keyboard-accessible (<code>role="switch"</code>, Space/Enter). Caveat: switches usually read as a persistent <i>setting</i> rather than a transient task — see if it feels right here.</p>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="search"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><input placeholder="Search"></div>
+      <div class="spacer"></div>
+      <div class="switchwrap" id="v4sw" role="switch" aria-checked="false" tabindex="0"
+           aria-label="Bulk edit mode" onclick="v4toggle()" onkeydown="v4key(event)">
+        <span>Bulk edit</span>
+        <span class="switch"><span class="knob"></span></span>
+      </div>
+      <button class="btn">↧ Export</button>
+      <button class="btn primary">+ Add New Asset</button>
+    </div>
+    <div class="card">
+      <table>
+        <thead><tr>
+          <th class="col-check"><input type="checkbox" onclick="v4All(this)"></th>
+          <th>Asset</th><th>Tags</th><th>VIN</th><th>Model</th><th>Colour</th><th>Assigned To</th><th>Status</th>
+        </tr></thead>
+        <tbody id="v4body"></tbody>
+      </table>
+    </div>
+    <div class="launcher">
+      <div class="actionbar">
+        <span class="count" id="v4count">0 selected</span>
+        <span class="sep"></span>
+        <span class="act" onclick="toast('Assign tags')">🏷 Tags</span>
+        <span class="act" onclick="toast('Set colour — needs bulk endpoint')">🎨 Colour <span class="badge-blocked">backend</span></span>
+        <span class="act danger" onclick="toast('Delete')">🗑 Delete</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+  const COLORS={Blue:'#2f6bff',Black:'#1f2430',Purple:'#7c4dff',Brown:'#8a5a2b',Yellow:'#f4c020',Green:'#20b060'};
+  const DATA=[
+    {n:'Z 1234',vin:'1HGCM82633A',model:2023,color:'Blue',who:'Ronald Richards'},
+    {n:'Z 1234',vin:'7FMDK3GC4C',model:2022,color:'Black',who:'Robert Fox'},
+    {n:'Z 1234',vin:'6TIBFIFK0H',model:2021,color:'Purple',who:'Wade Warren'},
+    {n:'Z 1234',vin:'5N1AZ2MH1F',model:2020,color:'Brown',who:'Devon Lane'},
+    {n:'Z 1234',vin:'4T1BF1FK0H',model:2023,color:'Yellow',who:'Arlene McCoy'},
+    {n:'Z 1234',vin:'3N1AB7AP7Y',model:2019,color:'Green',who:'Jacob Jones'},
+  ];
+  const rowHTML=(d,i,checkCell)=>`
+    ${checkCell}
+    <td><div class="asset"><span class="thumb">🚗</span>${d.n}</div></td>
+    <td><span class="tag">TAG</span> <span class="muted">+2</span></td>
+    <td class="muted">${d.vin}123456</td>
+    <td>${d.model}</td>
+    <td><span class="swatch"><i style="background:${COLORS[d.color]}"></i>${d.color}</span></td>
+    <td>${d.who}</td>
+    <td><span class="status">ACTIVE</span></td>`;
+
+  // ---------- Variant 1 : hover reveal ----------
+  const s1=new Set();
+  function v1render(){
+    const b=document.getElementById('v1body');b.innerHTML='';
+    DATA.forEach((d,i)=>{
+      const on=s1.has(i);const tr=document.createElement('tr');if(on)tr.className='sel';
+      tr.innerHTML=rowHTML(d,i,`<td class="col-check cbcell"><span class="rownum">${i+1}</span><span class="cbwrap"><input type="checkbox" ${on?'checked':''} onclick="v1row(${i},this)"></span></td>`);
+      b.appendChild(tr);
+    });
+    document.getElementById('v1').classList.toggle('has-sel',s1.size>0);
+  }
+  function v1row(i,el){el.checked?s1.add(i):s1.delete(i);v1render();}
+  function v1All(el){el.checked?DATA.forEach((_,i)=>s1.add(i)):s1.clear();v1render();}
+
+  // ---------- Variant 2 : toolbar morph ----------
+  const s2=new Set();
+  function v2render(){
+    const b=document.getElementById('v2body');b.innerHTML='';
+    DATA.forEach((d,i)=>{
+      const on=s2.has(i);const tr=document.createElement('tr');if(on)tr.className='sel';
+      tr.innerHTML=rowHTML(d,i,`<td class="col-check"><input type="checkbox" ${on?'checked':''} onclick="v2row(${i},this)"></td>`);
+      b.appendChild(tr);
+    });
+    document.getElementById('v2count').textContent=`${s2.size} selected`;
+  }
+  function v2enter(){document.getElementById('v2').classList.add('mode');v2render();}
+  function v2exit(){document.getElementById('v2').classList.remove('mode');s2.clear();v2render();}
+  function v2row(i,el){el.checked?s2.add(i):s2.delete(i);v2render();}
+  function v2All(el){el.checked?DATA.forEach((_,i)=>s2.add(i)):s2.clear();v2render();}
+
+  // ---------- Variant 3 : floating pill ----------
+  const s3=new Set();
+  function v3render(){
+    const b=document.getElementById('v3body');b.innerHTML='';
+    DATA.forEach((d,i)=>{
+      const on=s3.has(i);const tr=document.createElement('tr');if(on)tr.className='sel';
+      tr.innerHTML=rowHTML(d,i,`<td class="col-check"><input type="checkbox" ${on?'checked':''} onclick="v3row(${i},this)"></td>`);
+      b.appendChild(tr);
+    });
+    document.getElementById('v3count').textContent=`${s3.size} selected`;
+  }
+  function v3toggle(){
+    const v=document.getElementById('v3');
+    if(v.classList.contains('mode')){v.classList.remove('mode');s3.clear();}
+    else v.classList.add('mode');
+    v3render();
+  }
+  function v3row(i,el){el.checked?s3.add(i):s3.delete(i);v3render();}
+  function v3All(el){el.checked?DATA.forEach((_,i)=>s3.add(i)):s3.clear();v3render();}
+
+  // ---------- Variant 4 : toggle switch ----------
+  const s4=new Set();
+  function v4render(){
+    const b=document.getElementById('v4body');b.innerHTML='';
+    DATA.forEach((d,i)=>{
+      const on=s4.has(i);const tr=document.createElement('tr');if(on)tr.className='sel';
+      tr.innerHTML=rowHTML(d,i,`<td class="col-check"><input type="checkbox" ${on?'checked':''} onclick="v4row(${i},this)"></td>`);
+      b.appendChild(tr);
+    });
+    document.getElementById('v4count').textContent=`${s4.size} selected`;
+  }
+  function v4toggle(){
+    const v=document.getElementById('v4'),sw=document.getElementById('v4sw');
+    const on=v.classList.toggle('mode');
+    sw.classList.toggle('on',on);
+    sw.setAttribute('aria-checked',on?'true':'false');
+    if(!on)s4.clear();
+    v4render();
+  }
+  function v4key(e){if(e.key===' '||e.key==='Enter'){e.preventDefault();v4toggle();}}
+  function v4row(i,el){el.checked?s4.add(i):s4.delete(i);v4render();}
+  function v4All(el){el.checked?DATA.forEach((_,i)=>s4.add(i)):s4.clear();v4render();}
+
+  // ---------- shared ----------
+  let tt;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2200);}
+
+  v1render();v2render();v3render();v4render();
+</script>
+</body>
+</html>

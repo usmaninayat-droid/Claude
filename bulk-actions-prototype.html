@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bulk Actions — Base Table Prototype</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --panel:#ffffff; --line:#e6e8ec; --line-strong:#d6d9df;
+    --text:#1f2430; --muted:#8a91a0; --muted-2:#6b7280;
+    --brand:#2f6bff; --brand-ink:#1b4fd6; --brand-050:#eef3ff;
+    --active-bg:#e7f8ef; --active-ink:#12a05c;
+    --danger:#e5484d; --danger-050:#fdecec;
+    --tag-bg:#fff3d6; --tag-ink:#a9791f;
+    --shadow:0 8px 30px rgba(20,26,45,.16);
+    --radius:10px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--text); font-size:13px; line-height:1.4;
+  }
+
+  /* ---------- shell ---------- */
+  .app{display:flex; min-height:100vh}
+  .rail{width:52px; background:#0b1b3b; flex:0 0 52px; display:flex; flex-direction:column;
+        align-items:center; gap:18px; padding:14px 0}
+  .rail .logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#4d8bff,#8a5cff)}
+  .rail .dot{width:20px;height:20px;border-radius:6px;background:rgba(255,255,255,.14)}
+  .main{flex:1; min-width:0; display:flex; flex-direction:column}
+
+  .topbar{display:flex;align-items:center;gap:14px;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--panel)}
+  .topbar h1{font-size:15px;margin:0;font-weight:650}
+  .tab{font-size:13px;color:var(--muted-2);padding:5px 10px;border-radius:7px;background:#f0f2f5}
+
+  .content{padding:16px 20px;flex:1}
+
+  /* ---------- toolbar ---------- */
+  .toolbar{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .search{flex:1;max-width:340px;position:relative}
+  .search input{width:100%;padding:9px 12px 9px 32px;border:1px solid var(--line-strong);border-radius:8px;font-size:13px;background:#fff}
+  .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted)}
+  .spacer{flex:1}
+  .btn{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:8px;border:1px solid var(--line-strong);
+       background:#fff;color:var(--text);font-size:13px;font-weight:550;cursor:pointer;white-space:nowrap}
+  .btn:hover{background:#f7f8fa}
+  .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+  .btn.primary:hover{background:var(--brand-ink)}
+  .btn.ghost-danger{color:var(--danger);border-color:transparent;background:transparent}
+
+  /* ---------- select / cancel toggle ---------- */
+  .select-toggle{position:relative;transition:background .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease;-webkit-tap-highlight-color:transparent}
+  .select-toggle:hover{border-color:#b9cbff;color:var(--brand-ink);background:#fafbff}
+  .select-toggle:active{transform:scale(.97)}
+  .select-toggle:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(47,107,255,.32)}
+  .select-toggle .ic{display:inline-flex;align-items:center}
+  .select-toggle .ic svg{display:block}
+  .select-toggle .lbl{display:inline-block;min-width:44px;text-align:left}
+  /* default view: show Select, hide Cancel */
+  .select-toggle .ic-cancel,.select-toggle .lbl-cancel{display:none}
+  /* selection mode: active pill — tinted, brand border, X icon, "Cancel" */
+  body.select-mode .select-toggle{background:var(--brand-050);border-color:#bcd0ff;color:var(--brand-ink);font-weight:600}
+  body.select-mode .select-toggle:hover{background:#e1ebff;border-color:#9bbcff}
+  body.select-mode .select-toggle .ic-select,body.select-mode .select-toggle .lbl-select{display:none}
+  body.select-mode .select-toggle .ic-cancel{display:inline-flex}
+  body.select-mode .select-toggle .lbl-cancel{display:inline-block}
+  @media (prefers-reduced-motion:reduce){.select-toggle{transition:none}.select-toggle:active{transform:none}}
+  .filter-chip{display:inline-flex;align-items:center;gap:6px}
+  select.filter{padding:9px 10px;border:1px solid var(--line-strong);border-radius:8px;font-size:13px;background:#fff;cursor:pointer}
+
+  /* ---------- table ---------- */
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  table{width:100%;border-collapse:collapse}
+  thead th{font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
+           font-weight:600;text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);background:#fbfbfc}
+  tbody td{padding:11px 14px;border-bottom:1px solid var(--line);font-size:12.5px;vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#fafbfe}
+  .asset{display:flex;align-items:center;gap:9px}
+  .thumb{width:34px;height:24px;border-radius:5px;background:#e9edf3;display:flex;align-items:center;justify-content:center;font-size:12px}
+  .tag{display:inline-block;background:var(--tag-bg);color:var(--tag-ink);border-radius:5px;padding:2px 7px;font-size:10.5px;font-weight:600}
+  .tag-more{color:var(--muted);font-size:11px;margin-left:4px}
+  .swatch{display:inline-flex;align-items:center;gap:7px}
+  .swatch i{width:13px;height:13px;border-radius:4px;display:inline-block;border:1px solid rgba(0,0,0,.12)}
+  .assignee{display:flex;align-items:center;gap:7px}
+  .avatar{width:22px;height:22px;border-radius:50%;background:#cdd6e6;display:inline-flex;align-items:center;justify-content:center;font-size:10px;color:#3a4356;font-weight:600}
+  .status{background:var(--active-bg);color:var(--active-ink);border-radius:6px;padding:3px 9px;font-size:10.5px;font-weight:650}
+  .muted{color:var(--muted-2)}
+
+  /* ---------- selection mode ---------- */
+  .col-check{width:20px;padding-left:14px;padding-right:0}
+  /* checkbox column hidden by default (opt-in) */
+  body:not(.select-mode) .col-check{display:none}
+  input[type=checkbox]{width:15px;height:15px;accent-color:var(--brand);cursor:pointer;margin:0}
+  tr.row-selected{background:var(--brand-050)!important}
+
+  /* "select all matching filter" banner */
+  .selbanner{display:none;align-items:center;justify-content:center;gap:8px;
+             background:var(--brand-050);color:var(--brand-ink);border-bottom:1px solid #d8e3ff;
+             padding:8px 14px;font-size:12px}
+  body.select-mode .selbanner.show{display:flex}
+  .selbanner a{color:var(--brand-ink);font-weight:650;cursor:pointer;text-decoration:underline}
+
+  /* ---------- floating action bar ---------- */
+  .actionbar{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);
+             display:flex;align-items:center;gap:4px;background:#fff;border:1px solid var(--line-strong);
+             border-radius:12px;box-shadow:var(--shadow);padding:8px 10px;opacity:0;pointer-events:none;transition:.18s}
+  .actionbar.show{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+  .actionbar .count{font-weight:650;padding:0 10px;white-space:nowrap}
+  .actionbar .sep{width:1px;height:22px;background:var(--line);margin:0 2px}
+  .actionbar .act{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:8px;cursor:pointer;font-weight:550;font-size:12.5px}
+  .actionbar .act:hover{background:#f2f4f8}
+  .actionbar .act.danger{color:var(--danger)}
+  .actionbar .act.danger:hover{background:var(--danger-050)}
+  .actionbar .act.disabled{opacity:.45;cursor:not-allowed}
+  .actionbar .close{margin-left:2px;color:var(--muted);cursor:pointer;padding:6px 8px;border-radius:8px}
+  .actionbar .close:hover{background:#f2f4f8}
+  .badge-blocked{font-size:9px;background:#fff3d6;color:#a9791f;border-radius:4px;padding:1px 5px;margin-left:5px;font-weight:700;vertical-align:middle}
+
+  /* ---------- toast ---------- */
+  .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#0b1b3b;color:#fff;
+         padding:10px 16px;border-radius:9px;font-size:12.5px;opacity:0;transition:.2s;pointer-events:none;z-index:50}
+  .toast.show{opacity:1}
+
+  /* ---------- popover (assign tags / set colour) ---------- */
+  .backdrop{position:fixed;inset:0;background:rgba(15,20,35,.28);display:none;z-index:60}
+  .backdrop.show{display:block}
+  .pop{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;border-radius:14px;
+       box-shadow:var(--shadow);width:340px;padding:18px;z-index:61;display:none}
+  .pop.show{display:block}
+  .pop h3{margin:0 0 4px;font-size:14px}
+  .pop p{margin:0 0 14px;color:var(--muted-2);font-size:12px}
+  .taglist{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+  .tagpick{border:1px solid var(--line-strong);border-radius:20px;padding:6px 12px;cursor:pointer;font-size:12px;user-select:none}
+  .tagpick.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  .colorgrid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+  .colorpick{width:30px;height:30px;border-radius:8px;cursor:pointer;border:2px solid transparent}
+  .colorpick.on{border-color:#0b1b3b;box-shadow:0 0 0 2px #fff inset}
+  .pop-actions{display:flex;justify-content:flex-end;gap:8px}
+  .note{font-size:11px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="rail">
+    <div class="logo"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </nav>
+
+  <div class="main">
+    <div class="topbar">
+      <h1>Vehicle Management</h1>
+      <span class="tab">≣ List View</span>
+    </div>
+
+    <div class="content">
+      <!-- toolbar -->
+      <div class="toolbar">
+        <div class="search">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+          <input id="search" type="text" placeholder="Search anything here" />
+        </div>
+
+        <div class="filter-chip">
+          <select class="filter" id="filterColor">
+            <option value="">All colours</option>
+            <option>Blue</option><option>Black</option><option>Purple</option>
+            <option>Brown</option><option>Yellow</option><option>Green</option>
+          </select>
+        </div>
+
+        <div class="spacer"></div>
+
+        <!-- OPT-IN trigger -->
+        <button class="btn select-toggle" id="selectBtn" onclick="toggleSelectMode()"
+                aria-pressed="false" aria-label="Turn on selection mode" title="Select rows for bulk actions">
+          <span class="ic ic-select" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </span>
+          <span class="ic ic-cancel" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </span>
+          <span class="lbl lbl-select">Select</span>
+          <span class="lbl lbl-cancel">Cancel</span>
+        </button>
+
+        <button class="btn">↧ Export</button>
+        <button class="btn primary">+ Add New Asset</button>
+      </div>
+
+      <!-- table -->
+      <div class="card">
+        <div class="selbanner" id="selbanner">
+          <span id="selbannerText">All 16 rows on this screen are selected.</span>
+          <a id="selectAllMatching" onclick="selectAllMatching()">Select all matching this filter</a>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th class="col-check"><input type="checkbox" id="checkAll" onclick="toggleAll(this)"></th>
+              <th>Asset Name</th><th>Tags</th><th>VIN Number</th><th>Asset Type</th>
+              <th>Make</th><th>Model</th><th>Colour</th><th>Fuel Type</th>
+              <th>Assigned To</th><th>Linked Devices</th><th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"><!-- rows injected --></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- floating action bar -->
+<div class="actionbar" id="actionbar">
+  <span class="count" id="count">0 Selected</span>
+  <span class="sep"></span>
+  <span class="act" onclick="openTags()">🏷 Assign Tags</span>
+  <span class="act" onclick="openColor()">🎨 Set Colour <span class="badge-blocked">backend pending</span></span>
+  <span class="act danger" onclick="doDelete()">🗑 Delete</span>
+  <span class="close" onclick="exitSelectMode()">✕</span>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- assign tags popover -->
+<div class="backdrop" id="backdrop" onclick="closePop()"></div>
+<div class="pop" id="popTags">
+  <h3>Assign tags</h3>
+  <p id="popTagsSub">Applying to selected rows</p>
+  <div class="taglist" id="taglist"></div>
+  <div class="pop-actions">
+    <button class="btn" onclick="closePop()">Cancel</button>
+    <button class="btn primary" onclick="applyTags()">Apply</button>
+  </div>
+  <div class="note">Single-select categories (e.g. Region) auto-remove the sibling tag first, and the un-assign call is verified before the new tag is written.</div>
+</div>
+
+<!-- set colour popover -->
+<div class="pop" id="popColor">
+  <h3>Set colour</h3>
+  <p id="popColorSub">Applying to selected rows</p>
+  <div class="colorgrid" id="colorgrid"></div>
+  <div class="pop-actions">
+    <button class="btn" onclick="closePop()">Cancel</button>
+    <button class="btn primary" onclick="applyColor()">Apply</button>
+  </div>
+  <div class="note">⚠ Demo only. Real bulk-colour needs a new backend endpoint (<code>update_multiple {ids, fields}</code>). Today this would be ~1 request per row.</div>
+</div>
+
+<script>
+  // ---------- data ----------
+  const COLORS = {Blue:'#2f6bff',Black:'#1f2430',Purple:'#7c4dff',Brown:'#8a5a2b',Yellow:'#f4c020',Green:'#20b060',Grey:'#9aa2b1'};
+  const NAMES = ['Ronald Richards','Robert Fox','Wade Warren','Devon Lane','Arlene McCoy','Jacob Jones','Eleanor Pena','Floyd Miles','Kathryn Murphy','Annette Black','Albert Flores','Theresa Webb','Esther Howard','Kristin Watson','Ralph Edwards','Leslie Alexander'];
+  const rows = NAMES.map((n,i)=>{
+    const cKeys=Object.keys(COLORS); const c=cKeys[i%cKeys.length];
+    return {id:i+1, name:'Z 1234', vin:(['1HGCM82633','7FMDK3GC4','6TIBFIFK0','5N1AZ2MH1','4T1BF1FK0','3N1AB7AP7'][i%6])+'A123456',
+      type:'Car', make:'Civic', model:2019+(i%5), color:c, fuel:(i%2?'Electric':'Petrol'),
+      assignee:n, devices:3, tags:2+(i%2), region:(i%2?'North':'South')};
+  });
+
+  const state = { selected:new Set(), allMatching:false, tagDraft:new Set(), colorDraft:null, tagTarget:0 };
+  const AVAIL_TAGS = ['Fleet A','Fleet B','Priority','Maintenance','North','South'];
+
+  // ---------- render ----------
+  function visibleRows(){
+    const q=document.getElementById('search').value.trim().toLowerCase();
+    const cf=document.getElementById('filterColor').value;
+    return rows.filter(r=>{
+      const okQ=!q || (r.name+r.vin+r.assignee+r.make).toLowerCase().includes(q);
+      const okC=!cf || r.color===cf;
+      return okQ && okC;
+    });
+  }
+  function render(){
+    const tb=document.getElementById('tbody'); tb.innerHTML='';
+    const vis=visibleRows();
+    vis.forEach(r=>{
+      const sel=state.selected.has(r.id);
+      const tr=document.createElement('tr');
+      if(sel) tr.className='row-selected';
+      tr.innerHTML=`
+        <td class="col-check"><input type="checkbox" ${sel?'checked':''} onclick="toggleRow(${r.id},this)"></td>
+        <td><div class="asset"><span class="thumb">🚗</span><span>${r.name}</span></div></td>
+        <td><span class="tag">TAG</span><span class="tag-more">+${r.tags}</span></td>
+        <td class="muted">${r.vin}</td>
+        <td>${r.type}</td><td>${r.make}</td><td>${r.model}</td>
+        <td><span class="swatch"><i style="background:${COLORS[r.color]}"></i>${r.color}</span></td>
+        <td>${r.fuel}</td>
+        <td><div class="assignee"><span class="avatar">${r.assignee.split(' ').map(x=>x[0]).join('')}</span>${r.assignee}</div></td>
+        <td class="muted">📶 ${r.devices}</td>
+        <td><span class="status">ACTIVE</span></td>`;
+      tb.appendChild(tr);
+    });
+    // sync select-all + banner
+    const allVisSelected = vis.length>0 && vis.every(r=>state.selected.has(r.id));
+    document.getElementById('checkAll').checked = allVisSelected;
+    const banner=document.getElementById('selbanner');
+    banner.classList.toggle('show', document.body.classList.contains('select-mode') && allVisSelected && !state.allMatching);
+    if(state.allMatching){
+      document.getElementById('selbannerText').textContent = `All ${state.selected.size} rows matching this filter are selected.`;
+      document.getElementById('selectAllMatching').style.display='none';
+      banner.classList.toggle('show', true);
+    } else {
+      document.getElementById('selbannerText').textContent = `All ${vis.length} rows on this screen are selected.`;
+      document.getElementById('selectAllMatching').style.display='';
+    }
+    updateBar();
+  }
+
+  // ---------- selection mode (opt-in) ----------
+  function toggleSelectMode(){
+    document.body.classList.contains('select-mode') ? exitSelectMode() : enterSelectMode();
+  }
+  function enterSelectMode(){
+    document.body.classList.add('select-mode');
+    const b=document.getElementById('selectBtn');
+    b.setAttribute('aria-pressed','true');
+    b.setAttribute('aria-label','Exit selection mode');
+    render();
+  }
+  function exitSelectMode(){
+    document.body.classList.remove('select-mode');
+    const b=document.getElementById('selectBtn');
+    b.setAttribute('aria-pressed','false');
+    b.setAttribute('aria-label','Turn on selection mode');
+    state.selected.clear(); state.allMatching=false;
+    render();
+  }
+
+  // ---------- selection ----------
+  function toggleRow(id,el){
+    state.allMatching=false;
+    el.checked ? state.selected.add(id) : state.selected.delete(id);
+    render();
+  }
+  // GUARDRAIL: select-all ticks VISIBLE rows only, never the whole dataset
+  function toggleAll(el){
+    state.allMatching=false;
+    const vis=visibleRows();
+    if(el.checked) vis.forEach(r=>state.selected.add(r.id));
+    else vis.forEach(r=>state.selected.delete(r.id));
+    render();
+  }
+  // GUARDRAIL: explicit opt-in to hit everything matching the filter
+  function selectAllMatching(){
+    state.allMatching=true;
+    visibleRows().forEach(r=>state.selected.add(r.id));
+    render();
+  }
+
+  // GUARDRAIL: prune selection when the filter/search changes
+  function pruneToVisible(){
+    const visIds=new Set(visibleRows().map(r=>r.id));
+    [...state.selected].forEach(id=>{ if(!visIds.has(id)) state.selected.delete(id); });
+    state.allMatching=false;
+  }
+  document.getElementById('search').addEventListener('input',()=>{ pruneToVisible(); render(); });
+  document.getElementById('filterColor').addEventListener('change',()=>{ pruneToVisible(); render(); });
+
+  // ---------- action bar ----------
+  function updateBar(){
+    const n=state.selected.size;
+    const bar=document.getElementById('actionbar');
+    bar.classList.toggle('show', document.body.classList.contains('select-mode') && n>0);
+    document.getElementById('count').textContent=`${n} Selected`;
+  }
+
+  // ---------- tags popover ----------
+  function openTags(){
+    state.tagDraft=new Set(); state.tagTarget=state.selected.size;
+    const list=document.getElementById('taglist'); list.innerHTML='';
+    AVAIL_TAGS.forEach(t=>{
+      const el=document.createElement('span'); el.className='tagpick'; el.textContent=t;
+      el.onclick=()=>{ el.classList.toggle('on'); el.classList.contains('on')?state.tagDraft.add(t):state.tagDraft.delete(t); };
+      list.appendChild(el);
+    });
+    document.getElementById('popTagsSub').textContent=`Applying to ${state.tagTarget} selected row${state.tagTarget>1?'s':''}`;
+    showPop('popTags');
+  }
+  function applyTags(){
+    closePop();
+    const tags=[...state.tagDraft];
+    toast(tags.length ? `Assigned ${tags.join(', ')} to ${state.tagTarget} rows` : `No tags chosen`);
+  }
+
+  // ---------- colour popover ----------
+  function openColor(){
+    state.colorDraft=null;
+    const grid=document.getElementById('colorgrid'); grid.innerHTML='';
+    Object.entries(COLORS).forEach(([name,hex])=>{
+      const el=document.createElement('span'); el.className='colorpick'; el.style.background=hex; el.title=name;
+      el.onclick=()=>{ grid.querySelectorAll('.colorpick').forEach(x=>x.classList.remove('on')); el.classList.add('on'); state.colorDraft=name; };
+      grid.appendChild(el);
+    });
+    document.getElementById('popColorSub').textContent=`Applying to ${state.selected.size} selected rows`;
+    showPop('popColor');
+  }
+  function applyColor(){
+    if(!state.colorDraft){ toast('Pick a colour first'); return; }
+    const n=state.selected.size;
+    rows.forEach(r=>{ if(state.selected.has(r.id)) r.color=state.colorDraft; });
+    closePop(); render();
+    toast(`Set colour ${state.colorDraft} on ${n} rows  (demo — needs bulk endpoint)`);
+  }
+
+  function doDelete(){
+    const n=state.selected.size;
+    if(!confirm(`Delete ${n} selected asset${n>1?'s':''}? (demo)`)) return;
+    toast(`Deleted ${n} rows (demo)`);
+  }
+
+  // ---------- helpers ----------
+  function showPop(id){ document.getElementById('backdrop').classList.add('show'); document.getElementById(id).classList.add('show'); }
+  function closePop(){ document.getElementById('backdrop').classList.remove('show'); document.querySelectorAll('.pop').forEach(p=>p.classList.remove('show')); }
+  let toastT;
+  function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),2600); }
+
+  render();
+</script>
+</body>
+</html>

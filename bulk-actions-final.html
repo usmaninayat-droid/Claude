@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bulk Actions — Canonical Pattern</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --panel:#fff; --line:#e6e8ec; --line-strong:#d6d9df;
+    --text:#1f2430; --muted:#8a91a0; --muted-2:#6b7280;
+    --brand:#2f6bff; --brand-ink:#1b4fd6; --brand-050:#eef3ff; --brand-100:#dbe6ff;
+    --active-bg:#e7f8ef; --active-ink:#12a05c; --danger:#e5484d; --danger-050:#fdecec;
+    --tag-bg:#fff3d6; --tag-ink:#a9791f; --shadow:0 12px 36px rgba(20,26,45,.2);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--text);font-size:13px}
+  .app{display:flex;min-height:100vh}
+  .rail{width:52px;background:#0b1b3b;flex:0 0 52px;display:flex;flex-direction:column;align-items:center;gap:16px;padding:14px 0}
+  .rail .logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#4d8bff,#8a5cff)}
+  .rail .dot{width:20px;height:20px;border-radius:6px;background:rgba(255,255,255,.14)}
+  .main{flex:1;min-width:0;display:flex;flex-direction:column}
+  .topbar{display:flex;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--panel)}
+  .topbar h1{font-size:15px;margin:0;font-weight:650}
+  .tab{font-size:12.5px;color:var(--muted-2);padding:5px 10px;border-radius:7px;background:#f0f2f5}
+  .content{padding:16px 20px 120px;flex:1}
+
+  .toolbar{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .search{position:relative;flex:1;max-width:320px}
+  .search input{width:100%;padding:9px 12px 9px 32px;border:1px solid var(--line-strong);border-radius:8px;font-size:13px}
+  .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted)}
+  .filter{padding:9px 10px;border:1px solid var(--line-strong);border-radius:8px;font-size:13px;background:#fff;cursor:pointer}
+  .spacer{flex:1}
+  .btn{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:8px;border:1px solid var(--line-strong);
+       background:#fff;color:var(--text);font-size:13px;font-weight:550;cursor:pointer;white-space:nowrap;transition:.15s}
+  .btn:hover{background:#f7f8fa}
+  .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+  .btn.primary:hover{background:var(--brand-ink)}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  table{width:100%;border-collapse:collapse}
+  thead th{font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);background:#fbfbfc}
+  tbody td{padding:11px 14px;border-bottom:1px solid var(--line);font-size:12.5px;vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#fafbfe}
+  tr.sel{background:var(--brand-050)!important}
+  .asset{display:flex;align-items:center;gap:9px}
+  .thumb{width:34px;height:24px;border-radius:5px;background:#e9edf3;display:flex;align-items:center;justify-content:center;font-size:12px}
+  .tag{display:inline-block;background:var(--tag-bg);color:var(--tag-ink);border-radius:5px;padding:2px 7px;font-size:10.5px;font-weight:600}
+  .tag-more{color:var(--muted);font-size:11px;margin-left:4px}
+  .swatch{display:inline-flex;align-items:center;gap:7px}
+  .swatch i{width:13px;height:13px;border-radius:4px;border:1px solid rgba(0,0,0,.12)}
+  .assignee{display:flex;align-items:center;gap:7px}
+  .avatar{width:22px;height:22px;border-radius:50%;background:#cdd6e6;display:inline-flex;align-items:center;justify-content:center;font-size:10px;color:#3a4356;font-weight:600}
+  .status{background:var(--active-bg);color:var(--active-ink);border-radius:6px;padding:3px 9px;font-size:10.5px;font-weight:650}
+  .muted{color:var(--muted-2)}
+  input[type=checkbox]{width:16px;height:16px;accent-color:var(--brand);cursor:pointer;margin:0}
+
+  /* ---- selection column: hover-reveal on desktop ---- */
+  .col-check{width:36px;padding-right:0}
+  .cbwrap{display:inline-flex;opacity:0;transition:opacity .12s}
+  tbody tr:hover .cbwrap,tr.sel .cbwrap{opacity:1}
+  /* header select-all always visible */
+  thead .cbwrap{opacity:.55}
+  thead .cbwrap:hover{opacity:1}
+  /* index number where checkbox will appear (desktop nicety) */
+  .cbcell{position:relative}
+  .rownum{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--muted);pointer-events:none;transition:opacity .12s}
+  tbody tr:hover .rownum,tr.sel .rownum{opacity:0}
+
+  /* ---- TOUCH / TABLET: no hover — checkboxes persistent ---- */
+  @media (hover:none),(pointer:coarse){
+    .cbwrap{opacity:1!important}
+    thead .cbwrap{opacity:1!important}
+    .rownum{display:none}
+    input[type=checkbox]{width:20px;height:20px}   /* 44px-friendly target */
+    .col-check{width:44px}
+  }
+
+  /* ---- two-tier select-all banner (Gmail / Polaris) ---- */
+  .selbanner{display:none;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+             background:var(--brand-050);color:var(--brand-ink);border-bottom:1px solid var(--brand-100);padding:9px 14px;font-size:12.5px}
+  .selbanner.show{display:flex}
+  .selbanner a{color:var(--brand-ink);font-weight:700;cursor:pointer;text-decoration:underline}
+  .selbanner .clear{color:var(--muted-2);text-decoration:none;font-weight:600}
+
+  /* ---- contextual floating bulk bar ---- */
+  .barwrap{position:fixed;left:0;right:0;bottom:24px;display:flex;justify-content:center;pointer-events:none;padding-left:52px}
+  .bulkbar{display:inline-flex;align-items:center;gap:3px;background:#0b1b3b;color:#fff;border-radius:32px;box-shadow:var(--shadow);
+           padding:7px 9px 7px 18px;pointer-events:auto;transform:translateY(20px);opacity:0;transition:.2s}
+  .bulkbar.show{transform:translateY(0);opacity:1}
+  .bulkbar .count{font-weight:650;font-size:13px;white-space:nowrap;padding-right:8px}
+  .bulkbar .sep{width:1px;height:20px;background:rgba(255,255,255,.2);margin:0 5px}
+  .bulkbar .act{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:22px;cursor:pointer;font-size:13px;font-weight:550;color:#dbe4ff;transition:.12s}
+  .bulkbar .act:hover{background:rgba(255,255,255,.13);color:#fff}
+  .bulkbar .act.danger{color:#ff9a9d}
+  .bulkbar .act.danger:hover{background:rgba(229,72,77,.24);color:#fff}
+  .bulkbar .act.disabled{opacity:.4;cursor:not-allowed}
+  .bulkbar .clear{margin-left:4px;width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:#aab6d6}
+  .bulkbar .clear:hover{background:rgba(255,255,255,.14);color:#fff}
+  .badge-blocked{font-size:9px;background:#fff3d6;color:#a9791f;border-radius:4px;padding:1px 5px;font-weight:700}
+  .bulkbar svg{width:15px;height:15px}
+
+  .toast{position:fixed;left:50%;bottom:86px;transform:translateX(-50%);background:#0b1b3b;color:#fff;padding:10px 14px 10px 16px;border-radius:10px;font-size:12.5px;display:flex;align-items:center;gap:14px;opacity:0;transition:.2s;pointer-events:none;z-index:90;box-shadow:var(--shadow)}
+  .toast.show{opacity:1;pointer-events:auto}
+  .toast a{color:#9dc0ff;font-weight:700;cursor:pointer}
+
+  .backdrop{position:fixed;inset:0;background:rgba(15,20,35,.3);display:none;z-index:60}
+  .backdrop.show{display:block}
+  .pop{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;border-radius:14px;box-shadow:var(--shadow);width:340px;padding:18px;z-index:61;display:none}
+  .pop.show{display:block}
+  .pop h3{margin:0 0 4px;font-size:14px}.pop p{margin:0 0 14px;color:var(--muted-2);font-size:12px}
+  .colorgrid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+  .colorpick{width:30px;height:30px;border-radius:8px;cursor:pointer;border:2px solid transparent}
+  .colorpick.on{border-color:#0b1b3b}
+  .taglist{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+  .tagpick{border:1px solid var(--line-strong);border-radius:20px;padding:6px 12px;cursor:pointer;font-size:12px}
+  .tagpick.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  .pop-actions{display:flex;justify-content:flex-end;gap:8px}
+  .note{font-size:11px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="rail"><div class="logo"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></nav>
+  <div class="main">
+    <div class="topbar"><h1>Vehicle Management</h1><span class="tab">≣ List View</span></div>
+    <div class="content">
+      <div class="toolbar">
+        <div class="search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><input id="search" placeholder="Search anything here"></div>
+        <select class="filter" id="filterColor">
+          <option value="">All colours</option><option>Blue</option><option>Black</option><option>Purple</option><option>Brown</option><option>Yellow</option><option>Green</option>
+        </select>
+        <div class="spacer"></div>
+        <button class="btn">↧ Export</button>
+        <button class="btn primary">+ Add New Asset</button>
+      </div>
+
+      <div class="card">
+        <div class="selbanner" id="selbanner"></div>
+        <table>
+          <thead><tr>
+            <th class="col-check"><span class="cbwrap"><input type="checkbox" id="checkAll" onclick="toggleAll(this)" aria-label="Select all on this page"></span></th>
+            <th>Asset Name</th><th>Tags</th><th>VIN Number</th><th>Make</th><th>Model</th><th>Colour</th><th>Fuel</th><th>Assigned To</th><th>Status</th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin:12px 2px;font-size:11.5px">Desktop: hover a row to reveal its checkbox. Touch/tablet: checkboxes stay visible (open dev-tools device mode to see). Header box selects the page; the banner extends to all matching the filter.</p>
+    </div>
+  </div>
+</div>
+
+<div class="barwrap"><div class="bulkbar" id="bulkbar">
+  <span class="count" id="count">0 selected</span>
+  <span class="sep"></span>
+  <span class="act" onclick="openTags()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg> Assign Tags</span>
+  <span class="act" onclick="openColor()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.29-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996C19.518 15.171 22 12.688 22 9.5 22 5.36 17.64 2 12 2z"/></svg> Set Colour <span class="badge-blocked">backend</span></span>
+  <span class="act danger" onclick="doDelete()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Delete</span>
+  <span class="clear" onclick="clearSel()" title="Clear selection" aria-label="Clear selection">✕</span>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<div class="backdrop" id="backdrop" onclick="closePop()"></div>
+<div class="pop" id="popTags"><h3>Assign tags</h3><p id="popTagsSub"></p><div class="taglist" id="taglist"></div>
+  <div class="pop-actions"><button class="btn" onclick="closePop()">Cancel</button><button class="btn primary" onclick="applyTags()">Apply</button></div>
+  <div class="note">Single-select categories auto-unassign the sibling first, and that call is verified before the new tag is written.</div></div>
+<div class="pop" id="popColor"><h3>Set colour</h3><p id="popColorSub"></p><div class="colorgrid" id="colorgrid"></div>
+  <div class="pop-actions"><button class="btn" onclick="closePop()">Cancel</button><button class="btn primary" onclick="applyColor()">Apply</button></div>
+  <div class="note">⚠ Needs a backend <code>update_multiple {ids, fields}</code> endpoint. Today = 1 request per row.</div></div>
+
+<script>
+  const COLORS={Blue:'#2f6bff',Black:'#1f2430',Purple:'#7c4dff',Brown:'#8a5a2b',Yellow:'#f4c020',Green:'#20b060'};
+  const NAMES=['Ronald Richards','Robert Fox','Wade Warren','Devon Lane','Arlene McCoy','Jacob Jones','Eleanor Pena','Floyd Miles','Kathryn Murphy','Annette Black','Albert Flores','Theresa Webb'];
+  const rows=NAMES.map((n,i)=>{const c=Object.keys(COLORS)[i%6];
+    return {id:i+1,name:'Z 1234',vin:['1HGCM82633A','7FMDK3GC4C','6TIBFIFK0H','5N1AZ2MH1F','4T1BF1FK0H','3N1AB7AP7Y'][i%6]+'123456',
+      make:'Civic',model:2019+(i%5),color:c,fuel:(i%2?'Electric':'Petrol'),who:n,tags:2+(i%2)};});
+  // simulated total matching the filter (larger than the rendered "page")
+  const TOTAL_IN_DB=3412;
+
+  const state={selected:new Set(),allMatching:false};
+
+  function visibleRows(){
+    const q=document.getElementById('search').value.trim().toLowerCase();
+    const cf=document.getElementById('filterColor').value;
+    return rows.filter(r=>(!q||(r.name+r.vin+r.who+r.make).toLowerCase().includes(q))&&(!cf||r.color===cf));
+  }
+  function matchingTotal(){ // simulate DB-wide count for current filter
+    const cf=document.getElementById('filterColor').value;
+    return cf? Math.round(TOTAL_IN_DB/6) : TOTAL_IN_DB;
+  }
+
+  function render(){
+    const tb=document.getElementById('tbody');tb.innerHTML='';
+    const vis=visibleRows();
+    vis.forEach((r,idx)=>{
+      const on=state.selected.has(r.id);const tr=document.createElement('tr');if(on)tr.className='sel';
+      tr.innerHTML=`
+        <td class="col-check cbcell"><span class="rownum">${idx+1}</span><span class="cbwrap"><input type="checkbox" ${on?'checked':''} onclick="toggleRow(${r.id},this)" aria-label="Select ${r.who}"></span></td>
+        <td><div class="asset"><span class="thumb">🚗</span>${r.name}</div></td>
+        <td><span class="tag">TAG</span><span class="tag-more">+${r.tags}</span></td>
+        <td class="muted">${r.vin}</td><td>${r.make}</td><td>${r.model}</td>
+        <td><span class="swatch"><i style="background:${COLORS[r.color]}"></i>${r.color}</span></td>
+        <td>${r.fuel}</td>
+        <td><div class="assignee"><span class="avatar">${r.who.split(' ').map(x=>x[0]).join('')}</span>${r.who}</div></td>
+        <td><span class="status">ACTIVE</span></td>`;
+      tb.appendChild(tr);
+    });
+    const allVis=vis.length>0&&vis.every(r=>state.selected.has(r.id));
+    document.getElementById('checkAll').checked=allVis;
+    renderBanner(vis,allVis);renderBar();
+  }
+
+  function renderBanner(vis,allVis){
+    const b=document.getElementById('selbanner');
+    if(state.allMatching){
+      b.className='selbanner show';
+      b.innerHTML=`<span>✓ All <b>${matchingTotal().toLocaleString()}</b> vehicles matching this filter are selected.</span> <a class="clear" onclick="clearSel()">Clear selection</a>`;
+    } else if(allVis){
+      b.className='selbanner show';
+      b.innerHTML=`<span>All <b>${vis.length}</b> on this page selected.</span> <a onclick="selectAllMatching()">Select all ${matchingTotal().toLocaleString()} matching this filter</a>`;
+    } else b.className='selbanner';
+  }
+
+  function selCount(){return state.allMatching?matchingTotal():state.selected.size;}
+  function renderBar(){
+    const bar=document.getElementById('bulkbar');const n=selCount();
+    bar.classList.toggle('show',n>0);
+    document.getElementById('count').textContent=`${n.toLocaleString()} selected`;
+  }
+
+  // selection
+  function toggleRow(id,el){state.allMatching=false;el.checked?state.selected.add(id):state.selected.delete(id);render();}
+  function toggleAll(el){ // GUARDRAIL: page (visible) rows only
+    state.allMatching=false;const vis=visibleRows();
+    el.checked?vis.forEach(r=>state.selected.add(r.id)):vis.forEach(r=>state.selected.delete(r.id));render();}
+  function selectAllMatching(){state.allMatching=true;visibleRows().forEach(r=>state.selected.add(r.id));render();}
+  function clearSel(){state.selected.clear();state.allMatching=false;render();}
+
+  // GUARDRAIL: prune on filter change
+  function prune(){const ids=new Set(visibleRows().map(r=>r.id));[...state.selected].forEach(id=>{if(!ids.has(id))state.selected.delete(id);});state.allMatching=false;}
+  document.getElementById('search').addEventListener('input',()=>{prune();render();});
+  document.getElementById('filterColor').addEventListener('change',()=>{prune();render();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')clearSel();});
+
+  // popovers
+  const AVAIL=['Fleet A','Fleet B','Priority','Maintenance','North','South'];let tagDraft=new Set(),colorDraft=null;
+  function openTags(){tagDraft=new Set();const l=document.getElementById('taglist');l.innerHTML='';
+    AVAIL.forEach(t=>{const e=document.createElement('span');e.className='tagpick';e.textContent=t;
+      e.onclick=()=>{e.classList.toggle('on');e.classList.contains('on')?tagDraft.add(t):tagDraft.delete(t);};l.appendChild(e);});
+    document.getElementById('popTagsSub').textContent=`Applying to ${selCount().toLocaleString()} vehicles`;showPop('popTags');}
+  function applyTags(){const n=selCount();closePop();toast(`Assigned ${[...tagDraft].join(', ')||'no'} tag(s) to ${n.toLocaleString()} vehicles`,true);}
+  function openColor(){colorDraft=null;const g=document.getElementById('colorgrid');g.innerHTML='';
+    Object.entries(COLORS).forEach(([nm,hex])=>{const e=document.createElement('span');e.className='colorpick';e.style.background=hex;e.title=nm;
+      e.onclick=()=>{g.querySelectorAll('.colorpick').forEach(x=>x.classList.remove('on'));e.classList.add('on');colorDraft=nm;};g.appendChild(e);});
+    document.getElementById('popColorSub').textContent=`Applying to ${selCount().toLocaleString()} vehicles`;showPop('popColor');}
+  function applyColor(){if(!colorDraft){toast('Pick a colour first');return;}
+    const n=selCount();rows.forEach(r=>{if(state.selected.has(r.id))r.color=colorDraft;});closePop();render();
+    toast(`Set colour ${colorDraft} on ${n.toLocaleString()} vehicles (demo)`,true);}
+  function doDelete(){const n=selCount();toast(`Deleted ${n.toLocaleString()} vehicles`,true);}
+
+  function showPop(id){document.getElementById('backdrop').classList.add('show');document.getElementById(id).classList.add('show');}
+  function closePop(){document.getElementById('backdrop').classList.remove('show');document.querySelectorAll('.pop').forEach(p=>p.classList.remove('show'));}
+  let tt;function toast(m,undo){const t=document.getElementById('toast');t.innerHTML=m+(undo?' <a onclick="hideToast()">Undo</a>':'');t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),undo?4500:2400);}
+  function hideToast(){document.getElementById('toast').classList.remove('show');}
+
+  render();
+</script>
+</body>
+</html>
