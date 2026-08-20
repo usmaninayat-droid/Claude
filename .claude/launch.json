@@ -15,12 +15,25 @@
     {
       "name": "static-preview",
       "runtimeExecutable": "python3",
+<<<<<<< Updated upstream
       "runtimeArgs": [
         "-I",
         "-c",
         "import http.server,functools,os; root='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/3b49e090-9182-44ee-adc4-42a95b51a779/scratchpad/preview'; port=int(os.environ.get('PORT') or 0); h=functools.partial(http.server.SimpleHTTPRequestHandler, directory=root); s=http.server.HTTPServer(('127.0.0.1',port),h); print('serving %s on http://127.0.0.1:%d'%(root,s.server_address[1]),flush=True); s.serve_forever()"
       ],
       "autoPort": true
+=======
+      "runtimeArgs": ["/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/28a7d7ba-78f3-4924-bbeb-43cda99087a7/scratchpad/serve.py"],
+      "port": 8790,
+      "url": "http://127.0.0.1:8790"
+    },
+    {
+      "name": "audit-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8791", "--bind", "127.0.0.1", "--directory", "/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/c2d153ca-b80b-4200-8401-4c44d8a9ac3b/scratchpad/audit-preview"],
+      "port": 8791,
+      "url": "http://127.0.0.1:8791"
+>>>>>>> Stashed changes
     },
     {
       "name": "v5-design-system",
