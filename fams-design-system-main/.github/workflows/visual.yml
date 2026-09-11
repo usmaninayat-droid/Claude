@@ -1,0 +1,46 @@
+name: Visual regression (VRT)
+
+# OPTIONAL lane — phase 4 §2, task 4.C. NOT part of the required PR gate
+# (ci.yml stays install→build→typecheck→lint→test→axe, no screenshots): these
+# suites need a reachable self-hosted VRT instance (infra/vrt/) and running
+# them on every PR would both slow required CI down and fail spuriously for
+# anyone without VRT_URL configured as a repo/environment secret. Trigger it
+# explicitly instead:
+#   - workflow_dispatch — run on demand from the Actions tab.
+#   - the `visual-regression` label on a PR — opt in per-PR for changes that
+#     specifically touch visuals (tokens, ui-kit, v5-templates, showcase).
+#
+# Requires repo/environment secrets: VRT_URL, VRT_APIKEY, VRT_PROJECT. Without
+# them configured, this workflow will simply not be triggered by anyone — no
+# silent failure risk added to the required gate.
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  visual-all:
+    if: github.event_name == 'workflow_dispatch' || github.event.label.name == 'visual-regression'
+    runs-on: ubuntu-latest
+    # Playwright's own image pins the exact browser + OS font stack CI
+    # expects — see infra/vrt/README.md § "Deterministic fonts in CI" for why
+    # this matters more than it looks (font rasterization varies by OS even
+    # with self-hosted fonts + frozen clock + disabled animations).
+    container: mcr.microsoft.com/playwright:v1.61.1-noble
+    env:
+      VRT_URL: ${{ secrets.VRT_URL }}
+      VRT_APIKEY: ${{ secrets.VRT_APIKEY }}
+      VRT_PROJECT: fams-showcase
+      VRT_BRANCHNAME: ${{ github.head_ref || github.ref_name }}
+      VRT_CIBUILDID: ${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @fams/tokens build
+      - run: pnpm build
+      - name: Suite A — visual-all (every registry route)
+        run: pnpm --filter @fams/showcase test:visual-all

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fams.com/schemas/v5-demo/OpsFile.schema.json",
+  "title": "OpsFile",
+  "description": "A tenant's typed deltas for one module (tenants/<t>/deltas/<m>.ops.json). Ops reference blueprint nodes by STABLE id only — never JSON-Patch paths or array indexes (decision #14). Semantic checks (stable-id existence, prop allowlist) are enforced by the resolver in addition to this shape schema.",
+  "type": "object",
+  "required": ["module", "ops"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "module": { "type": "string", "description": "Module folder name these ops apply to." },
+    "ops": { "type": "array", "items": { "$ref": "#/$defs/Op" } }
+  },
+  "$defs": {
+    "PlacementRegion": {
+      "description": "Ordered FieldPlacement array a placement op targets.",
+      "enum": ["details", "list", "kanbanCard.header", "kanbanCard.body", "kanbanCard.footer"]
+    },
+    "Placements": {
+      "description": "addField placement fan-out: for each named surface, insert a convention-consistent FieldPlacement for the new field after the given id (or append).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "details": { "type": "object", "additionalProperties": false, "properties": { "after": { "type": "string" } } },
+        "list": { "type": "object", "additionalProperties": false, "properties": { "after": { "type": "string" } } },
+        "kanbanCard": { "type": "object", "additionalProperties": false, "required": ["region"], "properties": { "region": { "enum": ["header", "body", "footer"] }, "after": { "type": "string" } } }
+      }
+    },
+    "Op": {
+      "type": "object",
+      "required": ["opId", "op"],
+      "properties": {
+        "opId": { "type": "string", "description": "Stable op id — the promote/capture handle." },
+        "op": {
+          "enum": ["addField", "placeField", "hideField", "setLabel", "setFieldProp", "addStage", "removeStage", "addTab", "hideTab", "reorderTabs"]
+        }
+      },
+      "allOf": [
+        { "if": { "properties": { "op": { "const": "addField" } } }, "then": { "required": ["field"], "properties": { "field": { "$ref": "#/$defs/SystemColumn" }, "after": { "type": "string" }, "placements": { "$ref": "#/$defs/Placements" } } } },
+        { "if": { "properties": { "op": { "const": "placeField" } } }, "then": { "required": ["id", "region"], "properties": { "id": { "type": "string" }, "region": { "$ref": "#/$defs/PlacementRegion" }, "after": { "type": "string" } } } },
+        { "if": { "properties": { "op": { "const": "hideField" } } }, "then": { "required": ["id"], "properties": { "id": { "type": "string" } } } },
+        { "if": { "properties": { "op": { "const": "setLabel" } } }, "then": { "required": ["id", "label"], "properties": { "id": { "type": "string" }, "label": { "type": "string" } } } },
+        { "if": { "properties": { "op": { "const": "setFieldProp" } } }, "then": { "required": ["id", "prop", "value"], "properties": { "id": { "type": "string" }, "prop": { "enum": ["required", "listValues", "append", "min", "max"] } } } },
+        { "if": { "properties": { "op": { "const": "addStage" } } }, "then": { "required": ["stage"], "properties": { "stage": { "$ref": "#/$defs/StatusDef" }, "after": { "type": "string" } } } },
+        { "if": { "properties": { "op": { "const": "removeStage" } } }, "then": { "required": ["id"], "properties": { "id": { "type": "string" } } } },
+        { "if": { "properties": { "op": { "const": "addTab" } } }, "then": { "required": ["tab"], "properties": { "tab": { "$ref": "#/$defs/Tab" }, "after": { "type": "string" } } } },
+        { "if": { "properties": { "op": { "const": "hideTab" } } }, "then": { "required": ["id"], "properties": { "id": { "type": "string" } } } },
+        { "if": { "properties": { "op": { "const": "reorderTabs" } } }, "then": { "required": ["ids"], "properties": { "ids": { "type": "array", "items": { "type": "string" } } } } }
+      ]
+    },
+    "SystemColumn": {
+      "type": "object",
+      "required": ["id", "col", "name", "type"],
+      "properties": {
+        "id": { "type": "string" },
+        "col": { "type": "string" },
+        "name": { "type": "string" },
+        "type": { "type": "string" }
+      }
+    },
+    "StatusDef": {
+      "type": "object",
+      "required": ["id", "key", "label", "color"],
+      "properties": {
+        "id": { "type": "string" },
+        "key": { "type": "string" },
+        "label": { "type": "string" },
+        "color": { "type": "string" }
+      }
+    },
+    "Tab": {
+      "type": "object",
+      "required": ["id", "key", "title", "order", "component"],
+      "properties": {
+        "id": { "type": "string" },
+        "key": { "type": "string" },
+        "title": { "type": "string" },
+        "order": { "type": "number" },
+        "component": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" } } }
+      }
+    }
+  }
+}

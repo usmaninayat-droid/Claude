@@ -1,0 +1,2000 @@
+{
+  "$schema": "../../../node_modules/@fams/v5-composer/schemas/DashboardModuleConfig.schema.json",
+  "kind": "dashboard",
+  "id": "telematics-dashboard",
+  "displayName": {
+    "singular": "Telematics Dashboard",
+    "plural": "Telematics Dashboards"
+  },
+  "icon": "gauge",
+  "description": "Fleet telematics overview — trips, distance, idling and overspeeding across the selected time frame.",
+  "kpiStrip": [
+    {
+      "id": "kpi-total-assets",
+      "label": "Total Assets",
+      "type": "stat",
+      "format": "integer",
+      "icon": "truck",
+      "tone": "primary",
+      "dataSource": {
+        "kind": "static",
+        "value": 156
+      }
+    },
+    {
+      "id": "kpi-moving-assets",
+      "label": "Moving Assets",
+      "type": "stat",
+      "format": "integer",
+      "icon": "navigation",
+      "badge": "Real Time",
+      "tone": "success",
+      "dataSource": {
+        "kind": "static",
+        "value": 52,
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 7
+          },
+          {
+            "when": {
+              "timeframe": "last-30-days"
+            },
+            "value": 218
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-idling-assets",
+      "label": "Idling Assets",
+      "type": "stat",
+      "format": "integer",
+      "icon": "pause-circle",
+      "badge": "Real Time",
+      "tone": "warning",
+      "dataSource": {
+        "kind": "static",
+        "value": 82,
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 11
+          },
+          {
+            "when": {
+              "timeframe": "last-30-days"
+            },
+            "value": 344
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-stopped-assets",
+      "label": "Stopped Assets",
+      "type": "stat",
+      "format": "integer",
+      "icon": "circle-stop",
+      "badge": "Real Time",
+      "tone": "danger",
+      "dataSource": {
+        "kind": "static",
+        "value": 22,
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 3
+          },
+          {
+            "when": {
+              "timeframe": "last-30-days"
+            },
+            "value": 92
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-non-reporting",
+      "label": "Non-Reporting Assets",
+      "type": "stat",
+      "format": "integer",
+      "icon": "wifi-off",
+      "tone": "neutral",
+      "dataSource": {
+        "kind": "static",
+        "value": 11
+      }
+    },
+    {
+      "id": "kpi-overspeed-events",
+      "label": "Overspeed Events",
+      "type": "stat",
+      "format": "integer",
+      "icon": "gauge",
+      "tone": "danger",
+      "dataSource": {
+        "kind": "static",
+        "value": 219,
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 31
+          },
+          {
+            "when": {
+              "timeframe": "last-30-days"
+            },
+            "value": 920
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-idle-duration",
+      "label": "Total Idle Duration",
+      "type": "stat",
+      "format": "decimal:1",
+      "icon": "clock",
+      "unit": "hrs",
+      "tone": "warning",
+      "dataSource": {
+        "kind": "static",
+        "value": 342.5,
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 48.0
+          },
+          {
+            "when": {
+              "timeframe": "last-30-days"
+            },
+            "value": 1438.5
+          }
+        ]
+      }
+    }
+  ],
+  "filterPills": [
+    {
+      "id": "pill-time-frame",
+      "label": "Time Frame",
+      "type": "time-range",
+      "defaultValue": "last-7-days",
+      "options": [
+        {
+          "value": "today",
+          "label": "Today"
+        },
+        {
+          "value": "last-7-days",
+          "label": "Last 7 days"
+        },
+        {
+          "value": "last-30-days",
+          "label": "Last 30 days"
+        }
+      ],
+      "dimension": "timeframe"
+    }
+  ],
+  "widgetGrid": [
+    {
+      "id": "w-number-of-trips",
+      "title": "Number of Trips",
+      "type": "bar",
+      "span": 6,
+      "dataSource": {
+        "kind": "static",
+        "subtitle": "Track total trips over a selected period.",
+        "icon": "route",
+        "tone": "info",
+        "categories": [
+          "29 Sep",
+          "30 Sep",
+          "1 Oct",
+          "2 Oct",
+          "3 Oct",
+          "4 Oct",
+          "5 Oct",
+          "6 Oct",
+          "7 Oct",
+          "8 Oct",
+          "9 Oct",
+          "10 Oct",
+          "11 Oct",
+          "12 Oct",
+          "13 Oct",
+          "14 Oct",
+          "15 Oct",
+          "16 Oct",
+          "17 Oct",
+          "18 Oct",
+          "19 Oct",
+          "20 Oct",
+          "21 Oct",
+          "22 Oct",
+          "23 Oct",
+          "24 Oct",
+          "25 Oct",
+          "26 Oct",
+          "27 Oct",
+          "28 Oct"
+        ],
+        "categoryDimensions": [
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "today",
+              "last-7-days",
+              "last-30-days"
+            ]
+          }
+        ],
+        "series": [
+          {
+            "id": "trips",
+            "label": "Trips",
+            "data": [
+              723,
+              801,
+              985,
+              831,
+              882,
+              949,
+              818,
+              747,
+              830,
+              931,
+              679,
+              799,
+              746,
+              1074,
+              822,
+              589,
+              1009,
+              1036,
+              942,
+              961,
+              807,
+              544,
+              788,
+              710,
+              870,
+              640,
+              800,
+              760,
+              890,
+              1050
+            ],
+            "colorToken": "var(--color-primary)"
+          }
+        ],
+        "axis": {
+          "y": {
+            "title": "Number of Trips",
+            "format": "int",
+            "min": 0,
+            "max": 1200
+          }
+        },
+        "height": 320,
+        "ariaLabel": "Number of trips — column chart of daily fleet trips.",
+        "emptyText": "No trips were recorded in the selected time frame."
+      }
+    },
+    {
+      "id": "w-trip-duration",
+      "title": "Total Trip Duration",
+      "type": "area",
+      "span": 6,
+      "dataSource": {
+        "kind": "static",
+        "subtitle": "See how long vehicles are on the road.",
+        "icon": "clock",
+        "tone": "info",
+        "smooth": true,
+        "categories": [
+          "29 Sep",
+          "30 Sep",
+          "1 Oct",
+          "2 Oct",
+          "3 Oct",
+          "4 Oct",
+          "5 Oct",
+          "6 Oct",
+          "7 Oct",
+          "8 Oct",
+          "9 Oct",
+          "10 Oct",
+          "11 Oct",
+          "12 Oct",
+          "13 Oct",
+          "14 Oct",
+          "15 Oct",
+          "16 Oct",
+          "17 Oct",
+          "18 Oct",
+          "19 Oct",
+          "20 Oct",
+          "21 Oct",
+          "22 Oct",
+          "23 Oct",
+          "24 Oct",
+          "25 Oct",
+          "26 Oct",
+          "27 Oct",
+          "28 Oct"
+        ],
+        "categoryDimensions": [
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "today",
+              "last-7-days",
+              "last-30-days"
+            ]
+          }
+        ],
+        "series": [
+          {
+            "id": "duration",
+            "label": "Trip duration",
+            "data": [
+              73,
+              86,
+              90,
+              69,
+              67,
+              88,
+              87,
+              89,
+              87,
+              87,
+              89,
+              98,
+              77,
+              95,
+              58,
+              97,
+              61,
+              101,
+              70,
+              103,
+              90,
+              69,
+              94,
+              78,
+              96,
+              62,
+              88,
+              74,
+              101,
+              110
+            ],
+            "unit": "hrs",
+            "colorToken": "var(--color-primary)"
+          }
+        ],
+        "axis": {
+          "y": {
+            "title": "Total Trip Duration (hrs)",
+            "format": "int"
+          }
+        },
+        "height": 320,
+        "ariaLabel": "Total trip duration — area chart of hours driven per day.",
+        "emptyText": "No trip duration was recorded in the selected time frame."
+      }
+    },
+    {
+      "id": "w-critical-events",
+      "title": "Critical Events",
+      "type": "list",
+      "span": 4,
+      "dataSource": {
+        "kind": "static",
+        "subtitle": "Spot incidents needing urgent attention.",
+        "icon": "alert-triangle",
+        "tone": "danger",
+        "height": 360,
+        "items": [
+          {
+            "id": "ev-1",
+            "title": "Black Spot",
+            "description": "Al Dafrah, Abu Dhabi",
+            "severity": "critical",
+            "timestamp": "22 Oct 2026 · 02:49 PM",
+            "meta": [
+              {
+                "id": "ev-1-veh",
+                "label": "Vehicle",
+                "value": "DXB-B-1007"
+              },
+              {
+                "id": "ev-1-drv",
+                "label": "Driver",
+                "value": "Omar Darwish"
+              },
+              {
+                "id": "ev-1-loc",
+                "label": "Location",
+                "value": "Al Dafrah"
+              }
+            ],
+            "dimensions": {
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "ev-2",
+            "title": "Overspeeding",
+            "description": "Sheikh Zayed Road, Abu Dhabi",
+            "severity": "critical",
+            "timestamp": "23 Oct 2026 · 09:14 AM",
+            "meta": [
+              {
+                "id": "ev-2-veh",
+                "label": "Vehicle",
+                "value": "DXB-C-1014"
+              },
+              {
+                "id": "ev-2-drv",
+                "label": "Driver",
+                "value": "Layla Darwish"
+              },
+              {
+                "id": "ev-2-loc",
+                "label": "Location",
+                "value": "Sheikh Zayed Road"
+              }
+            ],
+            "dimensions": {
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "ev-3",
+            "title": "Harsh Braking",
+            "description": "Mussafah Industrial, Abu Dhabi",
+            "severity": "critical",
+            "timestamp": "24 Oct 2026 · 11:02 AM",
+            "meta": [
+              {
+                "id": "ev-3-veh",
+                "label": "Vehicle",
+                "value": "DXB-D-1021"
+              },
+              {
+                "id": "ev-3-drv",
+                "label": "Driver",
+                "value": "Fatima Khan"
+              },
+              {
+                "id": "ev-3-loc",
+                "label": "Location",
+                "value": "Mussafah"
+              }
+            ],
+            "dimensions": {
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "ev-4",
+            "title": "Zone Out",
+            "description": "Khalifa Port, Abu Dhabi",
+            "severity": "warning",
+            "timestamp": "25 Oct 2026 · 04:37 PM",
+            "meta": [
+              {
+                "id": "ev-4-veh",
+                "label": "Vehicle",
+                "value": "DXB-E-1028"
+              },
+              {
+                "id": "ev-4-drv",
+                "label": "Driver",
+                "value": "Bilal Aziz"
+              },
+              {
+                "id": "ev-4-loc",
+                "label": "Location",
+                "value": "Khalifa Port"
+              }
+            ],
+            "dimensions": {
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "ev-5",
+            "title": "Idling",
+            "description": "Al Reem Island, Abu Dhabi",
+            "severity": "warning",
+            "timestamp": "26 Oct 2026 · 08:20 AM",
+            "meta": [
+              {
+                "id": "ev-5-veh",
+                "label": "Vehicle",
+                "value": "DXB-F-1035"
+              },
+              {
+                "id": "ev-5-drv",
+                "label": "Driver",
+                "value": "Noor Farah"
+              },
+              {
+                "id": "ev-5-loc",
+                "label": "Location",
+                "value": "Al Reem Island"
+              }
+            ],
+            "dimensions": {
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "ev-6",
+            "title": "Engine Off",
+            "description": "Al Shahama, Abu Dhabi",
+            "severity": "info",
+            "timestamp": "27 Oct 2026 · 06:05 PM",
+            "meta": [
+              {
+                "id": "ev-6-veh",
+                "label": "Vehicle",
+                "value": "DXB-G-1042"
+              },
+              {
+                "id": "ev-6-drv",
+                "label": "Driver",
+                "value": "Karim Khan"
+              },
+              {
+                "id": "ev-6-loc",
+                "label": "Location",
+                "value": "Al Shahama"
+              }
+            ],
+            "dimensions": {
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          }
+        ],
+        "ariaLabel": "Critical events — list of the six most recent telematics incidents with vehicle, driver and location.",
+        "emptyText": "No critical events in the selected time frame."
+      }
+    },
+    {
+      "id": "w-event-distribution",
+      "title": "Critical Event Distribution",
+      "type": "donut",
+      "span": 4,
+      "dataSource": {
+        "kind": "static",
+        "subtitle": "Analyze risky events and driver behavior.",
+        "icon": "shield-alert",
+        "tone": "warning",
+        "legendOrientation": "vertical",
+        "slices": [
+          {
+            "id": "overspeeding",
+            "label": "Overspeeding",
+            "value": 43,
+            "colorIndex": 3,
+            "colorToken": "var(--color-error-500)"
+          },
+          {
+            "id": "zone-out",
+            "label": "Zone Out",
+            "value": 37,
+            "colorIndex": 2
+          },
+          {
+            "id": "idling",
+            "label": "Idling",
+            "value": 15,
+            "colorIndex": 1
+          },
+          {
+            "id": "engine-off",
+            "label": "Engine Off",
+            "value": 5,
+            "colorIndex": 4
+          }
+        ],
+        "centerLabel": {
+          "value": "100",
+          "caption": "Total Critical Events",
+          "trend": {
+            "direction": "up",
+            "value": "11.2%"
+          }
+        },
+        "height": 300,
+        "ariaLabel": "Critical event distribution — donut chart of four event types totalling 100 critical events.",
+        "emptyText": "No critical events in the selected time frame.",
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "slices": [
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 7,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              },
+              {
+                "id": "zone-out",
+                "label": "Zone Out",
+                "value": 5,
+                "colorIndex": 2
+              },
+              {
+                "id": "idling",
+                "label": "Idling",
+                "value": 2,
+                "colorIndex": 1
+              },
+              {
+                "id": "engine-off",
+                "label": "Engine Off",
+                "value": 1,
+                "colorIndex": 4
+              }
+            ],
+            "centerLabel": {
+              "value": "15",
+              "caption": "Total Critical Events",
+              "trend": {
+                "direction": "down",
+                "value": "4.1%",
+                "note": "vs yesterday"
+              }
+            }
+          },
+          {
+            "when": {
+              "timeframe": "last-30-days"
+            },
+            "slices": [
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 181,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              },
+              {
+                "id": "zone-out",
+                "label": "Zone Out",
+                "value": 154,
+                "colorIndex": 2
+              },
+              {
+                "id": "idling",
+                "label": "Idling",
+                "value": 63,
+                "colorIndex": 1
+              },
+              {
+                "id": "engine-off",
+                "label": "Engine Off",
+                "value": 22,
+                "colorIndex": 4
+              }
+            ],
+            "centerLabel": {
+              "value": "420",
+              "caption": "Total Critical Events",
+              "trend": {
+                "direction": "up",
+                "value": "8.6%",
+                "note": "vs previous 30 days"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "w-trip-distance",
+      "title": "Total Trip Distance",
+      "type": "bar",
+      "span": 4,
+      "dataSource": {
+        "kind": "static",
+        "subtitle": "Measure how far your fleet travels.",
+        "icon": "navigation",
+        "tone": "info",
+        "categories": [
+          "29 Sep",
+          "30 Sep",
+          "1 Oct",
+          "2 Oct",
+          "3 Oct",
+          "4 Oct",
+          "5 Oct",
+          "6 Oct",
+          "7 Oct",
+          "8 Oct",
+          "9 Oct",
+          "10 Oct",
+          "11 Oct",
+          "12 Oct",
+          "13 Oct",
+          "14 Oct",
+          "15 Oct",
+          "16 Oct",
+          "17 Oct",
+          "18 Oct",
+          "19 Oct",
+          "20 Oct",
+          "21 Oct",
+          "22 Oct",
+          "23 Oct",
+          "24 Oct",
+          "25 Oct",
+          "26 Oct",
+          "27 Oct",
+          "28 Oct"
+        ],
+        "categoryDimensions": [
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "today",
+              "last-7-days",
+              "last-30-days"
+            ]
+          }
+        ],
+        "series": [
+          {
+            "id": "distance",
+            "label": "Distance",
+            "data": [
+              544,
+              789,
+              828,
+              948,
+              669,
+              731,
+              731,
+              528,
+              812,
+              563,
+              795,
+              683,
+              761,
+              867,
+              822,
+              752,
+              507,
+              672,
+              650,
+              1038,
+              1049,
+              807,
+              857,
+              620,
+              880,
+              700,
+              540,
+              760,
+              900,
+              1020
+            ],
+            "colorIndex": 3,
+            "unit": "km"
+          }
+        ],
+        "axis": {
+          "y": {
+            "title": "Distance (km)",
+            "format": "int"
+          }
+        },
+        "height": 300,
+        "ariaLabel": "Total trip distance — column chart of kilometres driven per day.",
+        "emptyText": "No distance was recorded in the selected time frame."
+      }
+    },
+    {
+      "id": "w-overspeeding-by-vehicle",
+      "title": "Overspeeding by Vehicle",
+      "type": "bar",
+      "span": 5,
+      "dataSource": {
+        "kind": "static",
+        "subtitle": "Vehicles with the most overspeed events.",
+        "icon": "gauge",
+        "tone": "warning",
+        "orientation": "horizontal",
+        "categories": [
+          "DXB-H-1049",
+          "DXB-G-1042",
+          "DXB-F-1035",
+          "DXB-E-1028",
+          "DXB-D-1021",
+          "DXB-C-1014",
+          "DXB-B-1007"
+        ],
+        "series": [
+          {
+            "id": "overspeed",
+            "label": "Overspeed events",
+            "data": [
+              52,
+              74,
+              96,
+              120,
+              138,
+              146,
+              172
+            ],
+            "colorIndex": 3,
+            "colorToken": "var(--color-error-500)"
+          }
+        ],
+        "axis": {
+          "x": {
+            "title": "Event Count",
+            "format": "int"
+          },
+          "y": {
+            "title": "Vehicle"
+          }
+        },
+        "height": 380,
+        "ariaLabel": "Overspeeding by vehicle — horizontal bar chart of overspeed event counts for seven vehicles, ranked highest first.",
+        "emptyText": "No overspeed events in the selected time frame.",
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "series": [
+              {
+                "id": "overspeed",
+                "label": "Overspeed events",
+                "data": [
+                  8,
+                  12,
+                  15,
+                  19,
+                  22,
+                  23,
+                  28
+                ],
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "timeframe": "last-30-days"
+            },
+            "series": [
+              {
+                "id": "overspeed",
+                "label": "Overspeed events",
+                "data": [
+                  203,
+                  289,
+                  374,
+                  468,
+                  538,
+                  569,
+                  671
+                ],
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "w-overspeeding-over-time",
+      "title": "Overspeeding Over Time",
+      "type": "bar",
+      "span": 7,
+      "dataSource": {
+        "kind": "static",
+        "subtitle": "Daily overspeed event count.",
+        "icon": "gauge",
+        "tone": "warning",
+        "categories": [
+          "29 Sep",
+          "30 Sep",
+          "1 Oct",
+          "2 Oct",
+          "3 Oct",
+          "4 Oct",
+          "5 Oct",
+          "6 Oct",
+          "7 Oct",
+          "8 Oct",
+          "9 Oct",
+          "10 Oct",
+          "11 Oct",
+          "12 Oct",
+          "13 Oct",
+          "14 Oct",
+          "15 Oct",
+          "16 Oct",
+          "17 Oct",
+          "18 Oct",
+          "19 Oct",
+          "20 Oct",
+          "21 Oct",
+          "22 Oct",
+          "23 Oct",
+          "24 Oct",
+          "25 Oct",
+          "26 Oct",
+          "27 Oct",
+          "28 Oct"
+        ],
+        "categoryDimensions": [
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "today",
+              "last-7-days",
+              "last-30-days"
+            ]
+          }
+        ],
+        "series": [
+          {
+            "id": "overspeed",
+            "label": "Overspeed events",
+            "data": [
+              48,
+              66,
+              67,
+              76,
+              61,
+              63,
+              78,
+              63,
+              56,
+              68,
+              62,
+              74,
+              59,
+              64,
+              69,
+              57,
+              57,
+              73,
+              71,
+              60,
+              73,
+              63,
+              52,
+              78,
+              74,
+              61,
+              69,
+              58,
+              76,
+              52
+            ],
+            "colorIndex": 3,
+            "colorToken": "var(--color-error-500)"
+          }
+        ],
+        "axis": {
+          "y": {
+            "title": "Overspeed Events",
+            "format": "int"
+          }
+        },
+        "height": 380,
+        "ariaLabel": "Overspeeding over time — column chart of daily overspeed events.",
+        "emptyText": "No overspeed events in the selected time frame."
+      }
+    },
+    {
+      "id": "w-idle-by-vehicle",
+      "title": "Idle Duration by Vehicle",
+      "type": "bar",
+      "span": 5,
+      "dataSource": {
+        "kind": "static",
+        "subtitle": "Vehicles with the most idle time.",
+        "icon": "pause-circle",
+        "tone": "warning",
+        "orientation": "horizontal",
+        "categories": [
+          "DXB-H-1049",
+          "DXB-G-1042",
+          "DXB-F-1035",
+          "DXB-E-1028",
+          "DXB-D-1021",
+          "DXB-C-1014",
+          "DXB-B-1007"
+        ],
+        "series": [
+          {
+            "id": "idle",
+            "label": "Idle hours",
+            "data": [
+              31,
+              42,
+              54,
+              61,
+              72,
+              84,
+              96
+            ],
+            "colorIndex": 1,
+            "unit": "hrs",
+            "colorToken": "var(--color-chart-1)"
+          }
+        ],
+        "axis": {
+          "x": {
+            "title": "Total Idle Hours",
+            "format": "int"
+          },
+          "y": {
+            "title": "Vehicle"
+          }
+        },
+        "height": 380,
+        "ariaLabel": "Idle duration by vehicle — horizontal bar chart of total idle hours for seven vehicles, ranked highest first.",
+        "emptyText": "No idle time in the selected time frame.",
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "series": [
+              {
+                "id": "idle",
+                "label": "Idle hours",
+                "data": [
+                  5,
+                  6,
+                  8,
+                  9,
+                  11,
+                  13,
+                  14
+                ],
+                "colorIndex": 1,
+                "unit": "hrs",
+                "colorToken": "var(--color-chart-1)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "timeframe": "last-30-days"
+            },
+            "series": [
+              {
+                "id": "idle",
+                "label": "Idle hours",
+                "data": [
+                  127,
+                  172,
+                  221,
+                  250,
+                  295,
+                  344,
+                  394
+                ],
+                "colorIndex": 1,
+                "unit": "hrs",
+                "colorToken": "var(--color-chart-1)"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "w-idle-over-time",
+      "title": "Idle Duration Over Time",
+      "type": "bar",
+      "span": 7,
+      "dataSource": {
+        "kind": "static",
+        "subtitle": "Daily idle hours.",
+        "icon": "pause-circle",
+        "tone": "warning",
+        "categories": [
+          "29 Sep",
+          "30 Sep",
+          "1 Oct",
+          "2 Oct",
+          "3 Oct",
+          "4 Oct",
+          "5 Oct",
+          "6 Oct",
+          "7 Oct",
+          "8 Oct",
+          "9 Oct",
+          "10 Oct",
+          "11 Oct",
+          "12 Oct",
+          "13 Oct",
+          "14 Oct",
+          "15 Oct",
+          "16 Oct",
+          "17 Oct",
+          "18 Oct",
+          "19 Oct",
+          "20 Oct",
+          "21 Oct",
+          "22 Oct",
+          "23 Oct",
+          "24 Oct",
+          "25 Oct",
+          "26 Oct",
+          "27 Oct",
+          "28 Oct"
+        ],
+        "categoryDimensions": [
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "today",
+              "last-7-days",
+              "last-30-days"
+            ]
+          }
+        ],
+        "series": [
+          {
+            "id": "idle",
+            "label": "Idle hours",
+            "data": [
+              73,
+              16,
+              69,
+              36,
+              97,
+              38,
+              101,
+              54,
+              72,
+              86,
+              42,
+              54,
+              84,
+              61,
+              27,
+              30,
+              77,
+              84,
+              84,
+              52,
+              104,
+              43,
+              30,
+              92,
+              26,
+              78,
+              64,
+              55,
+              88,
+              41
+            ],
+            "colorIndex": 1,
+            "unit": "hrs",
+            "colorToken": "var(--color-chart-1)"
+          }
+        ],
+        "axis": {
+          "y": {
+            "title": "Total Idle Hours",
+            "format": "int"
+          }
+        },
+        "height": 380,
+        "ariaLabel": "Idle duration over time — column chart of daily idle hours.",
+        "emptyText": "No idle time in the selected time frame."
+      }
+    }
+  ],
+  "views": [
+    {
+      "id": "view-overview",
+      "label": "Overview",
+      "isDefault": true
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+/*
+ * Tenant · EAD RMS (Environment Agency — Abu Dhabi)
+ * --------------------------------------------------
+ * Deep-navy primary, orange accent. Solid sidebar.
+ * Source: knowledge-base/live-product-references/10-real-tokens.md §Tenant variants
+ */
+
+:root {
+  --primary: #004B87;                                /* Deep navy blue */
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #EAECF0;                              /* Gray-200 (EAD uses gray, not blue tint) */
+  --secondary-foreground: #004B87;
+
+  --accent: #F79009;                                 /* Orange — diverges from primary */
+  --accent-foreground: #FFFFFF;
+
+  --ring: #EAECF0;
+
+  --sidebar: #004B87;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: rgba(0, 0, 0, 0.2);
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: rgba(255, 255, 255, 0.2);
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: rgba(255, 255, 255, 0.2);
+  --sidebar-ring: rgba(255, 255, 255, 0.4);
+
+  --sidebar-gradient: none;
+
+  /* EAD's chart-1 is the brand navy rather than orange */
+  --chart-1: #004B87;
+}

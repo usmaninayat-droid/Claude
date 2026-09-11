@@ -1,0 +1,32 @@
+{
+  "$schema": "../../node_modules/@fams/v5-composer/schemas/TenantConfig.schema.json",
+  "id": "fams",
+  "name": "FAMS",
+  "fontFamily": "Gilroy",
+  "modules": ["operations-center", "live-monitoring", "asset", "workforce", "ticketing", "pipelines", "preventive-maintenance", "job-orders", "telematics-dashboard", "fuel-monitoring", "vehicle-behaviour", "inbox", "leads", "deals", "contact-person", "company", "product-service"],
+  "railStart": [{ "id": "inbox", "module": "inbox" }],
+  "applications": [
+    {
+      "id": "telematics",
+      "name": "Telematics",
+      "icon": "telematics",
+      "modules": ["operations-center", "live-monitoring", "asset", "workforce", "ticketing", "pipelines", "preventive-maintenance", "job-orders", "telematics-dashboard", "fuel-monitoring", "vehicle-behaviour"]
+    },
+    {
+      "id": "crm",
+      "name": "CRM",
+      "icon": "briefcase",
+      "modules": ["leads", "deals", "contact-person", "company", "product-service", "workforce"]
+    }
+  ],
+  "landingModule": "first",
+  "branding": { "logo": "fams", "hideName": true },
+  "login": {
+    "quote": "Your Fleet, Our Technology, Total Control",
+    "subtext": "Experience the power of seamless fleet management with FAMS. Track, monitor, and optimize your entire fleet in real time, ensuring efficiency and safety at every step.",
+    "background": "#1681DF",
+    "supportingText": "Log in to FAMS for real-time visibility and operational control.",
+    "logo": "/branding/fams-login-logo.svg",
+    "illustration": "/branding/fams-login-illustration.svg"
+  }
+}

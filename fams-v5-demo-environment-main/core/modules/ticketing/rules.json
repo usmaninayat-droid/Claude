@@ -1,0 +1,12 @@
+{
+  "statuses": ["new", "triaged", "in-progress", "resolved"],
+  "transitions": {
+    "new": ["triaged"],
+    "triaged": ["in-progress", "new"],
+    "in-progress": ["resolved", "triaged"],
+    "resolved": ["in-progress"]
+  },
+  "transition_rules": {
+    "in-progress->resolved": { "$.user.roles": { "$in": ["admin"] } }
+  }
+}

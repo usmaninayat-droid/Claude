@@ -1,0 +1,6027 @@
+{
+  "$schema": "../../../node_modules/@fams/v5-composer/schemas/DashboardModuleConfig.schema.json",
+  "kind": "dashboard",
+  "id": "fuel-monitoring",
+  "displayName": {
+    "singular": "Fuel Monitoring Dashboard",
+    "plural": "Fuel Monitoring Dashboards"
+  },
+  "icon": "fuel",
+  "description": "Fleet fuel monitoring — consumption, cost, refuelling, theft events and fuel-efficiency ranking.",
+  "kpiStrip": [
+    {
+      "id": "kpi-fuel-consumed",
+      "label": "Fuel Dispensed",
+      "type": "stat",
+      "format": "integer",
+      "icon": "droplet",
+      "unit": "L",
+      "tone": "info",
+      "dataSource": {
+        "kind": "static",
+        "value": 3234,
+        "trend": {
+          "direction": "down",
+          "value": "0.1%",
+          "note": "vs last month"
+        },
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 162
+          },
+          {
+            "when": {
+              "timeframe": "last-7-days"
+            },
+            "value": 841
+          },
+          {
+            "when": {
+              "driver": "WF-01"
+            },
+            "value": 2911
+          },
+          {
+            "when": {
+              "driver": "WF-02"
+            },
+            "value": 3202
+          },
+          {
+            "when": {
+              "driver": "WF-06"
+            },
+            "value": 2814
+          },
+          {
+            "when": {
+              "driver": "WF-07"
+            },
+            "value": 2652
+          },
+          {
+            "when": {
+              "driver": "WF-08"
+            },
+            "value": 1843
+          },
+          {
+            "when": {
+              "driver": "WF-09"
+            },
+            "value": 2911
+          },
+          {
+            "when": {
+              "driver": "WF-10"
+            },
+            "value": 2684
+          },
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "value": 2102
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "value": 3040
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "value": 2781
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "value": 2005
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "value": 1876
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "value": 2749
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "value": 1811
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "value": 3299
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "value": 3428
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "value": 2652
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-fuel-used",
+      "label": "Fuel Burned",
+      "type": "stat",
+      "format": "integer",
+      "icon": "droplet",
+      "unit": "L",
+      "tone": "primary",
+      "dataSource": {
+        "kind": "static",
+        "value": 3104,
+        "trend": {
+          "direction": "down",
+          "value": "0.4%",
+          "note": "vs last month"
+        },
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 155
+          },
+          {
+            "when": {
+              "timeframe": "last-7-days"
+            },
+            "value": 807
+          },
+          {
+            "when": {
+              "driver": "WF-01"
+            },
+            "value": 3228
+          },
+          {
+            "when": {
+              "driver": "WF-02"
+            },
+            "value": 2018
+          },
+          {
+            "when": {
+              "driver": "WF-06"
+            },
+            "value": 1893
+          },
+          {
+            "when": {
+              "driver": "WF-07"
+            },
+            "value": 2080
+          },
+          {
+            "when": {
+              "driver": "WF-08"
+            },
+            "value": 3259
+          },
+          {
+            "when": {
+              "driver": "WF-09"
+            },
+            "value": 2390
+          },
+          {
+            "when": {
+              "driver": "WF-10"
+            },
+            "value": 2204
+          },
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "value": 2297
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "value": 3321
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "value": 1831
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "value": 2887
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "value": 3508
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "value": 3073
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "value": 2732
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "value": 1707
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "value": 2545
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "value": 2390
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-refueling-events",
+      "label": "Refueling Events",
+      "type": "stat",
+      "format": "integer",
+      "icon": "fuel",
+      "tone": "warning",
+      "dataSource": {
+        "kind": "static",
+        "value": 24,
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "timeframe": "last-7-days"
+            },
+            "value": 6
+          },
+          {
+            "when": {
+              "driver": "WF-01"
+            },
+            "value": 17
+          },
+          {
+            "when": {
+              "driver": "WF-02"
+            },
+            "value": 14
+          },
+          {
+            "when": {
+              "driver": "WF-06"
+            },
+            "value": 15
+          },
+          {
+            "when": {
+              "driver": "WF-07"
+            },
+            "value": 14
+          },
+          {
+            "when": {
+              "driver": "WF-08"
+            },
+            "value": 15
+          },
+          {
+            "when": {
+              "driver": "WF-09"
+            },
+            "value": 18
+          },
+          {
+            "when": {
+              "driver": "WF-10"
+            },
+            "value": 22
+          },
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "value": 23
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "value": 15
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "value": 20
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "value": 14
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "value": 22
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "value": 27
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "value": 15
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "value": 25
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "value": 27
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "value": 22
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-fuel-theft-events",
+      "label": "Number of Fuel Theft Events",
+      "type": "stat",
+      "format": "integer",
+      "icon": "alert-triangle",
+      "tone": "danger",
+      "dataSource": {
+        "kind": "static",
+        "value": 2,
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "timeframe": "last-7-days"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "driver": "WF-01"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "driver": "WF-02"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "driver": "WF-06"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "driver": "WF-07"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "driver": "WF-08"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "driver": "WF-09"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "driver": "WF-10"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "value": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-refuel-events",
+      "label": "Vehicles Refuelled",
+      "type": "stat",
+      "format": "integer",
+      "icon": "fuel",
+      "tone": "success",
+      "dataSource": {
+        "kind": "static",
+        "value": 18,
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "timeframe": "last-7-days"
+            },
+            "value": 5
+          },
+          {
+            "when": {
+              "driver": "WF-01"
+            },
+            "value": 12
+          },
+          {
+            "when": {
+              "driver": "WF-02"
+            },
+            "value": 20
+          },
+          {
+            "when": {
+              "driver": "WF-06"
+            },
+            "value": 17
+          },
+          {
+            "when": {
+              "driver": "WF-07"
+            },
+            "value": 14
+          },
+          {
+            "when": {
+              "driver": "WF-08"
+            },
+            "value": 19
+          },
+          {
+            "when": {
+              "driver": "WF-09"
+            },
+            "value": 14
+          },
+          {
+            "when": {
+              "driver": "WF-10"
+            },
+            "value": 10
+          },
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "value": 14
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "value": 17
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "value": 13
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "value": 17
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "value": 19
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "value": 10
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "value": 19
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "value": 17
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "value": 20
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "value": 16
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-total-fuel-consumed",
+      "label": "Fuel Burned · Year to Date",
+      "type": "stat",
+      "format": "integer",
+      "icon": "droplet",
+      "unit": "L",
+      "tone": "neutral",
+      "dataSource": {
+        "kind": "static",
+        "value": 12480
+      }
+    },
+    {
+      "id": "kpi-total-cost",
+      "label": "Total Cost",
+      "type": "stat",
+      "format": "integer",
+      "icon": "credit-card",
+      "unit": "AED",
+      "tone": "success",
+      "dataSource": {
+        "kind": "static",
+        "value": 5214,
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 261
+          },
+          {
+            "when": {
+              "timeframe": "last-7-days"
+            },
+            "value": 1356
+          },
+          {
+            "when": {
+              "driver": "WF-01"
+            },
+            "value": 5527
+          },
+          {
+            "when": {
+              "driver": "WF-02"
+            },
+            "value": 3858
+          },
+          {
+            "when": {
+              "driver": "WF-06"
+            },
+            "value": 3389
+          },
+          {
+            "when": {
+              "driver": "WF-07"
+            },
+            "value": 5058
+          },
+          {
+            "when": {
+              "driver": "WF-08"
+            },
+            "value": 5423
+          },
+          {
+            "when": {
+              "driver": "WF-09"
+            },
+            "value": 5423
+          },
+          {
+            "when": {
+              "driver": "WF-10"
+            },
+            "value": 5110
+          },
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "value": 3963
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "value": 3598
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "value": 4849
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "value": 4693
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "value": 4640
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "value": 3233
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "value": 5892
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "value": 3493
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "value": 5527
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "value": 5475
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-avg-cost-km",
+      "label": "Average Cost / km",
+      "type": "stat",
+      "format": "decimal:2",
+      "icon": "route",
+      "unit": "AED",
+      "tone": "info",
+      "dataSource": {
+        "kind": "static",
+        "value": 1.24,
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 1.31
+          },
+          {
+            "when": {
+              "timeframe": "last-7-days"
+            },
+            "value": 1.27
+          },
+          {
+            "when": {
+              "driver": "WF-01"
+            },
+            "value": 0.77
+          },
+          {
+            "when": {
+              "driver": "WF-02"
+            },
+            "value": 0.73
+          },
+          {
+            "when": {
+              "driver": "WF-06"
+            },
+            "value": 1.39
+          },
+          {
+            "when": {
+              "driver": "WF-07"
+            },
+            "value": 1.02
+          },
+          {
+            "when": {
+              "driver": "WF-08"
+            },
+            "value": 1.35
+          },
+          {
+            "when": {
+              "driver": "WF-09"
+            },
+            "value": 1.13
+          },
+          {
+            "when": {
+              "driver": "WF-10"
+            },
+            "value": 0.73
+          },
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "value": 1.26
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "value": 0.74
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "value": 1.41
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "value": 1.26
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "value": 0.68
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "value": 0.99
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "value": 0.87
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "value": 1.34
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "value": 0.93
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "value": 0.95
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-avg-consumption-km",
+      "label": "Average Consumption / km",
+      "type": "stat",
+      "format": "decimal:2",
+      "icon": "route",
+      "unit": "L",
+      "tone": "primary",
+      "dataSource": {
+        "kind": "static",
+        "value": 1.24,
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 1.18
+          },
+          {
+            "when": {
+              "timeframe": "last-7-days"
+            },
+            "value": 1.22
+          },
+          {
+            "when": {
+              "driver": "WF-01"
+            },
+            "value": 0.68
+          },
+          {
+            "when": {
+              "driver": "WF-02"
+            },
+            "value": 0.98
+          },
+          {
+            "when": {
+              "driver": "WF-06"
+            },
+            "value": 1.39
+          },
+          {
+            "when": {
+              "driver": "WF-07"
+            },
+            "value": 0.89
+          },
+          {
+            "when": {
+              "driver": "WF-08"
+            },
+            "value": 0.83
+          },
+          {
+            "when": {
+              "driver": "WF-09"
+            },
+            "value": 0.79
+          },
+          {
+            "when": {
+              "driver": "WF-10"
+            },
+            "value": 0.68
+          },
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "value": 1.35
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "value": 1.19
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "value": 1.07
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "value": 1.31
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "value": 1.31
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "value": 1.36
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "value": 0.73
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "value": 0.91
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "value": 1.0
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "value": 1.28
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-co2",
+      "label": "CO₂ Emissions",
+      "type": "stat",
+      "format": "decimal:1",
+      "icon": "leaf",
+      "unit": "t CO₂",
+      "tone": "success",
+      "dataSource": {
+        "kind": "static",
+        "value": 21.4,
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 1.1
+          },
+          {
+            "when": {
+              "timeframe": "last-7-days"
+            },
+            "value": 5.6
+          },
+          {
+            "when": {
+              "driver": "WF-01"
+            },
+            "value": 22.5
+          },
+          {
+            "when": {
+              "driver": "WF-02"
+            },
+            "value": 18.0
+          },
+          {
+            "when": {
+              "driver": "WF-06"
+            },
+            "value": 20.3
+          },
+          {
+            "when": {
+              "driver": "WF-07"
+            },
+            "value": 24.2
+          },
+          {
+            "when": {
+              "driver": "WF-08"
+            },
+            "value": 19.0
+          },
+          {
+            "when": {
+              "driver": "WF-09"
+            },
+            "value": 22.3
+          },
+          {
+            "when": {
+              "driver": "WF-10"
+            },
+            "value": 11.8
+          },
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "value": 18.0
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "value": 23.8
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "value": 21.0
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "value": 16.9
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "value": 13.1
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "value": 16.5
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "value": 14.8
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "value": 12.6
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "value": 16.5
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "value": 24.2
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-fuel-reserve",
+      "label": "Fleet Fuel Reserve",
+      "type": "stat-with-target",
+      "format": "integer",
+      "icon": "droplet",
+      "unit": "L",
+      "tone": "danger",
+      "dataSource": {
+        "kind": "static",
+        "value": 3500,
+        "target": "5,000 L",
+        "targetLabel": "of"
+      }
+    },
+    {
+      "id": "kpi-fleet-runway",
+      "label": "Fleet Runway",
+      "type": "stat",
+      "format": "decimal:1",
+      "icon": "car",
+      "unit": "days",
+      "tone": "warning",
+      "valueSuffix": "until critical at current consumption",
+      "dataSource": {
+        "kind": "static",
+        "value": 6.2
+      }
+    },
+    {
+      "id": "kpi-upcoming-refuels",
+      "label": "Upcoming Refuels This Week",
+      "type": "stat",
+      "format": "integer",
+      "icon": "fuel",
+      "unit": "vehicles",
+      "tone": "info",
+      "valueSuffix": "peak Friday (6)",
+      "dataSource": {
+        "kind": "static",
+        "value": 16,
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 1
+          },
+          {
+            "when": {
+              "timeframe": "last-7-days"
+            },
+            "value": 4
+          },
+          {
+            "when": {
+              "driver": "WF-01"
+            },
+            "value": 15
+          },
+          {
+            "when": {
+              "driver": "WF-02"
+            },
+            "value": 10
+          },
+          {
+            "when": {
+              "driver": "WF-06"
+            },
+            "value": 12
+          },
+          {
+            "when": {
+              "driver": "WF-07"
+            },
+            "value": 18
+          },
+          {
+            "when": {
+              "driver": "WF-08"
+            },
+            "value": 9
+          },
+          {
+            "when": {
+              "driver": "WF-09"
+            },
+            "value": 18
+          },
+          {
+            "when": {
+              "driver": "WF-10"
+            },
+            "value": 17
+          },
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "value": 10
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "value": 12
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "value": 15
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "value": 15
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "value": 14
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "value": 17
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "value": 15
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "value": 14
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "value": 17
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "value": 14
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-forecast-spend",
+      "label": "Forecast Spend (30d)",
+      "type": "stat",
+      "format": "integer",
+      "icon": "route",
+      "unit": "AED",
+      "tone": "neutral",
+      "dataSource": {
+        "kind": "static",
+        "value": 28400,
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "value": 1420
+          },
+          {
+            "when": {
+              "timeframe": "last-7-days"
+            },
+            "value": 7384
+          },
+          {
+            "when": {
+              "driver": "WF-01"
+            },
+            "value": 23572
+          },
+          {
+            "when": {
+              "driver": "WF-02"
+            },
+            "value": 29252
+          },
+          {
+            "when": {
+              "driver": "WF-06"
+            },
+            "value": 25844
+          },
+          {
+            "when": {
+              "driver": "WF-07"
+            },
+            "value": 22720
+          },
+          {
+            "when": {
+              "driver": "WF-08"
+            },
+            "value": 21016
+          },
+          {
+            "when": {
+              "driver": "WF-09"
+            },
+            "value": 26696
+          },
+          {
+            "when": {
+              "driver": "WF-10"
+            },
+            "value": 30104
+          },
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "value": 23288
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "value": 25844
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "value": 24708
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "value": 23004
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "value": 22720
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "value": 32660
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "value": 21016
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "value": 26980
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "value": 26128
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "value": 23004
+          }
+        ]
+      }
+    }
+  ],
+  "filterPills": [
+    {
+      "id": "pill-time-frame",
+      "label": "Time Frame",
+      "type": "time-range",
+      "defaultValue": "last-30-days",
+      "options": [
+        {
+          "value": "today",
+          "label": "Today"
+        },
+        {
+          "value": "last-7-days",
+          "label": "Last 7 days"
+        },
+        {
+          "value": "last-30-days",
+          "label": "Last 30 days"
+        }
+      ],
+      "dimension": "timeframe"
+    },
+    {
+      "id": "pill-driver",
+      "label": "Driver",
+      "type": "single-select",
+      "entityId": "workforce",
+      "options": [
+        {
+          "value": "WF-01",
+          "label": "Omar Darwish"
+        },
+        {
+          "value": "WF-02",
+          "label": "Layla Darwish"
+        },
+        {
+          "value": "WF-06",
+          "label": "Fatima Khan"
+        },
+        {
+          "value": "WF-07",
+          "label": "Bilal Aziz"
+        },
+        {
+          "value": "WF-08",
+          "label": "Noor Farah"
+        },
+        {
+          "value": "WF-09",
+          "label": "Karim Khan"
+        },
+        {
+          "value": "WF-10",
+          "label": "Yusuf Rahman"
+        }
+      ],
+      "dimension": "driver",
+      "allLabel": "All drivers"
+    },
+    {
+      "id": "pill-vehicle",
+      "label": "Vehicle",
+      "type": "single-select",
+      "entityId": "asset",
+      "options": [
+        {
+          "value": "VEH-01",
+          "label": "DXB-B-1007"
+        },
+        {
+          "value": "VEH-02",
+          "label": "DXB-C-1014"
+        },
+        {
+          "value": "VEH-03",
+          "label": "DXB-D-1021"
+        },
+        {
+          "value": "VEH-04",
+          "label": "DXB-E-1028"
+        },
+        {
+          "value": "VEH-05",
+          "label": "DXB-F-1035"
+        },
+        {
+          "value": "VEH-06",
+          "label": "DXB-G-1042"
+        },
+        {
+          "value": "VEH-07",
+          "label": "DXB-H-1049"
+        },
+        {
+          "value": "VEH-08",
+          "label": "DXB-I-1056"
+        },
+        {
+          "value": "VEH-09",
+          "label": "DXB-J-1063"
+        },
+        {
+          "value": "VEH-10",
+          "label": "DXB-K-1070"
+        }
+      ],
+      "dimension": "vehicle",
+      "allLabel": "All vehicles"
+    }
+  ],
+  "widgetGrid": [
+    {
+      "id": "w-fuel-left-column",
+      "type": "stack",
+      "span": 4,
+      "children": [
+        {
+          "id": "w-fuel-efficiency-score",
+          "title": "Fuel Efficiency Score",
+          "type": "compliance-gauge",
+          "dataSource": {
+            "kind": "static",
+            "subtitle": "How efficiently the fleet is burning fuel right now.",
+            "icon": "gauge",
+            "tone": "success",
+            "value": 81,
+            "min": 0,
+            "max": 100,
+            "sectors": [
+              {
+                "to": 33,
+                "color": "var(--color-error-500)"
+              },
+              {
+                "to": 66,
+                "color": "var(--color-warning)"
+              },
+              {
+                "to": 85,
+                "color": "var(--color-success-scale-300)"
+              },
+              {
+                "to": 100,
+                "color": "var(--color-success)"
+              }
+            ],
+            "centerLabel": {
+              "value": "81",
+              "caption": "Fleet Score"
+            },
+            "axis": {
+              "y": {
+                "title": "0–33 critical, 34–66 at risk, 67–84 good, 85–100 excellent"
+              }
+            },
+            "height": 200,
+            "ariaLabel": "Fuel efficiency score — the fleet score out of 100.",
+            "emptyText": "No fuel efficiency score for the selected filters.",
+            "variants": [
+              {
+                "when": {
+                  "timeframe": "today"
+                },
+                "value": 88,
+                "centerLabel": {
+                  "value": "88",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "timeframe": "last-7-days"
+                },
+                "value": 84,
+                "centerLabel": {
+                  "value": "84",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "driver": "WF-01"
+                },
+                "value": 83,
+                "centerLabel": {
+                  "value": "83",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "driver": "WF-02"
+                },
+                "value": 85,
+                "centerLabel": {
+                  "value": "85",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "driver": "WF-06"
+                },
+                "value": 49,
+                "centerLabel": {
+                  "value": "49",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "driver": "WF-07"
+                },
+                "value": 74,
+                "centerLabel": {
+                  "value": "74",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "driver": "WF-08"
+                },
+                "value": 62,
+                "centerLabel": {
+                  "value": "62",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "driver": "WF-09"
+                },
+                "value": 66,
+                "centerLabel": {
+                  "value": "66",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "driver": "WF-10"
+                },
+                "value": 77,
+                "centerLabel": {
+                  "value": "77",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-01"
+                },
+                "value": 53,
+                "centerLabel": {
+                  "value": "53",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-02"
+                },
+                "value": 60,
+                "centerLabel": {
+                  "value": "60",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-03"
+                },
+                "value": 58,
+                "centerLabel": {
+                  "value": "58",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-04"
+                },
+                "value": 58,
+                "centerLabel": {
+                  "value": "58",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-05"
+                },
+                "value": 46,
+                "centerLabel": {
+                  "value": "46",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-06"
+                },
+                "value": 59,
+                "centerLabel": {
+                  "value": "59",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-07"
+                },
+                "value": 45,
+                "centerLabel": {
+                  "value": "45",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-08"
+                },
+                "value": 80,
+                "centerLabel": {
+                  "value": "80",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-09"
+                },
+                "value": 67,
+                "centerLabel": {
+                  "value": "67",
+                  "caption": "Fleet Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-10"
+                },
+                "value": 54,
+                "centerLabel": {
+                  "value": "54",
+                  "caption": "Fleet Score"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "w-fleet-fuel-levels",
+          "title": "Fleet Fuel Levels",
+          "type": "bar",
+          "dataSource": {
+            "kind": "static",
+            "subtitle": "Current tank level per vehicle, fullest first.",
+            "icon": "droplet",
+            "tone": "primary",
+            "orientation": "horizontal",
+            "showTrack": true,
+            "showValues": true,
+            "categories": [
+              "DXB-E-1028",
+              "DXB-C-1014",
+              "DXB-H-1049",
+              "DXB-F-1035",
+              "DXB-B-1007",
+              "DXB-K-1070",
+              "DXB-D-1021",
+              "DXB-J-1063",
+              "DXB-G-1042",
+              "DXB-I-1056"
+            ],
+            "categoryDimensions": [
+              {
+                "vehicle": "VEH-04",
+                "driver": "WF-07"
+              },
+              {
+                "vehicle": "VEH-02",
+                "driver": "WF-02"
+              },
+              {
+                "vehicle": "VEH-07",
+                "driver": "WF-10"
+              },
+              {
+                "vehicle": "VEH-05",
+                "driver": "WF-08"
+              },
+              {
+                "vehicle": "VEH-01",
+                "driver": "WF-01"
+              },
+              {
+                "vehicle": "VEH-10",
+                "driver": "WF-06"
+              },
+              {
+                "vehicle": "VEH-03",
+                "driver": "WF-06"
+              },
+              {
+                "vehicle": "VEH-09",
+                "driver": "WF-02"
+              },
+              {
+                "vehicle": "VEH-06",
+                "driver": "WF-09"
+              },
+              {
+                "vehicle": "VEH-08",
+                "driver": "WF-01"
+              }
+            ],
+            "series": [
+              {
+                "id": "fuel-level",
+                "label": "Fuel level",
+                "unit": "%",
+                "data": [
+                  10,
+                  11,
+                  15,
+                  30,
+                  36,
+                  45,
+                  57,
+                  79,
+                  91,
+                  93
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ],
+            "axis": {
+              "x": {
+                "title": "Fuel Level (%)",
+                "format": "int"
+              },
+              "y": {
+                "title": "Vehicle"
+              }
+            },
+            "height": 560,
+            "ariaLabel": "Fleet fuel levels — horizontal bar chart of the current tank level as a percentage for ten vehicles, ranked fullest first.",
+            "emptyText": "No fuel levels reported for the selected filters."
+          }
+        }
+      ]
+    },
+    {
+      "id": "w-fuel-right-column",
+      "type": "stack",
+      "span": 8,
+      "children": [
+        {
+          "id": "w-fuel-over-distance",
+          "title": "Fuel Consumed Over Distance",
+          "type": "line",
+          "dataSource": {
+            "kind": "static",
+            "subtitle": "Does fuel use track the distance driven, day by day?",
+            "icon": "route",
+            "tone": "info",
+            "smooth": true,
+            "categories": [
+              "2 Jan",
+              "4 Jan",
+              "6 Jan",
+              "8 Jan",
+              "10 Jan",
+              "12 Jan",
+              "14 Jan",
+              "16 Jan",
+              "18 Jan",
+              "20 Jan",
+              "22 Jan",
+              "24 Jan",
+              "26 Jan",
+              "28 Jan",
+              "30 Jan"
+            ],
+            "categoryDimensions": [
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-7-days",
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-7-days",
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-7-days",
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "today",
+                  "last-7-days",
+                  "last-30-days"
+                ]
+              }
+            ],
+            "series": [
+              {
+                "id": "fuel",
+                "label": "Fuel burned",
+                "unit": "L",
+                "axis": "leading",
+                "data": [
+                  48,
+                  61,
+                  55,
+                  68,
+                  63,
+                  74,
+                  70,
+                  82,
+                  76,
+                  88,
+                  81,
+                  92,
+                  86,
+                  97,
+                  93
+                ],
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "distance",
+                "label": "Distance driven",
+                "unit": "km",
+                "axis": "trailing",
+                "colorIndex": 1,
+                "data": [
+                  620,
+                  700,
+                  810,
+                  760,
+                  900,
+                  850,
+                  980,
+                  930,
+                  1080,
+                  1010,
+                  1180,
+                  1120,
+                  1290,
+                  1230,
+                  1400
+                ]
+              }
+            ],
+            "axis": {
+              "x": {
+                "title": "Date"
+              },
+              "y": {
+                "title": "Fuel (L)",
+                "format": "int",
+                "min": 0,
+                "max": 100
+              },
+              "yRight": {
+                "title": "Distance (km)",
+                "format": "int",
+                "min": 0,
+                "max": 1500
+              }
+            },
+            "height": 340,
+            "ariaLabel": "Fuel consumed over distance — dual-axis line chart with fuel in litres on the leading axis and distance in kilometres on the trailing axis.",
+            "emptyText": "No fuel or distance data for the selected filters.",
+            "legendPlacement": "top",
+            "variants": [
+              {
+                "when": {
+                  "driver": "WF-01"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      34,
+                      42,
+                      45,
+                      56,
+                      54,
+                      60,
+                      57,
+                      56,
+                      66,
+                      61,
+                      61,
+                      70,
+                      62,
+                      81,
+                      76
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      426,
+                      502,
+                      638,
+                      652,
+                      709,
+                      743,
+                      787,
+                      725,
+                      842,
+                      756,
+                      856,
+                      812,
+                      996,
+                      883,
+                      1026
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "driver": "WF-02"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      38,
+                      46,
+                      47,
+                      52,
+                      47,
+                      56,
+                      53,
+                      59,
+                      63,
+                      73,
+                      62,
+                      75,
+                      58,
+                      83,
+                      79
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      468,
+                      593,
+                      555,
+                      550,
+                      735,
+                      668,
+                      679,
+                      802,
+                      865,
+                      793,
+                      900,
+                      923,
+                      914,
+                      957,
+                      1132
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "driver": "WF-06"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      54,
+                      67,
+                      59,
+                      70,
+                      69,
+                      75,
+                      79,
+                      93,
+                      72,
+                      86,
+                      87,
+                      93,
+                      82,
+                      94,
+                      104
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      594,
+                      643,
+                      801,
+                      860,
+                      1028,
+                      867,
+                      980,
+                      901,
+                      969,
+                      917,
+                      1095,
+                      1154,
+                      1368,
+                      1330,
+                      1528
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "driver": "WF-07"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      42,
+                      60,
+                      46,
+                      59,
+                      50,
+                      67,
+                      60,
+                      76,
+                      71,
+                      70,
+                      66,
+                      91,
+                      79,
+                      91,
+                      84
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      541,
+                      604,
+                      793,
+                      643,
+                      825,
+                      787,
+                      802,
+                      770,
+                      904,
+                      845,
+                      1113,
+                      1007,
+                      1183,
+                      1062,
+                      1134
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "driver": "WF-08"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      41,
+                      59,
+                      53,
+                      64,
+                      51,
+                      72,
+                      62,
+                      69,
+                      66,
+                      79,
+                      72,
+                      87,
+                      71,
+                      87,
+                      86
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      496,
+                      580,
+                      759,
+                      747,
+                      835,
+                      781,
+                      981,
+                      855,
+                      943,
+                      901,
+                      1063,
+                      1111,
+                      1280,
+                      1254,
+                      1427
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "driver": "WF-09"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      48,
+                      61,
+                      58,
+                      75,
+                      76,
+                      89,
+                      82,
+                      102,
+                      75,
+                      86,
+                      101,
+                      106,
+                      85,
+                      116,
+                      111
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      702,
+                      723,
+                      962,
+                      903,
+                      939,
+                      1057,
+                      1207,
+                      981,
+                      1103,
+                      1009,
+                      1231,
+                      1243,
+                      1303,
+                      1461,
+                      1554
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "driver": "WF-10"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      37,
+                      44,
+                      44,
+                      52,
+                      52,
+                      60,
+                      58,
+                      67,
+                      51,
+                      69,
+                      55,
+                      64,
+                      65,
+                      80,
+                      71
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      463,
+                      570,
+                      605,
+                      630,
+                      586,
+                      623,
+                      645,
+                      626,
+                      871,
+                      688,
+                      803,
+                      787,
+                      869,
+                      947,
+                      1119
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-01"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      33,
+                      41,
+                      44,
+                      51,
+                      44,
+                      55,
+                      49,
+                      62,
+                      57,
+                      68,
+                      60,
+                      64,
+                      60,
+                      71,
+                      60
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      498,
+                      475,
+                      538,
+                      605,
+                      677,
+                      602,
+                      687,
+                      597,
+                      859,
+                      759,
+                      930,
+                      850,
+                      1008,
+                      871,
+                      950
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-02"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      35,
+                      47,
+                      38,
+                      45,
+                      42,
+                      54,
+                      52,
+                      60,
+                      56,
+                      62,
+                      65,
+                      74,
+                      56,
+                      71,
+                      62
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      455,
+                      509,
+                      572,
+                      558,
+                      609,
+                      624,
+                      727,
+                      683,
+                      715,
+                      785,
+                      765,
+                      847,
+                      845,
+                      983,
+                      927
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-03"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      40,
+                      53,
+                      47,
+                      58,
+                      49,
+                      60,
+                      55,
+                      73,
+                      56,
+                      67,
+                      71,
+                      67,
+                      74,
+                      85,
+                      80
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      556,
+                      610,
+                      699,
+                      706,
+                      687,
+                      663,
+                      862,
+                      818,
+                      887,
+                      771,
+                      1028,
+                      995,
+                      1006,
+                      898,
+                      1104
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-04"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      49,
+                      54,
+                      49,
+                      70,
+                      53,
+                      76,
+                      66,
+                      84,
+                      70,
+                      83,
+                      73,
+                      90,
+                      84,
+                      85,
+                      80
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      647,
+                      579,
+                      716,
+                      772,
+                      871,
+                      815,
+                      875,
+                      909,
+                      1117,
+                      1054,
+                      1231,
+                      1053,
+                      1188,
+                      1098,
+                      1303
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-05"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      46,
+                      52,
+                      45,
+                      58,
+                      56,
+                      68,
+                      64,
+                      69,
+                      65,
+                      67,
+                      66,
+                      78,
+                      71,
+                      86,
+                      77
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      533,
+                      554,
+                      752,
+                      706,
+                      751,
+                      753,
+                      767,
+                      872,
+                      994,
+                      886,
+                      1116,
+                      925,
+                      1109,
+                      1015,
+                      1216
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-06"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      46,
+                      51,
+                      51,
+                      64,
+                      52,
+                      61,
+                      61,
+                      80,
+                      62,
+                      86,
+                      72,
+                      85,
+                      75,
+                      80,
+                      83
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      502,
+                      637,
+                      649,
+                      754,
+                      893,
+                      704,
+                      892,
+                      779,
+                      1012,
+                      1029,
+                      1009,
+                      1091,
+                      1280,
+                      996,
+                      1159
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-07"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      43,
+                      50,
+                      50,
+                      62,
+                      61,
+                      71,
+                      58,
+                      72,
+                      75,
+                      76,
+                      68,
+                      84,
+                      78,
+                      77,
+                      94
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      603,
+                      668,
+                      773,
+                      746,
+                      875,
+                      826,
+                      882,
+                      854,
+                      982,
+                      873,
+                      1062,
+                      1038,
+                      1196,
+                      1007,
+                      1323
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-08"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      29,
+                      35,
+                      29,
+                      39,
+                      34,
+                      43,
+                      35,
+                      41,
+                      46,
+                      47,
+                      48,
+                      56,
+                      45,
+                      57,
+                      55
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      385,
+                      345,
+                      490,
+                      404,
+                      444,
+                      500,
+                      521,
+                      568,
+                      599,
+                      543,
+                      641,
+                      665,
+                      708,
+                      771,
+                      815
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-09"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      47,
+                      67,
+                      60,
+                      71,
+                      66,
+                      80,
+                      65,
+                      93,
+                      81,
+                      90,
+                      92,
+                      106,
+                      95,
+                      104,
+                      93
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      703,
+                      648,
+                      868,
+                      862,
+                      983,
+                      937,
+                      927,
+                      938,
+                      1078,
+                      1176,
+                      1301,
+                      1235,
+                      1503,
+                      1241,
+                      1325
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-10"
+                },
+                "series": [
+                  {
+                    "id": "fuel",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "axis": "leading",
+                    "data": [
+                      29,
+                      35,
+                      35,
+                      42,
+                      38,
+                      45,
+                      37,
+                      43,
+                      43,
+                      49,
+                      43,
+                      59,
+                      46,
+                      58,
+                      55
+                    ],
+                    "colorToken": "var(--color-primary)"
+                  },
+                  {
+                    "id": "distance",
+                    "label": "Distance driven",
+                    "unit": "km",
+                    "axis": "trailing",
+                    "colorIndex": 1,
+                    "data": [
+                      358,
+                      458,
+                      444,
+                      426,
+                      568,
+                      562,
+                      584,
+                      582,
+                      599,
+                      542,
+                      759,
+                      595,
+                      761,
+                      668,
+                      785
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "w-fuel-consumed-vs-used",
+          "title": "Fuel Dispensed vs Fuel Burned",
+          "type": "line",
+          "dataSource": {
+            "kind": "static",
+            "subtitle": "How much of the fuel put into tanks is actually burned?",
+            "icon": "droplet",
+            "tone": "info",
+            "smooth": true,
+            "categories": [
+              "2 Jan",
+              "4 Jan",
+              "6 Jan",
+              "8 Jan",
+              "10 Jan",
+              "12 Jan",
+              "14 Jan",
+              "16 Jan",
+              "18 Jan",
+              "20 Jan",
+              "22 Jan",
+              "24 Jan",
+              "26 Jan",
+              "28 Jan",
+              "30 Jan"
+            ],
+            "categoryDimensions": [
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-7-days",
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-7-days",
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "last-7-days",
+                  "last-30-days"
+                ]
+              },
+              {
+                "timeframe": [
+                  "today",
+                  "last-7-days",
+                  "last-30-days"
+                ]
+              }
+            ],
+            "series": [
+              {
+                "id": "dispensed",
+                "label": "Fuel dispensed",
+                "unit": "L",
+                "colorIndex": 2,
+                "data": [
+                  64,
+                  72,
+                  68,
+                  79,
+                  74,
+                  85,
+                  80,
+                  91,
+                  86,
+                  96,
+                  90,
+                  101,
+                  95,
+                  106,
+                  100
+                ]
+              },
+              {
+                "id": "burned",
+                "label": "Fuel burned",
+                "unit": "L",
+                "colorIndex": 3,
+                "data": [
+                  52,
+                  58,
+                  55,
+                  63,
+                  60,
+                  68,
+                  65,
+                  73,
+                  70,
+                  78,
+                  74,
+                  82,
+                  78,
+                  86,
+                  82
+                ]
+              }
+            ],
+            "axis": {
+              "x": {
+                "title": "Date"
+              },
+              "y": {
+                "title": "Fuel (L)",
+                "format": "int",
+                "min": 0
+              }
+            },
+            "height": 340,
+            "ariaLabel": "Fuel dispensed versus fuel burned — line chart comparing two litre series.",
+            "emptyText": "No fuel data for the selected filters.",
+            "legendPlacement": "top",
+            "variants": [
+              {
+                "when": {
+                  "driver": "WF-01"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      52,
+                      64,
+                      66,
+                      61,
+                      69,
+                      72,
+                      69,
+                      88,
+                      71,
+                      81,
+                      84,
+                      93,
+                      76,
+                      84,
+                      85
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      48,
+                      50,
+                      53,
+                      61,
+                      52,
+                      54,
+                      58,
+                      57,
+                      64,
+                      73,
+                      65,
+                      72,
+                      67,
+                      83,
+                      66
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "driver": "WF-02"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      59,
+                      76,
+                      60,
+                      77,
+                      70,
+                      78,
+                      71,
+                      94,
+                      75,
+                      92,
+                      82,
+                      93,
+                      87,
+                      91,
+                      102
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      44,
+                      62,
+                      58,
+                      53,
+                      62,
+                      57,
+                      67,
+                      64,
+                      61,
+                      71,
+                      71,
+                      77,
+                      66,
+                      79,
+                      76
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "driver": "WF-06"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      40,
+                      49,
+                      42,
+                      57,
+                      55,
+                      54,
+                      47,
+                      65,
+                      56,
+                      56,
+                      64,
+                      69,
+                      58,
+                      64,
+                      64
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      33,
+                      34,
+                      33,
+                      47,
+                      35,
+                      42,
+                      41,
+                      50,
+                      46,
+                      57,
+                      51,
+                      58,
+                      53,
+                      53,
+                      49
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "driver": "WF-07"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      75,
+                      82,
+                      68,
+                      81,
+                      74,
+                      95,
+                      77,
+                      104,
+                      101,
+                      109,
+                      98,
+                      115,
+                      106,
+                      126,
+                      110
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      61,
+                      65,
+                      59,
+                      69,
+                      67,
+                      81,
+                      65,
+                      78,
+                      82,
+                      83,
+                      71,
+                      89,
+                      78,
+                      87,
+                      79
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "driver": "WF-08"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      48,
+                      53,
+                      56,
+                      59,
+                      59,
+                      77,
+                      66,
+                      76,
+                      78,
+                      72,
+                      74,
+                      88,
+                      73,
+                      90,
+                      76
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      46,
+                      48,
+                      47,
+                      57,
+                      52,
+                      57,
+                      51,
+                      64,
+                      58,
+                      63,
+                      55,
+                      73,
+                      61,
+                      63,
+                      69
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "driver": "WF-09"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      61,
+                      68,
+                      62,
+                      85,
+                      69,
+                      82,
+                      80,
+                      100,
+                      89,
+                      90,
+                      91,
+                      114,
+                      107,
+                      120,
+                      104
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      52,
+                      66,
+                      55,
+                      62,
+                      55,
+                      71,
+                      66,
+                      80,
+                      69,
+                      71,
+                      76,
+                      80,
+                      80,
+                      90,
+                      81
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "driver": "WF-10"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      44,
+                      46,
+                      40,
+                      49,
+                      51,
+                      58,
+                      50,
+                      57,
+                      58,
+                      64,
+                      52,
+                      71,
+                      61,
+                      67,
+                      66
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      33,
+                      37,
+                      36,
+                      37,
+                      35,
+                      47,
+                      44,
+                      45,
+                      49,
+                      48,
+                      43,
+                      57,
+                      54,
+                      61,
+                      48
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-01"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      57,
+                      70,
+                      58,
+                      76,
+                      68,
+                      80,
+                      65,
+                      74,
+                      76,
+                      79,
+                      77,
+                      97,
+                      79,
+                      82,
+                      83
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      44,
+                      51,
+                      50,
+                      55,
+                      49,
+                      62,
+                      57,
+                      65,
+                      65,
+                      73,
+                      69,
+                      77,
+                      71,
+                      80,
+                      78
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-02"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      70,
+                      75,
+                      76,
+                      87,
+                      75,
+                      96,
+                      87,
+                      94,
+                      98,
+                      114,
+                      91,
+                      121,
+                      104,
+                      115,
+                      112
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      62,
+                      58,
+                      55,
+                      60,
+                      71,
+                      72,
+                      72,
+                      87,
+                      66,
+                      78,
+                      77,
+                      96,
+                      89,
+                      98,
+                      78
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-03"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      42,
+                      48,
+                      40,
+                      49,
+                      51,
+                      55,
+                      57,
+                      53,
+                      55,
+                      64,
+                      62,
+                      63,
+                      65,
+                      63,
+                      66
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      35,
+                      35,
+                      37,
+                      37,
+                      42,
+                      49,
+                      42,
+                      43,
+                      48,
+                      47,
+                      49,
+                      54,
+                      50,
+                      52,
+                      47
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-04"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      67,
+                      90,
+                      81,
+                      87,
+                      76,
+                      85,
+                      87,
+                      91,
+                      89,
+                      105,
+                      102,
+                      118,
+                      112,
+                      119,
+                      121
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      59,
+                      61,
+                      59,
+                      67,
+                      74,
+                      78,
+                      69,
+                      75,
+                      88,
+                      95,
+                      88,
+                      102,
+                      78,
+                      107,
+                      100
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-05"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      51,
+                      58,
+                      52,
+                      60,
+                      50,
+                      65,
+                      55,
+                      61,
+                      72,
+                      71,
+                      64,
+                      77,
+                      77,
+                      85,
+                      66
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      42,
+                      42,
+                      44,
+                      48,
+                      49,
+                      46,
+                      43,
+                      56,
+                      53,
+                      62,
+                      56,
+                      65,
+                      60,
+                      68,
+                      62
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-06"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      43,
+                      47,
+                      44,
+                      48,
+                      40,
+                      46,
+                      51,
+                      55,
+                      49,
+                      52,
+                      49,
+                      66,
+                      58,
+                      62,
+                      60
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      35,
+                      38,
+                      36,
+                      39,
+                      37,
+                      40,
+                      38,
+                      44,
+                      44,
+                      47,
+                      47,
+                      54,
+                      45,
+                      51,
+                      44
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-07"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      43,
+                      54,
+                      47,
+                      50,
+                      47,
+                      64,
+                      59,
+                      70,
+                      59,
+                      60,
+                      55,
+                      71,
+                      71,
+                      81,
+                      75
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      36,
+                      36,
+                      37,
+                      45,
+                      45,
+                      45,
+                      47,
+                      54,
+                      51,
+                      50,
+                      45,
+                      55,
+                      55,
+                      62,
+                      54
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-08"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      45,
+                      56,
+                      49,
+                      64,
+                      49,
+                      64,
+                      62,
+                      69,
+                      65,
+                      65,
+                      69,
+                      81,
+                      79,
+                      86,
+                      76
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      37,
+                      42,
+                      41,
+                      42,
+                      47,
+                      53,
+                      44,
+                      48,
+                      54,
+                      62,
+                      49,
+                      67,
+                      54,
+                      69,
+                      55
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-09"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      62,
+                      67,
+                      71,
+                      86,
+                      72,
+                      93,
+                      75,
+                      85,
+                      86,
+                      91,
+                      98,
+                      92,
+                      88,
+                      97,
+                      106
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      58,
+                      63,
+                      58,
+                      59,
+                      54,
+                      62,
+                      58,
+                      76,
+                      68,
+                      88,
+                      74,
+                      88,
+                      84,
+                      82,
+                      82
+                    ]
+                  }
+                ]
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-10"
+                },
+                "series": [
+                  {
+                    "id": "dispensed",
+                    "label": "Fuel dispensed",
+                    "unit": "L",
+                    "colorIndex": 2,
+                    "data": [
+                      47,
+                      56,
+                      48,
+                      59,
+                      55,
+                      65,
+                      65,
+                      81,
+                      62,
+                      81,
+                      74,
+                      71,
+                      84,
+                      89,
+                      80
+                    ]
+                  },
+                  {
+                    "id": "burned",
+                    "label": "Fuel burned",
+                    "unit": "L",
+                    "colorIndex": 3,
+                    "data": [
+                      42,
+                      45,
+                      45,
+                      45,
+                      49,
+                      58,
+                      46,
+                      52,
+                      62,
+                      62,
+                      60,
+                      60,
+                      62,
+                      74,
+                      64
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "w-fuel-events-map",
+      "title": "Fuel Monitoring Events",
+      "type": "geospatial-heatmap",
+      "span": 12,
+      "dataSource": {
+        "kind": "static",
+        "subtitle": "Where refuelling, low-fuel and theft events happened.",
+        "icon": "map-pin",
+        "tone": "danger",
+        "render": "markers",
+        "height": 520,
+        "listRail": {
+          "searchPlaceholder": "Search Events"
+        },
+        "axis": {
+          "y": {
+            "title": "Events"
+          }
+        },
+        "legend": [
+          {
+            "id": "fuel-refueling",
+            "label": "Fuel Refueling",
+            "colorIndex": 2
+          },
+          {
+            "id": "fuel-empty",
+            "label": "Fuel Empty",
+            "colorIndex": 1
+          },
+          {
+            "id": "fuel-theft",
+            "label": "Fuel Theft",
+            "color": "var(--color-error-500)"
+          }
+        ],
+        "items": [
+          {
+            "id": "fe-1",
+            "title": "Fuel Refueling",
+            "description": "Al Dafrah, Abu Dhabi",
+            "category": "fuel-refueling",
+            "severity": "info",
+            "timestamp": "20/07/2026 20:30:53",
+            "position": [
+              54.3773,
+              24.4539
+            ],
+            "dimensions": {
+              "vehicle": "VEH-01",
+              "driver": "WF-01",
+              "timeframe": [
+                "today",
+                "last-7-days",
+                "last-30-days"
+              ]
+            },
+            "meta": [
+              {
+                "id": "fe-1-veh",
+                "label": "Vehicle",
+                "value": "DXB-B-1007"
+              }
+            ]
+          },
+          {
+            "id": "fe-2",
+            "title": "Fuel Refueling",
+            "description": "Mussafah, Abu Dhabi",
+            "category": "fuel-refueling",
+            "severity": "info",
+            "timestamp": "20/07/2026 18:12:04",
+            "position": [
+              54.498,
+              24.351
+            ],
+            "dimensions": {
+              "vehicle": "VEH-02",
+              "driver": "WF-02",
+              "timeframe": [
+                "last-30-days"
+              ]
+            },
+            "meta": [
+              {
+                "id": "fe-2-veh",
+                "label": "Vehicle",
+                "value": "DXB-C-1014"
+              }
+            ]
+          },
+          {
+            "id": "fe-3",
+            "title": "Fuel Empty",
+            "description": "Al Reem Island, Abu Dhabi",
+            "category": "fuel-empty",
+            "severity": "warning",
+            "timestamp": "21/07/2026 07:41:22",
+            "position": [
+              54.403,
+              24.498
+            ],
+            "dimensions": {
+              "vehicle": "VEH-03",
+              "driver": "WF-06",
+              "timeframe": [
+                "last-30-days"
+              ]
+            },
+            "meta": [
+              {
+                "id": "fe-3-veh",
+                "label": "Vehicle",
+                "value": "DXB-D-1021"
+              }
+            ]
+          },
+          {
+            "id": "fe-4",
+            "title": "Fuel Theft",
+            "description": "Khalifa Industrial Zone, Abu Dhabi",
+            "category": "fuel-theft",
+            "severity": "critical",
+            "timestamp": "21/07/2026 02:16:39",
+            "position": [
+              54.68,
+              24.79
+            ],
+            "dimensions": {
+              "vehicle": "VEH-04",
+              "driver": "WF-07",
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            },
+            "meta": [
+              {
+                "id": "fe-4-veh",
+                "label": "Vehicle",
+                "value": "DXB-E-1028"
+              }
+            ]
+          },
+          {
+            "id": "fe-5",
+            "title": "Fuel Refueling",
+            "description": "Al Shahama, Abu Dhabi",
+            "category": "fuel-refueling",
+            "severity": "info",
+            "timestamp": "21/07/2026 09:05:10",
+            "position": [
+              54.572,
+              24.598
+            ],
+            "dimensions": {
+              "vehicle": "VEH-05",
+              "driver": "WF-08",
+              "timeframe": [
+                "last-30-days"
+              ]
+            },
+            "meta": [
+              {
+                "id": "fe-5-veh",
+                "label": "Vehicle",
+                "value": "DXB-F-1035"
+              }
+            ]
+          },
+          {
+            "id": "fe-6",
+            "title": "Fuel Empty",
+            "description": "Yas Island, Abu Dhabi",
+            "category": "fuel-empty",
+            "severity": "warning",
+            "timestamp": "22/07/2026 13:48:57",
+            "position": [
+              54.605,
+              24.489
+            ],
+            "dimensions": {
+              "vehicle": "VEH-06",
+              "driver": "WF-09",
+              "timeframe": [
+                "today",
+                "last-7-days",
+                "last-30-days"
+              ]
+            },
+            "meta": [
+              {
+                "id": "fe-6-veh",
+                "label": "Vehicle",
+                "value": "DXB-G-1042"
+              }
+            ]
+          },
+          {
+            "id": "fe-7",
+            "title": "Fuel Refueling",
+            "description": "Al Maryah Island, Abu Dhabi",
+            "category": "fuel-refueling",
+            "severity": "info",
+            "timestamp": "22/07/2026 16:22:31",
+            "position": [
+              54.389,
+              24.502
+            ],
+            "dimensions": {
+              "vehicle": "VEH-07",
+              "driver": "WF-10",
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            },
+            "meta": [
+              {
+                "id": "fe-7-veh",
+                "label": "Vehicle",
+                "value": "DXB-H-1049"
+              }
+            ]
+          },
+          {
+            "id": "fe-8",
+            "title": "Fuel Theft",
+            "description": "Al Wathba, Abu Dhabi",
+            "category": "fuel-theft",
+            "severity": "critical",
+            "timestamp": "23/07/2026 01:55:12",
+            "position": [
+              54.73,
+              24.22
+            ],
+            "dimensions": {
+              "vehicle": "VEH-08",
+              "driver": "WF-01",
+              "timeframe": [
+                "last-30-days"
+              ]
+            },
+            "meta": [
+              {
+                "id": "fe-8-veh",
+                "label": "Vehicle",
+                "value": "DXB-I-1056"
+              }
+            ]
+          },
+          {
+            "id": "fe-9",
+            "title": "Fuel Refueling",
+            "description": "Saadiyat Island, Abu Dhabi",
+            "category": "fuel-refueling",
+            "severity": "info",
+            "timestamp": "23/07/2026 10:30:00",
+            "position": [
+              54.435,
+              24.54
+            ],
+            "dimensions": {
+              "vehicle": "VEH-09",
+              "driver": "WF-02",
+              "timeframe": [
+                "last-30-days"
+              ]
+            },
+            "meta": [
+              {
+                "id": "fe-9-veh",
+                "label": "Vehicle",
+                "value": "DXB-J-1063"
+              }
+            ]
+          },
+          {
+            "id": "fe-10",
+            "title": "Fuel Empty",
+            "description": "Baniyas, Abu Dhabi",
+            "category": "fuel-empty",
+            "severity": "warning",
+            "timestamp": "23/07/2026 19:14:45",
+            "position": [
+              54.632,
+              24.305
+            ],
+            "dimensions": {
+              "vehicle": "VEH-10",
+              "driver": "WF-06",
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            },
+            "meta": [
+              {
+                "id": "fe-10-veh",
+                "label": "Vehicle",
+                "value": "DXB-K-1070"
+              }
+            ]
+          },
+          {
+            "id": "fe-11",
+            "title": "Fuel Refueling",
+            "description": "Khalifa City, Abu Dhabi",
+            "category": "fuel-refueling",
+            "severity": "info",
+            "timestamp": "24/07/2026 08:02:19",
+            "position": [
+              54.576,
+              24.42
+            ],
+            "dimensions": {
+              "vehicle": "VEH-01",
+              "driver": "WF-01",
+              "timeframe": [
+                "today",
+                "last-7-days",
+                "last-30-days"
+              ]
+            },
+            "meta": [
+              {
+                "id": "fe-11-veh",
+                "label": "Vehicle",
+                "value": "DXB-B-1007"
+              }
+            ]
+          },
+          {
+            "id": "fe-12",
+            "title": "Fuel Refueling",
+            "description": "Corniche, Abu Dhabi",
+            "category": "fuel-refueling",
+            "severity": "info",
+            "timestamp": "24/07/2026 12:47:38",
+            "position": [
+              54.335,
+              24.475
+            ],
+            "dimensions": {
+              "vehicle": "VEH-02",
+              "driver": "WF-02",
+              "timeframe": [
+                "last-30-days"
+              ]
+            },
+            "meta": [
+              {
+                "id": "fe-12-veh",
+                "label": "Vehicle",
+                "value": "DXB-C-1014"
+              }
+            ]
+          }
+        ],
+        "ariaLabel": "Fuel monitoring events — map of twelve refuelling, low-fuel and fuel-theft events across Abu Dhabi.",
+        "emptyText": "No fuel events in the selected period."
+      }
+    },
+    {
+      "id": "w-monthly-fuel-cost",
+      "title": "Monthly Fuel Cost",
+      "type": "bar",
+      "span": 6,
+      "dataSource": {
+        "kind": "static",
+        "subtitle": "Daily fuel spend across the selected month.",
+        "icon": "credit-card",
+        "tone": "info",
+        "categories": [
+          "2 Jan",
+          "4 Jan",
+          "6 Jan",
+          "8 Jan",
+          "10 Jan",
+          "12 Jan",
+          "14 Jan",
+          "16 Jan",
+          "18 Jan",
+          "20 Jan",
+          "22 Jan",
+          "24 Jan",
+          "26 Jan",
+          "28 Jan",
+          "30 Jan"
+        ],
+        "categoryDimensions": [
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "today",
+              "last-7-days",
+              "last-30-days"
+            ]
+          }
+        ],
+        "series": [
+          {
+            "id": "cost",
+            "label": "Fuel cost",
+            "unit": "AED",
+            "colorIndex": 3,
+            "data": [
+              420,
+              560,
+              380,
+              720,
+              640,
+              500,
+              880,
+              700,
+              410,
+              590,
+              810,
+              540,
+              690,
+              940,
+              830
+            ]
+          }
+        ],
+        "axis": {
+          "x": {
+            "title": "Date"
+          },
+          "y": {
+            "title": "Cost (AED)",
+            "format": "int"
+          }
+        },
+        "height": 340,
+        "ariaLabel": "Monthly fuel cost — column chart of daily fuel spend in dirhams.",
+        "emptyText": "No fuel cost for the selected filters.",
+        "variants": [
+          {
+            "when": {
+              "driver": "WF-01"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  300,
+                  426,
+                  264,
+                  455,
+                  396,
+                  360,
+                  527,
+                  490,
+                  279,
+                  373,
+                  562,
+                  341,
+                  507,
+                  569,
+                  615
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "driver": "WF-02"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  306,
+                  464,
+                  309,
+                  531,
+                  491,
+                  407,
+                  662,
+                  548,
+                  305,
+                  471,
+                  573,
+                  365,
+                  503,
+                  779,
+                  580
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "driver": "WF-06"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  229,
+                  317,
+                  205,
+                  368,
+                  331,
+                  258,
+                  489,
+                  393,
+                  235,
+                  324,
+                  472,
+                  270,
+                  387,
+                  553,
+                  498
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "driver": "WF-07"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  263,
+                  403,
+                  238,
+                  442,
+                  380,
+                  327,
+                  575,
+                  444,
+                  252,
+                  366,
+                  497,
+                  342,
+                  428,
+                  645,
+                  575
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "driver": "WF-08"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  212,
+                  314,
+                  211,
+                  419,
+                  337,
+                  308,
+                  488,
+                  368,
+                  250,
+                  347,
+                  454,
+                  299,
+                  402,
+                  511,
+                  502
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "driver": "WF-09"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  258,
+                  318,
+                  205,
+                  464,
+                  367,
+                  264,
+                  516,
+                  447,
+                  212,
+                  363,
+                  418,
+                  316,
+                  356,
+                  502,
+                  486
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "driver": "WF-10"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  347,
+                  450,
+                  317,
+                  601,
+                  514,
+                  390,
+                  618,
+                  595,
+                  307,
+                  405,
+                  701,
+                  430,
+                  474,
+                  726,
+                  699
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  363,
+                  527,
+                  380,
+                  691,
+                  577,
+                  436,
+                  947,
+                  604,
+                  370,
+                  504,
+                  801,
+                  555,
+                  629,
+                  948,
+                  708
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  267,
+                  413,
+                  265,
+                  482,
+                  412,
+                  328,
+                  595,
+                  483,
+                  280,
+                  348,
+                  559,
+                  336,
+                  467,
+                  674,
+                  617
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  419,
+                  511,
+                  358,
+                  726,
+                  596,
+                  437,
+                  794,
+                  685,
+                  421,
+                  555,
+                  746,
+                  529,
+                  662,
+                  830,
+                  781
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  332,
+                  416,
+                  282,
+                  535,
+                  556,
+                  375,
+                  647,
+                  614,
+                  314,
+                  447,
+                  576,
+                  448,
+                  540,
+                  720,
+                  721
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  298,
+                  413,
+                  244,
+                  473,
+                  480,
+                  355,
+                  531,
+                  422,
+                  302,
+                  395,
+                  532,
+                  398,
+                  504,
+                  567,
+                  567
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  352,
+                  530,
+                  356,
+                  708,
+                  565,
+                  428,
+                  713,
+                  612,
+                  410,
+                  494,
+                  774,
+                  516,
+                  590,
+                  949,
+                  733
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  250,
+                  416,
+                  227,
+                  449,
+                  467,
+                  342,
+                  595,
+                  413,
+                  299,
+                  399,
+                  505,
+                  369,
+                  481,
+                  642,
+                  612
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  301,
+                  386,
+                  240,
+                  511,
+                  495,
+                  348,
+                  656,
+                  507,
+                  271,
+                  461,
+                  581,
+                  349,
+                  490,
+                  661,
+                  660
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  382,
+                  445,
+                  349,
+                  620,
+                  509,
+                  390,
+                  678,
+                  545,
+                  366,
+                  532,
+                  618,
+                  483,
+                  628,
+                  802,
+                  619
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "series": [
+              {
+                "id": "cost",
+                "label": "Fuel cost",
+                "unit": "AED",
+                "colorIndex": 3,
+                "data": [
+                  259,
+                  367,
+                  254,
+                  435,
+                  435,
+                  340,
+                  499,
+                  423,
+                  238,
+                  327,
+                  490,
+                  333,
+                  413,
+                  616,
+                  549
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "w-refueling-over-time",
+      "title": "Refueling Over Time",
+      "type": "bar",
+      "span": 6,
+      "dataSource": {
+        "kind": "static",
+        "subtitle": "Daily count of refuelling events.",
+        "icon": "fuel",
+        "tone": "warning",
+        "categories": [
+          "2 Jan",
+          "4 Jan",
+          "6 Jan",
+          "8 Jan",
+          "10 Jan",
+          "12 Jan",
+          "14 Jan",
+          "16 Jan",
+          "18 Jan",
+          "20 Jan",
+          "22 Jan",
+          "24 Jan",
+          "26 Jan",
+          "28 Jan",
+          "30 Jan"
+        ],
+        "categoryDimensions": [
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "today",
+              "last-7-days",
+              "last-30-days"
+            ]
+          }
+        ],
+        "series": [
+          {
+            "id": "refuels",
+            "label": "Refueling events",
+            "data": [
+              4,
+              6,
+              3,
+              8,
+              7,
+              5,
+              9,
+              6,
+              4,
+              5,
+              8,
+              5,
+              7,
+              10,
+              8
+            ],
+            "colorToken": "var(--color-primary)"
+          }
+        ],
+        "axis": {
+          "x": {
+            "title": "Date"
+          },
+          "y": {
+            "title": "Refueling Events",
+            "format": "int"
+          }
+        },
+        "height": 340,
+        "ariaLabel": "Refueling over time — column chart of daily refuelling events.",
+        "emptyText": "No refuelling events for the selected filters.",
+        "variants": [
+          {
+            "when": {
+              "driver": "WF-01"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  4,
+                  5,
+                  3,
+                  7,
+                  7,
+                  4,
+                  7,
+                  5,
+                  4,
+                  5,
+                  7,
+                  5,
+                  6,
+                  9,
+                  7
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "driver": "WF-02"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  3,
+                  4,
+                  2,
+                  6,
+                  5,
+                  4,
+                  6,
+                  5,
+                  3,
+                  4,
+                  5,
+                  4,
+                  5,
+                  8,
+                  6
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "driver": "WF-06"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  4,
+                  6,
+                  4,
+                  9,
+                  7,
+                  6,
+                  10,
+                  7,
+                  5,
+                  5,
+                  10,
+                  5,
+                  8,
+                  11,
+                  9
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "driver": "WF-07"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  3,
+                  4,
+                  2,
+                  5,
+                  5,
+                  3,
+                  7,
+                  4,
+                  3,
+                  3,
+                  5,
+                  4,
+                  4,
+                  8,
+                  5
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "driver": "WF-08"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  4,
+                  6,
+                  3,
+                  9,
+                  7,
+                  5,
+                  10,
+                  7,
+                  5,
+                  6,
+                  8,
+                  5,
+                  8,
+                  10,
+                  9
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "driver": "WF-09"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  3,
+                  5,
+                  3,
+                  6,
+                  6,
+                  4,
+                  7,
+                  5,
+                  3,
+                  4,
+                  6,
+                  5,
+                  6,
+                  7,
+                  7
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "driver": "WF-10"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  4,
+                  6,
+                  3,
+                  7,
+                  6,
+                  5,
+                  8,
+                  5,
+                  3,
+                  4,
+                  8,
+                  5,
+                  6,
+                  9,
+                  7
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  2,
+                  4,
+                  2,
+                  4,
+                  5,
+                  3,
+                  6,
+                  3,
+                  2,
+                  3,
+                  5,
+                  3,
+                  5,
+                  6,
+                  5
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  3,
+                  4,
+                  2,
+                  6,
+                  5,
+                  4,
+                  6,
+                  4,
+                  2,
+                  3,
+                  6,
+                  3,
+                  5,
+                  6,
+                  5
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  3,
+                  4,
+                  3,
+                  7,
+                  6,
+                  4,
+                  7,
+                  5,
+                  3,
+                  4,
+                  7,
+                  4,
+                  5,
+                  8,
+                  7
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  3,
+                  5,
+                  3,
+                  7,
+                  5,
+                  4,
+                  7,
+                  4,
+                  3,
+                  3,
+                  6,
+                  4,
+                  5,
+                  9,
+                  6
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  5,
+                  6,
+                  4,
+                  10,
+                  8,
+                  5,
+                  11,
+                  6,
+                  5,
+                  5,
+                  10,
+                  6,
+                  8,
+                  10,
+                  9
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  4,
+                  6,
+                  3,
+                  7,
+                  7,
+                  5,
+                  9,
+                  6,
+                  4,
+                  6,
+                  9,
+                  4,
+                  7,
+                  9,
+                  9
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  3,
+                  4,
+                  2,
+                  6,
+                  5,
+                  3,
+                  6,
+                  4,
+                  3,
+                  3,
+                  5,
+                  4,
+                  5,
+                  7,
+                  6
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  4,
+                  5,
+                  2,
+                  6,
+                  6,
+                  4,
+                  7,
+                  4,
+                  3,
+                  4,
+                  6,
+                  4,
+                  6,
+                  9,
+                  7
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  3,
+                  6,
+                  3,
+                  8,
+                  7,
+                  4,
+                  8,
+                  5,
+                  3,
+                  4,
+                  7,
+                  4,
+                  5,
+                  8,
+                  7
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "series": [
+              {
+                "id": "refuels",
+                "label": "Refueling events",
+                "data": [
+                  4,
+                  7,
+                  3,
+                  9,
+                  6,
+                  6,
+                  9,
+                  6,
+                  4,
+                  5,
+                  8,
+                  5,
+                  7,
+                  10,
+                  9
+                ],
+                "colorToken": "var(--color-primary)"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "w-high-risk-drivers",
+      "title": "High Risk Drivers",
+      "type": "leaderboard",
+      "span": 6,
+      "dataSource": {
+        "kind": "static",
+        "subtitle": "Drivers whose fuel efficiency and event count need attention.",
+        "icon": "users",
+        "tone": "danger",
+        "variant": "table",
+        "columns": [
+          {
+            "key": "vehicle",
+            "label": "Assigned Vehicle",
+            "minWidth": "9rem",
+            "icon": "truck"
+          },
+          {
+            "key": "efficiency",
+            "label": "Fuel Efficiency",
+            "render": "bar",
+            "minWidth": "12rem",
+            "thresholds": [
+              {
+                "from": 0,
+                "tone": "danger",
+                "label": "high risk"
+              },
+              {
+                "from": 30,
+                "tone": "warning",
+                "label": "watch"
+              },
+              {
+                "from": 60,
+                "tone": "success",
+                "label": "on target"
+              }
+            ]
+          },
+          {
+            "key": "events",
+            "label": "No. of Critical Events",
+            "align": "end",
+            "render": "counters",
+            "minWidth": "9rem",
+            "counters": [
+              {
+                "label": "Critical events",
+                "icon": "alert-triangle",
+                "colorIndex": 1,
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          }
+        ],
+        "rows": [
+          {
+            "id": "drv-1",
+            "rank": 1,
+            "primary": "Omar Darwish",
+            "secondary": "Driver",
+            "cells": {
+              "vehicle": "DXB-B-1007",
+              "efficiency": 18.7,
+              "events": [
+                18
+              ]
+            },
+            "media": {
+              "initials": "Omar Darwish",
+              "label": "Omar Darwish"
+            },
+            "dimensions": {
+              "driver": "WF-01",
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "id": "drv-2",
+            "rank": 2,
+            "primary": "Layla Darwish",
+            "secondary": "Driver",
+            "cells": {
+              "vehicle": "DXB-C-1014",
+              "efficiency": 21.4,
+              "events": [
+                16
+              ]
+            },
+            "media": {
+              "initials": "Layla Darwish",
+              "label": "Layla Darwish"
+            },
+            "dimensions": {
+              "driver": "WF-02",
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "id": "drv-3",
+            "rank": 3,
+            "primary": "Fatima Khan",
+            "secondary": "Driver",
+            "cells": {
+              "vehicle": "DXB-D-1021",
+              "efficiency": 24.9,
+              "events": [
+                14
+              ]
+            },
+            "media": {
+              "initials": "Fatima Khan",
+              "label": "Fatima Khan"
+            },
+            "dimensions": {
+              "driver": "WF-06",
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "id": "drv-4",
+            "rank": 4,
+            "primary": "Bilal Aziz",
+            "secondary": "Driver",
+            "cells": {
+              "vehicle": "DXB-E-1028",
+              "efficiency": 32.6,
+              "events": [
+                11
+              ]
+            },
+            "media": {
+              "initials": "Bilal Aziz",
+              "label": "Bilal Aziz"
+            },
+            "dimensions": {
+              "driver": "WF-07",
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "id": "drv-5",
+            "rank": 5,
+            "primary": "Noor Farah",
+            "secondary": "Driver",
+            "cells": {
+              "vehicle": "DXB-F-1035",
+              "efficiency": 35.1,
+              "events": [
+                9
+              ]
+            },
+            "media": {
+              "initials": "Noor Farah",
+              "label": "Noor Farah"
+            },
+            "dimensions": {
+              "driver": "WF-08",
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "id": "drv-6",
+            "rank": 6,
+            "primary": "Karim Khan",
+            "secondary": "Supervisor",
+            "cells": {
+              "vehicle": "DXB-G-1042",
+              "efficiency": 38.4,
+              "events": [
+                7
+              ]
+            },
+            "media": {
+              "initials": "Karim Khan",
+              "label": "Karim Khan"
+            },
+            "dimensions": {
+              "driver": "WF-09",
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "id": "drv-7",
+            "rank": 7,
+            "primary": "Yusuf Rahman",
+            "secondary": "Supervisor",
+            "cells": {
+              "vehicle": "DXB-H-1049",
+              "efficiency": 41.2,
+              "events": [
+                5
+              ]
+            },
+            "media": {
+              "initials": "Yusuf Rahman",
+              "label": "Yusuf Rahman"
+            },
+            "dimensions": {
+              "driver": "WF-10",
+              "vehicle": "VEH-07"
+            }
+          }
+        ],
+        "ariaLabel": "High risk drivers — ranked table of seven drivers with their assigned vehicle, fuel efficiency band and critical-event count.",
+        "emptyText": "No drivers match the selected filters.",
+        "showRank": false,
+        "entityLabel": "Driver",
+        "searchPlaceholder": "Search Driver",
+        "height": 440
+      }
+    }
+  ],
+  "views": [
+    {
+      "id": "view-overview",
+      "label": "Overview",
+      "isDefault": true
+    }
+  ]
+}

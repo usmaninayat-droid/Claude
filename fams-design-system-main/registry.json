@@ -1,0 +1,3767 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "fams-design-system",
+  "homepage": "http://localhost:6100",
+  "description": "Read-only agent/tooling discovery index over @fams/ui-kit + @fams/v5-templates, generated from workshop/showcase/src/registry.tsx by scripts/build-registry.mjs. NOT a shadcn-CLI copy-install source — install the real versioned npm packages; see docs/BOUNDARIES.md § Governance (\"the shadcn registry-copy model is rejected\").",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Everything a user clicks to trigger an action or open a menu of them — primary buttons through user account menus.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Button.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "DropdownMenu",
+      "description": "Everything a user clicks to trigger an action or open a menu of them — primary buttons through user account menus.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/DropdownMenu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "user-menu",
+      "type": "registry:component",
+      "title": "UserMenu",
+      "description": "Everything a user clicks to trigger an action or open a menu of them — primary buttons through user account menus.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/UserMenu.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "dropdown-menu"
+      ]
+    },
+    {
+      "name": "user-popover",
+      "type": "registry:component",
+      "title": "UserPopover",
+      "description": "Everything a user clicks to trigger an action or open a menu of them — primary buttons through user account menus.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/UserPopover.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "popover"
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "The base text-entry primitives — free text, multi-line, phone entry, their labels, and the shared field error row.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "field-error",
+      "type": "registry:ui",
+      "title": "FieldError",
+      "description": "The base text-entry primitives — free text, multi-line, phone entry, their labels, and the shared field error row.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/FieldError.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "phone-input",
+      "type": "registry:component",
+      "title": "PhoneInput",
+      "description": "The base text-entry primitives — free text, multi-line, phone entry, their labels, and the shared field error row.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/PhoneInput.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "popover"
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "The base text-entry primitives — free text, multi-line, phone entry, their labels, and the shared field error row.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Textarea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "label"
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "The base text-entry primitives — free text, multi-line, phone entry, their labels, and the shared field error row.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Label.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Binary and multi-option choice controls — checkboxes, radios, and toggles.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "RadioGroup",
+      "description": "Binary and multi-option choice controls — checkboxes, radios, and toggles.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/RadioGroup.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Binary and multi-option choice controls — checkboxes, radios, and toggles.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Switch.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Single-value pickers from a closed or searchable list.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "combobox",
+      "type": "registry:component",
+      "title": "Combobox",
+      "description": "Single-value pickers from a closed or searchable list.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/Combobox.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "cmdk",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "command",
+        "popover",
+        "status-dot"
+      ]
+    },
+    {
+      "name": "icon-select",
+      "type": "registry:component",
+      "title": "IconSelect",
+      "description": "Single-value pickers from a closed or searchable list.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/IconSelect.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "popover"
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "Date and date-range entry, from a single calendar to range pickers.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Calendar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "react-day-picker",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "date-range-picker",
+      "type": "registry:component",
+      "title": "DateRangePicker",
+      "description": "Date and date-range entry, from a single calendar to range pickers.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/DateRangePicker.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "date-fns",
+        "radix-ui",
+        "react-day-picker",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "inset-field",
+        "popover"
+      ]
+    },
+    {
+      "name": "people-picker",
+      "type": "registry:component",
+      "title": "PeoplePicker",
+      "description": "Multi-select entity and tag pickers, plus the chip list that renders their selections.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/PeoplePicker.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "cmdk",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "checkbox",
+        "command",
+        "popover"
+      ]
+    },
+    {
+      "name": "tag-picker",
+      "type": "registry:component",
+      "title": "TagPicker",
+      "description": "Multi-select entity and tag pickers, plus the chip list that renders their selections.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/TagPicker.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "cmdk",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "command",
+        "popover",
+        "tag-chip-list",
+        "tooltip"
+      ]
+    },
+    {
+      "name": "tag-chip-list",
+      "type": "registry:component",
+      "title": "TagChipList",
+      "description": "Multi-select entity and tag pickers, plus the chip list that renders their selections.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/TagChipList.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "tooltip"
+      ]
+    },
+    {
+      "name": "filter-option-groups",
+      "type": "registry:component",
+      "title": "FilterOptionGroups",
+      "description": "Multi-select entity and tag pickers, plus the chip list that renders their selections.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/FilterOptionGroups.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "Continuous-value input primitives — a draggable slider, a popover-based color picker, and the inline color-selector field with preset swatches and a custom picker.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Slider.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "color-picker",
+      "type": "registry:ui",
+      "title": "ColorPicker",
+      "description": "Continuous-value input primitives — a draggable slider, a popover-based color picker, and the inline color-selector field with preset swatches and a custom picker.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/ColorPicker.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "react-colorful",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "label",
+        "popover"
+      ]
+    },
+    {
+      "name": "color-selector",
+      "type": "registry:component",
+      "title": "ColorSelector",
+      "description": "Continuous-value input primitives — a draggable slider, a popover-based color picker, and the inline color-selector field with preset swatches and a custom picker.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ColorSelector.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "react-colorful",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "stack",
+      "type": "registry:ui",
+      "title": "Stack",
+      "description": "Structural building blocks for assembling forms — vertical stacks, grids, sections, toolbars, and the inset-label field shell.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/layout/Stack.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "form-grid",
+      "type": "registry:ui",
+      "title": "FormGrid",
+      "description": "Structural building blocks for assembling forms — vertical stacks, grids, sections, toolbars, and the inset-label field shell.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/layout/FormGrid.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "stack"
+      ]
+    },
+    {
+      "name": "form-section",
+      "type": "registry:ui",
+      "title": "FormSection",
+      "description": "Structural building blocks for assembling forms — vertical stacks, grids, sections, toolbars, and the inset-label field shell.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/layout/FormSection.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "stack"
+      ]
+    },
+    {
+      "name": "toolbar",
+      "type": "registry:ui",
+      "title": "Toolbar",
+      "description": "Structural building blocks for assembling forms — vertical stacks, grids, sections, toolbars, and the inset-label field shell.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/layout/Toolbar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "stack"
+      ]
+    },
+    {
+      "name": "inset-field",
+      "type": "registry:ui",
+      "title": "InsetField",
+      "description": "Structural building blocks for assembling forms — vertical stacks, grids, sections, toolbars, and the inset-label field shell.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/InsetField.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "toggle-field-group",
+      "type": "registry:component",
+      "title": "ToggleFieldGroup",
+      "description": "Structural building blocks for assembling forms — vertical stacks, grids, sections, toolbars, and the inset-label field shell.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ToggleFieldGroup.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "card",
+        "checkbox",
+        "heading",
+        "switch"
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:component",
+      "title": "DataTable",
+      "description": "The table stack used across every list module — table, cells, column config, and the two filter affordances that feed it.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/DataTable.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "@tanstack/react-virtual",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "button",
+        "checkbox",
+        "column-customizer",
+        "count-chip",
+        "dropdown-menu",
+        "popover",
+        "switch",
+        "tooltip"
+      ]
+    },
+    {
+      "name": "table-cell",
+      "type": "registry:component",
+      "title": "TableCell",
+      "description": "The table stack used across every list module — table, cells, column config, and the two filter affordances that feed it.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/TableCell.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "checkbox",
+        "progress",
+        "radial-progress",
+        "segmented-bar",
+        "separator",
+        "stat-bar",
+        "switch",
+        "tag-chip-list",
+        "tooltip",
+        "trend-indicator"
+      ]
+    },
+    {
+      "name": "column-customizer",
+      "type": "registry:component",
+      "title": "ColumnCustomizer",
+      "description": "The table stack used across every list module — table, cells, column config, and the two filter affordances that feed it.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ColumnCustomizer.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "switch"
+      ]
+    },
+    {
+      "name": "filter-panel",
+      "type": "registry:component",
+      "title": "FilterPanel",
+      "description": "The table stack used across every list module — table, cells, column config, and the two filter affordances that feed it.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/FilterPanel.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "checkbox"
+      ]
+    },
+    {
+      "name": "filter-popup",
+      "type": "registry:component",
+      "title": "FilterPopup",
+      "description": "The table stack used across every list module — table, cells, column config, and the two filter affordances that feed it.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/FilterPopup.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "popover"
+      ]
+    },
+    {
+      "name": "filters-sheet",
+      "type": "registry:component",
+      "title": "FiltersSheet",
+      "description": "The table stack used across every list module — table, cells, column config, and the two filter affordances that feed it.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/FiltersSheet.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "cmdk",
+        "date-fns",
+        "radix-ui",
+        "react-day-picker",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "accordion",
+        "badge",
+        "button",
+        "calendar",
+        "checkbox",
+        "combobox",
+        "command",
+        "custom-scrollbar",
+        "date-range-picker",
+        "input",
+        "inset-field",
+        "popover",
+        "select",
+        "sheet",
+        "status-dot"
+      ]
+    },
+    {
+      "name": "list-row",
+      "type": "registry:component",
+      "title": "ListRow",
+      "description": "Row-based and feed-style list presentations — rows, activity feeds, timelines, critical events, and checklists.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ListRow.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "route-job-card",
+      "type": "registry:component",
+      "title": "RouteJobCard",
+      "description": "Row-based and feed-style list presentations — rows, activity feeds, timelines, critical events, and checklists.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/RouteJobCard.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "progress",
+        "status-pill"
+      ]
+    },
+    {
+      "name": "critical-events-list",
+      "type": "registry:component",
+      "title": "CriticalEventsList",
+      "description": "Row-based and feed-style list presentations — rows, activity feeds, timelines, critical events, and checklists.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/CriticalEventsList.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge",
+        "icon-badge",
+        "list-row",
+        "status-view"
+      ]
+    },
+    {
+      "name": "activity-feed",
+      "type": "registry:component",
+      "title": "ActivityFeed",
+      "description": "Row-based and feed-style list presentations — rows, activity feeds, timelines, critical events, and checklists.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ActivityFeed.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "label",
+        "textarea"
+      ]
+    },
+    {
+      "name": "timeline",
+      "type": "registry:component",
+      "title": "Timeline",
+      "description": "Row-based and feed-style list presentations — rows, activity feeds, timelines, critical events, and checklists.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/Timeline.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "icon-badge"
+      ]
+    },
+    {
+      "name": "checklist-section",
+      "type": "registry:component",
+      "title": "ChecklistSection",
+      "description": "Row-based and feed-style list presentations — rows, activity feeds, timelines, critical events, and checklists.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ChecklistSection.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "icon-badge",
+        "progress"
+      ]
+    },
+    {
+      "name": "kanban",
+      "type": "registry:component",
+      "title": "Kanban",
+      "description": "Drag-and-drop card board for status-driven workflows.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/Kanban.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge",
+        "@atlaskit/pragmatic-drag-and-drop-live-region",
+        "@atlaskit/pragmatic-drag-and-drop/element/adapter",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "file-uploader",
+      "type": "registry:component",
+      "title": "FileUploader",
+      "description": "File and image surfaces — a presentational upload dropzone with file tiles, and an image gallery with a fullscreen lightbox.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/FileUploader.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "file-type-icon"
+      ]
+    },
+    {
+      "name": "image-gallery",
+      "type": "registry:component",
+      "title": "ImageGallery",
+      "description": "File and image surfaces — a presentational upload dropzone with file tiles, and an image gallery with a fullscreen lightbox.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ImageGallery.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel-react",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "dialog"
+      ]
+    },
+    {
+      "name": "kpi-tile",
+      "type": "registry:component",
+      "title": "KpiTile",
+      "description": "At-a-glance metric tiles, health rollups, and live status cards for dashboards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/KpiTile.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "icon-badge",
+        "trend-indicator"
+      ]
+    },
+    {
+      "name": "kpi-metric-card",
+      "type": "registry:component",
+      "title": "KpiMetricCard",
+      "description": "At-a-glance metric tiles, health rollups, and live status cards for dashboards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/KpiMetricCard.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "trend-indicator"
+      ]
+    },
+    {
+      "name": "status-breakdown-card",
+      "type": "registry:component",
+      "title": "StatusBreakdownCard",
+      "description": "At-a-glance metric tiles, health rollups, and live status cards for dashboards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/StatusBreakdownCard.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "health-strip",
+      "type": "registry:component",
+      "title": "HealthStrip",
+      "description": "At-a-glance metric tiles, health rollups, and live status cards for dashboards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/HealthStrip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "icon-badge"
+      ]
+    },
+    {
+      "name": "connection-status-card",
+      "type": "registry:component",
+      "title": "ConnectionStatusCard",
+      "description": "At-a-glance metric tiles, health rollups, and live status cards for dashboards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ConnectionStatusCard.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "card",
+        "heading",
+        "icon-badge"
+      ]
+    },
+    {
+      "name": "live-duration-card",
+      "type": "registry:component",
+      "title": "LiveDurationCard",
+      "description": "At-a-glance metric tiles, health rollups, and live status cards for dashboards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/LiveDurationCard.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "progress"
+      ]
+    },
+    {
+      "name": "segmented-bar",
+      "type": "registry:component",
+      "title": "SegmentedBar",
+      "description": "At-a-glance metric tiles, health rollups, and live status cards for dashboards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/SegmentedBar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge",
+        "tooltip"
+      ]
+    },
+    {
+      "name": "stat-bar",
+      "type": "registry:component",
+      "title": "StatBar",
+      "description": "At-a-glance metric tiles, health rollups, and live status cards for dashboards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/StatBar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge",
+        "progress",
+        "segmented-bar",
+        "tooltip"
+      ]
+    },
+    {
+      "name": "wall-panel",
+      "type": "registry:component",
+      "title": "WallPanel",
+      "description": "At-a-glance metric tiles, health rollups, and live status cards for dashboards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/wall-display/WallPanel.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "inline-edit-field",
+      "type": "registry:component",
+      "title": "InlineEditField",
+      "description": "At-a-glance metric tiles, health rollups, and live status cards for dashboards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/InlineEditField.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "popover"
+      ]
+    },
+    {
+      "name": "leaderboard",
+      "type": "registry:component",
+      "title": "Leaderboard",
+      "description": "At-a-glance metric tiles, health rollups, and live status cards for dashboards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/Leaderboard.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "@tanstack/react-virtual",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "button",
+        "checkbox",
+        "column-customizer",
+        "count-chip",
+        "data-table",
+        "dropdown-menu",
+        "input",
+        "popover",
+        "switch",
+        "tooltip",
+        "trend-indicator"
+      ]
+    },
+    {
+      "name": "chart-card",
+      "type": "registry:component",
+      "title": "ChartCard",
+      "description": "Chart chrome — cards, legends, and tooltips wrapping the underlying chart rendering.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ChartCard.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "card",
+        "heading",
+        "icon-badge"
+      ]
+    },
+    {
+      "name": "chart-legend",
+      "type": "registry:component",
+      "title": "ChartLegend",
+      "description": "Chart chrome — cards, legends, and tooltips wrapping the underlying chart rendering.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ChartLegend.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge"
+      ]
+    },
+    {
+      "name": "chart-tooltip",
+      "type": "registry:component",
+      "title": "ChartTooltip",
+      "description": "Chart chrome — cards, legends, and tooltips wrapping the underlying chart rendering.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ChartTooltip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge"
+      ]
+    },
+    {
+      "name": "chart-container",
+      "type": "registry:component",
+      "title": "ChartContainer",
+      "description": "The ECharts-backed rendering engine and dashboard chart types — bars, areas, donuts, gauges, lines, heatmaps, sparklines, and comparisons. Render through ChartContainer, the one place in the system that touches echarts directly.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ChartContainer.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/tokens/theme.echarts.json",
+        "@fams/ui-kit/icons",
+        "clsx",
+        "echarts",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "skeleton"
+      ]
+    },
+    {
+      "name": "bar-chart",
+      "type": "registry:component",
+      "title": "BarChart",
+      "description": "The ECharts-backed rendering engine and dashboard chart types — bars, areas, donuts, gauges, lines, heatmaps, sparklines, and comparisons. Render through ChartContainer, the one place in the system that touches echarts directly.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/BarChart.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/tokens/theme.echarts.json",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "echarts",
+        "react-dom/server",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "area-chart",
+        "badge",
+        "chart-container",
+        "chart-legend",
+        "chart-tooltip",
+        "skeleton"
+      ]
+    },
+    {
+      "name": "area-chart",
+      "type": "registry:component",
+      "title": "AreaChart",
+      "description": "The ECharts-backed rendering engine and dashboard chart types — bars, areas, donuts, gauges, lines, heatmaps, sparklines, and comparisons. Render through ChartContainer, the one place in the system that touches echarts directly.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/AreaChart.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/tokens/theme.echarts.json",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "echarts",
+        "react-dom/server",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge",
+        "chart-container",
+        "chart-legend",
+        "chart-tooltip",
+        "skeleton"
+      ]
+    },
+    {
+      "name": "donut-chart",
+      "type": "registry:component",
+      "title": "DonutChart",
+      "description": "The ECharts-backed rendering engine and dashboard chart types — bars, areas, donuts, gauges, lines, heatmaps, sparklines, and comparisons. Render through ChartContainer, the one place in the system that touches echarts directly.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/DonutChart.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/tokens/theme.echarts.json",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "echarts",
+        "react-dom/server",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge",
+        "chart-container",
+        "chart-legend",
+        "chart-tooltip",
+        "skeleton"
+      ]
+    },
+    {
+      "name": "gauge",
+      "type": "registry:component",
+      "title": "Gauge",
+      "description": "The ECharts-backed rendering engine and dashboard chart types — bars, areas, donuts, gauges, lines, heatmaps, sparklines, and comparisons. Render through ChartContainer, the one place in the system that touches echarts directly.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/Gauge.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/tokens/theme.echarts.json",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "echarts",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge",
+        "chart-container",
+        "skeleton"
+      ]
+    },
+    {
+      "name": "line-chart",
+      "type": "registry:component",
+      "title": "LineChart",
+      "description": "The ECharts-backed rendering engine and dashboard chart types — bars, areas, donuts, gauges, lines, heatmaps, sparklines, and comparisons. Render through ChartContainer, the one place in the system that touches echarts directly.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/LineChart.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/tokens/theme.echarts.json",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "echarts",
+        "react-dom/server",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge",
+        "chart-container",
+        "chart-legend",
+        "chart-tooltip",
+        "skeleton"
+      ]
+    },
+    {
+      "name": "heatmap-chart",
+      "type": "registry:component",
+      "title": "HeatmapChart",
+      "description": "The ECharts-backed rendering engine and dashboard chart types — bars, areas, donuts, gauges, lines, heatmaps, sparklines, and comparisons. Render through ChartContainer, the one place in the system that touches echarts directly.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/HeatmapChart.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/tokens/theme.echarts.json",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "echarts",
+        "react-dom/server",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge",
+        "chart-container",
+        "chart-tooltip",
+        "skeleton"
+      ]
+    },
+    {
+      "name": "sparkline",
+      "type": "registry:component",
+      "title": "Sparkline",
+      "description": "The ECharts-backed rendering engine and dashboard chart types — bars, areas, donuts, gauges, lines, heatmaps, sparklines, and comparisons. Render through ChartContainer, the one place in the system that touches echarts directly.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/Sparkline.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/tokens/theme.echarts.json",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "echarts",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge",
+        "chart-container",
+        "skeleton"
+      ]
+    },
+    {
+      "name": "compare-bars",
+      "type": "registry:component",
+      "title": "CompareBars",
+      "description": "The ECharts-backed rendering engine and dashboard chart types — bars, areas, donuts, gauges, lines, heatmaps, sparklines, and comparisons. Render through ChartContainer, the one place in the system that touches echarts directly.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/CompareBars.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/tokens/theme.echarts.json",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "echarts",
+        "echarts/types/dist/shared",
+        "react-dom/server",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge",
+        "chart-container",
+        "chart-legend",
+        "chart-tooltip",
+        "skeleton"
+      ]
+    },
+    {
+      "name": "compliance-gauge",
+      "type": "registry:component",
+      "title": "ComplianceGauge",
+      "description": "The ECharts-backed rendering engine and dashboard chart types — bars, areas, donuts, gauges, lines, heatmaps, sparklines, and comparisons. Render through ChartContainer, the one place in the system that touches echarts directly.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ComplianceGauge.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/tokens/theme.echarts.json",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "echarts",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge",
+        "chart-container",
+        "gauge",
+        "skeleton"
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Compact status and progress signifiers — badges, ticketing-stage/priority/id/count chips, trend arrows, and progress bars.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Badge.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "icon-badge",
+      "type": "registry:ui",
+      "title": "IconBadge",
+      "description": "Compact status and progress signifiers — badges, ticketing-stage/priority/id/count chips, trend arrows, and progress bars.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/IconBadge.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "status-pill",
+      "type": "registry:component",
+      "title": "StatusPill",
+      "description": "Compact status and progress signifiers — badges, ticketing-stage/priority/id/count chips, trend arrows, and progress bars.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/StatusPill.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "status-dot",
+      "type": "registry:component",
+      "title": "StatusDot",
+      "description": "Compact status and progress signifiers — badges, ticketing-stage/priority/id/count chips, trend arrows, and progress bars.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/StatusDot.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "priority-chip",
+      "type": "registry:component",
+      "title": "PriorityChip",
+      "description": "Compact status and progress signifiers — badges, ticketing-stage/priority/id/count chips, trend arrows, and progress bars.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/PriorityChip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "id-chip",
+      "type": "registry:component",
+      "title": "IdChip",
+      "description": "Compact status and progress signifiers — badges, ticketing-stage/priority/id/count chips, trend arrows, and progress bars.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/IdChip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "count-chip",
+      "type": "registry:component",
+      "title": "CountChip",
+      "description": "Compact status and progress signifiers — badges, ticketing-stage/priority/id/count chips, trend arrows, and progress bars.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/CountChip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "time-remaining-chip",
+      "type": "registry:component",
+      "title": "TimeRemainingChip",
+      "description": "Compact status and progress signifiers — badges, ticketing-stage/priority/id/count chips, trend arrows, and progress bars.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/TimeRemainingChip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "trend-indicator",
+      "type": "registry:ui",
+      "title": "TrendIndicator",
+      "description": "Compact status and progress signifiers — badges, ticketing-stage/priority/id/count chips, trend arrows, and progress bars.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/TrendIndicator.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Compact status and progress signifiers — badges, ticketing-stage/priority/id/count chips, trend arrows, and progress bars.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Progress.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "radial-progress",
+      "type": "registry:ui",
+      "title": "RadialProgress",
+      "description": "Compact status and progress signifiers — badges, ticketing-stage/priority/id/count chips, trend arrows, and progress bars.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/RadialProgress.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "progress"
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Person and entity avatar rendering.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Modal dialogs for confirmations, forms, and destructive actions.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "AlertDialog",
+      "description": "Modal dialogs for confirmations, forms, and destructive actions.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/AlertDialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "destructive-action-modal",
+      "type": "registry:component",
+      "title": "DestructiveActionModal",
+      "description": "Modal dialogs for confirmations, forms, and destructive actions.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/DestructiveActionModal.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "alert-dialog",
+        "button",
+        "input",
+        "label",
+        "textarea"
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "v5's dominant overlay: right-anchored panels (detail ~90%, config 760px) behind every list module's view/create/edit.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Sheet.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "detail-sheet",
+      "type": "registry:block",
+      "title": "DetailSheet / FormSheet",
+      "description": "v5's dominant overlay: right-anchored panels (detail ~90%, config 760px) behind every list module's view/create/edit.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/shells/DetailSheet.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "button",
+        "sheet",
+        "stack",
+        "toolbar"
+      ]
+    },
+    {
+      "name": "entity-picker-drawer",
+      "type": "registry:component",
+      "title": "EntityPickerDrawer",
+      "description": "v5's dominant overlay: right-anchored panels (detail ~90%, config 760px) behind every list module's view/create/edit.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/EntityPickerDrawer.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "checkbox",
+        "sheet"
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "v5's dominant overlay: right-anchored panels (detail ~90%, config 760px) behind every list module's view/create/edit.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Drawer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge",
+        "vaul"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Lightweight anchored overlays for contextual content and hints.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Popover.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Lightweight anchored overlays for contextual content and hints.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "A cmdk-based searchable command list — inline or as a \"⌘K\" modal palette.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Command.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "cmdk",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "dialog"
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Transient and persistent messaging — toasts, inline alerts, and notification cards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Toast.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "sonner",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "alert",
+      "type": "registry:component",
+      "title": "Alert",
+      "description": "Transient and persistent messaging — toasts, inline alerts, and notification cards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/Alert.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "info-banner",
+      "type": "registry:component",
+      "title": "InfoBanner",
+      "description": "Transient and persistent messaging — toasts, inline alerts, and notification cards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/InfoBanner.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "icon-badge"
+      ]
+    },
+    {
+      "name": "notification-card",
+      "type": "registry:component",
+      "title": "NotificationCard",
+      "description": "Transient and persistent messaging — toasts, inline alerts, and notification cards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/NotificationCard.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "badge"
+      ]
+    },
+    {
+      "name": "status-view",
+      "type": "registry:component",
+      "title": "StatusView",
+      "description": "Full-page and inline states for empty, restricted, and loading content.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/StatusView.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "no-permission",
+      "type": "registry:component",
+      "title": "NoPermission",
+      "description": "Full-page and inline states for empty, restricted, and loading content.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/NoPermission.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "tooltip"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:component",
+      "title": "Skeleton",
+      "description": "Full-page and inline states for empty, restricted, and loading content.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/Skeleton.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Tab strips at every scale — content tabs, count-badged filter strips, view switchers, and module-level view tabs.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Tabs.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "count-tabs",
+      "type": "registry:component",
+      "title": "CountTabs",
+      "description": "Tab strips at every scale — content tabs, count-badged filter strips, view switchers, and module-level view tabs.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/CountTabs.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "tabs"
+      ]
+    },
+    {
+      "name": "view-tabs",
+      "type": "registry:component",
+      "title": "ViewTabs",
+      "description": "Tab strips at every scale — content tabs, count-badged filter strips, view switchers, and module-level view tabs.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ViewTabs.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ]
+    },
+    {
+      "name": "module-view-tabs",
+      "type": "registry:component",
+      "title": "ModuleViewTabs",
+      "description": "Tab strips at every scale — content tabs, count-badged filter strips, view switchers, and module-level view tabs.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/ModuleViewTabs.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "dropdown-menu",
+        "popover",
+        "tooltip"
+      ]
+    },
+    {
+      "name": "breadcrumbs",
+      "type": "registry:component",
+      "title": "Breadcrumbs",
+      "description": "Hierarchical location trail for nested pages.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/Breadcrumbs.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "stepper",
+      "type": "registry:component",
+      "title": "Stepper",
+      "description": "Multi-step wizard navigation.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/Stepper.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "state-transition-toolbar",
+      "type": "registry:component",
+      "title": "StateTransitionToolbar",
+      "description": "Status-change affordances — toolbar actions and dropdown-driven transitions.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/StateTransitionToolbar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button"
+      ]
+    },
+    {
+      "name": "status-transition-dropdown",
+      "type": "registry:component",
+      "title": "StatusTransitionDropdown",
+      "description": "Status-change affordances — toolbar actions and dropdown-driven transitions.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/StatusTransitionDropdown.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "dialog",
+        "dropdown-menu",
+        "label",
+        "textarea"
+      ]
+    },
+    {
+      "name": "profile-layout",
+      "type": "registry:block",
+      "title": "ProfileLayout",
+      "description": "The platform's most-used pattern — 31 tabbed workspace profiles across EAD/FAMS/IWMP plus record layouts and linked-entity cards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/shells/ProfileLayout.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "no-permission",
+        "stack",
+        "tabs",
+        "toolbar",
+        "tooltip"
+      ]
+    },
+    {
+      "name": "record-layout",
+      "type": "registry:block",
+      "title": "RecordLayout",
+      "description": "The platform's most-used pattern — 31 tabbed workspace profiles across EAD/FAMS/IWMP plus record layouts and linked-entity cards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/shells/RecordLayout.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "form-grid",
+        "stack",
+        "toolbar"
+      ]
+    },
+    {
+      "name": "entity-profile-card",
+      "type": "registry:component",
+      "title": "EntityProfileCard",
+      "description": "The platform's most-used pattern — 31 tabbed workspace profiles across EAD/FAMS/IWMP plus record layouts and linked-entity cards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/EntityProfileCard.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "card",
+        "heading",
+        "tag-chip-list",
+        "tooltip"
+      ]
+    },
+    {
+      "name": "app-shell",
+      "type": "registry:block",
+      "title": "AppShell",
+      "description": "The persistent app frame — shell, top nav, side nav, module rail, and page header.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/shells/AppShell.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "radix-ui",
+        "sonner",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "dialog",
+        "toast"
+      ]
+    },
+    {
+      "name": "top-nav",
+      "type": "registry:block",
+      "title": "TopNav",
+      "description": "The persistent app frame — shell, top nav, side nav, module rail, and page header.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/shells/TopNav.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "side-nav",
+      "type": "registry:block",
+      "title": "SideNav",
+      "description": "The persistent app frame — shell, top nav, side nav, module rail, and page header.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/shells/SideNav.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "tooltip"
+      ]
+    },
+    {
+      "name": "nav-rail",
+      "type": "registry:block",
+      "title": "NavRail",
+      "description": "The persistent app frame — shell, top nav, side nav, module rail, and page header.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/shells/NavRail.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "custom-scrollbar",
+        "popover",
+        "tooltip"
+      ]
+    },
+    {
+      "name": "app-switcher-panel",
+      "type": "registry:component",
+      "title": "AppSwitcherPanel",
+      "description": "The persistent app frame — shell, top nav, side nav, module rail, and page header.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/AppSwitcherPanel.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "tooltip"
+      ]
+    },
+    {
+      "name": "module-rail",
+      "type": "registry:block",
+      "title": "ModuleRail",
+      "description": "The persistent app frame — shell, top nav, side nav, module rail, and page header.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/shells/ModuleRail.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "tooltip"
+      ]
+    },
+    {
+      "name": "page-header",
+      "type": "registry:block",
+      "title": "PageHeader",
+      "description": "The persistent app frame — shell, top nav, side nav, module rail, and page header.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/shells/PageHeader.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "list-view",
+      "type": "registry:block",
+      "title": "ListView",
+      "description": "Top-level view containers that host a module's content — list, hybrid, and dashboard layouts.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/shells/ListView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "page-header"
+      ]
+    },
+    {
+      "name": "hybrid-view",
+      "type": "registry:block",
+      "title": "HybridView",
+      "description": "Top-level view containers that host a module's content — list, hybrid, and dashboard layouts.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/shells/HybridView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "tabs"
+      ]
+    },
+    {
+      "name": "dashboard-layout",
+      "type": "registry:block",
+      "title": "DashboardLayout",
+      "description": "Top-level view containers that host a module's content — list, hybrid, and dashboard layouts.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/shells/DashboardLayout.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "card",
+      "type": "registry:component",
+      "title": "Card",
+      "description": "Generic content surfaces and disclosure primitives — cards, accordions, scroll areas, separators.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/Card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "heading"
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Generic content surfaces and disclosure primitives — cards, accordions, scroll areas, separators.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Accordion.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "ScrollArea",
+      "description": "Generic content surfaces and disclosure primitives — cards, accordions, scroll areas, separators.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/ScrollArea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "custom-scrollbar",
+      "type": "registry:component",
+      "title": "CustomScrollbar",
+      "description": "Generic content surfaces and disclosure primitives — cards, accordions, scroll areas, separators.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/CustomScrollbar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Generic content surfaces and disclosure primitives — cards, accordions, scroll areas, separators.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Separator.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "text",
+      "type": "registry:ui",
+      "title": "Text",
+      "description": "Token-backed text primitives — Text for body copy outside a Card (retiring the CardDescription-outside-a-card and hand-rolled span anti-patterns), Heading for section titles with level decoupled from visual size.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Text.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "heading",
+      "type": "registry:ui",
+      "title": "Heading",
+      "description": "Token-backed text primitives — Text for body copy outside a Card (retiring the CardDescription-outside-a-card and hand-rolled span anti-patterns), Heading for section titles with level decoupled from visual size.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/Heading.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react/use-render",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "map-container",
+      "type": "registry:component",
+      "title": "MapContainer",
+      "description": "The fleet map stack — container, controls, vehicle markers, popups, and map chips.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/domain/map/MapContainer.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "map-controls",
+        "popover",
+        "tooltip"
+      ]
+    },
+    {
+      "name": "map-controls",
+      "type": "registry:component",
+      "title": "MapControls",
+      "description": "The fleet map stack — container, controls, vehicle markers, popups, and map chips.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/domain/map/MapControls.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "radix-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "popover",
+        "tooltip"
+      ]
+    },
+    {
+      "name": "vehicle-marker",
+      "type": "registry:component",
+      "title": "VehicleMarker",
+      "description": "The fleet map stack — container, controls, vehicle markers, popups, and map chips.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/domain/map/VehicleMarker.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "vehicle-icon-3d",
+        "vehicle-popup-card"
+      ]
+    },
+    {
+      "name": "map-status-marker",
+      "type": "registry:component",
+      "title": "MapStatusMarker",
+      "description": "The fleet map stack — container, controls, vehicle markers, popups, and map chips.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/domain/map/MapStatusMarker.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "asset-status-icon",
+      "type": "registry:component",
+      "title": "AssetStatusIcon",
+      "description": "The fleet map stack — container, controls, vehicle markers, popups, and map chips.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/domain/map/AssetStatusIcon.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "vehicle-icon-3d",
+      "type": "registry:component",
+      "title": "VehicleIcon3D",
+      "description": "The fleet map stack — container, controls, vehicle markers, popups, and map chips.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/domain/map/VehicleIcon3D.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "vehicle-popup-card"
+      ]
+    },
+    {
+      "name": "vehicle-popup-card",
+      "type": "registry:component",
+      "title": "VehiclePopupCard",
+      "description": "The fleet map stack — container, controls, vehicle markers, popups, and map chips.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/domain/map/VehiclePopupCard.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "vehicle-icon-3d"
+      ]
+    },
+    {
+      "name": "cluster-badge",
+      "type": "registry:component",
+      "title": "ClusterBadge",
+      "description": "The fleet map stack — container, controls, vehicle markers, popups, and map chips.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/domain/map/ClusterBadge.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "vehicle-icon-3d",
+        "vehicle-popup-card"
+      ]
+    },
+    {
+      "name": "map-chip",
+      "type": "registry:component",
+      "title": "MapChip",
+      "description": "The fleet map stack — container, controls, vehicle markers, popups, and map chips.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/domain/map/MapChip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "poi-marker",
+      "type": "registry:component",
+      "title": "PoiMarker",
+      "description": "The fleet map stack — container, controls, vehicle markers, popups, and map chips.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/domain/map/PoiMarker.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "file-type-icon",
+      "type": "registry:ui",
+      "title": "FileTypeIcon",
+      "description": "File-type iconography and FAMS branding.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/primitives/FileTypeIcon.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "logo",
+      "type": "registry:component",
+      "title": "Logo",
+      "description": "File-type iconography and FAMS branding.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/Logo.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "entity-profile-shell",
+      "type": "registry:block",
+      "title": "EntityProfileShell",
+      "description": "Tier-2 patterns from @fams/v5-templates — opt-in compositions of core components into v5-signature product surfaces. DRAFT exemplars for design-team review, not yet adopted by a second module. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/EntityProfileShell.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "module-view-shell",
+      "type": "registry:block",
+      "title": "ModuleViewShell",
+      "description": "Tier-2 patterns from @fams/v5-templates — opt-in compositions of core components into v5-signature product surfaces. DRAFT exemplars for design-team review, not yet adopted by a second module. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/ModuleViewShell.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "login-page",
+      "type": "registry:block",
+      "title": "LoginPage (DRAFT)",
+      "description": "Tier-2 patterns from @fams/v5-templates — opt-in compositions of core components into v5-signature product surfaces. DRAFT exemplars for design-team review, not yet adopted by a second module. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/login/LoginPage.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "home-launch-pad",
+      "type": "registry:block",
+      "title": "HomeLaunchPad",
+      "description": "Tier-2 patterns from @fams/v5-templates — opt-in compositions of core components into v5-signature product surfaces. DRAFT exemplars for design-team review, not yet adopted by a second module. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/home/HomeLaunchPad.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "app-boot-skeleton",
+      "type": "registry:block",
+      "title": "AppBootSkeleton",
+      "description": "Tier-2 patterns from @fams/v5-templates — opt-in compositions of core components into v5-signature product surfaces. DRAFT exemplars for design-team review, not yet adopted by a second module. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/AppBootSkeleton.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "geojson",
+        "maplibre-gl",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "cockpit-view",
+        "zones-drawer"
+      ]
+    },
+    {
+      "name": "staged-save-bar",
+      "type": "registry:block",
+      "title": "StagedSaveBar",
+      "description": "The two halves of a CRITICAL settings save: a setting that grants or revokes a physically consequential capability (remote immobilization, access revocation) edits a working copy behind StagedSaveBar, and saving raises StepUpVerifyDialog for an emailed code before anything is committed. Ported from the designer-approved dispatcher prototype (Telematics Features Config). Distinct from UnsavedChangesToast, which is the saved-VIEW-configuration toast inside a view region.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/settings/StagedSaveBar.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "step-up-verify-dialog",
+      "type": "registry:block",
+      "title": "StepUpVerifyDialog",
+      "description": "The two halves of a CRITICAL settings save: a setting that grants or revokes a physically consequential capability (remote immobilization, access revocation) edits a working copy behind StagedSaveBar, and saving raises StepUpVerifyDialog for an emailed code before anything is committed. Ported from the designer-approved dispatcher prototype (Telematics Features Config). Distinct from UnsavedChangesToast, which is the saved-VIEW-configuration toast inside a view region.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/settings/StepUpVerifyDialog.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "entity-profile",
+      "type": "registry:block",
+      "title": "EntityProfile",
+      "description": "Metadata-driven templates that render from a v5-composer blueprint (config + record) — the EntityProfile 30/70 surface and the CreationSheet create flow. Blueprint-driven by default, bespoke by escape hatch. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/entity-profile/EntityProfile.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@deck.gl/mapbox",
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "deck.gl",
+        "geojson",
+        "maplibre-gl",
+        "maplibre-gl/dist/maplibre-gl.css",
+        "react-map-gl/maplibre",
+        "supercluster",
+        "tailwind-merge",
+        "terra-draw",
+        "terra-draw-maplibre-gl-adapter"
+      ],
+      "registryDependencies": [
+        "interactive-replay",
+        "map-panel",
+        "overview-widgets",
+        "record-sections-grid",
+        "scoped-linked-records"
+      ]
+    },
+    {
+      "name": "overview-widgets",
+      "type": "registry:block",
+      "title": "OverviewWidgets",
+      "description": "Metadata-driven templates that render from a v5-composer blueprint (config + record) — the EntityProfile 30/70 surface and the CreationSheet create flow. Blueprint-driven by default, bespoke by escape hatch. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/entity-profile/OverviewWidgets.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@deck.gl/mapbox",
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "deck.gl",
+        "geojson",
+        "maplibre-gl",
+        "maplibre-gl/dist/maplibre-gl.css",
+        "react-map-gl/maplibre",
+        "supercluster",
+        "tailwind-merge",
+        "terra-draw",
+        "terra-draw-maplibre-gl-adapter"
+      ],
+      "registryDependencies": [
+        "map-panel"
+      ]
+    },
+    {
+      "name": "record-sections-grid",
+      "type": "registry:block",
+      "title": "RecordSectionsGrid",
+      "description": "Metadata-driven templates that render from a v5-composer blueprint (config + record) — the EntityProfile 30/70 surface and the CreationSheet create flow. Blueprint-driven by default, bespoke by escape hatch. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/entity-profile/RecordSectionsGrid.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "interactive-replay",
+      "type": "registry:block",
+      "title": "InteractiveReplay",
+      "description": "Metadata-driven templates that render from a v5-composer blueprint (config + record) — the EntityProfile 30/70 surface and the CreationSheet create flow. Blueprint-driven by default, bespoke by escape hatch. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/entity-profile/InteractiveReplay.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@deck.gl/mapbox",
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "deck.gl",
+        "geojson",
+        "maplibre-gl",
+        "maplibre-gl/dist/maplibre-gl.css",
+        "react-map-gl/maplibre",
+        "supercluster",
+        "tailwind-merge",
+        "terra-draw",
+        "terra-draw-maplibre-gl-adapter"
+      ],
+      "registryDependencies": [
+        "map-panel",
+        "overview-widgets"
+      ]
+    },
+    {
+      "name": "scoped-linked-records",
+      "type": "registry:block",
+      "title": "ScopedLinkedRecords",
+      "description": "Metadata-driven templates that render from a v5-composer blueprint (config + record) — the EntityProfile 30/70 surface and the CreationSheet create flow. Blueprint-driven by default, bespoke by escape hatch. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/entity-profile/ScopedLinkedRecords.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "linked-record-detail-section",
+      "type": "registry:block",
+      "title": "LinkedRecordDetailSection",
+      "description": "Metadata-driven templates that render from a v5-composer blueprint (config + record) — the EntityProfile 30/70 surface and the CreationSheet create flow. Blueprint-driven by default, bespoke by escape hatch. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/entity-profile/LinkedRecordDetailSection.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "creation-sheet",
+      "type": "registry:block",
+      "title": "CreationSheet",
+      "description": "Metadata-driven templates that render from a v5-composer blueprint (config + record) — the EntityProfile 30/70 surface and the CreationSheet create flow. Blueprint-driven by default, bespoke by escape hatch. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/creation-sheet/CreationSheet.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "geojson",
+        "maplibre-gl",
+        "react-hook-form",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "module-view",
+      "type": "registry:block",
+      "title": "ModuleView",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/ModuleView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@deck.gl/mapbox",
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "deck.gl",
+        "geojson",
+        "maplibre-gl",
+        "maplibre-gl/dist/maplibre-gl.css",
+        "react-map-gl/maplibre",
+        "supercluster",
+        "tailwind-merge",
+        "terra-draw",
+        "terra-draw-maplibre-gl-adapter"
+      ],
+      "registryDependencies": [
+        "calendar-view",
+        "cockpit-view",
+        "customize-view-drawer",
+        "dispatcher-cockpit-view",
+        "entity-profile",
+        "interactive-replay",
+        "live-filters-popover",
+        "live-hybrid-view",
+        "map-hybrid-view",
+        "map-panel",
+        "module-view-shell",
+        "overview-widgets",
+        "record-sections-grid",
+        "scoped-linked-records",
+        "v5-hybrid-view",
+        "v5-kanban-view",
+        "v5-list-view",
+        "view-type-picker",
+        "workforce-pulse-view",
+        "zones-drawer"
+      ]
+    },
+    {
+      "name": "dashboard-view",
+      "type": "registry:block",
+      "title": "DashboardView (DRAFT)",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/DashboardView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "geojson",
+        "maplibre-gl",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "v5-list-view",
+      "type": "registry:block",
+      "title": "ListView",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/ListView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "v5-kanban-view",
+      "type": "registry:block",
+      "title": "KanbanView",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/KanbanView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "v5-hybrid-view",
+      "type": "registry:block",
+      "title": "HybridView",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/HybridView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@deck.gl/mapbox",
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "deck.gl",
+        "geojson",
+        "maplibre-gl",
+        "maplibre-gl/dist/maplibre-gl.css",
+        "react-map-gl/maplibre",
+        "supercluster",
+        "tailwind-merge",
+        "terra-draw",
+        "terra-draw-maplibre-gl-adapter"
+      ],
+      "registryDependencies": [
+        "entity-profile",
+        "interactive-replay",
+        "map-panel",
+        "overview-widgets",
+        "record-sections-grid",
+        "scoped-linked-records",
+        "v5-list-view"
+      ]
+    },
+    {
+      "name": "calendar-view",
+      "type": "registry:block",
+      "title": "CalendarView",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/calendar/CalendarView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "geojson",
+        "maplibre-gl",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "map-hybrid-view",
+      "type": "registry:block",
+      "title": "MapHybridView (DRAFT)",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/hybrid/MapHybridView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "geojson",
+        "maplibre-gl",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "zones-drawer"
+      ]
+    },
+    {
+      "name": "task-detail",
+      "type": "registry:block",
+      "title": "TaskDetail",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/TaskDetail.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "linked-record-detail-section"
+      ]
+    },
+    {
+      "name": "inbox-view",
+      "type": "registry:block",
+      "title": "InboxView (DRAFT)",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/inbox/InboxView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "view-type-picker",
+      "type": "registry:block",
+      "title": "ViewTypePicker (DRAFT)",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/ViewTypePicker.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "live-hybrid-view",
+      "type": "registry:block",
+      "title": "LiveHybridView (DRAFT)",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/LiveHybridView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "geojson",
+        "maplibre-gl",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "customize-view-drawer",
+        "live-filters-popover",
+        "zones-drawer"
+      ]
+    },
+    {
+      "name": "cockpit-view",
+      "type": "registry:block",
+      "title": "CockpitView (DRAFT)",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/cockpit/CockpitView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "geojson",
+        "maplibre-gl",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "zones-drawer"
+      ]
+    },
+    {
+      "name": "dispatcher-cockpit-view",
+      "type": "registry:block",
+      "title": "Operations Consoles (DRAFT)",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/consoles/DispatcherCockpitView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "geojson",
+        "maplibre-gl",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "cockpit-view",
+        "zones-drawer"
+      ]
+    },
+    {
+      "name": "workforce-pulse-view",
+      "type": "registry:block",
+      "title": "WorkforcePulseView (DRAFT)",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/consoles/WorkforcePulseView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "live-filters-popover",
+      "type": "registry:block",
+      "title": "LiveFiltersPopover (DRAFT)",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/live/LiveFiltersPopover.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "customize-view-drawer",
+      "type": "registry:block",
+      "title": "CustomizeViewDrawer (DRAFT)",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/live/CustomizeViewDrawer.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "@fams/v5-composer"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "zones-drawer",
+      "type": "registry:block",
+      "title": "Zones / POI Drawers (DRAFT)",
+      "description": "The blueprint-driven module views (task 2.4) — ModuleView (the ClickUp-style container) plus its List / Kanban / Hybrid bodies, the pipeline TaskDetail, the dashboard module type’s DashboardView widget grid, the inbox module type’s InboxView date-grouped notification feed, and the metadata-driven ViewTypePicker \"Select Preferred View\" takeover behind the view-tab strip’s \"+\" (DRAFT — first-adopter exemplars, API not yet settled). All render from a v5-composer blueprint; Kanban runs on pragmatic-drag-and-drop (v5-tier), saved views persist via an injected adapter. See docs/BOUNDARIES.md § The patterns tier.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/views/live/ZonesDrawer.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "clsx",
+        "geojson",
+        "maplibre-gl",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "map-panel",
+      "type": "registry:block",
+      "title": "MapPanel",
+      "description": "The MapLibre GL + deck.gl + TerraDraw map template (phase 2 §3, the Leaflet→MapLibre port). Imported from a separate, heavier package entry (`@fams/v5-templates/map`, not the main barrel) so the map stack never reaches consumers that don’t render one — see `@fams/v5-templates`’s README \"MapPanel — a second, heavy entry point\" section.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/map/MapPanel.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@deck.gl/mapbox",
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "clsx",
+        "deck.gl",
+        "geojson",
+        "maplibre-gl",
+        "maplibre-gl/dist/maplibre-gl.css",
+        "react-map-gl/maplibre",
+        "supercluster",
+        "tailwind-merge",
+        "terra-draw",
+        "terra-draw-maplibre-gl-adapter"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "live-map-view",
+      "type": "registry:block",
+      "title": "LiveMapView (DRAFT)",
+      "description": "The MapLibre GL + deck.gl + TerraDraw map template (phase 2 §3, the Leaflet→MapLibre port). Imported from a separate, heavier package entry (`@fams/v5-templates/map`, not the main barrel) so the map stack never reaches consumers that don’t render one — see `@fams/v5-templates`’s README \"MapPanel — a second, heavy entry point\" section.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/map/LiveMapView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@deck.gl/mapbox",
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "clsx",
+        "deck.gl",
+        "geojson",
+        "maplibre-gl",
+        "maplibre-gl/dist/maplibre-gl.css",
+        "react-map-gl/maplibre",
+        "supercluster",
+        "tailwind-merge",
+        "terra-draw",
+        "terra-draw-maplibre-gl-adapter"
+      ],
+      "registryDependencies": [
+        "map-panel",
+        "weather-station-drawer"
+      ]
+    },
+    {
+      "name": "weather-station-drawer",
+      "type": "registry:block",
+      "title": "WeatherStationDrawer (DRAFT)",
+      "description": "The MapLibre GL + deck.gl + TerraDraw map template (phase 2 §3, the Leaflet→MapLibre port). Imported from a separate, heavier package entry (`@fams/v5-templates/map`, not the main barrel) so the map stack never reaches consumers that don’t render one — see `@fams/v5-templates`’s README \"MapPanel — a second, heavy entry point\" section.",
+      "files": [
+        {
+          "path": "packages/v5-templates/src/map/WeatherStationDrawer.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit",
+        "@fams/ui-kit/icons",
+        "clsx",
+        "geojson",
+        "maplibre-gl",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    }
+  ]
+}

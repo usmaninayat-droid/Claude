@@ -1,0 +1,55 @@
+{
+  "base": "tenant-native",
+  "module": "shift-rostering",
+  "nodes": {
+    "fld_sr_date": {
+      "source": "tenant-native"
+    },
+    "fld_sr_end": {
+      "source": "tenant-native"
+    },
+    "fld_sr_name": {
+      "source": "tenant-native"
+    },
+    "fld_sr_start": {
+      "source": "tenant-native"
+    },
+    "fld_sr_status": {
+      "source": "tenant-native"
+    },
+    "fld_sr_tags": {
+      "source": "tenant-native"
+    },
+    "fld_sr_worker": {
+      "source": "tenant-native"
+    },
+    "fld_sr_zone": {
+      "source": "tenant-native"
+    },
+    "fld_uniqueidentifier": {
+      "source": "tenant-native"
+    },
+    "flt_sr_status": {
+      "source": "tenant-native"
+    },
+    "flt_sr_zone": {
+      "source": "tenant-native"
+    },
+    "sts_sr_done": {
+      "source": "tenant-native"
+    },
+    "sts_sr_miss": {
+      "source": "tenant-native"
+    },
+    "sts_sr_prog": {
+      "source": "tenant-native"
+    },
+    "sts_sr_sched": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [
+    "tenants/iwmp/overrides/screens/shift-rostering"
+  ],
+  "tenant": "iwmp"
+}

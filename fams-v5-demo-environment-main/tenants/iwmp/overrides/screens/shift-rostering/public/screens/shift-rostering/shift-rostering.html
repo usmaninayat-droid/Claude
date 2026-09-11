@@ -1,0 +1,2642 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#22C882">
+<title>Tadweer — Shift Rostering</title>
+
+<link rel="stylesheet" href="./v5/tokens/fonts.css">
+<link rel="stylesheet" href="./v5/tokens/theme.css">
+<link rel="stylesheet" href="./v5/tokens/tadweer.theme.css">
+<!-- Embed mode: when iframed as the demo's Shift Rostering module (?embed=1),
+     the host app shell already provides the left rails, so hide this file's own
+     rails and let .main fill the frame. -->
+<style>html.embed .rail-wrap,html.embed .topnav{display:none!important}</style>
+<script>try{if(new URLSearchParams(location.search).has('embed'))document.documentElement.classList.add('embed')}catch(e){}</script>
+
+<style>
+/* ----------------------------------------------------------------
+   V5 · Tadweer · Shift Rostering (Planning View / Calendar)
+   Pixel spec from Figma bHPl5hXlBDrwgTY8ycV3IX node 6839:11041
+   Tokens from v5/tokens/theme.css + tadweer.theme.css.
+   ---------------------------------------------------------------- */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%;background:#fff;color:#000;
+  font-family:'Gilroy','Inter',system-ui,-apple-system,sans-serif;
+  font-size:14px;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit;padding:0}
+img{display:block}
+
+.app{display:flex;height:100vh;overflow:hidden}
+
+/* ══════════ SIDE NAV — 118px = 52 gradient rail + 66 white rail ══════════ */
+.rail-wrap{display:flex;flex-shrink:0;position:sticky;top:0;height:100vh;z-index:10}
+.rail-primary{
+  width:52px;padding:16px 12px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;
+  /* The Figma export's 5 stops are non-monotonic (41.365/11.262/37.477/…),
+     which CSS clamps into a hard mid-rail band, and its raw endpoints are
+     never actually reached inside the 52×1312 rail at 144.64deg. These stops
+     are sampled directly off the rendered Figma frame every 10% down the
+     rail, so this is the gradient the design actually shows. */
+  background:linear-gradient(180deg,
+    rgb(13,147,186) 0%,
+    rgb(16,155,178) 10%,
+    rgb(19,163,170) 20%,
+    rgb(22,170,162) 30%,
+    rgb(25,177,155) 40%,
+    rgb(27,182,149) 50%,
+    rgb(29,188,143) 60%,
+    rgb(32,194,137) 70%,
+    rgb(34,199,130) 80%,
+    rgb(35,202,128) 90%,
+    rgb(37,206,125) 100%);
+}
+.rail-primary .top{display:flex;flex-direction:column;gap:28px;align-items:flex-start}
+/* Figma insets the 20×32.3948 mark inside a 28×37 frame — don't let it fill. */
+.rail-primary .logo{width:28px;height:37px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.rail-primary .logo img{width:20px;height:32.3948px;object-fit:contain}
+.rp-item{width:28px;height:28px;border-radius:4px;position:relative;display:flex;align-items:center;justify-content:center}
+.rp-item.active{background:#fff;color:var(--primary,#22c882)}
+.rp-item img,.rp-item svg{width:18px;height:18px}
+.rail-primary .bottom{display:flex;flex-direction:column;gap:12px}
+.rp-circle{width:28px;height:28px;border-radius:41px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:#fff}
+.rp-circle img,.rp-circle svg{width:18px;height:18px}
+.rp-circle.solid{background:#fff;color:var(--primary,#22c882)}
+
+.rail-secondary{
+  width:66px;background:#fff;border-right:1px solid #d0d5dd;
+  display:flex;flex-direction:column;gap:16px;align-items:center;padding:16px;overflow:hidden;
+}
+.rs-item{width:34px;height:34px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  background:#fff}
+.rs-item img,.rs-item svg{width:18px;height:18px}
+.rs-item{color:#667085}
+.rs-item svg{stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.rs-item.active{background:var(--primary,#22c882);color:#fff}
+.rs-item.active svg{stroke-width:1.26}
+.rs-item:not(.active):hover{background:#f2f4f7}
+
+/* ══════════ MAIN ══════════ */
+.main{flex:1;min-width:0;display:flex;flex-direction:column;background:#fff;overflow:hidden}
+
+/* Top Nav — h48 */
+.topnav{height:48px;background:#f9fafb;border-bottom:1px solid #d0d5dd;display:flex;align-items:center;gap:32px;padding:0 32px;flex-shrink:0}
+.topnav .title{font-size:16px;font-weight:600;color:#000;line-height:normal}
+.topnav .row{display:flex;align-items:center;gap:8px}
+.topnav .tab{display:flex;align-items:center;gap:16px;height:48px;padding:0 12px;border-left:1px solid #eaecf0;border-right:1px solid #eaecf0;background:#fff}
+.topnav .tab .info{display:flex;align-items:center;gap:8px;color:var(--primary,#22c882)}
+.topnav .tab img,.topnav .tab .info svg{width:12px;height:12px}
+.topnav .tab span{font-size:12px;font-weight:600;color:#000;white-space:nowrap}
+.topnav .plus{width:16px;height:16px}
+.topnav .plus img{width:16px;height:16px}
+
+/* Header block — pt24 pb12 px28 gap16 */
+/* Dense-dashboard rhythm: 12px between header bands (was 16) and a shorter
+   top inset (was 24) so the board gets the vertical space back. */
+/* Slightly roomier rhythm: 16px between header bands (was 12), 20px top inset
+   (was 16). Feels less crammed without losing dashboard density. */
+.header{display:flex;flex-direction:column;gap:16px;padding:20px 28px 16px;flex-shrink:0}
+
+/* Row 1: search + filter | publish */
+/* Row 1 reads left→right as scope | period + primary action. The right side is
+   one cluster so it wraps as a unit under the switcher on narrow widths. */
+/* Row 1: search + filters (`.left`) share ONE row with the primary action
+   (Publish). Nowrap so Publish stays parallel — the search + filters shrink
+   toward their minimums before anything drops. Publish is pinned to the row's
+   end via `.left { flex:1 }` + Publish's own `margin-left:auto`. */
+.hrow1{display:flex;align-items:center;gap:16px 20px;flex-wrap:nowrap;min-width:0}
+.hrow1 .left{flex:1 1 auto;min-width:0}
+.hrow1 .pub-wrap{flex-shrink:0}
+/* Search + the three quick filters share ONE row: the search takes the slack up
+   to its 367px design width and the filters shrink toward their labels rather
+   than wrapping to a second line. Unscoped (was `.hrow1 .left`) because the
+   cluster now lives in the refine row, `.hrow2`. */
+.left{display:flex;gap:14px;align-items:center;flex-wrap:nowrap;flex:1 1 auto;min-width:0}
+.search{position:relative;flex:1 1 220px;min-width:148px;max-width:367px;height:40px}
+.search .box{width:100%;height:40px;border:1px solid #d0d5dd;border-radius:4px;background:#fff}
+.search .inner{position:absolute;left:10px;top:50%;transform:translateY(-50%);display:flex;gap:8px;align-items:center;pointer-events:none}
+.search .inner img{width:16px;height:16px}
+.search .inner span{font-size:12px;font-weight:500;color:#98a2b3;white-space:nowrap}
+.search input{position:absolute;inset:0;border:0;background:transparent;padding:0 12px 0 34px;font:inherit;font-size:12px;color:#1d2939;outline:none}
+.search input:not(:placeholder-shown) ~ .inner span, .search input:focus ~ .inner span{visibility:hidden}
+/* Quick filters (node 6891:8485) — 200px dropdowns, 20px leading icon, 14px
+   SemiBold label, 16px chevron. Placeholder #667085, chosen value #1d2939. */
+.qf{position:relative;display:inline-flex;align-items:center;gap:8px;
+  flex:0 1 200px;min-width:112px;
+  background:#fff;border:1px solid #d0d5dd;border-radius:4px;padding:0 12px}
+.qf-ico{width:20px;height:20px;flex-shrink:0}
+/* 38px + 1px borders = a 40px control, matching the search, segmented bar and
+   Publish button so every header control shares one height. */
+.qf select{flex:1 0 0;min-width:0;height:38px;appearance:none;-webkit-appearance:none;
+  border:0;background:transparent;padding:0;outline:none;cursor:pointer;
+  font:inherit;font-size:14px;font-weight:600;line-height:20px;color:#667085;
+  text-overflow:ellipsis}
+.qf select.on{color:#1d2939}
+.qf-chev{width:16px;height:16px;flex-shrink:0;pointer-events:none}
+.pub-wrap{display:flex;align-items:center;gap:12px;flex-shrink:0;margin-left:auto}
+/* Nothing is unsaved — the edits are on the board, they just aren't released
+   to supervisors yet (ROS-05), so the label says unpublished. */
+.unpub{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:500;
+  color:#667085;line-height:20px;white-space:nowrap}
+.unpub[hidden]{display:none}
+.unpub .dot{width:8px;height:8px;border-radius:8px;background:var(--status-warning,#f79009);flex-shrink:0}
+.btn-publish{display:flex;gap:8px;align-items:center;justify-content:center;min-height:40px;padding:10px 16px;border-radius:4px;background:var(--primary,#22c882)}
+.btn-publish img{width:20px;height:20px}
+.btn-publish span{font-size:14px;font-weight:600;color:#f9fafb;line-height:20px;text-align:center;white-space:nowrap}
+
+/* Row 2: segmented + date */
+/* Row 2: the week being planned and the Highlight-Conflicts view toggle —
+   period on the left, toggle right-aligned. */
+.hrow2{display:flex;align-items:center;gap:16px 20px;flex-wrap:wrap}
+.wk-nav{width:32px;height:32px;border:1px solid #d0d5dd;border-radius:4px;background:#fff;
+  display:flex;align-items:center;justify-content:center;color:#344054;flex-shrink:0}
+.wk-nav svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.wk-nav:hover{background:#f9fafb}
+.wk-nav:active{background:#f2f4f7}
+/* Workforce-type switcher — Figma Segmented-bar (node 7068:7038). Replaces the
+   old "Select Workforce" dropdown: one type is always active, so the board is
+   always scoped to a workforce type (scope BLD-01 board categories). */
+.seg{background:#edf0f2;border-radius:4px;display:inline-flex;align-items:center;
+  justify-content:center;padding:2px 1px;width:fit-content;flex-shrink:0}
+.seg-item{height:38px;width:120px;padding:0 16px;border-radius:4px;display:flex;
+  align-items:center;justify-content:center;background:none;border:1px solid transparent;
+  font-size:15px;font-weight:500;color:#667085;line-height:1.4;white-space:nowrap;
+  cursor:pointer;word-break:break-word}
+.seg-item.active{background:#fff;border-color:#d0d5dd;color:#000;font-weight:600}
+.seg-item:focus-visible{outline:2px solid var(--primary,#22c882);outline-offset:1px}
+
+/* Highlight-conflicts switch */
+.hl-wrap{margin-left:auto;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.switch{width:36px;height:20px;border-radius:20px;background:#d0d5dd;position:relative;
+  flex-shrink:0;transition:background .15s}
+.switch .knob{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:16px;
+  background:#fff;box-shadow:0 1px 2px rgba(16,24,40,.15);transition:left .15s}
+.switch.on{background:var(--primary,#22c882)}
+.switch.on .knob{left:18px}
+.hl-label{font-size:14px;font-weight:500;color:#475467;line-height:20px;white-space:nowrap;cursor:pointer}
+/* Rows floated to the top by the conflicts toggle */
+/* Left-edge stroke reads a WORKER STATUS problem, not per-cell conflicts.
+   Active workers get no stroke even when their cells have conflicts — the
+   red cell borders already carry that; a status-level stroke on top duplicates
+   the signal. Only status-blocked rows (permanent exits or recoverable holds)
+   get the stroke, tone-matched to their tint. */
+.grid.hl .wf-card.tint-err.flagged {box-shadow:inset 3px 0 0 var(--destructive,#f04438)}
+.grid.hl .wf-card.tint-warn.flagged{box-shadow:inset 3px 0 0 var(--status-warning,#f79009)}
+.daterange{display:flex;gap:6px;align-items:center}
+.daterange>img{width:20px;height:20px}
+.daterange{flex-shrink:0}
+.daterange .txt{display:flex;gap:2px;align-items:baseline;line-height:1.4;white-space:nowrap}
+.daterange .d{font-size:18px;font-weight:600;color:#000;white-space:nowrap}
+.daterange .wk{font-size:12px;font-weight:600;color:#98a2b3;margin-left:2px;white-space:nowrap}
+
+/* Alert card */
+.alert[hidden]{display:none}
+.alert{background:#fef3f2;border:1px solid #fee4e2;border-radius:4px;display:flex;align-items:center;justify-content:space-between;padding:8px 8px 8px 12px;overflow:hidden}
+.alert .lead{display:flex;gap:10px;align-items:center}
+.alert .circ{width:24px;height:24px;border-radius:30px;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.alert .circ img{width:14px;height:14px}
+.alert .msg{font-size:14px;font-weight:600;color:#1d2939;line-height:20px;white-space:nowrap}
+.alert .right{display:flex;align-items:center;border-radius:3px}
+.alert .resolve{display:flex;gap:4px;align-items:center;justify-content:center;min-height:22px;padding:4px 8px;border-radius:2px}
+.alert .resolve span{font-size:12px;font-weight:600;color:#667085;line-height:14px;white-space:nowrap}
+.alert .chev{display:flex;align-items:center;min-height:22px;padding:4px 0}
+.alert .chev img{width:16px;height:16px}
+
+/* KPI row — gap28, card p16 gap12 rounded5 border #d0d5dd */
+.kpis{display:flex;gap:16px;align-items:flex-start}
+.kpi{flex:1 0 0;min-width:1px;background:#fff;border:1px solid #d0d5dd;border-radius:5px;padding:16px;display:flex;gap:12px;align-items:center;overflow:hidden}
+.kpi .ava{padding:14px;border-radius:30px;display:flex;align-items:center;flex-shrink:0}
+.kpi .ava img{width:20px;height:20px}
+.kpi.k1 .ava{background:#f4edf7}
+.kpi.k2 .ava{background:#e6f1fb}
+.kpi.k3 .ava{background:#eaecf0}
+.kpi.k4 .ava{background:#fef3f2}
+.kpi .txt{flex:1 0 0;min-width:1px;display:flex;flex-direction:column;align-items:flex-start}
+.kpi .lbl{font-size:14px;font-weight:500;color:#475467;line-height:20px;width:100%}
+.kpi .val{font-size:26px;font-weight:600;color:#000;line-height:28px;width:100%}
+
+/* ══════════ BOARD ══════════
+   Outer stroke of the board frame (node 6839:11151): 1px #d0d5dd, 4px radius.
+   The board is its own scroll region so the page chrome stays put: the day
+   header row sticks to the top and the workforce column freezes to the left
+   (BRD GEN-02, "frozen first column"). Row-major CSS Grid — a flex
+   column-major layout can't do a sticky header and a frozen column at once. */
+.board{flex:1;min-height:0;margin:0 28px 28px;overflow:auto;background:#fff;
+  border:1px solid #d0d5dd;border-radius:4px}
+.grid{display:grid;grid-template-columns:264px repeat(7,minmax(190px,1fr));min-width:1594px}
+
+/* Header row */
+.gh{position:sticky;top:0;z-index:3;background:#fff;height:48px;
+  border-bottom:1px solid #d0d5dd;border-right:1px solid #d0d5dd;
+  display:flex;align-items:center;justify-content:center;padding:6px 10px}
+.gh:last-child{border-right:0}
+.gh.wf{left:0;z-index:4;justify-content:flex-start;padding:6px 16px;display:flex;align-items:center}
+/* Workforce type switcher IS the column heading — the active type reads as
+   the header itself (matches the tone/weight of the day-header labels), with
+   the chevron right next to it as the affordance for switching. Native
+   <select> underneath for keyboard/AT and native OS-picker UX. */
+.wf-switch{position:relative;display:inline-flex;align-items:center;gap:6px;
+  padding:4px 6px;margin-inline-start:-6px;border-radius:4px;background:transparent;
+  cursor:pointer;font:inherit;font-size:12px;font-weight:700;color:#000;opacity:.9;
+  letter-spacing:.96px;text-transform:uppercase;line-height:normal;white-space:nowrap}
+.wf-switch:hover{background:#f2f4f7}
+.wf-switch:focus-visible{outline:2px solid var(--primary,#22c882);outline-offset:1px}
+.wf-switch .chev{width:14px;height:14px;flex-shrink:0;opacity:.7}
+.wf-switch select{position:absolute;inset:0;opacity:0;cursor:pointer;font:inherit;width:100%;height:100%}
+.gh .in{display:flex;gap:6px;align-items:center;text-align:center;line-height:1.4}
+.gh .dow{font-size:12px;font-weight:500;color:#98a2b3}
+.gh .num{font-size:16px;font-weight:600;color:#000}
+
+/* Workforce cell — frozen left */
+.wf-card{position:sticky;left:0;z-index:2;background:#fff;height:154px;
+  border-bottom:1px solid #d0d5dd;border-right:1px solid #d0d5dd;
+  display:flex;flex-direction:column;gap:8px;align-items:flex-start;padding:12px}
+.wf-card.tint-err{background:#fef3f2}
+.wf-card.tint-warn{background:#fffaeb}
+.wf-card .r1{display:flex;align-items:flex-start;justify-content:space-between;width:100%;gap:6px}
+.wf-card .who{display:flex;gap:6px;align-items:flex-start;min-width:0}
+.ava{display:flex;align-items:center;justify-content:center;border-radius:999px;flex-shrink:0;
+  background:var(--a);color:#fff;
+  font-weight:700;line-height:1;letter-spacing:0;user-select:none}
+.ava.s32{width:32px;height:32px;font-size:14px}
+.ava.s28{width:28px;height:28px;font-size:13px}
+.ava.s24{width:24px;height:24px;font-size:11px}
+/* Take whatever width is left after the avatar; without flex:1 the column just
+   sizes to its own text and lets the status badge sit right on top of it. */
+.wf-card .names{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.wf-card .nm{font-size:14px;font-weight:600;color:#000;line-height:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wf-card .rl{font-size:12px;font-weight:600;color:#98a2b3;line-height:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Licence class chip — inline in the role line. Neutral so it reads as a
+   qualification, not a status; the eligibility engine already carries alarm. */
+.wf-card .lic{display:inline-flex;align-items:center;padding:1px 5px;margin-inline-start:4px;border-radius:3px;background:#eaecf0;color:#475467;font-size:10px;font-weight:700;letter-spacing:.32px;cursor:help;vertical-align:1px}
+
+/* Status chips — node 6809:7115. One chip spec, five semantic colours. */
+/* Status badge shrinks (with a floor) and ellipsises its label instead of
+   pushing the name off the row. The full text lives in `title` for hover. */
+.badge{border-radius:3px;height:22px;padding:5px 6px;display:flex;gap:6px;align-items:center;flex:0 1 auto;min-width:0;max-width:60%}
+.badge span{font-size:12px;font-weight:600;color:#fff;letter-spacing:.48px;text-transform:uppercase;line-height:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge.active     {background:var(--status-success,#12b76a)}
+.badge.resigned   {background:var(--destructive,#f04438)}
+.badge.terminated {background:var(--destructive,#f04438)}
+.badge.doc        {background:var(--status-warning,#f79009)}
+.badge.cert       {background:var(--status-warning,#f79009)}
+.badge.leave      {background:var(--status-warning,#f79009)}
+/* These carry the blocking document ("HSE EXPIRED"), not a short
+   category, so drop the tracking to leave the name as much width as possible. */
+.badge.doc span,.badge.cert span,.badge.leave span{letter-spacing:0}
+
+.util{border-radius:4px;padding:4px;display:flex;align-items:center;justify-content:center}
+.util span{font-size:10px;font-weight:600;text-transform:uppercase;text-align:center;line-height:normal;white-space:nowrap}
+.util.ok{background:#ecfdf3}.util.ok span{color:var(--status-success,#12b76a)}
+.util.bad{background:#fef3f2}.util.bad span{color:var(--destructive,#f04438)}
+.util.warn{background:#fef0c7}.util.warn span{color:#b54708}
+.wf-card.tint-err .util.bad{background:#fee4e2}
+.stat{display:flex;align-items:center;justify-content:space-between;width:100%}
+.stat .k{font-size:10px;font-weight:700;color:#98a2b3;opacity:.7;letter-spacing:.8px;text-transform:uppercase;line-height:normal;white-space:nowrap}
+.stat .barwrap{display:flex;gap:10px;align-items:center;width:110px}
+.stat .track{flex:1 0 0;min-width:1px;height:8px;border-radius:18px;background:#ececec;position:relative;overflow:hidden}
+.stat .fill{position:absolute;left:0;top:0;height:8px;border-radius:18px;background:var(--status-success,#12b76a)}
+.stat .fill.bad{background:var(--destructive,#f04438)}
+.stat .fill.warn{background:var(--status-warning,#f79009)}
+.stat .num{font-size:12px;font-weight:500;color:#000;line-height:normal;white-space:nowrap}
+.stat .hrs{display:flex;gap:4px;align-items:center}
+.stat .hrs img{width:12px;height:12px}
+/* Past the 54h weekly limit — reachable only through approved overtime. */
+.stat .hrs.over .num{color:var(--status-warning,#f79009);font-weight:600}
+.stat .hrs.over{cursor:help}
+
+/* Day cells */
+.cell{height:154px;background:#f9fafb;border-bottom:1px solid #d0d5dd;border-right:1px solid #d0d5dd;
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:6px}
+.cell.last{border-right:0}
+/* Days already worked are locked: no drag in or out, no actions. */
+.cell.past{background:#f2f4f7}
+.cell.past .shiftcard{opacity:.55;cursor:default;box-shadow:none!important}
+.cell.past .offchip{opacity:.6}
+.gh.past .dow,.gh.past .num{opacity:.45}
+.gh.today .num{color:var(--primary,#22c882)}
+/* Conflict tint shows only while Highlight Conflicts is on (.grid.hl). */
+.grid.hl .cell.err{background:#fef3f2}
+.cell .off{flex:1 0 0;min-height:1px;width:100%;display:flex;flex-wrap:wrap;gap:8px 0;align-content:center;align-items:center;justify-content:center;padding:10px;border-radius:6px;overflow:hidden}
+.offchip{background:#d0d5dd;border-radius:3px;height:22px;padding:5px 6px;display:flex;gap:6px;align-items:center}
+.offchip span{font-size:12px;font-weight:600;color:#fff;letter-spacing:.48px;text-transform:uppercase;line-height:normal;white-space:nowrap}
+.shiftcard{background:#fff;border:1px solid #eaecf0;border-radius:6px;height:142px;width:100%;display:flex;flex-direction:column;gap:8px;align-items:flex-start;padding:10px;overflow:hidden}
+.grid.hl .cell.err .shiftcard{border-color:var(--destructive,#f04438)}
+.shiftcard .rt-row{display:flex;align-items:center;justify-content:space-between;width:100%;gap:6px}
+.shiftcard .rt{font-size:16px;font-weight:600;color:#1d2939;line-height:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Conflict marker: icon only (no text pill), and only while Highlight
+   Conflicts is on. The alert-triangle svg (Figma 7076:7052) is already
+   tenant-red (#F04438), so no recolouring is needed. */
+.badge-action{display:none;align-items:center;flex-shrink:0}
+.grid.hl .badge-action{display:flex}
+.badge-action img{width:18px;height:18px;display:block}
+/* Warning tier (amber): policy warnings that are allowed but need review.
+   Gated behind Highlight Conflicts exactly like hard conflicts. */
+.grid.hl .cell.warn{background:#fffaeb}
+.grid.hl .cell.warn .shiftcard{border-color:var(--status-warning,#f79009)}
+.grid.hl .wf-card.warned{box-shadow:inset 3px 0 0 var(--status-warning,#f79009)}
+/* Week-level finding chip on the worker card (no weekly off, 2 weekly offs,
+   pending rostering). warning-700 on warning-50 — the a11y-safe pairing the
+   overtime tag already uses. */
+.wf-warn{display:inline-flex;gap:4px;align-items:center;background:#fffaeb;color:#b54708;border-radius:4px;padding:2px 6px;font-size:11px;font-weight:600;line-height:16px;white-space:nowrap}
+.wf-warn img{width:12px;height:12px}
+/* Popover: amber "NEEDS REVIEW" header badge + amber issue lines. */
+.pop-badge.warn{background:var(--fig-accent-warning-lightest,#fffaeb)}
+.pop-badge.warn span{color:var(--fig-accent-warning-normal,#f79009)}
+/* Issue/reason rows are `.callout` (see below). No extra styling needed. */
+.sc-line{display:flex;gap:4px;align-items:center;overflow:hidden;width:100%}
+.sc-line img{width:16px;height:16px;flex-shrink:0;object-fit:contain}
+.sc-line .t{font-size:12px;font-weight:600;line-height:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Shift label uses the default dark ink for readability (Morning's amber failed
+   contrast on white). Shift MEANING stays on-screen — the leading icon keeps
+   its shift colour, which is what carries the recognition. */
+.t.night,.t.morning,.t.midday,.t.plain{color:#344054}
+/* A blocked driver's route (BRD TRN-05 / NTF-06) renders as an ordinary route
+   card flagged ACTION REQ — the route is really assigned and has to be moved
+   off this driver. Why it's blocked is disclosed in the detail popover, not on
+   the board; who is blocked stays visible via the DOC/CERT BLOCK chip on the
+   frozen workforce column. */
+/* Double assignment (node 6824:11565) — two compact route cards stacked in an
+   error-tinted cell. The shift becomes a tinted icon chip so both cards fit. */
+.cell.dbl{padding:10px;gap:6px;justify-content:center}
+.grid.hl .cell.dbl{background:#fef3f2}
+.cell .stack{display:flex;flex-direction:column;gap:6px;width:100%;height:100%}
+/* Two cards share the 134px of cell height left after padding, so the vertical
+   padding and gap come in slightly tighter than the single-assignment card. */
+.shiftcard.mini{flex:1 1 0;min-height:0;height:auto;gap:6px;padding:8px 10px;justify-content:center}
+.grid.hl .cell.dbl .shiftcard.mini{border-color:var(--destructive,#f04438)}
+.shiftcard.mini .rt{width:48px;flex-shrink:0}
+.mini-right{display:flex;gap:8px;align-items:center;justify-content:flex-end;flex-shrink:0}
+.shift-chip{width:22px;height:22px;border-radius:3px;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0}
+.shift-chip img{width:16px;height:16px;object-fit:contain}
+.shift-chip.morning{background:rgba(255,191,0,.2)}
+.shift-chip.midday {background:rgba(255,111,0,.2)}
+.shift-chip.night  {background:rgba(0,81,152,.2)}
+.mini-cols{display:flex;gap:8px;align-items:flex-start;width:100%}
+.mini-cols>div{flex:1 0 0;min-width:0}
+
+/* ══════════ CELL DETAIL POPOVER — node 6839:13169 ══════════ */
+.cell.clickable{cursor:pointer}
+.cell.clickable:hover .shiftcard{box-shadow:0 0 0 2px rgba(34,200,130,.28)}
+.pop-catch{position:fixed;inset:0;z-index:40;background:transparent}
+.pop-catch[hidden],.popover[hidden]{display:none}
+.popover{position:fixed;z-index:41;width:367px;background:#fff;
+  border-radius:10px;
+  box-shadow:6px 6px 12px 0 rgba(0,0,0,.08);
+  display:flex;flex-direction:column;align-items:flex-start}
+/* Header — pt24 pb16 px16, 1px #eaecf0 divider */
+.pop-head{background:#fff;border-bottom:1px solid #eaecf0;border-radius:10px 10px 0 0;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding:24px 16px 16px;width:100%}
+.pop-head .l{display:flex;flex-direction:column;gap:2px;align-items:flex-start;min-width:0}
+.pop-title-row{display:flex;gap:16px;align-items:center;width:100%}
+.pop-title{font-size:24px;font-weight:600;color:#000;line-height:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pop-badge{background:var(--destructive,#f04438);border-radius:2px;min-height:22px;padding:4px 8px;
+  display:flex;gap:4px;align-items:center;justify-content:center;flex-shrink:0}
+.pop-badge span{font-size:12px;font-weight:600;color:#fff;line-height:14px;white-space:nowrap}
+.pop-shift{height:20px;display:flex;gap:2px;align-items:center;overflow:hidden;max-width:100%}
+.pop-shift img{width:16px;height:16px;flex-shrink:0;object-fit:contain}
+.pop-shift span{font-size:14px;font-weight:600;line-height:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pop-close{width:16px;height:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.pop-close img{width:16px;height:16px}
+/* Body — pt16 pb24 px16, gap 24 */
+.pop-body{background:#fff;border-radius:0 0 10px 10px;display:flex;flex-direction:column;gap:24px;padding:16px 16px 24px;width:100%}
+.pop-list{display:flex;flex-direction:column;gap:16px;width:100%}
+.pop-row{display:flex;gap:8px;align-items:center;width:100%}
+.pop-row>img{width:16px;height:16px;flex-shrink:0;object-fit:contain}
+.pop-field{display:flex;flex-direction:column;gap:2px;align-items:flex-start;min-width:0}
+.pop-k{font-size:12px;font-weight:600;color:#98a2b3;line-height:normal}
+.pop-v{font-size:14px;font-weight:600;color:#1d2939;line-height:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pop-vrow{display:flex;gap:8px;align-items:center;min-width:0}
+/* Eligibility requirements this vehicle imposes that the worker doesn't meet.
+   Rendered ON the vehicle row — the error sits beside the field it concerns —
+   as icon + text, so the flag never depends on colour alone and never hides
+   behind a hover tooltip. */
+/* Vehicle stays in the default text colour — the callout above already tells
+   the reader what's wrong, so tinting the vehicle name red doubled the signal. */
+/* Reason callout — Figma "empty-code-badge" (node 7080:7056): a bordered pill in
+   the destructive tint. 8/6 padding, 2px radius, error-lightest fill and
+   error-light border, 12px Medium error-normal text, 16px alert-triangle.
+   The single `.callout` rule now serves both the on-Vehicle requirement rows
+   (`.pop-req`) and the general issue list (`.pop-issues`). */
+.pop-req,.pop-issues{display:flex;flex-direction:column;gap:6px;width:100%;margin-top:2px}
+.callout{display:flex;gap:8px;align-items:center;padding:6px 8px;border-radius:2px;
+  background:var(--fig-accent-error-lightest,#fef3f2);
+  border:1px solid var(--fig-accent-error-light,#fee4e2);
+  color:var(--fig-accent-error-normal,#f04438);
+  font-size:12px;font-weight:500;line-height:normal}
+.callout img{width:16px;height:16px;flex-shrink:0}
+.callout b{font-weight:600}
+/* Full line reads in the callout's own tone so the whole requirement is one
+   thought (`color:inherit` lets .callout.warn recolor everything at once). */
+.callout .have{color:inherit;font-weight:500}
+.callout.warn{background:var(--fig-accent-warning-lightest,#fffaeb);
+  border-color:var(--fig-accent-warning-light,#fedf89);
+  color:var(--fig-accent-warning-dark,#b54708)}
+.soft{border-radius:2px;min-height:22px;padding:4px 8px;display:flex;gap:4px;align-items:center;justify-content:center;flex-shrink:0}
+.soft span{font-size:12px;font-weight:600;line-height:14px;white-space:nowrap}
+/* Reason badge — Figma "Badges" (node 6839:13575): TINTED, not solid. The
+   tone's lightest tint is the fill and the tone colour is the text, so the
+   pill reads as a label instead of competing with the solid ACTION REQUIRED
+   header badge. Permanent exits are red; expiries, leave and rule breaches are
+   orange; a healthy driver is green. The --fig-accent-* tokens are the very
+   values the Figma node references (accent/error/lightest + accent/error/normal). */
+.soft.exit{background:var(--fig-accent-error-lightest,#fef3f2)}
+.soft.exit span{color:var(--fig-accent-error-normal,#f04438)}
+.soft.warn{background:var(--fig-accent-warning-lightest,#fffaeb)}
+.soft.warn span{color:var(--fig-accent-warning-normal,#f79009)}
+.soft.ok  {background:var(--fig-accent-success-lightest,#ecfdf3)}
+.soft.ok  span{color:var(--fig-accent-success-normal,#12b76a)}
+.pop-btn{width:100%;background:var(--primary,#22c882);border-radius:4px;min-height:40px;padding:10px 16px;
+  display:flex;gap:8px;align-items:center;justify-content:center}
+.pop-btn img{width:20px;height:20px}
+.pop-btn span{font-size:14px;font-weight:600;color:#f9fafb;line-height:20px;text-align:center;white-space:nowrap}
+.pop-btn:hover{filter:brightness(.96)}
+/* Conflict reasons on hover of the one-word status pill */
+.has-tip{position:relative;cursor:help}
+.has-tip::after{content:attr(data-tip);position:absolute;left:0;top:calc(100% + 8px);
+  width:290px;background:#1d2939;color:#fff;border-radius:6px;padding:8px 10px;
+  font-size:12px;font-weight:500;line-height:16px;white-space:pre-line;text-align:left;
+  box-shadow:0 8px 20px rgba(16,24,40,.24);z-index:5;pointer-events:none;
+  opacity:0;visibility:hidden;transition:opacity .12s}
+.has-tip::before{content:'';position:absolute;left:10px;top:calc(100% + 3px);
+  border:5px solid transparent;border-bottom-color:#1d2939;z-index:5;pointer-events:none;
+  opacity:0;visibility:hidden;transition:opacity .12s}
+.has-tip:hover::after,.has-tip:hover::before,
+.has-tip:focus-visible::after,.has-tip:focus-visible::before{opacity:1;visibility:visible}
+
+/* ══════════ "ROUTES REQUIRES ATTENTION" DRAWER ══════════
+   Opened from the alert banner's "Click to resolve". Built from the supplied
+   screenshot (no Figma node supplied), on the page's existing tokens. */
+.alert .resolve{cursor:pointer}
+.alert .resolve:hover span{text-decoration:underline}
+
+.drawer-catch{position:fixed;inset:0;z-index:50;background:rgba(16,24,40,.25)}
+.drawer-catch[hidden],.drawer[hidden],.drawer-close[hidden]{display:none}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:700px;max-width:calc(100vw - 72px);
+  z-index:51;background:#fff;border-left:1px solid #eaecf0;
+  box-shadow:-6px 0 24px rgba(16,24,40,.10);overflow-y:auto}
+@keyframes scrim-in{from{opacity:0}to{opacity:1}}
+@keyframes sheet-in{from{transform:translateX(24px);opacity:.6}to{transform:none;opacity:1}}
+.drawer-catch,.rp-catch,.mp-catch{animation:scrim-in .16s ease-out}
+.drawer,.rpanel,.mpanel{animation:sheet-in .2s ease-out}
+.drawer-inner{display:flex;flex-direction:column;gap:16px;padding:28px}
+.drawer-title{margin:0;font-size:24px;font-weight:600;color:#000;line-height:normal}
+.dlabel{font-size:14px;font-weight:500;color:#667085;line-height:20px}
+.dsec-head{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.link-green{font-size:14px;font-weight:600;color:var(--primary,#22c882);line-height:20px}
+.link-green:hover{text-decoration:underline}
+
+/* Overview cards — same shape as the page KPI cards */
+/* Four tiles instead of three — tighter gap and equal share so the row still
+   fits without horizontal scroll. */
+.dkpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.dkpi{flex:1 0 0;min-width:1px;background:#fff;border:1px solid #eaecf0;border-radius:8px;
+  padding:16px;display:flex;gap:12px;align-items:center;overflow:hidden}
+.dkpi .ava{width:48px;height:48px;border-radius:30px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.dkpi .ava img,.dkpi .ava svg{width:20px;height:20px}
+.dkpi.blue  .ava{background:#e6f1fb;color:#0072d6}
+.dkpi.red   .ava{background:#fef3f2;color:var(--destructive,#f04438)}
+.dkpi.green .ava{background:#ecfdf3;color:var(--status-success,#12b76a)}
+.dkpi.amber .ava{background:#fffaeb;color:#b54708}
+.drawer-sub{margin:-8px 0 0;font-size:14px;font-weight:500;color:#667085;line-height:20px}
+.dkpi .ava{width:44px;height:44px}
+.ot-tag{background:#fffaeb;color:#b54708;border-radius:4px;padding:2px 6px;
+  font-size:11px;font-weight:600;line-height:16px;white-space:nowrap;flex-shrink:0}
+.btn-green[disabled]{opacity:.4;cursor:not-allowed}
+.dkpi .lbl{font-size:14px;font-weight:500;color:#475467;line-height:20px}
+.dkpi .val{font-size:24px;font-weight:600;color:#000;line-height:28px}
+
+/* Issue cards */
+.issue-list{display:flex;flex-direction:column;gap:12px}
+.issue{border:1px solid #eaecf0;border-radius:8px;background:#fff;overflow:hidden}
+/* An approved card slides out and collapses before the list re-renders. */
+.issue.leaving{overflow:hidden;pointer-events:none;
+  transition:max-height .26s ease, opacity .22s ease, transform .26s ease, margin-bottom .26s ease}
+.issue-head{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 16px;border-bottom:1px solid #eaecf0}
+.issue-head .who{display:flex;align-items:center;gap:8px;min-width:0;
+  font-size:14px;font-weight:600;color:#1d2939;line-height:20px}
+.issue-head .rt{white-space:nowrap}
+.issue-head .sep{color:#d0d5dd}
+.issue-head .plan{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag-unavail{flex-shrink:0;background:#fef3f2;border:1px solid #fda29b;border-radius:4px;
+  padding:3px 8px;font-size:11px;font-weight:600;color:#d92d20;letter-spacing:.4px;
+  text-transform:uppercase;white-space:nowrap;line-height:16px}
+
+.issue-body{padding:14px 16px;display:flex;flex-direction:column;gap:0}
+.drow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.drow .l{display:flex;align-items:center;gap:8px;min-width:0}
+.drow .did{font-size:14px;font-weight:600;color:#0072d6;line-height:20px;white-space:nowrap}
+.drow .dot{color:#d0d5dd}
+.drow .dname{font-size:14px;font-weight:600;color:#1d2939;line-height:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.drow.out .did,.drow.out .dname{color:#98a2b3;text-decoration:line-through}
+.drow .r{display:flex;align-items:center;gap:6px;flex-shrink:0;
+  font-size:12px;font-weight:500;color:#667085;line-height:18px;white-space:nowrap}
+.drow .r .bullet{width:6px;height:6px;border-radius:6px;flex-shrink:0}
+.drow .r .bullet.red{background:var(--destructive,#f04438)}
+.drow .r .bullet.blue{background:#0072d6}
+.pill{border-radius:4px;padding:2px 8px;font-size:12px;font-weight:600;line-height:18px;white-space:nowrap;flex-shrink:0}
+.pill.leave{background:var(--status-warning,#f79009);color:#fff}
+.pill.exit {background:var(--destructive,#f04438);color:#fff}
+.pill.avail{background:var(--status-success,#12b76a);color:#fff}
+
+/* the ↓ between the two drivers */
+.dswap{display:flex;justify-content:center;padding:6px 0}
+.dswap .circ{width:24px;height:24px;border-radius:24px;border:1px solid #eaecf0;background:#fff;
+  display:flex;align-items:center;justify-content:center;color:#667085}
+.dswap svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.issue-foot{display:flex;align-items:center;gap:12px;padding:0 16px 16px}
+.issue-foot .spacer{flex:1}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid #d0d5dd;border-radius:4px;
+  min-height:40px;padding:10px 14px;font-size:14px;font-weight:600;color:#344054;background:#fff}
+.btn-ghost svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.btn-ghost:hover{background:#f9fafb}
+.btn-text{font-size:14px;font-weight:600;color:#344054;padding:10px 4px}
+.btn-text:hover{text-decoration:underline}
+.btn-green{background:var(--primary,#22c882);border-radius:4px;min-height:40px;padding:10px 16px;
+  font-size:14px;font-weight:600;color:#fff;line-height:20px;white-space:nowrap}
+.btn-green:hover{filter:brightness(.96)}
+
+/* Floating close, straddling the drawer's outer edge */
+.drawer-close{position:fixed;top:50%;transform:translateY(-50%);right:716px;z-index:52;
+  width:48px;height:48px;border-radius:48px;background:#fff;
+  box-shadow:0 4px 12px rgba(16,24,40,.16);display:flex;align-items:center;justify-content:center;color:#344054}
+.drawer-close svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.drawer-close:hover{background:#f9fafb}
+@media (max-width:1200px){ .drawer-close{right:auto;left:12px} }
+
+/* ══════════ DRAG & DROP (BRD ROS-02 / ROS-03) ══════════ */
+.shiftcard{cursor:grab;user-select:none;-webkit-user-drag:none}
+.shiftcard img{-webkit-user-drag:none;user-select:none;pointer-events:none}
+.shiftcard.dragging{opacity:.35}
+body.dragging-active{cursor:grabbing}
+body.dragging-active .cell{transition:background .08s}
+.drag-clone{position:fixed;z-index:70;pointer-events:none;opacity:.95;
+  border-radius:6px;box-shadow:0 12px 28px rgba(16,24,40,.28);transform:rotate(-1deg)}
+.cell.dz-ok  {background:#ecfdf3;box-shadow:inset 0 0 0 2px var(--status-success,#12b76a)}
+.cell.dz-ot  {background:#fffaeb;box-shadow:inset 0 0 0 2px var(--status-warning,#f79009)}
+.cell.dz-bad {background:#fef3f2;box-shadow:inset 0 0 0 2px var(--destructive,#f04438)}
+.ot-chip{background:var(--status-warning,#f79009);color:#fff;border-radius:2px;
+  min-height:22px;padding:4px 8px;display:flex;align-items:center;
+  font-size:12px;font-weight:600;line-height:14px;flex-shrink:0;
+  white-space:nowrap;cursor:help}
+
+
+/* ══════════ SYSTEM ALERT TOASTS ══════════
+   FAMS Web Portal "System Alerts" (suo7zX7QrsiIeT57UV34yZ 23846:4795) for the
+   plain variants, and the action toast from FAMS V5 Launch Pad
+   (W2z46FvC6aOdzOHDc3rqD5 495:65817). Replaces the centre approval dialog. */
+.toast-stack{position:fixed;top:20px;right:20px;z-index:95;
+  display:flex;flex-direction:column;gap:12px;width:360px;pointer-events:none}
+.toast{background:#fff;border-left:6px solid var(--tc,#0072d6);border-radius:4px;
+  padding:12px 12px 12px 18px;display:flex;gap:8px;align-items:flex-start;overflow:clip;
+  box-shadow:0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03);
+  pointer-events:auto;animation:toast-in .18s ease-out}
+@keyframes toast-in{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
+.toast.leaving{opacity:0;transform:translateX(12px);transition:opacity .15s, transform .15s}
+.toast .ico{width:28px;height:28px;border-radius:2px;background:var(--tcl,#e6f1fb);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:clip}
+.toast .ico img{width:20px;height:20px}
+.toast .body{flex:1 0 0;min-width:1px;display:flex;flex-direction:column;gap:6px;justify-content:center}
+.toast .body>.txt{display:flex;flex-direction:column;gap:6px}
+.toast .tt{font-size:20px;font-weight:600;color:#344054;line-height:22px}
+.toast .tm{font-size:14px;font-weight:500;color:#667085;line-height:18px}
+.toast.success{--tc:var(--status-success,#12b76a);--tcl:#ecfdf3}
+.toast.warning{--tc:var(--status-warning,#f79009);--tcl:#fffaeb}
+.toast.error  {--tc:var(--destructive,#f04438); --tcl:#fef3f2}
+.toast.info   {--tc:#0072d6;--tcl:#e6f1fb}
+/* Action variant — body gains a 16px gap and a button row */
+.toast.has-actions .body{gap:16px}
+.toast .acts{display:flex;gap:12px;align-items:center}
+.toast .acts button{border-radius:4px;padding:8px 14px;font-size:14px;font-weight:600;
+  line-height:20px;white-space:nowrap}
+.toast .acts .ghost{border:1px solid #eaecf0;color:#667085;background:#fff}
+.toast .acts .ghost:hover{background:#f9fafb}
+.toast .acts .primary{background:var(--primary,#22c882);color:#fff;
+  box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.toast .acts .primary:hover{filter:brightness(.96)}
+
+/* ══════════ REPLACEMENT drawer (node 6887:5841) ══════════
+   Single-issue view opened from the cell popover's "Suggest Replacement". */
+.rp-catch{position:fixed;inset:0;z-index:92;background:rgba(16,24,40,.25)}
+.rp-catch[hidden],.rpanel[hidden],.rp-close[hidden]{display:none}
+.rpanel{position:fixed;top:0;right:0;bottom:0;width:700px;max-width:calc(100vw - 72px);
+  z-index:93;background:#fff;display:flex;flex-direction:column;gap:16px;padding:24px;
+  box-shadow:-6px 0 24px rgba(16,24,40,.14)}
+.rp-close{position:fixed;top:50%;transform:translateY(-50%);right:716px;z-index:94;
+  width:48px;height:48px;border-radius:48px;background:#fff;box-shadow:0 4px 12px rgba(16,24,40,.16);
+  display:flex;align-items:center;justify-content:center;color:#344054}
+.rp-close svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+@media (max-width:1200px){ .rp-close{right:auto;left:12px} }
+.rp-title{margin:0;font-size:24px;font-weight:600;color:#1d2939;line-height:32px}
+.rp-sub{margin:-8px 0 0;font-size:14px;font-weight:500;color:#667085;line-height:20px}
+.pill.ok{background:var(--status-success,#12b76a);color:#fff}
+.rp-body{flex:1;min-height:0;overflow:auto}
+/* footer sits at the drawer edge, not inside the card */
+.rp-foot{display:flex;align-items:center;gap:12px;flex-shrink:0;border-top:1px solid #eaecf0;padding-top:16px}
+.rp-foot .spacer{flex:1}
+
+/* ══════════ REPLACE MANUALLY (Tadweer June Release, node 2499:104333) ══════════ */
+.mp-catch{position:fixed;inset:0;z-index:96;background:rgba(16,24,40,.25)}
+.mp-catch[hidden],.mpanel[hidden],.mp-close[hidden]{display:none}
+.mpanel{position:fixed;top:0;right:0;bottom:0;width:700px;max-width:calc(100vw - 72px);
+  z-index:97;background:#fff;display:flex;flex-direction:column;gap:16px;padding:24px;
+  box-shadow:-6px 0 24px rgba(16,24,40,.14)}
+.mp-close{position:fixed;top:50%;transform:translateY(-50%);right:716px;z-index:98;
+  width:58px;height:58px;border-radius:58px;background:#fff;box-shadow:0 4px 12px rgba(16,24,40,.16);
+  display:flex;align-items:center;justify-content:center;color:#1d2939}
+.mp-close img{width:24px;height:24px}
+@media (max-width:1200px){ .mp-close{right:auto;left:8px} }
+
+.mp-title{margin:0;font-size:24px;font-weight:600;color:#1d2939;line-height:32px}
+.mp-rule{height:1px;background:#eaecf0;border-radius:1px;flex-shrink:0}
+
+/* Assignment summary card */
+.mp-card{background:#fff;border:1px solid #eaecf0;border-radius:6px;flex-shrink:0;overflow:clip}
+.mp-card .r1,.mp-card .r2{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px}
+.mp-card .r2{border-top:1px solid #eaecf0}
+.mp-card .who{display:flex;gap:8px;align-items:center;min-width:0;
+  font-size:16px;font-weight:600;color:#1d2939}
+.mp-dot{width:4px;height:4px;border-radius:4px;background:#d0d5dd;flex-shrink:0}
+.tag-outline{background:#fef3f2;border:1px solid var(--destructive,#f04438);border-radius:2px;
+  min-height:22px;padding:4px 8px;font-size:12px;font-weight:600;color:var(--destructive,#f04438);
+  text-transform:uppercase;line-height:14px;white-space:nowrap;flex-shrink:0;
+  display:flex;align-items:center}
+.mp-out{display:flex;gap:8px;align-items:center;min-width:0}
+.mp-out .ava{opacity:.5}
+.mp-out .did,.mp-out .dnm{font-size:14px;line-height:20px;color:#667085;text-decoration:line-through;white-space:nowrap}
+.mp-out .did{font-weight:600}.mp-out .dnm{font-weight:500}
+.pill-leave.exit{background:var(--destructive,#f04438)}
+.pill-leave{background:var(--status-warning,#f79009);color:#fff;border-radius:2px;min-height:22px;
+  padding:4px 8px;font-size:12px;font-weight:600;line-height:14px;white-space:nowrap;
+  display:flex;align-items:center;flex-shrink:0}
+.mp-orig{display:flex;gap:4px;align-items:center;flex-shrink:0;
+  font-size:12px;font-weight:600;color:#475467;line-height:18px;white-space:nowrap}
+.mp-orig .b{width:8px;height:8px;border-radius:8px;background:var(--destructive,#f04438);flex-shrink:0}
+
+/* Search */
+.mp-search{position:relative;flex-shrink:0}
+.mp-search input{width:100%;height:48px;border:1px solid #d0d5dd;border-radius:4px;background:#fff;
+  padding:0 12px 0 48px;font:inherit;font-size:16px;font-weight:500;color:#1d2939;outline:none}
+.mp-search input::placeholder{color:#667085}
+.mp-search img{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:24px;height:24px;pointer-events:none}
+
+/* Candidate table */
+.mp-table{border:1px solid #eaecf0;border-radius:6px;overflow:auto;flex:1;min-height:0;background:#fff}
+.mp-grid{display:grid;grid-template-columns:40px 1fr 130px}
+.mp-th{position:sticky;top:0;z-index:1;background:#fff;height:40px;padding:12px;
+  font-size:12px;font-weight:600;color:#667085;text-transform:uppercase;line-height:18px;
+  display:flex;align-items:center;border-bottom:1px solid #eaecf0}
+.mp-td{border-bottom:1px solid #eaecf0;padding:3px 12px;min-height:44px;display:flex;align-items:center;background:#fff}
+.mp-row:hover .mp-td{background:#f9fafb;cursor:pointer}
+.mp-row.sel .mp-td{background:#f0fdf6}
+.mp-radio{width:16px;height:16px;border-radius:8px;border:1px solid #d0d5dd;background:#fff;
+  flex-shrink:0;position:relative}
+.mp-row.sel .mp-radio{border-color:var(--primary,#22c882);border-width:5px}
+.mp-cand{display:flex;gap:8px;align-items:center;min-width:0}
+
+.mp-cand .col{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.mp-cand .nm{font-size:14px;font-weight:500;color:#344054;line-height:20px;white-space:nowrap}
+.mp-idbadge{background:#eaecf0;border-radius:2px;padding:2px 4px;display:inline-flex;gap:4px;
+  align-items:center;width:fit-content}
+.mp-idbadge img{width:14px;height:14px}
+.mp-idbadge span{font-size:12px;font-weight:600;color:#475467;line-height:14px;white-space:nowrap}
+.tag-suggested{background:#e6f1fb;color:var(--status-info,#0072d6);border-radius:2px;min-height:22px;
+  padding:4px 8px;font-size:12px;font-weight:600;line-height:14px;white-space:nowrap;flex-shrink:0;
+  display:flex;align-items:center;margin-left:8px}
+.tag-status{border-radius:2px;min-height:22px;padding:4px 8px;font-size:12px;font-weight:600;
+  line-height:14px;white-space:nowrap;display:flex;align-items:center}
+.tag-status.ok{background:var(--primary,#22c882);color:#f9fafb}
+.tag-status.ot{background:var(--status-warning,#f79009);color:#fff}
+.mp-empty{padding:24px 12px;font-size:14px;font-weight:500;color:#667085;text-align:center}
+
+/* Footer */
+.mp-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-shrink:0;padding-top:8px}
+.btn-outline{background:#fff;border:1px solid #667085;border-radius:4px;padding:10px 14px;
+  display:flex;gap:8px;align-items:center;justify-content:center;
+  font-size:16px;font-weight:600;color:#667085;line-height:24px}
+.btn-outline img{width:20px;height:20px}
+.btn-outline:hover{background:#f9fafb}
+.btn-assign{background:var(--primary,#22c882);border-radius:4px;min-height:48px;padding:12px 20px;
+  font-size:16px;font-weight:600;color:#f9fafb;line-height:24px;white-space:nowrap}
+.btn-assign:hover{filter:brightness(.96)}
+.btn-assign[disabled]{opacity:.4;cursor:not-allowed}
+</style>
+
+
+
+
+</head>
+<body>
+<div class="app">
+
+  <!-- Side Nav 118 = 52 gradient + 66 white -->
+  <div class="rail-wrap">
+    <div class="rail-primary">
+      <div class="top">
+        <div class="logo"><img src="./fig/logo-tadweer.svg" alt="Tadweer"></div>
+        <div class="rp-item active" aria-label="Workforce">
+          <!-- Figma exported this with FAMS blue baked in; recoloured to the tenant token. -->
+          <svg viewBox="0 0 18 18" fill="currentColor"><path d="M7.125 11.25C9.58706 11.25 11.7708 12.5398 13.3396 14.5364C13.5954 14.862 13.5391 15.3337 13.2136 15.5896C12.888 15.8454 12.4163 15.7891 12.1604 15.4636C10.8095 13.7443 9.02908 12.75 7.125 12.75C5.22092 12.75 3.4405 13.7443 2.0896 15.4636C1.83365 15.7891 1.36201 15.8454 1.03638 15.5896C0.710877 15.3337 0.654556 14.862 0.9104 14.5364C2.47923 12.5398 4.66294 11.25 7.125 11.25ZM12.8167 12.2659C12.9874 11.8885 13.4317 11.7209 13.8091 11.8916C15.0674 12.461 16.1804 13.3793 17.0896 14.5364C17.3454 14.862 17.2891 15.3337 16.9636 15.5896C16.638 15.8454 16.1663 15.7891 15.9104 15.4636C15.1284 14.4683 14.1996 13.7148 13.1909 13.2583C12.8136 13.0876 12.6461 12.6432 12.8167 12.2659ZM9.75 5.625C9.75 4.17525 8.57475 3 7.125 3C5.67525 3 4.5 4.17525 4.5 5.625C4.5 7.07475 5.67525 8.25 7.125 8.25C8.57475 8.25 9.75 7.07475 9.75 5.625ZM13.125 5.625C13.125 4.59543 12.5322 3.7029 11.666 3.27246C11.2952 3.08807 11.1441 2.63772 11.3284 2.26685C11.5128 1.89603 11.9631 1.74489 12.334 1.9292C13.6903 2.60332 14.625 4.00435 14.625 5.625C14.625 7.24565 13.6903 8.64668 12.334 9.3208C11.9631 9.50511 11.5128 9.35397 11.3284 8.98315C11.1441 8.61228 11.2952 8.16193 11.666 7.97754C12.5322 7.5471 13.125 6.65457 13.125 5.625ZM11.25 5.625C11.25 7.90317 9.40317 9.75 7.125 9.75C4.84683 9.75 3 7.90317 3 5.625C3 3.34683 4.84683 1.5 7.125 1.5C9.40317 1.5 11.25 3.34683 11.25 5.625Z"/></svg>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="rp-circle"><img src="./fig/settings-02.svg" alt="Settings"></div>
+        <div class="rp-circle"><img src="./fig/user-02.svg" alt="Account"></div>
+      </div>
+    </div>
+    <div class="rail-secondary">
+      <button class="rs-item active" aria-label="Scheduling">
+        <svg viewBox="0 0 18 18"><path d="M15.75 7.5H2.25M12 1.5v3M6 1.5v3M5.85 16.5h6.3c1.26 0 1.89 0 2.371-.245a2.25 2.25 0 0 0 .984-.984c.245-.481.245-1.111.245-2.371V6.6c0-1.26 0-1.89-.245-2.371a2.25 2.25 0 0 0-.984-.984C14.04 3 13.41 3 12.15 3h-6.3c-1.26 0-1.89 0-2.371.245a2.25 2.25 0 0 0-.984.984C2.25 4.71 2.25 5.34 2.25 6.6v6.3c0 1.26 0 1.89.245 2.371a2.25 2.25 0 0 0 .984.984c.481.245 1.111.245 2.371.245Z"/></svg>
+      </button>
+      <button class="rs-item"><img src="./fig/car-01.svg" alt=""></button>
+      <button class="rs-item"><img src="./fig/signal-01.svg" alt=""></button>
+      <button class="rs-item"><img src="./fig/users-3.svg" alt=""></button>
+      <button class="rs-item"><img src="./fig/pin-01.svg" alt=""></button>
+      <button class="rs-item"><img src="./fig/map-02.svg" alt=""></button>
+      <button class="rs-item"><img src="./fig/route.svg" alt=""></button>
+      <button class="rs-item"><img src="./fig/announcement-02.svg" alt=""></button>
+      <button class="rs-item"><img src="./fig/announcement-02.svg" alt=""></button>
+      <button class="rs-item" aria-label="Devices">
+        <svg viewBox="0 0 18 18"><rect x="2.25" y="2.25" width="13.5" height="13.5" rx="3"/><rect x="5.25" y="5.25" width="3.75" height="7.5" rx="1.2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <main class="main">
+    <!-- Top Nav -->
+    <div class="topnav">
+      <div class="title">Shift Rostering</div>
+      <div class="row">
+        <div class="tab">
+          <div class="info">
+            <!-- Figma exported this with FAMS blue baked in; recoloured to the tenant token. -->
+            <svg viewBox="0 0 12 12" fill="none">
+              <path d="M1.5 4.4C1.5 3.55992 1.5 3.13988 1.66349 2.81901C1.8073 2.53677 2.03677 2.3073 2.31901 2.16349C2.63988 2 3.05992 2 3.9 2H8.1C8.94008 2 9.36012 2 9.68099 2.16349C9.96323 2.3073 10.1927 2.53677 10.3365 2.81901C10.5 3.13988 10.5 3.55992 10.5 4.4V8.6C10.5 9.44008 10.5 9.86012 10.3365 10.181C10.1927 10.4632 9.96323 10.6927 9.68099 10.8365C9.36012 11 8.94008 11 8.1 11H3.9C3.05992 11 2.63988 11 2.31901 10.8365C2.03677 10.6927 1.8073 10.4632 1.66349 10.181C1.5 9.86012 1.5 9.44008 1.5 8.6V4.4Z" fill="var(--secondary,#DCFAE6)"/>
+              <path d="M10.5 5H1.5M8 1V3M4 1V3M3.9 11H8.1C8.94008 11 9.36012 11 9.68099 10.8365C9.96323 10.6927 10.1927 10.4632 10.3365 10.181C10.5 9.86012 10.5 9.44008 10.5 8.6V4.4C10.5 3.55992 10.5 3.13988 10.3365 2.81901C10.1927 2.53677 9.96323 2.3073 9.68099 2.16349C9.36012 2 8.94008 2 8.1 2H3.9C3.05992 2 2.63988 2 2.31901 2.16349C2.03677 2.3073 1.8073 2.53677 1.66349 2.81901C1.5 3.13988 1.5 3.55992 1.5 4.4V8.6C1.5 9.44008 1.5 9.86012 1.66349 10.181C1.8073 10.4632 2.03677 10.6927 2.31901 10.8365C2.63988 11 3.05992 11 3.9 11Z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Planning View</span>
+          </div>
+        </div>
+        <button class="plus"><img src="./fig/plus.svg" alt="Add view"></button>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+      <!-- Row 0 · Alert first (was under the filters). The banner exists ONLY
+           when there is something to act on, so it's shown at the top of the
+           header where an operator can't miss it. -->
+      <div class="alert" hidden id="alertBar">
+        <div class="lead">
+          <div class="circ"><img src="./fig/alarm.svg" alt=""></div>
+          <div class="msg" id="alertMsg"></div>
+        </div>
+        <div class="right">
+          <button class="resolve" id="resolveBtn"><span>Click to resolve</span></button>
+          <div class="chev"><img src="./fig/chevron-right.svg" alt=""></div>
+        </div>
+      </div>
+
+      <!-- Row 1 · Refine + primary action — search, quick filters and the
+           Publish button share one line. The action sits at the end so it's
+           always at the row's terminus regardless of how many filters fit. -->
+      <div class="hrow1">
+        <div class="left">
+          <div class="search">
+            <div class="box"></div>
+            <input aria-label="Search" placeholder=" ">
+            <div class="inner">
+              <img src="./fig/search-refraction.svg" alt="">
+              <span>Search anything here</span>
+            </div>
+          </div>
+          <label class="qf">
+            <img class="qf-ico" src="./fig/qf-shift.svg" alt="">
+            <select id="qfShift" aria-label="Shift">
+              <option value="">Select Shift</option>
+              <option>Morning</option><option>Mid Day</option><option>Night</option>
+            </select>
+            <img class="qf-chev" src="./fig/qf-chevron.svg" alt="">
+          </label>
+          <label class="qf">
+            <img class="qf-ico" src="./fig/qf-lot.svg" alt="">
+            <select id="qfLot" aria-label="LOT">
+              <option value="">Select LOT</option>
+              <option>LOT 3</option><option>LOT 4</option><option>LOT 5</option>
+            </select>
+            <img class="qf-chev" src="./fig/qf-chevron.svg" alt="">
+          </label>
+          <label class="qf">
+            <img class="qf-ico" src="./fig/qf-status.svg" alt="">
+            <select id="qfStatus" aria-label="Status"><option value="">Select Status</option></select>
+            <img class="qf-chev" src="./fig/qf-chevron.svg" alt="">
+          </label>
+          <label class="qf">
+            <img class="qf-ico" src="./fig/qf-workforce.svg" alt="">
+            <select id="qfLic" aria-label="Licence">
+              <option value="">Any Licence</option>
+              <option value="HDD">HDD · Heavy Duty</option>
+              <option value="LDD">LDD · Light Duty</option>
+            </select>
+            <img class="qf-chev" src="./fig/qf-chevron.svg" alt="">
+          </label>
+        </div>
+        <div class="pub-wrap">
+          <div class="unpub" id="unpub" hidden>
+            <span class="dot"></span><span id="unpubText"></span>
+          </div>
+          <button class="btn-publish" id="publishBtn">
+            <img src="./fig/send-01.svg" alt="">
+            <span>Publish</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Row 2 · View context — the period being planned and the view toggle
+           that changes how conflicts read on the board. -->
+      <div class="hrow2">
+        <div class="daterange">
+          <button class="wk-nav" id="weekPrev" aria-label="Previous week">
+            <svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg>
+          </button>
+          <div class="txt">
+            <span class="d" id="weekLabel"></span>
+            <span class="wk" id="weekOrd"></span>
+          </div>
+          <button class="wk-nav" id="weekNext" aria-label="Next week">
+            <svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="hl-wrap">
+          <button class="switch on" id="hlToggle" role="switch" aria-checked="true" aria-labelledby="hlLabel">
+            <span class="knob"></span>
+          </button>
+          <span class="hl-label" id="hlLabel">Highlight Conflicts</span>
+        </div>
+      </div>
+
+<!-- Alert moved to top of header — see Row 0 above. -->
+
+      <div class="kpis">
+        <div class="kpi k1">
+          <div class="ava"><img src="./fig/bar-line-chart.svg" alt=""></div>
+          <div class="txt"><div class="lbl">Overall Utilization</div><div class="val" id="kpi-util">81%</div></div>
+        </div>
+        <div class="kpi k2">
+          <div class="ava"><img src="./fig/clock-fast-forward.svg" alt=""></div>
+          <div class="txt"><div class="lbl">Total Schedules</div><div class="val" id="kpi-schedules">38</div></div>
+        </div>
+        <div class="kpi k3">
+          <div class="ava"><img src="./fig/x.svg" alt=""></div>
+          <div class="txt"><div class="lbl">Unfilled Slots</div><div class="val" id="kpi-unfilled">24</div></div>
+        </div>
+        <div class="kpi k4">
+          <div class="ava"><img src="./fig/alert-octagon.svg" alt=""></div>
+          <div class="txt"><div class="lbl">Conflicts</div><div class="val" id="kpi-blocked">14</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Board -->
+    <div class="board">
+      <div class="grid" id="grid"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Routes Requires Attention drawer -->
+<div class="drawer-catch" id="drawerCatch" hidden></div>
+<button class="drawer-close" id="drawerClose" hidden aria-label="Close panel">
+  <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+</button>
+<aside class="drawer" id="drawer" hidden aria-labelledby="drawerTitle">
+  <div class="drawer-inner">
+    <h2 class="drawer-title" id="drawerTitle">Resolve Route Coverage</h2>
+    <p class="drawer-sub" id="drawerSub"></p>
+
+    <div class="dkpis">
+      <div class="dkpi red">
+        <div class="ava">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/>
+            <path d="M12 9v4M12 17h.01"/>
+          </svg>
+        </div>
+        <div><div class="lbl">Assignments at Risk</div><div class="val" id="dk-risk">0</div></div>
+      </div>
+      <div class="dkpi amber">
+        <div class="ava">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="8" r="3.2"/><path d="M2.5 19c.5-3 3.2-5 6.5-5s6 2 6.5 5"/><path d="M17 6l4 4M21 6l-4 4"/>
+          </svg>
+        </div>
+        <div><div class="lbl">Driver Unavailable</div><div class="val" id="dk-auto">0</div></div>
+      </div>
+      <div class="dkpi amber">
+        <div class="ava">
+          <!-- shield / eligibility icon (licence + training compliance) -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3 4 6v6c0 4.5 3.2 8.4 8 9 4.8-.6 8-4.5 8-9V6l-8-3Z"/><path d="m9 12 2.2 2.2L15 10.5"/>
+          </svg>
+        </div>
+        <div><div class="lbl">Not Eligible</div><div class="val" id="dk-elig">0</div></div>
+      </div>
+      <div class="dkpi amber">
+        <div class="ava">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/>
+          </svg>
+        </div>
+        <div><div class="lbl">Rule Violations</div><div class="val" id="dk-manual">0</div></div>
+      </div>
+    </div>
+
+    <div class="dsec-head">
+      <span class="dlabel">Routes Requiring Action</span>
+      <button class="link-green">Approve All Suggestions</button>
+    </div>
+    <div class="issue-list" id="issueList"></div>
+  </div>
+</aside>
+
+
+<!-- Replacement drawer (node 6887:5841) -->
+<div class="rp-catch" id="rpCatch" hidden></div>
+<button class="rp-close" id="rpClose" hidden aria-label="Close">
+  <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+</button>
+<aside class="rpanel" id="rpanel" hidden role="dialog" aria-labelledby="rpTitle">
+  <h2 class="rp-title" id="rpTitle">Reassign Route</h2>
+  <p class="rp-sub" id="rpSub"></p>
+  <div class="rp-body" id="rpBody"></div>
+  <div class="rp-foot">
+    <button class="btn-ghost">View Plan
+      <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-8 8M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+    </button>
+    <div class="spacer"></div>
+    <button class="btn-text" id="rpManual">Replace Manually</button>
+    <button class="btn-green" id="rpApprove">Approve Replacement</button>
+  </div>
+</aside>
+
+<!-- Replace Manually panel (node 2499:104333) -->
+<div class="mp-catch" id="mpCatch" hidden></div>
+<button class="mp-close" id="mpClose" hidden aria-label="Close">
+  <img src="./fig/x-24.svg" alt="">
+</button>
+<aside class="mpanel" id="mpanel" hidden role="dialog" aria-labelledby="mpTitle">
+  <h2 class="mp-title" id="mpTitle">Replace Manually</h2>
+  <div class="mp-rule"></div>
+  <div class="mp-card">
+    <div class="r1">
+      <div class="who">
+        <span id="mpRoute"></span><span class="mp-dot"></span><span id="mpPlan"></span>
+      </div>
+      <div class="tag-outline">Driver Unavailable</div>
+    </div>
+    <div class="r2">
+      <div class="mp-out">
+        <span class="ava s28" id="mpOutAva"></span>
+        <span class="did" id="mpOutId"></span><span class="mp-dot"></span>
+        <span class="dnm" id="mpOutName"></span><span class="mp-dot"></span>
+        <span class="pill-leave" id="mpOutReason"></span>
+      </div>
+      <div class="mp-orig"><span class="b"></span>Originally Assigned</div>
+    </div>
+  </div>
+  <div class="mp-search">
+    <img src="./fig/search-24.svg" alt="">
+    <input id="mpSearch" placeholder="Search driver" autocomplete="off">
+  </div>
+  <div class="mp-table">
+    <div class="mp-grid" id="mpGrid"></div>
+  </div>
+  <div class="mp-foot">
+    <button class="btn-outline">View Plan <img src="./fig/share-04.svg" alt=""></button>
+    <button class="btn-assign" id="mpAssign" disabled>Assign Replacement</button>
+  </div>
+</aside>
+
+<!-- System alert toasts (top right) -->
+<div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+<!-- Cell detail popover (node 6839:13169) -->
+<div class="pop-catch" id="popCatch" hidden></div>
+<div class="popover" id="popover" role="dialog" aria-labelledby="popTitle" hidden></div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   Shift Rostering — Planning View
+   Statuses per Figma node 6809:7115:
+     ACTIVE · RESIGNED · TERMINATED · DOC BLOCK · CERT BLOCK
+   A DOC/CERT BLOCK driver is roster-ineligible, but the route is
+   really assigned to them — so the cell keeps the full route card
+   and only flags it. That card is what gets reassigned.
+   Cell click opens the detail popover (node 6839:13169).
+   ───────────────────────────────────────────────────────────── */
+
+/* Week 0 is the designed state (6 – 12 Jan 2026). Navigation shifts by 7 days. */
+const DOW = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+/* Fixed "today" for the prototype — the sample roster sits in January, so the
+   live clock would mark the whole board as past. Swap for `new Date()` against
+   real data. The week window opens on today, so nothing is locked by default. */
+const TODAY = new Date(2026, 0, 8);
+TODAY.setHours(0, 0, 0, 0);
+const BASE_WEEK = new Date(TODAY);
+const isPastDay = (d) => DAYS[d] && DAYS[d][2] < TODAY;
+const isToday   = (d) => DAYS[d] && DAYS[d][2].getTime() === TODAY.getTime();
+let weekOffset = 0;
+let DAYS = [];
+
+function weekStartDate(off){
+  const d = new Date(BASE_WEEK);
+  d.setDate(d.getDate() + off * 7);
+  return d;
+}
+function buildDays(){
+  const s0 = weekStartDate(weekOffset);
+  DAYS = DOW.map((_, k) => {
+    const d = new Date(s0);
+    d.setDate(s0.getDate() + k);
+    /* label from the actual weekday — a window starting mid-week must not
+       still say SUN in the first column */
+    return [DOW[d.getDay()], d.getDate(), d];
+  });
+}
+const fmtDate = (d) => `${d.getDate()} ${MON[d.getMonth()]}, ${d.getFullYear()}`;
+const ORD = ['1st','2nd','3rd','4th','5th','6th'];
+function weekOfMonth(d){
+  const first = new Date(d.getFullYear(), d.getMonth(), 1);
+  return Math.ceil((d.getDate() + first.getDay()) / 7);
+}
+function updateWeekLabel(){
+  const a = DAYS[0][2], b = DAYS[6][2];
+  document.getElementById('weekLabel').textContent = `${fmtDate(a)} - ${fmtDate(b)}`;
+  document.getElementById('weekOrd').textContent = `( ${ORD[weekOfMonth(a) - 1] || weekOfMonth(a) + 'th'} Week )`;
+}
+
+const SHIFTS = {
+  night:  {icon:'./fig/night-shift.svg',  cls:'night',   label:'Night Shift (9:00-3:00)',
+           long:'Night Shift (9:00 PM – 3:00 AM'},
+  morning:{icon:'./fig/morning-shift.svg',cls:'morning', label:'Morning Shift (8:00-4:00)',
+           long:'Morning Shift (8:00 AM – 4:00 PM'},
+  midday: {icon:'./fig/midday-shift.svg', cls:'midday',  label:'Mid Day Shift (3:00-9:00)',
+           long:'Mid Day Shift (3:00 PM – 9:00 PM'},
+};
+const SHIFT_KEYS = ['morning','midday','night'];
+
+const STATUS = {
+  active:     {cls:'active',     label:'Active',      tint:'',          soft:'ok'},
+  resigned:   {cls:'resigned',   label:'Resigned',    tint:'tint-err',  soft:'err'},
+  terminated: {cls:'terminated', label:'Terminated',  tint:'tint-err',  soft:'err'},
+  doc:        {cls:'doc',        label:'Doc Block',   tint:'tint-warn', soft:'warn'},
+  cert:       {cls:'cert',       label:'Cert Block',  tint:'tint-warn', soft:'warn'},
+  leave:      {cls:'leave',      label:'On Leave',    tint:'tint-warn', soft:'warn'},
+};
+/* The blocking document is per-employee, not per-category: two DOC BLOCK
+   drivers can be held by different papers. Document types follow the BRD's
+   ten-type repository (passport, visa, EID, licence, medical, …). */
+
+const WORKFORCE = [
+  {name:'Vijay Patel',      role:'Supervisor', status:'active'},
+  {name:'Amit Prasad',      role:'Helper',     status:'active'},
+  {name:'Mohan Reddy',      role:'Helper',     status:'active'},
+  {name:'Ramesh Yadav',     role:'HD Driver',  status:'doc',        reason:'Licence Expired'},
+  {name:'Farooq Vahid',     role:'Helper',     status:'active'},
+  {name:'Mahesh Singh',     role:'HD Driver',  status:'active'},
+  {name:'Amit Gupta',       role:'Helper',     status:'active'},
+  {name:'Bishnu Gurung',    role:'Helper',     status:'active'},
+  {name:'Emeka Sunday',     role:'Helper',     status:'resigned'},
+  {name:'Rashid Khan',      role:'HD Driver',  status:'cert',       reason:'HSE Expired'},
+  {name:'Hassan Mahmood',   role:'HD Driver',  status:'active'},
+  {name:'Omar Farouk',      role:'LD Driver',  status:'active'},
+  {name:'Suresh Kumar',     role:'Helper',     status:'active'},
+  {name:'Anil Thapa',       role:'Helper',     status:'active'},
+  {name:'Prakash Rai',      role:'Helper',     status:'terminated'},
+  {name:'Ahmed Al Sayed',   role:'HD Driver',  status:'active'},
+  {name:'Iqbal Hussain',    role:'LD Driver',  status:'active'},
+  {name:'Deepak Sharma',    role:'Helper',     status:'active'},
+  {name:'Santosh Bista',    role:'Helper',     status:'doc',        reason:'Medical Expired'},
+  {name:'Karim Abdullah',   role:'Supervisor', status:'active'},
+  {name:'Vikram Chauhan',   role:'HD Driver',  status:'active'},
+  {name:'Nabin Shrestha',   role:'Helper',     status:'active'},
+  {name:'Yusuf Rahman',     role:'LD Driver',  status:'cert',       reason:'HSE Expired'},
+  {name:'Ganesh Poudel',    role:'Helper',     status:'active'},
+  {name:'Tariq Mehmood',    role:'HD Driver',  status:'active'},
+  {name:'Rajesh Nair',      role:'Inspector',  status:'active'},
+  {name:'Bilal Ahmed',      role:'HD Driver',  status:'leave',      reason:'Annual Leave'},
+  {name:'Ravi Menon',       role:'Helper',     status:'leave',      reason:'Sick Leave'},
+  {name:'Salim Haddad',     role:'HD Driver',  status:'active'},
+  {name:'Naveen Kumar',     role:'LD Driver',  status:'active'},
+  /* Relief pool — held unassigned so a replacement is always available. Sized
+     against the conflict load per day and per role, not picked arbitrarily. */
+  {name:'Yaser Al Balushi', role:'HD Driver',  status:'active',     standby:true},
+  {name:'Noor Ahmed',       role:'HD Driver',  status:'active',     standby:true},
+  {name:'Imran Sheikh',     role:'HD Driver',  status:'active',     standby:true},
+  {name:'Faisal Rahman',    role:'HD Driver',  status:'active',     standby:true},
+  {name:'Sami Kollannur',   role:'LD Driver',  status:'active',     standby:true},
+  {name:'Arun Pillai',      role:'LD Driver',  status:'active',     standby:true},
+  {name:'Vinod Nambiar',    role:'LD Driver',  status:'active',     standby:true},
+  {name:'Zahid Iqbal',      role:'Helper',     status:'active',     standby:true},
+  {name:'Manoj Kurian',     role:'Helper',     status:'active',     standby:true},
+  {name:'Rakesh Menon',     role:'Helper',     status:'active',     standby:true},
+  {name:'Ashok Varma',      role:'Helper',     status:'active',     standby:true},
+  {name:'Joseph Mathew',    role:'Helper',     status:'active',     standby:true},
+  {name:'Kiran Bhandari',   role:'Helper',     status:'active',     standby:true},
+];
+
+const LOTS = ['LOT 3','LOT 4','LOT 5'];
+WORKFORCE.forEach((e, i) => { e.lot = LOTS[i % 3]; });
+
+const IC_TRUCK    = './fig/truck-01.svg';
+const IC_DATAFLOW = './fig/dataflow-03.svg';
+const IC_MAP      = './fig/map-02.svg';
+const IC_USER     = './fig/user-03.svg';
+/* Initials avatar — solid accent fill, white letter. Colours come from the v5
+   accent palette (yellow is left out: white on it is unreadable). Assigned by a
+   hash of the name so a person keeps the same colour everywhere they appear. */
+const AVA_ACCENTS = ['--chart-accent-purple','--chart-accent-orange','--chart-accent-green',
+                     '--chart-accent-red','--chart-accent-pink','--chart-accent-teal',
+                     '--chart-accent-cyan','--status-info'];
+const nameHash = (n) => [...n].reduce((h,c) => (h * 31 + c.charCodeAt(0)) % 100000, 7);
+function avatar(name, size){
+  const accent = AVA_ACCENTS[nameHash(name) % AVA_ACCENTS.length];
+  return `<span class="ava s${size}" style="--a:var(${accent})">${(name[0] || '?').toUpperCase()}</span>`;
+}
+const PLAN        = 'Dubai Mall Bin Collection Plan';
+const SECTORS     = ['F3, Al Ain','M12, Musaffah','S4, ICAD','B7, Baniyas','Z9, Shabiya'];
+const OFF = 'off';
+const CAPACITY = 6;          /* fixed weekly shift capacity per person */
+const MAX_WEEKLY_HOURS = 54; /* only an approved overtime shift may exceed it */
+/* Hours come from the real shift windows: morning 8h, mid day 6h, night 6h. */
+const shiftHours = (k) => WINDOW[k][1] - WINDOW[k][0];
+const weekHours  = (week) => week.reduce((n,c) =>
+  n + (!isBlank(c) && c !== OFF ? shiftHours(c.s) + (c.dbl ? shiftHours(c.dbl.s) : 0) : 0), 0);
+const EMPTY = 'empty';          /* vacated by a move — blank, but not a gap */
+const isBlank = (c) => c === null || c === EMPTY;
+const INELIGIBLE = ['doc','cert'];                       /* NTF-06 roster block */
+const UNAVAILABLE = ['resigned','terminated','leave'];   /* EMP-07 lifecycle */
+const cannotWork = (e) => INELIGIBLE.includes(e.status) || UNAVAILABLE.includes(e.status);
+
+let WEEKS = [];
+const weekCache = new Map();     /* per-offset boards, so edits survive navigation */
+let justDragged = false;      /* set on pointerup so a drag doesn't open the popover */
+/* Workforce type → the roles it covers. The switcher always has one type
+   active, so `wfType` is never empty (unlike the old dropdown). */
+const WF_TYPES = {
+  Drivers:     ['HD Driver','LD Driver'],
+  Helpers:     ['Helper'],
+  Inspectors:  ['Inspector'],
+  Supervisors: ['Supervisor'],
+};
+const filters = { shift:'', lot:'', status:'', lic:'', wfType:'Drivers' };
+/* Week offsets that have been published. A published week is LOCKED (BR-10):
+   cells can't be moved or reassigned without an approved Roster Change Request. */
+const publishedWeeks = new Set();
+const SHIFT_LABEL = { morning:'Morning', midday:'Mid Day', night:'Night' };
+/* A shift filter hides assignments of other shifts rather than whole rows, so
+   the week reads as "the night roster". */
+const shiftHidden = (c) => filters.shift && !isBlank(c) && c !== OFF
+                            && SHIFT_LABEL[c.s] !== filters.shift;
+/* Rows passing the quick filters. Everything on screen — board, KPIs, banner
+   and the resolve panel — is computed from this, so the numbers always describe
+   what is actually visible. */
+function visibleRows(){
+  return WORKFORCE.map((_, i) => i).filter(i => {
+    const e = WORKFORCE[i];
+    if (filters.lot    && e.lot !== filters.lot) return false;
+    /* Workforce type is always set — the board is scoped to one type. */
+    if (!(WF_TYPES[filters.wfType] || []).includes(e.role)) return false;
+    if (filters.status && STATUS[e.status].label !== filters.status) return false;
+    /* Deployment-dashboard filter category (doc): scope the board to one
+       licence class. Non-drivers (helpers/supervisors/inspectors) hide when a
+       licence is selected, since the filter only makes sense for drivers. */
+    if (filters.lic && e.lic !== filters.lic) return false;
+    /* with a shift chosen, only rows that actually work it stay on the board */
+    if (filters.shift && !WEEKS[i].some(c => !isBlank(c) && c !== OFF && !shiftHidden(c))) return false;
+    return true;
+  });
+}
+let highlightOn = true;      /* float rows with conflicts to the top of the board */
+
+/* Deterministic week pattern — no Math.random, so the board is stable
+   across reloads and screenshots. */
+function weekFor(emp, i, off = 0){
+  const off1 = i % 7;                 /* exactly one weekly off — capacity 6 */
+  const base = SHIFT_KEYS[i % 3];
+  /* Planned share of the week: this week and history are fully rostered,
+     next week is partly drafted, anything beyond is still an empty board. */
+  const density = off <= 0 ? 100 : off === 1 ? 35 : off === 2 ? 10 : 0;
+  const cells = [];
+  for (let d = 0; d < 7; d++){
+    /* Seeded policy cases so every rule has one visible instance this week:
+       i 17 → no duties at all (Pending rostering), i 20 → no weekly off
+       (7 work days), i 15 → a second weekly off. */
+    if (i === 17 && off === 0) { cells.push(null); continue; }
+    if (d === off1 && i !== 20) { cells.push(OFF); continue; }
+    if (i === 15 && d === (off1 + 3) % 7) { cells.push(OFF); continue; }
+    if (emp.standby) { cells.push(null); continue; }        /* relief pool stays free */
+    if (density < 100 && (i * 31 + d * 17 + off * 7) % 100 >= density) { cells.push(null); continue; }
+    if ((i * 5 + d) % 19 === 0) { cells.push(null); continue; }   // unfilled slot
+    const s = ((i + d) % 5 === 0) ? SHIFT_KEYS[(i + d) % 3] : base;
+    /* One seeded double assignment — a migrated conflict, since the drop rules
+       block ever creating one by hand (ROS-02). */
+    const twin = (i === 1 && d === 2)
+      ? { s:'midday', rt:'R#' + (9876900 + i * 13 + d), veh:vehicle(i, d + 3), sec:sector(i, d + 1), cat:category(i, d + 3) }
+      : null;
+    cells.push({ s, dbl: twin,
+                 /* i 10 / day 2 is seeded onto worker 5's route — two drivers on
+                    one route the same day (route-level double assignment). */
+                 rt: (i === 10 && d === 2) ? route(5, 2) : route(i,d),
+                 veh: vehicle(i,d), sec: sector(i,d), cat: category(i,d),
+                 /* A few routes are no longer in the approved Smart Plan version. */
+                 retired: (i * 7 + d) % 31 === 0 });
+  }
+  return cells;
+}
+
+const route   = (i,d) => 'R#' + (9876500 + i * 13 + d);
+const vehicle = (i,d) => 'N ' + (1200 + ((i * 7 + d * 3) % 800));
+const sector  = (i,d) => SECTORS[(i * 3 + d) % SECTORS.length];
+/* ── Training-based eligibility (scope §5.1–5.2, §6 BR-01/02/03/05, §7) ──
+   Only an employee with (a) a licence class matching the vehicle category and
+   (b) valid, completed equipment training for it can be rostered on that
+   category. Training is tracked with an attendance date and an HSE validity;
+   an expired or missing training makes the assignment a hard conflict. */
+
+/* Training master — validity months are the HSE-driven shelf life (TRN-03). */
+const TRAININGS = {
+  DEF: { name:'Defensive Driving',            months:24 },
+  WCS: { name:'Waste Collection Safety',      months:6  },
+  RL:  { name:'Rear End Loader Operation',    months:12 },
+  SL:  { name:'Side Loader Operation',        months:12 },
+  HLC: { name:'Hook Loader Operation',        months:12 },
+  CCV: { name:'Compactor Container Operation',months:12 },
+  BWC: { name:'Bin Washer Operation',         months:12 },
+  TW:  { name:'Truck Wash Safety',            months:12 },
+};
+
+/* Vehicle category ↔ requirement matrix: the licence class it needs and the
+   equipment training a DRIVER must hold for it (every driver also needs
+   Defensive Driving; every route helper needs Waste Collection Safety). */
+const CATS = [
+  { code:'RL',  name:'Rear End Loader',            lic:'HDD', eqp:'RL'  },
+  { code:'SL',  name:'Side Loader',                lic:'HDD', eqp:'SL'  },
+  { code:'HLC', name:'Hook Loader',                lic:'HDD', eqp:'HLC' },
+  { code:'CCV', name:'Compactor Container Vehicle',lic:'HDD', eqp:'CCV' },
+  { code:'BWC', name:'Bin Washer',                 lic:'LDD', eqp:'BWC' },
+  { code:'TW',  name:'Truck Wash Bay',             lic:'ANY', eqp:'TW'  },
+];
+/* Licence class dictionary — spelled-out labels for user-facing surfaces
+   (badge, popover, filter). Codes stay short in the data model. */
+const LICENCE = {
+  HDD: { code:'HDD', short:'HDD', name:'Heavy Duty Driver',
+         hint:'Rear End Loader · Side Loader · Hook Loader · Compactor Container Vehicle · Low Bed Trailer · Dump Truck' },
+  LDD: { code:'LDD', short:'LDD', name:'Light Duty Driver',
+         hint:'Bin Washer · 3-Ton Pickup' },
+  ANY: { code:'ANY', short:'Any',  name:'Any valid licence',
+         hint:'Truck Wash Bay only' },
+};
+const CAT_BY_CODE = Object.fromEntries(CATS.map(c => [c.code, c]));
+
+/* "Today" the training clock is read against — the roster week's anchor, so
+   validity is deterministic across reloads (no Date.now). */
+const TRAIN_TODAY = new Date(2026, 0, 8);
+/* BR-04/BR-05: expired ≤ GRACE_DAYS → allowed with a warning and re-training
+   due; expired > GRACE_DAYS (or never completed) → hard block. */
+const GRACE_DAYS = 90;
+const DAY_MS = 86400000;
+function attendanceDate(ageDays){ return new Date(TRAIN_TODAY.getTime() - ageDays * DAY_MS); }
+/* Days until (>0) or since (<0) a record expires: attendance + validity. */
+function daysToExpiry(rec){ return TRAININGS[rec.id].months * 30 - rec.ageDays; }
+/* A record is valid only while unexpired; past expiry it no longer certifies. */
+function isValidRec(rec){ return rec && daysToExpiry(rec) > 0; }
+
+const HDD_POOL = ['RL','SL','HLC','CCV'];
+const LDD_POOL = ['BWC','TW'];
+
+/* Seed each worker's licence, home category and attendance-dated training
+   records. Most workers are fully trained on their category (clean roster);
+   a deterministic minority carry a gap — missing equipment training, an
+   expired certificate, or a licence that doesn't match — so the board shows
+   real "driver not eligible for this vehicle" conflicts to resolve. */
+/* Approved Emergency Leave (EL) days for the current week — seeded so the
+   overwrite conflict from the scope doc has a concrete instance on screen. The
+   day index is 0-6 within the week; leave is per-worker-per-day. */
+const EL_DAYS = { 5:2, 10:4, 20:5 };                 // Mahesh · Sat 10, Hassan · Mon 12, Vikram · Tue 13
+WORKFORCE.forEach((e, i) => {
+  e.lic = e.role === 'HD Driver' ? 'HDD' : e.role === 'LD Driver' ? 'LDD' : '';
+  e.shift = SHIFT_KEYS[i % 3];                       // default shift (the week generator's base)
+  if (EL_DAYS[i] !== undefined) e.elDay = EL_DAYS[i];
+  e.isDriver = e.lic !== '';
+  e.isHelper = e.role === 'Helper';
+  e.gated = e.isDriver || e.isHelper;                 // supervisors/inspectors ride along, no gate
+  const pool = e.lic === 'HDD' ? HDD_POOL : e.lic === 'LDD' ? LDD_POOL : [...HDD_POOL, ...LDD_POOL];
+  e.pool = pool;
+  e.homeCat = pool[i % pool.length];
+  e.training = {};
+
+  if (e.isDriver) {
+    // Baseline is valid: Defensive Driving + equipment training for the whole
+    // licence pool EXCEPT one gap category (never the home category, so normal
+    // days stay clean). Conflicts come from cross-assignment onto that gap.
+    // i 24: Defensive Driving expired 40 days ago — inside the 90-day grace (a WARNING).
+    e.training.DEF = { id:'DEF', ageDays: i === 24 ? 24 * 30 + 40 : 120 + (i * 7) % 300 };
+    const missEqp = pool[(i % pool.length + 1) % pool.length];
+    e.missEqp = missEqp;
+    pool.forEach((code) => {
+      if (code === missEqp) return;                   // not trained on this one
+      // i 28: home-category certificate expired 130 days ago — past grace (a BLOCK).
+      e.training[code] = { id:code, ageDays: (i === 28 && code === e.homeCat) ? 12 * 30 + 130 : 90 + (i * 11 + code.length * 13) % 250 };
+    });
+    // The seeded cross-assignment day: half hit a licence mismatch (an
+    // out-of-class category), half a missing-training gap — both surface as
+    // "driver not eligible for this vehicle".
+    // i 24 gets no cross day, so his in-grace warning row demonstrates the
+    // amber warn-only state without a red hard conflict masking it.
+    e.crossCat = i === 24 ? null : i % 2 === 0 ? (e.lic === 'HDD' ? 'BWC' : 'RL') : missEqp;
+  } else if (e.isHelper) {
+    // Route helpers carry valid Waste Collection Safety — they ride any route.
+    e.training.WCS = { id:'WCS', ageDays: 30 + (i * 9) % 120 };
+  }
+});
+
+/* A route's category. Competency-aligned: a worker mostly runs their home
+   category (clean), and a deterministic ~1-in-7 "cross" day puts a driver on a
+   category they aren't cleared for — the seeded eligibility conflict. */
+function category(i, d){
+  const e = WORKFORCE[i];
+  if (!e) return CATS[(i * 7 + d) % CATS.length];
+  if (e.isDriver && e.crossCat && (i * 5 + d) % 7 === 0) return CAT_BY_CODE[e.crossCat];
+  return CAT_BY_CODE[e.homeCat] || CATS[(i * 7 + d) % CATS.length];
+}
+
+/* Required trainings for a worker on a category: a driver needs the category's
+   equipment training + Defensive Driving; a route helper needs Waste
+   Collection Safety. Returns the eligibility conflicts (empty = eligible). */
+function eligibilityIssues(emp, cat){
+  if (!emp || !emp.gated || !cat) return [];
+  const out = [];
+  if (emp.isDriver){
+    if (cat.lic !== 'ANY' && cat.lic !== emp.lic) {
+      /* Spell the licence class out on user-facing copy — a planner shouldn't
+         need to know that "HDD" means Heavy Duty. Codes stay in the data. */
+      const need = LICENCE[cat.lic], have = LICENCE[emp.lic];
+      out.push({ type:'licence', severity:'block', pill:`Not licensed for ${cat.name}`,
+                 text:`${emp.name} holds ${have ? 'a ' + have.name + ' (' + have.short + ')' : 'no'} licence — ${cat.name} requires a ${need.name} (${need.short}) licence.`,
+                 /* Structured pair the popover flags on the VEHICLE row. */
+                 req:`${need.name} (${need.short}) licence`,
+                 have: have ? `holds ${have.name} (${have.short})` : 'no licence' });
+    }
+    [cat.eqp, 'DEF'].forEach((id) => { const issue = trainingIssue(emp, id, cat); if (issue) out.push(issue); });
+  } else if (emp.isHelper){
+    const issue = trainingIssue(emp, 'WCS', cat);
+    if (issue) out.push(issue);
+  }
+  return out;
+}
+function trainingIssue(emp, id, cat){
+  const rec = emp.training[id];
+  const t = TRAININGS[id];
+  const req = `${t.name} training`;
+  /* Pill spells out the vehicle so the flag next to the name says WHAT this
+     person isn't cleared for at a glance, not just that something is wrong. */
+  if (!rec)
+    return { type:'training', severity:'block', pill:`Not trained for ${cat.name}`,
+             text:`${emp.name} is not trained for ${cat.name} — ${t.name} not completed.`,
+             req, have:'not completed' };
+  if (!isValidRec(rec)) {
+    const ago = -daysToExpiry(rec);
+    if (ago > GRACE_DAYS)
+      return { type:'training', severity:'block', pill:`Not trained for ${cat.name}`,
+               text:`${t.name} expired ${ago} days ago — past the ${GRACE_DAYS}-day grace, so ${emp.name} is not eligible for ${cat.name} until re-trained.`,
+               req, have:`expired ${ago} days ago, past grace` };
+    return { type:'training', severity:'warn', pill:`Re-training due · ${cat.name}`,
+             text:`${t.name} expired ${ago} days ago — within the ${GRACE_DAYS}-day grace; ${emp.name} may work ${cat.name} but re-training is due.`,
+             req, have:`expired ${ago} days ago, in grace` };
+  }
+  return null;
+}
+const dateOf = (d) => {
+  const [dow, , dt] = DAYS[d];
+  return dow.charAt(0) + dow.slice(1).toLowerCase() + ', ' + fmtDate(dt).replace(',', '');
+};
+
+function shiftCardHTML(cell, i, d, mini){
+  const sh = SHIFTS[cell.s];
+  /* ACTION REQ appears only where a real conflict exists; the reason itself is
+     disclosed in the popover, not on the board. */
+  const why = conflictsFor(i, d);
+  const flag = why.some(isBlock)
+    ? '<div class="badge-action" title="Action required — hard conflict"><img src="./fig/alert-triangle.svg" alt="Action required"></div>'
+    : why.length
+      ? '<div class="badge-action warn" title="Needs review — policy warning"><img src="./fig/alert-triangle-warn.svg" alt="Needs review"></div>'
+      : (cell.ot ? '<div class="ot-chip" title="Assigned on a weekly off — overtime approved">Overtime</div>' : '');
+  if (mini) {
+    /* Compact variant: the shift reduces to a tinted icon chip, and vehicle and
+       plan share one row, so two assignments fit in a single day cell. */
+    return `<div class="shiftcard mini" data-i="${i}" data-d="${d}">
+      <div class="rt-row">
+        <div class="rt">${cell.rt}</div>
+        <div class="mini-right">
+          <span class="shift-chip ${sh.cls}"><img src="${sh.icon}" alt="${sh.label}"></span>
+          ${flag}
+        </div>
+      </div>
+      <div class="mini-cols">
+        <div class="sc-line"><img src="${IC_TRUCK}" alt=""><span class="t plain">${cell.cat.code} · ${cell.veh}</span></div>
+        <div class="sc-line"><img src="${IC_DATAFLOW}" alt=""><span class="t plain">${PLAN}</span></div>
+      </div>
+    </div>`;
+  }
+  return `<div class="shiftcard" data-i="${i}" data-d="${d}">
+    <div class="rt-row"><div class="rt">${cell.rt}</div>${flag}</div>
+    <div class="sc-line"><img src="${sh.icon}" alt=""><span class="t ${sh.cls}">${sh.label}</span></div>
+    <div class="sc-line"><img src="${IC_TRUCK}" alt=""><span class="t plain" title="${cell.cat.name} · ${cell.veh}">${cell.cat.name} · ${cell.veh}</span></div>
+    <div class="sc-line"><img src="${IC_DATAFLOW}" alt=""><span class="t plain">${PLAN}</span></div>
+  </div>`;
+}
+
+function cellHTML(cell, i, d, isLast){
+  let cls = 'cell', body = '', open = false;
+  if (cell === OFF){
+    body = '<div class="off"><div class="offchip"><span>Weekly OFF</span></div></div>';
+  } else if (isBlank(cell) || shiftHidden(cell)){
+    body = '';                                    // free, unfilled, or filtered out
+  } else if (cell.dbl){
+    cls += ' dbl'; open = true;
+    body = `<div class="stack">${shiftCardHTML(cell, i, d, true)}${shiftCardHTML(cell.dbl, i, d, true)}</div>`;
+  } else {
+    open = true;
+    const why = conflictsFor(i, d);
+    if (why.some(isBlock)) cls += ' err'; else if (why.length) cls += ' warn';
+    body = shiftCardHTML(cell, i, d, false);
+  }
+  const past = isPastDay(d);
+  if (past) cls += ' past';
+  return `<div class="${cls}${isLast ? ' last' : ''}${open ? ' clickable' : ''}"
+    data-i="${i}" data-d="${d}"${open ? ' tabindex="0" role="button"' : ''}
+    ${past ? 'aria-disabled="true" title="This day has already passed"' : ''}>${body}</div>`;
+}
+
+function wfCardHTML(emp, i, week){
+  const st = STATUS[emp.status];
+  const scheduled = week.filter(c => !isBlank(c) && c !== OFF).length;
+  const util = Math.round(scheduled / CAPACITY * 100);
+  const utilCls = util === 0 ? 'bad' : (util < 75 || util > 100) ? 'warn' : 'ok';
+  const fillCls = util === 0 ? 'bad' : (util < 75 || util > 100) ? 'warn' : '';
+  const hrs = weekHours(week);
+  const over = hrs > MAX_WEEKLY_HOURS;
+  const hours = `${hrs}h 00min`;
+  const hLabel = emp.role === 'Inspector' ? 'Time Spent' : 'Hours';
+  return `<div class="wf-card ${st.tint}${hasBlock(i) ? ' flagged' : hasIssue(i) ? ' warned' : ''}">
+    <div class="r1">
+      <div class="who">
+        ${avatar(emp.name, 32)}
+        <div class="names">
+          <div class="nm">${emp.name}</div>
+          <div class="rl">${
+            /* Drivers read as "Driver · <licence-tag>" (the tag hover carries
+               the full class name and its vehicle scope); non-drivers keep
+               their role since they carry no licence. */
+            emp.lic
+              ? `Driver · <span class="lic" title="${LICENCE[emp.lic].name} · ${LICENCE[emp.lic].hint}">${emp.lic}</span>`
+              : emp.role
+          }</div>
+        </div>
+      </div>
+      <div class="badge ${st.cls}" title="${emp.reason || st.label}"><span>${emp.reason || st.label}</span></div>
+    </div>
+    <div class="util ${utilCls}"><span>UTILIZATION: ${util}%</span></div>
+    ${rowIssues(i).map(r => `<div class="wf-warn" title="${r.text.replace(/"/g,'&quot;')}"><img src="./fig/alert-triangle-warn.svg" alt="">${r.short}</div>`).join('')}
+    <div class="stat">
+      <span class="k">Schedules</span>
+      <div class="barwrap">
+        <div class="track"><div class="fill ${fillCls}" style="width:${Math.min(100, Math.round(scheduled / CAPACITY * 100))}%"></div></div>
+        <span class="num">${scheduled}/${CAPACITY}</span>
+      </div>
+    </div>
+    <div class="stat">
+      <span class="k">${hLabel}</span>
+      <div class="hrs${over ? ' over' : ''}"${over ? ` title="Exceeds the ${MAX_WEEKLY_HOURS}h weekly limit — permitted only with approved overtime"` : ''}>
+        <img src="./fig/clock-ff-12.svg" alt=""><span class="num">${hours}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* Every conflict is derived from the roster and states its own cause, so a cell
+   can never show ACTION REQ without an explanation behind it. */
+function conflictsFor(i, d){
+  const c = WEEKS[i][d];
+  if (isBlank(c) || c === OFF) return [];
+  if (isPastDay(d)) return [];        /* already worked — nothing to act on */
+  const emp = WORKFORCE[i];
+  const out = [];
+  /* Every issue carries a severity: 'block' (hard conflict — must be fixed
+     before approval) or 'warn' (policy warning — allowed, needs review). */
+  if (INELIGIBLE.includes(emp.status))
+    out.push({ type:'ineligible', severity:'block', text:`${emp.name} is not roster-eligible — ${emp.reason}.` });
+  else if (UNAVAILABLE.includes(emp.status))
+    /* Covers the leave-overwrite case too: a worker on approved leave holding a
+       work duty. (Leave is modelled per worker here, not per day.) */
+    out.push({ type:'unavailable', severity:'block', text:`${emp.name} is ${STATUS[emp.status].label.toLowerCase()} and cannot work this shift.` });
+  else
+    /* Training-based eligibility: licence class + valid equipment training for
+       this vehicle category (only meaningful once we know the worker is
+       otherwise available). */
+    eligibilityIssues(emp, c.cat).forEach((issue) => out.push(issue));
+  /* Leave overwrite (BR-08): worker is on approved Emergency Leave for THIS
+     day but the cell still holds a work duty — the roster wasn't corrected
+     when the leave was approved. Hard block; the duty has to be reassigned. */
+  if (emp.elDay === d && weekOffset === 0)
+    out.push({ type:'leave', severity:'block', pill:'On Emergency Leave',
+      text:`${emp.name} is on approved Emergency Leave for ${dateOf(d)} — this work duty overrides the leave and must be reassigned.` });
+  /* Route not in the currently approved Smart Plan version. */
+  if (c.retired)
+    out.push({ type:'retired', severity:'block', pill:'Retired route',
+      text:`${c.rt} is not in the approved Smart Plan version — it has been retired. Choose a route from the current plan.` });
+  /* One driver per route per shift per day (BR-06) — route-level double assignment. */
+  if (emp.isDriver){
+    const other = WORKFORCE.findIndex((o, j) => j !== i && o.isDriver
+                    && !isBlank(WEEKS[j][d]) && WEEKS[j][d] !== OFF && WEEKS[j][d].rt === c.rt);
+    if (other >= 0)
+      out.push({ type:'routeDup', severity:'block', pill:'Double assignment',
+        text:`${c.rt} already has a driver on this day — ${WORKFORCE[other].name} is assigned to it too. One driver per route per shift.` });
+  }
+  if (c.dbl)
+    out.push({ type:'overlap', severity:'block',
+      text:`${c.rt} and ${c.dbl.rt} are both assigned to ${emp.name} on ${dateOf(d)}.` });
+  const clash = restConflict(i, d, c.s, null);
+  if (clash) out.push({ type:'fatigue', severity:'block', text:restMessage(clash, c.s) });
+  const dup = WORKFORCE.findIndex((_, j) => j !== i
+                && !isBlank(WEEKS[j][d]) && WEEKS[j][d] !== OFF && WEEKS[j][d].veh === c.veh);
+  if (dup >= 0)
+    out.push({ type:'vehicle', severity:'block', text:`Vehicle ${c.veh} is also assigned to ${WORKFORCE[dup].name} on this day.` });
+  /* Shift mismatch (ELG-03) — allowed, but the planner should know. */
+  if (emp.shift && c.s !== emp.shift)
+    out.push({ type:'shift', severity:'warn', pill:'Shift mismatch',
+      text:`This is a ${shortShift(c.s)} but ${emp.name.split(' ')[0]}'s default shift is ${shortShift(emp.shift)}.` });
+  /* Blocks first, so `why[0]` (the primary) is always the most severe. */
+  return out.sort((a, b) => isBlock(b) - isBlock(a));
+}
+const shortShift = (k) => SHIFTS[k].label.split(' (')[0];
+const isBlock = (r) => r.severity !== 'warn';
+function blocksFor(i, d){ return conflictsFor(i, d).filter(isBlock); }
+
+/* Week-level findings that belong to the WORKER, not to one cell (BR-07,
+   DSH-02). All are warnings. */
+function rowIssues(i){
+  const emp = WORKFORCE[i];
+  const wk = WEEKS[i]; if (!wk) return [];
+  const offs = wk.filter(c => c === OFF).length;
+  const work = wk.filter(c => !isBlank(c) && c !== OFF).length;
+  const out = [];
+  if (work > 0 && offs === 0)
+    out.push({ type:'weeklyOff', severity:'warn', pill:'No weekly off', short:'No weekly off',
+      text:`${emp.name} has no weekly off this week — 7 consecutive work days. One weekly off per 7-day period is required.` });
+  if (offs >= 2)
+    out.push({ type:'weeklyOff', severity:'warn', pill:`${offs} weekly offs`, short:`${offs} weekly offs`,
+      text:`${emp.name} has ${offs} weekly offs this week — one per 7-day period is the policy; the extra day should be rostered.` });
+  if (emp.status === 'active' && !emp.standby && work === 0 && offs < 7)
+    out.push({ type:'pending', severity:'warn', pill:'Pending rostering', short:'Pending rostering',
+      text:`${emp.name} is active but has no work or leave duty this week — still to be rostered.` });
+  return out;
+}
+/* One word naming the actual problem. Ordered by how much it blocks the roster. */
+const CONFLICT_TAG  = { ineligible:'Driver Unavailable', unavailable:'Driver Unavailable',
+                        leave:'On Emergency Leave',
+                        licence:'Not Licensed', training:'Not Trained',
+                        retired:'Unapproved Route', routeDup:'Double Assignment',
+                        fatigue:'Rest Violation', overlap:'Double Assignment',
+                        vehicle:'Vehicle Clash', shift:'Shift Mismatch',
+                        weeklyOff:'Weekly Off', pending:'Pending Rostering' };
+/* Plain, consequence-first words: what's true of the worker for THIS vehicle.
+   (An issue may also carry its own `pill`, which wins — see pillFor.) */
+const RULE_PILL     = { licence:'Not licensed', training:'Not trained',
+                        leave:'On Emergency Leave',
+                        retired:'Retired route', routeDup:'Double assignment',
+                        fatigue:'Insufficient Rest', overlap:'Overlapping Shifts',
+                        vehicle:'Vehicle Clash', shift:'Shift mismatch' };
+/* Resigned and terminated are permanent exits, so they read red; expiries,
+   leave and rule breaches are recoverable, so they read orange. */
+function toneFor(emp, primary){
+  if (!primary) return 'ok';
+  if (emp.status === 'resigned' || emp.status === 'terminated') return 'exit';
+  return 'warn';
+}
+/* Why this driver is being taken off the route, stated specifically. */
+function pillFor(emp, primary){
+  if (!primary) return STATUS[emp.status].label;              /* nothing wrong */
+  if (primary.pill) return primary.pill;                      /* the rule's own plain-word label */
+  if (emp.reason) return emp.reason;                          /* Licence Expired, Annual Leave … */
+  if (UNAVAILABLE.includes(emp.status)) return STATUS[emp.status].label;
+  return RULE_PILL[primary.type] || STATUS[emp.status].label;
+}
+function hasIssue(i){
+  return rowIssues(i).length > 0 || WEEKS[i].some((_, d) => conflictsFor(i, d).length > 0);
+}
+/* Red bar only for a hard conflict somewhere in the row; amber otherwise. */
+function hasBlock(i){
+  return WEEKS[i].some((_, d) => blocksFor(i, d).length > 0);
+}
+/* Render order only — WORKFORCE / WEEKS stay in their original index order so
+   data-i keeps addressing the right driver for drags and the popover. */
+function rowOrder(){
+  const idx = visibleRows();
+  if (!highlightOn) return idx;
+  return [...idx.filter(hasIssue), ...idx.filter(i => !hasIssue(i))];
+}
+
+function render(){
+  /* The column header IS the workforce-type switcher: the active type reads as
+     the column heading itself, with a chevron beside it. Native <select> for
+     keyboard/AT — no separate label, no visual duplication. */
+  const wfOpts = ['Drivers','Helpers','Inspectors','Supervisors']
+    .map(t => `<option value="${t}"${filters.wfType===t?' selected':''}>${t}</option>`).join('');
+  let html = `<div class="gh wf">
+    <label class="wf-switch" title="Switch workforce type" aria-label="Workforce type">
+      <span class="wf-switch-label">${filters.wfType}</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="wfHeaderSel">${wfOpts}</select>
+    </label>
+  </div>`;
+  DAYS.forEach(([dow,n], k) => {
+    const cls = isPastDay(k) ? ' past' : isToday(k) ? ' today' : '';
+    html += `<div class="gh${cls}"><div class="in"><span class="dow">${dow}</span><span class="num">${n}</span></div></div>`;
+  });
+  rowOrder().forEach(i => {
+    html += wfCardHTML(WORKFORCE[i], i, WEEKS[i]);
+    WEEKS[i].forEach((cell,d) => { html += cellHTML(cell, i, d, d === 6); });
+  });
+  document.getElementById('grid').innerHTML = html;
+
+  /* KPIs computed off the visible board so the numbers match what is shown */
+  const shown = rowOrder();
+  const flat = shown.flatMap(i => WEEKS[i]);
+  const assigned = flat.filter(c => !isBlank(c) && c !== OFF).length
+                 + flat.filter(c => !isBlank(c) && c.dbl).length;
+  const unfilled = flat.filter(c => c === null).length;
+  const blocked  = shown.reduce((n, i) =>
+      n + WEEKS[i].filter((c, d) => !isBlank(c) && c !== OFF && blocksFor(i, d).length > 0).length, 0);
+  const capacity = flat.filter(c => c !== OFF).length;
+  const util = capacity ? Math.round(assigned / capacity * 100) : 0;
+  document.getElementById('kpi-util').textContent       = util + '%';
+  document.getElementById('kpi-schedules').textContent  = assigned;
+  document.getElementById('kpi-unfilled').textContent   = unfilled;
+  document.getElementById('kpi-blocked').textContent    = blocked;
+}
+
+/* ── Cell detail popover (node 6839:13169) ── */
+const pop      = document.getElementById('popover');
+const popCatch = document.getElementById('popCatch');
+
+function popoverHTML(emp, cell, i, d){
+  const sh = SHIFTS[cell.s];
+  const st = STATUS[emp.status];
+  const why = conflictsFor(i, d);
+  const rows = rowIssues(i);
+  const flag = why.some(isBlock) ? '<div class="pop-badge"><span>ACTION REQUIRED</span></div>'
+             : (why.length || rows.length) ? '<div class="pop-badge warn"><span>NEEDS REVIEW</span></div>' : '';
+  /* Same wording as the resolve panel — the specific document or rule, not a
+     one-word stand-in. The tooltip still carries the full explanation. */
+  const primary = why[0] || rows[0];
+  const pillText = pillFor(emp, primary);
+  const tipTone = toneFor(emp, primary);
+  const esc = (t) => t.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+  /* Eligibility (licence / training) is a worker\u2194vehicle relationship, so those
+     reasons are shown on the Vehicle row. Everything else \u2014 status, rest, route
+     issues, shift mismatch and the week-level findings \u2014 is listed visibly
+     below the fields. Nothing hides behind a hover tooltip. */
+  const elig  = why.filter(r => r.type === 'licence' || r.type === 'training');
+  const other = [...why.filter(r => r.type !== 'licence' && r.type !== 'training'), ...rows];
+  const pillAttrs = (why.length || rows.length) ? `class="soft ${tipTone}"` : `class="soft ${st.soft}"`;
+  const issueLine = (r) => `<div role="listitem" class="callout${isBlock(r) ? '' : ' warn'}"><img src="${isBlock(r) ? './fig/alert-triangle.svg' : './fig/alert-triangle-warn.svg'}" alt=""><span>${esc(r.text)}</span></div>`;
+  return `<div class="pop-head">
+    <div class="l">
+      <div class="pop-title-row">
+        <div class="pop-title" id="popTitle">${cell.rt}</div>
+        ${flag}
+      </div>
+      <div class="pop-shift">
+        <img src="${sh.icon}" alt="">
+        <span class="t ${sh.cls}">${sh.long} • ${dateOf(d)})</span>
+      </div>
+    </div>
+    <button class="pop-close" id="popClose" aria-label="Close"><img src="./fig/x-close.svg" alt=""></button>
+  </div>
+  <div class="pop-body">
+    ${(other.length || elig.length) ? `<div class="pop-issues" role="list" aria-label="Issues to review">
+      ${other.map(issueLine).join('')}
+      ${elig.map(r => `<div role="listitem" class="callout${isBlock(r) ? '' : ' warn'}"><img src="${isBlock(r) ? './fig/alert-triangle.svg' : './fig/alert-triangle-warn.svg'}" alt=""><span>Requires <b>${esc(r.req)}</b> <span class="have">— ${esc(r.have)}</span></span></div>`).join('')}
+    </div>` : ''}
+    <div class="pop-list">
+      <div class="pop-row">
+        <img src="${IC_USER}" alt="">
+        <div class="pop-field">
+          <div class="pop-k">Workforce</div>
+          <div class="pop-vrow">
+            <div class="pop-v">${emp.name}</div>
+            <div ${pillAttrs}><span>${pillText}</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pop-row${elig.length ? ' flagged' : ''}">
+        <img src="${IC_TRUCK}" alt="">
+        <div class="pop-field">
+          <div class="pop-k">Vehicle</div>
+          <div class="pop-v">${cell.cat ? cell.cat.name + ' · ' : ''}${cell.veh}</div>
+        </div>
+      </div>
+      <div class="pop-row">
+        <img src="${IC_DATAFLOW}" alt="">
+        <div class="pop-field"><div class="pop-k">Plan</div><div class="pop-v">${PLAN}</div></div>
+      </div>
+      <div class="pop-row">
+        <img src="${IC_MAP}" alt="">
+        <div class="pop-field"><div class="pop-k">Sectors</div><div class="pop-v">${cell.sec}</div></div>
+      </div>
+    </div>
+    ${(isPastDay(d) || publishedWeeks.has(weekOffset)) ? '' : `<button class="pop-btn">
+      <img src="./fig/stars-01.svg" alt="">
+      <span>Suggest Replacement</span>
+    </button>`}
+  </div>`;
+}
+
+let popCtx = null;
+function openPopover(cellEl){
+  const i = +cellEl.dataset.i, d = +cellEl.dataset.d;
+  const cell = WEEKS[i][d];
+  popCtx = { i, d };
+  pop.innerHTML = popoverHTML(WORKFORCE[i], cell, i, d);
+  pop.hidden = false; popCatch.hidden = false;
+
+  /* Anchor beside the clicked cell, clamped into the viewport. */
+  const r = cellEl.getBoundingClientRect();
+  const pw = pop.offsetWidth, ph = pop.offsetHeight, M = 12;
+  let left = r.right + 8;
+  if (left + pw + M > innerWidth) left = r.left - pw - 8;      // flip to the left
+  if (left < M) left = Math.max(M, (innerWidth - pw) / 2);      // no room: centre
+  let top = r.top;
+  if (top + ph + M > innerHeight) top = innerHeight - ph - M;
+  pop.style.left = Math.round(left) + 'px';
+  pop.style.top  = Math.round(Math.max(M, top)) + 'px';
+  pop.querySelector('#popClose').focus();
+}
+
+function closePopover(){ pop.hidden = true; popCatch.hidden = true; }
+
+document.getElementById('grid').addEventListener('click', e => {
+  if (justDragged) return;
+  const cellEl = e.target.closest('.cell.clickable');
+  if (cellEl) openPopover(cellEl);
+});
+document.getElementById('grid').addEventListener('keydown', e => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const cellEl = e.target.closest('.cell.clickable');
+  if (cellEl) { e.preventDefault(); openPopover(cellEl); }
+});
+pop.addEventListener('click', e => { if (e.target.closest('#popClose')) closePopover(); });
+popCatch.addEventListener('click', closePopover);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !pop.hidden) closePopover(); });
+document.querySelector('.board').addEventListener('scroll', () => { if (!pop.hidden) closePopover(); });
+
+/* ── "Routes Requires Attention" drawer ──
+   The issue list is derived from the board, not hardcoded: every driver who
+   cannot legally work (doc/cert block, resigned, terminated) but still holds
+   assignments is one issue, with the first affected route shown and an
+   available active driver proposed as the replacement. */
+const drawer      = document.getElementById('drawer');
+const drawerCatch = document.getElementById('drawerCatch');
+const drawerClose = document.getElementById('drawerClose');
+
+const driverId = (i) => 'D-' + (1200 + i * 7);
+const DRIVER_ROLES = ['HD Driver','LD Driver'];
+
+/* A route can only pass to someone who can legally take it: active, role
+   compatible, and not already working that day. Someone on their weekly off
+   qualifies but the swap costs overtime (BRD ROS-02), which we surface. */
+function findCandidate(day, origRole, taken, rotate = 0, shiftKey = null){
+  const needsDriver = DRIVER_ROLES.includes(origRole);
+  const eligible = WORKFORCE
+    .map((e,i) => ({e,i}))
+    .filter(({e,i}) =>
+      e.status === 'active' &&
+      !taken.has(i) &&
+      (needsDriver ? DRIVER_ROLES.includes(e.role) : !DRIVER_ROLES.includes(e.role)) &&
+      (isBlank(WEEKS[i][day]) || WEEKS[i][day] === OFF));
+  /* Rank candidates: leaves no new rest conflict first, then genuinely free
+     over one that costs overtime. Filtering the last tier out entirely would
+     leave some issues with no suggestion at all, so the worst case is still
+     offered — flagged as creating a conflict rather than pretended clean. */
+  const restOK = (c) => !shiftKey || !restConflict(c.i, day, shiftKey, null);
+  const isFree = (c) => isBlank(WEEKS[c.i][day]);
+  const tiers = [
+    eligible.filter(c => restOK(c) && isFree(c)),
+    eligible.filter(c => restOK(c)),
+    eligible.filter(isFree),
+    eligible,
+  ];
+  const pool = tiers.find(t => t.length);
+  if (!pool) return null;
+  const pick = pool[rotate % pool.length];
+  taken.add(pick.i);
+  return { i: pick.i, name: pick.e.name, id: driverId(pick.i),
+           ot: WEEKS[pick.i][day] === OFF,
+           creates: restOK(pick) ? null : 'rest' };
+}
+
+function buildIssues(){
+  /* Every ACTION REQ cell on the board becomes one row here — not just the
+     unavailable drivers, and not just their first affected day. A candidate is
+     resolved per issue (no global reservation) because the list recomputes
+     after each approval. */
+  const out = [];
+  visibleRows().forEach(i => {
+    const emp = WORKFORCE[i];
+    WEEKS[i].forEach((c, d) => {
+      /* Only HARD conflicts need a replacement; warnings are for review, not resolution. */
+      const why = blocksFor(i, d);
+      if (!why.length) return;
+      const primary = why[0];
+      out.push({
+        route: c.rt, day: d, role: emp.role,
+        tag: CONFLICT_TAG[primary.type],
+        reason: primary.text,
+        out: { i, name: emp.name, id: driverId(i),
+               pill: pillFor(emp, primary),
+               pillTone: toneFor(emp, primary) === 'exit' ? 'exit' : 'leave' },
+        into: findCandidate(d, emp.role, new Set([i]), out.length, c.s),
+      });
+    });
+  });
+  return out;
+}
+
+function issueHTML(x, withFoot = true){
+  const dayLabel = dateOf(x.day);
+  if (!x.into){
+    return `<div class="issue">
+      <div class="issue-head">
+        <div class="who"><span class="rt">${x.route}</span><span class="sep">·</span><span class="plan">${PLAN}</span></div>
+        ${x.tag ? `<div class="tag-unavail">${x.tag}</div>` : ''}
+      </div>
+      <div class="issue-body">
+        <div class="drow out">
+          <div class="l">
+            ${avatar(x.out.name, 24)}
+            <span class="did">${x.out.id}</span><span class="dot">·</span>
+            <span class="dname">${x.out.name}</span>
+            <span class="pill ${x.out.pillTone || 'leave'}">${x.out.pill}</span>
+          </div>
+          <div class="r"><span class="bullet red"></span>Originally Assigned</div>
+        </div>
+      </div>
+      ${withFoot ? `<div class="issue-foot"><div class="spacer"></div>
+        <button class="btn-text">Replace Manually</button></div>` : ''}
+    </div>`;
+  }
+  const swap = `
+      <div class="dswap">
+        <div class="circ"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+      </div>
+      <div class="drow">
+        <div class="l">
+          ${avatar(x.into.name, 24)}
+          <span class="did">${x.into.id}</span><span class="dot">·</span>
+          <span class="dname">${x.into.name}</span>
+          <span class="pill avail">Available for Shift</span>
+          ${x.into.ot ? '<span class="ot-tag">Overtime approval</span>' : ''}
+          ${x.into.creates === 'rest' ? '<span class="ot-tag">Creates rest conflict</span>' : ''}
+        </div>
+        <div class="r"><span class="bullet blue"></span>Suggested Replacement</div>
+      </div>`;
+  return `<div class="issue">
+    <div class="issue-head">
+      <div class="who">
+        <span class="rt">${x.route}</span>
+        <span class="sep">·</span>
+        <span class="plan">${PLAN}</span>
+      </div>
+      ${x.tag ? `<div class="tag-unavail">${x.tag}</div>` : ''}
+    </div>
+    <div class="issue-body">
+      <div class="drow out">
+        <div class="l">
+          ${avatar(x.out.name, 24)}
+          <span class="did">${x.out.id}</span><span class="dot">·</span>
+          <span class="dname">${x.out.name}</span>
+          <span class="pill ${x.out.pillTone || 'leave'}">${x.out.pill}</span>
+        </div>
+        <div class="r"><span class="bullet red"></span>Originally Assigned</div>
+      </div>${swap}
+    </div>
+    ${withFoot ? `<div class="issue-foot">
+      <button class="btn-ghost">View Plan
+        <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-8 8M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+      </button>
+      <div class="spacer"></div>
+      <button class="btn-text">Replace Manually</button>
+      <button class="btn-green">Approve Replacement</button>
+    </div>` : ''}
+  </div>`;
+}
+
+let CURRENT_ISSUES = [];
+function renderDrawer(){
+  const issues = buildIssues();
+  CURRENT_ISSUES = issues;
+  document.getElementById('issueList').innerHTML = issues.map(x => issueHTML(x)).join('');
+  /* Bucket every hard conflict into the three drawer stats so they mirror the
+     board categories exactly (drawer / KPI / banner numbers always agree):
+     • Driver Unavailable → status blocks (ineligible / unavailable) and leave
+       overwrite (worker is on approved AV/EL).
+     • Not Eligible       → licence + training + retired-route (compliance
+       reasons the worker can't take THIS vehicle).
+     • Rule Violations    → route double-booking, worker overlap, rest
+       violation, vehicle clash (roster rules the assignment breaks). */
+  const UNAVAIL = new Set(['Driver Unavailable','On Emergency Leave']);
+  const ELIGIB  = new Set(['Not Licensed','Not Trained','Unapproved Route']);
+  const unavail = issues.filter(x => UNAVAIL.has(x.tag)).length;
+  const eligib  = issues.filter(x => ELIGIB.has(x.tag)).length;
+  const rules   = issues.length - unavail - eligib;
+  const otNeed  = issues.filter(x => x.into && x.into.ot).length;
+  const planned = visibleRows().flatMap(i => WEEKS[i]).filter(c => !isBlank(c) && c !== OFF).length;
+  document.getElementById('dk-risk').textContent   = String(issues.length).padStart(2,'0');
+  document.getElementById('dk-auto').textContent   = String(unavail).padStart(2,'0');
+  document.getElementById('dk-manual').textContent = String(rules).padStart(2,'0');
+  const dkElig = document.getElementById('dk-elig'); if (dkElig) dkElig.textContent = String(eligib).padStart(2,'0');
+  const range = document.getElementById('weekLabel').textContent;
+  document.getElementById('drawerSub').textContent =
+    `${issues.length} of ${planned} assignments need attention for ${range}.`;
+  /* Banner runs off the same numbers as the panel, so the two cannot disagree. */
+  const alertEl = document.querySelector('.alert');
+  alertEl.hidden = issues.length === 0;
+  if (issues.length) {
+    const tail = otNeed === 0
+      ? 'All have a suggested replacement ready to approve.'
+      : `All have a suggested replacement — ${otNeed} ${otNeed === 1 ? 'needs' : 'need'} overtime approval.`;
+    const one = issues.length === 1;
+    /* Warnings (policy, week-level) are counted alongside, but the banner and
+       its resolve CTA are driven by the hard conflicts. */
+    const warns = visibleRows().reduce((n, i) => n + rowIssues(i).length
+      + WEEKS[i].reduce((m, c, d) => m + (isBlank(c) || c === OFF ? 0 : conflictsFor(i, d).filter(r => !isBlock(r)).length), 0), 0);
+    const warnTail = warns ? ` ${warns} warning${warns === 1 ? '' : 's'} to review.` : '';
+    document.getElementById('alertMsg').textContent =
+      `${issues.length} assignment${one ? '' : 's'} on this week's roster need${one ? 's' : ''} attention. ${tail}${warnTail}`;
+  }
+}
+
+function openDrawer(){
+  renderDrawer();
+  drawer.hidden = false; drawerCatch.hidden = false; drawerClose.hidden = false;
+  drawerClose.focus();
+}
+function closeDrawer(){
+  drawer.hidden = true; drawerCatch.hidden = true; drawerClose.hidden = true;
+}
+document.getElementById('resolveBtn').addEventListener('click', openDrawer);
+drawerClose.addEventListener('click', closeDrawer);
+drawerCatch.addEventListener('click', closeDrawer);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !drawer.hidden) closeDrawer(); });
+
+/* ═══════════ DRAG & DROP REASSIGNMENT ═══════════
+   Rules enforced per the BRD:
+     ROS-02  double assignment blocked; drop on a weekly off raises OT approval
+     ROS-03  rest-hour violations reported as conflicts
+     NTF-06  expired safety-critical items block roster eligibility
+     EMP-07  status lifecycle governs who can take new work
+   Hard blocks are refused outright; overtime and short-rest are allowed but
+   require an explicit approval, so the planner records the exception. */
+
+const MIN_REST_HOURS = 11;
+/* Shift windows as hours from the start of the day; night runs past midnight,
+   so it ends at 27:00 (= 03:00 the next day). */
+const WINDOW = { morning:[8,16], midday:[15,21], night:[21,27] };
+
+function assignmentAt(i, d, skip){
+  if (d < 0 || d > 6) return null;
+  if (skip && skip.i === i && skip.d === d) return null;
+  const c = WEEKS[i][d];
+  return (!isBlank(c) && c !== OFF) ? c.s : null;
+}
+
+/* Rest against the day before and the day after the target cell. Returns the
+   actual gap and the shift it collides with so callers can be specific. */
+function restConflict(i, d, shiftKey, skip){
+  const cur = WINDOW[shiftKey];
+  const prev = assignmentAt(i, d - 1, skip);
+  if (prev){
+    const hours = (cur[0] + 24) - WINDOW[prev][1];
+    if (hours < MIN_REST_HOURS)
+      return { side:'previous', hours, shift:prev, day:d - 1 };
+  }
+  const next = assignmentAt(i, d + 1, skip);
+  if (next){
+    const hours = (WINDOW[next][0] + 24) - cur[1];
+    if (hours < MIN_REST_HOURS)
+      return { side:'next', hours, shift:next, day:d + 1 };
+  }
+  return null;
+}
+const shiftName = (k) => SHIFTS[k].label.split(' (')[0];
+const clock = (h) => {
+  const hh = ((h % 24) + 24) % 24;
+  const ampm = hh < 12 ? 'AM' : 'PM';
+  const h12 = hh % 12 === 0 ? 12 : hh % 12;
+  return `${h12}:00 ${ampm}`;
+};
+/* e.g. "Only 5h between this Night Shift (ends 3:00 AM) and Morning Shift on
+   Sat, 12 Jan 2026 (starts 8:00 AM). Minimum rest is 11h." */
+function restMessage(cl, shiftKey){
+  const cur = WINDOW[shiftKey], other = WINDOW[cl.shift];
+  return cl.side === 'next'
+    ? `Only ${cl.hours}h between this ${shiftName(shiftKey)} (ends ${clock(cur[1])}) and ${shiftName(cl.shift)} on ${dateOf(cl.day)} (starts ${clock(other[0])}). Minimum rest is ${MIN_REST_HOURS}h.`
+    : `Only ${cl.hours}h between ${shiftName(cl.shift)} on ${dateOf(cl.day)} (ends ${clock(other[1])}) and this ${shiftName(shiftKey)} (starts ${clock(cur[0])}). Minimum rest is ${MIN_REST_HOURS}h.`;
+}
+
+function evaluateDrop(from, to){
+  if (from.i === to.i && from.d === to.d) return { silent:true, blocks:[], approvals:[] };
+  const src = WEEKS[from.i][from.d];
+  if (isBlank(src) || src === OFF) return { silent:true, blocks:[], approvals:[] };
+  const emp = WORKFORCE[to.i];
+  const tgt = WEEKS[to.i][to.d];
+  const blocks = [], approvals = [];
+
+  if (isPastDay(from.d) || isPastDay(to.d))
+    blocks.push('That day has already passed and can no longer be changed.');
+
+  /* BR-10: a published week is locked. */
+  if (publishedWeeks.has(weekOffset))
+    blocks.push('This week is published and locked — changes need an approved Roster Change Request.');
+
+  /* A route stays on its scheduled date — it can only be reassigned to
+     another worker on the same day, never rescheduled to a different day. */
+  if (from.d !== to.d)
+    blocks.push(`This route is scheduled for ${dateOf(from.d)} and cannot be moved to another day. Reassign it to someone else on ${dateOf(from.d)} instead.`);
+
+  if (INELIGIBLE.includes(emp.status))
+    blocks.push(`${emp.name} is not roster-eligible — ${emp.reason}.`);
+  else if (UNAVAILABLE.includes(emp.status))
+    blocks.push(`${emp.name} is ${STATUS[emp.status].label.toLowerCase()} and cannot take new work.`);
+
+  if (!isBlank(tgt) && tgt !== OFF)
+    blocks.push(`${emp.name} is already on ${SHIFTS[tgt.s].label.split(' (')[0].toLowerCase()} on ${dateOf(to.d)}.`);
+
+  if (tgt === OFF)
+    approvals.push(`${dateOf(to.d)} is ${emp.name.split(' ')[0]}'s weekly off. Assigning it needs overtime approval.`);
+
+  const clash = restConflict(to.i, to.d, src.s, from);
+  if (clash) approvals.push(restMessage(clash, src.s));
+
+  /* Weekly hour ceiling — only an approved overtime shift may pass it. */
+  const projected = WEEKS[to.i].reduce((n, c, d) =>
+    n + (d === to.d ? shiftHours(src.s)
+        : (!isBlank(c) && c !== OFF ? shiftHours(c.s) : 0)), 0);
+  if (projected > MAX_WEEKLY_HOURS)
+    approvals.push(`Takes ${emp.name} to ${projected}h this week, over the ${MAX_WEEKLY_HOURS}h limit.`);
+
+  return { silent:false, blocks, approvals, ot: tgt === OFF };
+}
+
+function applyMoveQuiet(from, to, ot){
+  const src = WEEKS[from.i][from.d];
+  WEEKS[to.i][to.d] = { s: src.s, ot: !!ot,
+                        rt: src.rt, veh: src.veh, sec: src.sec };
+  /* A double-assignment cell holds two routes — moving one must leave the
+     other behind, not blank the cell. */
+  WEEKS[from.i][from.d] = src.dbl
+    ? { s: src.dbl.s, rt: src.dbl.rt, veh: src.dbl.veh, sec: src.dbl.sec }
+    : EMPTY;
+}
+function applyMove(from, to, ot){
+  applyMoveQuiet(from, to, ot);
+  render();
+  renderDrawer();
+  bumpUnpublished();
+}
+
+
+/* ── publish state ──
+   Counted per week, so navigating away and back keeps the right figure. */
+const unpublished = new Map();
+function bumpUnpublished(){
+  unpublished.set(weekOffset, (unpublished.get(weekOffset) || 0) + 1);
+  renderPublishState();
+}
+function renderPublishState(){
+  const n = unpublished.get(weekOffset) || 0;
+  document.getElementById('unpub').hidden = n === 0;
+  document.getElementById('unpubText').textContent =
+    `${n} unpublished change${n === 1 ? '' : 's'}`;
+}
+
+function doPublish(force){
+  const n = unpublished.get(weekOffset) || 0;
+  const issues = buildIssues();
+  const range = document.getElementById('weekLabel').textContent;
+
+  /* BRD: publishing over unresolved conflicts is an Operations override, so it
+     is allowed but never silent. */
+  if (issues.length && !force){
+    showToast({
+      kind:'warning',
+      title:'Conflicts unresolved',
+      message:`${issues.length} assignment${issues.length === 1 ? '' : 's'} still need attention. Publishing now releases the roster as it stands.`,
+      actions:[
+        { label:'Review', onClick: openDrawer },
+        { label:'Publish anyway', primary:true, onClick: () => doPublish(true) },
+      ],
+    });
+    return;
+  }
+  if (n === 0){
+    showToast({ kind:'info', title:'Already published',
+      message:`No changes to release for ${range}.` });
+    return;
+  }
+  unpublished.set(weekOffset, 0);
+  /* BR-10: publishing locks the week — drops and reassignments are refused
+     until a Roster Change Request is approved. Re-render so the popover's
+     Suggest Replacement disappears for the locked week. */
+  publishedWeeks.add(weekOffset);
+  renderPublishState();
+  render();
+  showToast({ kind:'success', title:'Roster published',
+    message:`${n} change${n === 1 ? '' : 's'} released to supervisors for ${range}.` });
+}
+document.getElementById('publishBtn').addEventListener('click', () => doPublish(false));
+
+/* ── toasts ── */
+const TOAST_ICON = { success:'./fig/toast-success.svg', warning:'./fig/toast-warning.svg',
+                     error:'./fig/toast-error.svg',     info:'./fig/toast-info.svg' };
+
+function dismissToast(el){
+  el.classList.add('leaving');
+  setTimeout(() => el.remove(), 160);
+}
+
+/* opts: {kind, title, message, actions:[{label, primary, onClick}], timeout} */
+function showToast(opts){
+  const el = document.createElement('div');
+  el.className = 'toast ' + (opts.kind || 'info') + (opts.actions ? ' has-actions' : '');
+  el.innerHTML = `
+    <span class="ico"><img src="${TOAST_ICON[opts.kind] || TOAST_ICON.info}" alt=""></span>
+    <div class="body">
+      <div class="txt">
+        <div class="tt">${opts.title}</div>
+        <div class="tm">${opts.message}</div>
+      </div>
+      ${opts.actions ? `<div class="acts">${opts.actions.map((a,k) =>
+          `<button class="${a.primary ? 'primary' : 'ghost'}" data-k="${k}">${a.label}</button>`).join('')}</div>` : ''}
+    </div>`;
+  if (opts.actions){
+    el.querySelectorAll('.acts button').forEach(b => b.addEventListener('click', () => {
+      const a = opts.actions[+b.dataset.k];
+      dismissToast(el);
+      if (a.onClick) a.onClick();
+    }));
+  }
+  document.getElementById('toastStack').appendChild(el);
+  /* Action toasts wait for a decision; the rest clear themselves. */
+  if (!opts.actions) setTimeout(() => dismissToast(el), opts.timeout || 5000);
+  return el;
+}
+
+/* A blocked move — nothing to decide, so a plain error alert. */
+function showDeny(from, to, ev){
+  showToast({
+    kind: 'error',
+    title: 'Move not allowed',
+    message: ev.blocks.join(' '),
+  });
+}
+
+/* Overtime / short rest are permitted but must be signed off, so this variant
+   carries the decision instead of a centre dialog. */
+function askApproval(from, to, ev){
+  showToast({
+    kind: 'warning',
+    title: 'Approval required',
+    message: ev.approvals.join(' '),
+    actions: [
+      { label: 'Cancel' },
+      { label: 'Approve & move', primary: true,
+        onClick: () => {
+          applyMove(from, to, ev.ot);
+          showToast({ kind:'success', title:'Route moved',
+            message: `${WEEKS[to.i][to.d].rt} reassigned to ${WORKFORCE[to.i].name}` +
+                     (ev.ot ? ' with overtime approved.' : '.') });
+        } },
+    ],
+  });
+}
+
+/* ── drag wiring (pointer events, not HTML5 DnD) ── */
+const grid = document.getElementById('grid');
+const DZ = ['dz-ok','dz-ot','dz-bad'];
+let drag = null;
+
+function zoneFor(x, y){
+  const el = document.elementFromPoint(x, y);
+  return el && el.closest ? el.closest('.cell') : null;
+}
+function clearZone(){
+  if (drag && drag.zone){ drag.zone.classList.remove(...DZ); drag.zone = null; }
+}
+function endDrag(){
+  if (!drag) return;
+  clearZone();
+  drag.card.classList.remove('dragging');
+  if (drag.clone) drag.clone.remove();
+  document.body.classList.remove('dragging-active');
+  drag = null;
+}
+
+grid.addEventListener('pointerdown', e => {
+  if (e.button !== 0) return;
+  const card = e.target.closest('.shiftcard');
+  if (!card) return;
+  const cell = card.closest('.cell');
+  if (!cell || cell.classList.contains('past')) return;
+  drag = { from:{ i:+cell.dataset.i, d:+cell.dataset.d },
+           card, x0:e.clientX, y0:e.clientY, moved:false, clone:null, zone:null };
+});
+
+window.addEventListener('pointermove', e => {
+  if (!drag) return;
+  if (!drag.moved){
+    if (Math.hypot(e.clientX - drag.x0, e.clientY - drag.y0) < 5) return;   /* a click, not a drag */
+    drag.moved = true;
+    closePopover();
+    const r = drag.card.getBoundingClientRect();
+    drag.offX = drag.x0 - r.left;
+    drag.offY = drag.y0 - r.top;
+    const c = drag.card.cloneNode(true);
+    c.className = 'shiftcard drag-clone';
+    c.style.width = r.width + 'px';
+    c.style.height = r.height + 'px';
+    document.body.appendChild(c);
+    drag.clone = c;
+    drag.card.classList.add('dragging');
+    document.body.classList.add('dragging-active');
+  }
+  drag.clone.style.left = (e.clientX - drag.offX) + 'px';
+  drag.clone.style.top  = (e.clientY - drag.offY) + 'px';
+
+  const cell = zoneFor(e.clientX, e.clientY);
+  if (cell !== drag.zone) clearZone();
+  if (!cell) return;
+  const ev = evaluateDrop(drag.from, { i:+cell.dataset.i, d:+cell.dataset.d });
+  if (ev.silent) return;
+  cell.classList.add(ev.blocks.length ? 'dz-bad' : ev.approvals.length ? 'dz-ot' : 'dz-ok');
+  drag.zone = cell;
+});
+
+window.addEventListener('pointerup', e => {
+  if (!drag) return;
+  const d = drag;
+  if (!d.moved){ drag = null; return; }        /* leave the click to the popover */
+  const cell = zoneFor(e.clientX, e.clientY);
+  endDrag();
+  justDragged = true;
+  setTimeout(() => { justDragged = false; }, 0);
+  if (!cell) return;
+  const to = { i:+cell.dataset.i, d:+cell.dataset.d };
+  const ev = evaluateDrop(d.from, to);
+  if (ev.silent) return;
+  if (ev.blocks.length){ showDeny(d.from, to, ev); return; }
+  if (ev.approvals.length){ askApproval(d.from, to, ev); return; }
+  applyMove(d.from, to, false);
+  showToast({ kind:'success', title:'Route moved',
+    message: `${WEEKS[to.i][to.d].rt} reassigned to ${WORKFORCE[to.i].name}.` });
+});
+
+window.addEventListener('pointercancel', endDrag);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && drag) endDrag(); });
+
+
+function gotoWeek(off){
+  weekOffset = off;
+  buildDays();
+  if (!weekCache.has(off)) weekCache.set(off, WORKFORCE.map((e,i) => weekFor(e, i, off)));
+  WEEKS = weekCache.get(off);
+  updateWeekLabel();
+  closePopover();
+  closeDrawer();
+  render();
+  renderDrawer();
+  renderPublishState();
+  document.querySelector('.board').scrollTop = 0;
+}
+document.getElementById('weekPrev').addEventListener('click', () => gotoWeek(weekOffset - 1));
+document.getElementById('weekNext').addEventListener('click', () => gotoWeek(weekOffset + 1));
+
+const hlBtn = document.getElementById('hlToggle');
+function setHighlight(on){
+  highlightOn = on;
+  hlBtn.classList.toggle('on', on);
+  hlBtn.setAttribute('aria-checked', String(on));
+  document.getElementById('grid').classList.toggle('hl', on);
+  render();
+  document.querySelector('.board').scrollTop = 0;
+}
+hlBtn.addEventListener('click', () => setHighlight(!hlBtn.classList.contains('on')));
+document.getElementById('hlLabel').addEventListener('click', () => hlBtn.click());
+
+/* ── Replace Manually (node 2499:104333) ──
+   Opened from an issue card's "Replace Manually". Lists every driver who could
+   legally take the route: active, role compatible, not already working that
+   day. Someone on their weekly off qualifies but is marked OT Required. */
+const mpanel = document.getElementById('mpanel');
+const mpCatch = document.getElementById('mpCatch');
+const mpClose = document.getElementById('mpClose');
+let mpCtx = null;          /* {from:{i,d}, candidates:[], pick:index|null, q:'' } */
+
+function mpCandidates(day, origRole){
+  const needsDriver = DRIVER_ROLES.includes(origRole);
+  return WORKFORCE
+    .map((e, i) => ({ e, i }))
+    .filter(({ e, i }) =>
+      e.status === 'active' &&
+      (needsDriver ? DRIVER_ROLES.includes(e.role) : !DRIVER_ROLES.includes(e.role)) &&
+      (isBlank(WEEKS[i][day]) || WEEKS[i][day] === OFF))
+    .map(({ e, i }) => ({ i, name: e.name, role: e.role, id: driverId(i),
+                          ot: WEEKS[i][day] === OFF }))
+    /* Genuinely free first — those need no overtime. */
+    .sort((a, b) => (a.ot === b.ot) ? 0 : a.ot ? 1 : -1);
+}
+
+function mpRender(){
+  const q = mpCtx.q.trim().toLowerCase();
+  const rows = mpCtx.candidates
+    .map((c, k) => ({ ...c, k }))
+    .filter(c => !q || c.name.toLowerCase().includes(q) || c.id.toLowerCase().includes(q));
+  let html = '<div class="mp-th"></div><div class="mp-th">Driver</div><div class="mp-th">Status</div>';
+  if (!rows.length){
+    html += `<div class="mp-td" style="grid-column:1/-1"><div class="mp-empty">No eligible driver matches “${mpCtx.q}”.</div></div>`;
+  }
+  rows.forEach(c => {
+    const sel = mpCtx.pick === c.k ? ' sel' : '';
+    html += `<div class="mp-row${sel}" style="display:contents" data-k="${c.k}">
+      <div class="mp-td"><span class="mp-radio"></span></div>
+      <div class="mp-td">
+        <div class="mp-cand">
+          ${avatar(c.name, 32)}
+          <div class="col">
+            <div class="nm">${c.name}</div>
+            <div class="mp-idbadge"><img src="./fig/hash-02.svg" alt=""><span>${c.id}</span></div>
+          </div>
+          ${c.k === 0 && !c.ot ? '<span class="tag-suggested">Suggested</span>' : ''}
+        </div>
+      </div>
+      <div class="mp-td">
+        <span class="tag-status ${c.ot ? 'ot' : 'ok'}">${c.ot ? 'Overtime' : 'Available'}</span>
+      </div>
+    </div>`;
+  });
+  document.getElementById('mpGrid').innerHTML = html;
+  document.getElementById('mpAssign').disabled = mpCtx.pick === null;
+}
+
+function openManual(from){
+  const emp = WORKFORCE[from.i];
+  const cell = WEEKS[from.i][from.d];
+  mpCtx = { from, candidates: mpCandidates(from.d, emp.role), pick: null, q: '' };
+  document.getElementById('mpRoute').textContent   = cell.rt;
+  document.getElementById('mpPlan').textContent    = PLAN;
+  const ava = document.getElementById('mpOutAva');
+  ava.textContent = (emp.name[0] || '?').toUpperCase();
+  ava.style.setProperty('--a', `var(${AVA_ACCENTS[nameHash(emp.name) % AVA_ACCENTS.length]})`);
+  document.getElementById('mpOutId').textContent   = driverId(from.i);
+  document.getElementById('mpOutName').textContent = emp.name;
+  const reasonEl = document.getElementById('mpOutReason');
+  reasonEl.textContent = emp.reason || STATUS[emp.status].label;
+  reasonEl.classList.toggle('exit', emp.status === 'resigned' || emp.status === 'terminated');
+  document.getElementById('mpSearch').value = '';
+  mpRender();
+  mpanel.hidden = false; mpCatch.hidden = false; mpClose.hidden = false;
+  document.getElementById('mpSearch').focus();
+}
+function closeManual(){
+  mpanel.hidden = true; mpCatch.hidden = true; mpClose.hidden = true;
+  mpCtx = null;
+}
+
+document.getElementById('mpGrid').addEventListener('click', e => {
+  const row = e.target.closest('.mp-row');
+  if (!row || !mpCtx) return;
+  mpCtx.pick = +row.dataset.k;
+  mpRender();
+});
+document.getElementById('mpSearch').addEventListener('input', e => {
+  if (!mpCtx) return;
+  mpCtx.q = e.target.value;
+  mpCtx.pick = null;
+  mpRender();
+});
+document.getElementById('mpAssign').addEventListener('click', () => {
+  if (!mpCtx || mpCtx.pick === null) return;
+  const c = mpCtx.candidates[mpCtx.pick];
+  const from = mpCtx.from, to = { i: c.i, d: from.d };
+  const route = WEEKS[from.i][from.d].rt;
+  closeManual();
+  applyMove(from, to, c.ot);
+  showToast({ kind:'success', title:'Replacement assigned',
+    message: `${route} reassigned to ${c.name}` + (c.ot ? ' with overtime approved.' : '.') });
+});
+mpClose.addEventListener('click', closeManual);
+mpCatch.addEventListener('click', closeManual);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !mpanel.hidden) closeManual(); });
+
+/* ── Replacement drawer (node 6887:5841) ──
+   One issue, opened from the cell popover. Same card as the resolve panel, but
+   its actions sit at the drawer edge. */
+const rpanel = document.getElementById('rpanel');
+const rpCatch = document.getElementById('rpCatch');
+const rpClose = document.getElementById('rpClose');
+let rpCtx = null;
+
+
+function issueForCell(i, d){
+  const emp = WORKFORCE[i];
+  const why = conflictsFor(i, d);
+  const primary = why[0];
+  return {
+    route: WEEKS[i][d].rt, day: d, role: emp.role,
+    /* No conflict means nothing is wrong with this driver — no red tag, and the
+       status pill reads as healthy rather than as a problem. */
+    tag: primary ? CONFLICT_TAG[primary.type] : null,
+    reason: primary ? primary.text : null,
+    out: { i, name: emp.name, id: driverId(i), pill: pillFor(emp, primary),
+           pillTone: !primary ? 'ok' : toneFor(emp, primary) === 'exit' ? 'exit' : 'leave' },
+    into: findCandidate(d, emp.role, new Set([i]), 0, WEEKS[i][d].s),
+  };
+}
+
+function openReplacement(i, d){
+  rpCtx = issueForCell(i, d);
+  document.getElementById('rpSub').textContent = rpCtx.reason
+    ? rpCtx.reason
+    : `No conflict on this assignment — reassign only if you need to.`;
+  document.getElementById('rpBody').innerHTML = issueHTML(rpCtx, false);
+  document.getElementById('rpApprove').disabled = !rpCtx.into;
+  rpanel.hidden = false; rpCatch.hidden = false; rpClose.hidden = false;
+  rpClose.focus();
+}
+function closeReplacement(){
+  rpanel.hidden = true; rpCatch.hidden = true; rpClose.hidden = true;
+  rpCtx = null;
+}
+rpClose.addEventListener('click', closeReplacement);
+rpCatch.addEventListener('click', closeReplacement);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !rpanel.hidden) closeReplacement(); });
+
+document.getElementById('rpApprove').addEventListener('click', () => {
+  if (!rpCtx || !rpCtx.into) return;
+  const from = { i: rpCtx.out.i, d: rpCtx.day }, to = { i: rpCtx.into.i, d: rpCtx.day };
+  const route = rpCtx.route, name = rpCtx.into.name, ot = rpCtx.into.ot;
+  closeReplacement();
+  applyMove(from, to, ot);
+  showToast({ kind:'success', title:'Replacement approved',
+    message: `${route} reassigned to ${name}` + (ot ? ' with overtime approved.' : '.') });
+});
+document.getElementById('rpManual').addEventListener('click', () => {
+  if (!rpCtx) return;
+  const ctx = { i: rpCtx.out.i, d: rpCtx.day };
+  closeReplacement();
+  openManual(ctx);
+});
+
+/* the popover's "Suggest Replacement" opens it for that cell */
+document.getElementById('popover').addEventListener('click', e => {
+  if (!e.target.closest('.pop-btn') || !popCtx) return;
+  const { i, d } = popCtx;
+  closePopover();
+  openReplacement(i, d);
+});
+
+/* wire the drawer's per-issue actions */
+function issueAt(card){
+  const k = [...document.querySelectorAll('#issueList .issue')].indexOf(card);
+  return CURRENT_ISSUES[k];
+}
+document.getElementById('issueList').addEventListener('click', e => {
+  const card = e.target.closest('.issue');
+  if (!card) return;
+  const x = issueAt(card);
+  if (!x) return;
+
+  if (e.target.closest('.btn-text')){          /* Replace Manually */
+    closeDrawer();
+    openManual({ i: x.out.i, d: x.day });
+    return;
+  }
+  if (!e.target.closest('.btn-green') || !x.into) return;
+
+  /* Approve: slide the card out, then commit and confirm. */
+  const from = { i: x.out.i, d: x.day }, to = { i: x.into.i, d: x.day };
+  const route = x.route, name = x.into.name, ot = x.into.ot;
+  card.style.maxHeight = card.scrollHeight + 'px';
+  card.classList.add('leaving');
+  requestAnimationFrame(() => {
+    card.style.maxHeight = '0px';
+    card.style.opacity = '0';
+    card.style.transform = 'translateX(28px)';
+    card.style.marginBottom = '-12px';
+  });
+  setTimeout(() => {
+    applyMove(from, to, ot);
+    showToast({ kind:'success', title:'Replacement approved',
+      message:`${route} reassigned to ${name}` + (ot ? ' with overtime approved.' : '.') });
+  }, 270);
+});
+
+/* Approve All — resolved one at a time with the list recomputed between each,
+   so the same relief driver is never double-booked. */
+function approveAll(){
+  const issues = buildIssues();
+  if (!issues.length){
+    showToast({ kind:'info', title:'Nothing to approve',
+      message:'No assignments need attention this week.' });
+    return;
+  }
+  const otCount = issues.filter(x => x.into && x.into.ot).length;
+  const run = () => {
+    let done = 0, guard = 0;
+    const limit = issues.length + 5;      /* each pass should resolve one issue */
+    while (guard++ < limit){
+      const next = buildIssues().find(y => y.into && !y.into.creates);
+      if (!next) break;
+      applyMoveQuiet({ i: next.out.i, d: next.day },
+                     { i: next.into.i, d: next.day }, next.into.ot);
+      done++;
+    }
+    for (let k = 0; k < done; k++) bumpUnpublished();
+    render();
+    renderDrawer();
+    const left = buildIssues().length;
+    closeDrawer();
+    showToast({ kind: left ? 'warning' : 'success',
+      title: left ? 'Suggestions applied' : 'All suggestions approved',
+      message: `${done} assignment${done === 1 ? '' : 's'} reassigned.` +
+               (left ? ` ${left} still need attention.` : '') });
+  };
+  if (otCount){
+    showToast({ kind:'warning', title:'Approve all suggestions?',
+      message:`${issues.length} assignment${issues.length === 1 ? '' : 's'} will be reassigned. ${otCount} require overtime approval.`,
+      actions:[ { label:'Cancel' }, { label:'Approve all', primary:true, onClick: run } ] });
+  } else {
+    run();
+  }
+}
+document.querySelector('.dsec-head .link-green').addEventListener('click', approveAll);
+
+/* Populate the status options from the data itself. */
+(() => {
+  const stSel = document.getElementById('qfStatus');
+  [...new Set(WORKFORCE.map(e => STATUS[e.status].label))].forEach(l => {
+    const o = document.createElement('option'); o.textContent = l; stSel.appendChild(o);
+  });
+})();
+
+function applyFilters(){
+  ['shift','lot','status','lic'].forEach(k => {
+    const el = document.getElementById('qf' + k[0].toUpperCase() + k.slice(1));
+    filters[k] = el.value;
+    el.classList.toggle('on', !!el.value);
+  });
+  closePopover();
+  render();
+  renderDrawer();
+  document.querySelector('.board').scrollTop = 0;
+}
+['qfShift','qfLot','qfStatus','qfLic'].forEach(id =>
+  document.getElementById(id).addEventListener('change', applyFilters));
+
+/* Workforce-type switcher — now lives ON the frozen "WORKFORCE" column
+   header (see wfCardHTML). Delegated `change` on #grid because the header cell
+   is re-rendered on every board render, so a directly bound handler would be
+   dropped. Scopes the whole board (KPIs, resolve panel etc. all derive from
+   visibleRows). */
+document.getElementById('grid').addEventListener('change', (ev) => {
+  const sel = ev.target.closest('#wfHeaderSel');
+  if (!sel || sel.value === filters.wfType) return;
+  filters.wfType = sel.value;
+  closePopover();
+  render();
+  renderDrawer();
+  document.querySelector('.board').scrollTop = 0;
+});
+
+gotoWeek(0);
+setHighlight(true);
+</script>
+</body>
+</html>

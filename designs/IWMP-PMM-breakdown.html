@@ -1,0 +1,1172 @@
+<meta charset="utf-8">
+<title>IWMP Project Management Module</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap">
+
+<style>
+:root{
+  --ink:#0E1B17;
+  --ink-2:#25352F;
+  --ink-3:#4A5A54;
+  --ink-4:#6E7D77;
+  --ground:#F6F8F7;
+  --surface:#FFFFFF;
+  --surface-2:#EDF1EF;
+  --line:#D6DEDA;
+  --line-soft:#E4EAE7;
+  --accent:#0F6E5C;
+  --accent-soft:#E2EFEB;
+  --accent-deep:#0A4F42;
+  --block:#A33A1C;
+  --block-soft:#F7E6E0;
+  --govern:#8A6110;
+  --govern-soft:#F7EEDA;
+  --enforce:#2C5F8A;
+  --enforce-soft:#E2EDF5;
+  --oracle:#7A3E86;
+  --oracle-soft:#F0E6F2;
+  --shadow:0 1px 2px rgba(14,27,23,.05), 0 8px 24px -16px rgba(14,27,23,.28);
+  --maxw:1180px;
+  --read:68ch;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#E8EEEB;
+    --ink-2:#C6D2CD;
+    --ink-3:#9BABA5;
+    --ink-4:#7C8C86;
+    --ground:#0B1512;
+    --surface:#121F1B;
+    --surface-2:#182823;
+    --line:#2A3B35;
+    --line-soft:#213029;
+    --accent:#4FBFA5;
+    --accent-soft:#12302A;
+    --accent-deep:#8AD9C5;
+    --block:#E08A6B;
+    --block-soft:#33201A;
+    --govern:#D8AC55;
+    --govern-soft:#2F2716;
+    --enforce:#7FB2DA;
+    --enforce-soft:#182833;
+    --oracle:#C79BD0;
+    --oracle-soft:#2A1E2D;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E8EEEB;
+  --ink-2:#C6D2CD;
+  --ink-3:#9BABA5;
+  --ink-4:#7C8C86;
+  --ground:#0B1512;
+  --surface:#121F1B;
+  --surface-2:#182823;
+  --line:#2A3B35;
+  --line-soft:#213029;
+  --accent:#4FBFA5;
+  --accent-soft:#12302A;
+  --accent-deep:#8AD9C5;
+  --block:#E08A6B;
+  --block-soft:#33201A;
+  --govern:#D8AC55;
+  --govern-soft:#2F2716;
+  --enforce:#7FB2DA;
+  --enforce-soft:#182833;
+  --oracle:#C79BD0;
+  --oracle-soft:#2A1E2D;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:"IBM Plex Serif",Georgia,"Times New Roman",serif;text-wrap:balance;margin:0;line-height:1.22;}
+p{margin:0;}
+a{color:var(--accent);text-underline-offset:3px;}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+/* ---------- masthead ---------- */
+.masthead{
+  background:var(--surface);
+  border-bottom:1px solid var(--line);
+}
+.masthead .wrap{padding-top:52px;padding-bottom:40px;display:flex;flex-direction:column;gap:26px;}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--accent);font-weight:500;
+}
+.masthead h1{font-size:clamp(2.1rem,4.4vw,3.15rem);font-weight:600;letter-spacing:-.02em;max-width:19ch;}
+.standfirst{max-width:var(--read);color:var(--ink-2);font-size:1.075rem;}
+.docmeta{
+  display:flex;flex-wrap:wrap;gap:0;
+  border:1px solid var(--line);border-radius:6px;overflow:hidden;
+  background:var(--surface-2);
+}
+.docmeta div{
+  flex:1 1 168px;padding:12px 16px;
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;gap:3px;
+}
+.docmeta div:last-child{border-right:none;}
+.docmeta dt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-4);
+}
+.docmeta dd{margin:0;font-size:14px;font-weight:600;color:var(--ink);}
+
+/* ---------- layout ---------- */
+.shell{display:grid;grid-template-columns:1fr;gap:0;}
+@media (min-width:1000px){
+  .shell{grid-template-columns:216px minmax(0,1fr);gap:56px;align-items:start;}
+}
+.shell.wrap{padding-top:44px;padding-bottom:80px;}
+
+.rail{display:none;}
+@media (min-width:1000px){
+  .rail{
+    display:block;position:sticky;top:24px;
+    max-height:calc(100vh - 48px);overflow-y:auto;
+    padding-right:8px;
+  }
+}
+.rail-title{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-4);margin-bottom:12px;display:block;
+}
+.rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;}
+.rail a{
+  display:grid;grid-template-columns:24px 1fr;gap:8px;
+  padding:5px 8px;border-radius:4px;
+  color:var(--ink-3);text-decoration:none;font-size:13.5px;line-height:1.35;
+  border-left:2px solid transparent;
+}
+.rail a span:first-child{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;color:var(--ink-4);padding-top:2px;
+}
+.rail a:hover{background:var(--surface-2);color:var(--ink);}
+
+/* ---------- sections ---------- */
+main{display:flex;flex-direction:column;gap:60px;min-width:0;}
+section{scroll-margin-top:20px;display:flex;flex-direction:column;gap:20px;min-width:0;}
+.sec-head{display:flex;flex-direction:column;gap:9px;}
+.sec-num{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11.5px;letter-spacing:.1em;color:var(--accent);font-weight:500;
+}
+section h2{font-size:clamp(1.45rem,2.5vw,1.85rem);font-weight:600;letter-spacing:-.012em;}
+section h3{
+  font-size:1.075rem;font-weight:600;color:var(--ink);
+  padding-bottom:7px;border-bottom:1px solid var(--line-soft);
+}
+.lede{max-width:var(--read);color:var(--ink-2);}
+.prose{max-width:var(--read);display:flex;flex-direction:column;gap:14px;color:var(--ink-2);}
+.prose strong{color:var(--ink);font-weight:600;}
+.block{display:flex;flex-direction:column;gap:14px;min-width:0;}
+
+/* ---------- code chips ---------- */
+code,.chip{font-family:"IBM Plex Mono",ui-monospace,monospace;}
+code{
+  font-size:.87em;background:var(--surface-2);color:var(--ink);
+  padding:1.5px 5px;border-radius:3px;border:1px solid var(--line-soft);
+  white-space:nowrap;
+}
+.chip{
+  display:inline-block;font-size:11.5px;font-weight:500;
+  padding:2px 7px;border-radius:3px;white-space:nowrap;
+  border:1px solid transparent;letter-spacing:.01em;
+}
+.chip-fr{background:var(--accent-soft);color:var(--accent-deep);border-color:color-mix(in srgb,var(--accent) 26%,transparent);}
+.chip-block{background:var(--block-soft);color:var(--block);border-color:color-mix(in srgb,var(--block) 30%,transparent);}
+.chip-govern{background:var(--govern-soft);color:var(--govern);border-color:color-mix(in srgb,var(--govern) 32%,transparent);}
+.chip-enforce{background:var(--enforce-soft);color:var(--enforce);border-color:color-mix(in srgb,var(--enforce) 32%,transparent);}
+.chip-oracle{background:var(--oracle-soft);color:var(--oracle);border-color:color-mix(in srgb,var(--oracle) 30%,transparent);}
+.chip-iwmp{background:var(--accent-soft);color:var(--accent-deep);border-color:color-mix(in srgb,var(--accent) 26%,transparent);}
+.chip-plain{background:var(--surface-2);color:var(--ink-3);border-color:var(--line);}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface);}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px;}
+thead th{
+  text-align:left;padding:10px 14px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-4);font-weight:500;
+  background:var(--surface-2);border-bottom:1px solid var(--line);
+  white-space:nowrap;vertical-align:bottom;
+}
+tbody td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top;color:var(--ink-2);}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:var(--surface-2);}
+td strong{color:var(--ink);font-weight:600;}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+.tight{white-space:nowrap;}
+
+/* ---------- hierarchy ladder ---------- */
+.ladders{display:grid;grid-template-columns:1fr;gap:20px;}
+@media (min-width:760px){.ladders{grid-template-columns:1fr 1fr;}}
+.ladder{
+  border:1px solid var(--line);border-radius:6px;background:var(--surface);
+  padding:18px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow);
+}
+.ladder h4{font-size:.98rem;font-weight:600;}
+.ladder p{font-size:13.5px;color:var(--ink-3);}
+.rungs{display:flex;flex-direction:column;gap:4px;}
+.rung{
+  display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:baseline;
+  padding:7px 10px;border-radius:4px;background:var(--surface-2);
+  border-left:3px solid var(--accent);
+}
+.rung .lvl{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;color:var(--ink-4);font-variant-numeric:tabular-nums;
+}
+.rung .node{font-size:14px;font-weight:600;color:var(--ink);}
+.rung .note{font-size:12.5px;color:var(--ink-3);font-weight:400;display:block;margin-top:1px;}
+.rung.oracle-owned{border-left-color:var(--oracle);}
+.rung.pivot{border-left-color:var(--govern);background:var(--govern-soft);}
+
+/* ---------- callout ---------- */
+.call{
+  border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:4px;background:var(--surface);
+  padding:16px 18px;display:flex;flex-direction:column;gap:7px;max-width:var(--read);
+}
+.call-label{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);font-weight:500;
+}
+.call p{font-size:14.5px;color:var(--ink-2);}
+.call.warn{border-left-color:var(--govern);}
+.call.warn .call-label{color:var(--govern);}
+
+/* ---------- flow ---------- */
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.flow-step{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;
+  padding:5px 9px;border-radius:3px;background:var(--surface);
+  border:1px solid var(--line);color:var(--ink-2);white-space:nowrap;
+}
+.flow-step.gate{background:var(--govern-soft);border-color:color-mix(in srgb,var(--govern) 35%,transparent);color:var(--govern);font-weight:500;}
+.flow-arrow{color:var(--ink-4);font-size:12px;}
+
+/* ---------- two-gate ---------- */
+.gates{display:grid;grid-template-columns:1fr;gap:14px;}
+@media (min-width:720px){.gates{grid-template-columns:1fr 1fr;}}
+.gate{
+  border:1px solid var(--line);border-radius:6px;background:var(--surface);
+  padding:16px 18px;display:flex;flex-direction:column;gap:6px;
+}
+.gate .owner{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;
+}
+.gate.g-oracle{border-top:3px solid var(--oracle);}
+.gate.g-oracle .owner{color:var(--oracle);}
+.gate.g-iwmp{border-top:3px solid var(--accent);}
+.gate.g-iwmp .owner{color:var(--accent);}
+.gate h4{font-size:1rem;font-weight:600;}
+.gate p{font-size:14px;color:var(--ink-2);}
+
+/* ---------- lifecycle ---------- */
+.states{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface);}
+.state{
+  display:grid;grid-template-columns:1fr;gap:4px;
+  padding:12px 16px;border-bottom:1px solid var(--line-soft);
+}
+@media (min-width:700px){.state{grid-template-columns:150px 1fr 1fr;gap:16px;align-items:baseline;}}
+.state:last-child{border-bottom:none;}
+.state .sname{font-weight:600;font-size:14.5px;color:var(--ink);}
+.state .sdesc,.state .snext{font-size:13.5px;color:var(--ink-3);}
+.state .snext{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;}
+
+/* ---------- gap cards ---------- */
+.gapgrid{display:grid;grid-template-columns:1fr;gap:14px;}
+@media (min-width:780px){.gapgrid{grid-template-columns:1fr 1fr;}}
+.gapcard{
+  border:1px solid var(--line);border-radius:6px;background:var(--surface);
+  padding:16px 18px;display:flex;flex-direction:column;gap:8px;
+}
+.gapcard .status{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;
+}
+.gapcard.have{border-left:3px solid var(--accent);}
+.gapcard.have .status{color:var(--accent);}
+.gapcard.missing{border-left:3px solid var(--block);}
+.gapcard.missing .status{color:var(--block);}
+.gapcard.partial{border-left:3px solid var(--govern);}
+.gapcard.partial .status{color:var(--govern);}
+.gapcard h4{font-size:.98rem;font-weight:600;}
+.gapcard p{font-size:13.5px;color:var(--ink-2);}
+
+ul.plain{margin:0;padding-left:19px;display:flex;flex-direction:column;gap:7px;color:var(--ink-2);max-width:var(--read);}
+ul.plain li::marker{color:var(--accent);}
+
+footer{
+  border-top:1px solid var(--line);background:var(--surface);
+  margin-top:20px;
+}
+footer .wrap{padding-top:26px;padding-bottom:36px;display:flex;flex-direction:column;gap:6px;}
+footer p{font-size:13px;color:var(--ink-4);max-width:var(--read);}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="eyebrow">IWMP-BRD-PMM-V02 · Complete breakdown</span>
+    <h1>The Project Management Module</h1>
+    <p class="standfirst">A 75-page business requirements document that defines the operational spine of IWMP: how an approved Oracle contract becomes a governed project structure that routes, assets, workforce, bins, tickets, and billing all attach to. This is the whole specification, section by section.</p>
+    <dl class="docmeta">
+      <div><dt>Owner</dt><dd>Tajmee'e (Tadweer Group)</dd></div>
+      <div><dt>Issued</dt><dd>25 June 2026</dd></div>
+      <div><dt>Status</dt><dd>Vendor handover</dd></div>
+      <div><dt>Build vendor</dt><dd>FAMS</dd></div>
+      <div><dt>Requirements</dt><dd class="num">27 FR · 15 BR · 8 HV</dd></div>
+    </dl>
+  </div>
+</header>
+
+<div class="shell wrap">
+  <nav class="rail" aria-label="Sections">
+    <span class="rail-title">Contents</span>
+    <ol>
+      <li><a href="#why"><span>2–3</span><span>Why it exists</span></a></li>
+      <li><a href="#boundary"><span>9</span><span>The boundary</span></a></li>
+      <li><a href="#scope"><span>5</span><span>Scope</span></a></li>
+      <li><a href="#classification"><span>10</span><span>Classification</span></a></li>
+      <li><a href="#hierarchy"><span>11</span><span>Two hierarchies</span></a></li>
+      <li><a href="#taxonomy"><span>11A</span><span>Waste &amp; service</span></a></li>
+      <li><a href="#lifecycle"><span>12</span><span>Lifecycle</span></a></li>
+      <li><a href="#oracle"><span>13</span><span>Oracle integration</span></a></li>
+      <li><a href="#requirements"><span>14</span><span>Functional reqs</span></a></li>
+      <li><a href="#flows"><span>15</span><span>Process flows</span></a></li>
+      <li><a href="#screens"><span>16</span><span>Screens</span></a></li>
+      <li><a href="#data"><span>17–18</span><span>Data &amp; master</span></a></li>
+      <li><a href="#rules"><span>19</span><span>Rules catalogue</span></a></li>
+      <li><a href="#reports"><span>20</span><span>Reports</span></a></li>
+      <li><a href="#access"><span>21–22</span><span>Access &amp; audit</span></a></li>
+      <li><a href="#delivery"><span>23–28</span><span>Delivery</span></a></li>
+      <li><a href="#gaps"><span>—</span><span>Prototype gaps</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ================= WHY ================= -->
+    <section id="why">
+      <div class="sec-head">
+        <span class="sec-num">Sections 2–4</span>
+        <h2>Why the module exists</h2>
+      </div>
+      <div class="prose">
+        <p>IWMP today runs without a standardised project hierarchy. Municipal and commercial operations — two fundamentally different business models — are not cleanly separated, and every project is structured differently. The document states the consequence plainly: resources and routes are mapped differently from one project to the next, reporting and billing rely on manual workarounds, KPIs cannot roll up reliably, and <strong>every new contract is onboarded as a one-off exercise</strong>.</p>
+        <p>There is no governed structure to which routes, assets, workforce, bins, tickets, and billing transactions attach. Without it the platform cannot give management a reliable project-level view of cost, performance, or compliance, and it cannot absorb new contracts repeatably.</p>
+      </div>
+
+      <div class="call">
+        <span class="call-label">The future state, in one sentence</span>
+        <p>One governed module with two project categories — Municipal and Commercial — each with a defined hierarchy down to assets and workforce, where <strong>every record in IWMP attaches to exactly one node</strong>. The module becomes the operational project master inside IWMP, while Oracle ERP remains the commercial system of record.</p>
+      </div>
+
+      <div class="block">
+        <h3>Current state versus future state</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Dimension</th><th>Today</th><th>The pain</th><th>Future</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Project setup</strong></td><td>Bespoke per project</td><td>Inconsistent, slow, error-prone</td><td>Governed creation in a standard hierarchy</td></tr>
+              <tr><td><strong>Municipal vs commercial</strong></td><td>Mixed in one undefined structure</td><td>Cannot separate data or reporting</td><td>Two governed categories</td></tr>
+              <tr><td><strong>Route ownership</strong></td><td>Loose, map-zone based</td><td>Routes not tied to a project node</td><td>Routes locked to one active node</td></tr>
+              <tr><td><strong>Contract linkage</strong></td><td>Manual or absent</td><td>No reliable contract dimension</td><td>Oracle contract reference linked</td></tr>
+              <tr><td><strong>Resource allocation</strong></td><td>Inconsistent</td><td>Cross-project leakage</td><td>Mapped within project boundary</td></tr>
+              <tr><td><strong>Billing dimension</strong></td><td>Reconstructed manually</td><td>Revenue leakage</td><td>Project / category / site dimension</td></tr>
+              <tr><td><strong>KPI &amp; dashboards</strong></td><td>Cannot roll up</td><td>No reliable project view</td><td>Roll-up by LOT, category, contract</td></tr>
+              <tr><td><strong>One-off jobs</strong></td><td>Off-system, ad hoc</td><td>Untracked, unbilled risk</td><td>Governed short-cycle workflow</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BOUNDARY ================= -->
+    <section id="boundary">
+      <div class="sec-head">
+        <span class="sec-num">Section 9</span>
+        <h2>The boundary: Oracle owns commerce, IWMP owns operations</h2>
+      </div>
+      <p class="lede">This is the controlling principle of the entire document, and it is stated as non-negotiable. Oracle ERP is the commercial system of record; IWMP is the operational execution system; the Project Management Module is the anchor that binds an approved commercial structure to field execution.</p>
+
+      <div class="gates">
+        <div class="gate g-oracle">
+          <span class="owner">Oracle ERP · system of record</span>
+          <h4>Commercial mastery</h4>
+          <p>Customer master, contract number, value and terms, pricing, billing rules, invoicing, financial accounting, general ledger, CRM and quotation lifecycle. Emits contract and amendment events.</p>
+        </div>
+        <div class="gate g-iwmp">
+          <span class="owner">IWMP PMM · operational anchor</span>
+          <h4>Operational structure</h4>
+          <p>Project creation and hierarchy, activation status and lifecycle, site and service mapping, route / asset / workforce mapping, operational approvals, KPIs and dashboards. Consumes, validates, stages, activates.</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Ownership by capability</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Capability</th><th>Oracle ERP</th><th>IWMP PMM</th><th>Route Mgmt</th><th>Billing</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Customer commercial master</strong></td><td><span class="chip chip-oracle">A · SoR</span></td><td>C / read</td><td>I</td><td>C</td></tr>
+              <tr><td><strong>Contract number, value, terms</strong></td><td><span class="chip chip-oracle">A · SoR</span></td><td>C / read</td><td>I</td><td>C</td></tr>
+              <tr><td><strong>Pricing, billing rules, invoicing</strong></td><td><span class="chip chip-oracle">A · SoR</span></td><td>I</td><td>I</td><td>R</td></tr>
+              <tr><td><strong>Operational project creation</strong></td><td>I</td><td><span class="chip chip-iwmp">A / R</span></td><td>C</td><td>I</td></tr>
+              <tr><td><strong>Project hierarchy &amp; structure</strong></td><td>I</td><td><span class="chip chip-iwmp">A / R</span></td><td>C</td><td>I</td></tr>
+              <tr><td><strong>Project activation status</strong></td><td>C</td><td><span class="chip chip-iwmp">A / R</span></td><td>I</td><td>I</td></tr>
+              <tr><td><strong>Route ownership &amp; linking</strong></td><td>I</td><td>C</td><td><span class="chip chip-iwmp">A / R</span></td><td>I</td></tr>
+              <tr><td><strong>Billable transaction generation</strong></td><td>C</td><td>C</td><td>C</td><td><span class="chip chip-plain">A / R</span></td></tr>
+              <tr><td><strong>Operational KPIs &amp; dashboards</strong></td><td>I</td><td><span class="chip chip-iwmp">A / R</span></td><td>C</td><td>I</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SCOPE ================= -->
+    <section id="scope">
+      <div class="sec-head">
+        <span class="sec-num">Section 5</span>
+        <h2>Scope, and what this module is explicitly not</h2>
+      </div>
+
+      <div class="call warn">
+        <span class="call-label">Scope clarification, verbatim in intent</span>
+        <p>This is a core business module governing the project organisational structure and operating model for waste operations. It is explicitly <strong>not a generic task tracker</strong> — not MS Project, not Jira. Its purpose is classification, hierarchy, master creation, activation, contract-to-operations mapping, lifecycle, and governance.</p>
+      </div>
+
+      <div class="block">
+        <h3>In scope</h3>
+        <ul class="plain">
+          <li><strong>Project structure</strong> — municipal and commercial creation, hierarchy, classification.</li>
+          <li><strong>Project lifecycle</strong> — activation, hold, closure, renewal, extension, amendment.</li>
+          <li><strong>Operational mapping</strong> — route, asset, workforce, bin, site, and service mapping to nodes.</li>
+          <li><strong>Oracle reference linkage</strong> — consuming customer, contract, and pricing-basis reference (read only).</li>
+          <li><strong>Governance</strong> — approval workflow, validation rules, audit trail, role-based access.</li>
+          <li><strong>One-off jobs</strong> — short-cycle commercial workflow with an advance-payment gate.</li>
+          <li><strong>Operational reporting</strong> — portfolio, KPI roll-up, exception and integration reports.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>Out of scope</h3>
+        <ul class="plain">
+          <li>Customer and contract commercial mastery, pricing, invoicing, payment — <em>Oracle ERP</em>.</li>
+          <li>Financial accounting, general ledger, revenue recognition — <em>Oracle ERP</em>.</li>
+          <li>CRM, lead, opportunity, quotation lifecycle — <em>Oracle ERP</em>.</li>
+          <li>Route planning, tour generation, dispatch execution — <em>IWMP Route Management, separate BRD</em>.</li>
+          <li>Asset maintenance and workforce HR mastery — <em>Asset / Workforce modules; PMM consumes mapping only</em>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= CLASSIFICATION ================= -->
+    <section id="classification">
+      <div class="sec-head">
+        <span class="sec-num">Section 10</span>
+        <h2>Project classification</h2>
+      </div>
+      <p class="lede">Every project carries exactly one project type, and commercial projects carry a client category. Classification is the first decision at creation, and it drives the hierarchy that follows, the master data required, the billing tendency, and the reporting roll-up.</p>
+
+      <div class="block">
+        <h3>Two project types</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Type</th><th>Definition</th><th>Client</th><th>Hierarchy basis</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Municipal</strong></td><td>Government / municipal waste-management service contracts</td><td>Tadweer Group or municipal authority</td><td class="tight">Zone → LOT → District → Route</td></tr>
+              <tr><td><strong>Commercial</strong></td><td>Contracted services for a diverse customer base</td><td>Government, semi-government, private, residential, hospitality, retail</td><td class="tight">Category → Client → Contract → Site → Service</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Six commercial client categories, banded by annual contract value</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Category</th><th>Label</th><th>Annual value</th><th>Typical profile</th></tr></thead>
+            <tbody>
+              <tr><td class="num"><strong>1</strong></td><td><strong>Mega Scale</strong></td><td class="num tight">AED 5M and above</td><td>Major government, airports, large industrial, city-wide contracts</td></tr>
+              <tr><td class="num"><strong>2</strong></td><td><strong>Large Scale</strong></td><td class="num tight">AED 3M – 5M</td><td>Multi-site contracts with dedicated account management</td></tr>
+              <tr><td class="num"><strong>3</strong></td><td><strong>Medium Scale</strong></td><td class="num tight">AED 1M – 3M</td><td>Established recurring contracts, standard SLA framework</td></tr>
+              <tr><td class="num"><strong>4</strong></td><td><strong>Small Scale</strong></td><td class="num tight">AED 250K – 1M</td><td>Single-site or limited-scope recurring services</td></tr>
+              <tr><td class="num"><strong>5</strong></td><td><strong>Micro Scale</strong></td><td class="num tight">Below AED 250K</td><td>Light recurring services, standardised terms</td></tr>
+              <tr><td class="num"><strong>6</strong></td><td><strong>One-Off Jobs</strong></td><td class="num tight">Advance payment</td><td>No long-term contract; single service, auto-closed on completion</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="lede">The bands, labels, and type list must be <strong>configurable reference data, not hard-coded</strong>, so the master data team can add categories or revise bands without a code change.</p>
+      </div>
+    </section>
+
+    <!-- ================= HIERARCHY ================= -->
+    <section id="hierarchy">
+      <div class="sec-head">
+        <span class="sec-num">Section 11</span>
+        <h2>The two hierarchies</h2>
+      </div>
+      <p class="lede">The hierarchy is described as the structural heart of the module. Each node has a defined parent, defined children, and defined business rules. The level count is itself the specification — municipal runs eight levels, commercial six.</p>
+
+      <div class="ladders">
+        <div class="ladder">
+          <h4>Municipal hierarchy</h4>
+          <p>The LOT is the contractual and allocation boundary. Districts break LOTs into service areas; routes are planned per district and locked to their LOT.</p>
+          <div class="rungs">
+            <div class="rung"><span class="lvl">1</span><span class="node">Municipal Project<span class="note">Project type = Municipal</span></span></div>
+            <div class="rung"><span class="lvl">2</span><span class="node">Client (Tadweer Group)<span class="note">One client node per contract owner</span></span></div>
+            <div class="rung"><span class="lvl">3</span><span class="node">Zone<span class="note">Geographic grouping of LOTs</span></span></div>
+            <div class="rung pivot"><span class="lvl">4</span><span class="node">LOT<span class="note">Contractual &amp; allocation boundary; master-data domain</span></span></div>
+            <div class="rung"><span class="lvl">5</span><span class="node">District<span class="note">Service area within a LOT</span></span></div>
+            <div class="rung"><span class="lvl">6</span><span class="node">Route<span class="note">Planned per district, locked to LOT</span></span></div>
+            <div class="rung"><span class="lvl">7</span><span class="node">Assets<span class="note">Inherit the LOT of their assignment</span></span></div>
+            <div class="rung"><span class="lvl">8</span><span class="node">Workforce<span class="note">Inherit the LOT of their assignment</span></span></div>
+          </div>
+        </div>
+
+        <div class="ladder">
+          <h4>Commercial hierarchy</h4>
+          <p>Client and contract are Oracle-owned and read-only; IWMP owns everything beneath. Assets and workforce are assigned at service-line level.</p>
+          <div class="rungs">
+            <div class="rung"><span class="lvl">1</span><span class="node">Commercial Project<span class="note">Project type = Commercial</span></span></div>
+            <div class="rung"><span class="lvl">2</span><span class="node">Client Classification<span class="note">Category 1–6 by contract value</span></span></div>
+            <div class="rung oracle-owned"><span class="lvl">3</span><span class="node">Client<span class="note">Customer account — Oracle system of record</span></span></div>
+            <div class="rung oracle-owned"><span class="lvl">4</span><span class="node">Contract<span class="note">Commercial agreement — carries IWMP codes</span></span></div>
+            <div class="rung"><span class="lvl">5</span><span class="node">Service Location<span class="note">Physical service point / site</span></span></div>
+            <div class="rung"><span class="lvl">6</span><span class="node">Service &amp; Waste Type<span class="note">Paired from the IWMP catalogues</span></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="call warn">
+        <span class="call-label">LOT master-data domain rule</span>
+        <p>Each LOT carries a domain flag the module must hold as an attribute: <strong>LOT 3 is full-overwrite</strong>, while <strong>LOT 4 and LOT 5 are append-only</strong>. This governs how master-data synchronisation behaves for records in that LOT. The document flags an assumption that this is a data-load governance rule applied during master-data refresh, not a per-transaction operational lock.</p>
+      </div>
+
+      <div class="call">
+        <span class="call-label">Why the contract references codes, not names</span>
+        <p>Because contracts reference IWMP classification <em>codes</em> rather than names, the service and waste taxonomy can be refined, re-described, or extended in IWMP without changing the contract or triggering commercial re-paper. <strong>The code is the stable contract anchor.</strong></p>
+      </div>
+    </section>
+
+    <!-- ================= TAXONOMY ================= -->
+    <section id="taxonomy">
+      <div class="sec-head">
+        <span class="sec-num">Section 11A</span>
+        <h2>Waste &amp; service classification — where the boundary inverts</h2>
+      </div>
+      <p class="lede">A new capability folded into this module, and the one place where the Oracle relationship runs the other way. IWMP authors and versions the classification lists; Oracle consumes them as read-only reference. This is deliberate — it is what makes taxonomy edits commercially non-impacting.</p>
+
+      <div class="block">
+        <h3>Two parallel two-level hierarchies</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Hierarchy</th><th>Level 1</th><th>Level 2</th><th>Attributes carried on the type</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Waste</strong></td><td class="num">13 categories <code>WC-##</code></td><td class="num">64 types</td><td>Recyclable flag, hazardous flag, hazard class, Bolisaty class</td></tr>
+              <tr><td><strong>Service</strong></td><td class="num">9 categories <code>SC-##</code></td><td class="num">46 types</td><td>Billable flag, default SLA, default container type</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="lede">The sub-type level is retired — former granular variants are absorbed into the Type description. Hazard, recyclability, billable status, SLA, and container defaults are <strong>attributes, never separate branches</strong>.</p>
+      </div>
+
+      <div class="block">
+        <h3>Bolisaty regulatory alignment</h3>
+        <p class="lede">Each waste type maps to the Abu Dhabi Government BOLISATY four-class model, carried as a reference attribute so regulatory traceability survives while the operational hierarchy stays optimised for collection, treatment routing, and billing.</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Bolisaty class</th><th>Meaning</th><th>Example types</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Putrescible</strong></td><td>Biodegradable / decomposing</td><td>Household waste, food waste, green &amp; garden waste</td></tr>
+              <tr><td><strong>Non-Putrescible Non-Recyclable</strong></td><td>Inert residual, not recoverable</td><td>General mixed waste, public area waste, mixed bulky</td></tr>
+              <tr><td><strong>Recyclables</strong></td><td>Source-segregated recoverable</td><td>Paper &amp; cardboard, plastics, metals, glass, tyres</td></tr>
+              <tr><td><strong>Hazardous</strong></td><td>Controlled handling</td><td>Chemical waste, batteries, healthcare, WEEE</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="lede">Where a standard and operational logic conflict, <strong>the operational structure wins</strong> and the regulatory code is retained as a reference field.</p>
+      </div>
+
+      <div class="call">
+        <span class="call-label">Code-stable, name-flexible</span>
+        <p>Codes are immutable and never recycled, with reserved expansion ranges (<code>WC-14</code>–<code>WC-20</code>, <code>SC-10</code>–<code>SC-15</code>). Names and descriptions are editable under MDM dual-approval. Nodes are deactivated, never deleted. Four requirements cover this: <span class="chip chip-fr">FR-PMM-24</span> <span class="chip chip-fr">FR-PMM-25</span> <span class="chip chip-fr">FR-PMM-26</span> <span class="chip chip-fr">FR-PMM-27</span></p>
+      </div>
+    </section>
+
+    <!-- ================= LIFECYCLE ================= -->
+    <section id="lifecycle">
+      <div class="sec-head">
+        <span class="sec-num">Section 12</span>
+        <h2>Lifecycle and the two-gate model</h2>
+      </div>
+      <p class="lede">Every project moves through a defined lifecycle, and operational activation in IWMP is deliberately distinct from commercial approval in Oracle.</p>
+
+      <div class="block">
+        <h3>Status definitions</h3>
+        <div class="states">
+          <div class="state"><span class="sname">Draft</span><span class="sdesc">Structure being built — entered on project initiation</span><span class="snext">→ Pending Approval, Cancelled</span></div>
+          <div class="state"><span class="sname">Pending Approval</span><span class="sdesc">Awaiting operational sign-off — hierarchy complete and valid</span><span class="snext">→ Active, Draft (rework)</span></div>
+          <div class="state"><span class="sname">Active</span><span class="sdesc">Live and operational — approved, plus contract approved or municipal structure confirmed</span><span class="snext">→ On Hold, Closed, Amended</span></div>
+          <div class="state"><span class="sname">On Hold</span><span class="sdesc">Temporarily paused by suspension event or decision</span><span class="snext">→ Active (resume), Closed</span></div>
+          <div class="state"><span class="sname">Amended</span><span class="sdesc">Under an approved change</span><span class="snext">→ Active</span></div>
+          <div class="state"><span class="sname">Closed</span><span class="sdesc">Operationally ended — no active routes or resources remain</span><span class="snext">→ Renewed (new term)</span></div>
+          <div class="state"><span class="sname">Renewed</span><span class="sdesc">New or extended term active, synced from Oracle</span><span class="snext">→ Active</span></div>
+        </div>
+      </div>
+
+      <div class="call warn">
+        <span class="call-label">Two separate status attributes — a common modelling mistake</span>
+        <p>Commercial approval status is owned by Oracle and consumed as read-only reference. Operational activation status is owned by IWMP. These <strong>must be modelled as two separate attributes</strong>, not collapsed into one field. A commercial project cannot activate operationally if the Oracle contract is not in an approved commercial status, unless an explicit, audited exception is granted.</p>
+      </div>
+
+      <div class="block">
+        <h3>Lifecycle variants</h3>
+        <div class="flow">
+          <span class="flow-step">Municipal</span><span class="flow-arrow">·</span>
+          <span class="flow-step">Structure confirmed</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Hierarchy built</span><span class="flow-arrow">→</span>
+          <span class="flow-step gate">Approved</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Active</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Closed</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Renewed</span>
+        </div>
+        <div class="flow">
+          <span class="flow-step">Commercial</span><span class="flow-arrow">·</span>
+          <span class="flow-step gate">Oracle contract approved</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Staged in IWMP</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Hierarchy built</span><span class="flow-arrow">→</span>
+          <span class="flow-step gate">Approved</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Active</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Closed</span>
+        </div>
+        <div class="flow">
+          <span class="flow-step">One-off job</span><span class="flow-arrow">·</span>
+          <span class="flow-step">RFQ</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Quotation</span><span class="flow-arrow">→</span>
+          <span class="flow-step gate">Advance payment</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Temp allocation</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Execution</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Auto-close</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ORACLE ================= -->
+    <section id="oracle">
+      <div class="sec-head">
+        <span class="sec-num">Section 13</span>
+        <h2>How an Oracle contract becomes an IWMP project</h2>
+      </div>
+      <p class="lede">Described as the most important integration in the module, and the mechanism by which the commercial/operational boundary is held. Three creation models were evaluated.</p>
+
+      <div class="block">
+        <div class="tw">
+          <table>
+            <thead><tr><th>Model</th><th>How it works</th><th>Verdict</th></tr></thead>
+            <tbody>
+              <tr><td><strong>A · Automatic</strong></td><td>Project auto-created on Oracle approval. Fast, but no operational validation — risk of a malformed structure going live.</td><td><span class="chip chip-plain">Not recommended</span></td></tr>
+              <tr><td><strong>B · Staged + approval</strong></td><td>Oracle event creates a staged draft; the PM validates, builds the hierarchy, approves, activates. Operational control plus speed, at the cost of one review step.</td><td><span class="chip chip-fr">Recommended</span></td></tr>
+              <tr><td><strong>C · Manual</strong></td><td>PM creates the project and keys the Oracle reference by hand. Full control, but slow, error-prone, and weak on traceability.</td><td><span class="chip chip-plain">Not recommended</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Integration field mapping</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Data object</th><th>Source</th><th>IWMP treatment</th><th>Editable in IWMP</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Customer / client</strong></td><td><span class="chip chip-oracle">Oracle SoR</span></td><td>Reference, linked to project</td><td>Read-only</td></tr>
+              <tr><td><strong>Contract number</strong></td><td><span class="chip chip-oracle">Oracle SoR</span></td><td>Reference key on project</td><td>Read-only</td></tr>
+              <tr><td><strong>Contract start / end</strong></td><td><span class="chip chip-oracle">Oracle SoR</span></td><td>Governs the activation window</td><td>Read-only</td></tr>
+              <tr><td><strong>Contract value</strong></td><td><span class="chip chip-oracle">Oracle SoR</span></td><td>Reporting and category derivation</td><td>Read-only</td></tr>
+              <tr><td><strong>Billing basis / method</strong></td><td><span class="chip chip-oracle">Oracle SoR</span></td><td>Drives the billing-model tag</td><td>Read-only</td></tr>
+              <tr><td><strong>Commercial status</strong></td><td><span class="chip chip-oracle">Oracle SoR</span></td><td>Gates activation</td><td>Read-only</td></tr>
+              <tr><td><strong>Site list</strong></td><td><span class="chip chip-oracle">Oracle</span></td><td>Seeds operational sites</td><td>Enrichable</td></tr>
+              <tr><td><strong>Service list / service line</strong></td><td><span class="chip chip-oracle">Oracle</span></td><td>Seeds operational services</td><td>Enrichable</td></tr>
+              <tr><td><strong>Amendment / termination event</strong></td><td><span class="chip chip-oracle">Oracle SoR</span></td><td>Triggers the project change workflow</td><td>Read-only trigger</td></tr>
+              <tr><td><strong>Operational project structure</strong></td><td><span class="chip chip-iwmp">IWMP</span></td><td>Created and owned in IWMP</td><td>Editable</td></tr>
+              <tr><td><strong>Route / asset / workforce mapping</strong></td><td><span class="chip chip-iwmp">IWMP</span></td><td>Created and owned in IWMP</td><td>Editable</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Integration mechanics</h3>
+        <ul class="plain">
+          <li><strong>Trigger events</strong> — contract approved, amended, site added, service added, suspension, termination, renewal.</li>
+          <li><strong>Direction</strong> — primarily Oracle → IWMP. IWMP → Oracle only for billable-transaction references, handled by Billing rather than PMM.</li>
+          <li><strong>Frequency</strong> — event-driven near-real-time preferred, with scheduled batch as fallback.</li>
+          <li><strong>Validation</strong> — referential integrity, mandatory fields, and hierarchy rules checked at staging, before activation.</li>
+          <li><strong>Error handling</strong> — failed records quarantined with a reason and surfaced on an exception report. <strong>No silent loss.</strong></li>
+          <li><strong>Reprocessing</strong> — quarantined records can be corrected and resubmitted; idempotent by Oracle reference key.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= REQUIREMENTS ================= -->
+    <section id="requirements">
+      <div class="sec-head">
+        <span class="sec-num">Section 14</span>
+        <h2>All 27 functional requirements</h2>
+      </div>
+      <p class="lede">Each requirement is specified to a consistent template — purpose, actors, trigger, preconditions, workflow, business and validation rules, exceptions, outputs, impacted modules, key data, UI expectation, audit, and reporting — so each can be designed, estimated, and tested independently.</p>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Ref</th><th>Requirement</th><th>Purpose</th><th>Accountable</th></tr></thead>
+          <tbody>
+            <tr><td><span class="chip chip-fr">FR-01</span></td><td><strong>Project master creation</strong></td><td>Create the root project record from which all structure hangs</td><td>Project Manager</td></tr>
+            <tr><td><span class="chip chip-fr">FR-02</span></td><td><strong>Municipal project creation</strong></td><td>Create a project on the Zone→LOT→District→Route hierarchy</td><td>Project Manager</td></tr>
+            <tr><td><span class="chip chip-fr">FR-03</span></td><td><strong>Commercial project creation</strong></td><td>Create a project on the Category→Client→Contract→Site→Service hierarchy</td><td>Project Manager</td></tr>
+            <tr><td><span class="chip chip-fr">FR-04</span></td><td><strong>Project hierarchy builder</strong></td><td>Build and maintain the parent-child node structure visually</td><td>Project Manager</td></tr>
+            <tr><td><span class="chip chip-fr">FR-05</span></td><td><strong>Activation / deactivation</strong></td><td>Move a project between live and inactive states</td><td>Ops Director</td></tr>
+            <tr><td><span class="chip chip-fr">FR-06</span></td><td><strong>Contract &amp; Oracle linkage</strong></td><td>Bind the operational project to its Oracle commercial record</td><td>Contract Admin</td></tr>
+            <tr><td><span class="chip chip-fr">FR-07</span></td><td><strong>Site &amp; service mapping</strong></td><td>Define operational sites and services beneath a contract</td><td>Project Manager</td></tr>
+            <tr><td><span class="chip chip-fr">FR-08</span></td><td><strong>Route mapping</strong></td><td>Anchor routes to the correct active project node</td><td>Route Manager</td></tr>
+            <tr><td><span class="chip chip-fr">FR-09</span></td><td><strong>Asset mapping</strong></td><td>Assign assets within project boundaries</td><td>Area Manager</td></tr>
+            <tr><td><span class="chip chip-fr">FR-10</span></td><td><strong>Workforce mapping</strong></td><td>Assign workforce within project boundaries</td><td>Area Manager</td></tr>
+            <tr><td><span class="chip chip-fr">FR-11</span></td><td><strong>Bin / service point mapping</strong></td><td>Attach bins and service points to the structure</td><td>Master Data Team</td></tr>
+            <tr><td><span class="chip chip-fr">FR-12</span></td><td><strong>Status management</strong></td><td>Govern lifecycle status transitions</td><td>Project Manager</td></tr>
+            <tr><td><span class="chip chip-fr">FR-13</span></td><td><strong>Amendment &amp; change requests</strong></td><td>Manage approved changes to a live project structure</td><td>Project Manager</td></tr>
+            <tr><td><span class="chip chip-fr">FR-14</span></td><td><strong>One-off job handling</strong></td><td>Run the short-cycle workflow with the advance-payment gate</td><td>Contract Admin</td></tr>
+            <tr><td><span class="chip chip-fr">FR-15</span></td><td><strong>Closure / extension / renewal</strong></td><td>End, extend, or renew a project in sync with Oracle</td><td>Project Manager</td></tr>
+            <tr><td><span class="chip chip-fr">FR-16</span></td><td><strong>Search, view, filter, audit</strong></td><td>Find, view, and analyse projects and their structure</td><td>All users</td></tr>
+            <tr><td><span class="chip chip-fr">FR-17</span></td><td><strong>Approval workflow</strong></td><td>Route structural and activation decisions through governance</td><td>Ops Director</td></tr>
+            <tr><td><span class="chip chip-fr">FR-18</span></td><td><strong>Alerts &amp; exceptions</strong></td><td>Notify the right users of events and exceptions</td><td>System</td></tr>
+            <tr><td><span class="chip chip-fr">FR-19</span></td><td><strong>Role-based access</strong></td><td>Enforce who can do what</td><td>Sys Admin</td></tr>
+            <tr><td><span class="chip chip-fr">FR-20</span></td><td><strong>Reporting &amp; KPI extraction</strong></td><td>Provide the project dimension to reporting and KPIs</td><td>BI Team</td></tr>
+            <tr><td><span class="chip chip-fr">FR-21</span></td><td><strong>Dispatch &amp; execution linkage</strong></td><td>Ensure dispatch respects project and LOT boundaries</td><td>Dispatch</td></tr>
+            <tr><td><span class="chip chip-fr">FR-22</span></td><td><strong>Ticketing mapping</strong></td><td>Link tickets to project, site, and service</td><td>Ticketing users</td></tr>
+            <tr><td><span class="chip chip-fr">FR-23</span></td><td><strong>Migration &amp; legacy conversion</strong></td><td>Bring existing projects into the new structure</td><td>Master Data Team</td></tr>
+            <tr><td><span class="chip chip-fr">FR-24</span></td><td><strong>Extend waste classification</strong></td><td>Add waste categories and types under governance</td><td>Master Data Team</td></tr>
+            <tr><td><span class="chip chip-fr">FR-25</span></td><td><strong>Extend service classification</strong></td><td>Add service categories and types under governance</td><td>Master Data Team</td></tr>
+            <tr><td><span class="chip chip-fr">FR-26</span></td><td><strong>Customised description</strong></td><td>Enrich a classification node without altering its code</td><td>Master Data Team</td></tr>
+            <tr><td><span class="chip chip-fr">FR-27</span></td><td><strong>Publish code-set to Oracle</strong></td><td>Sync IWMP-mastered codes to Oracle as read-only reference</td><td>Master Data Team</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="call">
+        <span class="call-label">The one-off job gate</span>
+        <p><span class="chip chip-fr">FR-PMM-14</span> is the sharpest rule in the set: <strong>advance payment is a hard gate — no scheduling without it</strong>. Resources are allocated for the job window only, the job auto-closes on completion, and <span class="chip chip-block">HV-05</span> prevents silent conversion into a recurring project.</p>
+      </div>
+    </section>
+
+    <!-- ================= FLOWS ================= -->
+    <section id="flows">
+      <div class="sec-head">
+        <span class="sec-num">Section 15</span>
+        <h2>Ten business process flows</h2>
+      </div>
+      <p class="lede">Each is an ordered sequence the vendor must implement and test.</p>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>#</th><th>Flow</th><th>Sequence</th></tr></thead>
+          <tbody>
+            <tr><td class="num">15.1</td><td><strong>Municipal creation &amp; activation</strong></td><td class="tight">Confirm LOT structure → Create project → Build Zone/LOT/District → Plan &amp; link routes → Approve → Activate</td></tr>
+            <tr><td class="num">15.2</td><td><strong>Oracle contract → activation</strong></td><td class="tight">Oracle approves → Event to IWMP → Stage draft → Validate → Build hierarchy → Approve &amp; activate</td></tr>
+            <tr><td class="num">15.3</td><td><strong>Commercial multi-site structure</strong></td><td class="tight">Stage contract → Confirm category → Seed sites → Map services → Assign resources → Activate</td></tr>
+            <tr><td class="num">15.4</td><td><strong>One-off job</strong></td><td class="tight">RFQ → Quotation → Advance payment → Temp allocation → Execute → Complete → Auto-close</td></tr>
+            <tr><td class="num">15.5</td><td><strong>Change / amendment</strong></td><td class="tight">Oracle or internal change → Raise CR → Impact validate → Approve → Apply → Re-baseline</td></tr>
+            <tr><td class="num">15.6</td><td><strong>Suspension / closure</strong></td><td class="tight">Suspension event → Check dependencies → Approve → Release resources → Close</td></tr>
+            <tr><td class="num">15.7</td><td><strong>Project → route linkage</strong></td><td class="tight">Node active → Route created → Validate single-owner → Link route → Available to dispatch</td></tr>
+            <tr><td class="num">15.8</td><td><strong>Asset &amp; workforce assignment</strong></td><td class="tight">Project active → Select node → Assign resources → Validate boundary → Confirm</td></tr>
+            <tr><td class="num">15.9</td><td><strong>Hierarchy approval</strong></td><td class="tight">Build hierarchy → Submit → Validate rules → Approver review → Approve → Activate</td></tr>
+            <tr><td class="num">15.10</td><td><strong>Renewal synchronisation</strong></td><td class="tight">Oracle renewal → Event to IWMP → Validate → Approve → Apply new term → Re-activate</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= SCREENS ================= -->
+    <section id="screens">
+      <div class="sec-head">
+        <span class="sec-num">Section 16</span>
+        <h2>Nine screens</h2>
+      </div>
+      <p class="lede">Specified in enough detail for designers to wireframe and for the vendor to estimate UI effort. All follow role-based access and Tajmee'e branding.</p>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Ref</th><th>Screen</th><th>Layout</th></tr></thead>
+          <tbody>
+            <tr><td><span class="chip chip-plain">UI-01</span></td><td><strong>Project master list</strong></td><td>Top filter bar (type, category, status, LOT/contract); sortable results table; right-side summary counts; row click opens detail. Search, filter chips, export, New Project.</td></tr>
+            <tr><td><span class="chip chip-plain">UI-02</span></td><td><strong>Project creation wizard</strong></td><td>Four-step stepper — type &amp; master fields, hierarchy, mapping, review &amp; submit — with sticky Next/Back/Save Draft.</td></tr>
+            <tr><td><span class="chip chip-plain">UI-03</span></td><td><strong>Municipal structure</strong></td><td>Left hierarchy tree (Zone→LOT→District→Route); right node detail panel; add/move/validate toolbar; LOT domain flag visible.</td></tr>
+            <tr><td><span class="chip chip-plain">UI-04</span></td><td><strong>Commercial structure</strong></td><td>Left hierarchy tree; right contract reference panel (read-only Oracle fields) plus editable operational fields; site/service grid below.</td></tr>
+            <tr><td><span class="chip chip-plain">UI-05</span></td><td><strong>Hierarchy tree view</strong></td><td>Full-width collapsible tree with node-type colour coding; node click opens a detail drawer; validation badges on incomplete nodes.</td></tr>
+            <tr><td><span class="chip chip-plain">UI-06</span></td><td><strong>Contract-linked project view</strong></td><td>Two columns — operational project left, read-only Oracle contract card right (number, value, dates, status). Refresh reference, view amendment history.</td></tr>
+            <tr><td><span class="chip chip-plain">UI-07</span></td><td><strong>Site &amp; service mapping</strong></td><td>Site list → service grid → service-point/bin tab, with bulk actions and a validation panel.</td></tr>
+            <tr><td><span class="chip chip-plain">UI-08</span></td><td><strong>Resource assignment</strong></td><td>Left node selector; centre available resource pool; right assigned list; boundary-warning banner. Assign, unassign, request cross-boundary approval.</td></tr>
+            <tr><td><span class="chip chip-plain">UI-09</span></td><td><strong>Project approval</strong></td><td>Review and decide on submitted items.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= DATA ================= -->
+    <section id="data">
+      <div class="sec-head">
+        <span class="sec-num">Sections 17–18</span>
+        <h2>Data model and master data</h2>
+      </div>
+
+      <div class="block">
+        <h3>Core entities</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Entity</th><th>Description</th><th>Sample key attributes</th></tr></thead>
+            <tbody>
+              <tr><td><code>PROJECT</code></td><td>Root operational project</td><td>project_id (PK), type, name, status, client_ref, contract_ref</td></tr>
+              <tr><td><code>PROJECT_TYPE</code></td><td>Municipal / Commercial</td><td>type_id (PK), code, name</td></tr>
+              <tr><td><code>CLIENT</code></td><td>Customer account, Oracle reference</td><td>client_id (PK), oracle_customer_ref, name, category_id</td></tr>
+              <tr><td><code>CLIENT_CATEGORY</code></td><td>Commercial category 1–6</td><td>category_id (PK), label, value_band</td></tr>
+              <tr><td><code>CONTRACT_REF</code></td><td>Oracle contract reference</td><td>contract_ref (PK), value, start_date, end_date, status — all read-only</td></tr>
+              <tr><td><code>MUNICIPAL_NODE</code></td><td>Zone / LOT / District node</td><td>node_id (PK), level, parent_id, lot_domain_flag — self-referencing tree</td></tr>
+              <tr><td><code>SITE</code></td><td>Commercial operational site</td><td>site_id (PK), contract_ref, address</td></tr>
+              <tr><td><code>SERVICE</code></td><td>Service line at a site</td><td>service_id (PK), site_id, line, frequency, sla</td></tr>
+              <tr><td><code>ROUTE_LINK</code></td><td>Route-to-project mapping</td><td>route_link_id (PK), route_id, node_id, project_id</td></tr>
+              <tr><td><code>ASSET_LINK</code></td><td>Asset-to-project mapping</td><td>asset_link_id (PK), asset_id, node_id, dates</td></tr>
+              <tr><td><code>WORKFORCE_LINK</code></td><td>Workforce-to-project mapping</td><td>wf_link_id (PK), employee_id, node_id, role, dates</td></tr>
+              <tr><td><code>PROJECT_AMENDMENT</code></td><td>Change record</td><td>amend_id (PK), project_id, type, before, after, approver</td></tr>
+              <tr><td><code>PROJECT_APPROVAL</code></td><td>Approval evidence</td><td>approval_id (PK), project_id, approver, decision, evidence</td></tr>
+              <tr><td><code>ORACLE_SYNC_REF</code></td><td>Integration reference</td><td>sync_id (PK), contract_ref, last_sync, status, error</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Data model rules</h3>
+        <ul class="plain">
+          <li><strong>Numbering</strong> — type-prefixed configurable sequences: <code>MUN-yyyy-nnnn</code>, <code>COM-yyyy-nnnn</code>, <code>OOJ-yyyy-nnnn</code>.</li>
+          <li><strong>Soft delete</strong> — entities use an active flag and archive state rather than hard delete, preserving audit and reporting lineage.</li>
+          <li><strong>Uniqueness</strong> — a route_link enforces one active project node per route.</li>
+          <li><strong>Versioning</strong> — amendments and approvals preserve full before/after history for structural changes.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>Master data — no project enters IWMP without these</h3>
+        <p class="lede">The framework mandates that defined master fields become mandatory at creation, and that no free text is used where a controlled list exists.</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Municipal master field</th><th>Source</th><th>Editable</th><th>Commercial master field</th><th>Source</th><th>Editable</th></tr></thead>
+            <tbody>
+              <tr><td>Project Name</td><td>IWMP</td><td>Yes</td><td>Client Name</td><td><span class="chip chip-oracle">Oracle</span></td><td>Read-only</td></tr>
+              <tr><td>Client Name</td><td>IWMP (Tadweer)</td><td>No</td><td>Contract Number</td><td><span class="chip chip-oracle">Oracle</span></td><td>Read-only</td></tr>
+              <tr><td>LOT Number</td><td>IWMP</td><td>Governed</td><td>Contract Value</td><td><span class="chip chip-oracle">Oracle</span></td><td>Read-only</td></tr>
+              <tr><td>Contract Number</td><td><span class="chip chip-oracle">Oracle</span></td><td>Read-only</td><td>Contract Start / End</td><td><span class="chip chip-oracle">Oracle</span></td><td>Read-only</td></tr>
+              <tr><td>Zone</td><td>IWMP</td><td>Governed</td><td>Client Category</td><td>Derived from value</td><td>Governed</td></tr>
+              <tr><td>District</td><td>IWMP</td><td>Yes</td><td>Site Locations</td><td>Oracle → IWMP</td><td>Enrichable</td></tr>
+              <tr><td>Service Type</td><td>IWMP</td><td>Yes</td><td>Service Type / Frequency</td><td>IWMP</td><td>Yes</td></tr>
+              <tr><td>PM / Area Mgr / Supervisor</td><td>IWMP</td><td>Yes</td><td>Billing Method</td><td><span class="chip chip-oracle">Oracle</span></td><td>Read-only</td></tr>
+              <tr><td>Fleet &amp; Workforce Allocation</td><td>IWMP</td><td>Yes</td><td>SLA &amp; KPI Requirements</td><td>IWMP</td><td>Yes</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RULES ================= -->
+    <section id="rules">
+      <div class="sec-head">
+        <span class="sec-num">Section 19</span>
+        <h2>The rules catalogue</h2>
+      </div>
+      <p class="lede">Two registers govern the module. <span class="chip chip-block">Blocking</span> rules are hard validations that stop the action. <span class="chip chip-govern">Governance</span> rules route to approval. <span class="chip chip-enforce">Enforced</span> rules apply automatically.</p>
+
+      <div class="block">
+        <h3>Hierarchy validations — the eight hard checks</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Ref</th><th>Validation</th></tr></thead>
+            <tbody>
+              <tr><td><span class="chip chip-block">HV-01</span></td><td>A route must belong to <strong>exactly one active project node</strong></td></tr>
+              <tr><td><span class="chip chip-block">HV-02</span></td><td>Asset allocation cannot cross a restricted project boundary, such as a LOT, without approval</td></tr>
+              <tr><td><span class="chip chip-block">HV-03</span></td><td>A service must belong to a valid contract / site structure</td></tr>
+              <tr><td><span class="chip chip-block">HV-04</span></td><td>A municipal structure cannot skip the LOT level where LOT is mandatory</td></tr>
+              <tr><td><span class="chip chip-block">HV-05</span></td><td>A one-off job cannot become a recurring project without a conversion workflow</td></tr>
+              <tr><td><span class="chip chip-block">HV-06</span></td><td>A project cannot be closed while active routes or resources remain mapped</td></tr>
+              <tr><td><span class="chip chip-block">HV-07</span></td><td>A commercial site or service cannot be created without a linked Oracle contract</td></tr>
+              <tr><td><span class="chip chip-block">HV-08</span></td><td>Workforce and assets inherit the LOT (municipal) or service (commercial) of assignment</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Business rules</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Ref</th><th>Rule</th><th>Type</th></tr></thead>
+            <tbody>
+              <tr><td><code>BR-01</code></td><td>A project cannot go live without an approved, complete hierarchy</td><td><span class="chip chip-block">Blocking</span></td></tr>
+              <tr><td><code>BR-02</code></td><td>A route must belong to exactly one valid active project node</td><td><span class="chip chip-block">Blocking</span></td></tr>
+              <tr><td><code>BR-03</code></td><td>One contract may create one or many operational projects, depending on the service/site model</td><td><span class="chip chip-govern">Governance</span></td></tr>
+              <tr><td><code>BR-04</code></td><td>One-off jobs require the short-cycle workflow with an advance-payment gate</td><td><span class="chip chip-block">Blocking</span></td></tr>
+              <tr><td><code>BR-05</code></td><td>A closed project cannot receive new routes or resource allocation</td><td><span class="chip chip-block">Blocking</span></td></tr>
+              <tr><td><code>BR-06</code></td><td>A municipal structure cannot skip the LOT level where LOT is mandatory</td><td><span class="chip chip-block">Blocking</span></td></tr>
+              <tr><td><code>BR-07</code></td><td>A post-go-live hierarchy change requires approval and impact validation</td><td><span class="chip chip-govern">Governance</span></td></tr>
+              <tr><td><code>BR-08</code></td><td>An IWMP project start date cannot precede the approved contract effective date without an exception</td><td><span class="chip chip-govern">Governance</span></td></tr>
+              <tr><td><code>BR-09</code></td><td>One site may have multiple services, but each service maps to exactly one contract reference</td><td><span class="chip chip-block">Blocking</span></td></tr>
+              <tr><td><code>BR-10</code></td><td>A project cannot be deactivated while dependencies remain</td><td><span class="chip chip-block">Blocking</span></td></tr>
+              <tr><td><code>BR-11</code></td><td><strong>Oracle reference fields are read-only in IWMP at all times</strong></td><td><span class="chip chip-enforce">Enforced</span></td></tr>
+              <tr><td><code>BR-12</code></td><td>Assets and workforce inherit the LOT or service of assignment</td><td><span class="chip chip-enforce">Enforced</span></td></tr>
+              <tr><td><code>BR-13</code></td><td>Cross-restricted-boundary resource allocation requires approval</td><td><span class="chip chip-govern">Governance</span></td></tr>
+              <tr><td><code>BR-14</code></td><td>A one-off job cannot convert to a recurring project without a conversion workflow</td><td><span class="chip chip-govern">Governance</span></td></tr>
+              <tr><td><code>BR-15</code></td><td>Commercial activation requires the Oracle contract to be in an approved status</td><td><span class="chip chip-block">Blocking</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= REPORTS ================= -->
+    <section id="reports">
+      <div class="sec-head">
+        <span class="sec-num">Section 20</span>
+        <h2>Reports and dashboards</h2>
+      </div>
+
+      <div class="block">
+        <h3>Thirteen operational and management reports</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Report</th><th>Dimension</th><th>Primary user</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Active project portfolio</strong></td><td>All active projects by type and status</td><td>Ops Director</td></tr>
+              <tr><td><strong>Project count by type</strong></td><td>Municipal vs commercial counts</td><td>PMO</td></tr>
+              <tr><td><strong>Municipal LOT / district view</strong></td><td>Projects, routes, resources by LOT and district</td><td>Area Manager</td></tr>
+              <tr><td><strong>Commercial by category</strong></td><td>Projects by category, client, contract, site</td><td>Contract Admin</td></tr>
+              <tr><td><strong>Route count by project</strong></td><td>Routes anchored per node</td><td>Route Manager</td></tr>
+              <tr><td><strong>Asset allocation</strong></td><td>Assets mapped per project</td><td>Asset team</td></tr>
+              <tr><td><strong>Workforce allocation</strong></td><td>Workforce mapped per project</td><td>Workforce team</td></tr>
+              <tr><td><strong>One-off job status</strong></td><td>Pipeline and month-to-date</td><td>Contract Admin</td></tr>
+              <tr><td><strong>Activation / closure trend</strong></td><td>Lifecycle movements over time</td><td>PMO</td></tr>
+              <tr><td><strong>SLA / KPI by project</strong></td><td>Performance by project and category</td><td>Ops Director</td></tr>
+              <tr><td><strong>Exception / orphan master data</strong></td><td>Unmapped or orphan records</td><td>Master Data Team</td></tr>
+              <tr><td><strong>Integration failure report</strong></td><td>Failed and quarantined Oracle syncs</td><td>Oracle Integration</td></tr>
+              <tr><td><strong>Hierarchy completeness</strong></td><td>Incomplete project structures</td><td>Master Data Team</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Two executive dashboards</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Municipal dashboard</th><th>Commercial dashboard</th></tr></thead>
+            <tbody>
+              <tr><td>Total zones / LOTs</td><td>Total clients</td></tr>
+              <tr><td>Total routes</td><td>Total contract value</td></tr>
+              <tr><td>Fleet allocated</td><td>Mega / Large client count</td></tr>
+              <tr><td>Workforce allocated</td><td>Active sites</td></tr>
+              <tr><td>Route completion %</td><td>SLA compliance %</td></tr>
+              <tr><td>Service performance %</td><td>One-off jobs month-to-date</td></tr>
+              <tr><td>Route completion by LOT (chart)</td><td>Revenue by client category (chart)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ACCESS ================= -->
+    <section id="access">
+      <div class="sec-head">
+        <span class="sec-num">Sections 21–22</span>
+        <h2>Access, segregation of duties, and audit</h2>
+      </div>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Action</th><th>Proj Mgr</th><th>Area Mgr</th><th>Ops Director</th><th>Contract Admin</th><th>Master Data</th><th>Sys Admin</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Create project</strong></td><td>Yes</td><td>—</td><td>—</td><td>Yes</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>Edit structure</strong></td><td>Yes</td><td>Yes</td><td>—</td><td>Yes</td><td>Yes</td><td>—</td></tr>
+            <tr><td><strong>Approve / activate</strong></td><td>—</td><td>—</td><td><span class="chip chip-govern">Approver</span></td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>Suspend / close</strong></td><td>Yes*</td><td>—</td><td><span class="chip chip-govern">Approver</span></td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>Assign routes / assets / workforce</strong></td><td>Yes</td><td>Yes</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>Override hierarchy</strong></td><td>—</td><td>—</td><td><span class="chip chip-govern">Approver</span></td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>View Oracle refs</strong></td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td><strong>Access integration logs</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="call warn">
+        <span class="call-label">Segregation of duties</span>
+        <p><strong>The role that builds a project structure cannot be the role that approves its activation.</strong> Read access to Oracle reference fields is broad; write access to those fields does not exist in IWMP at all.</p>
+      </div>
+
+      <div class="block">
+        <h3>Audit and traceability</h3>
+        <ul class="plain">
+          <li>Every create, edit, status change, approval, and mapping action logged with user, timestamp, and before/after values.</li>
+          <li>Approver identity, decision, comments, and attached evidence retained for each approval.</li>
+          <li>Each Oracle→IWMP transaction traceable by reference key, with sync status and error detail.</li>
+          <li>Activation records the gates passed — commercial approval and hierarchy approval — plus the approver.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= DELIVERY ================= -->
+    <section id="delivery">
+      <div class="sec-head">
+        <span class="sec-num">Sections 23–28</span>
+        <h2>Constraints, risks, and the delivery plan</h2>
+      </div>
+
+      <div class="block">
+        <h3>Recommended sequence — six vertical slices</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Sprint group</th><th>Focus</th><th>Rationale</th></tr></thead>
+            <tbody>
+              <tr><td><strong>S1</strong></td><td>Classification, project master, hierarchy builder <span class="chip chip-fr">FR-01–04</span></td><td>Structural foundation everything else needs</td></tr>
+              <tr><td><strong>S2</strong></td><td>Oracle staging integration and contract linkage <span class="chip chip-fr">FR-06</span></td><td>Unblocks commercial projects</td></tr>
+              <tr><td><strong>S3</strong></td><td>Site/service and resource mapping <span class="chip chip-fr">FR-07–11</span></td><td>Operational structure and Route Management alignment</td></tr>
+              <tr><td><strong>S4</strong></td><td>Lifecycle, activation, amendment, one-off <span class="chip chip-fr">FR-05, 12–15</span></td><td>Governance and commercial agility</td></tr>
+              <tr><td><strong>S5</strong></td><td>Approval, access, alerts, audit <span class="chip chip-fr">FR-17–19, 22</span></td><td>Governance hardening</td></tr>
+              <tr><td><strong>S6</strong></td><td>Reporting, dashboards, migration <span class="chip chip-fr">FR-16, 20, 23</span></td><td>Visibility and cutover</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Configure versus custom build</h3>
+        <div class="gates">
+          <div class="gate g-iwmp">
+            <span class="owner">Configure, do not code</span>
+            <p>Project types, client categories, value bands, statuses, frequencies, SLAs, approval matrices, numbering sequences.</p>
+          </div>
+          <div class="gate g-oracle">
+            <span class="owner">Custom build</span>
+            <p>Hierarchy builder, Oracle staging and validation, one-off short-cycle workflow, resource-boundary enforcement, project-aware dashboards.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Risks</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Risk</th><th>Impact</th><th>Likelihood</th><th>Mitigation</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Master data not cleansed in time</strong></td><td>Migration delay</td><td><span class="chip chip-block">High</span></td><td>Sequence cleanup ahead of cutover; exception lists</td></tr>
+              <tr><td><strong>Oracle data quality gaps</strong></td><td>Malformed projects</td><td><span class="chip chip-govern">Medium</span></td><td>Staging validation; quarantine and reprocess</td></tr>
+              <tr><td><strong>Route remapping errors at cutover</strong></td><td>Dispatch disruption</td><td><span class="chip chip-govern">Medium</span></td><td>Reconciliation and dual-ownership checks</td></tr>
+              <tr><td><strong>Scope creep into commercial mastery</strong></td><td>Boundary erosion</td><td><span class="chip chip-govern">Medium</span></td><td>Enforce read-only Oracle fields (BR-11)</td></tr>
+              <tr><td><strong>Integration latency</strong></td><td>Activation delay</td><td><span class="chip chip-plain">Low</span></td><td>Event-driven sync with batch fallback</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Six decisions still open with the business</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>#</th><th>Decision required</th><th>Owner</th><th>Recommendation</th></tr></thead>
+            <tbody>
+              <tr><td><code>D1</code></td><td>Operational project unit for commercial contracts — per contract, site, or service</td><td>Ops Director</td><td>One project per contract with sub-structure; one-per-site for very large multi-site</td></tr>
+              <tr><td><code>D2</code></td><td>One-off job model — temp project, service order, or sub-type</td><td>Ops / Finance</td><td>Category-6 sub-type with auto-close</td></tr>
+              <tr><td><code>D3</code></td><td>Confirm value bands and category labels</td><td>Finance</td><td>Adopt framework bands; review annually</td></tr>
+              <tr><td><code>D4</code></td><td>Exception policy for activation before Oracle approval</td><td>Ops Director</td><td>Allow only with an audited exception</td></tr>
+              <tr><td><code>D5</code></td><td>LOT overwrite / append-only enforcement scope</td><td>Data Governance</td><td>Confirm as a data-load rule</td></tr>
+              <tr><td><code>D6</code></td><td>Approval matrix thresholds</td><td>Ops Director / PMO</td><td>Confirm approver levels for structure vs activation</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GAPS ================= -->
+    <section id="gaps">
+      <div class="sec-head">
+        <span class="sec-num">Assessment</span>
+        <h2>How the prototype measures against this</h2>
+      </div>
+      <p class="lede">Reading the standalone Project Management page against the BRD, the covered ground and the gaps fall out cleanly.</p>
+
+      <div class="gapgrid">
+        <div class="gapcard have">
+          <span class="status">Covered</span>
+          <h4>Project master list — UI-01</h4>
+          <p>Search, type filter, status chips, sortable table, and summary counts are all present and match the specified layout and key fields closely.</p>
+        </div>
+        <div class="gapcard have">
+          <span class="status">Covered</span>
+          <h4>Contract-linked view — UI-06</h4>
+          <p>The project detail popup's Contracts tab shows the parent contract with read-only Oracle reference fields, which is the shape UI-06 asks for.</p>
+        </div>
+        <div class="gapcard have">
+          <span class="status">Covered</span>
+          <h4>Site &amp; service data — FR-07</h4>
+          <p>Locations and Service Lines tabs carry frequency, SLA, and status, with data ownership sitting on the project as the BRD requires.</p>
+        </div>
+        <div class="gapcard missing">
+          <span class="status">Missing</span>
+          <h4>Hierarchy builder — UI-03, 04, 05</h4>
+          <p>Three of the nine specified screens are tree-based structure builders, and <span class="chip chip-fr">FR-PMM-04</span> is named as sprint-one foundation work. The prototype has no tree view — locations and service lines are flat tables.</p>
+        </div>
+        <div class="gapcard missing">
+          <span class="status">Missing</span>
+          <h4>Municipal projects entirely</h4>
+          <p>The prototype models only commercial projects. The eight-level Zone→LOT→District structure, the LOT domain flags, and the municipal dashboard have no representation.</p>
+        </div>
+        <div class="gapcard partial">
+          <span class="status">Partial</span>
+          <h4>The two-gate status model</h4>
+          <p>Section 12.2 requires commercial approval and operational activation as two separate attributes. The prototype carries a single project status field, so the gate that <span class="chip chip-block">BR-15</span> describes cannot be expressed.</p>
+        </div>
+        <div class="gapcard missing">
+          <span class="status">Missing</span>
+          <h4>One-off jobs — Category 6</h4>
+          <p>The seven-step short cycle with the advance-payment hard gate is a distinct workflow with its own screen. Nothing in the prototype covers it.</p>
+        </div>
+        <div class="gapcard missing">
+          <span class="status">Missing</span>
+          <h4>Client categorisation 1–6</h4>
+          <p>Categories drive account ownership, SLA depth, and executive reporting, and appear as a filter dimension on UI-01. The prototype filters by waste type instead.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Breakdown of IWMP-BRD-PMM-V02, issued 25 June 2026 by Tajmee'e (Tadweer Group), with cross-references to IWMP-BRD-RMR-V03 where the two documents share the Customer → Contract → Project → Service Line spine.</p>
+    <p>Confidential — project use only.</p>
+  </div>
+</footer>

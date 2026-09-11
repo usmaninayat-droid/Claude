@@ -1,0 +1,123 @@
+name: Release (publish @fams packages)
+
+# MANUAL, DORMANT lane. The required PR gate (ci.yml) keeps its LOCKED order:
+# install → build tokens → build packages → typecheck → lint → test → axe.
+# Publishing is deliberately NOT part of it, and this workflow never runs on a
+# push to main or on a PR.
+#
+# It is DORMANT BY DEFAULT in three independent ways:
+#   1. Triggers are explicit only — `workflow_dispatch`, or pushing a `v*` tag.
+#   2. It needs the repository VARIABLE `FAMS_NPM_REGISTRY`. That variable does
+#      not exist yet (no registry has been chosen), so the job NO-OPS LOUDLY:
+#      the `preflight` job fails the run with a `::error` annotation naming
+#      exactly what a human has to set, and `publish` never starts.
+#   3. It needs the repository SECRET `FAMS_NPM_TOKEN`, which does not exist
+#      yet either. Even with the variable set, `scripts/release.mjs` refuses to
+#      publish without a credential, and each package's `prepublishOnly` guard
+#      (scripts/guard-publish.mjs) refuses independently.
+#
+# Full human runbook — choosing a registry, setting the switch and the secret,
+# cutting versions, publishing, and flipping the demo repo — is in
+# docs/PUBLISHING.md.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (pack + resolve the target registry, publish nothing)'
+        type: boolean
+        default: true
+  push:
+    tags:
+      - 'v*'
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  # ── Gate 1: is the switch even set? ─────────────────────────────────────────
+  # Split out so the run fails with one unmistakable message instead of dying
+  # somewhere inside a build.
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the FAMS_NPM_REGISTRY switch
+        env:
+          FAMS_NPM_REGISTRY: ${{ vars.FAMS_NPM_REGISTRY }}
+          HAS_TOKEN: ${{ secrets.FAMS_NPM_TOKEN != '' }}
+        run: |
+          if [ -z "${FAMS_NPM_REGISTRY}" ]; then
+            echo "::error title=Release lane is dormant::The repository variable FAMS_NPM_REGISTRY is not set, so there is no registry to publish to. Nothing was built and nothing was published. To arm this lane: (1) choose a registry, (2) set the repository VARIABLE FAMS_NPM_REGISTRY=https://<host>/<path>, (3) set the repository SECRET FAMS_NPM_TOKEN, (4) re-dispatch. See docs/PUBLISHING.md."
+            {
+              echo "## Release lane is DORMANT"
+              echo ""
+              echo "\`FAMS_NPM_REGISTRY\` (repository **variable**) is not set. **Nothing was built and nothing was published.**"
+              echo ""
+              echo "To arm the lane:"
+              echo "1. Choose a registry (see \`docs/PUBLISHING.md\` § Choosing a registry)."
+              echo "2. Settings → Secrets and variables → Actions → **Variables**: \`FAMS_NPM_REGISTRY\` = \`https://<host>/<path>\`"
+              echo "3. Settings → Secrets and variables → Actions → **Secrets**: \`FAMS_NPM_TOKEN\` = a publish token for that registry"
+              echo "4. Re-dispatch this workflow."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          echo "FAMS_NPM_REGISTRY is set."
+          if [ "${HAS_TOKEN}" != "true" ]; then
+            echo "::error title=Missing credential::FAMS_NPM_REGISTRY is set but the repository SECRET FAMS_NPM_TOKEN is missing. Refusing to continue. See docs/PUBLISHING.md."
+            exit 1
+          fi
+          echo "FAMS_NPM_TOKEN is present."
+
+  publish:
+    needs: preflight
+    runs-on: ubuntu-latest
+    permissions:
+      # read, not write, ON PURPOSE. `changeset publish` creates git tags
+      # LOCALLY; it never pushes them. Whether release tags get pushed back to
+      # the repo is a founder decision that has not been taken, so this lane
+      # cannot push anything. If tags should be pushed, raise this to
+      # `contents: write` and add an explicit `git push --follow-tags` step —
+      # see docs/PUBLISHING.md § What a human still has to decide.
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # changesets reads git history
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # 22, not 20 — same reason as ci.yml (the pinned pnpm uses node:sqlite)
+          node-version: 22
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build tokens
+        run: pnpm --filter @fams/tokens build
+
+      # Audit the publish surface before anything else: private flags,
+      # files/exports/sideEffects, publishConfig, the prepublishOnly guards, and
+      # the changesets ignore list. Cheap and catches a misconfigured package
+      # before a half-published release.
+      - name: Audit publish surface
+        run: pnpm release:audit
+
+      # The outside-repo pack + import smoke test over every publishable package
+      # and every exports entry point. Proves the tarballs are consumable before
+      # any of them is uploaded.
+      - name: Pack + external-consumer smoke test
+        run: pnpm smoke:pack
+
+      - name: Publish
+        env:
+          FAMS_NPM_REGISTRY: ${{ vars.FAMS_NPM_REGISTRY }}
+          FAMS_NPM_TOKEN: ${{ secrets.FAMS_NPM_TOKEN }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            pnpm release:dry
+          else
+            pnpm release
+          fi

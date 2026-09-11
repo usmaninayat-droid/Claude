@@ -1,0 +1,5 @@
+[
+  { "id": "u_admin", "name": "Mona Idris", "email": "mona@iwmp.example", "roles": ["admin"], "persona": "Administrator" },
+  { "id": "u_dispatcher", "name": "Rashid Amin", "email": "rashid@iwmp.example", "roles": ["dispatcher"], "persona": "Dispatcher" },
+  { "id": "u_superadmin", "name": "Sam Okafor", "email": "sam@iwmp.example", "roles": ["superadmin"], "persona": "Super Admin" }
+]

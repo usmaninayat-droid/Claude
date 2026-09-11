@@ -1,0 +1,222 @@
+[
+  {
+    "id": "CP-01",
+    "uniqueidentifier": "CP-01",
+    "title": "Ahmed Al Suwaidi",
+    "systemcol1": "CO-01",
+    "systemcol2": "Procurement Manager",
+    "systemcol3": "ahmed.alsuwaidi@al.example",
+    "systemcol4": "+9715050100",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-02",
+    "uniqueidentifier": "CP-02",
+    "title": "Sara Al Mazrouei",
+    "systemcol1": "CO-02",
+    "systemcol2": "Fleet Director",
+    "systemcol3": "sara.almazrouei@etihad.example",
+    "systemcol4": "+9715050200",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-03",
+    "uniqueidentifier": "CP-03",
+    "title": "Khalid Haddad",
+    "systemcol1": "CO-03",
+    "systemcol2": "Operations Lead",
+    "systemcol3": "khalid.haddad@gulf.example",
+    "systemcol4": "+9715050300",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-04",
+    "uniqueidentifier": "CP-04",
+    "title": "Mona Nasser",
+    "systemcol1": "CO-04",
+    "systemcol2": "CFO",
+    "systemcol3": "mona.nasser@barari.example",
+    "systemcol4": "+9715050400",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-05",
+    "uniqueidentifier": "CP-05",
+    "title": "Yousef Al Zaabi",
+    "systemcol1": "CO-05",
+    "systemcol2": "IT Manager",
+    "systemcol3": "yousef.alzaabi@desert.example",
+    "systemcol4": "+9715050500",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-06",
+    "uniqueidentifier": "CP-06",
+    "title": "Reem Barakat",
+    "systemcol1": "CO-06",
+    "systemcol2": "Facilities Manager",
+    "systemcol3": "reem.barakat@union.example",
+    "systemcol4": "+9715050600",
+    "status": "Inactive",
+    "tags": []
+  },
+  {
+    "id": "CP-07",
+    "uniqueidentifier": "CP-07",
+    "title": "Talal Al Nuaimi",
+    "systemcol1": "CO-07",
+    "systemcol2": "CEO",
+    "systemcol3": "talal.alnuaimi@falcon.example",
+    "systemcol4": "+9715050700",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-08",
+    "uniqueidentifier": "CP-08",
+    "title": "Huda Idris",
+    "systemcol1": "CO-08",
+    "systemcol2": "Logistics Coordinator",
+    "systemcol3": "huda.idris@emirates.example",
+    "systemcol4": "+9715050800",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-09",
+    "uniqueidentifier": "CP-09",
+    "title": "Rashid Al Suwaidi",
+    "systemcol1": "CO-09",
+    "systemcol2": "Procurement Manager",
+    "systemcol3": "rashid.alsuwaidi@marjan.example",
+    "systemcol4": "+9715050900",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-10",
+    "uniqueidentifier": "CP-10",
+    "title": "Amal Al Mazrouei",
+    "systemcol1": "CO-10",
+    "systemcol2": "Fleet Director",
+    "systemcol3": "amal.almazrouei@sadaf.example",
+    "systemcol4": "+9715051000",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-11",
+    "uniqueidentifier": "CP-11",
+    "title": "Fahad Haddad",
+    "systemcol1": "CO-11",
+    "systemcol2": "Operations Lead",
+    "systemcol3": "fahad.haddad@nakheel.example",
+    "systemcol4": "+9715051100",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-12",
+    "uniqueidentifier": "CP-12",
+    "title": "Layan Nasser",
+    "systemcol1": "CO-12",
+    "systemcol2": "CFO",
+    "systemcol3": "layan.nasser@zenith.example",
+    "systemcol4": "+9715051200",
+    "status": "Inactive",
+    "tags": []
+  },
+  {
+    "id": "CP-13",
+    "uniqueidentifier": "CP-13",
+    "title": "Waleed Al Zaabi",
+    "systemcol1": "CO-13",
+    "systemcol2": "IT Manager",
+    "systemcol3": "waleed.alzaabi@capital.example",
+    "systemcol4": "+9715051300",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-14",
+    "uniqueidentifier": "CP-14",
+    "title": "Nadia Barakat",
+    "systemcol1": "CO-14",
+    "systemcol2": "Facilities Manager",
+    "systemcol3": "nadia.barakat@orbit.example",
+    "systemcol4": "+9715051400",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-15",
+    "uniqueidentifier": "CP-15",
+    "title": "Salem Al Nuaimi",
+    "systemcol1": "CO-15",
+    "systemcol2": "CEO",
+    "systemcol3": "salem.alnuaimi@meraas.example",
+    "systemcol4": "+9715051500",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-16",
+    "uniqueidentifier": "CP-16",
+    "title": "Farida Idris",
+    "systemcol1": "CO-16",
+    "systemcol2": "Logistics Coordinator",
+    "systemcol3": "farida.idris@dana.example",
+    "systemcol4": "+9715051600",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-17",
+    "uniqueidentifier": "CP-17",
+    "title": "Adnan Al Suwaidi",
+    "systemcol1": "CO-01",
+    "systemcol2": "Procurement Manager",
+    "systemcol3": "adnan.alsuwaidi@al.example",
+    "systemcol4": "+9715051700",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-18",
+    "uniqueidentifier": "CP-18",
+    "title": "Rania Al Mazrouei",
+    "systemcol1": "CO-02",
+    "systemcol2": "Fleet Director",
+    "systemcol3": "rania.almazrouei@etihad.example",
+    "systemcol4": "+9715051800",
+    "status": "Inactive",
+    "tags": []
+  },
+  {
+    "id": "CP-19",
+    "uniqueidentifier": "CP-19",
+    "title": "Bassam Haddad",
+    "systemcol1": "CO-03",
+    "systemcol2": "Operations Lead",
+    "systemcol3": "bassam.haddad@gulf.example",
+    "systemcol4": "+9715051900",
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "CP-20",
+    "uniqueidentifier": "CP-20",
+    "title": "Lubna Nasser",
+    "systemcol1": "CO-04",
+    "systemcol2": "CFO",
+    "systemcol3": "lubna.nasser@barari.example",
+    "systemcol4": "+9715052000",
+    "status": "Active",
+    "tags": []
+  }
+]

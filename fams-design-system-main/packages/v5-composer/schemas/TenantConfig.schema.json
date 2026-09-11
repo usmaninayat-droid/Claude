@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fams.com/schemas/v5-composer/TenantConfig.schema.json",
+  "title": "TenantConfig",
+  "description": "Per-tenant theme + brand configuration. Maps to the 3-axis white-label contract (color + gradient + logo).",
+  "type": "object",
+  "required": ["id", "name", "primaryColor"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Maps to packages/tokens/tenants/<id>.theme.css"
+    },
+    "name": { "type": "string", "description": "Human-readable tenant name." },
+    "primaryColor": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$",
+      "description": "Brand `--primary` hex."
+    },
+    "secondaryColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "accentColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "sidebarGradientStops": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["color", "position"],
+        "additionalProperties": false,
+        "properties": {
+          "color": { "type": "string" },
+          "position": { "type": "string", "pattern": "^-?[0-9]+(\\.[0-9]+)?%$" }
+        }
+      }
+    },
+    "sidebarGradientAngle": { "type": "string", "default": "149.7deg" },
+    "logoSvgPath": { "type": "string" },
+    "logoIconSvgPath": { "type": "string" },
+    "fontFamily": { "type": "string", "default": "Gilroy" },
+    "chartPalette": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" }
+    },
+    "modules": { "type": "array", "items": { "type": "string" } },
+    "applications": {
+      "type": "array",
+      "description": "Application grouping for the outer nav rail (apps ≠ modules — a tenant has applications, each containing modules; see @fams/v5-kit's AppDefinition/V5AppShell). Omit for a tenant that hasn't opted in — the outer rail then falls back to one implicit app spanning every licensed module.",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "modules"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "icon": { "type": "string", "description": "Icon key resolved by the consuming app (e.g. demo/seams.tsx's APP_ICONS map)." },
+          "modules": { "type": "array", "items": { "type": "string" } },
+          "hideSwitcher": { "type": "boolean", "description": "Suppress the cross-app switcher row while this application is active (@fams/v5-kit AppDefinition.hideSwitcher) — for an app whose persona never navigates to another application. The app's own modules still render in the rail normally. Omit/default false." }
+        }
+      }
+    },
+    "railStart": {
+      "type": "array",
+      "description": "Pinned entries rendered ABOVE the application icons in the outer nav rail, framed by dividers (@fams/ui-kit SideNav `preItems` / @fams/v5-kit `TenantRuntimeConfig.railStart`). Each pins one licensed module (e.g. a tenant-global inbox surface). Purely positional — meaning stays with the module.",
+      "items": {
+        "type": "object",
+        "required": ["id", "module"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "description": "Stable rail-item id — also the key an injectable rail-indicator source is queried with." },
+          "module": { "type": "string", "description": "Licensed module id this pinned entry navigates to." },
+          "label": { "type": "string", "description": "Tooltip/accessible label override; defaults to the module's nav label." }
+        }
+      }
+    },
+    "landingModule": {
+      "type": "string",
+      "description": "Where the index route `/` LANDS. Omit (the default) and `/` renders the metadata-driven Home launch pad. Set to a licensed module id — or the literal \"first\", meaning the first entry of this tenant's ordered `modules` array — and `/` redirects to that module's route instead. Home keeps its route and its nav entry either way; an id matching no resolved module falls back to Home with a dev warning."
+    },
+    "branding": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "logo": { "type": "string", "description": "Logo key resolved by the consuming app (e.g. demo/seams.tsx's BRAND_LOGOS map) into the outer rail's logo slot." },
+        "hideName": { "type": "boolean", "default": false, "description": "Suppress the tenant NAME label rendered beside the rail logo. Set for a tenant whose logo asset already contains its wordmark, where the adjacent text is a duplicate. Presentational and scoped to that slot only — the tenant name still titles the top bar fallback, the app switcher and the command palette." },
+        "poweredBy": { "type": "boolean", "default": false, "description": "Show the rail-footer \"Powered By FAMS\" attribution strip. Set for a white-label tenant whose own brand owns the rail; the first-party FAMS tenant leaves it unset." }
+      }
+    },
+    "login": {
+      "type": "object",
+      "description": "Login-screen branding for the tenant-variable brand pane (@fams/v5-templates LoginPage). The pane's STRUCTURE is layout-fixed in the DS; this section supplies only the per-tenant content that fills it.",
+      "additionalProperties": false,
+      "properties": {
+        "quote": { "type": "string", "description": "Headline/quote rendered in the brand pane." },
+        "subtext": { "type": "string", "description": "Supporting line under the quote." },
+        "background": { "type": "string", "description": "CSS background for the brand pane (brand hex or gradient). Omit to fall back to the tenant's primary token." },
+        "supportingText": { "type": "string", "description": "Auth-pane supporting line under the Welcome heading (e.g. \"Log in to FAMS for …\")." },
+        "logo": { "type": "string", "description": "Real logo asset URL for the auth pane's fixed 148x48 logo slot (app-servable path, e.g. /branding/fams-login-logo.png). Omit to fall back to the tenant text wordmark." },
+        "mobileLogo": { "type": "string", "description": "WHITE (on-brand) logo asset URL for the MOBILE login brand header \u2014 the top third of the screen below the lg breakpoint, where the logo sits directly on the tenant brand color and the dark auth-pane `logo` asset is unusable. Omit to fall back to a white text wordmark." },
+        "mobileHeading": { "type": "string", "description": "Heading for the MOBILE login sheet only (e.g. \"Login\", \"Login via Credentials\"). Omit to keep the desktop heading at every width." },
+        "illustration": { "type": "string", "description": "Flattened brand-pane artwork asset URL (bottom-anchored, cover-cropped), OR the literal \"none\" to opt out of imagery entirely (a plain brand-color/gradient pane, e.g. UCCP's Figma spec). Omit to fall back to the DS's generic token-styled illustration." },
+        "footer": {
+          "type": "object",
+          "description": "Auth-pane footer. Omit to keep the DS default \"visit our website\" line.",
+          "additionalProperties": false,
+          "required": ["kind", "logoSrc"],
+          "properties": {
+            "kind": { "type": "string", "enum": ["powered-by"], "description": "Only the \"powered-by\" variant is supported today: a centered \"Powered by\" label + logo/wordmark." },
+            "logoSrc": { "type": "string", "description": "Brand logo/wordmark asset URL rendered next to the label." },
+            "label": { "type": "string", "description": "Defaults to \"Powered by\"." }
+          }
+        }
+      }
+    }
+  }
+}

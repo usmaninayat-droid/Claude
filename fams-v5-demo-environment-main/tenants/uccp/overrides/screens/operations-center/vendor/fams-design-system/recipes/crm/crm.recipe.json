@@ -1,0 +1,51 @@
+{
+  "$schema": "../../schemas/Recipe.schema.json",
+  "id": "crm",
+  "tenant": "fams",
+  "brand": {
+    "name": "FAMS CRM"
+  },
+  "user": { "id": "u_mgr", "roles": ["SalesManager"] },
+  "modules": [
+    {
+      "id": "deals",
+      "type": "pipeline",
+      "label": "Deals",
+      "icon": "Target01",
+      "views": ["kanban", "list"],
+      "dataSource": { "code": "crm/deals", "rulesRef": "deals" },
+      "config": "./deals.module.json",
+      "create": {
+        "fields": [
+          { "id": "title", "label": "Deal", "type": "text", "required": true },
+          { "id": "systemcol3", "label": "Company", "type": "text" },
+          { "id": "systemcol2", "label": "Priority", "type": "enum" }
+        ]
+      }
+    },
+    {
+      "id": "companies",
+      "type": "entity",
+      "label": "Companies",
+      "icon": "Building02",
+      "views": ["list"],
+      "dataSource": { "code": "crm/companies" },
+      "config": "./companies.module.json"
+    },
+    {
+      "id": "contacts",
+      "type": "entity",
+      "label": "Contacts",
+      "icon": "User02",
+      "views": ["list"],
+      "dataSource": { "code": "crm/contacts" },
+      "config": "./contacts.module.json"
+    }
+  ],
+  "rules": { "deals": "./deals.rules.json" },
+  "seeds": {
+    "crm/deals": "./deals.seed.json",
+    "crm/companies": "./companies.seed.json",
+    "crm/contacts": "./contacts.seed.json"
+  }
+}

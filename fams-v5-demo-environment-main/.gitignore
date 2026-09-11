@@ -1,0 +1,34 @@
+node_modules/
+*.log
+.DS_Store
+.vitest/
+coverage/
+
+# App build output (Vite).
+app/dist/
+
+# Capture proposals are transient human-review artifacts, not committed state.
+tenants/**/deltas/*.ops.proposed.json
+
+# The capture-action report is a transient PR-comment artifact, not committed state.
+capture-report.md
+
+# Playwright visual-regression baselines are environment-specific (named
+# per-OS, e.g. *-darwin.png). Same policy as fams-design-system's
+# workshop/showcase/.gitignore: stay local-only until Linux baselines
+# are generated on the CI OS and committed deliberately.
+app/e2e/**/*-snapshots/
+app/test-results/
+app/playwright-report/
+
+# python hook bytecode
+.claude/hooks/__pycache__/
+tenants/uccp/overrides/screens/*/dist/
+tenants/uccp/overrides/screens/inspector-shifts/node_modules/
+tenants/uccp/overrides/screens/inspector-shifts/dist/
+
+# Ad-hoc verification screenshots written by e2e verify specs.
+app/e2e-artifacts/
+
+# Stray output dir some verify specs create when a download/export path is exercised.
+New DS Projects/

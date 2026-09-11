@@ -1,0 +1,856 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fams.com/schemas/v5-composer/DashboardModuleConfig.schema.json",
+  "title": "DashboardModuleConfig",
+  "description": "Configuration for a Dashboards module \u2014 a KPI strip + filter pills + widget grid. Rendered by the DashboardGrid template. Every node carries a stable `id`.",
+  "type": "object",
+  "required": [
+    "id",
+    "displayName",
+    "widgetGrid"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "kind": {
+      "const": "dashboard"
+    },
+    "displayName": {
+      "type": "object",
+      "required": [
+        "singular"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "singular": {
+          "type": "string"
+        },
+        "plural": {
+          "type": "string"
+        }
+      }
+    },
+    "icon": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "kpiStrip": {
+      "type": "array",
+      "description": "Top KPI strip \u2014 small big-number cards.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "stat",
+              "stat-with-target",
+              "delta",
+              "trend"
+            ]
+          },
+          "targetFieldId": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string",
+            "description": "Number presentation applied via Intl.NumberFormat in the document locale. Recognised: 'integer', 'decimal' / 'decimal:<n>', 'percent', 'currency-<ISO>' (e.g. 'currency-AED'). Anything else leaves the value verbatim."
+          },
+          "unit": {
+            "type": "string",
+            "description": "Unit suffix beside the value, e.g. 'hrs', 'L'."
+          },
+          "valueSuffix": {
+            "type": "string",
+            "description": "Muted text after the value, e.g. 'until critical at current consumption'."
+          },
+          "badge": {
+            "type": "string",
+            "description": "Trailing chip on the label row, e.g. 'Real Time'."
+          },
+          "tone": {
+            "type": "string",
+            "enum": [
+              "primary",
+              "success",
+              "warning",
+              "danger",
+              "info",
+              "neutral"
+            ]
+          },
+          "dataSource": {
+            "$ref": "#/$defs/DashboardDataSource"
+          }
+        }
+      }
+    },
+    "filterPills": {
+      "type": "array",
+      "description": "Filter-pill bar (Time / Driver / Vehicle / Group By).",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "time-range",
+              "single-select",
+              "multi-select",
+              "group-by"
+            ]
+          },
+          "entityId": {
+            "type": "string"
+          },
+          "defaultValue": {},
+          "options": {
+            "type": "array",
+            "description": "Explicit option list for a single-/multi-select or group-by pill. A dashboard module has no entity data adapter of its own, so options are authored here rather than derived from `entityId`.",
+            "items": {
+              "type": "object",
+              "required": [
+                "value",
+                "label"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "dimension": {
+            "type": "string",
+            "description": "The data dimension this pill drives. Defaults to the pill's own `id`. A pill whose dimension no datum on the page carries is not rendered at all (verdict V11 \u2014 a control that cannot change anything must be absent, never inert)."
+          },
+          "allLabel": {
+            "type": "string",
+            "description": "Label of the UNSCOPED option the renderer injects at the head of every collection pill (single-select / group-by). Default 'All <label>'. Never author an 'all' option in `options` \u2014 a value no datum carries would filter everything away."
+          }
+        }
+      }
+    },
+    "widgetGrid": {
+      "type": "array",
+      "description": "Main 2-column widget grid \u2014 gauges, charts, lists.",
+      "items": {
+        "$ref": "#/$defs/DashboardWidget"
+      }
+    },
+    "views": {
+      "type": "array",
+      "description": "Saved-view declarations. Each dashboard tab is itself a saved view.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "isDefault": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      }
+    },
+    "rbac": {
+      "$ref": "EntityModuleConfig.schema.json#/$defs/Rbac"
+    }
+  },
+  "$defs": {
+    "DashboardWidget": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "donut",
+            "bar",
+            "line",
+            "stacked-bar",
+            "area",
+            "compliance-gauge",
+            "heatmap-calendar",
+            "geospatial-heatmap",
+            "leaderboard",
+            "list",
+            "kpi-card",
+            "stat-with-target",
+            "sparkline-table",
+            "stack"
+          ]
+        },
+        "span": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12,
+          "default": 6
+        },
+        "dataSource": {
+          "$ref": "#/$defs/DashboardDataSource"
+        },
+        "children": {
+          "type": "array",
+          "description": "type:'stack' ONLY \u2014 the widgets stacked vertically inside this one grid cell, in order. A stack is a LAYOUT node: no dataSource of its own, its span is the cell it occupies, its children are full width of the stack and keep their own dataSource.height. Nesting a stack inside a stack is rejected.",
+          "items": {
+            "$ref": "#/$defs/DashboardWidget"
+          }
+        }
+      }
+    },
+    "DashboardDataSource": {
+      "type": "object",
+      "description": "The shared dashboard data-binding vocabulary (one shape across every widget type). `kind: 'static'` authors the values inline; `kind: 'module'` derives them from a licensed module at boot. Extra keys are allowed so authoring stays permissive.",
+      "additionalProperties": true,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "static",
+            "module"
+          ],
+          "default": "static"
+        },
+        "module": {
+          "type": "string"
+        },
+        "aggregate": {
+          "type": "string",
+          "enum": [
+            "count",
+            "sum",
+            "avg"
+          ]
+        },
+        "groupBy": {
+          "type": "string"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": [
+              "string",
+              "number"
+            ]
+          }
+        },
+        "series": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "colorToken": {
+                "type": "string",
+                "description": "Non-categorical colour binding for this series \u2014 a token reference such as \"var(--color-primary)\", resolved at paint time so it follows the active theme/tenant. Wins over colorIndex."
+              },
+              "dimensions": {
+                "type": "object",
+                "description": "Dimension values this datum belongs to, keyed by dimension name (a filter pill's `dimension`, defaulting to its `id`). Each value is one id or an array of ids. Omitting a dimension means 'not scoped by it' \u2014 the datum survives every selection of that pill.",
+                "additionalProperties": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "dimensions": {
+                "type": "object",
+                "description": "Dimension values this datum belongs to, keyed by dimension name (a filter pill's `dimension`, defaulting to its `id`). Each value is one id or an array of ids. Omitting a dimension means 'not scoped by it' \u2014 the datum survives every selection of that pill.",
+                "additionalProperties": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "media": {
+                "type": "object",
+                "description": "Leading visual of the row's entity block. src/initials render an Avatar; a bare icon renders a tinted IconBadge. src > initials > icon.",
+                "properties": {
+                  "src": {
+                    "type": "string"
+                  },
+                  "initials": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "tone": {
+                    "enum": [
+                      "primary",
+                      "success",
+                      "warning",
+                      "danger",
+                      "info",
+                      "neutral"
+                    ]
+                  }
+                }
+              },
+              "dimensions": {
+                "type": "object",
+                "description": "Dimension values this datum belongs to, keyed by dimension name (a filter pill's `dimension`, defaulting to its `id`). Each value is one id or an array of ids. Omitting a dimension means 'not scoped by it' \u2014 the datum survives every selection of that pill.",
+                "additionalProperties": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "icon": {
+                "type": "string",
+                "description": "Named lucide icon, kebab-case, drawn before every cell of this column — the entity glyph a code-shaped column carries. Decorative; the cell text is the accessible content."
+              },
+              "tone": {
+                "enum": [
+                  "primary",
+                  "success",
+                  "warning",
+                  "danger"
+                ],
+                "description": "Fill tone of a render:'bar' cell when no thresholds band matches."
+              },
+              "thresholds": {
+                "type": "array",
+                "description": "Threshold bands for a render:'bar' cell \u2014 the highest band whose `from` the value clears wins.",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "from",
+                    "tone"
+                  ],
+                  "properties": {
+                    "from": {
+                      "type": "number"
+                    },
+                    "tone": {
+                      "enum": [
+                        "primary",
+                        "success",
+                        "warning",
+                        "danger"
+                      ]
+                    }
+                  }
+                }
+              },
+              "counters": {
+                "type": "array",
+                "description": "Per-counter key for a render:'counters' cell \u2014 one entry per position in the cell's number[].",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string"
+                    },
+                    "colorIndex": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 5
+                    },
+                    "colorToken": {
+                      "type": "string",
+                      "description": "Non-categorical colour binding for this counter \u2014 a token reference such as \"var(--color-primary)\", resolved at paint time so it follows the active theme/tenant. Wins over colorIndex."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "cells": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "dimensions": {
+                "type": "object",
+                "description": "Dimension values this datum belongs to, keyed by dimension name (a filter pill's `dimension`, defaulting to its `id`). Each value is one id or an array of ids. Omitting a dimension means 'not scoped by it' \u2014 the datum survives every selection of that pill.",
+                "additionalProperties": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "bins": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "legend": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "colorToken": {
+                "type": "string",
+                "description": "Non-categorical colour binding for this legend entry \u2014 a token reference such as \"var(--color-primary)\", resolved at paint time so it follows the active theme/tenant. Wins over colorIndex."
+              }
+            }
+          }
+        },
+        "sectors": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "value": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "target": {
+          "type": "number"
+        },
+        "targetLabel": {
+          "type": "string"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "centerLabel": {
+          "type": "object"
+        },
+        "axis": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "format": {
+                  "type": "string"
+                },
+                "min": {
+                  "type": "number",
+                  "description": "Pinned lower bound of a VALUE axis. Zero-base both scales of a dual-axis chart rather than letting two independent fits invent a correlation (verdict V4)."
+                },
+                "max": {
+                  "type": "number",
+                  "description": "Pinned upper bound of a VALUE axis."
+                },
+                "groups": {
+                  "type": "array",
+                  "description": "heatmap-calendar x-axis outer tier: group labels drawn under the column labels, each centred on its own run of `span` columns. Only read on axis.x.",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "label",
+                      "span"
+                    ],
+                    "properties": {
+                      "label": {
+                        "type": "string"
+                      },
+                      "span": {
+                        "type": "integer",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                },
+                "tickLabels": {
+                  "type": "array",
+                  "description": "heatmap-calendar column-axis display labels, parallel to `categories`. `categories` are identifiers (cells[].x matches them) so they must stay unique; a two-tier axis wants repeated ticks. Only read on axis.x.",
+                  "items": {
+                    "type": [
+                      "string",
+                      "number"
+                    ]
+                  }
+                }
+              }
+            },
+            "y": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "format": {
+                  "type": "string"
+                },
+                "min": {
+                  "type": "number",
+                  "description": "Pinned lower bound of a VALUE axis. Zero-base both scales of a dual-axis chart rather than letting two independent fits invent a correlation (verdict V4)."
+                },
+                "max": {
+                  "type": "number",
+                  "description": "Pinned upper bound of a VALUE axis."
+                },
+                "groups": {
+                  "type": "array",
+                  "description": "heatmap-calendar x-axis outer tier: group labels drawn under the column labels, each centred on its own run of `span` columns. Only read on axis.x.",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "label",
+                      "span"
+                    ],
+                    "properties": {
+                      "label": {
+                        "type": "string"
+                      },
+                      "span": {
+                        "type": "integer",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                },
+                "tickLabels": {
+                  "type": "array",
+                  "description": "heatmap-calendar column-axis display labels, parallel to `categories`. `categories` are identifiers (cells[].x matches them) so they must stay unique; a two-tier axis wants repeated ticks. Only read on axis.x.",
+                  "items": {
+                    "type": [
+                      "string",
+                      "number"
+                    ]
+                  }
+                }
+              }
+            },
+            "yRight": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "format": {
+                  "type": "string"
+                },
+                "min": {
+                  "type": "number",
+                  "description": "Pinned lower bound of a VALUE axis. Zero-base both scales of a dual-axis chart rather than letting two independent fits invent a correlation (verdict V4)."
+                },
+                "max": {
+                  "type": "number",
+                  "description": "Pinned upper bound of a VALUE axis."
+                },
+                "groups": {
+                  "type": "array",
+                  "description": "heatmap-calendar x-axis outer tier: group labels drawn under the column labels, each centred on its own run of `span` columns. Only read on axis.x.",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "label",
+                      "span"
+                    ],
+                    "properties": {
+                      "label": {
+                        "type": "string"
+                      },
+                      "span": {
+                        "type": "integer",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                },
+                "tickLabels": {
+                  "type": "array",
+                  "description": "heatmap-calendar column-axis display labels, parallel to `categories`. `categories` are identifiers (cells[].x matches them) so they must stay unique; a two-tier axis wants repeated ticks. Only read on axis.x.",
+                  "items": {
+                    "type": [
+                      "string",
+                      "number"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "orientation": {
+          "type": "string",
+          "enum": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        "stacked": {
+          "type": "boolean"
+        },
+        "showTrack": {
+          "type": "boolean"
+        },
+        "smooth": {
+          "type": "boolean"
+        },
+        "render": {
+          "type": "string",
+          "enum": [
+            "markers",
+            "heat"
+          ]
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "table",
+            "podium"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "height": {
+          "type": "number"
+        },
+        "ariaLabel": {
+          "type": "string"
+        },
+        "emptyText": {
+          "type": "string"
+        },
+        "errorText": {
+          "type": "string"
+        },
+        "center": {
+          "type": "array",
+          "description": "geospatial-heatmap opening camera centre, [longitude, latitude]. Omit to fit the camera to items[].position.",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "zoom": {
+          "type": "number",
+          "description": "geospatial-heatmap opening zoom. Omit to fit it to items[].position."
+        },
+        "legendOrientation": {
+          "enum": [
+            "horizontal",
+            "vertical"
+          ],
+          "description": "donut legend placement: 'horizontal' (default, in the card legend row) or 'vertical' (beside the chart)."
+        },
+        "slices": {
+          "type": "array",
+          "description": "donut slices.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "colorToken": {
+                "type": "string",
+                "description": "Non-categorical colour binding for this slice \u2014 a token reference such as \"var(--color-primary)\", resolved at paint time so it follows the active theme/tenant. Wins over colorIndex."
+              },
+              "dimensions": {
+                "type": "object",
+                "description": "Dimension values this datum belongs to, keyed by dimension name (a filter pill's `dimension`, defaulting to its `id`). Each value is one id or an array of ids. Omitting a dimension means 'not scoped by it' \u2014 the datum survives every selection of that pill.",
+                "additionalProperties": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "legendPlacement": {
+          "enum": [
+            "top",
+            "bottom"
+          ],
+          "description": "bar / stacked-bar / line legend placement relative to the plot. Default 'bottom'. Distinct from legendOrientation, which is the donut's beside-vs-above knob."
+        },
+        "entityLabel": {
+          "type": "string",
+          "description": "Header of a leaderboard's entity column. Default 'Name' \u2014 author the noun the board ranks."
+        },
+        "showRank": {
+          "type": "boolean",
+          "default": true,
+          "description": "Renders the leaderboard's leading RANK column. Set false for a board whose design carries no rank column; the podium keeps its medallion either way."
+        },
+        "categoryDimensions": {
+          "type": "array",
+          "description": "Dimension values of each x/y CATEGORY, parallel to `categories`. A category axis is the one filterable collection whose members are bare strings with nowhere to carry their own `dimensions`; this array does it positionally. Dropping a category drops that index from `categories`, from `axis.x.tickLabels` and from every series' `data[]` in step.",
+          "items": {
+            "type": "object",
+            "description": "Dimension values this datum belongs to, keyed by dimension name (a filter pill's `dimension`, defaulting to its `id`). Each value is one id or an array of ids. Omitting a dimension means 'not scoped by it' \u2014 the datum survives every selection of that pill.",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "variants": {
+          "type": "array",
+          "description": "Whole-source overrides per filter combination \u2014 the scalar counterpart of per-datum `dimensions`, for a widget whose datum IS the widget (a gauge, a KPI card, a donut centre). The FIRST variant whose `when` matches every active pill value is shallow-merged over this source, before per-datum filtering runs.",
+          "items": {
+            "type": "object",
+            "required": [
+              "when"
+            ],
+            "additionalProperties": true,
+            "properties": {
+              "when": {
+                "type": "object",
+                "description": "Dimension values this datum belongs to, keyed by dimension name (a filter pill's `dimension`, defaulting to its `id`). Each value is one id or an array of ids. Omitting a dimension means 'not scoped by it' \u2014 the datum survives every selection of that pill.",
+                "additionalProperties": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

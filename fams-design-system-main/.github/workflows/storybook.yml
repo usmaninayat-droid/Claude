@@ -1,0 +1,40 @@
+name: Storybook (static build)
+
+# OPTIONAL, NON-BLOCKING lane — modelled on visual.yml. The required PR gate
+# (ci.yml) keeps its LOCKED order: install → build tokens → build packages →
+# typecheck → lint → test → axe. A Storybook static build is deliberately NOT
+# in it:
+#   - `workshop/showcase` is still the primary workshop vehicle and the one
+#     surface the DoD is defined against; Storybook is additive.
+#   - `storybook build` bundles the whole manager+preview (~45s locally) for a
+#     harness that gates nothing — it would slow the required gate down without
+#     catching anything typecheck/lint/test don't already catch. Note that
+#     `pnpm --filter @fams/storybook build` DOES run `tsc --noEmit` first, and
+#     that same typecheck already runs inside the required gate's `pnpm
+#     typecheck` step (turbo picks the package up automatically).
+# Trigger it explicitly instead:
+#   - workflow_dispatch — on demand from the Actions tab.
+#   - the `storybook` label on a PR — opt in for changes that touch the harness.
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  storybook-build:
+    if: github.event_name == 'workflow_dispatch' || github.event.label.name == 'storybook'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @fams/tokens build
+      - run: pnpm --filter @fams/storybook build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: storybook-static
+          path: workshop/storybook/storybook-static
+          retention-days: 7

@@ -1,0 +1,41 @@
+/*
+ * Tenant · Qatar MME (Ministry of Municipality and Environment)
+ * -------------------------------------------------------------
+ * Deep maroon primary (Qatar national/heritage maroon #6E112D), soft-pink
+ * secondary tint, solid maroon sidebar. Use this brand whenever a solution is
+ * built for Qatar MME (e.g. the Flood Management control unit).
+ *
+ * Apply by importing this file AFTER the base tokens, or by spreading the same
+ * vars into an AppShell `app.brand.theme` object.
+ */
+
+:root {
+  --primary: #6E112D;                                /* Qatar MME maroon */
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #FBE8EE;                              /* Soft maroon-pink tint */
+  --secondary-foreground: #6E112D;
+
+  --accent: #6E112D;                                 /* Accent tracks primary */
+  --accent-foreground: #FFFFFF;
+
+  --ring: #FBE8EE;
+
+  --sidebar: #6E112D;                                /* Solid maroon app rail */
+  --sidebar-foreground: #F9FAFB;
+  --sidebar-primary: #FFFFFF;                        /* ACTIVE nav item = solid white pill (canonical V5) */
+  --sidebar-primary-foreground: #6E112D;             /* active icon = maroon on white */
+  --sidebar-accent: rgba(255, 255, 255, 0.15);       /* subtle hover overlay */
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: rgba(255, 255, 255, 0.2);
+  --sidebar-ring: rgba(255, 255, 255, 0.4);
+
+  /* App-tile left-accent — brand maroon (replaces the DS's FAMS-blue default). */
+  --sidebar-item-accent: rgba(110, 17, 45, 0.55);
+  --sidebar-item-accent-idle: rgba(255, 255, 255, 0.28);
+
+  --sidebar-gradient: none;
+
+  /* Qatar MME's chart-1 is the brand maroon rather than the FAMS blue/amber. */
+  --chart-1: #6E112D;
+}

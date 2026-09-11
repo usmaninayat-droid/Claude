@@ -1,0 +1,4523 @@
+[
+  {
+    "id": "INC-01",
+    "uniqueidentifier": "INC-01",
+    "title": "Flash flooding at Al Wakrah Corniche",
+    "status": "intake",
+    "systemcol1": "Al Wakrah Corniche — Zone 90, Street 200, Bldg 4",
+    "municipality": "Al Wakrah",
+    "systemcol2": "Critical",
+    "systemcol3": "2026-08-30T05:20:00Z",
+    "systemcol6": "Heavy rainfall triggered rapid water accumulation on the coastal road near Al Wakrah Corniche. Two lanes submerged, traffic being diverted.",
+    "lat": 25.1668,
+    "lng": 51.5973,
+    "systemcol8": "Ashghal (PWA)",
+    "activity": [
+      {
+        "id": "INC-01-act-1",
+        "kind": "log",
+        "actor": "Khalid Al-Mansoori",
+        "text": "logged this request via Ashghal (PWA)",
+        "at": "2026-08-30T05:20:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-01-act-2",
+        "kind": "log",
+        "actor": "Mohammed Al-Sulaiti",
+        "text": "updated the request details.",
+        "at": "2026-08-30T07:20:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-01-act-sev",
+        "kind": "log",
+        "actor": "Mohammed Al-Sulaiti",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Critical",
+          "tone": "danger"
+        },
+        "at": "2026-08-30T07:45:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-01-act-due",
+        "kind": "log",
+        "actor": "Fahad Al-Marri",
+        "text": "added due date **2 Sep, 2026**",
+        "at": "2026-08-30T08:05:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-01-act-3",
+        "kind": "comment",
+        "actor": "Mohammed Al-Sulaiti",
+        "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=128&h=128&fit=crop&crop=faces",
+        "text": "@KhalidAl-Mansoori crews are being coordinated for Al Wakrah Corniche. Priority holds at Critical.",
+        "at": "2026-08-30T08:20:00Z"
+      },
+      {
+        "id": "INC-01-act-4",
+        "kind": "comment",
+        "actor": "Khalid Al-Mansoori",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&crop=faces",
+        "text": "@UCCPAdmin please confirm the response plan for Al Wakrah Corniche once drainage capacity is verified.",
+        "at": "2026-08-30T10:20:00Z"
+      }
+    ],
+    "reported_by": "Aisha Al-Kuwari",
+    "last_updated": "2026-08-30T09:20:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "90",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5973,
+      25.1668
+    ],
+    "report_notes": [
+      "Heavy rainfall triggered rapid water accumulation on the coastal road near Al Wakrah Corniche. Two lanes submerged, traffic being diverted.",
+      "Field assessment at Al Wakrah Corniche: severity classified Critical after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Ashghal (PWA). Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Al Wakrah Corniche — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Al Wakrah Corniche — standing water"
+      }
+    ],
+    "systemcol9": "Boom Construction",
+    "systemcol10": "Fahad Al-Marri",
+    "systemcol12": "90-200-4",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "ASH-PWA-2026-0001",
+    "reopened": false,
+    "reported_notes": "Heavy rainfall triggered rapid water accumulation on the coastal road near Al Wakrah Corniche. Two lanes submerged, traffic being diverted.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=640&h=640&fit=crop",
+        "alt": "Al Wakrah Corniche — as reported",
+        "takenAt": "2026-08-30T08:15:00Z",
+        "location": "Al Wakrah Corniche — Zone 90, Street 200, Bldg 4"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1545276070-ec815f01c6ec?w=640&h=640&fit=crop",
+        "alt": "Al Wakrah Corniche — standing water",
+        "takenAt": "2026-08-30T08:15:00Z",
+        "location": "Al Wakrah Corniche — Zone 90, Street 200, Bldg 4"
+      }
+    ]
+  },
+  {
+    "id": "INC-02",
+    "uniqueidentifier": "INC-02",
+    "title": "Minor pooling near Lusail Marina promenade",
+    "status": "intake",
+    "systemcol1": "Lusail Marina — Zone 89, Street 207, Bldg 7",
+    "municipality": "Al Daayen",
+    "systemcol2": "Critical",
+    "systemcol3": "2026-08-30T04:55:00Z",
+    "systemcol6": "Shallow pooling reported by pedestrians along the marina promenade; awaiting triage.",
+    "lat": 25.3709,
+    "lng": 51.5222,
+    "systemcol8": "NCC",
+    "activity": [
+      {
+        "id": "INC-02-act-1",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "logged this request via NCC",
+        "at": "2026-08-30T04:55:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-02-act-2",
+        "kind": "log",
+        "actor": "Fatima Al-Naimi",
+        "text": "updated the request details.",
+        "at": "2026-08-30T07:06:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-02-act-sev",
+        "kind": "log",
+        "actor": "Fatima Al-Naimi",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Critical",
+          "tone": "danger"
+        },
+        "at": "2026-08-30T07:31:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-02-act-due",
+        "kind": "log",
+        "actor": "Noora Al-Kaabi",
+        "text": "added due date **2 Sep, 2026**",
+        "at": "2026-08-30T07:51:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-02-act-3",
+        "kind": "comment",
+        "actor": "Fatima Al-Naimi",
+        "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=128&h=128&fit=crop&crop=faces",
+        "text": "@ZaydAl-Farsi crews are being coordinated for Lusail Marina. Priority holds at Low.",
+        "at": "2026-08-30T08:02:00Z"
+      }
+    ],
+    "reported_by": "Mohammed Al-Sulaiti",
+    "last_updated": "2026-08-30T09:55:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "89",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5222,
+      25.3709
+    ],
+    "report_notes": [
+      "Shallow pooling reported by pedestrians along the marina promenade; awaiting triage.",
+      "Field assessment at Lusail Marina: severity classified Low after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via NCC. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Lusail Marina — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Lusail Marina — standing water"
+      }
+    ],
+    "systemcol9": "Al Jaber Engineering",
+    "systemcol10": "Noora Al-Kaabi",
+    "systemcol12": "89-207-7",
+    "systemcol14": "Request",
+    "systemcol15": "Rainwater Removal",
+    "systemcol16": "NCC-2026-0002",
+    "reopened": false,
+    "reported_notes": "Shallow pooling reported by pedestrians along the marina promenade; awaiting triage.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1545276070-ec815f01c6ec?w=640&h=640&fit=crop",
+        "alt": "Lusail Marina — as reported",
+        "takenAt": "2026-08-30T08:01:00Z",
+        "location": "Lusail Marina — Zone 89, Street 207, Bldg 7"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Lusail Marina — standing water",
+        "takenAt": "2026-08-30T08:01:00Z",
+        "location": "Lusail Marina — Zone 89, Street 207, Bldg 7"
+      }
+    ]
+  },
+  {
+    "id": "INC-03",
+    "uniqueidentifier": "INC-03",
+    "title": "Waterlogged underpass on Al Rayyan Road",
+    "status": "triage",
+    "systemcol1": "Al Rayyan Underpass — Zone 88, Street 214, Bldg 10",
+    "municipality": "Al Rayyan",
+    "systemcol2": "High",
+    "systemcol3": "2026-08-29T22:05:00Z",
+    "systemcol6": "Underpass sensor reported a fault right before flooding was called in by patrol; being triaged for dispatch.",
+    "lat": 25.289,
+    "lng": 51.4351,
+    "systemcol8": "Oracle e-Service",
+    "activity": [
+      {
+        "id": "INC-03-act-1",
+        "kind": "log",
+        "actor": "Aisha Al-Kuwari",
+        "text": "logged this request via Oracle e-Service",
+        "at": "2026-08-29T22:05:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-03-act-2",
+        "kind": "log",
+        "actor": "Hassan Al-Marri",
+        "text": "updated the request details.",
+        "at": "2026-08-30T00:27:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-03-act-sev",
+        "kind": "log",
+        "actor": "Hassan Al-Marri",
+        "text": "changed severity to",
+        "severity": {
+          "label": "High",
+          "tone": "warning"
+        },
+        "at": "2026-08-30T00:52:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-03-act-due",
+        "kind": "log",
+        "actor": "Yousef Al-Emadi",
+        "text": "added due date **2 Sep, 2026**",
+        "at": "2026-08-30T01:12:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-03-act-3",
+        "kind": "comment",
+        "actor": "Hassan Al-Marri",
+        "avatar": "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=128&h=128&fit=crop&crop=faces",
+        "text": "@AishaAl-Kuwari crews are being coordinated for Al Rayyan Underpass. Priority holds at High.",
+        "at": "2026-08-30T01:19:00Z"
+      }
+    ],
+    "reported_by": "Fatima Al-Naimi",
+    "last_updated": "2026-08-30T04:05:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "88",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.4351,
+      25.289
+    ],
+    "report_notes": [
+      "Underpass sensor reported a fault right before flooding was called in by patrol; being triaged for dispatch.",
+      "Field assessment at Al Rayyan Underpass: severity classified High after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oracle e-Service. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Underpass — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Underpass — standing water"
+      }
+    ],
+    "systemcol9": "HBK Contracting",
+    "systemcol10": "Yousef Al-Emadi",
+    "systemcol12": "88-214-10",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "ORC-ESVC-2026-0003",
+    "reopened": false,
+    "reported_notes": "Underpass sensor reported a fault right before flooding was called in by patrol; being triaged for dispatch.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Underpass — as reported",
+        "takenAt": "2026-08-30T01:22:00Z",
+        "location": "Al Rayyan Underpass — Zone 88, Street 214, Bldg 10"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Underpass — standing water",
+        "takenAt": "2026-08-30T01:22:00Z",
+        "location": "Al Rayyan Underpass — Zone 88, Street 214, Bldg 10"
+      }
+    ]
+  },
+  {
+    "id": "INC-04",
+    "uniqueidentifier": "INC-04",
+    "title": "Drainage backup near Umm Salal roundabout",
+    "status": "triage",
+    "systemcol1": "Umm Salal — Zone 87, Street 221, Bldg 13",
+    "municipality": "Umm Salal",
+    "systemcol2": "Medium",
+    "systemcol3": "2026-08-29T18:40:00Z",
+    "systemcol6": "Standing water reported at the main roundabout; triage team assessing scope before dispatch.",
+    "lat": 25.4721,
+    "lng": 51.398,
+    "systemcol8": "Oracle e-Service",
+    "activity": [
+      {
+        "id": "INC-04-act-1",
+        "kind": "log",
+        "actor": "Mohammed Al-Sulaiti",
+        "text": "logged this request via Oracle e-Service",
+        "at": "2026-08-29T18:40:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-04-act-2",
+        "kind": "log",
+        "actor": "Noora Al-Thani",
+        "text": "updated the request details.",
+        "at": "2026-08-29T21:13:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-04-act-sev",
+        "kind": "log",
+        "actor": "Noora Al-Thani",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Medium",
+          "tone": "info"
+        },
+        "at": "2026-08-29T21:38:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-04-act-due",
+        "kind": "log",
+        "actor": "Rashid Al-Naimi",
+        "text": "added due date **1 Sep, 2026**",
+        "at": "2026-08-29T21:58:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-04-act-3",
+        "kind": "comment",
+        "actor": "Noora Al-Thani",
+        "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=128&h=128&fit=crop&crop=faces",
+        "text": "@MohammedAl-Sulaiti crews are being coordinated for Umm Salal. Priority holds at Medium.",
+        "at": "2026-08-29T22:01:00Z"
+      }
+    ],
+    "reported_by": "Hassan Al-Marri",
+    "last_updated": "2026-08-30T01:40:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "87",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.398,
+      25.4721
+    ],
+    "report_notes": [
+      "Standing water reported at the main roundabout; triage team assessing scope before dispatch.",
+      "Field assessment at Umm Salal: severity classified Medium after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oracle e-Service. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Umm Salal — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Umm Salal — standing water"
+      }
+    ],
+    "systemcol9": "UrbaCon Trading & Contracting",
+    "systemcol10": "Rashid Al-Naimi",
+    "systemcol12": "87-221-13",
+    "systemcol14": "Request",
+    "systemcol15": "Blocked Drain",
+    "systemcol16": "ORC-ESVC-2026-0004",
+    "reopened": false,
+    "reported_notes": "Standing water reported at the main roundabout; triage team assessing scope before dispatch.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Umm Salal — as reported",
+        "takenAt": "2026-08-29T22:08:00Z",
+        "location": "Umm Salal — Zone 87, Street 221, Bldg 13"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "Umm Salal — standing water",
+        "takenAt": "2026-08-29T22:08:00Z",
+        "location": "Umm Salal — Zone 87, Street 221, Bldg 13"
+      }
+    ]
+  },
+  {
+    "id": "INC-05",
+    "uniqueidentifier": "INC-05",
+    "title": "Storm drain overflow near Al Sadd junction",
+    "status": "triage",
+    "systemcol1": "Al Sadd — Zone 86, Street 228, Bldg 16",
+    "municipality": "Doha",
+    "systemcol2": "Medium",
+    "systemcol3": "2026-08-29T14:10:00Z",
+    "systemcol6": "Overflow traced to a blocked storm drain at the junction; awaiting acknowledgement.",
+    "lat": 25.2822,
+    "lng": 51.5069,
+    "systemcol8": "NCC",
+    "activity": [
+      {
+        "id": "INC-05-act-1",
+        "kind": "log",
+        "actor": "Fatima Al-Naimi",
+        "text": "logged this request via NCC",
+        "at": "2026-08-29T14:10:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-05-act-2",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "updated the request details.",
+        "at": "2026-08-29T16:54:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-05-act-sev",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Medium",
+          "tone": "info"
+        },
+        "at": "2026-08-29T17:19:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-05-act-due",
+        "kind": "log",
+        "actor": "Maryam Al-Sada",
+        "text": "added due date **1 Sep, 2026**",
+        "at": "2026-08-29T17:39:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-05-act-3",
+        "kind": "comment",
+        "actor": "Omar Al-Kaabi",
+        "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=128&h=128&fit=crop&crop=faces",
+        "text": "@FatimaAl-Naimi crews are being coordinated for Al Sadd. Priority holds at Medium.",
+        "at": "2026-08-29T17:38:00Z"
+      },
+      {
+        "id": "INC-05-act-4",
+        "kind": "comment",
+        "actor": "Fatima Al-Naimi",
+        "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=128&h=128&fit=crop&crop=faces",
+        "text": "@UCCPAdmin please confirm the response plan for Al Sadd once drainage capacity is verified.",
+        "at": "2026-08-29T19:17:00Z"
+      }
+    ],
+    "reported_by": "Noora Al-Thani",
+    "last_updated": "2026-08-29T22:10:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "86",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5069,
+      25.2822
+    ],
+    "report_notes": [
+      "Overflow traced to a blocked storm drain at the junction; awaiting acknowledgement.",
+      "Field assessment at Al Sadd: severity classified Medium after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via NCC. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Al Sadd — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Al Sadd — standing water"
+      }
+    ],
+    "systemcol9": "Al Darwish Engineering",
+    "systemcol10": "Maryam Al-Sada",
+    "systemcol12": "86-228-16",
+    "systemcol14": "Request",
+    "systemcol15": "Sewage Overflow",
+    "systemcol16": "NCC-2026-0005",
+    "reopened": false,
+    "reported_notes": "Overflow traced to a blocked storm drain at the junction; awaiting acknowledgement.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "Al Sadd — as reported",
+        "takenAt": "2026-08-29T17:49:00Z",
+        "location": "Al Sadd — Zone 86, Street 228, Bldg 16"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "Al Sadd — standing water",
+        "takenAt": "2026-08-29T17:49:00Z",
+        "location": "Al Sadd — Zone 86, Street 228, Bldg 16"
+      }
+    ]
+  },
+  {
+    "id": "INC-06",
+    "uniqueidentifier": "INC-06",
+    "title": "Pooling on Salwa Road service lane",
+    "status": "acknowledged",
+    "systemcol1": "Salwa Road — address pending",
+    "municipality": "Doha",
+    "systemcol2": "Medium",
+    "systemcol3": "2026-08-29T09:30:00Z",
+    "systemcol6": "Service lane pooling acknowledged by the ops desk; assessment crew being scheduled.",
+    "lat": 25.2388,
+    "lng": 51.4728,
+    "systemcol8": "Oun app (citizen)",
+    "activity": [
+      {
+        "id": "INC-06-act-1",
+        "kind": "log",
+        "actor": "Hassan Al-Marri",
+        "text": "logged this request via Oun app (citizen)",
+        "at": "2026-08-29T09:30:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-06-act-2",
+        "kind": "log",
+        "actor": "Khalid Al-Mansoori",
+        "text": "updated the request details.",
+        "at": "2026-08-29T11:35:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-06-act-sev",
+        "kind": "log",
+        "actor": "Khalid Al-Mansoori",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Medium",
+          "tone": "info"
+        },
+        "at": "2026-08-29T12:00:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-06-act-due",
+        "kind": "log",
+        "actor": "Hassan Ibrahim",
+        "text": "added due date **1 Sep, 2026**",
+        "at": "2026-08-29T12:20:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-06-act-3",
+        "kind": "comment",
+        "actor": "Khalid Al-Mansoori",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&crop=faces",
+        "text": "@HassanAl-Marri crews are being coordinated for Salwa Road. Priority holds at Medium.",
+        "at": "2026-08-29T13:05:00Z"
+      }
+    ],
+    "reported_by": "Omar Al-Kaabi",
+    "last_updated": "2026-08-29T18:30:00Z",
+    "cust_name": "Aisha Al-Kuwari",
+    "cust_contact": "+974 5535 1185",
+    "addr_area": "Pending",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.4728,
+      25.2388
+    ],
+    "report_notes": [
+      "Service lane pooling acknowledged by the ops desk; assessment crew being scheduled.",
+      "Field assessment at Salwa Road: severity classified Medium after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oun app (citizen). Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Salwa Road — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Salwa Road — standing water"
+      }
+    ],
+    "systemcol9": "Qatar Building Company",
+    "systemcol10": "Hassan Ibrahim",
+    "systemcol12": "Pending",
+    "systemcol14": "Complaint",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "",
+    "reopened": false,
+    "reported_notes": "Service lane pooling acknowledged by the ops desk; assessment crew being scheduled.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "Salwa Road — as reported",
+        "takenAt": "2026-08-29T12:30:00Z",
+        "location": "Salwa Road — address pending"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "Salwa Road — standing water",
+        "takenAt": "2026-08-29T12:30:00Z",
+        "location": "Salwa Road — address pending"
+      }
+    ]
+  },
+  {
+    "id": "INC-07",
+    "uniqueidentifier": "INC-07",
+    "title": "Flooded access road, Industrial Area",
+    "status": "acknowledged",
+    "systemcol1": "Industrial Area — Zone 84, Street 242, Bldg 22",
+    "municipality": "Doha",
+    "systemcol2": "High",
+    "systemcol3": "2026-08-29T07:05:00Z",
+    "systemcol6": "Access road to warehouse block 12 flooded overnight; acknowledged, awaiting site assessment.",
+    "lat": 25.2049,
+    "lng": 51.4487,
+    "systemcol8": "Ashghal (PWA)",
+    "activity": [
+      {
+        "id": "INC-07-act-1",
+        "kind": "log",
+        "actor": "Noora Al-Thani",
+        "text": "logged this request via Ashghal (PWA)",
+        "at": "2026-08-29T07:05:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-07-act-2",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "updated the request details.",
+        "at": "2026-08-29T09:21:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-07-act-sev",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "changed severity to",
+        "severity": {
+          "label": "High",
+          "tone": "warning"
+        },
+        "at": "2026-08-29T09:46:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-07-act-due",
+        "kind": "log",
+        "actor": "Priya Nair",
+        "text": "added due date **1 Sep, 2026**",
+        "at": "2026-08-29T10:06:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-07-act-3",
+        "kind": "comment",
+        "actor": "Zayd Al-Farsi",
+        "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=128&h=128&fit=crop&crop=faces",
+        "text": "@NooraAl-Thani crews are being coordinated for Industrial Area. Priority holds at High.",
+        "at": "2026-08-29T10:47:00Z"
+      }
+    ],
+    "reported_by": "Khalid Al-Mansoori",
+    "last_updated": "2026-08-29T17:05:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "84",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.4487,
+      25.2049
+    ],
+    "report_notes": [
+      "Access road to warehouse block 12 flooded overnight; acknowledged, awaiting site assessment.",
+      "Field assessment at Industrial Area: severity classified High after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Ashghal (PWA). Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Industrial Area — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Industrial Area — standing water"
+      }
+    ],
+    "systemcol9": "Midmac Contracting",
+    "systemcol10": "Priya Nair",
+    "systemcol12": "84-242-22",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "ASH-PWA-2026-0007",
+    "reopened": true,
+    "reported_notes": "Access road to warehouse block 12 flooded overnight; acknowledged, awaiting site assessment.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "Industrial Area — as reported",
+        "takenAt": "2026-08-29T10:16:00Z",
+        "location": "Industrial Area — Zone 84, Street 242, Bldg 22"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1561553590-267fc716698a?w=640&h=640&fit=crop",
+        "alt": "Industrial Area — standing water",
+        "takenAt": "2026-08-29T10:16:00Z",
+        "location": "Industrial Area — Zone 84, Street 242, Bldg 22"
+      }
+    ]
+  },
+  {
+    "id": "INC-08",
+    "uniqueidentifier": "INC-08",
+    "title": "Waterlogging near Msheireb Downtown plaza",
+    "status": "acknowledged",
+    "systemcol1": "Msheireb Downtown — Zone 83, Street 249, Bldg 25",
+    "municipality": "Doha",
+    "systemcol2": "Low",
+    "systemcol3": "2026-08-28T21:15:00Z",
+    "systemcol6": "Shallow pooling near the plaza fountains; acknowledged, low priority pending assessment.",
+    "lat": 25.286,
+    "lng": 51.5203,
+    "systemcol8": "184 Call Center",
+    "activity": [
+      {
+        "id": "INC-08-act-1",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "logged this request via 184 Call Center",
+        "at": "2026-08-28T21:15:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-08-act-2",
+        "kind": "log",
+        "actor": "Aisha Al-Kuwari",
+        "text": "updated the request details.",
+        "at": "2026-08-28T23:42:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-08-act-sev",
+        "kind": "log",
+        "actor": "Aisha Al-Kuwari",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Low",
+          "tone": "neutral"
+        },
+        "at": "2026-08-29T00:07:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-08-act-due",
+        "kind": "log",
+        "actor": "Carlos Mendoza",
+        "text": "added due date **31 Aug, 2026**",
+        "at": "2026-08-29T00:27:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-08-act-3",
+        "kind": "comment",
+        "actor": "Aisha Al-Kuwari",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=128&h=128&fit=crop&crop=faces",
+        "text": "@OmarAl-Kaabi crews are being coordinated for Msheireb Downtown. Priority holds at Low.",
+        "at": "2026-08-29T01:04:00Z"
+      }
+    ],
+    "reported_by": "Zayd Al-Farsi",
+    "last_updated": "2026-08-29T08:15:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "83",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5203,
+      25.286
+    ],
+    "report_notes": [
+      "Shallow pooling near the plaza fountains; acknowledged, low priority pending assessment.",
+      "Field assessment at Msheireb Downtown: severity classified Low after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via 184 Call Center. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Msheireb Downtown — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Msheireb Downtown — standing water"
+      }
+    ],
+    "systemcol9": "Al Balagh Trading & Contracting",
+    "systemcol10": "Carlos Mendoza",
+    "systemcol12": "83-249-25",
+    "systemcol14": "Request",
+    "systemcol15": "Rainwater Removal",
+    "systemcol16": "CC184-2026-0008",
+    "reopened": false,
+    "reported_notes": "Shallow pooling near the plaza fountains; acknowledged, low priority pending assessment.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1561553590-267fc716698a?w=640&h=640&fit=crop",
+        "alt": "Msheireb Downtown — as reported",
+        "takenAt": "2026-08-29T00:37:00Z",
+        "location": "Msheireb Downtown — Zone 83, Street 249, Bldg 25"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=640&h=640&fit=crop",
+        "alt": "Msheireb Downtown — standing water",
+        "takenAt": "2026-08-29T00:37:00Z",
+        "location": "Msheireb Downtown — Zone 83, Street 249, Bldg 25"
+      }
+    ]
+  },
+  {
+    "id": "INC-09",
+    "uniqueidentifier": "INC-09",
+    "title": "Highway flooding near Mesaieed industrial zone",
+    "status": "assessed",
+    "systemcol1": "Mesaieed Highway — Zone 82, Street 256, Bldg 28",
+    "municipality": "Al Wakrah",
+    "systemcol2": "High",
+    "systemcol3": "2026-08-28T09:15:00Z",
+    "systemcol6": "Ground crew confirmed flooding on the southbound carriageway; assessment complete, tanker dispatch required.",
+    "lat": 25.0721,
+    "lng": 51.5512,
+    "systemcol8": "Oracle e-Service",
+    "activity": [
+      {
+        "id": "INC-09-act-1",
+        "kind": "log",
+        "actor": "Khalid Al-Mansoori",
+        "text": "logged this request via Oracle e-Service",
+        "at": "2026-08-28T09:15:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-09-act-2",
+        "kind": "log",
+        "actor": "Mohammed Al-Sulaiti",
+        "text": "updated the request details.",
+        "at": "2026-08-28T11:53:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-09-act-sev",
+        "kind": "log",
+        "actor": "Mohammed Al-Sulaiti",
+        "text": "changed severity to",
+        "severity": {
+          "label": "High",
+          "tone": "warning"
+        },
+        "at": "2026-08-28T12:18:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-09-act-due",
+        "kind": "log",
+        "actor": "Ahmed Zaki",
+        "text": "added due date **31 Aug, 2026**",
+        "at": "2026-08-28T12:38:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-09-act-3",
+        "kind": "comment",
+        "actor": "Mohammed Al-Sulaiti",
+        "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=128&h=128&fit=crop&crop=faces",
+        "text": "@KhalidAl-Mansoori crews are being coordinated for Mesaieed Highway. Priority holds at High.",
+        "at": "2026-08-28T12:16:00Z"
+      },
+      {
+        "id": "INC-09-act-4",
+        "kind": "comment",
+        "actor": "Khalid Al-Mansoori",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&crop=faces",
+        "text": "@UCCPAdmin please confirm the response plan for Mesaieed Highway once drainage capacity is verified.",
+        "at": "2026-08-28T14:29:00Z"
+      }
+    ],
+    "reported_by": "Aisha Al-Kuwari",
+    "last_updated": "2026-08-28T21:15:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "82",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5512,
+      25.0721
+    ],
+    "report_notes": [
+      "Ground crew confirmed flooding on the southbound carriageway; assessment complete, tanker dispatch required.",
+      "Field assessment at Mesaieed Highway: severity classified High after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oracle e-Service. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Mesaieed Highway — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Mesaieed Highway — standing water"
+      }
+    ],
+    "systemcol9": "Boom Construction",
+    "systemcol10": "Ahmed Zaki",
+    "systemcol12": "82-256-28",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "ORC-ESVC-2026-0009",
+    "reopened": false,
+    "reported_notes": "Ground crew confirmed flooding on the southbound carriageway; assessment complete, tanker dispatch required.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=640&h=640&fit=crop",
+        "alt": "Mesaieed Highway — as reported",
+        "takenAt": "2026-08-28T12:48:00Z",
+        "location": "Mesaieed Highway — Zone 82, Street 256, Bldg 28"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1545276070-ec815f01c6ec?w=640&h=640&fit=crop",
+        "alt": "Mesaieed Highway — standing water",
+        "takenAt": "2026-08-28T12:48:00Z",
+        "location": "Mesaieed Highway — Zone 82, Street 256, Bldg 28"
+      }
+    ]
+  },
+  {
+    "id": "INC-10",
+    "uniqueidentifier": "INC-10",
+    "title": "Drainage backup in West Bay business district",
+    "status": "assessed",
+    "systemcol1": "West Bay — Zone 81, Street 263, Bldg 31",
+    "municipality": "Doha",
+    "systemcol2": "Medium",
+    "systemcol3": "2026-08-28T05:30:00Z",
+    "systemcol6": "Standing water outside several towers assessed after sustained rainfall overnight; tanker assignment pending.",
+    "lat": 25.3252,
+    "lng": 51.5291,
+    "systemcol8": "Oracle e-Service",
+    "activity": [
+      {
+        "id": "INC-10-act-1",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "logged this request via Oracle e-Service",
+        "at": "2026-08-28T05:30:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-10-act-2",
+        "kind": "log",
+        "actor": "Fatima Al-Naimi",
+        "text": "updated the request details.",
+        "at": "2026-08-28T08:19:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-10-act-sev",
+        "kind": "log",
+        "actor": "Fatima Al-Naimi",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Medium",
+          "tone": "info"
+        },
+        "at": "2026-08-28T08:44:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-10-act-due",
+        "kind": "log",
+        "actor": "Latifa Al-Hajri",
+        "text": "added due date **31 Aug, 2026**",
+        "at": "2026-08-28T09:04:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-10-act-3",
+        "kind": "comment",
+        "actor": "Fatima Al-Naimi",
+        "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=128&h=128&fit=crop&crop=faces",
+        "text": "@ZaydAl-Farsi crews are being coordinated for West Bay. Priority holds at Medium.",
+        "at": "2026-08-28T08:38:00Z"
+      }
+    ],
+    "reported_by": "Mohammed Al-Sulaiti",
+    "last_updated": "2026-08-28T09:30:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "81",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5291,
+      25.3252
+    ],
+    "report_notes": [
+      "Standing water outside several towers assessed after sustained rainfall overnight; tanker assignment pending.",
+      "Field assessment at West Bay: severity classified Medium after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oracle e-Service. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "West Bay — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "West Bay — standing water"
+      }
+    ],
+    "systemcol9": "Al Jaber Engineering",
+    "systemcol10": "Latifa Al-Hajri",
+    "systemcol12": "81-263-31",
+    "systemcol14": "Request",
+    "systemcol15": "Blocked Drain",
+    "systemcol16": "ORC-ESVC-2026-0010",
+    "reopened": false,
+    "reported_notes": "Standing water outside several towers assessed after sustained rainfall overnight; tanker assignment pending.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1545276070-ec815f01c6ec?w=640&h=640&fit=crop",
+        "alt": "West Bay — as reported",
+        "takenAt": "2026-08-28T09:14:00Z",
+        "location": "West Bay — Zone 81, Street 263, Bldg 31"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "West Bay — standing water",
+        "takenAt": "2026-08-28T09:14:00Z",
+        "location": "West Bay — Zone 81, Street 263, Bldg 31"
+      }
+    ]
+  },
+  {
+    "id": "INC-11",
+    "uniqueidentifier": "INC-11",
+    "title": "Underpass flooding near Al Khor Community",
+    "status": "assessed",
+    "systemcol1": "Al Khor — Zone 80, Street 270, Bldg 34",
+    "municipality": "Umm Salal",
+    "systemcol2": "High",
+    "systemcol3": "2026-08-27T23:50:00Z",
+    "systemcol6": "Assessment confirms depth exceeds safe threshold for light vehicles; tanker required for extraction.",
+    "lat": 25.6758,
+    "lng": 51.497,
+    "systemcol8": "NCC",
+    "activity": [
+      {
+        "id": "INC-11-act-1",
+        "kind": "log",
+        "actor": "Aisha Al-Kuwari",
+        "text": "logged this request via NCC",
+        "at": "2026-08-27T23:50:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-11-act-2",
+        "kind": "log",
+        "actor": "Hassan Al-Marri",
+        "text": "updated the request details.",
+        "at": "2026-08-28T02:00:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-11-act-sev",
+        "kind": "log",
+        "actor": "Hassan Al-Marri",
+        "text": "changed severity to",
+        "severity": {
+          "label": "High",
+          "tone": "warning"
+        },
+        "at": "2026-08-28T02:25:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-11-act-due",
+        "kind": "log",
+        "actor": "Fahad Al-Marri",
+        "text": "added due date **31 Aug, 2026**",
+        "at": "2026-08-28T02:45:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-11-act-3",
+        "kind": "comment",
+        "actor": "Hassan Al-Marri",
+        "avatar": "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=128&h=128&fit=crop&crop=faces",
+        "text": "@AishaAl-Kuwari crews are being coordinated for Al Khor. Priority holds at High.",
+        "at": "2026-08-28T03:05:00Z"
+      }
+    ],
+    "reported_by": "Fatima Al-Naimi",
+    "last_updated": "2026-08-28T04:50:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "80",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.497,
+      25.6758
+    ],
+    "report_notes": [
+      "Assessment confirms depth exceeds safe threshold for light vehicles; tanker required for extraction.",
+      "Field assessment at Al Khor: severity classified High after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via NCC. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Al Khor — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Al Khor — standing water"
+      }
+    ],
+    "systemcol9": "HBK Contracting",
+    "systemcol10": "Fahad Al-Marri",
+    "systemcol12": "80-270-34",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "NCC-2026-0011",
+    "reopened": false,
+    "reported_notes": "Assessment confirms depth exceeds safe threshold for light vehicles; tanker required for extraction.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Al Khor — as reported",
+        "takenAt": "2026-08-28T02:55:00Z",
+        "location": "Al Khor — Zone 80, Street 270, Bldg 34"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Al Khor — standing water",
+        "takenAt": "2026-08-28T02:55:00Z",
+        "location": "Al Khor — Zone 80, Street 270, Bldg 34"
+      }
+    ]
+  },
+  {
+    "id": "INC-12",
+    "uniqueidentifier": "INC-12",
+    "title": "Storm drain overflow in Al Khor industrial area",
+    "status": "tanker-assigned",
+    "systemcol1": "Al Khor Industrial Area — address pending",
+    "municipality": "Umm Salal",
+    "systemcol2": "Medium",
+    "systemcol3": "2026-08-27T13:40:00Z",
+    "systemcol6": "Overflow traced to a blocked storm drain; tanker dispatched to pump standing water.",
+    "systemcol7": "LMV-QA01",
+    "lat": 25.6619,
+    "lng": 51.4739,
+    "systemcol8": "Oun app (citizen)",
+    "activity": [
+      {
+        "id": "INC-12-act-1",
+        "kind": "log",
+        "actor": "Mohammed Al-Sulaiti",
+        "text": "logged this request via Oun app (citizen)",
+        "at": "2026-08-27T13:40:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-12-act-2",
+        "kind": "log",
+        "actor": "Noora Al-Thani",
+        "text": "updated the request details.",
+        "at": "2026-08-27T16:01:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-12-act-sev",
+        "kind": "log",
+        "actor": "Noora Al-Thani",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Medium",
+          "tone": "info"
+        },
+        "at": "2026-08-27T16:26:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-12-act-due",
+        "kind": "log",
+        "actor": "Noora Al-Kaabi",
+        "text": "added due date **30 Aug, 2026**",
+        "at": "2026-08-27T16:46:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-12-act-3",
+        "kind": "comment",
+        "actor": "Noora Al-Thani",
+        "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=128&h=128&fit=crop&crop=faces",
+        "text": "@MohammedAl-Sulaiti crews are being coordinated for Al Khor Industrial Area. Priority holds at Medium.",
+        "at": "2026-08-27T17:02:00Z"
+      }
+    ],
+    "reported_by": "Hassan Al-Marri",
+    "last_updated": "2026-08-27T19:40:00Z",
+    "cust_name": "Khalid Al-Mansoori",
+    "cust_contact": "+974 5577 1407",
+    "addr_area": "Pending",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.4739,
+      25.6619
+    ],
+    "report_notes": [
+      "Overflow traced to a blocked storm drain; tanker dispatched to pump standing water.",
+      "Field assessment at Al Khor Industrial Area: severity classified Medium after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oun app (citizen). Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Al Khor Industrial Area — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Al Khor Industrial Area — standing water"
+      }
+    ],
+    "veh_driver": "Fatima Al-Naimi",
+    "systemcol9": "UrbaCon Trading & Contracting",
+    "systemcol10": "Noora Al-Kaabi",
+    "systemcol12": "Pending",
+    "systemcol14": "Complaint",
+    "systemcol15": "Sewage Overflow",
+    "systemcol16": "",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4001",
+    "reopened": false,
+    "reported_notes": "Overflow traced to a blocked storm drain; tanker dispatched to pump standing water.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Al Khor Industrial Area — as reported",
+        "takenAt": "2026-08-27T16:56:00Z",
+        "location": "Al Khor Industrial Area — address pending"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "Al Khor Industrial Area — standing water",
+        "takenAt": "2026-08-27T16:56:00Z",
+        "location": "Al Khor Industrial Area — address pending"
+      }
+    ]
+  },
+  {
+    "id": "INC-13",
+    "uniqueidentifier": "INC-13",
+    "title": "Flooded car park at Education City",
+    "status": "tanker-assigned",
+    "systemcol1": "Education City — Zone 78, Street 284, Bldg 40",
+    "municipality": "Al Rayyan",
+    "systemcol2": "Medium",
+    "systemcol3": "2026-08-27T08:20:00Z",
+    "systemcol6": "Basement car park flooded after heavy overnight rain; tanker en route for extraction.",
+    "systemcol7": "LMV-QA04",
+    "lat": 25.314,
+    "lng": 51.4428,
+    "systemcol8": "Ashghal (PWA)",
+    "activity": [
+      {
+        "id": "INC-13-act-1",
+        "kind": "log",
+        "actor": "Fatima Al-Naimi",
+        "text": "logged this request via Ashghal (PWA)",
+        "at": "2026-08-27T08:20:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-13-act-2",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "updated the request details.",
+        "at": "2026-08-27T10:52:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-13-act-sev",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Medium",
+          "tone": "info"
+        },
+        "at": "2026-08-27T11:17:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-13-act-due",
+        "kind": "log",
+        "actor": "Yousef Al-Emadi",
+        "text": "added due date **30 Aug, 2026**",
+        "at": "2026-08-27T11:37:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-13-act-3",
+        "kind": "comment",
+        "actor": "Omar Al-Kaabi",
+        "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=128&h=128&fit=crop&crop=faces",
+        "text": "@FatimaAl-Naimi crews are being coordinated for Education City. Priority holds at Medium.",
+        "at": "2026-08-27T11:49:00Z"
+      },
+      {
+        "id": "INC-13-act-4",
+        "kind": "comment",
+        "actor": "Fatima Al-Naimi",
+        "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=128&h=128&fit=crop&crop=faces",
+        "text": "@UCCPAdmin please confirm the response plan for Education City once drainage capacity is verified.",
+        "at": "2026-08-27T13:41:00Z"
+      }
+    ],
+    "reported_by": "Noora Al-Thani",
+    "last_updated": "2026-08-27T15:20:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "78",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.4428,
+      25.314
+    ],
+    "report_notes": [
+      "Basement car park flooded after heavy overnight rain; tanker en route for extraction.",
+      "Field assessment at Education City: severity classified Medium after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Ashghal (PWA). Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Education City — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Education City — standing water"
+      }
+    ],
+    "veh_driver": "Hassan Al-Marri",
+    "systemcol9": "Al Darwish Engineering",
+    "systemcol10": "Yousef Al-Emadi",
+    "systemcol12": "78-284-40",
+    "systemcol14": "Request",
+    "systemcol15": "Rainwater Removal",
+    "systemcol16": "ASH-PWA-2026-0013",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4002",
+    "reopened": false,
+    "reported_notes": "Basement car park flooded after heavy overnight rain; tanker en route for extraction.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "Education City — as reported",
+        "takenAt": "2026-08-27T11:47:00Z",
+        "location": "Education City — Zone 78, Street 284, Bldg 40"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "Education City — standing water",
+        "takenAt": "2026-08-27T11:47:00Z",
+        "location": "Education City — Zone 78, Street 284, Bldg 40"
+      }
+    ]
+  },
+  {
+    "id": "INC-14",
+    "uniqueidentifier": "INC-14",
+    "title": "Waterlogged intersection at Doha Corniche",
+    "status": "tanker-assigned",
+    "systemcol1": "Doha Corniche — Zone 77, Street 291, Bldg 43",
+    "municipality": "Doha",
+    "systemcol2": "High",
+    "systemcol3": "2026-08-26T19:05:00Z",
+    "systemcol6": "Coastal drainage overwhelmed at the main intersection; tanker assigned for rapid drawdown.",
+    "systemcol7": "LMV-QA07",
+    "lat": 25.2941,
+    "lng": 51.5377,
+    "systemcol8": "184 Call Center",
+    "activity": [
+      {
+        "id": "INC-14-act-1",
+        "kind": "log",
+        "actor": "Hassan Al-Marri",
+        "text": "logged this request via 184 Call Center",
+        "at": "2026-08-26T19:05:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-14-act-2",
+        "kind": "log",
+        "actor": "Khalid Al-Mansoori",
+        "text": "updated the request details.",
+        "at": "2026-08-26T21:48:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-14-act-sev",
+        "kind": "log",
+        "actor": "Khalid Al-Mansoori",
+        "text": "changed severity to",
+        "severity": {
+          "label": "High",
+          "tone": "warning"
+        },
+        "at": "2026-08-26T22:13:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-14-act-due",
+        "kind": "log",
+        "actor": "Rashid Al-Naimi",
+        "text": "added due date **29 Aug, 2026**",
+        "at": "2026-08-26T22:33:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-14-act-3",
+        "kind": "comment",
+        "actor": "Khalid Al-Mansoori",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&crop=faces",
+        "text": "@HassanAl-Marri crews are being coordinated for Doha Corniche. Priority holds at High.",
+        "at": "2026-08-26T22:41:00Z"
+      }
+    ],
+    "reported_by": "Omar Al-Kaabi",
+    "last_updated": "2026-08-27T03:05:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "77",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5377,
+      25.2941
+    ],
+    "report_notes": [
+      "Coastal drainage overwhelmed at the main intersection; tanker assigned for rapid drawdown.",
+      "Field assessment at Doha Corniche: severity classified High after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via 184 Call Center. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Doha Corniche — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Doha Corniche — standing water"
+      }
+    ],
+    "veh_driver": "Noora Al-Thani",
+    "systemcol9": "Qatar Building Company",
+    "systemcol10": "Rashid Al-Naimi",
+    "systemcol12": "77-291-43",
+    "systemcol14": "Request",
+    "systemcol15": "Blocked Drain",
+    "systemcol16": "CC184-2026-0014",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4003",
+    "reopened": false,
+    "reported_notes": "Coastal drainage overwhelmed at the main intersection; tanker assigned for rapid drawdown.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "Doha Corniche — as reported",
+        "takenAt": "2026-08-26T22:43:00Z",
+        "location": "Doha Corniche — Zone 77, Street 291, Bldg 43"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "Doha Corniche — standing water",
+        "takenAt": "2026-08-26T22:43:00Z",
+        "location": "Doha Corniche — Zone 77, Street 291, Bldg 43"
+      }
+    ]
+  },
+  {
+    "id": "INC-15",
+    "uniqueidentifier": "INC-15",
+    "title": "Flooded underpass near Ras Laffan access road",
+    "status": "job-ongoing",
+    "systemcol1": "Ras Laffan — Zone 90, Street 298, Bldg 46",
+    "municipality": "Al Daayen",
+    "systemcol2": "High",
+    "systemcol3": "2026-08-26T11:35:00Z",
+    "systemcol6": "Tanker crew on-site actively pumping the underpass; extraction job in progress.",
+    "systemcol7": "LMV-QA10",
+    "lat": 25.9092,
+    "lng": 51.5143,
+    "systemcol8": "Oracle e-Service",
+    "activity": [
+      {
+        "id": "INC-15-act-1",
+        "kind": "log",
+        "actor": "Noora Al-Thani",
+        "text": "logged this request via Oracle e-Service",
+        "at": "2026-08-26T11:35:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-15-act-2",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "updated the request details.",
+        "at": "2026-08-26T13:39:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-15-act-sev",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "changed severity to",
+        "severity": {
+          "label": "High",
+          "tone": "warning"
+        },
+        "at": "2026-08-26T14:04:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-15-act-due",
+        "kind": "log",
+        "actor": "Maryam Al-Sada",
+        "text": "added due date **29 Aug, 2026**",
+        "at": "2026-08-26T14:24:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-15-act-3",
+        "kind": "comment",
+        "actor": "Zayd Al-Farsi",
+        "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=128&h=128&fit=crop&crop=faces",
+        "text": "@NooraAl-Thani crews are being coordinated for Ras Laffan. Priority holds at High.",
+        "at": "2026-08-26T15:18:00Z"
+      }
+    ],
+    "reported_by": "Khalid Al-Mansoori",
+    "last_updated": "2026-08-26T20:35:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "90",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5143,
+      25.9092
+    ],
+    "report_notes": [
+      "Tanker crew on-site actively pumping the underpass; extraction job in progress.",
+      "Field assessment at Ras Laffan: severity classified High after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oracle e-Service. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Ras Laffan — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Ras Laffan — standing water"
+      }
+    ],
+    "veh_driver": "Omar Al-Kaabi",
+    "systemcol9": "Midmac Contracting",
+    "systemcol10": "Maryam Al-Sada",
+    "systemcol12": "90-298-46",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "ORC-ESVC-2026-0015",
+    "tanker_count": 2,
+    "linked_daily_plan": "FPL-4004",
+    "reopened": false,
+    "reported_notes": "Tanker crew on-site actively pumping the underpass; extraction job in progress.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "Ras Laffan — as reported",
+        "takenAt": "2026-08-26T14:34:00Z",
+        "location": "Ras Laffan — Zone 90, Street 298, Bldg 46"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1561553590-267fc716698a?w=640&h=640&fit=crop",
+        "alt": "Ras Laffan — standing water",
+        "takenAt": "2026-08-26T14:34:00Z",
+        "location": "Ras Laffan — Zone 90, Street 298, Bldg 46"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-26T18:29:00Z",
+        "location": "Ras Laffan — Zone 90, Street 298, Bldg 46"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-26T18:29:00Z",
+        "location": "Ras Laffan — Zone 90, Street 298, Bldg 46"
+      }
+    ]
+  },
+  {
+    "id": "INC-16",
+    "uniqueidentifier": "INC-16",
+    "title": "Standing water on Al Wukair service road",
+    "status": "job-ongoing",
+    "systemcol1": "Al Wukair — Zone 89, Street 305, Bldg 49",
+    "municipality": "Al Wakrah",
+    "systemcol2": "Medium",
+    "systemcol3": "2026-08-26T06:50:00Z",
+    "systemcol6": "Tanker actively extracting standing water from the service road; job ongoing, ETA 40 minutes.",
+    "systemcol7": "LMV-QA12",
+    "lat": 25.1478,
+    "lng": 51.5412,
+    "systemcol8": "Oracle e-Service",
+    "activity": [
+      {
+        "id": "INC-16-act-1",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "logged this request via Oracle e-Service",
+        "at": "2026-08-26T06:50:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-16-act-2",
+        "kind": "log",
+        "actor": "Aisha Al-Kuwari",
+        "text": "updated the request details.",
+        "at": "2026-08-26T09:05:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-16-act-sev",
+        "kind": "log",
+        "actor": "Aisha Al-Kuwari",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Medium",
+          "tone": "info"
+        },
+        "at": "2026-08-26T09:30:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-16-act-due",
+        "kind": "log",
+        "actor": "Hassan Ibrahim",
+        "text": "added due date **29 Aug, 2026**",
+        "at": "2026-08-26T09:50:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-16-act-3",
+        "kind": "comment",
+        "actor": "Aisha Al-Kuwari",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=128&h=128&fit=crop&crop=faces",
+        "text": "@OmarAl-Kaabi crews are being coordinated for Al Wukair. Priority holds at Medium.",
+        "at": "2026-08-26T10:40:00Z"
+      }
+    ],
+    "reported_by": "Zayd Al-Farsi",
+    "last_updated": "2026-08-26T16:50:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "89",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5412,
+      25.1478
+    ],
+    "report_notes": [
+      "Tanker actively extracting standing water from the service road; job ongoing, ETA 40 minutes.",
+      "Field assessment at Al Wukair: severity classified Medium after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oracle e-Service. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Al Wukair — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Al Wukair — standing water"
+      }
+    ],
+    "veh_driver": "Khalid Al-Mansoori",
+    "systemcol9": "Al Balagh Trading & Contracting",
+    "systemcol10": "Hassan Ibrahim",
+    "systemcol12": "89-305-49",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "ORC-ESVC-2026-0016",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4005",
+    "reopened": false,
+    "reported_notes": "Tanker actively extracting standing water from the service road; job ongoing, ETA 40 minutes.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1561553590-267fc716698a?w=640&h=640&fit=crop",
+        "alt": "Al Wukair — as reported",
+        "takenAt": "2026-08-26T10:00:00Z",
+        "location": "Al Wukair — Zone 89, Street 305, Bldg 49"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=640&h=640&fit=crop",
+        "alt": "Al Wukair — standing water",
+        "takenAt": "2026-08-26T10:00:00Z",
+        "location": "Al Wukair — Zone 89, Street 305, Bldg 49"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-26T13:55:00Z",
+        "location": "Al Wukair — Zone 89, Street 305, Bldg 49"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-26T13:55:00Z",
+        "location": "Al Wukair — Zone 89, Street 305, Bldg 49"
+      }
+    ]
+  },
+  {
+    "id": "INC-17",
+    "uniqueidentifier": "INC-17",
+    "title": "Flash flood pooling at Al Khaleej compound",
+    "status": "job-ongoing",
+    "systemcol1": "Al Khaleej — Zone 88, Street 312, Bldg 52",
+    "municipality": "Doha",
+    "systemcol2": "Critical",
+    "systemcol3": "2026-08-25T22:10:00Z",
+    "systemcol6": "Critical pooling around the compound perimeter; tanker crew actively working the job.",
+    "systemcol7": "LMV-QA15",
+    "lat": 25.2979,
+    "lng": 51.5101,
+    "systemcol8": "NCC",
+    "activity": [
+      {
+        "id": "INC-17-act-1",
+        "kind": "log",
+        "actor": "Khalid Al-Mansoori",
+        "text": "logged this request via NCC",
+        "at": "2026-08-25T22:10:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-17-act-2",
+        "kind": "log",
+        "actor": "Mohammed Al-Sulaiti",
+        "text": "updated the request details.",
+        "at": "2026-08-26T00:36:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-17-act-sev",
+        "kind": "log",
+        "actor": "Mohammed Al-Sulaiti",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Critical",
+          "tone": "danger"
+        },
+        "at": "2026-08-26T01:01:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-17-act-due",
+        "kind": "log",
+        "actor": "Priya Nair",
+        "text": "added due date **29 Aug, 2026**",
+        "at": "2026-08-26T01:21:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-17-act-3",
+        "kind": "comment",
+        "actor": "Mohammed Al-Sulaiti",
+        "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=128&h=128&fit=crop&crop=faces",
+        "text": "@KhalidAl-Mansoori crews are being coordinated for Al Khaleej. Priority holds at Critical.",
+        "at": "2026-08-26T01:12:00Z"
+      },
+      {
+        "id": "INC-17-act-4",
+        "kind": "comment",
+        "actor": "Khalid Al-Mansoori",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&crop=faces",
+        "text": "@UCCPAdmin please confirm the response plan for Al Khaleej once drainage capacity is verified.",
+        "at": "2026-08-26T03:38:00Z"
+      }
+    ],
+    "reported_by": "Aisha Al-Kuwari",
+    "last_updated": "2026-08-26T09:10:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "88",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5101,
+      25.2979
+    ],
+    "report_notes": [
+      "Critical pooling around the compound perimeter; tanker crew actively working the job.",
+      "Field assessment at Al Khaleej: severity classified Critical after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via NCC. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Al Khaleej — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Al Khaleej — standing water"
+      }
+    ],
+    "veh_driver": "Zayd Al-Farsi",
+    "systemcol9": "Boom Construction",
+    "systemcol10": "Priya Nair",
+    "systemcol12": "88-312-52",
+    "systemcol14": "Request",
+    "systemcol15": "Rainwater Removal",
+    "systemcol16": "NCC-2026-0017",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4006",
+    "reopened": false,
+    "reported_notes": "Critical pooling around the compound perimeter; tanker crew actively working the job.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=640&h=640&fit=crop",
+        "alt": "Al Khaleej — as reported",
+        "takenAt": "2026-08-26T01:31:00Z",
+        "location": "Al Khaleej — Zone 88, Street 312, Bldg 52"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1545276070-ec815f01c6ec?w=640&h=640&fit=crop",
+        "alt": "Al Khaleej — standing water",
+        "takenAt": "2026-08-26T01:31:00Z",
+        "location": "Al Khaleej — Zone 88, Street 312, Bldg 52"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-26T05:26:00Z",
+        "location": "Al Khaleej — Zone 88, Street 312, Bldg 52"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-26T05:26:00Z",
+        "location": "Al Khaleej — Zone 88, Street 312, Bldg 52"
+      }
+    ]
+  },
+  {
+    "id": "INC-18",
+    "uniqueidentifier": "INC-18",
+    "title": "Waterlogging cleared at Doha Port access gate",
+    "status": "job-completed",
+    "systemcol1": "Doha Port — address pending",
+    "municipality": "Doha",
+    "systemcol2": "Medium",
+    "systemcol3": "2026-08-25T15:25:00Z",
+    "systemcol6": "Tanker extraction job completed at the port access gate; site drying, awaiting final sign-off.",
+    "systemcol7": "LMV-QA02",
+    "lat": 25.286,
+    "lng": 51.548,
+    "systemcol8": "Oun app (citizen)",
+    "activity": [
+      {
+        "id": "INC-18-act-1",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "logged this request via Oun app (citizen)",
+        "at": "2026-08-25T15:25:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-18-act-2",
+        "kind": "log",
+        "actor": "Fatima Al-Naimi",
+        "text": "updated the request details.",
+        "at": "2026-08-25T18:02:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-18-act-sev",
+        "kind": "log",
+        "actor": "Fatima Al-Naimi",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Medium",
+          "tone": "info"
+        },
+        "at": "2026-08-25T18:27:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-18-act-due",
+        "kind": "log",
+        "actor": "Carlos Mendoza",
+        "text": "added due date **28 Aug, 2026**",
+        "at": "2026-08-25T18:47:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-18-act-3",
+        "kind": "comment",
+        "actor": "Fatima Al-Naimi",
+        "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=128&h=128&fit=crop&crop=faces",
+        "text": "@ZaydAl-Farsi crews are being coordinated for Doha Port. Priority holds at Medium.",
+        "at": "2026-08-25T18:34:00Z"
+      }
+    ],
+    "reported_by": "Mohammed Al-Sulaiti",
+    "last_updated": "2026-08-26T03:25:00Z",
+    "cust_name": "Noora Al-Thani",
+    "cust_contact": "+974 5619 1629",
+    "addr_area": "Pending",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.548,
+      25.286
+    ],
+    "report_notes": [
+      "Tanker extraction job completed at the port access gate; site drying, awaiting final sign-off.",
+      "Field assessment at Doha Port: severity classified Medium after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oun app (citizen). Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Doha Port — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Doha Port — standing water"
+      }
+    ],
+    "veh_driver": "Aisha Al-Kuwari",
+    "completion_notes": [
+      "Dewatering completed at Doha Port. Pumped volume logged; road surface inspected and reopened to traffic.",
+      "Post-completion check confirmed drainage inlets are clear. No residual pooling after 60-minute observation window."
+    ],
+    "completion_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Doha Port — cleared"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Doha Port — reopened road"
+      }
+    ],
+    "systemcol9": "Al Jaber Engineering",
+    "systemcol10": "Carlos Mendoza",
+    "systemcol12": "Pending",
+    "systemcol14": "Complaint",
+    "systemcol15": "Other",
+    "systemcol16": "",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4007",
+    "reopened": false,
+    "reported_notes": "Tanker extraction job completed at the port access gate; site drying, awaiting final sign-off.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1545276070-ec815f01c6ec?w=640&h=640&fit=crop",
+        "alt": "Doha Port — as reported",
+        "takenAt": "2026-08-25T18:57:00Z",
+        "location": "Doha Port — address pending"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Doha Port — standing water",
+        "takenAt": "2026-08-25T18:57:00Z",
+        "location": "Doha Port — address pending"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-25T22:52:00Z",
+        "location": "Doha Port — address pending"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-25T22:52:00Z",
+        "location": "Doha Port — address pending"
+      }
+    ],
+    "driver_after_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "After — road cleared and dry",
+        "takenAt": "2026-08-25T23:47:00Z",
+        "location": "Doha Port — address pending"
+      }
+    ]
+  },
+  {
+    "id": "INC-19",
+    "uniqueidentifier": "INC-19",
+    "title": "Underpass extraction completed, Al Thumama",
+    "status": "job-completed",
+    "systemcol1": "Al Thumama — Zone 86, Street 326, Bldg 58",
+    "municipality": "Doha",
+    "systemcol2": "High",
+    "systemcol3": "2026-08-25T10:05:00Z",
+    "systemcol6": "Full extraction completed at the underpass; road reopened pending closure confirmation.",
+    "systemcol7": "LMV-QA05",
+    "lat": 25.2371,
+    "lng": 51.5399,
+    "systemcol8": "Ashghal (PWA)",
+    "activity": [
+      {
+        "id": "INC-19-act-1",
+        "kind": "log",
+        "actor": "Aisha Al-Kuwari",
+        "text": "logged this request via Ashghal (PWA)",
+        "at": "2026-08-25T10:05:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-19-act-2",
+        "kind": "log",
+        "actor": "Hassan Al-Marri",
+        "text": "updated the request details.",
+        "at": "2026-08-25T12:53:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-19-act-sev",
+        "kind": "log",
+        "actor": "Hassan Al-Marri",
+        "text": "changed severity to",
+        "severity": {
+          "label": "High",
+          "tone": "warning"
+        },
+        "at": "2026-08-25T13:18:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-19-act-due",
+        "kind": "log",
+        "actor": "Ahmed Zaki",
+        "text": "added due date **28 Aug, 2026**",
+        "at": "2026-08-25T13:38:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-19-act-3",
+        "kind": "comment",
+        "actor": "Hassan Al-Marri",
+        "avatar": "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=128&h=128&fit=crop&crop=faces",
+        "text": "@AishaAl-Kuwari crews are being coordinated for Al Thumama. Priority holds at High.",
+        "at": "2026-08-25T13:21:00Z"
+      }
+    ],
+    "reported_by": "Fatima Al-Naimi",
+    "last_updated": "2026-08-25T14:05:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "86",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5399,
+      25.2371
+    ],
+    "report_notes": [
+      "Full extraction completed at the underpass; road reopened pending closure confirmation.",
+      "Field assessment at Al Thumama: severity classified High after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Ashghal (PWA). Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Al Thumama — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Al Thumama — standing water"
+      }
+    ],
+    "veh_driver": "Mohammed Al-Sulaiti",
+    "completion_notes": [
+      "Dewatering completed at Al Thumama. Pumped volume logged; road surface inspected and reopened to traffic.",
+      "Post-completion check confirmed drainage inlets are clear. No residual pooling after 60-minute observation window."
+    ],
+    "completion_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Al Thumama — cleared"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Al Thumama — reopened road"
+      }
+    ],
+    "systemcol9": "HBK Contracting",
+    "systemcol10": "Ahmed Zaki",
+    "systemcol12": "86-326-58",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "ASH-PWA-2026-0019",
+    "tanker_count": 2,
+    "linked_daily_plan": "FPL-4008",
+    "reopened": true,
+    "reported_notes": "Full extraction completed at the underpass; road reopened pending closure confirmation.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Al Thumama — as reported",
+        "takenAt": "2026-08-25T13:48:00Z",
+        "location": "Al Thumama — Zone 86, Street 326, Bldg 58"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Al Thumama — standing water",
+        "takenAt": "2026-08-25T13:48:00Z",
+        "location": "Al Thumama — Zone 86, Street 326, Bldg 58"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-25T17:43:00Z",
+        "location": "Al Thumama — Zone 86, Street 326, Bldg 58"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1561553590-267fc716698a?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-25T17:43:00Z",
+        "location": "Al Thumama — Zone 86, Street 326, Bldg 58"
+      }
+    ],
+    "driver_after_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1520116468816-95b69f847357?w=640&h=640&fit=crop",
+        "alt": "After — road cleared and dry",
+        "takenAt": "2026-08-25T18:38:00Z",
+        "location": "Al Thumama — Zone 86, Street 326, Bldg 58"
+      }
+    ]
+  },
+  {
+    "id": "INC-20",
+    "uniqueidentifier": "INC-20",
+    "title": "Drainage flood job wrapped in Al Rayyan",
+    "status": "job-completed",
+    "systemcol1": "Al Rayyan — Zone 85, Street 333, Bldg 61",
+    "municipality": "Al Rayyan",
+    "systemcol2": "Medium",
+    "systemcol3": "2026-08-24T20:45:00Z",
+    "systemcol6": "Tanker crew wrapped the extraction job; area assessed clear, ready for closure.",
+    "systemcol7": "LMV-QA08",
+    "lat": 25.2962,
+    "lng": 51.4278,
+    "systemcol8": "184 Call Center",
+    "activity": [
+      {
+        "id": "INC-20-act-1",
+        "kind": "log",
+        "actor": "Mohammed Al-Sulaiti",
+        "text": "logged this request via 184 Call Center",
+        "at": "2026-08-24T20:45:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-20-act-2",
+        "kind": "log",
+        "actor": "Noora Al-Thani",
+        "text": "updated the request details.",
+        "at": "2026-08-24T22:54:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-20-act-sev",
+        "kind": "log",
+        "actor": "Noora Al-Thani",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Medium",
+          "tone": "info"
+        },
+        "at": "2026-08-24T23:19:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-20-act-due",
+        "kind": "log",
+        "actor": "Latifa Al-Hajri",
+        "text": "added due date **27 Aug, 2026**",
+        "at": "2026-08-24T23:39:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-20-act-3",
+        "kind": "comment",
+        "actor": "Noora Al-Thani",
+        "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=128&h=128&fit=crop&crop=faces",
+        "text": "@MohammedAl-Sulaiti crews are being coordinated for Al Rayyan. Priority holds at Medium.",
+        "at": "2026-08-25T00:08:00Z"
+      }
+    ],
+    "reported_by": "Hassan Al-Marri",
+    "last_updated": "2026-08-25T01:45:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "85",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.4278,
+      25.2962
+    ],
+    "report_notes": [
+      "Tanker crew wrapped the extraction job; area assessed clear, ready for closure.",
+      "Field assessment at Al Rayyan: severity classified Medium after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via 184 Call Center. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan — standing water"
+      }
+    ],
+    "veh_driver": "Fatima Al-Naimi",
+    "completion_notes": [
+      "Dewatering completed at Al Rayyan. Pumped volume logged; road surface inspected and reopened to traffic.",
+      "Post-completion check confirmed drainage inlets are clear. No residual pooling after 60-minute observation window."
+    ],
+    "completion_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan — cleared"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan — reopened road"
+      }
+    ],
+    "systemcol9": "UrbaCon Trading & Contracting",
+    "systemcol10": "Latifa Al-Hajri",
+    "systemcol12": "85-333-61",
+    "systemcol14": "Request",
+    "systemcol15": "Blocked Drain",
+    "systemcol16": "CC184-2026-0020",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4009",
+    "reopened": false,
+    "reported_notes": "Tanker crew wrapped the extraction job; area assessed clear, ready for closure.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan — as reported",
+        "takenAt": "2026-08-24T23:49:00Z",
+        "location": "Al Rayyan — Zone 85, Street 333, Bldg 61"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan — standing water",
+        "takenAt": "2026-08-24T23:49:00Z",
+        "location": "Al Rayyan — Zone 85, Street 333, Bldg 61"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1561553590-267fc716698a?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-25T03:44:00Z",
+        "location": "Al Rayyan — Zone 85, Street 333, Bldg 61"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-25T03:44:00Z",
+        "location": "Al Rayyan — Zone 85, Street 333, Bldg 61"
+      }
+    ],
+    "driver_after_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "After — road cleared and dry",
+        "takenAt": "2026-08-25T04:39:00Z",
+        "location": "Al Rayyan — Zone 85, Street 333, Bldg 61"
+      }
+    ]
+  },
+  {
+    "id": "INC-21",
+    "uniqueidentifier": "INC-21",
+    "title": "Highway flooding near Mesaieed, closed out",
+    "status": "closed",
+    "systemcol1": "Mesaieed — Zone 84, Street 340, Bldg 4",
+    "municipality": "Al Wakrah",
+    "systemcol2": "High",
+    "systemcol3": "2026-08-24T09:15:00Z",
+    "systemcol6": "Southbound carriageway flooding fully resolved and confirmed dry; case closed.",
+    "systemcol7": "LMV-QA03",
+    "lat": 24.9848,
+    "lng": 51.5547,
+    "systemcol8": "Oracle e-Service",
+    "activity": [
+      {
+        "id": "INC-21-act-1",
+        "kind": "log",
+        "actor": "Fatima Al-Naimi",
+        "text": "logged this request via Oracle e-Service",
+        "at": "2026-08-24T09:15:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-21-act-2",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "updated the request details.",
+        "at": "2026-08-24T11:35:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-21-act-sev",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "changed severity to",
+        "severity": {
+          "label": "High",
+          "tone": "warning"
+        },
+        "at": "2026-08-24T12:00:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-21-act-due",
+        "kind": "log",
+        "actor": "Fahad Al-Marri",
+        "text": "added due date **27 Aug, 2026**",
+        "at": "2026-08-24T12:20:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-21-act-3",
+        "kind": "comment",
+        "actor": "Omar Al-Kaabi",
+        "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=128&h=128&fit=crop&crop=faces",
+        "text": "@FatimaAl-Naimi crews are being coordinated for Mesaieed. Priority holds at High.",
+        "at": "2026-08-24T12:45:00Z"
+      },
+      {
+        "id": "INC-21-act-4",
+        "kind": "comment",
+        "actor": "Fatima Al-Naimi",
+        "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=128&h=128&fit=crop&crop=faces",
+        "text": "@UCCPAdmin please confirm the response plan for Mesaieed once drainage capacity is verified.",
+        "at": "2026-08-24T14:50:00Z"
+      }
+    ],
+    "reported_by": "Noora Al-Thani",
+    "last_updated": "2026-08-24T15:15:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "84",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5547,
+      24.9848
+    ],
+    "report_notes": [
+      "Southbound carriageway flooding fully resolved and confirmed dry; case closed.",
+      "Field assessment at Mesaieed: severity classified High after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oracle e-Service. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Mesaieed — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Mesaieed — standing water"
+      }
+    ],
+    "veh_driver": "Hassan Al-Marri",
+    "completion_notes": [
+      "Dewatering completed at Mesaieed. Pumped volume logged; road surface inspected and reopened to traffic.",
+      "Post-completion check confirmed drainage inlets are clear. No residual pooling after 60-minute observation window."
+    ],
+    "completion_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Mesaieed — cleared"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Mesaieed — reopened road"
+      }
+    ],
+    "systemcol9": "Al Darwish Engineering",
+    "systemcol10": "Fahad Al-Marri",
+    "systemcol12": "84-340-4",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "ORC-ESVC-2026-0021",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4010",
+    "reopened": false,
+    "reported_notes": "Southbound carriageway flooding fully resolved and confirmed dry; case closed.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "Mesaieed — as reported",
+        "takenAt": "2026-08-24T12:30:00Z",
+        "location": "Mesaieed — Zone 84, Street 340, Bldg 4"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "Mesaieed — standing water",
+        "takenAt": "2026-08-24T12:30:00Z",
+        "location": "Mesaieed — Zone 84, Street 340, Bldg 4"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-24T16:25:00Z",
+        "location": "Mesaieed — Zone 84, Street 340, Bldg 4"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1545276070-ec815f01c6ec?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-24T16:25:00Z",
+        "location": "Mesaieed — Zone 84, Street 340, Bldg 4"
+      }
+    ],
+    "driver_after_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "After — road cleared and dry",
+        "takenAt": "2026-08-24T17:20:00Z",
+        "location": "Mesaieed — Zone 84, Street 340, Bldg 4"
+      }
+    ]
+  },
+  {
+    "id": "INC-22",
+    "uniqueidentifier": "INC-22",
+    "title": "Storm drain overflow, Umm Salal, closed out",
+    "status": "closed",
+    "systemcol1": "Umm Salal — Zone 83, Street 347, Bldg 7",
+    "municipality": "Umm Salal",
+    "systemcol2": "Low",
+    "systemcol3": "2026-08-23T13:40:00Z",
+    "systemcol6": "Storm drain cleared and roundabout returned to normal; case closed after final inspection.",
+    "systemcol7": "LMV-QA06",
+    "lat": 25.4679,
+    "lng": 51.3923,
+    "systemcol8": "Oracle e-Service",
+    "activity": [
+      {
+        "id": "INC-22-act-1",
+        "kind": "log",
+        "actor": "Hassan Al-Marri",
+        "text": "logged this request via Oracle e-Service",
+        "at": "2026-08-23T13:40:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-22-act-2",
+        "kind": "log",
+        "actor": "Khalid Al-Mansoori",
+        "text": "updated the request details.",
+        "at": "2026-08-23T16:11:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-22-act-sev",
+        "kind": "log",
+        "actor": "Khalid Al-Mansoori",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Low",
+          "tone": "neutral"
+        },
+        "at": "2026-08-23T16:36:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-22-act-due",
+        "kind": "log",
+        "actor": "Noora Al-Kaabi",
+        "text": "added due date **26 Aug, 2026**",
+        "at": "2026-08-23T16:56:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-22-act-3",
+        "kind": "comment",
+        "actor": "Khalid Al-Mansoori",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&crop=faces",
+        "text": "@HassanAl-Marri crews are being coordinated for Umm Salal. Priority holds at Low.",
+        "at": "2026-08-23T17:17:00Z"
+      }
+    ],
+    "reported_by": "Omar Al-Kaabi",
+    "last_updated": "2026-08-23T20:40:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "83",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.3923,
+      25.4679
+    ],
+    "report_notes": [
+      "Storm drain cleared and roundabout returned to normal; case closed after final inspection.",
+      "Field assessment at Umm Salal: severity classified Low after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oracle e-Service. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Umm Salal — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Umm Salal — standing water"
+      }
+    ],
+    "veh_driver": "Noora Al-Thani",
+    "completion_notes": [
+      "Dewatering completed at Umm Salal. Pumped volume logged; road surface inspected and reopened to traffic.",
+      "Post-completion check confirmed drainage inlets are clear. No residual pooling after 60-minute observation window."
+    ],
+    "completion_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Umm Salal — cleared"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Umm Salal — reopened road"
+      }
+    ],
+    "systemcol9": "Qatar Building Company",
+    "systemcol10": "Noora Al-Kaabi",
+    "systemcol12": "83-347-7",
+    "systemcol14": "Request",
+    "systemcol15": "Sewage Overflow",
+    "systemcol16": "ORC-ESVC-2026-0022",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4011",
+    "reopened": false,
+    "reported_notes": "Storm drain cleared and roundabout returned to normal; case closed after final inspection.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "Umm Salal — as reported",
+        "takenAt": "2026-08-23T17:06:00Z",
+        "location": "Umm Salal — Zone 83, Street 347, Bldg 7"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "Umm Salal — standing water",
+        "takenAt": "2026-08-23T17:06:00Z",
+        "location": "Umm Salal — Zone 83, Street 347, Bldg 7"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1545276070-ec815f01c6ec?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-23T21:01:00Z",
+        "location": "Umm Salal — Zone 83, Street 347, Bldg 7"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-23T21:01:00Z",
+        "location": "Umm Salal — Zone 83, Street 347, Bldg 7"
+      }
+    ],
+    "driver_after_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1520116468816-95b69f847357?w=640&h=640&fit=crop",
+        "alt": "After — road cleared and dry",
+        "takenAt": "2026-08-23T21:56:00Z",
+        "location": "Umm Salal — Zone 83, Street 347, Bldg 7"
+      }
+    ]
+  },
+  {
+    "id": "INC-23",
+    "uniqueidentifier": "INC-23",
+    "title": "West Bay drainage recurs after follow-up storm",
+    "status": "reopened",
+    "systemcol1": "West Bay — Zone 82, Street 354, Bldg 10",
+    "municipality": "Doha",
+    "systemcol2": "High",
+    "systemcol3": "2026-08-29T04:10:00Z",
+    "systemcol6": "Previously closed drainage backup recurred after a follow-up storm cell; reopened for re-triage.",
+    "systemcol7": "LMV-QA09",
+    "lat": 25.321,
+    "lng": 51.5272,
+    "systemcol8": "NCC",
+    "activity": [
+      {
+        "id": "INC-23-act-1",
+        "kind": "log",
+        "actor": "Noora Al-Thani",
+        "text": "logged this request via NCC",
+        "at": "2026-08-29T04:10:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-23-act-2",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "updated the request details.",
+        "at": "2026-08-29T06:52:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-23-act-sev",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "changed severity to",
+        "severity": {
+          "label": "High",
+          "tone": "warning"
+        },
+        "at": "2026-08-29T07:17:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-23-act-due",
+        "kind": "log",
+        "actor": "Yousef Al-Emadi",
+        "text": "added due date **1 Sep, 2026**",
+        "at": "2026-08-29T07:37:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-23-act-3",
+        "kind": "comment",
+        "actor": "Zayd Al-Farsi",
+        "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=128&h=128&fit=crop&crop=faces",
+        "text": "@NooraAl-Thani crews are being coordinated for West Bay. Priority holds at High.",
+        "at": "2026-08-29T07:54:00Z"
+      }
+    ],
+    "reported_by": "Khalid Al-Mansoori",
+    "last_updated": "2026-08-29T12:10:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "82",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5272,
+      25.321
+    ],
+    "report_notes": [
+      "Previously closed drainage backup recurred after a follow-up storm cell; reopened for re-triage.",
+      "Field assessment at West Bay: severity classified High after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via NCC. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "West Bay — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "West Bay — standing water"
+      }
+    ],
+    "veh_driver": "Omar Al-Kaabi",
+    "systemcol9": "Midmac Contracting",
+    "systemcol10": "Yousef Al-Emadi",
+    "systemcol12": "82-354-10",
+    "systemcol14": "Request",
+    "systemcol15": "Blocked Drain",
+    "systemcol16": "NCC-2026-0023",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4012",
+    "reopened": true,
+    "reported_notes": "Previously closed drainage backup recurred after a follow-up storm cell; reopened for re-triage.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "West Bay — as reported",
+        "takenAt": "2026-08-29T07:47:00Z",
+        "location": "West Bay — Zone 82, Street 354, Bldg 10"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1561553590-267fc716698a?w=640&h=640&fit=crop",
+        "alt": "West Bay — standing water",
+        "takenAt": "2026-08-29T07:47:00Z",
+        "location": "West Bay — Zone 82, Street 354, Bldg 10"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-29T11:42:00Z",
+        "location": "West Bay — Zone 82, Street 354, Bldg 10"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-29T11:42:00Z",
+        "location": "West Bay — Zone 82, Street 354, Bldg 10"
+      }
+    ],
+    "driver_after_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1520116468816-95b69f847357?w=640&h=640&fit=crop",
+        "alt": "After — road cleared and dry",
+        "takenAt": "2026-08-29T12:37:00Z",
+        "location": "West Bay — Zone 82, Street 354, Bldg 10"
+      }
+    ],
+    "reopened_notes": "Site inspection after storm cell showed recurring pooling at the same catch basin — grate partially blocked by debris. Requesting jetting crew re-visit and downstream CCTV survey before closing again.",
+    "reopened_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "West Bay — recurring pooling at catch basin",
+        "takenAt": "2026-08-29T15:42:00Z",
+        "location": "West Bay — Zone 82, Street 354, Bldg 10"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "West Bay — debris on grate",
+        "takenAt": "2026-08-29T15:42:00Z",
+        "location": "West Bay — Zone 82, Street 354, Bldg 10"
+      }
+    ]
+  },
+  {
+    "id": "INC-24",
+    "uniqueidentifier": "INC-24",
+    "title": "Al Khor industrial overflow recurs, tanker re-tasked",
+    "status": "reopened",
+    "systemcol1": "Al Khor Industrial Area — address pending",
+    "municipality": "Umm Salal",
+    "systemcol2": "Medium",
+    "systemcol3": "2026-08-28T16:30:00Z",
+    "systemcol6": "Closed overflow case recurred after a blocked secondary drain; reopened, tanker re-tasked to site.",
+    "systemcol7": "LMV-QA11",
+    "lat": 25.6661,
+    "lng": 51.4701,
+    "systemcol8": "Oun app (citizen)",
+    "activity": [
+      {
+        "id": "INC-24-act-1",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "logged this request via Oun app (citizen)",
+        "at": "2026-08-28T16:30:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-24-act-2",
+        "kind": "log",
+        "actor": "Aisha Al-Kuwari",
+        "text": "updated the request details.",
+        "at": "2026-08-28T18:33:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-24-act-sev",
+        "kind": "log",
+        "actor": "Aisha Al-Kuwari",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Medium",
+          "tone": "info"
+        },
+        "at": "2026-08-28T18:58:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-24-act-due",
+        "kind": "log",
+        "actor": "Rashid Al-Naimi",
+        "text": "added due date **31 Aug, 2026**",
+        "at": "2026-08-28T19:18:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-24-act-3",
+        "kind": "comment",
+        "actor": "Aisha Al-Kuwari",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=128&h=128&fit=crop&crop=faces",
+        "text": "@OmarAl-Kaabi crews are being coordinated for Al Khor Industrial Area. Priority holds at Medium.",
+        "at": "2026-08-28T20:21:00Z"
+      }
+    ],
+    "reported_by": "Zayd Al-Farsi",
+    "last_updated": "2026-08-29T01:30:00Z",
+    "cust_name": "Fatima Al-Naimi",
+    "cust_contact": "+974 5661 1851",
+    "addr_area": "Pending",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.4701,
+      25.6661
+    ],
+    "report_notes": [
+      "Closed overflow case recurred after a blocked secondary drain; reopened, tanker re-tasked to site.",
+      "Field assessment at Al Khor Industrial Area: severity classified Medium after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oun app (citizen). Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Al Khor Industrial Area — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Al Khor Industrial Area — standing water"
+      }
+    ],
+    "veh_driver": "Khalid Al-Mansoori",
+    "systemcol9": "Al Balagh Trading & Contracting",
+    "systemcol10": "Rashid Al-Naimi",
+    "systemcol12": "Pending",
+    "systemcol14": "Complaint",
+    "systemcol15": "Sewage Overflow",
+    "systemcol16": "",
+    "tanker_count": 2,
+    "linked_daily_plan": "FPL-4013",
+    "reopened": true,
+    "reported_notes": "Closed overflow case recurred after a blocked secondary drain; reopened, tanker re-tasked to site.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1561553590-267fc716698a?w=640&h=640&fit=crop",
+        "alt": "Al Khor Industrial Area — as reported",
+        "takenAt": "2026-08-28T19:28:00Z",
+        "location": "Al Khor Industrial Area — address pending"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=640&h=640&fit=crop",
+        "alt": "Al Khor Industrial Area — standing water",
+        "takenAt": "2026-08-28T19:28:00Z",
+        "location": "Al Khor Industrial Area — address pending"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-28T23:23:00Z",
+        "location": "Al Khor Industrial Area — address pending"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-28T23:23:00Z",
+        "location": "Al Khor Industrial Area — address pending"
+      }
+    ],
+    "driver_after_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "After — road cleared and dry",
+        "takenAt": "2026-08-29T00:18:00Z",
+        "location": "Al Khor Industrial Area — address pending"
+      }
+    ],
+    "reopened_notes": "Follow-up visit found secondary drain re-blocked by construction silt from adjacent site. Tanker re-tasked; contractor asked to install silt fence before next pour.",
+    "reopened_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "Al Khor — secondary drain re-blocked",
+        "takenAt": "2026-08-29T03:23:00Z",
+        "location": "Al Khor Industrial Area — address pending"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "Al Khor — construction silt runoff",
+        "takenAt": "2026-08-29T03:23:00Z",
+        "location": "Al Khor Industrial Area — address pending"
+      }
+    ]
+  },
+  {
+    "id": "INC-25",
+    "uniqueidentifier": "INC-25",
+    "title": "Flash flooding at Lusail Stadium precinct",
+    "status": "intake",
+    "systemcol1": "Lusail Stadium — Zone 91, Street 210, Bldg 3",
+    "municipality": "Al Daayen",
+    "systemcol2": "Critical",
+    "systemcol3": "2026-08-30T22:40:00Z",
+    "systemcol6": "Heavy rainfall pooled rapidly around the stadium precinct access roads; crews being mobilized.",
+    "lat": 25.4207,
+    "lng": 51.4914,
+    "systemcol8": "Ashghal (PWA)",
+    "activity": [
+      {
+        "id": "INC-25-act-1",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "logged this request via Ashghal (PWA)",
+        "at": "2026-08-30T22:40:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-25-act-2",
+        "kind": "log",
+        "actor": "Fatima Al-Naimi",
+        "text": "updated the request details.",
+        "at": "2026-08-31T00:40:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-25-act-sev",
+        "kind": "log",
+        "actor": "Fatima Al-Naimi",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Critical",
+          "tone": "danger"
+        },
+        "at": "2026-08-31T01:05:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-25-act-due",
+        "kind": "log",
+        "actor": "Maryam Al-Sada",
+        "text": "added due date **3 Sep, 2026**",
+        "at": "2026-08-31T01:25:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-25-act-3",
+        "kind": "comment",
+        "actor": "Fatima Al-Naimi",
+        "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=128&h=128&fit=crop&crop=faces",
+        "text": "@ZaydAl-Farsi crews are being coordinated for Lusail Stadium. Priority holds at Critical.",
+        "at": "2026-08-31T01:40:00Z"
+      },
+      {
+        "id": "INC-25-act-4",
+        "kind": "comment",
+        "actor": "Zayd Al-Farsi",
+        "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=128&h=128&fit=crop&crop=faces",
+        "text": "@UCCPAdmin please confirm the response plan for Lusail Stadium once drainage capacity is verified.",
+        "at": "2026-08-31T03:40:00Z"
+      }
+    ],
+    "reported_by": "Noora Al-Thani",
+    "last_updated": "2026-08-31T03:40:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "91",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.4914,
+      25.4207
+    ],
+    "report_notes": [
+      "Standing water reported at Lusail Stadium; response being coordinated.",
+      "Field assessment at Lusail Stadium: severity classified after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Ashghal (PWA). Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Lusail Stadium — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Lusail Stadium — standing water"
+      }
+    ],
+    "systemcol9": "Boom Construction",
+    "systemcol10": "Maryam Al-Sada",
+    "systemcol12": "91-210-3",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "ASH-PWA-2026-0025",
+    "reopened": false,
+    "reported_notes": "Heavy rainfall pooled rapidly around the stadium precinct access roads; crews being mobilized.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=640&h=640&fit=crop",
+        "alt": "Lusail Stadium — as reported",
+        "takenAt": "2026-08-31T01:35:00Z",
+        "location": "Lusail Stadium — Zone 91, Street 210, Bldg 3"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1545276070-ec815f01c6ec?w=640&h=640&fit=crop",
+        "alt": "Lusail Stadium — standing water",
+        "takenAt": "2026-08-31T01:35:00Z",
+        "location": "Lusail Stadium — Zone 91, Street 210, Bldg 3"
+      }
+    ]
+  },
+  {
+    "id": "INC-26",
+    "uniqueidentifier": "INC-26",
+    "title": "Minor pooling near Al Rayyan Souq",
+    "status": "triage",
+    "systemcol1": "Al Rayyan Souq — Zone 76, Street 197, Bldg 8",
+    "municipality": "Al Rayyan",
+    "systemcol2": "Low",
+    "systemcol3": "2026-08-30T19:15:00Z",
+    "systemcol6": "Shallow pooling reported by shoppers near the souq entrance; awaiting triage.",
+    "lat": 25.2951,
+    "lng": 51.4278,
+    "systemcol8": "184 Call Center",
+    "activity": [
+      {
+        "id": "INC-26-act-1",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "logged this request via 184 Call Center",
+        "at": "2026-08-30T19:15:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-26-act-2",
+        "kind": "log",
+        "actor": "Aisha Al-Kuwari",
+        "text": "updated the request details.",
+        "at": "2026-08-30T21:15:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-26-act-sev",
+        "kind": "log",
+        "actor": "Aisha Al-Kuwari",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Low",
+          "tone": "neutral"
+        },
+        "at": "2026-08-30T21:40:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-26-act-due",
+        "kind": "log",
+        "actor": "Hassan Ibrahim",
+        "text": "added due date **2 Sep, 2026**",
+        "at": "2026-08-30T22:00:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-26-act-3",
+        "kind": "comment",
+        "actor": "Aisha Al-Kuwari",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=128&h=128&fit=crop&crop=faces",
+        "text": "@OmarAl-Kaabi crews are being coordinated for Al Rayyan Souq. Priority holds at Low.",
+        "at": "2026-08-30T22:15:00Z"
+      }
+    ],
+    "reported_by": "Hassan Al-Marri",
+    "last_updated": "2026-08-31T01:15:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "76",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.4278,
+      25.2951
+    ],
+    "report_notes": [
+      "Standing water reported at Al Rayyan Souq; response being coordinated.",
+      "Field assessment at Al Rayyan Souq: severity classified after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via 184 Call Center. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Souq — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Souq — standing water"
+      }
+    ],
+    "systemcol9": "Al Jaber Engineering",
+    "systemcol10": "Hassan Ibrahim",
+    "systemcol12": "76-197-8",
+    "systemcol14": "Request",
+    "systemcol15": "Rainwater Removal",
+    "systemcol16": "CC184-2026-0026",
+    "reopened": false,
+    "reported_notes": "Shallow pooling reported by shoppers near the souq entrance; awaiting triage.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1545276070-ec815f01c6ec?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Souq — as reported",
+        "takenAt": "2026-08-30T22:10:00Z",
+        "location": "Al Rayyan Souq — Zone 76, Street 197, Bldg 8"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Souq — standing water",
+        "takenAt": "2026-08-30T22:10:00Z",
+        "location": "Al Rayyan Souq — Zone 76, Street 197, Bldg 8"
+      }
+    ]
+  },
+  {
+    "id": "INC-27",
+    "uniqueidentifier": "INC-27",
+    "title": "Waterlogged access near Al Rayyan Stadium",
+    "status": "acknowledged",
+    "systemcol1": "Al Rayyan Stadium — Zone 79, Street 355, Bldg 60",
+    "municipality": "Al Rayyan",
+    "systemcol2": "High",
+    "systemcol3": "2026-08-30T14:05:00Z",
+    "systemcol6": "Access road flooding acknowledged by the ops desk ahead of a scheduled event; assessment crew being scheduled.",
+    "lat": 25.2319,
+    "lng": 51.4351,
+    "systemcol8": "Oracle e-Service",
+    "activity": [
+      {
+        "id": "INC-27-act-1",
+        "kind": "log",
+        "actor": "Hassan Al-Marri",
+        "text": "logged this request via Oracle e-Service",
+        "at": "2026-08-30T14:05:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-27-act-2",
+        "kind": "log",
+        "actor": "Noora Al-Thani",
+        "text": "updated the request details.",
+        "at": "2026-08-30T16:05:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-27-act-sev",
+        "kind": "log",
+        "actor": "Noora Al-Thani",
+        "text": "changed severity to",
+        "severity": {
+          "label": "High",
+          "tone": "warning"
+        },
+        "at": "2026-08-30T16:30:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-27-act-due",
+        "kind": "log",
+        "actor": "Priya Nair",
+        "text": "added due date **2 Sep, 2026**",
+        "at": "2026-08-30T16:50:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-27-act-3",
+        "kind": "comment",
+        "actor": "Noora Al-Thani",
+        "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=128&h=128&fit=crop&crop=faces",
+        "text": "@HassanAl-Marri crews are being coordinated for Al Rayyan Stadium. Priority holds at High.",
+        "at": "2026-08-30T17:05:00Z"
+      }
+    ],
+    "reported_by": "Khalid Al-Mansoori",
+    "last_updated": "2026-08-30T23:05:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "79",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.4351,
+      25.2319
+    ],
+    "report_notes": [
+      "Standing water reported at Al Rayyan Stadium; response being coordinated.",
+      "Field assessment at Al Rayyan Stadium: severity classified after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oracle e-Service. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Stadium — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Stadium — standing water"
+      }
+    ],
+    "systemcol9": "HBK Contracting",
+    "systemcol10": "Priya Nair",
+    "systemcol12": "79-355-60",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "ORC-ESVC-2026-0027",
+    "reopened": false,
+    "reported_notes": "Access road flooding acknowledged by the ops desk ahead of a scheduled event; assessment crew being scheduled.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Stadium — as reported",
+        "takenAt": "2026-08-30T17:00:00Z",
+        "location": "Al Rayyan Stadium — Zone 79, Street 355, Bldg 60"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Stadium — standing water",
+        "takenAt": "2026-08-30T17:00:00Z",
+        "location": "Al Rayyan Stadium — Zone 79, Street 355, Bldg 60"
+      }
+    ]
+  },
+  {
+    "id": "INC-28",
+    "uniqueidentifier": "INC-28",
+    "title": "Standing water at Al Rayyan Industrial park",
+    "status": "assessed",
+    "systemcol1": "Al Rayyan Industrial Park — Zone 75, Street 190, Bldg 5",
+    "municipality": "Al Rayyan",
+    "systemcol2": "Medium",
+    "systemcol3": "2026-08-30T09:50:00Z",
+    "systemcol6": "Assessment confirms localized flooding around the warehouse loading bays; tanker assignment pending.",
+    "lat": 25.1859,
+    "lng": 51.4015,
+    "systemcol8": "Oracle e-Service",
+    "activity": [
+      {
+        "id": "INC-28-act-1",
+        "kind": "log",
+        "actor": "Fatima Al-Naimi",
+        "text": "logged this request via Oracle e-Service",
+        "at": "2026-08-30T09:50:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-28-act-2",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "updated the request details.",
+        "at": "2026-08-30T11:50:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-28-act-sev",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Medium",
+          "tone": "info"
+        },
+        "at": "2026-08-30T12:15:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-28-act-due",
+        "kind": "log",
+        "actor": "Carlos Mendoza",
+        "text": "added due date **2 Sep, 2026**",
+        "at": "2026-08-30T12:35:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-28-act-3",
+        "kind": "comment",
+        "actor": "Omar Al-Kaabi",
+        "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=128&h=128&fit=crop&crop=faces",
+        "text": "@FatimaAl-Naimi crews are being coordinated for Al Rayyan Industrial Park. Priority holds at Medium.",
+        "at": "2026-08-30T12:50:00Z"
+      }
+    ],
+    "reported_by": "Zayd Al-Farsi",
+    "last_updated": "2026-08-30T17:50:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "75",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.4015,
+      25.1859
+    ],
+    "report_notes": [
+      "Standing water reported at Al Rayyan Industrial Park; response being coordinated.",
+      "Field assessment at Al Rayyan Industrial Park: severity classified after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oracle e-Service. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Industrial Park — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Industrial Park — standing water"
+      }
+    ],
+    "systemcol9": "UrbaCon Trading & Contracting",
+    "systemcol10": "Carlos Mendoza",
+    "systemcol12": "75-190-5",
+    "systemcol14": "Request",
+    "systemcol15": "Rainwater Removal",
+    "systemcol16": "ORC-ESVC-2026-0028",
+    "reopened": false,
+    "reported_notes": "Assessment confirms localized flooding around the warehouse loading bays; tanker assignment pending.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Industrial Park — as reported",
+        "takenAt": "2026-08-30T12:45:00Z",
+        "location": "Al Rayyan Industrial Park — Zone 75, Street 190, Bldg 5"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "Al Rayyan Industrial Park — standing water",
+        "takenAt": "2026-08-30T12:45:00Z",
+        "location": "Al Rayyan Industrial Park — Zone 75, Street 190, Bldg 5"
+      }
+    ]
+  },
+  {
+    "id": "INC-29",
+    "uniqueidentifier": "INC-29",
+    "title": "Critical flooding at Mesaieed hospital access road",
+    "status": "tanker-assigned",
+    "systemcol1": "Mesaieed Hospital Road — Zone 95, Street 375, Bldg 74",
+    "municipality": "Al Wakrah",
+    "systemcol2": "Critical",
+    "systemcol3": "2026-08-30T06:20:00Z",
+    "systemcol6": "Access road to the hospital compound flooded; tanker dispatched given the critical-facility routing.",
+    "lat": 24.9968,
+    "lng": 51.5445,
+    "systemcol8": "NCC",
+    "activity": [
+      {
+        "id": "INC-29-act-1",
+        "kind": "log",
+        "actor": "Khalid Al-Mansoori",
+        "text": "logged this request via NCC",
+        "at": "2026-08-30T06:20:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-29-act-2",
+        "kind": "log",
+        "actor": "Mohammed Al-Sulaiti",
+        "text": "updated the request details.",
+        "at": "2026-08-30T08:20:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-29-act-sev",
+        "kind": "log",
+        "actor": "Mohammed Al-Sulaiti",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Critical",
+          "tone": "danger"
+        },
+        "at": "2026-08-30T08:45:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-29-act-due",
+        "kind": "log",
+        "actor": "Ahmed Zaki",
+        "text": "added due date **2 Sep, 2026**",
+        "at": "2026-08-30T09:05:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-29-act-3",
+        "kind": "comment",
+        "actor": "Mohammed Al-Sulaiti",
+        "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=128&h=128&fit=crop&crop=faces",
+        "text": "@KhalidAl-Mansoori crews are being coordinated for Mesaieed Hospital Road. Priority holds at Critical.",
+        "at": "2026-08-30T09:20:00Z"
+      },
+      {
+        "id": "INC-29-act-4",
+        "kind": "comment",
+        "actor": "Khalid Al-Mansoori",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&crop=faces",
+        "text": "@UCCPAdmin please confirm the response plan for Mesaieed Hospital Road once drainage capacity is verified.",
+        "at": "2026-08-30T11:20:00Z"
+      }
+    ],
+    "reported_by": "Aisha Al-Kuwari",
+    "last_updated": "2026-08-30T14:20:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "95",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5445,
+      24.9968
+    ],
+    "report_notes": [
+      "Standing water reported at Mesaieed Hospital Road; response being coordinated.",
+      "Field assessment at Mesaieed Hospital Road: severity classified after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via NCC. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Mesaieed Hospital Road — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Mesaieed Hospital Road — standing water"
+      }
+    ],
+    "systemcol7": "LMV-QA13",
+    "systemcol9": "Al Darwish Engineering",
+    "systemcol10": "Ahmed Zaki",
+    "systemcol12": "95-375-74",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "NCC-2026-0029",
+    "veh_driver": "Sunil Fernando",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4014",
+    "reopened": false,
+    "reported_notes": "Access road to the hospital compound flooded; tanker dispatched given the critical-facility routing.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "Mesaieed Hospital Road — as reported",
+        "takenAt": "2026-08-30T09:15:00Z",
+        "location": "Mesaieed Hospital Road — Zone 95, Street 375, Bldg 74"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "Mesaieed Hospital Road — standing water",
+        "takenAt": "2026-08-30T09:15:00Z",
+        "location": "Mesaieed Hospital Road — Zone 95, Street 375, Bldg 74"
+      }
+    ]
+  },
+  {
+    "id": "INC-30",
+    "uniqueidentifier": "INC-30",
+    "title": "Shallow pooling near Al Wukair depot",
+    "status": "tanker-assigned",
+    "systemcol1": "Al Wukair Depot — Zone 89, Street 378, Bldg 76",
+    "municipality": "Al Wakrah",
+    "systemcol2": "Low",
+    "systemcol3": "2026-08-29T20:30:00Z",
+    "systemcol6": "Minor pooling at the depot access gate; tanker assigned as a precaution ahead of the next rain band.",
+    "lat": 25.1288,
+    "lng": 51.5602,
+    "systemcol8": "Oun app (citizen)",
+    "activity": [
+      {
+        "id": "INC-30-act-1",
+        "kind": "log",
+        "actor": "Noora Al-Thani",
+        "text": "logged this request via Oun app (citizen)",
+        "at": "2026-08-29T20:30:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-30-act-2",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "updated the request details.",
+        "at": "2026-08-29T22:30:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-30-act-sev",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Low",
+          "tone": "neutral"
+        },
+        "at": "2026-08-29T22:55:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-30-act-due",
+        "kind": "log",
+        "actor": "Latifa Al-Hajri",
+        "text": "added due date **1 Sep, 2026**",
+        "at": "2026-08-29T23:15:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-30-act-3",
+        "kind": "comment",
+        "actor": "Zayd Al-Farsi",
+        "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=128&h=128&fit=crop&crop=faces",
+        "text": "@NooraAl-Thani crews are being coordinated for Al Wukair Depot. Priority holds at Low.",
+        "at": "2026-08-29T23:30:00Z"
+      }
+    ],
+    "reported_by": "Fatima Al-Naimi",
+    "last_updated": "2026-08-30T02:30:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "89",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5602,
+      25.1288
+    ],
+    "report_notes": [
+      "Standing water reported at Al Wukair Depot; response being coordinated.",
+      "Field assessment at Al Wukair Depot: severity classified after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oun app (citizen). Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Al Wukair Depot — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Al Wukair Depot — standing water"
+      }
+    ],
+    "systemcol7": "LMV-QA14",
+    "systemcol9": "Qatar Building Company",
+    "systemcol10": "Latifa Al-Hajri",
+    "systemcol12": "89-378-76",
+    "systemcol14": "Complaint",
+    "systemcol15": "Rainwater Removal",
+    "systemcol16": "",
+    "veh_driver": "Yousuf Al-Hajri",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4015",
+    "reopened": false,
+    "reported_notes": "Minor pooling at the depot access gate; tanker assigned as a precaution ahead of the next rain band.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "Al Wukair Depot — as reported",
+        "takenAt": "2026-08-29T23:25:00Z",
+        "location": "Al Wukair Depot — Zone 89, Street 378, Bldg 76"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "Al Wukair Depot — standing water",
+        "takenAt": "2026-08-29T23:25:00Z",
+        "location": "Al Wukair Depot — Zone 89, Street 378, Bldg 76"
+      }
+    ]
+  },
+  {
+    "id": "INC-31",
+    "uniqueidentifier": "INC-31",
+    "title": "Critical flooding at Al Wakrah Corniche South",
+    "status": "job-ongoing",
+    "systemcol1": "Al Wakrah Corniche South — Zone 90, Street 381, Bldg 78",
+    "municipality": "Al Wakrah",
+    "systemcol2": "Critical",
+    "systemcol3": "2026-08-30T16:45:00Z",
+    "systemcol6": "Tanker crew actively pumping the corniche access road; job in progress near a VIP residential frontage.",
+    "lat": 25.1435,
+    "lng": 51.6098,
+    "systemcol8": "Ashghal (PWA)",
+    "activity": [
+      {
+        "id": "INC-31-act-1",
+        "kind": "log",
+        "actor": "Aisha Al-Kuwari",
+        "text": "logged this request via Ashghal (PWA)",
+        "at": "2026-08-30T16:45:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-31-act-2",
+        "kind": "log",
+        "actor": "Hassan Al-Marri",
+        "text": "updated the request details.",
+        "at": "2026-08-30T18:45:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-31-act-sev",
+        "kind": "log",
+        "actor": "Hassan Al-Marri",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Critical",
+          "tone": "danger"
+        },
+        "at": "2026-08-30T19:10:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-31-act-due",
+        "kind": "log",
+        "actor": "Fahad Al-Marri",
+        "text": "added due date **2 Sep, 2026**",
+        "at": "2026-08-30T19:30:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-31-act-3",
+        "kind": "comment",
+        "actor": "Hassan Al-Marri",
+        "avatar": "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=128&h=128&fit=crop&crop=faces",
+        "text": "@AishaAl-Kuwari crews are being coordinated for Al Wakrah Corniche South. Priority holds at Critical.",
+        "at": "2026-08-30T19:45:00Z"
+      },
+      {
+        "id": "INC-31-act-4",
+        "kind": "comment",
+        "actor": "Aisha Al-Kuwari",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=128&h=128&fit=crop&crop=faces",
+        "text": "@UCCPAdmin please confirm the response plan for Al Wakrah Corniche South once drainage capacity is verified.",
+        "at": "2026-08-30T21:45:00Z"
+      }
+    ],
+    "reported_by": "Omar Al-Kaabi",
+    "last_updated": "2026-08-31T00:45:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "90",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.6098,
+      25.1435
+    ],
+    "report_notes": [
+      "Standing water reported at Al Wakrah Corniche South; response being coordinated.",
+      "Field assessment at Al Wakrah Corniche South: severity classified after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Ashghal (PWA). Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Al Wakrah Corniche South — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Al Wakrah Corniche South — standing water"
+      }
+    ],
+    "systemcol7": "LMV-QA16",
+    "systemcol9": "Midmac Contracting",
+    "systemcol10": "Fahad Al-Marri",
+    "systemcol12": "90-381-78",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "ASH-PWA-2026-0031",
+    "veh_driver": "Bilal Ahmed",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4016",
+    "reopened": false,
+    "reported_notes": "Tanker crew actively pumping the corniche access road; job in progress near a VIP residential frontage.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "Al Wakrah Corniche South — as reported",
+        "takenAt": "2026-08-30T19:40:00Z",
+        "location": "Al Wakrah Corniche South — Zone 90, Street 381, Bldg 78"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1561553590-267fc716698a?w=640&h=640&fit=crop",
+        "alt": "Al Wakrah Corniche South — standing water",
+        "takenAt": "2026-08-30T19:40:00Z",
+        "location": "Al Wakrah Corniche South — Zone 90, Street 381, Bldg 78"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-30T23:35:00Z",
+        "location": "Al Wakrah Corniche South — Zone 90, Street 381, Bldg 78"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-30T23:35:00Z",
+        "location": "Al Wakrah Corniche South — Zone 90, Street 381, Bldg 78"
+      }
+    ]
+  },
+  {
+    "id": "INC-32",
+    "uniqueidentifier": "INC-32",
+    "title": "Minor pooling near Al Khor Corniche",
+    "status": "job-ongoing",
+    "systemcol1": "Al Khor Corniche — Zone 96, Street 384, Bldg 80",
+    "municipality": "Umm Salal",
+    "systemcol2": "Low",
+    "systemcol3": "2026-08-30T11:10:00Z",
+    "systemcol6": "Tanker crew extracting shallow standing water along the corniche walkway; job nearly complete.",
+    "lat": 25.6841,
+    "lng": 51.5015,
+    "systemcol8": "184 Call Center",
+    "activity": [
+      {
+        "id": "INC-32-act-1",
+        "kind": "log",
+        "actor": "Mohammed Al-Sulaiti",
+        "text": "logged this request via 184 Call Center",
+        "at": "2026-08-30T11:10:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-32-act-2",
+        "kind": "log",
+        "actor": "Khalid Al-Mansoori",
+        "text": "updated the request details.",
+        "at": "2026-08-30T13:10:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-32-act-sev",
+        "kind": "log",
+        "actor": "Khalid Al-Mansoori",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Low",
+          "tone": "neutral"
+        },
+        "at": "2026-08-30T13:35:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-32-act-due",
+        "kind": "log",
+        "actor": "Noora Al-Kaabi",
+        "text": "added due date **2 Sep, 2026**",
+        "at": "2026-08-30T13:55:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-32-act-3",
+        "kind": "comment",
+        "actor": "Khalid Al-Mansoori",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&crop=faces",
+        "text": "@MohammedAl-Sulaiti crews are being coordinated for Al Khor Corniche. Priority holds at Low.",
+        "at": "2026-08-30T14:10:00Z"
+      }
+    ],
+    "reported_by": "Noora Al-Thani",
+    "last_updated": "2026-08-30T19:10:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "96",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5015,
+      25.6841
+    ],
+    "report_notes": [
+      "Standing water reported at Al Khor Corniche; response being coordinated.",
+      "Field assessment at Al Khor Corniche: severity classified after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via 184 Call Center. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Al Khor Corniche — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Al Khor Corniche — standing water"
+      }
+    ],
+    "systemcol7": "LMV-QA17",
+    "systemcol9": "Al Balagh Trading & Contracting",
+    "systemcol10": "Noora Al-Kaabi",
+    "systemcol12": "96-384-80",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "CC184-2026-0032",
+    "veh_driver": "Naeem Chowdhury",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4017",
+    "reopened": false,
+    "reported_notes": "Tanker crew extracting shallow standing water along the corniche walkway; job nearly complete.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1561553590-267fc716698a?w=640&h=640&fit=crop",
+        "alt": "Al Khor Corniche — as reported",
+        "takenAt": "2026-08-30T14:05:00Z",
+        "location": "Al Khor Corniche — Zone 96, Street 384, Bldg 80"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=640&h=640&fit=crop",
+        "alt": "Al Khor Corniche — standing water",
+        "takenAt": "2026-08-30T14:05:00Z",
+        "location": "Al Khor Corniche — Zone 96, Street 384, Bldg 80"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-30T18:00:00Z",
+        "location": "Al Khor Corniche — Zone 96, Street 384, Bldg 80"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-30T18:00:00Z",
+        "location": "Al Khor Corniche — Zone 96, Street 384, Bldg 80"
+      }
+    ]
+  },
+  {
+    "id": "INC-33",
+    "uniqueidentifier": "INC-33",
+    "title": "Underpass extraction completed, Umm Salal Mohammed",
+    "status": "job-completed",
+    "systemcol1": "Umm Salal Mohammed — Zone 97, Street 387, Bldg 82",
+    "municipality": "Umm Salal",
+    "systemcol2": "High",
+    "systemcol3": "2026-08-29T23:25:00Z",
+    "systemcol6": "Full extraction completed at the underpass near a diplomatic-quarter access route; road reopened pending closure confirmation.",
+    "lat": 25.4302,
+    "lng": 51.4126,
+    "systemcol8": "Oracle e-Service",
+    "activity": [
+      {
+        "id": "INC-33-act-1",
+        "kind": "log",
+        "actor": "Fatima Al-Naimi",
+        "text": "logged this request via Oracle e-Service",
+        "at": "2026-08-29T23:25:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-33-act-2",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "updated the request details.",
+        "at": "2026-08-30T01:25:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-33-act-sev",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "changed severity to",
+        "severity": {
+          "label": "High",
+          "tone": "warning"
+        },
+        "at": "2026-08-30T01:50:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-33-act-due",
+        "kind": "log",
+        "actor": "Yousef Al-Emadi",
+        "text": "added due date **2 Sep, 2026**",
+        "at": "2026-08-30T02:10:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-33-act-3",
+        "kind": "comment",
+        "actor": "Omar Al-Kaabi",
+        "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=128&h=128&fit=crop&crop=faces",
+        "text": "@FatimaAl-Naimi crews are being coordinated for Umm Salal Mohammed. Priority holds at High.",
+        "at": "2026-08-30T02:25:00Z"
+      }
+    ],
+    "reported_by": "Zayd Al-Farsi",
+    "last_updated": "2026-08-30T03:25:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "97",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.4126,
+      25.4302
+    ],
+    "report_notes": [
+      "Standing water reported at Umm Salal Mohammed; response being coordinated.",
+      "Field assessment at Umm Salal Mohammed: severity classified after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oracle e-Service. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Umm Salal Mohammed — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Umm Salal Mohammed — standing water"
+      }
+    ],
+    "systemcol7": "LMV-QA18",
+    "veh_driver": "Aisha Al-Kuwari",
+    "completion_notes": [
+      "Dewatering completed at Umm Salal Mohammed. Pumped volume logged; road surface inspected and reopened to traffic.",
+      "Post-completion check confirmed drainage inlets are clear. No residual pooling after 60-minute observation window."
+    ],
+    "completion_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Umm Salal Mohammed — cleared"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Umm Salal Mohammed — reopened road"
+      }
+    ],
+    "systemcol9": "Boom Construction",
+    "systemcol10": "Yousef Al-Emadi",
+    "systemcol12": "97-387-82",
+    "systemcol14": "Request",
+    "systemcol15": "Road Waterlogging",
+    "systemcol16": "ORC-ESVC-2026-0033",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4018",
+    "reopened": false,
+    "reported_notes": "Full extraction completed at the underpass near a diplomatic-quarter access route; road reopened pending closure confirmation.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=640&h=640&fit=crop",
+        "alt": "Umm Salal Mohammed — as reported",
+        "takenAt": "2026-08-30T02:20:00Z",
+        "location": "Umm Salal Mohammed — Zone 97, Street 387, Bldg 82"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1545276070-ec815f01c6ec?w=640&h=640&fit=crop",
+        "alt": "Umm Salal Mohammed — standing water",
+        "takenAt": "2026-08-30T02:20:00Z",
+        "location": "Umm Salal Mohammed — Zone 97, Street 387, Bldg 82"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-30T06:15:00Z",
+        "location": "Umm Salal Mohammed — Zone 97, Street 387, Bldg 82"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-30T06:15:00Z",
+        "location": "Umm Salal Mohammed — Zone 97, Street 387, Bldg 82"
+      }
+    ],
+    "driver_after_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "After — road cleared and dry",
+        "takenAt": "2026-08-30T07:10:00Z",
+        "location": "Umm Salal Mohammed — Zone 97, Street 387, Bldg 82"
+      }
+    ]
+  },
+  {
+    "id": "INC-34",
+    "uniqueidentifier": "INC-34",
+    "title": "Drainage job wrapped near Simaisma",
+    "status": "job-completed",
+    "systemcol1": "Simaisma — Zone 98, Street 390, Bldg 84",
+    "municipality": "Al Daayen",
+    "systemcol2": "Medium",
+    "systemcol3": "2026-08-29T15:50:00Z",
+    "systemcol6": "Tanker crew wrapped the extraction job along the coastal road; area assessed clear, ready for closure.",
+    "lat": 25.4761,
+    "lng": 51.5512,
+    "systemcol8": "Oracle e-Service",
+    "activity": [
+      {
+        "id": "INC-34-act-1",
+        "kind": "log",
+        "actor": "Hassan Al-Marri",
+        "text": "logged this request via Oracle e-Service",
+        "at": "2026-08-29T15:50:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-34-act-2",
+        "kind": "log",
+        "actor": "Noora Al-Thani",
+        "text": "updated the request details.",
+        "at": "2026-08-29T17:50:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-34-act-sev",
+        "kind": "log",
+        "actor": "Noora Al-Thani",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Medium",
+          "tone": "info"
+        },
+        "at": "2026-08-29T18:15:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-34-act-due",
+        "kind": "log",
+        "actor": "Rashid Al-Naimi",
+        "text": "added due date **1 Sep, 2026**",
+        "at": "2026-08-29T18:35:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-34-act-3",
+        "kind": "comment",
+        "actor": "Noora Al-Thani",
+        "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=128&h=128&fit=crop&crop=faces",
+        "text": "@HassanAl-Marri crews are being coordinated for Simaisma. Priority holds at Medium.",
+        "at": "2026-08-29T18:50:00Z"
+      }
+    ],
+    "reported_by": "Khalid Al-Mansoori",
+    "last_updated": "2026-08-29T20:50:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "98",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.5512,
+      25.4761
+    ],
+    "report_notes": [
+      "Standing water reported at Simaisma; response being coordinated.",
+      "Field assessment at Simaisma: severity classified after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oracle e-Service. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Simaisma — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Simaisma — standing water"
+      }
+    ],
+    "systemcol7": "LMV-QA01",
+    "veh_driver": "Mohammed Al-Sulaiti",
+    "completion_notes": [
+      "Dewatering completed at Simaisma. Pumped volume logged; road surface inspected and reopened to traffic.",
+      "Post-completion check confirmed drainage inlets are clear. No residual pooling after 60-minute observation window."
+    ],
+    "completion_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Simaisma — cleared"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Simaisma — reopened road"
+      }
+    ],
+    "systemcol9": "Al Jaber Engineering",
+    "systemcol10": "Rashid Al-Naimi",
+    "systemcol12": "98-390-84",
+    "systemcol14": "Request",
+    "systemcol15": "Blocked Drain",
+    "systemcol16": "ORC-ESVC-2026-0034",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4019",
+    "reopened": false,
+    "reported_notes": "Tanker crew wrapped the extraction job along the coastal road; area assessed clear, ready for closure.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1545276070-ec815f01c6ec?w=640&h=640&fit=crop",
+        "alt": "Simaisma — as reported",
+        "takenAt": "2026-08-29T18:45:00Z",
+        "location": "Simaisma — Zone 98, Street 390, Bldg 84"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Simaisma — standing water",
+        "takenAt": "2026-08-29T18:45:00Z",
+        "location": "Simaisma — Zone 98, Street 390, Bldg 84"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-29T22:40:00Z",
+        "location": "Simaisma — Zone 98, Street 390, Bldg 84"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-29T22:40:00Z",
+        "location": "Simaisma — Zone 98, Street 390, Bldg 84"
+      }
+    ],
+    "driver_after_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1520116468816-95b69f847357?w=640&h=640&fit=crop",
+        "alt": "After — road cleared and dry",
+        "takenAt": "2026-08-29T23:35:00Z",
+        "location": "Simaisma — Zone 98, Street 390, Bldg 84"
+      }
+    ]
+  },
+  {
+    "id": "INC-35",
+    "uniqueidentifier": "INC-35",
+    "title": "Critical flooding at Lusail Marina North, closed out",
+    "status": "closed",
+    "systemcol1": "Lusail Marina North — Zone 91, Street 393, Bldg 86",
+    "municipality": "Al Daayen",
+    "systemcol2": "Critical",
+    "systemcol3": "2026-08-29T08:10:00Z",
+    "systemcol6": "Critical pooling around the marina towers fully resolved and confirmed dry; case closed after final inspection.",
+    "lat": 25.4351,
+    "lng": 51.4967,
+    "systemcol8": "NCC",
+    "activity": [
+      {
+        "id": "INC-35-act-1",
+        "kind": "log",
+        "actor": "Omar Al-Kaabi",
+        "text": "logged this request via NCC",
+        "at": "2026-08-29T08:10:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-35-act-2",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "updated the request details.",
+        "at": "2026-08-29T10:10:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-35-act-sev",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Critical",
+          "tone": "danger"
+        },
+        "at": "2026-08-29T10:35:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-35-act-due",
+        "kind": "log",
+        "actor": "Maryam Al-Sada",
+        "text": "added due date **1 Sep, 2026**",
+        "at": "2026-08-29T10:55:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-35-act-3",
+        "kind": "comment",
+        "actor": "Zayd Al-Farsi",
+        "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=128&h=128&fit=crop&crop=faces",
+        "text": "@OmarAl-Kaabi crews are being coordinated for Lusail Marina North. Priority holds at Critical.",
+        "at": "2026-08-29T11:10:00Z"
+      },
+      {
+        "id": "INC-35-act-4",
+        "kind": "comment",
+        "actor": "Omar Al-Kaabi",
+        "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=128&h=128&fit=crop&crop=faces",
+        "text": "@UCCPAdmin please confirm the response plan for Lusail Marina North once drainage capacity is verified.",
+        "at": "2026-08-29T13:10:00Z"
+      }
+    ],
+    "reported_by": "Fatima Al-Naimi",
+    "last_updated": "2026-08-29T14:10:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "91",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.4967,
+      25.4351
+    ],
+    "report_notes": [
+      "Standing water reported at Lusail Marina North; response being coordinated.",
+      "Field assessment at Lusail Marina North: severity classified after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via NCC. Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Lusail Marina North — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Lusail Marina North — standing water"
+      }
+    ],
+    "systemcol7": "LMV-QA02",
+    "veh_driver": "Noora Al-Thani",
+    "completion_notes": [
+      "Dewatering completed at Lusail Marina North. Pumped volume logged; road surface inspected and reopened to traffic.",
+      "Post-completion check confirmed drainage inlets are clear. No residual pooling after 60-minute observation window."
+    ],
+    "completion_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=640&h=640&fit=crop",
+        "alt": "Lusail Marina North — cleared"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=640&h=640&fit=crop",
+        "alt": "Lusail Marina North — reopened road"
+      }
+    ],
+    "systemcol9": "HBK Contracting",
+    "systemcol10": "Maryam Al-Sada",
+    "systemcol12": "91-393-86",
+    "systemcol14": "Request",
+    "systemcol15": "Rainwater Removal",
+    "systemcol16": "NCC-2026-0035",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4020",
+    "reopened": false,
+    "reported_notes": "Critical pooling around the marina towers fully resolved and confirmed dry; case closed after final inspection.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Lusail Marina North — as reported",
+        "takenAt": "2026-08-29T11:05:00Z",
+        "location": "Lusail Marina North — Zone 91, Street 393, Bldg 86"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Lusail Marina North — standing water",
+        "takenAt": "2026-08-29T11:05:00Z",
+        "location": "Lusail Marina North — Zone 91, Street 393, Bldg 86"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1433863448220-78aaa064ff47?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-29T15:00:00Z",
+        "location": "Lusail Marina North — Zone 91, Street 393, Bldg 86"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1561553590-267fc716698a?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-29T15:00:00Z",
+        "location": "Lusail Marina North — Zone 91, Street 393, Bldg 86"
+      }
+    ],
+    "driver_after_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "After — road cleared and dry",
+        "takenAt": "2026-08-29T15:55:00Z",
+        "location": "Lusail Marina North — Zone 91, Street 393, Bldg 86"
+      }
+    ]
+  },
+  {
+    "id": "INC-36",
+    "uniqueidentifier": "INC-36",
+    "title": "Standing water recurs near Lusail Boulevard",
+    "status": "reopened",
+    "systemcol1": "Lusail Boulevard — Zone 91, Street 396, Bldg 88",
+    "municipality": "Al Daayen",
+    "systemcol2": "Low",
+    "systemcol3": "2026-08-30T21:05:00Z",
+    "systemcol6": "Previously closed minor pooling recurred after a light follow-up shower; reopened for re-triage.",
+    "lat": 25.4598,
+    "lng": 51.4655,
+    "systemcol8": "Oun app (citizen)",
+    "activity": [
+      {
+        "id": "INC-36-act-1",
+        "kind": "log",
+        "actor": "Zayd Al-Farsi",
+        "text": "logged this request via Oun app (citizen)",
+        "at": "2026-08-30T21:05:00Z",
+        "icon": "added"
+      },
+      {
+        "id": "INC-36-act-2",
+        "kind": "log",
+        "actor": "Aisha Al-Kuwari",
+        "text": "updated the request details.",
+        "at": "2026-08-30T23:05:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-36-act-sev",
+        "kind": "log",
+        "actor": "Aisha Al-Kuwari",
+        "text": "changed severity to",
+        "severity": {
+          "label": "Low",
+          "tone": "neutral"
+        },
+        "at": "2026-08-30T23:30:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-36-act-due",
+        "kind": "log",
+        "actor": "Hassan Ibrahim",
+        "text": "added due date **2 Sep, 2026**",
+        "at": "2026-08-30T23:50:00Z",
+        "icon": "updated"
+      },
+      {
+        "id": "INC-36-act-3",
+        "kind": "comment",
+        "actor": "Aisha Al-Kuwari",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=128&h=128&fit=crop&crop=faces",
+        "text": "@ZaydAl-Farsi crews are being coordinated for Lusail Boulevard. Priority holds at Low.",
+        "at": "2026-08-31T00:05:00Z"
+      }
+    ],
+    "reported_by": "Mohammed Al-Sulaiti",
+    "last_updated": "2026-08-31T02:05:00Z",
+    "cust_name": "—",
+    "cust_contact": "—",
+    "addr_area": "91",
+    "addr_corner_label": "Location",
+    "addr_corner_value": "Qatar",
+    "lnglat": [
+      51.4655,
+      25.4598
+    ],
+    "report_notes": [
+      "Standing water reported at Lusail Boulevard; response being coordinated.",
+      "Field assessment at Lusail Boulevard: severity classified after drainage inspection. Access routes logged for the response crew; nearby weather-station telemetry attached to this record.",
+      "Reported via Oun app (citizen). Standing water depth and flow direction recorded; follow-up monitoring scheduled until levels recede."
+    ],
+    "report_proofs": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Lusail Boulevard — reported condition"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Lusail Boulevard — standing water"
+      }
+    ],
+    "systemcol7": "LMV-QA03",
+    "veh_driver": "Hassan Al-Marri",
+    "systemcol9": "UrbaCon Trading & Contracting",
+    "systemcol10": "Hassan Ibrahim",
+    "systemcol12": "91-396-88",
+    "systemcol14": "Complaint",
+    "systemcol15": "Rainwater Removal",
+    "systemcol16": "",
+    "tanker_count": 1,
+    "linked_daily_plan": "FPL-4021",
+    "reopened": true,
+    "reported_notes": "Previously closed minor pooling recurred after a light follow-up shower; reopened for re-triage.",
+    "reported_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=640&h=640&fit=crop",
+        "alt": "Lusail Boulevard — as reported",
+        "takenAt": "2026-08-31T00:00:00Z",
+        "location": "Lusail Boulevard — Zone 91, Street 396, Bldg 88"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?w=640&h=640&fit=crop",
+        "alt": "Lusail Boulevard — standing water",
+        "takenAt": "2026-08-31T00:00:00Z",
+        "location": "Lusail Boulevard — Zone 91, Street 396, Bldg 88"
+      }
+    ],
+    "driver_before_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1561553590-267fc716698a?w=640&h=640&fit=crop",
+        "alt": "Before — standing water at site",
+        "takenAt": "2026-08-31T03:55:00Z",
+        "location": "Lusail Boulevard — Zone 91, Street 396, Bldg 88"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=640&h=640&fit=crop",
+        "alt": "Before — flooded roadway",
+        "takenAt": "2026-08-31T03:55:00Z",
+        "location": "Lusail Boulevard — Zone 91, Street 396, Bldg 88"
+      }
+    ],
+    "driver_after_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1428592953211-077101b2021b?w=640&h=640&fit=crop",
+        "alt": "After — road cleared and dry",
+        "takenAt": "2026-08-31T04:50:00Z",
+        "location": "Lusail Boulevard — Zone 91, Street 396, Bldg 88"
+      }
+    ],
+    "reopened_notes": "Re-inspection after light shower confirmed pooling returns at the same low point. Suspect kerb inlet capacity — flagging for engineering review before re-closing.",
+    "reopened_photos": [
+      {
+        "src": "https://images.unsplash.com/photo-1545276070-ec815f01c6ec?w=640&h=640&fit=crop",
+        "alt": "Lusail Boulevard — pooling recurrence",
+        "takenAt": "2026-08-31T07:55:00Z",
+        "location": "Lusail Boulevard — Zone 91, Street 396, Bldg 88"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=640&h=640&fit=crop",
+        "alt": "Lusail Boulevard — low-point kerb inlet",
+        "takenAt": "2026-08-31T07:55:00Z",
+        "location": "Lusail Boulevard — Zone 91, Street 396, Bldg 88"
+      }
+    ]
+  }
+]

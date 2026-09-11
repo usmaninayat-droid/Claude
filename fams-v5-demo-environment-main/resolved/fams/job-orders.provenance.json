@@ -1,0 +1,191 @@
+{
+  "base": "tenant-native",
+  "module": "job-orders",
+  "nodes": {
+    "fld_jo_additional_email": {
+      "source": "tenant-native"
+    },
+    "fld_jo_additional_email_recipients": {
+      "source": "tenant-native"
+    },
+    "fld_jo_additional_inapp": {
+      "source": "tenant-native"
+    },
+    "fld_jo_additional_inapp_recipients": {
+      "source": "tenant-native"
+    },
+    "fld_jo_additional_sms": {
+      "source": "tenant-native"
+    },
+    "fld_jo_additional_sms_recipients": {
+      "source": "tenant-native"
+    },
+    "fld_jo_assignee": {
+      "source": "tenant-native"
+    },
+    "fld_jo_completion_date": {
+      "source": "tenant-native"
+    },
+    "fld_jo_current_odometer": {
+      "source": "tenant-native"
+    },
+    "fld_jo_description": {
+      "source": "tenant-native"
+    },
+    "fld_jo_due_date": {
+      "source": "tenant-native"
+    },
+    "fld_jo_eta": {
+      "source": "tenant-native"
+    },
+    "fld_jo_garage": {
+      "source": "tenant-native"
+    },
+    "fld_jo_invoice_date": {
+      "source": "tenant-native"
+    },
+    "fld_jo_invoice_number": {
+      "source": "tenant-native"
+    },
+    "fld_jo_issue_attachments": {
+      "source": "tenant-native"
+    },
+    "fld_jo_issue_type": {
+      "source": "tenant-native"
+    },
+    "fld_jo_maintenance_type": {
+      "source": "tenant-native"
+    },
+    "fld_jo_notify_driver_email": {
+      "source": "tenant-native"
+    },
+    "fld_jo_notify_driver_inapp": {
+      "source": "tenant-native"
+    },
+    "fld_jo_notify_driver_sms": {
+      "source": "tenant-native"
+    },
+    "fld_jo_overdue": {
+      "source": "tenant-native"
+    },
+    "fld_jo_overdue_flag": {
+      "source": "tenant-native"
+    },
+    "fld_jo_priority": {
+      "source": "tenant-native"
+    },
+    "fld_jo_report_attachments": {
+      "source": "tenant-native"
+    },
+    "fld_jo_report_comments": {
+      "source": "tenant-native"
+    },
+    "fld_jo_reported_by": {
+      "source": "tenant-native"
+    },
+    "fld_jo_reported_on": {
+      "source": "tenant-native"
+    },
+    "fld_jo_service_date": {
+      "source": "tenant-native"
+    },
+    "fld_jo_source_rule": {
+      "source": "tenant-native"
+    },
+    "fld_jo_status": {
+      "source": "tenant-native"
+    },
+    "fld_jo_tags": {
+      "source": "tenant-native"
+    },
+    "fld_jo_title": {
+      "source": "tenant-native"
+    },
+    "fld_jo_total_amount": {
+      "source": "tenant-native"
+    },
+    "fld_jo_uid": {
+      "source": "tenant-native"
+    },
+    "fld_jo_vehicle": {
+      "source": "tenant-native"
+    },
+    "fld_jo_vehicle_plate": {
+      "source": "tenant-native"
+    },
+    "fld_jo_warranty_years": {
+      "source": "tenant-native"
+    },
+    "flt_jo_created_by": {
+      "source": "tenant-native"
+    },
+    "flt_jo_maintenance_type": {
+      "source": "tenant-native"
+    },
+    "flt_jo_overdue": {
+      "source": "tenant-native"
+    },
+    "flt_jo_priority": {
+      "source": "tenant-native"
+    },
+    "flt_jo_status": {
+      "source": "tenant-native"
+    },
+    "flt_jo_tags": {
+      "source": "tenant-native"
+    },
+    "sec_jo_asset_details": {
+      "source": "tenant-native"
+    },
+    "sec_jo_assignment": {
+      "source": "tenant-native"
+    },
+    "sec_jo_issue": {
+      "source": "tenant-native"
+    },
+    "sec_jo_reminders": {
+      "source": "tenant-native"
+    },
+    "sec_jo_report": {
+      "source": "tenant-native"
+    },
+    "sec_jo_schedule": {
+      "source": "tenant-native"
+    },
+    "sec_jo_vehicle": {
+      "source": "tenant-native"
+    },
+    "sts_jo_completed": {
+      "source": "tenant-native"
+    },
+    "sts_jo_invalid": {
+      "source": "tenant-native"
+    },
+    "sts_jo_ongoing": {
+      "source": "tenant-native"
+    },
+    "sts_jo_reported_issues": {
+      "source": "tenant-native"
+    },
+    "sts_jo_scheduled": {
+      "source": "tenant-native"
+    },
+    "sts_jo_under_inspection": {
+      "source": "tenant-native"
+    },
+    "tab_jo_activity": {
+      "source": "tenant-native"
+    },
+    "tab_jo_attachments": {
+      "source": "tenant-native"
+    },
+    "tab_jo_linked": {
+      "source": "tenant-native"
+    },
+    "tab_jo_timeline": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

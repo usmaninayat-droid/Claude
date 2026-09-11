@@ -1,0 +1,74 @@
+{
+  "base": "tenant-native",
+  "module": "training",
+  "nodes": {
+    "fld_trn_applies_to": {
+      "source": "tenant-native"
+    },
+    "fld_trn_category": {
+      "source": "tenant-native"
+    },
+    "fld_trn_code": {
+      "source": "tenant-native"
+    },
+    "fld_trn_grace": {
+      "source": "tenant-native"
+    },
+    "fld_trn_licence": {
+      "source": "tenant-native"
+    },
+    "fld_trn_name": {
+      "source": "tenant-native"
+    },
+    "fld_trn_owner": {
+      "source": "tenant-native"
+    },
+    "fld_trn_status": {
+      "source": "tenant-native"
+    },
+    "fld_trn_tags": {
+      "source": "tenant-native"
+    },
+    "fld_trn_uid": {
+      "source": "tenant-native"
+    },
+    "fld_trn_validity": {
+      "source": "tenant-native"
+    },
+    "fld_trn_vehicle_cats": {
+      "source": "tenant-native"
+    },
+    "flt_trn_category": {
+      "source": "tenant-native"
+    },
+    "flt_trn_licence": {
+      "source": "tenant-native"
+    },
+    "flt_trn_status": {
+      "source": "tenant-native"
+    },
+    "sec_trn_eligibility": {
+      "source": "tenant-native"
+    },
+    "sec_trn_general": {
+      "source": "tenant-native"
+    },
+    "sts_trn_active": {
+      "source": "tenant-native"
+    },
+    "sts_trn_inactive": {
+      "source": "tenant-native"
+    },
+    "tab_trn_details": {
+      "source": "tenant-native"
+    },
+    "tab_trn_employees": {
+      "source": "tenant-native"
+    },
+    "tab_trn_overview": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "iwmp"
+}

@@ -1,0 +1,111 @@
+{
+  "_comment": "UCCP (Qatar MME — Ministry of Municipality and Environment) — maroon #6E112D. Figma calls this same mode 'Qatar MME'; the repo/tenant key is 'uccp' (see docs/figma-color-extraction.md §3). The demo tenant is also `uccp`, so it resolves to this file 1:1 — the old `qatar-mme.tokens.json` mirror and the frms->qatar-mme alias both existed only while that tenant was keyed `frms`, and were removed when it was renamed to `uccp`. Branding ASSETS (qatar-mme-rail-mark.svg, the tenant.json `logo: qatar-mme` key) keep the ministry's name and are unaffected.",
+  "color": {
+    "primary": {
+      "$type": "color",
+      "$value": "#6E112D"
+    },
+    "primary-foreground": {
+      "$type": "color",
+      "$value": "#ffffff"
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": "#667085"
+    },
+    "secondary-foreground": {
+      "$type": "color",
+      "$value": "#ffffff"
+    },
+    "secondary-foreground-strong": {
+      "$type": "color",
+      "$value": "#ffffff",
+      "$description": "Bug fix (designer report 2026-09-07, UCCP live-monitoring 'Municipality (Zone)' column — pills unreadable: dark-slate fill with medium-blue text). Core's `color.secondary-foreground-strong` aliases `info-scale.700` (#00478a), an accessible TEXT alias measured against CORE's light-tint `secondary` (#e6f2fc, fix7) — it was never re-measured against a tenant that repoints `secondary` itself to a solid dark fill for Button's secondary variant. This tenant does exactly that (`secondary`: #667085), so Badge's generic enum dot-chip (`ReadEnum`'s fallback branch, v5-composer/renderers.tsx — every plain `SingleSelect` chip: Municipality, Maintenance Type, Vehicle Type, …) rendered navy-on-slate, well under 4.5:1. Fix: reuse this tenant's own `secondary-foreground` (white, already the correct/tested pairing for `secondary` via Button) instead of inheriting core's light-theme-tuned navy — same approach `color.dark.secondary-foreground-strong` already takes for the dark theme's own solid `secondary` fill. White on #667085 measures ~4.7:1."
+    },
+    "accent": {
+      "$type": "color",
+      "$value": "#6E112D"
+    },
+    "accent-foreground": {
+      "$type": "color",
+      "$value": "#ffffff"
+    },
+    "ring": {
+      "$type": "color",
+      "$value": "#6E112D"
+    },
+    "primary-50": {
+      "$type": "color",
+      "$value": "#F9EBEF"
+    },
+    "primary-100": {
+      "$type": "color",
+      "$value": "#F2D1DB"
+    },
+    "primary-200": {
+      "$type": "color",
+      "$value": "#E7A7BA"
+    },
+    "primary-300": {
+      "$type": "color",
+      "$value": "#D9688A"
+    },
+    "primary-400": {
+      "$type": "color",
+      "$value": "#BA2653"
+    },
+    "primary-500": {
+      "$type": "color",
+      "$value": "#6E112D"
+    },
+    "primary-600": {
+      "$type": "color",
+      "$value": "#5C0C24"
+    },
+    "primary-700": {
+      "$type": "color",
+      "$value": "#4B091D"
+    },
+    "primary-800": {
+      "$type": "color",
+      "$value": "#3A0615"
+    },
+    "primary-900": {
+      "$type": "color",
+      "$value": "#2A030F"
+    },
+    "surface-secondary": {
+      "$type": "color",
+      "$value": "#F9EBEF"
+    },
+    "transparent-brand-20": {
+      "$type": "color",
+      "$value": "rgba(110, 17, 45, 0.2)"
+    },
+    "transparent-brand-40": {
+      "$type": "color",
+      "$value": "rgba(110, 17, 45, 0.4)"
+    },
+    "transparent-brand-60": {
+      "$type": "color",
+      "$value": "rgba(110, 17, 45, 0.6)"
+    },
+    "success-text": {
+      "$type": "color",
+      "$value": "#027a48",
+      "$description": "D-6: explicit override slot, set to the CORE alias (color.success-text = success-scale.700) — UCCP has no green ramp of its own. 5.41:1 on white."
+    },
+    "error-text": {
+      "$type": "color",
+      "$value": "#b42318",
+      "$description": "D-6: explicit override slot, set to the CORE alias (color.error-text = error.700). UCCP's own brand primary (#6E112D, maroon) is technically a dark red and clears 4.5:1 on white (11.79:1), but it is the tenant's PRIMARY/brand-action colour, not an error ramp override — reusing it for `error-text` would make destructive actions read visually identical to primary/brand actions in this tenant, the opposite of the semantic distinction `error-text` exists to preserve. Deliberately not used; revisit only on an explicit designer ruling."
+    }
+  },
+  "colorDark": {
+    "_comment": "Dark-scope brand adjustment. The generic dark block used to revert every tenant to FAMS blue in dark mode; buildTenantsCss re-asserts the brand set in dark scope, with these values overriding the light ones. Only `ring` is brightened (a #6E112D focus ring is near-invisible on #101828 surfaces); primary/accent stay the brand maroon — white foreground clears 11.79:1 on it, and active pills/toggles must read as UCCP maroon, not a rosier derivative. Moved here from qatar-mme.tokens.json when the demo tenant was renamed frms -> uccp and began resolving to this file directly instead of aliasing.",
+    "ring": {
+      "$type": "color",
+      "$value": "#BA2653"
+    }
+  }
+}

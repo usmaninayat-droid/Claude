@@ -1,0 +1,36 @@
+{
+  "name": "@fams/skeleton-example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 6200 --strictPort",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 6200 --strictPort",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@fams/skeleton-kit": "workspace:*",
+    "@fams/tokens": "workspace:*",
+    "@tanstack/react-query": "catalog:",
+    "@tanstack/react-router": "catalog:",
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4",
+    "@tanstack/router-plugin": "^1.168.23",
+    "@testing-library/dom": "^10",
+    "@testing-library/jest-dom": "^6",
+    "@testing-library/react": "^16",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4",
+    "jsdom": "^25",
+    "tailwindcss": "^4",
+    "typescript": "catalog:",
+    "vite": "^6",
+    "vitest": "catalog:"
+  }
+}

@@ -1,0 +1,152 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+/* Qatar MME (Ministry of Municipality and Environment) brand — sourced from the
+   FAMS V5 Design System (read-only). Sets the maroon #6E112D primary + solid
+   maroon app rail (--sidebar) that brands this Flood Management solution. */
+@import '../ds/tokens/qatar-mme.theme.css';
+/* Inspector V5 border-radius token spec (user-supplied). Uses its own
+   --ins-radius-* names rather than the DS's --radius-sm/-md/-lg/-xl to avoid
+   silently changing DS-wide `rounded-*` Tailwind utilities, which are wired
+   to those DS var names in src/ds/tokens/tailwind.preset.ts with different
+   pixel values than this spec. */
+@import '../inspector-v5/styles/radius.css';
+
+/* Hide scrollbar utility */
+.fams-hide-scrollbar::-webkit-scrollbar { display: none; }
+.fams-hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+
+/* Global keyboard focus ring (a11y sweep). Previously only toasts + the
+ * maplibre zoom/reset buttons had any :focus-visible styling, so tabbing
+ * through the rest of the app (hub cards, module tabs, filter chips, sidebar
+ * rail) left no visible indicator of the focused element. Scoped to actual
+ * interactive elements (not every div) so it doesn't fight component-owned
+ * outlines that already exist; :where() keeps this rule's specificity low
+ * so a component's own :focus-visible override still wins if present. */
+:where(a, button, input, select, textarea, [role="button"], [role="tab"], [role="checkbox"], [role="radio"], [role="switch"], [role="menuitem"], [role="option"], [tabindex]):focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: inherit;
+}
+/* Inside the solid maroon primary sidebar rail, a maroon-on-maroon outline
+ * is invisible — use the rail's own light foreground token instead so the
+ * ring still reads against the brand background. */
+nav[aria-label="Primary"] :where(a, button, [role="button"], [tabindex]):focus-visible {
+  outline-color: var(--sidebar-foreground, #FFFFFF);
+}
+
+/* Rail tap-target enlargement (C&C mobile-reachability fix). The DS app-rail
+ * (Inbox/apps/Settings/Profile/Exit) and module-rail buttons render at
+ * ~26-28px visual chrome per the FAMS V5 DS spec — too small a touch target
+ * on phones. Rather than resizing the visible chrome (which would violate
+ * desktop pixel-parity and widen the rail), grow only the invisible hit box
+ * to the 44x44 minimum via a centered ::after overlay. Scoped to the
+ * Primary side-nav only. */
+nav[aria-label="Primary"] button {
+  position: relative;
+}
+nav[aria-label="Primary"] button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(44px, 100%);
+  height: max(44px, 100%);
+  transform: translate(-50%, -50%);
+}
+
+/* MapLayerRail (mapPins.tsx) fine-pointer targets — same invisible hit-box
+ * growth pattern, scoped to its own class so the 36px visual box (desktop
+ * pixel parity, hover tooltips) is unchanged while the tap/click target
+ * grows to 44px. Coarse-pointer devices skip this class entirely (they get
+ * real 44px+ icon+label chips instead — see mapPins.tsx). */
+.mm-rail-hitbox {
+  position: relative;
+}
+.mm-rail-hitbox::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(44px, 100%);
+  height: max(44px, 100%);
+  transform: translate(-50%, -50%);
+}
+
+/* DS MapView zoom/reset/fullscreen controls (src/ds/components/map/map-view.tsx,
+ * read-only) render `size-9` (36px) icon buttons with no class hook of their
+ * own — targeted here via the `.qmme-map-canvas` wrapper every map screen
+ * already applies (see the RTL-mirroring rule above that uses the same
+ * scope). Same invisible ::after hit-box growth pattern as the rails above;
+ * the visible 36px chrome is untouched. */
+.qmme-map-canvas .top-4.right-4 button,
+.qmme-map-canvas .bottom-4.right-4 button {
+  position: relative;
+}
+.qmme-map-canvas .top-4.right-4 button::after,
+.qmme-map-canvas .bottom-4.right-4 button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(44px, 100%);
+  height: max(44px, 100%);
+  transform: translate(-50%, -50%);
+}
+
+/* Hit-area minimums sweep (item 3). Same invisible ::after hitbox pattern as
+ * the nav rail / MapLayerRail above, applied to the two other undersized
+ * interactive families found in the live getBoundingClientRect sweep of the
+ * Dashboard + Field Dispatching screens:
+ *   - the DS MapView zoom/reset/fullscreen control cluster (size-9 = 36px);
+ *     targeted by aria-label since map-view.tsx is DS and read-only.
+ *   - the DS WidgetCard/ChartCard "Chart options"/"Widget options" ⋮ menu
+ *     trigger (28px) — same read-only-DS constraint, targeted by aria-label.
+ * These are app-level CSS rules keyed off DS-rendered markup; no DS file is
+ * edited. Growing only the pseudo-element keeps the 36px/28px visual chrome
+ * (desktop pixel-parity) unchanged while the actual clickable region grows
+ * to 44px, confirmed live via elementFromPoint hit-testing at the corners of
+ * a 44px box around each button's center. */
+[aria-label="Zoom in"],
+[aria-label="Zoom out"],
+[aria-label="Reset view"],
+[aria-label="Fullscreen"],
+[aria-label="Widget options"],
+[aria-label="Chart options"] {
+  position: relative;
+}
+[aria-label="Zoom in"]::after,
+[aria-label="Zoom out"]::after,
+[aria-label="Reset view"]::after,
+[aria-label="Fullscreen"]::after,
+[aria-label="Widget options"]::after,
+[aria-label="Chart options"]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(44px, 100%);
+  height: max(44px, 100%);
+  transform: translate(-50%, -50%);
+}
+
+/* Inspector V5 card/sheet icon-button hit-area growth (IncidentCard/PlanCard
+   eye toggle, DetailSheet add, RecordWorkspace panel toggle,
+   IncidentDetailSheet overflow trigger, ActivityFeed attach) now uses the
+   canonical Tailwind pseudo-element idiom inline on each button instead of a
+   bespoke class here — see `fams-design-system`'s
+   `DataTableColumnControls.tsx` (`before:absolute before:-inset-*
+   before:content-['']`), same "invisible hit area via an absolutely
+   positioned ::before, visual chrome stays pixel-exact" technique. */
+
+/* Live Dispatching cluster markers: smooth fade + gentle pop when they (re)appear
+   after a cluster/uncluster change. Opacity is animated on the marker root (safe);
+   the SCALE is on the inner content only, so it never overrides MapLibre's own
+   translate() positioning transform on `.maplibregl-marker`. */
+@media (prefers-reduced-motion: no-preference) {
+  .qmme-cluster-map .maplibregl-marker { animation: fams-mk-fade 240ms ease both; }
+  .qmme-cluster-map .maplibregl-marker > * { animation: fams-mk-pop 260ms cubic-bezier(0.34, 1.4, 0.64, 1) both; }
+}
+@keyframes fams-mk-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fams-mk-pop { from { transform: scale(0.55); } to { transform: scale(1); } }
+

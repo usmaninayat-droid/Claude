@@ -1,0 +1,30 @@
+{
+  "name": "fams-v5-demo-environment",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "FAMS v5 multi-tenant demo environment — core modules + tenant deltas + generated resolved blueprints, with the resolve/check/capture/promote tool suite (decisions #14-#17).",
+  "packageManager": "pnpm@10.34.5",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "demo": "node tools/demo.mjs",
+    "dev": "pnpm --filter app dev",
+    "resolve": "node tools/resolve.mjs",
+    "check": "node tools/check.mjs",
+    "capture": "node tools/capture.mjs",
+    "capture-action": "node tools/capture-action.mjs",
+    "promote": "node tools/promote.mjs",
+    "debt": "node tools/debt-dashboard.mjs",
+    "test": "vitest run",
+    "test:all": "vitest run && pnpm --filter app test"
+  },
+  "dependencies": {
+    "@fams/v5-composer": "link:../fams-design-system/packages/v5-composer",
+    "ajv": "^8.20.0"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.7"
+  }
+}

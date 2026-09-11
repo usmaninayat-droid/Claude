@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "fams-v5/ReportsModuleConfig",
+  "title": "ReportsModuleConfig",
+  "description": "Declarative Reports module config. Renders ReportsHome (card grid) + ReportRunner (table + filters + export) via @fams-v5/modules/reports.",
+  "type": "object",
+  "required": ["kind", "sections", "reports"],
+  "properties": {
+    "kind": { "const": "reports" },
+    "displayName": { "type": "string" },
+    "searchPlaceholder": { "type": "string" },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "tag": { "type": "string", "description": "Pill label next to section name (e.g. 'system' / 'custom')." },
+          "icon": { "type": "string", "description": "Lucide icon name." }
+        }
+      }
+    },
+    "reports": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Report" }
+    },
+    "rbac": { "type": "object", "additionalProperties": true }
+  },
+  "definitions": {
+    "Report": {
+      "type": "object",
+      "required": ["id", "label", "sectionId"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "icon": { "type": "string", "description": "Lucide icon name for the card." },
+        "iconColor": { "type": "string", "description": "CSS color (var or hex) for the icon." },
+        "description": { "type": "string" },
+        "illustration": { "type": "string", "description": "URL to the right-side illustration image." },
+        "sectionId": { "type": "string" },
+        "lastViewed": { "type": "string" },
+        "category": { "type": "string", "enum": ["system", "custom"] },
+        "subTabs": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/SubTab" }
+        },
+        "filters": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Filter" }
+        },
+        "columns": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Column" }
+        },
+        "outputModes": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["table", "kpi-grid", "list", "hybrid"] }
+        },
+        "subscription": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "recurrencePresets": { "type": "array", "items": { "type": "string", "enum": ["daily", "weekly", "monthly", "custom"] } },
+            "formats": { "type": "array", "items": { "type": "string", "enum": ["pdf", "excel", "csv"] } }
+          }
+        },
+        "rbac": { "type": "object", "additionalProperties": true }
+      }
+    },
+    "SubTab": {
+      "type": "object",
+      "required": ["id", "label"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "icon": { "type": "string" },
+        "dataField": { "type": "string", "description": "Key on the report data this tab reads." },
+        "columns": { "type": "array", "items": { "$ref": "#/definitions/Column" } }
+      }
+    },
+    "Filter": {
+      "type": "object",
+      "required": ["id", "label", "type"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": [
+            "date-range", "group-by", "time-grain",
+            "multi-select-entity", "multi-select-tag",
+            "threshold-range", "cost-calculation",
+            "single-select", "text-search",
+            "asset-selector", "job-order-selector", "custom"
+          ]
+        },
+        "icon": { "type": "string" },
+        "entityId": { "type": "string" },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["value", "label"],
+            "properties": {
+              "value": { "type": "string" },
+              "label": { "type": "string" }
+            }
+          }
+        },
+        "required": { "type": "boolean" }
+      }
+    },
+    "Column": {
+      "type": "object",
+      "required": ["id", "label"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": [
+            "text", "number", "currency", "percentage",
+            "date", "datetime", "duration",
+            "avatar", "linked-entity", "tag", "status", "sparkline"
+          ]
+        },
+        "sortable": { "type": "boolean" },
+        "drillLevel": { "type": "number", "enum": [0, 1, 2] },
+        "width": { "type": "number" }
+      }
+    }
+  }
+}

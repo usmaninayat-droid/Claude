@@ -1,0 +1,15 @@
+<!doctype html>
+<!-- data-theme / data-tenant are set HERE so the token CSS matches before first
+     paint (same reasoning as the host's app/index.html). main.tsx re-applies
+     them from the embed query so the host can drive theme + tenant. -->
+<html lang="en" data-theme="light" data-tenant="iwmp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IWMP · Shift Rostering</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

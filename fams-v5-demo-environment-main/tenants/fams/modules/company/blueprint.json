@@ -1,0 +1,77 @@
+{
+  "$schema": "../../../../node_modules/@fams/v5-composer/schemas/EntityModuleConfig.schema.json",
+  "kind": "entity",
+  "code": "crm/company",
+  "name": "Company",
+  "uidPrefix": "CO",
+  "systemcolumns": [
+    { "id": "fld_co_name", "col": "title", "name": "Company Name", "type": "SmallText", "required": true },
+    { "id": "fld_co_industry", "col": "systemcol1", "name": "Industry", "type": "SingleSelect", "listValues": ["Manufacturing", "Retail", "Logistics", "Construction", "Healthcare", "Technology", "Government"] },
+    { "id": "fld_co_website", "col": "systemcol2", "name": "Website", "type": "SmallText" },
+    { "id": "fld_co_phone", "col": "systemcol3", "name": "Phone", "type": "Phone" },
+    { "id": "fld_co_address", "col": "systemcol4", "name": "Address", "type": "SmallText" },
+    { "id": "fld_co_status", "col": "status", "name": "Status", "type": "SingleSelect", "listValues": ["Prospect", "Active", "Churned"] },
+    { "id": "fld_co_owner", "col": "systemcol5", "name": "Account Owner", "type": "SingleReference", "refModule": "Entity", "entityType": "workforce/driver" },
+    { "id": "fld_co_tags", "col": "tags", "name": "Tags", "type": "tags" }
+  ],
+  "uiConfig": {
+    "icon": "building",
+    "statusList": [
+      { "id": "sts_co_prospect", "key": "Prospect", "label": "Prospect", "color": "#f79009" },
+      { "id": "sts_co_active", "key": "Active", "label": "Active", "color": "#16a34a" },
+      { "id": "sts_co_churned", "key": "Churned", "label": "Churned", "color": "#94a3b8" }
+    ],
+    "profile": {
+      "title": { "id": "fld_co_name", "col": "title", "pos": "left" },
+      "details": [
+        { "id": "fld_co_industry", "col": "systemcol1", "pos": "left", "order": 1 },
+        { "id": "fld_co_status", "col": "status", "pos": "right", "order": 1, "component": { "name": "StatusList" } },
+        { "id": "fld_co_website", "col": "systemcol2", "pos": "left", "order": 2 },
+        { "id": "fld_co_phone", "col": "systemcol3", "pos": "right", "order": 2 },
+        { "id": "fld_co_address", "col": "systemcol4", "pos": "left", "order": 3 },
+        { "id": "fld_co_owner", "col": "systemcol5", "pos": "right", "order": 3, "component": { "name": "LinkView" } }
+      ],
+      "sections": [
+        {
+          "id": "sec_co_details",
+          "name": "Company Details",
+          "order": 1,
+          "fields": [
+            { "id": "fld_co_industry", "col": "systemcol1", "order": 1 },
+            { "id": "fld_co_website", "col": "systemcol2", "order": 2 },
+            { "id": "fld_co_phone", "col": "systemcol3", "order": 3 },
+            { "id": "fld_co_address", "col": "systemcol4", "order": 4 },
+            { "id": "fld_co_owner", "col": "systemcol5", "order": 5, "component": { "name": "LinkView" } }
+          ]
+        }
+      ],
+      "rightPanel": {
+        "type": "tab",
+        "tabs": [
+          { "id": "tab_co_overview", "key": "overview", "title": "Overview", "order": 1, "component": { "name": "OverviewSummary" } },
+          { "id": "tab_co_details", "key": "details", "title": "Details", "order": 2, "component": { "name": "sections" } },
+          { "id": "tab_co_linked", "key": "linked", "title": "Linked", "order": 3, "component": { "name": "LinkedRecords" } }
+        ]
+      }
+    },
+    "filters": [
+      { "id": "flt_co_industry", "col": "systemcol1", "order": 1 },
+      { "id": "flt_co_status", "col": "status", "order": 2 }
+    ],
+    "search": { "columns": ["title", "systemcol2"] },
+    "rowActions": { "delete": true, "archive": true, "requiredPrivilege": "company.view" },
+    "bulkActions": { "delete": true, "export": true },
+    "listSelectable": true,
+    "recordNoun": { "one": "company", "many": "companies" },
+    "creation": { "layout": "flat", "fieldChrome": "inset-label", "label": "Create New Company" }
+  },
+  "listcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "name": "Company ID", "component": { "name": "TextView" } },
+    { "id": "fld_co_name", "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "id": "fld_co_industry", "col": "systemcol1", "component": { "name": "TextView" } },
+    { "id": "fld_co_status", "col": "status", "component": { "name": "StatusList" } },
+    { "id": "fld_co_phone", "col": "systemcol3", "component": { "name": "TextView" } },
+    { "id": "fld_co_owner", "col": "systemcol5", "component": { "name": "LinkView" } },
+    { "id": "fld_co_tags", "col": "tags", "component": { "name": "TagList" } }
+  ]
+}

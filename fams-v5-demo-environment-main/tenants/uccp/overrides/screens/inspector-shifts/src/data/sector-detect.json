@@ -1,0 +1,13 @@
+{
+  "phases": [
+    { "id": "detecting", "message": "AI is detecting your sector…", "durationMs": 2200 },
+    { "id": "success", "message": "Sector identified successfully.", "durationMs": 1300 }
+  ],
+  "sparkles": [
+    { "left": "42%", "top": "34%", "size": 30, "delay": 0 },
+    { "left": "52%", "top": "44%", "size": 48, "delay": 180 },
+    { "left": "46%", "top": "58%", "size": 24, "delay": 360 }
+  ],
+  "colors": { "sparkle": "#FDB022", "check": "#32D583", "text": "#FFFFFF" },
+  "overlay": "rgba(52, 64, 84, 0.55)"
+}

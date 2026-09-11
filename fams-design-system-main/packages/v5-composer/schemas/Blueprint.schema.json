@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fams.com/schemas/v5-composer/Blueprint.schema.json",
+  "title": "FAMS V5 Blueprint",
+  "description": "A complete app/use-case, composed entirely from config — the artifact the composer reads. A tenant brand + an ordered list of module nodes, each naming a TYPE from the fixed menu + a data source. Brand re-skins via token overrides only — it can never restructure (coherence guarantee). Every module node carries a stable `id`.",
+  "type": "object",
+  "required": ["id", "tenant", "brand", "modules"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "App slug, kebab-case." },
+    "tenant": { "type": "string", "description": "Tenant id — selects theme + isolates the data store." },
+    "brand": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "logo": { "type": "string", "description": "Logo asset id / icon name." },
+        "theme": {
+          "type": "object",
+          "description": "Per-tenant token overrides applied on the shell root. KEYS MUST BE CSS custom properties (start with --). This is the ONLY structural freedom a tenant has.",
+          "patternProperties": { "^--[a-z0-9-]+$": { "type": "string" } },
+          "additionalProperties": false
+        }
+      }
+    },
+    "user": {
+      "type": "object",
+      "description": "Current (simulated) user — drives RBAC row visibility + transitions.",
+      "required": ["id", "roles"],
+      "properties": {
+        "id": { "type": "string" },
+        "roles": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "modules": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Modules in left-rail order. Each names a TYPE from the fixed menu + a data source.",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "label"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "Stable module identity." },
+          "type": {
+            "type": "string",
+            "enum": ["entity", "pipeline", "dashboard", "live-monitoring", "reports", "inbox", "settings", "calendar", "forms", "zones", "pois"]
+          },
+          "label": { "type": "string" },
+          "icon": { "type": "string", "description": "V5 icon name." },
+          "views": {
+            "type": "array",
+            "items": { "enum": ["list", "kanban", "hybrid", "map", "calendar", "grouped-list", "grid"] },
+            "description": "Tabs to expose; defaults come from the module-type registry when omitted."
+          },
+          "dataSource": {
+            "type": "object",
+            "required": ["code"],
+            "additionalProperties": false,
+            "properties": {
+              "code": { "type": "string", "description": "Entity code in the data store (e.g. crm/deals)." },
+              "rulesRef": { "type": "string", "description": "Key into `rules` (pipelines)." }
+            }
+          },
+          "config": {
+            "description": "Module config: a path to a *.module.json, or an inline EntityModuleConfig/PipelineModuleConfig.",
+            "oneOf": [{ "type": "string" }, { "type": "object" }]
+          },
+          "create": {
+            "type": "object",
+            "description": "Optional Create-New surface.",
+            "additionalProperties": false,
+            "properties": {
+              "fields": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["id", "label"],
+                  "properties": {
+                    "id": { "type": "string" },
+                    "label": { "type": "string" },
+                    "type": { "type": "string" },
+                    "required": { "type": "boolean" }
+                  }
+                }
+              },
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["id", "title", "fields"],
+                  "properties": {
+                    "id": { "type": "string" },
+                    "title": { "type": "string" },
+                    "fields": { "type": "array", "items": { "type": "string" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "rules": {
+      "type": "object",
+      "description": "Pipeline rules by rulesRef. Value is a path to a *.rules.json or an inline PipelineRules object.",
+      "additionalProperties": { "oneOf": [{ "type": "string" }, { "type": "object" }] }
+    },
+    "seeds": {
+      "type": "object",
+      "description": "Seed data by entity code. Value is a path to a *.seed.json or an inline array of records.",
+      "additionalProperties": { "oneOf": [{ "type": "string" }, { "type": "array" }] }
+    }
+  }
+}

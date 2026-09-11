@@ -1,0 +1,589 @@
+[
+  {
+    "id": "DSP-01",
+    "uniqueidentifier": "DSP-01",
+    "title": "RT-104 Corniche Loop",
+    "status": "ongoing",
+    "planName": "Downtown Service Plan",
+    "planStatus": "On Site",
+    "plate": "AD 51203",
+    "vehicleModel": "Volvo FE 320",
+    "driver": "Omar Hadid",
+    "contact": "+971 50 204 1187",
+    "shift": "Morning",
+    "zone": "Zone A - Corniche",
+    "depot": "Central Depot",
+    "progressPct": 62,
+    "progressLabel": "15/24 tasks",
+    "plannedWindow": "06:00 - 10:30",
+    "actualWindow": "06:04 - est 10:40",
+    "speed": 38,
+    "location": "Corniche Rd W, Abu Dhabi",
+    "lastSeen": "1 min ago",
+    "lat": 24.4762,
+    "lng": 54.3273,
+    "heading": 220,
+    "plannedRoute": [
+      [
+        54.318,
+        24.487
+      ],
+      [
+        54.325,
+        24.481
+      ],
+      [
+        54.332,
+        24.474
+      ],
+      [
+        54.34,
+        24.468
+      ],
+      [
+        54.35,
+        24.462
+      ]
+    ],
+    "actualRoute": [
+      [
+        54.318,
+        24.487
+      ],
+      [
+        54.324,
+        24.482
+      ],
+      [
+        54.327,
+        24.476
+      ],
+      [
+        54.331,
+        24.473
+      ]
+    ],
+    "timelineEvents": [
+      {
+        "id": "DSP-01-t1",
+        "actor": "System",
+        "action": "created the dispatch job",
+        "timestamp": "05:30 AM",
+        "dateGroup": "Today"
+      },
+      {
+        "id": "DSP-01-t2",
+        "actor": "Dispatcher Aisha",
+        "action": "dispatched the route",
+        "badge": {
+          "label": "DISPATCHED",
+          "tone": "success"
+        },
+        "timestamp": "06:00 AM",
+        "dateGroup": "Today"
+      }
+    ],
+    "mobility": "moving",
+    "routeType": "Collection",
+    "currentAssignment": "AD 51203 · Omar Hadid"
+  },
+  {
+    "id": "DSP-02",
+    "uniqueidentifier": "DSP-02",
+    "title": "RT-112 Marina District",
+    "status": "delayed",
+    "planName": "Marina Service Plan",
+    "planStatus": "On Site",
+    "plate": "AD 60518",
+    "vehicleModel": "MAN TGM 18.250",
+    "driver": "Salim Nasser",
+    "contact": "+971 52 771 4409",
+    "shift": "Morning",
+    "zone": "Zone B - Marina",
+    "depot": "Central Depot",
+    "progressPct": 41,
+    "progressLabel": "9/22 tasks",
+    "plannedWindow": "06:00 - 10:00",
+    "actualWindow": "06:26 - est 10:55",
+    "delayText": "Running 26 min late",
+    "riskBanner": "SLA at risk - traffic congestion on Marina approach",
+    "riskTone": "warning",
+    "speed": 12,
+    "location": "Marina Mall Junction",
+    "lastSeen": "just now",
+    "lat": 24.4764,
+    "lng": 54.3211,
+    "heading": 95,
+    "plannedRoute": [
+      [
+        54.313,
+        24.469
+      ],
+      [
+        54.317,
+        24.473
+      ],
+      [
+        54.321,
+        24.477
+      ],
+      [
+        54.327,
+        24.48
+      ]
+    ],
+    "actualRoute": [
+      [
+        54.313,
+        24.469
+      ],
+      [
+        54.316,
+        24.472
+      ],
+      [
+        54.321,
+        24.4764
+      ]
+    ],
+    "mobility": "idling",
+    "routeType": "Collection",
+    "standbyVehicle": "AD 70914 · Scania P280 (standby)",
+    "standbyDriver": "Yusuf Rahman · standby, Central Depot",
+    "currentAssignment": "AD 60518 · Salim Nasser"
+  },
+  {
+    "id": "DSP-03",
+    "uniqueidentifier": "DSP-03",
+    "title": "RT-118 Al Zahiyah Sweep",
+    "status": "action-required",
+    "planName": "City Center Plan",
+    "planStatus": "On Site",
+    "plate": "AD 48822",
+    "vehicleModel": "Isuzu FVR 900",
+    "driver": "Yusuf Karim",
+    "contact": "+971 55 318 6642",
+    "shift": "Morning",
+    "zone": "Zone C - Al Zahiyah",
+    "depot": "East Depot",
+    "progressPct": 28,
+    "progressLabel": "5/18 tasks",
+    "plannedWindow": "06:30 - 11:00",
+    "actualWindow": "06:35 - halted 08:12",
+    "delayText": "Halted 40+ min",
+    "riskBanner": "Vehicle breakdown reported - replacement needed",
+    "riskTone": "danger",
+    "speed": 0,
+    "location": "Hamdan St & 6th St",
+    "lastSeen": "3 min ago",
+    "lat": 24.4931,
+    "lng": 54.3705,
+    "heading": 0,
+    "plannedRoute": [
+      [
+        54.36,
+        24.488
+      ],
+      [
+        54.365,
+        24.49
+      ],
+      [
+        54.3705,
+        24.4931
+      ],
+      [
+        54.377,
+        24.496
+      ],
+      [
+        54.383,
+        24.499
+      ]
+    ],
+    "actualRoute": [
+      [
+        54.36,
+        24.488
+      ],
+      [
+        54.365,
+        24.49
+      ],
+      [
+        54.3705,
+        24.4931
+      ]
+    ],
+    "timelineEvents": [
+      {
+        "id": "DSP-03-t1",
+        "actor": "Driver Yusuf Karim",
+        "action": "reported a vehicle breakdown",
+        "badge": {
+          "label": "BREAKDOWN",
+          "tone": "warning"
+        },
+        "timestamp": "08:12 AM",
+        "dateGroup": "Today"
+      }
+    ],
+    "comments": [
+      {
+        "id": "DSP-03-c1",
+        "author": "Dispatcher Aisha",
+        "text": "@Fleet standby unit requested for RT-118, ETA 25 min.",
+        "timestamp": "08:15 AM",
+        "dateGroup": "Today"
+      }
+    ],
+    "mobility": "stopped",
+    "routeType": "Transfer",
+    "standbyVehicle": "AD 70914 · Scania P280 (standby)",
+    "standbyDriver": "Yusuf Rahman · standby, Central Depot",
+    "currentAssignment": "AD 48822 · Yusuf Karim"
+  },
+  {
+    "id": "DSP-04",
+    "uniqueidentifier": "DSP-04",
+    "title": "RT-121 Khalifa Park Circuit",
+    "status": "ongoing",
+    "planName": "East Corridor Plan",
+    "planStatus": "On Site",
+    "plate": "AD 55490",
+    "vehicleModel": "Volvo FE 320",
+    "driver": "Hassan Alvi",
+    "contact": "+971 54 902 7718",
+    "shift": "Morning",
+    "zone": "Zone D - Khalifa Park",
+    "depot": "East Depot",
+    "progressPct": 78,
+    "progressLabel": "18/23 tasks",
+    "plannedWindow": "05:30 - 09:30",
+    "actualWindow": "05:31 - est 09:25",
+    "speed": 44,
+    "location": "Salam St, Abu Dhabi",
+    "lastSeen": "just now",
+    "lat": 24.4419,
+    "lng": 54.4171,
+    "heading": 140,
+    "plannedRoute": [
+      [
+        54.405,
+        24.452
+      ],
+      [
+        54.41,
+        24.448
+      ],
+      [
+        54.417,
+        24.442
+      ],
+      [
+        54.424,
+        24.437
+      ],
+      [
+        54.43,
+        24.431
+      ]
+    ],
+    "actualRoute": [
+      [
+        54.405,
+        24.452
+      ],
+      [
+        54.411,
+        24.447
+      ],
+      [
+        54.4171,
+        24.4419
+      ]
+    ],
+    "mobility": "moving",
+    "routeType": "Collection",
+    "currentAssignment": "AD 55490 · Hassan Alvi"
+  },
+  {
+    "id": "DSP-05",
+    "uniqueidentifier": "DSP-05",
+    "title": "RT-127 Reem Island Run",
+    "status": "dispatched",
+    "planName": "Island Service Plan",
+    "planStatus": "At Depot",
+    "plate": "AD 62077",
+    "vehicleModel": "MAN TGM 18.250",
+    "driver": "Karim Odeh",
+    "contact": "+971 56 449 2031",
+    "shift": "Morning",
+    "zone": "Zone E - Reem Island",
+    "depot": "Central Depot",
+    "progressPct": 0,
+    "progressLabel": "0/20 tasks",
+    "plannedWindow": "09:00 - 13:00",
+    "actualWindow": "en route to start",
+    "speed": 52,
+    "location": "Sheikh Khalifa Bridge",
+    "lastSeen": "just now",
+    "lat": 24.4901,
+    "lng": 54.4014,
+    "heading": 60,
+    "plannedRoute": [
+      [
+        54.395,
+        24.485
+      ],
+      [
+        54.401,
+        24.49
+      ],
+      [
+        54.408,
+        24.496
+      ],
+      [
+        54.415,
+        24.501
+      ]
+    ],
+    "actualRoute": [
+      [
+        54.395,
+        24.485
+      ],
+      [
+        54.4014,
+        24.4901
+      ]
+    ],
+    "mobility": "moving",
+    "routeType": "Transfer",
+    "currentAssignment": "AD 62077 · Karim Odeh"
+  },
+  {
+    "id": "DSP-06",
+    "uniqueidentifier": "DSP-06",
+    "title": "RT-131 Mushrif Gardens",
+    "status": "scheduled",
+    "planName": "Suburban Plan",
+    "planStatus": "At Depot",
+    "plate": "AD 47215",
+    "vehicleModel": "Isuzu FVR 900",
+    "driver": "Fahad Qureshi",
+    "contact": "+971 50 883 5127",
+    "shift": "Evening",
+    "zone": "Zone F - Mushrif",
+    "depot": "East Depot",
+    "progressPct": 0,
+    "progressLabel": "0/16 tasks",
+    "plannedWindow": "14:00 - 18:00",
+    "actualWindow": "not started",
+    "speed": 0,
+    "location": "East Depot Yard",
+    "lastSeen": "8 min ago",
+    "lat": 24.4442,
+    "lng": 54.4402,
+    "heading": 0,
+    "plannedRoute": [
+      [
+        54.44,
+        24.444
+      ],
+      [
+        54.447,
+        24.44
+      ],
+      [
+        54.454,
+        24.435
+      ],
+      [
+        54.461,
+        24.43
+      ]
+    ],
+    "actualRoute": [],
+    "mobility": "stopped",
+    "routeType": "Inspection",
+    "currentAssignment": "AD 47215 · Fahad Qureshi"
+  },
+  {
+    "id": "DSP-07",
+    "uniqueidentifier": "DSP-07",
+    "title": "RT-135 Airport Road Line",
+    "status": "scheduled",
+    "planName": "Arterial Plan",
+    "planStatus": "At Depot",
+    "plate": "AD 58834",
+    "vehicleModel": "Volvo FE 320",
+    "driver": "Bilal Rahman",
+    "contact": "+971 52 665 9083",
+    "shift": "Evening",
+    "zone": "Zone G - Airport Rd",
+    "depot": "Central Depot",
+    "progressPct": 0,
+    "progressLabel": "0/19 tasks",
+    "plannedWindow": "14:30 - 19:00",
+    "actualWindow": "not started",
+    "speed": 0,
+    "location": "Central Depot Yard",
+    "lastSeen": "12 min ago",
+    "lat": 24.4285,
+    "lng": 54.4588,
+    "heading": 0,
+    "plannedRoute": [
+      [
+        54.455,
+        24.432
+      ],
+      [
+        54.462,
+        24.426
+      ],
+      [
+        54.469,
+        24.42
+      ],
+      [
+        54.476,
+        24.414
+      ]
+    ],
+    "actualRoute": [],
+    "mobility": "stopped",
+    "routeType": "Collection",
+    "currentAssignment": "AD 58834 · Bilal Rahman"
+  },
+  {
+    "id": "DSP-08",
+    "uniqueidentifier": "DSP-08",
+    "title": "RT-098 Saadiyat Coastal",
+    "status": "completed",
+    "planName": "Coastal Plan",
+    "planStatus": "At Depot",
+    "plate": "AD 43310",
+    "vehicleModel": "MAN TGM 18.250",
+    "driver": "Tariq Mansoor",
+    "contact": "+971 55 207 3348",
+    "shift": "Morning",
+    "zone": "Zone H - Saadiyat",
+    "depot": "East Depot",
+    "progressPct": 100,
+    "progressLabel": "21/21 tasks",
+    "plannedWindow": "05:00 - 09:00",
+    "actualWindow": "05:02 - 08:47",
+    "speed": 0,
+    "location": "East Depot Yard",
+    "lastSeen": "35 min ago",
+    "lat": 24.5389,
+    "lng": 54.4341,
+    "heading": 0,
+    "plannedRoute": [
+      [
+        54.42,
+        24.53
+      ],
+      [
+        54.428,
+        24.535
+      ],
+      [
+        54.4341,
+        24.5389
+      ],
+      [
+        54.442,
+        24.543
+      ]
+    ],
+    "actualRoute": [
+      [
+        54.42,
+        24.53
+      ],
+      [
+        54.427,
+        24.534
+      ],
+      [
+        54.4341,
+        24.5389
+      ],
+      [
+        54.442,
+        24.543
+      ]
+    ],
+    "mobility": "stopped",
+    "routeType": "Transfer",
+    "currentAssignment": "AD 43310 · Tariq Mansoor"
+  },
+  {
+    "id": "DSP-09",
+    "uniqueidentifier": "DSP-09",
+    "title": "RT-141 Al Bateen Harbor",
+    "status": "delayed",
+    "planName": "Harbor Plan",
+    "planStatus": "On Site",
+    "plate": "AD 50662",
+    "vehicleModel": "Isuzu FVR 900",
+    "driver": "Nadim Aziz",
+    "contact": "+971 54 118 6270",
+    "shift": "Morning",
+    "zone": "Zone I - Al Bateen",
+    "depot": "Central Depot",
+    "progressPct": 55,
+    "progressLabel": "11/20 tasks",
+    "plannedWindow": "06:00 - 10:15",
+    "actualWindow": "06:18 - est 10:50",
+    "delayText": "Running 18 min late",
+    "riskBanner": "Access road closure near marina gate",
+    "riskTone": "warning",
+    "speed": 24,
+    "location": "Al Bateen Marina",
+    "lastSeen": "2 min ago",
+    "lat": 24.4497,
+    "lng": 54.3419,
+    "heading": 310,
+    "plannedRoute": [
+      [
+        54.352,
+        24.443
+      ],
+      [
+        54.347,
+        24.446
+      ],
+      [
+        54.3419,
+        24.4497
+      ],
+      [
+        54.336,
+        24.453
+      ]
+    ],
+    "actualRoute": [
+      [
+        54.352,
+        24.443
+      ],
+      [
+        54.348,
+        24.4455
+      ],
+      [
+        54.3419,
+        24.4497
+      ]
+    ],
+    "mobility": "moving",
+    "routeType": "Inspection",
+    "standbyVehicle": "AD 71255 · Volvo FE 320 (standby)",
+    "standbyDriver": "Noor Al Amiri · standby, Central Depot",
+    "currentAssignment": "AD 50662 · Nadim Aziz"
+  }
+]

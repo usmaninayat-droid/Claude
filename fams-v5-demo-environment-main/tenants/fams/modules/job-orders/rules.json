@@ -1,0 +1,9 @@
+{
+  "statuses": ["reported-issues", "scheduled", "ongoing", "under-inspection", "completed", "invalid"],
+  "transitions": {
+    "reported-issues": ["scheduled"],
+    "scheduled": ["ongoing"],
+    "ongoing": ["under-inspection"],
+    "under-inspection": ["completed", "invalid"]
+  }
+}

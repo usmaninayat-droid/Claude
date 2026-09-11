@@ -1,0 +1,247 @@
+{
+  "$schema": "../../../../node_modules/@fams/v5-composer/schemas/EntityModuleConfig.schema.json",
+  "kind": "entity",
+  "code": "shift-rostering/shift",
+  "name": "Shift Rostering",
+  "uidPrefix": "SR",
+  "views": [
+    "list",
+    "calendar"
+  ],
+  "systemcolumns": [
+    {
+      "id": "fld_sr_name",
+      "col": "title",
+      "name": "Shift Name",
+      "type": "SmallText",
+      "required": true
+    },
+    {
+      "id": "fld_sr_worker",
+      "col": "systemcol1",
+      "name": "Assigned Worker",
+      "type": "SingleReference",
+      "refModule": "Entity",
+      "entityType": "workforce/driver"
+    },
+    {
+      "id": "fld_sr_date",
+      "col": "systemcol2",
+      "name": "Shift Date",
+      "type": "Date",
+      "required": true
+    },
+    {
+      "id": "fld_sr_start",
+      "col": "systemcol3",
+      "name": "Start Time",
+      "type": "DateTime"
+    },
+    {
+      "id": "fld_sr_end",
+      "col": "systemcol4",
+      "name": "End Time",
+      "type": "DateTime"
+    },
+    {
+      "id": "fld_sr_zone",
+      "col": "systemcol5",
+      "name": "Zone",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_sr_status",
+      "col": "status",
+      "name": "Status",
+      "type": "SingleSelect",
+      "listValues": [
+        "Scheduled",
+        "In Progress",
+        "Completed",
+        "Missed"
+      ]
+    },
+    {
+      "id": "fld_sr_tags",
+      "col": "tags",
+      "name": "Tags",
+      "type": "tags"
+    }
+  ],
+  "uiConfig": {
+    "icon": "calendar",
+    "statusList": [
+      {
+        "id": "sts_sr_sched",
+        "key": "Scheduled",
+        "label": "Scheduled",
+        "color": "#0284c7"
+      },
+      {
+        "id": "sts_sr_prog",
+        "key": "In Progress",
+        "label": "In Progress",
+        "color": "#f79009"
+      },
+      {
+        "id": "sts_sr_done",
+        "key": "Completed",
+        "label": "Completed",
+        "color": "#16a34a"
+      },
+      {
+        "id": "sts_sr_miss",
+        "key": "Missed",
+        "label": "Missed",
+        "color": "#dc2626"
+      }
+    ],
+    "profile": {
+      "title": {
+        "id": "fld_sr_name",
+        "col": "title",
+        "pos": "left"
+      },
+      "details": [
+        {
+          "id": "fld_sr_worker",
+          "col": "systemcol1",
+          "pos": "left",
+          "order": 1,
+          "component": {
+            "name": "LinkView"
+          }
+        },
+        {
+          "id": "fld_sr_status",
+          "col": "status",
+          "pos": "right",
+          "order": 1,
+          "component": {
+            "name": "StatusList"
+          }
+        },
+        {
+          "id": "fld_sr_date",
+          "col": "systemcol2",
+          "pos": "left",
+          "order": 2,
+          "component": {
+            "name": "DateView"
+          }
+        },
+        {
+          "id": "fld_sr_zone",
+          "col": "systemcol5",
+          "pos": "right",
+          "order": 2
+        },
+        {
+          "id": "fld_sr_start",
+          "col": "systemcol3",
+          "pos": "left",
+          "order": 3
+        },
+        {
+          "id": "fld_sr_end",
+          "col": "systemcol4",
+          "pos": "right",
+          "order": 3
+        }
+      ],
+      "sections": []
+    },
+    "filtersPanel": {
+      "title": "Filters",
+      "clearAll": true,
+      "width": 448
+    },
+    "filters": [
+      {
+        "id": "flt_sr_status",
+        "col": "status",
+        "order": 1,
+        "kind": "status",
+        "optionsFrom": "statusList",
+        "optionDot": "status",
+        "showCounts": true,
+        "icon": "status"
+      },
+      {
+        "id": "flt_sr_zone",
+        "col": "systemcol5",
+        "order": 2,
+        "kind": "checkbox-group",
+        "icon": "map-pin"
+      }
+    ],
+    "search": {
+      "columns": [
+        "title",
+        "systemcol5"
+      ]
+    }
+  },
+  "listcolumns": [
+    {
+      "id": "fld_uniqueidentifier",
+      "col": "uniqueidentifier",
+      "name": "Shift ID",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_sr_name",
+      "col": "title",
+      "component": {
+        "name": "TextView",
+        "props": {
+          "handleOverflow": true
+        }
+      }
+    },
+    {
+      "id": "fld_sr_worker",
+      "col": "systemcol1",
+      "component": {
+        "name": "LinkView"
+      }
+    },
+    {
+      "id": "fld_sr_date",
+      "col": "systemcol2",
+      "component": {
+        "name": "DateView"
+      }
+    },
+    {
+      "id": "fld_sr_start",
+      "col": "systemcol3",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_sr_end",
+      "col": "systemcol4",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_sr_zone",
+      "col": "systemcol5",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_sr_status",
+      "col": "status",
+      "component": {
+        "name": "StatusList"
+      }
+    }
+  ]
+}

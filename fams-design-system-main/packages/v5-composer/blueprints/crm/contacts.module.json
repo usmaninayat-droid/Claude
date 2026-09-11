@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schemas/EntityModuleConfig.schema.json",
+  "kind": "entity",
+  "code": "crm/contacts",
+  "name": "Contacts",
+  "uidPrefix": "CT",
+  "systemcolumns": [
+    { "id": "fld_title", "col": "title", "name": "Full name", "type": "SmallText", "required": true },
+    { "id": "fld_systemcol1", "col": "systemcol1", "name": "Email", "type": "Email" },
+    { "id": "fld_systemcol2", "col": "systemcol2", "name": "Phone", "type": "Phone" },
+    { "id": "fld_systemcol3", "col": "systemcol3", "name": "Company", "type": "SingleReference", "refModule": "Entity", "entityType": "crm/companies" },
+    { "id": "fld_systemcol4", "col": "systemcol4", "name": "Role", "type": "SmallText" }
+  ],
+  "uiConfig": {
+    "statusList": [],
+    "profile": {
+      "title": { "id": "fld_title", "col": "title", "pos": "left" },
+      "details": [
+        { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "pos": "left", "order": 1, "component": { "name": "LinkView" } },
+        { "id": "fld_systemcol1", "col": "systemcol1", "pos": "right", "order": 1 },
+        { "id": "fld_systemcol2", "col": "systemcol2", "pos": "left", "order": 2 },
+        { "id": "fld_systemcol3", "col": "systemcol3", "pos": "right", "order": 2 },
+        { "id": "fld_systemcol4", "col": "systemcol4", "pos": "left", "order": 3 }
+      ],
+      "sections": []
+    },
+    "filters": [{ "id": "flt_systemcol4", "col": "systemcol4", "order": 1, "name": "Role" }],
+    "search": { "columns": ["title", "systemcol1", "systemcol3"] }
+  },
+  "listcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "component": { "name": "TextView" } },
+    { "id": "fld_title", "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "id": "fld_systemcol1", "col": "systemcol1", "component": { "name": "TextView" } },
+    { "id": "fld_systemcol2", "col": "systemcol2", "component": { "name": "TextView" } },
+    { "id": "fld_systemcol3", "col": "systemcol3", "component": { "name": "TextView" } },
+    { "id": "fld_systemcol4", "col": "systemcol4", "component": { "name": "TextView" } }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "code": "crm/contact-person",
+  "kind": "entity",
+  "listcolumns": [
+    {
+      "col": "uniqueidentifier",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_uniqueidentifier",
+      "name": "Contact ID"
+    },
+    {
+      "col": "title",
+      "component": {
+        "name": "TextView",
+        "props": {
+          "handleOverflow": true
+        }
+      },
+      "id": "fld_cp_name"
+    },
+    {
+      "col": "systemcol1",
+      "component": {
+        "name": "LinkView"
+      },
+      "id": "fld_cp_company"
+    },
+    {
+      "col": "systemcol2",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_cp_job_title"
+    },
+    {
+      "col": "systemcol3",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_cp_email"
+    },
+    {
+      "col": "status",
+      "component": {
+        "name": "StatusList"
+      },
+      "id": "fld_cp_status"
+    },
+    {
+      "col": "tags",
+      "component": {
+        "name": "TagList"
+      },
+      "id": "fld_cp_tags"
+    }
+  ],
+  "name": "Contact Person",
+  "systemcolumns": [
+    {
+      "col": "title",
+      "id": "fld_cp_name",
+      "name": "Full Name",
+      "required": true,
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol1",
+      "entityType": "crm/company",
+      "id": "fld_cp_company",
+      "name": "Company",
+      "refModule": "Entity",
+      "type": "SingleReference"
+    },
+    {
+      "col": "systemcol2",
+      "id": "fld_cp_job_title",
+      "name": "Job Title",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol3",
+      "id": "fld_cp_email",
+      "name": "Email",
+      "type": "Email"
+    },
+    {
+      "col": "systemcol4",
+      "id": "fld_cp_phone",
+      "name": "Phone",
+      "type": "Phone"
+    },
+    {
+      "col": "status",
+      "id": "fld_cp_status",
+      "listValues": [
+        "Active",
+        "Inactive"
+      ],
+      "name": "Status",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "tags",
+      "id": "fld_cp_tags",
+      "name": "Tags",
+      "type": "tags"
+    }
+  ],
+  "uiConfig": {
+    "bulkActions": {
+      "delete": true,
+      "export": true
+    },
+    "creation": {
+      "fieldChrome": "inset-label",
+      "label": "Create New Contact Person",
+      "layout": "flat"
+    },
+    "filters": [
+      {
+        "col": "status",
+        "id": "flt_cp_status",
+        "order": 1
+      },
+      {
+        "col": "systemcol1",
+        "id": "flt_cp_company",
+        "order": 2
+      }
+    ],
+    "icon": "user",
+    "listSelectable": true,
+    "profile": {
+      "details": [
+        {
+          "col": "systemcol1",
+          "component": {
+            "name": "LinkView"
+          },
+          "id": "fld_cp_company",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "status",
+          "component": {
+            "name": "StatusList"
+          },
+          "id": "fld_cp_status",
+          "order": 1,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol2",
+          "id": "fld_cp_job_title",
+          "order": 2,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol3",
+          "id": "fld_cp_email",
+          "order": 2,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol4",
+          "id": "fld_cp_phone",
+          "order": 3,
+          "pos": "left"
+        }
+      ],
+      "rightPanel": {
+        "tabs": [
+          {
+            "component": {
+              "name": "OverviewSummary"
+            },
+            "id": "tab_cp_overview",
+            "key": "overview",
+            "order": 1,
+            "title": "Overview"
+          },
+          {
+            "component": {
+              "name": "sections"
+            },
+            "id": "tab_cp_details",
+            "key": "details",
+            "order": 2,
+            "title": "Details"
+          },
+          {
+            "component": {
+              "name": "LinkedRecords"
+            },
+            "id": "tab_cp_linked",
+            "key": "linked",
+            "order": 3,
+            "title": "Linked"
+          }
+        ],
+        "type": "tab"
+      },
+      "sections": [
+        {
+          "fields": [
+            {
+              "col": "systemcol1",
+              "component": {
+                "name": "LinkView"
+              },
+              "id": "fld_cp_company",
+              "order": 1
+            },
+            {
+              "col": "systemcol2",
+              "id": "fld_cp_job_title",
+              "order": 2
+            },
+            {
+              "col": "systemcol3",
+              "id": "fld_cp_email",
+              "order": 3
+            },
+            {
+              "col": "systemcol4",
+              "id": "fld_cp_phone",
+              "order": 4
+            }
+          ],
+          "id": "sec_cp_details",
+          "name": "Contact Details",
+          "order": 1
+        }
+      ],
+      "title": {
+        "col": "title",
+        "id": "fld_cp_name",
+        "pos": "left"
+      }
+    },
+    "recordNoun": {
+      "many": "contacts",
+      "one": "contact"
+    },
+    "rowActions": {
+      "archive": true,
+      "delete": true,
+      "requiredPrivilege": "contact-person.view"
+    },
+    "search": {
+      "columns": [
+        "title",
+        "systemcol3"
+      ]
+    },
+    "statusList": [
+      {
+        "color": "#16a34a",
+        "id": "sts_cp_active",
+        "key": "Active",
+        "label": "Active"
+      },
+      {
+        "color": "#94a3b8",
+        "id": "sts_cp_inactive",
+        "key": "Inactive",
+        "label": "Inactive"
+      }
+    ]
+  },
+  "uidPrefix": "CP"
+}

@@ -1,0 +1,32 @@
+{
+  "name": "@fams/storybook",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6400 --no-open",
+    "build": "tsc --noEmit && storybook build",
+    "preview": "storybook dev -p 6400 --no-open",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fams/tokens": "workspace:*",
+    "@fams/ui-kit": "workspace:*",
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "catalog:",
+    "@storybook/addon-docs": "catalog:",
+    "@storybook/addon-themes": "catalog:",
+    "@storybook/react-vite": "catalog:",
+    "@tailwindcss/vite": "^4",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "storybook": "catalog:",
+    "tailwindcss": "^4",
+    "typescript": "catalog:",
+    "vite": "^6"
+  }
+}

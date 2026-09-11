@@ -1,0 +1,109 @@
+packages:
+  - "packages/*"
+  - "workshop/*"
+allowBuilds:
+  # Transitive optional dep of deck.gl's bundled (unused) @deck.gl/arcgis
+  # submodule (via @arcgis/toolkit → @vaadin/grid) — MapPanel never imports
+  # the ArcGIS integration. Its postinstall is a telemetry ping; denied.
+  '@vaadin/vaadin-usage-statistics': false
+  # msw ships prebuilt; its install script only prints a CLI notice and copies
+  # the browser worker (the consuming app runs `msw init` instead) — denied.
+  msw: false
+  esbuild: true
+minimumReleaseAgeExclude:
+  - '@tanstack/query-core@5.101.4'
+  - '@tanstack/react-query@5.101.4'
+  - terra-draw@1.32.1
+
+# Phase 1 §5 dependency alignment (tech-stack.md, decision #tech-stack).
+# Every dep in docs/LIBRARIES.md "Alignment (Phase 1 §5)" gets a pinned entry
+# here — packages that use it today reference it as "catalog:"; deps not
+# adopted yet (MSW, React Aria, @tanstack/react-table) exist ONLY in this
+# catalog + docs/LIBRARIES.md, never installed into a package.json until a
+# later phase adopts them.
+# (react-hook-form + zod + @hookform/resolvers were adopted by
+# @fams/v5-composer in phase 2 §2 — FieldRegistry + SchemaForm.)
+# License verdicts for every entry: docs/LIBRARIES.md.
+catalog:
+  # --- in use today ---
+  '@tanstack/react-router': ^1.170.18
+  '@tanstack/react-query': ^5.101.4
+  '@tanstack/react-virtual': ^3.14.5
+  'date-fns': ^4.4.0
+  # v6 has a known regression (upstream #21434) — pin the 5.x line, not a
+  # bare `^5` that a fresh install could resolve onto 6.x.
+  'echarts': ~5.6.0
+  '@base-ui/react': ^1.6.0
+  'cmdk': ^1.1.1
+  'vaul': ^1.1.2
+
+  # --- catalog-only: locked in for a later phase, not installed anywhere yet ---
+  '@tanstack/react-table': ^8.21.3
+  '@date-fns/tz': ^1.5.0
+  'react-hook-form': ^7.82.0
+  'zod': ^4.4.3
+  '@hookform/resolvers': ^5.4.0
+  'msw': ^2.15.0
+  'react-aria-components': ^1.19.0
+
+  # Map stack — adopted by @fams/v5-templates in phase 2 §3 (MapPanel, the
+  # Leaflet→MapLibre port): react-map-gl (maplibre mode) as the GL engine,
+  # deck.gl for GPU marker/heatmap/geo-json layers, terra-draw for geofence
+  # drawing, supercluster for marker clustering (feeds deck.gl's IconLayer/
+  # ScatterplotLayer, not MapLibre's native cluster source — keeps clustering
+  # engine-agnostic across both draw paths).
+  'maplibre-gl': ^5.24.0
+  'react-map-gl': ^8.1.1
+  'deck.gl': ^9.3.7
+  # `@deck.gl/mapbox` (MapboxOverlay) isn't re-exported by the `deck.gl`
+  # metapackage barrel but IS one of its own dependencies (same package,
+  # same MIT license, checked as one unit) — MapPanel needs it directly for
+  # interleaved-mode GL layers over the MapLibre canvas, so it needs its own
+  # pinned, directly-resolvable entry rather than relying on deck.gl's
+  # internal (non-hoisted) copy.
+  '@deck.gl/mapbox': ^9.3.7
+  'terra-draw': ^1.32.1
+  # terra-draw ships engine-agnostic; the MapLibre binding is a separate,
+  # independently-published adapter package (terra-draw's own docs point
+  # here) — required for MapPanel's geofence draw/edit to actually attach to
+  # the MapLibre canvas.
+  'terra-draw-maplibre-gl-adapter': ^1.4.1
+  'supercluster': ^8.0.1
+  # Kanban DND (docs/phase-2-tickets.md KANBAN-DND — done 2026-07-23): adopted
+  # by @fams/ui-kit (Kanban.tsx/KanbanCard.tsx) and @fams/v5-templates
+  # (KanbanView); @hello-pangea/dnd has been removed from ui-kit entirely.
+  '@atlaskit/pragmatic-drag-and-drop': ^2.0.1
+  '@atlaskit/pragmatic-drag-and-drop-hitbox': ^2.0.0
+  '@atlaskit/pragmatic-drag-and-drop-react-drop-indicator': ^4.1.1
+  '@atlaskit/pragmatic-drag-and-drop-live-region': ^2.0.0
+
+  # --- shared toolchain (low-effort catalog per tech-stack.md; identical
+  # across every package already, just centralizing) ---
+  'typescript': ^5
+  # Pinned to the patch floor (not a bare `^3`) so this repo and fams-v5-demo-environment
+  # resolve the SAME patch. They previously drifted — DS lockfile 3.2.6 vs demo
+  # 3.2.7, both nominally `^3` — which is cosmetic but makes "same vitest
+  # everywhere" unverifiable across the linked graph. 3.2.7 is the newest 3.x
+  # (`pnpm info vitest versions`, 2026-08-05); vitest 4 is a deliberate
+  # non-move. fams-v5-demo-environment has no shared catalog with this repo, so it pins
+  # `^3.2.7` directly in its root + app package.json — keep the two in step.
+  'vitest': ^3.2.7
+  'tsup': ^8.5.1
+
+  # Storybook 10 (workshop/storybook) — the second workshop vehicle, ADDITIVE
+  # to workshop/showcase which stays the primary one. Core + all three addons
+  # are MIT and version-locked to the same 10.x line (Storybook requires the
+  # core `storybook` package and every `@storybook/*` addon to match exactly).
+  # No Chromatic / no hosted addon: telemetry + crash reports are disabled in
+  # .storybook/main.ts. License verdicts: docs/LIBRARIES.md.
+  'storybook': ^10.5.6
+  '@storybook/react-vite': ^10.5.6
+  '@storybook/addon-a11y': ^10.5.6
+  '@storybook/addon-docs': ^10.5.6
+  '@storybook/addon-themes': ^10.5.6
+
+  # Visual regression (phase 4 §2, task 4.C) — Apache-2.0, verified against a
+  # local self-hosted VRT instance (infra/vrt/). Playwright agent for the
+  # showcase's `visual-all.spec.ts`; the demo app (separate repo) pins the
+  # same version directly since it has no shared catalog with this repo.
+  '@visual-regression-tracker/agent-playwright': ^5.3.1

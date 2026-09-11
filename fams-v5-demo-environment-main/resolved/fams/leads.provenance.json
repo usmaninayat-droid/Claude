@@ -1,0 +1,86 @@
+{
+  "base": "tenant-native",
+  "module": "leads",
+  "nodes": {
+    "fld_lead_contact": {
+      "source": "tenant-native"
+    },
+    "fld_lead_created": {
+      "source": "tenant-native"
+    },
+    "fld_lead_deal": {
+      "source": "tenant-native"
+    },
+    "fld_lead_due": {
+      "source": "tenant-native"
+    },
+    "fld_lead_note": {
+      "source": "tenant-native"
+    },
+    "fld_lead_owner": {
+      "source": "tenant-native"
+    },
+    "fld_lead_priority": {
+      "source": "tenant-native"
+    },
+    "fld_lead_source": {
+      "source": "tenant-native"
+    },
+    "fld_lead_status": {
+      "source": "tenant-native"
+    },
+    "fld_lead_tags": {
+      "source": "tenant-native"
+    },
+    "fld_lead_title": {
+      "source": "tenant-native"
+    },
+    "fld_lead_value": {
+      "source": "tenant-native"
+    },
+    "fld_uniqueidentifier": {
+      "source": "tenant-native"
+    },
+    "flt_lead_priority": {
+      "source": "tenant-native"
+    },
+    "flt_lead_source": {
+      "source": "tenant-native"
+    },
+    "flt_lead_status": {
+      "source": "tenant-native"
+    },
+    "sec_lead_note": {
+      "source": "tenant-native"
+    },
+    "sts_lead_contacted": {
+      "source": "tenant-native"
+    },
+    "sts_lead_converted": {
+      "source": "tenant-native"
+    },
+    "sts_lead_new": {
+      "source": "tenant-native"
+    },
+    "sts_lead_qualified": {
+      "source": "tenant-native"
+    },
+    "sts_lead_unqualified": {
+      "source": "tenant-native"
+    },
+    "tab_lead_activity": {
+      "source": "tenant-native"
+    },
+    "tab_lead_attachments": {
+      "source": "tenant-native"
+    },
+    "tab_lead_linked": {
+      "source": "tenant-native"
+    },
+    "tab_lead_timeline": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

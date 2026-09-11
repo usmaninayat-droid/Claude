@@ -1,0 +1,5576 @@
+[
+  {
+    "id": "CP-1001",
+    "uniqueidentifier": "CP-1001",
+    "title": "Veridian Towers",
+    "systemcol1": "Al Reef Village",
+    "systemcol2": [
+      "Residual Waste"
+    ],
+    "systemcol3": 1,
+    "systemcol4": "Lot 1",
+    "systemcol5": "Collection Point",
+    "systemcol6": "24/7",
+    "systemcol7": "Daily",
+    "systemcol8": "WCR-01",
+    "systemcol9": "contact.veridian-towers@iwmp.example",
+    "systemcol10": "+971504201000",
+    "tags": [
+      "Waste Management",
+      "Zone A"
+    ],
+    "status": "Inactive",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9860",
+        "date": "01 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/veridian-towers-incident-1/320/320",
+        "rectificationTime": "6 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9861",
+        "date": "02 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/veridian-towers-incident-2/320/320",
+        "rectificationTime": "7 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9862",
+        "date": "03 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/veridian-towers-incident-3/320/320",
+        "rectificationTime": "8 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9863",
+        "date": "04 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/veridian-towers-incident-4/320/320",
+        "rectificationTime": "9 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9864",
+        "date": "05 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/veridian-towers-incident-5/320/320",
+        "rectificationTime": "10 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-veridian-towers",
+        "points": [
+          [
+            54.644,
+            24.286
+          ],
+          [
+            54.656,
+            24.286
+          ],
+          [
+            54.656,
+            24.274
+          ],
+          [
+            54.644,
+            24.274
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Veridian Towers"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 53
+      },
+      {
+        "month": "Feb",
+        "value": 51
+      },
+      {
+        "month": "Mar",
+        "value": 54
+      },
+      {
+        "month": "Apr",
+        "value": 56
+      },
+      {
+        "month": "May",
+        "value": 54
+      },
+      {
+        "month": "Jun",
+        "value": 58
+      },
+      {
+        "month": "Jul",
+        "value": 57
+      },
+      {
+        "month": "Aug",
+        "value": 62
+      },
+      {
+        "month": "Sep",
+        "value": 65
+      },
+      {
+        "month": "Oct",
+        "value": 64
+      },
+      {
+        "month": "Nov",
+        "value": 64
+      },
+      {
+        "month": "Dec",
+        "value": 64
+      }
+    ],
+    "upcomingPlanId": "231000",
+    "upcomingPlanDatetime": "01 Aug, 2025 9:00am"
+  },
+  {
+    "id": "CP-1002",
+    "uniqueidentifier": "CP-1002",
+    "title": "Crimson Peaks",
+    "systemcol1": "Capital Mall",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste"
+    ],
+    "systemcol3": 2,
+    "systemcol4": "Lot 2",
+    "systemcol5": "Transfer Station",
+    "systemcol6": "06:00 AM - 10:00 PM",
+    "systemcol7": "Weekly",
+    "systemcol8": "WCR-02",
+    "systemcol9": "contact.crimson-peaks@iwmp.example",
+    "systemcol10": "+971504201001",
+    "tags": [
+      "Waste Management",
+      "Zone B"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9863",
+        "date": "02 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/crimson-peaks-incident-1/320/320",
+        "rectificationTime": "7 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9864",
+        "date": "03 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/crimson-peaks-incident-2/320/320",
+        "rectificationTime": "8 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9865",
+        "date": "04 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/crimson-peaks-incident-3/320/320",
+        "rectificationTime": "9 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9866",
+        "date": "05 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/crimson-peaks-incident-4/320/320",
+        "rectificationTime": "10 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9867",
+        "date": "06 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/crimson-peaks-incident-5/320/320",
+        "rectificationTime": "11 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-crimson-peaks",
+        "points": [
+          [
+            54.648,
+            24.289
+          ],
+          [
+            54.66,
+            24.289
+          ],
+          [
+            54.66,
+            24.277
+          ],
+          [
+            54.648,
+            24.277
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Crimson Peaks"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 50
+      },
+      {
+        "month": "Feb",
+        "value": 50
+      },
+      {
+        "month": "Mar",
+        "value": 48
+      },
+      {
+        "month": "Apr",
+        "value": 53
+      },
+      {
+        "month": "May",
+        "value": 56
+      },
+      {
+        "month": "Jun",
+        "value": 55
+      },
+      {
+        "month": "Jul",
+        "value": 58
+      },
+      {
+        "month": "Aug",
+        "value": 60
+      },
+      {
+        "month": "Sep",
+        "value": 63
+      },
+      {
+        "month": "Oct",
+        "value": 63
+      },
+      {
+        "month": "Nov",
+        "value": 60
+      },
+      {
+        "month": "Dec",
+        "value": 57
+      }
+    ],
+    "upcomingPlanId": "231007",
+    "upcomingPlanDatetime": "02 Aug, 2025 10:00am"
+  },
+  {
+    "id": "CP-1003",
+    "uniqueidentifier": "CP-1003",
+    "title": "Onyx Apartments 1",
+    "systemcol1": "Prestige Tower 16 & 17",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste"
+    ],
+    "systemcol3": 3,
+    "systemcol4": "Lot 3",
+    "systemcol5": "Sorting Facility",
+    "systemcol6": "08:00 AM - 08:00 PM",
+    "systemcol7": "Bi-Weekly",
+    "systemcol8": "WCR-03",
+    "systemcol9": "contact.onyx-apartments-1@iwmp.example",
+    "systemcol10": "+971504201002",
+    "tags": [
+      "Waste Management",
+      "Zone C"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9866",
+        "date": "03 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/onyx-apartments-1-incident-1/320/320",
+        "rectificationTime": "8 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9867",
+        "date": "04 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/onyx-apartments-1-incident-2/320/320",
+        "rectificationTime": "9 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9868",
+        "date": "05 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/onyx-apartments-1-incident-3/320/320",
+        "rectificationTime": "10 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9869",
+        "date": "06 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/onyx-apartments-1-incident-4/320/320",
+        "rectificationTime": "11 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9870",
+        "date": "07 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/onyx-apartments-1-incident-5/320/320",
+        "rectificationTime": "12 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-onyx-apartments-1",
+        "points": [
+          [
+            54.652,
+            24.292
+          ],
+          [
+            54.664,
+            24.292
+          ],
+          [
+            54.664,
+            24.28
+          ],
+          [
+            54.652,
+            24.28
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Onyx Apartments 1"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 61
+      },
+      {
+        "month": "Feb",
+        "value": 64
+      },
+      {
+        "month": "Mar",
+        "value": 64
+      },
+      {
+        "month": "Apr",
+        "value": 63
+      },
+      {
+        "month": "May",
+        "value": 62
+      },
+      {
+        "month": "Jun",
+        "value": 63
+      },
+      {
+        "month": "Jul",
+        "value": 67
+      },
+      {
+        "month": "Aug",
+        "value": 66
+      },
+      {
+        "month": "Sep",
+        "value": 64
+      },
+      {
+        "month": "Oct",
+        "value": 67
+      },
+      {
+        "month": "Nov",
+        "value": 72
+      },
+      {
+        "month": "Dec",
+        "value": 69
+      }
+    ],
+    "upcomingPlanId": "231014",
+    "upcomingPlanDatetime": "03 Aug, 2025 11:00am"
+  },
+  {
+    "id": "CP-1004",
+    "uniqueidentifier": "CP-1004",
+    "title": "Onyx Apartments 2",
+    "systemcol1": "Al Reef Village",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste",
+      "Green Waste"
+    ],
+    "systemcol3": 4,
+    "systemcol4": "Lot 4",
+    "systemcol5": "Recycling Center",
+    "systemcol6": "24/7",
+    "systemcol7": "Monthly",
+    "systemcol8": "WCR-04",
+    "systemcol9": "contact.onyx-apartments-2@iwmp.example",
+    "systemcol10": "+971504201003",
+    "tags": [
+      "Waste Management",
+      "Zone D"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9869",
+        "date": "04 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/onyx-apartments-2-incident-1/320/320",
+        "rectificationTime": "9 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9870",
+        "date": "05 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/onyx-apartments-2-incident-2/320/320",
+        "rectificationTime": "10 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9871",
+        "date": "06 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/onyx-apartments-2-incident-3/320/320",
+        "rectificationTime": "11 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9872",
+        "date": "07 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/onyx-apartments-2-incident-4/320/320",
+        "rectificationTime": "12 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9873",
+        "date": "08 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/onyx-apartments-2-incident-5/320/320",
+        "rectificationTime": "13 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-onyx-apartments-2",
+        "points": [
+          [
+            54.656,
+            24.295
+          ],
+          [
+            54.668,
+            24.295
+          ],
+          [
+            54.668,
+            24.283
+          ],
+          [
+            54.656,
+            24.283
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Onyx Apartments 2"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 63
+      },
+      {
+        "month": "Feb",
+        "value": 68
+      },
+      {
+        "month": "Mar",
+        "value": 70
+      },
+      {
+        "month": "Apr",
+        "value": 70
+      },
+      {
+        "month": "May",
+        "value": 74
+      },
+      {
+        "month": "Jun",
+        "value": 78
+      },
+      {
+        "month": "Jul",
+        "value": 83
+      },
+      {
+        "month": "Aug",
+        "value": 87
+      },
+      {
+        "month": "Sep",
+        "value": 90
+      },
+      {
+        "month": "Oct",
+        "value": 87
+      },
+      {
+        "month": "Nov",
+        "value": 89
+      },
+      {
+        "month": "Dec",
+        "value": 87
+      }
+    ],
+    "upcomingPlanId": "231021",
+    "upcomingPlanDatetime": "04 Aug, 2025 12:00am"
+  },
+  {
+    "id": "CP-1005",
+    "uniqueidentifier": "CP-1005",
+    "title": "Silverleaf Estates",
+    "systemcol1": "Capital Mall",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste",
+      "Green Waste",
+      "Recyclable Waste"
+    ],
+    "systemcol3": 5,
+    "systemcol4": "Lot 5",
+    "systemcol5": "Collection Point",
+    "systemcol6": "06:00 AM - 10:00 PM",
+    "systemcol7": "Daily",
+    "systemcol8": "WCR-05",
+    "systemcol9": "contact.silverleaf-estates@iwmp.example",
+    "systemcol10": "+971504201004",
+    "tags": [
+      "Waste Management",
+      "Zone A"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9872",
+        "date": "05 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/silverleaf-estates-incident-1/320/320",
+        "rectificationTime": "10 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9873",
+        "date": "06 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/silverleaf-estates-incident-2/320/320",
+        "rectificationTime": "11 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9874",
+        "date": "07 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/silverleaf-estates-incident-3/320/320",
+        "rectificationTime": "12 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9875",
+        "date": "08 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/silverleaf-estates-incident-4/320/320",
+        "rectificationTime": "13 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9876",
+        "date": "09 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/silverleaf-estates-incident-5/320/320",
+        "rectificationTime": "14 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-silverleaf-estates",
+        "points": [
+          [
+            54.66,
+            24.298
+          ],
+          [
+            54.672,
+            24.298
+          ],
+          [
+            54.672,
+            24.286
+          ],
+          [
+            54.66,
+            24.286
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Silverleaf Estates"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 65
+      },
+      {
+        "month": "Feb",
+        "value": 63
+      },
+      {
+        "month": "Mar",
+        "value": 68
+      },
+      {
+        "month": "Apr",
+        "value": 73
+      },
+      {
+        "month": "May",
+        "value": 73
+      },
+      {
+        "month": "Jun",
+        "value": 73
+      },
+      {
+        "month": "Jul",
+        "value": 75
+      },
+      {
+        "month": "Aug",
+        "value": 72
+      },
+      {
+        "month": "Sep",
+        "value": 71
+      },
+      {
+        "month": "Oct",
+        "value": 73
+      },
+      {
+        "month": "Nov",
+        "value": 71
+      },
+      {
+        "month": "Dec",
+        "value": 76
+      }
+    ],
+    "upcomingPlanId": "231028",
+    "upcomingPlanDatetime": "05 Aug, 2025 13:00am"
+  },
+  {
+    "id": "CP-1006",
+    "uniqueidentifier": "CP-1006",
+    "title": "Indigo Hills",
+    "systemcol1": "Prestige Tower 16 & 17",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste",
+      "Green Waste",
+      "Recyclable Waste",
+      "Hazardous Waste"
+    ],
+    "systemcol3": 6,
+    "systemcol4": "Lot 6",
+    "systemcol5": "Transfer Station",
+    "systemcol6": "08:00 AM - 08:00 PM",
+    "systemcol7": "Weekly",
+    "systemcol8": "WCR-06",
+    "systemcol9": "contact.indigo-hills@iwmp.example",
+    "systemcol10": "+971504201005",
+    "tags": [
+      "Waste Management",
+      "Zone B"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9875",
+        "date": "06 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/indigo-hills-incident-1/320/320",
+        "rectificationTime": "11 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9876",
+        "date": "07 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/indigo-hills-incident-2/320/320",
+        "rectificationTime": "12 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9877",
+        "date": "08 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/indigo-hills-incident-3/320/320",
+        "rectificationTime": "13 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9878",
+        "date": "09 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/indigo-hills-incident-4/320/320",
+        "rectificationTime": "14 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9879",
+        "date": "10 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/indigo-hills-incident-5/320/320",
+        "rectificationTime": "15 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-indigo-hills",
+        "points": [
+          [
+            54.644,
+            24.301
+          ],
+          [
+            54.656,
+            24.301
+          ],
+          [
+            54.656,
+            24.289
+          ],
+          [
+            54.644,
+            24.289
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Indigo Hills"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 69
+      },
+      {
+        "month": "Feb",
+        "value": 72
+      },
+      {
+        "month": "Mar",
+        "value": 77
+      },
+      {
+        "month": "Apr",
+        "value": 80
+      },
+      {
+        "month": "May",
+        "value": 81
+      },
+      {
+        "month": "Jun",
+        "value": 83
+      },
+      {
+        "month": "Jul",
+        "value": 88
+      },
+      {
+        "month": "Aug",
+        "value": 87
+      },
+      {
+        "month": "Sep",
+        "value": 90
+      },
+      {
+        "month": "Oct",
+        "value": 88
+      },
+      {
+        "month": "Nov",
+        "value": 90
+      },
+      {
+        "month": "Dec",
+        "value": 90
+      }
+    ],
+    "upcomingPlanId": "231035",
+    "upcomingPlanDatetime": "06 Aug, 2025 14:00am"
+  },
+  {
+    "id": "CP-1007",
+    "uniqueidentifier": "CP-1007",
+    "title": "Obsidian Spire 7",
+    "systemcol1": "Al Reef Village",
+    "systemcol2": [
+      "Residual Waste"
+    ],
+    "systemcol3": 1,
+    "systemcol4": "Lot 7",
+    "systemcol5": "Sorting Facility",
+    "systemcol6": "24/7",
+    "systemcol7": "Bi-Weekly",
+    "systemcol8": "WCR-07",
+    "systemcol9": "contact.obsidian-spire-7@iwmp.example",
+    "systemcol10": "+971504201006",
+    "tags": [
+      "Waste Management",
+      "Zone C"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9878",
+        "date": "07 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/obsidian-spire-7-incident-1/320/320",
+        "rectificationTime": "12 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9879",
+        "date": "08 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/obsidian-spire-7-incident-2/320/320",
+        "rectificationTime": "13 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9880",
+        "date": "09 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/obsidian-spire-7-incident-3/320/320",
+        "rectificationTime": "14 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9881",
+        "date": "10 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/obsidian-spire-7-incident-4/320/320",
+        "rectificationTime": "15 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9882",
+        "date": "11 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/obsidian-spire-7-incident-5/320/320",
+        "rectificationTime": "16 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-obsidian-spire-7",
+        "points": [
+          [
+            54.648,
+            24.304
+          ],
+          [
+            54.66,
+            24.304
+          ],
+          [
+            54.66,
+            24.292
+          ],
+          [
+            54.648,
+            24.292
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Obsidian Spire 7"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 70
+      },
+      {
+        "month": "Feb",
+        "value": 67
+      },
+      {
+        "month": "Mar",
+        "value": 67
+      },
+      {
+        "month": "Apr",
+        "value": 71
+      },
+      {
+        "month": "May",
+        "value": 68
+      },
+      {
+        "month": "Jun",
+        "value": 68
+      },
+      {
+        "month": "Jul",
+        "value": 70
+      },
+      {
+        "month": "Aug",
+        "value": 67
+      },
+      {
+        "month": "Sep",
+        "value": 67
+      },
+      {
+        "month": "Oct",
+        "value": 72
+      },
+      {
+        "month": "Nov",
+        "value": 73
+      },
+      {
+        "month": "Dec",
+        "value": 72
+      }
+    ],
+    "upcomingPlanId": "231042",
+    "upcomingPlanDatetime": "07 Aug, 2025 15:00am"
+  },
+  {
+    "id": "CP-1008",
+    "uniqueidentifier": "CP-1008",
+    "title": "Obsidian Spire 8",
+    "systemcol1": "Capital Mall",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste"
+    ],
+    "systemcol3": 2,
+    "systemcol4": "Lot 8",
+    "systemcol5": "Recycling Center",
+    "systemcol6": "06:00 AM - 10:00 PM",
+    "systemcol7": "Monthly",
+    "systemcol8": "WCR-08",
+    "systemcol9": "contact.obsidian-spire-8@iwmp.example",
+    "systemcol10": "+971504201007",
+    "tags": [
+      "Waste Management",
+      "Zone D"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9881",
+        "date": "08 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/obsidian-spire-8-incident-1/320/320",
+        "rectificationTime": "13 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9882",
+        "date": "09 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/obsidian-spire-8-incident-2/320/320",
+        "rectificationTime": "14 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9883",
+        "date": "10 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/obsidian-spire-8-incident-3/320/320",
+        "rectificationTime": "15 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9884",
+        "date": "11 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/obsidian-spire-8-incident-4/320/320",
+        "rectificationTime": "16 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9885",
+        "date": "12 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/obsidian-spire-8-incident-5/320/320",
+        "rectificationTime": "17 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-obsidian-spire-8",
+        "points": [
+          [
+            54.652,
+            24.286
+          ],
+          [
+            54.664,
+            24.286
+          ],
+          [
+            54.664,
+            24.274
+          ],
+          [
+            54.652,
+            24.274
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Obsidian Spire 8"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 48
+      },
+      {
+        "month": "Feb",
+        "value": 47
+      },
+      {
+        "month": "Mar",
+        "value": 48
+      },
+      {
+        "month": "Apr",
+        "value": 47
+      },
+      {
+        "month": "May",
+        "value": 47
+      },
+      {
+        "month": "Jun",
+        "value": 52
+      },
+      {
+        "month": "Jul",
+        "value": 49
+      },
+      {
+        "month": "Aug",
+        "value": 49
+      },
+      {
+        "month": "Sep",
+        "value": 54
+      },
+      {
+        "month": "Oct",
+        "value": 51
+      },
+      {
+        "month": "Nov",
+        "value": 55
+      },
+      {
+        "month": "Dec",
+        "value": 56
+      }
+    ],
+    "upcomingPlanId": "231049",
+    "upcomingPlanDatetime": "08 Aug, 2025 16:00am"
+  },
+  {
+    "id": "CP-1009",
+    "uniqueidentifier": "CP-1009",
+    "title": "Burgundy Bay",
+    "systemcol1": "Prestige Tower 16 & 17",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste"
+    ],
+    "systemcol3": 3,
+    "systemcol4": "Lot 9",
+    "systemcol5": "Collection Point",
+    "systemcol6": "08:00 AM - 08:00 PM",
+    "systemcol7": "Daily",
+    "systemcol8": "WCR-09",
+    "systemcol9": "contact.burgundy-bay@iwmp.example",
+    "systemcol10": "+971504201008",
+    "tags": [
+      "Waste Management",
+      "Zone A"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9884",
+        "date": "09 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/burgundy-bay-incident-1/320/320",
+        "rectificationTime": "14 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9885",
+        "date": "10 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/burgundy-bay-incident-2/320/320",
+        "rectificationTime": "15 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9886",
+        "date": "11 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/burgundy-bay-incident-3/320/320",
+        "rectificationTime": "16 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9887",
+        "date": "12 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/burgundy-bay-incident-4/320/320",
+        "rectificationTime": "17 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9888",
+        "date": "13 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/burgundy-bay-incident-5/320/320",
+        "rectificationTime": "18 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-burgundy-bay",
+        "points": [
+          [
+            54.656,
+            24.289
+          ],
+          [
+            54.668,
+            24.289
+          ],
+          [
+            54.668,
+            24.277
+          ],
+          [
+            54.656,
+            24.277
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Burgundy Bay"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 59
+      },
+      {
+        "month": "Feb",
+        "value": 63
+      },
+      {
+        "month": "Mar",
+        "value": 65
+      },
+      {
+        "month": "Apr",
+        "value": 63
+      },
+      {
+        "month": "May",
+        "value": 61
+      },
+      {
+        "month": "Jun",
+        "value": 58
+      },
+      {
+        "month": "Jul",
+        "value": 57
+      },
+      {
+        "month": "Aug",
+        "value": 55
+      },
+      {
+        "month": "Sep",
+        "value": 57
+      },
+      {
+        "month": "Oct",
+        "value": 54
+      },
+      {
+        "month": "Nov",
+        "value": 59
+      },
+      {
+        "month": "Dec",
+        "value": 61
+      }
+    ],
+    "upcomingPlanId": "231056",
+    "upcomingPlanDatetime": "09 Aug, 2025 9:00am"
+  },
+  {
+    "id": "CP-1010",
+    "uniqueidentifier": "CP-1010",
+    "title": "Teal Heights",
+    "systemcol1": "Al Reef Village",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste",
+      "Green Waste"
+    ],
+    "systemcol3": 4,
+    "systemcol4": "Lot 10",
+    "systemcol5": "Transfer Station",
+    "systemcol6": "24/7",
+    "systemcol7": "Weekly",
+    "systemcol8": "WCR-10",
+    "systemcol9": "contact.teal-heights@iwmp.example",
+    "systemcol10": "+971504201009",
+    "tags": [
+      "Waste Management",
+      "Zone B"
+    ],
+    "status": "Inactive",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9887",
+        "date": "10 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/teal-heights-incident-1/320/320",
+        "rectificationTime": "15 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9888",
+        "date": "11 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/teal-heights-incident-2/320/320",
+        "rectificationTime": "16 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9889",
+        "date": "12 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/teal-heights-incident-3/320/320",
+        "rectificationTime": "17 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9890",
+        "date": "13 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/teal-heights-incident-4/320/320",
+        "rectificationTime": "18 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9891",
+        "date": "14 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/teal-heights-incident-5/320/320",
+        "rectificationTime": "19 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-teal-heights",
+        "points": [
+          [
+            54.66,
+            24.292
+          ],
+          [
+            54.672,
+            24.292
+          ],
+          [
+            54.672,
+            24.28
+          ],
+          [
+            54.66,
+            24.28
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Teal Heights"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 56
+      },
+      {
+        "month": "Feb",
+        "value": 53
+      },
+      {
+        "month": "Mar",
+        "value": 57
+      },
+      {
+        "month": "Apr",
+        "value": 55
+      },
+      {
+        "month": "May",
+        "value": 60
+      },
+      {
+        "month": "Jun",
+        "value": 64
+      },
+      {
+        "month": "Jul",
+        "value": 63
+      },
+      {
+        "month": "Aug",
+        "value": 68
+      },
+      {
+        "month": "Sep",
+        "value": 68
+      },
+      {
+        "month": "Oct",
+        "value": 68
+      },
+      {
+        "month": "Nov",
+        "value": 69
+      },
+      {
+        "month": "Dec",
+        "value": 67
+      }
+    ],
+    "upcomingPlanId": "231063",
+    "upcomingPlanDatetime": "10 Aug, 2025 10:00am"
+  },
+  {
+    "id": "CP-1011",
+    "uniqueidentifier": "CP-1011",
+    "title": "Fuchsia Gardens 3",
+    "systemcol1": "Capital Mall",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste",
+      "Green Waste",
+      "Recyclable Waste"
+    ],
+    "systemcol3": 5,
+    "systemcol4": "Lot 11",
+    "systemcol5": "Sorting Facility",
+    "systemcol6": "06:00 AM - 10:00 PM",
+    "systemcol7": "Bi-Weekly",
+    "systemcol8": "WCR-01",
+    "systemcol9": "contact.fuchsia-gardens-3@iwmp.example",
+    "systemcol10": "+971504201010",
+    "tags": [
+      "Waste Management",
+      "Zone C"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9890",
+        "date": "11 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/fuchsia-gardens-3-incident-1/320/320",
+        "rectificationTime": "16 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9891",
+        "date": "12 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/fuchsia-gardens-3-incident-2/320/320",
+        "rectificationTime": "17 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9892",
+        "date": "13 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/fuchsia-gardens-3-incident-3/320/320",
+        "rectificationTime": "18 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9893",
+        "date": "14 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/fuchsia-gardens-3-incident-4/320/320",
+        "rectificationTime": "19 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9894",
+        "date": "15 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/fuchsia-gardens-3-incident-5/320/320",
+        "rectificationTime": "20 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-fuchsia-gardens-3",
+        "points": [
+          [
+            54.644,
+            24.295
+          ],
+          [
+            54.656,
+            24.295
+          ],
+          [
+            54.656,
+            24.283
+          ],
+          [
+            54.644,
+            24.283
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Fuchsia Gardens 3"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 60
+      },
+      {
+        "month": "Feb",
+        "value": 65
+      },
+      {
+        "month": "Mar",
+        "value": 63
+      },
+      {
+        "month": "Apr",
+        "value": 66
+      },
+      {
+        "month": "May",
+        "value": 69
+      },
+      {
+        "month": "Jun",
+        "value": 72
+      },
+      {
+        "month": "Jul",
+        "value": 71
+      },
+      {
+        "month": "Aug",
+        "value": 70
+      },
+      {
+        "month": "Sep",
+        "value": 73
+      },
+      {
+        "month": "Oct",
+        "value": 73
+      },
+      {
+        "month": "Nov",
+        "value": 71
+      },
+      {
+        "month": "Dec",
+        "value": 76
+      }
+    ],
+    "upcomingPlanId": "231070",
+    "upcomingPlanDatetime": "11 Aug, 2025 11:00am"
+  },
+  {
+    "id": "CP-1012",
+    "uniqueidentifier": "CP-1012",
+    "title": "Fuchsia Gardens 4",
+    "systemcol1": "Prestige Tower 16 & 17",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste",
+      "Green Waste",
+      "Recyclable Waste",
+      "Hazardous Waste"
+    ],
+    "systemcol3": 6,
+    "systemcol4": "Lot 12",
+    "systemcol5": "Recycling Center",
+    "systemcol6": "08:00 AM - 08:00 PM",
+    "systemcol7": "Monthly",
+    "systemcol8": "WCR-02",
+    "systemcol9": "contact.fuchsia-gardens-4@iwmp.example",
+    "systemcol10": "+971504201011",
+    "tags": [
+      "Waste Management",
+      "Zone D"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9893",
+        "date": "12 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/fuchsia-gardens-4-incident-1/320/320",
+        "rectificationTime": "17 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9894",
+        "date": "13 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/fuchsia-gardens-4-incident-2/320/320",
+        "rectificationTime": "18 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9895",
+        "date": "14 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/fuchsia-gardens-4-incident-3/320/320",
+        "rectificationTime": "19 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9896",
+        "date": "15 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/fuchsia-gardens-4-incident-4/320/320",
+        "rectificationTime": "20 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9897",
+        "date": "16 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/fuchsia-gardens-4-incident-5/320/320",
+        "rectificationTime": "21 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-fuchsia-gardens-4",
+        "points": [
+          [
+            54.648,
+            24.298
+          ],
+          [
+            54.66,
+            24.298
+          ],
+          [
+            54.66,
+            24.286
+          ],
+          [
+            54.648,
+            24.286
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Fuchsia Gardens 4"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 65
+      },
+      {
+        "month": "Feb",
+        "value": 66
+      },
+      {
+        "month": "Mar",
+        "value": 63
+      },
+      {
+        "month": "Apr",
+        "value": 66
+      },
+      {
+        "month": "May",
+        "value": 65
+      },
+      {
+        "month": "Jun",
+        "value": 69
+      },
+      {
+        "month": "Jul",
+        "value": 72
+      },
+      {
+        "month": "Aug",
+        "value": 76
+      },
+      {
+        "month": "Sep",
+        "value": 81
+      },
+      {
+        "month": "Oct",
+        "value": 82
+      },
+      {
+        "month": "Nov",
+        "value": 81
+      },
+      {
+        "month": "Dec",
+        "value": 79
+      }
+    ],
+    "upcomingPlanId": "231077",
+    "upcomingPlanDatetime": "12 Aug, 2025 12:00am"
+  },
+  {
+    "id": "CP-1013",
+    "uniqueidentifier": "CP-1013",
+    "title": "Amber Valley",
+    "systemcol1": "Al Reef Village",
+    "systemcol2": [
+      "Residual Waste"
+    ],
+    "systemcol3": 1,
+    "systemcol4": "Lot 13",
+    "systemcol5": "Collection Point",
+    "systemcol6": "24/7",
+    "systemcol7": "Daily",
+    "systemcol8": "WCR-03",
+    "systemcol9": "contact.amber-valley@iwmp.example",
+    "systemcol10": "+971504201012",
+    "tags": [
+      "Waste Management",
+      "Zone A"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9896",
+        "date": "13 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/amber-valley-incident-1/320/320",
+        "rectificationTime": "18 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9897",
+        "date": "14 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/amber-valley-incident-2/320/320",
+        "rectificationTime": "19 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9898",
+        "date": "15 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/amber-valley-incident-3/320/320",
+        "rectificationTime": "20 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9899",
+        "date": "16 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/amber-valley-incident-4/320/320",
+        "rectificationTime": "21 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9900",
+        "date": "17 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/amber-valley-incident-5/320/320",
+        "rectificationTime": "22 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-amber-valley",
+        "points": [
+          [
+            54.652,
+            24.301
+          ],
+          [
+            54.664,
+            24.301
+          ],
+          [
+            54.664,
+            24.289
+          ],
+          [
+            54.652,
+            24.289
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Amber Valley"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 68
+      },
+      {
+        "month": "Feb",
+        "value": 67
+      },
+      {
+        "month": "Mar",
+        "value": 66
+      },
+      {
+        "month": "Apr",
+        "value": 69
+      },
+      {
+        "month": "May",
+        "value": 69
+      },
+      {
+        "month": "Jun",
+        "value": 66
+      },
+      {
+        "month": "Jul",
+        "value": 68
+      },
+      {
+        "month": "Aug",
+        "value": 69
+      },
+      {
+        "month": "Sep",
+        "value": 72
+      },
+      {
+        "month": "Oct",
+        "value": 77
+      },
+      {
+        "month": "Nov",
+        "value": 77
+      },
+      {
+        "month": "Dec",
+        "value": 76
+      }
+    ],
+    "upcomingPlanId": "231084",
+    "upcomingPlanDatetime": "13 Aug, 2025 13:00am"
+  },
+  {
+    "id": "CP-1014",
+    "uniqueidentifier": "CP-1014",
+    "title": "Lavender Square",
+    "systemcol1": "Capital Mall",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste"
+    ],
+    "systemcol3": 2,
+    "systemcol4": "Lot 14",
+    "systemcol5": "Transfer Station",
+    "systemcol6": "06:00 AM - 10:00 PM",
+    "systemcol7": "Weekly",
+    "systemcol8": "WCR-04",
+    "systemcol9": "contact.lavender-square@iwmp.example",
+    "systemcol10": "+971504201013",
+    "tags": [
+      "Waste Management",
+      "Zone B"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9899",
+        "date": "14 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/lavender-square-incident-1/320/320",
+        "rectificationTime": "19 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9900",
+        "date": "15 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/lavender-square-incident-2/320/320",
+        "rectificationTime": "20 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9901",
+        "date": "16 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/lavender-square-incident-3/320/320",
+        "rectificationTime": "21 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9902",
+        "date": "17 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/lavender-square-incident-4/320/320",
+        "rectificationTime": "22 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9903",
+        "date": "18 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/lavender-square-incident-5/320/320",
+        "rectificationTime": "23 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-lavender-square",
+        "points": [
+          [
+            54.656,
+            24.304
+          ],
+          [
+            54.668,
+            24.304
+          ],
+          [
+            54.668,
+            24.292
+          ],
+          [
+            54.656,
+            24.292
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Lavender Square"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 73
+      },
+      {
+        "month": "Feb",
+        "value": 74
+      },
+      {
+        "month": "Mar",
+        "value": 73
+      },
+      {
+        "month": "Apr",
+        "value": 70
+      },
+      {
+        "month": "May",
+        "value": 73
+      },
+      {
+        "month": "Jun",
+        "value": 70
+      },
+      {
+        "month": "Jul",
+        "value": 73
+      },
+      {
+        "month": "Aug",
+        "value": 73
+      },
+      {
+        "month": "Sep",
+        "value": 74
+      },
+      {
+        "month": "Oct",
+        "value": 71
+      },
+      {
+        "month": "Nov",
+        "value": 73
+      },
+      {
+        "month": "Dec",
+        "value": 71
+      }
+    ],
+    "upcomingPlanId": "231091",
+    "upcomingPlanDatetime": "14 Aug, 2025 14:00am"
+  },
+  {
+    "id": "CP-1015",
+    "uniqueidentifier": "CP-1015",
+    "title": "Cerulean Lofts 5",
+    "systemcol1": "Prestige Tower 16 & 17",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste"
+    ],
+    "systemcol3": 3,
+    "systemcol4": "Lot 15",
+    "systemcol5": "Sorting Facility",
+    "systemcol6": "08:00 AM - 08:00 PM",
+    "systemcol7": "Bi-Weekly",
+    "systemcol8": "WCR-05",
+    "systemcol9": "contact.cerulean-lofts-5@iwmp.example",
+    "systemcol10": "+971504201014",
+    "tags": [
+      "Waste Management",
+      "Zone C"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9902",
+        "date": "15 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/cerulean-lofts-5-incident-1/320/320",
+        "rectificationTime": "20 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9903",
+        "date": "16 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/cerulean-lofts-5-incident-2/320/320",
+        "rectificationTime": "21 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9904",
+        "date": "17 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/cerulean-lofts-5-incident-3/320/320",
+        "rectificationTime": "22 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9905",
+        "date": "18 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/cerulean-lofts-5-incident-4/320/320",
+        "rectificationTime": "23 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9906",
+        "date": "19 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/cerulean-lofts-5-incident-5/320/320",
+        "rectificationTime": "24 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-cerulean-lofts-5",
+        "points": [
+          [
+            54.66,
+            24.286
+          ],
+          [
+            54.672,
+            24.286
+          ],
+          [
+            54.672,
+            24.274
+          ],
+          [
+            54.66,
+            24.274
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Cerulean Lofts 5"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 57
+      },
+      {
+        "month": "Feb",
+        "value": 54
+      },
+      {
+        "month": "Mar",
+        "value": 54
+      },
+      {
+        "month": "Apr",
+        "value": 55
+      },
+      {
+        "month": "May",
+        "value": 52
+      },
+      {
+        "month": "Jun",
+        "value": 55
+      },
+      {
+        "month": "Jul",
+        "value": 58
+      },
+      {
+        "month": "Aug",
+        "value": 57
+      },
+      {
+        "month": "Sep",
+        "value": 61
+      },
+      {
+        "month": "Oct",
+        "value": 66
+      },
+      {
+        "month": "Nov",
+        "value": 70
+      },
+      {
+        "month": "Dec",
+        "value": 71
+      }
+    ],
+    "upcomingPlanId": "231098",
+    "upcomingPlanDatetime": "15 Aug, 2025 15:00am"
+  },
+  {
+    "id": "CP-1016",
+    "uniqueidentifier": "CP-1016",
+    "title": "Cerulean Lofts 6",
+    "systemcol1": "Al Reef Village",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste",
+      "Green Waste"
+    ],
+    "systemcol3": 4,
+    "systemcol4": "Lot 16",
+    "systemcol5": "Recycling Center",
+    "systemcol6": "24/7",
+    "systemcol7": "Monthly",
+    "systemcol8": "WCR-06",
+    "systemcol9": "contact.cerulean-lofts-6@iwmp.example",
+    "systemcol10": "+971504201015",
+    "tags": [
+      "Waste Management",
+      "Zone D"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9905",
+        "date": "16 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/cerulean-lofts-6-incident-1/320/320",
+        "rectificationTime": "21 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9906",
+        "date": "17 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/cerulean-lofts-6-incident-2/320/320",
+        "rectificationTime": "22 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9907",
+        "date": "18 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/cerulean-lofts-6-incident-3/320/320",
+        "rectificationTime": "23 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9908",
+        "date": "19 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/cerulean-lofts-6-incident-4/320/320",
+        "rectificationTime": "24 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9909",
+        "date": "20 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/cerulean-lofts-6-incident-5/320/320",
+        "rectificationTime": "25 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-cerulean-lofts-6",
+        "points": [
+          [
+            54.644,
+            24.289
+          ],
+          [
+            54.656,
+            24.289
+          ],
+          [
+            54.656,
+            24.277
+          ],
+          [
+            54.644,
+            24.277
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Cerulean Lofts 6"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 53
+      },
+      {
+        "month": "Feb",
+        "value": 54
+      },
+      {
+        "month": "Mar",
+        "value": 58
+      },
+      {
+        "month": "Apr",
+        "value": 63
+      },
+      {
+        "month": "May",
+        "value": 66
+      },
+      {
+        "month": "Jun",
+        "value": 67
+      },
+      {
+        "month": "Jul",
+        "value": 70
+      },
+      {
+        "month": "Aug",
+        "value": 71
+      },
+      {
+        "month": "Sep",
+        "value": 75
+      },
+      {
+        "month": "Oct",
+        "value": 72
+      },
+      {
+        "month": "Nov",
+        "value": 70
+      },
+      {
+        "month": "Dec",
+        "value": 73
+      }
+    ],
+    "upcomingPlanId": "231105",
+    "upcomingPlanDatetime": "16 Aug, 2025 16:00am"
+  },
+  {
+    "id": "CP-1017",
+    "uniqueidentifier": "CP-1017",
+    "title": "Saffron Terraces",
+    "systemcol1": "Capital Mall",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste",
+      "Green Waste",
+      "Recyclable Waste"
+    ],
+    "systemcol3": 5,
+    "systemcol4": "Lot 17",
+    "systemcol5": "Collection Point",
+    "systemcol6": "06:00 AM - 10:00 PM",
+    "systemcol7": "Daily",
+    "systemcol8": "WCR-07",
+    "systemcol9": "contact.saffron-terraces@iwmp.example",
+    "systemcol10": "+971504201016",
+    "tags": [
+      "Waste Management",
+      "Zone A"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9908",
+        "date": "17 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/saffron-terraces-incident-1/320/320",
+        "rectificationTime": "22 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9909",
+        "date": "18 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/saffron-terraces-incident-2/320/320",
+        "rectificationTime": "23 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9910",
+        "date": "19 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/saffron-terraces-incident-3/320/320",
+        "rectificationTime": "24 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9911",
+        "date": "20 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/saffron-terraces-incident-4/320/320",
+        "rectificationTime": "25 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9912",
+        "date": "21 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/saffron-terraces-incident-5/320/320",
+        "rectificationTime": "26 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-saffron-terraces",
+        "points": [
+          [
+            54.648,
+            24.292
+          ],
+          [
+            54.66,
+            24.292
+          ],
+          [
+            54.66,
+            24.28
+          ],
+          [
+            54.648,
+            24.28
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Saffron Terraces"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 60
+      },
+      {
+        "month": "Feb",
+        "value": 63
+      },
+      {
+        "month": "Mar",
+        "value": 68
+      },
+      {
+        "month": "Apr",
+        "value": 70
+      },
+      {
+        "month": "May",
+        "value": 75
+      },
+      {
+        "month": "Jun",
+        "value": 74
+      },
+      {
+        "month": "Jul",
+        "value": 72
+      },
+      {
+        "month": "Aug",
+        "value": 74
+      },
+      {
+        "month": "Sep",
+        "value": 78
+      },
+      {
+        "month": "Oct",
+        "value": 75
+      },
+      {
+        "month": "Nov",
+        "value": 79
+      },
+      {
+        "month": "Dec",
+        "value": 84
+      }
+    ],
+    "upcomingPlanId": "231112",
+    "upcomingPlanDatetime": "17 Aug, 2025 9:00am"
+  },
+  {
+    "id": "CP-1018",
+    "uniqueidentifier": "CP-1018",
+    "title": "Beige Bluffs",
+    "systemcol1": "Prestige Tower 16 & 17",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste"
+    ],
+    "systemcol3": 3,
+    "systemcol4": "Lot 10",
+    "systemcol5": "Collection Point",
+    "systemcol6": "24/7",
+    "systemcol7": "Daily",
+    "systemcol8": "WCR-11",
+    "systemcol9": "darlener1@wonkainc.com",
+    "systemcol10": "+971504200000",
+    "tags": [
+      "High Priority",
+      "RMCC"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "4 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "3 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "2 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "1 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "31 Aug, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "30 Aug, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "29 Aug, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "28 Aug, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "27 Aug, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "26 Aug, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "25 Aug, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "24 Aug, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "23 Aug, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9911",
+        "date": "18 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-1/320/320",
+        "rectificationTime": "23 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9912",
+        "date": "19 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-2/320/320",
+        "rectificationTime": "24 July, 2025 09:11",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9913",
+        "date": "20 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-3/320/320",
+        "rectificationTime": "25 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9914",
+        "date": "21 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-4/320/320",
+        "rectificationTime": "26 September, 2025 11:33",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9915",
+        "date": "22 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-5/320/320",
+        "rectificationTime": "27 October, 2025 12:44",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9916",
+        "date": "23 Oct, 25 | 12:35 AM",
+        "area": "Sector C",
+        "category": "Empty Collection Point",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-6/320/320",
+        "rectificationTime": "1 November, 2025 13:55",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9917",
+        "date": "24 Nov, 25 | 13:42 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-7/320/320",
+        "rectificationTime": "2 December, 2025 14:06",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9918",
+        "date": "25 Dec, 25 | 14:49 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-8/320/320",
+        "rectificationTime": "3 January, 2025 15:17",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9919",
+        "date": "26 Jan, 25 | 15:56 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-9/320/320",
+        "rectificationTime": "4 February, 2025 08:28",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9920",
+        "date": "27 Feb, 25 | 16:03 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-10/320/320",
+        "rectificationTime": "5 March, 2025 09:39",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9921",
+        "date": "01 Mar, 25 | 07:10 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-11/320/320",
+        "rectificationTime": "6 April, 2025 10:50",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9922",
+        "date": "02 Apr, 25 | 08:17 AM",
+        "area": "Sector C",
+        "category": "Empty Collection Point",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-12/320/320",
+        "rectificationTime": "7 May, 2025 11:01",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9923",
+        "date": "03 May, 25 | 09:24 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-13/320/320",
+        "rectificationTime": "8 June, 2025 12:12",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9924",
+        "date": "04 Jun, 25 | 10:31 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-14/320/320",
+        "rectificationTime": "9 July, 2025 13:23",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9925",
+        "date": "05 Jul, 25 | 11:38 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-15/320/320",
+        "rectificationTime": "10 August, 2025 14:34",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9926",
+        "date": "06 Aug, 25 | 12:45 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/beige-bluffs-incident-16/320/320",
+        "rectificationTime": "11 September, 2025 15:45",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-beige-bluffs",
+        "points": [
+          [
+            54.652,
+            24.295
+          ],
+          [
+            54.664,
+            24.295
+          ],
+          [
+            54.664,
+            24.283
+          ],
+          [
+            54.652,
+            24.283
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Beige Bluffs"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 55
+      },
+      {
+        "month": "Feb",
+        "value": 58
+      },
+      {
+        "month": "Mar",
+        "value": 61
+      },
+      {
+        "month": "Apr",
+        "value": 60
+      },
+      {
+        "month": "May",
+        "value": 64
+      },
+      {
+        "month": "Jun",
+        "value": 67
+      },
+      {
+        "month": "Jul",
+        "value": 70
+      },
+      {
+        "month": "Aug",
+        "value": 69
+      },
+      {
+        "month": "Sep",
+        "value": 73
+      },
+      {
+        "month": "Oct",
+        "value": 75
+      },
+      {
+        "month": "Nov",
+        "value": 77
+      },
+      {
+        "month": "Dec",
+        "value": 78
+      }
+    ],
+    "upcomingPlanId": "231454",
+    "upcomingPlanDatetime": "22 Jul, 2025 12:00pm"
+  },
+  {
+    "id": "CP-1019",
+    "uniqueidentifier": "CP-1019",
+    "title": "Tangerine Manor 9",
+    "systemcol1": "Al Reef Village",
+    "systemcol2": [
+      "Residual Waste"
+    ],
+    "systemcol3": 1,
+    "systemcol4": "Lot 19",
+    "systemcol5": "Sorting Facility",
+    "systemcol6": "24/7",
+    "systemcol7": "Bi-Weekly",
+    "systemcol8": "WCR-09",
+    "systemcol9": "contact.tangerine-manor-9@iwmp.example",
+    "systemcol10": "+971504201018",
+    "tags": [
+      "Waste Management",
+      "Zone C"
+    ],
+    "status": "Inactive",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9914",
+        "date": "19 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/tangerine-manor-9-incident-1/320/320",
+        "rectificationTime": "24 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9915",
+        "date": "20 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/tangerine-manor-9-incident-2/320/320",
+        "rectificationTime": "25 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9916",
+        "date": "21 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/tangerine-manor-9-incident-3/320/320",
+        "rectificationTime": "26 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9917",
+        "date": "22 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/tangerine-manor-9-incident-4/320/320",
+        "rectificationTime": "27 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9918",
+        "date": "23 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/tangerine-manor-9-incident-5/320/320",
+        "rectificationTime": "1 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-tangerine-manor-9",
+        "points": [
+          [
+            54.656,
+            24.298
+          ],
+          [
+            54.668,
+            24.298
+          ],
+          [
+            54.668,
+            24.286
+          ],
+          [
+            54.656,
+            24.286
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Tangerine Manor 9"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 67
+      },
+      {
+        "month": "Feb",
+        "value": 70
+      },
+      {
+        "month": "Mar",
+        "value": 68
+      },
+      {
+        "month": "Apr",
+        "value": 68
+      },
+      {
+        "month": "May",
+        "value": 70
+      },
+      {
+        "month": "Jun",
+        "value": 70
+      },
+      {
+        "month": "Jul",
+        "value": 69
+      },
+      {
+        "month": "Aug",
+        "value": 74
+      },
+      {
+        "month": "Sep",
+        "value": 77
+      },
+      {
+        "month": "Oct",
+        "value": 77
+      },
+      {
+        "month": "Nov",
+        "value": 75
+      },
+      {
+        "month": "Dec",
+        "value": 78
+      }
+    ],
+    "upcomingPlanId": "231126",
+    "upcomingPlanDatetime": "19 Aug, 2025 11:00am"
+  },
+  {
+    "id": "CP-1020",
+    "uniqueidentifier": "CP-1020",
+    "title": "Tangerine Manor 10",
+    "systemcol1": "Capital Mall",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste"
+    ],
+    "systemcol3": 2,
+    "systemcol4": "Lot 20",
+    "systemcol5": "Recycling Center",
+    "systemcol6": "06:00 AM - 10:00 PM",
+    "systemcol7": "Monthly",
+    "systemcol8": "WCR-10",
+    "systemcol9": "contact.tangerine-manor-10@iwmp.example",
+    "systemcol10": "+971504201019",
+    "tags": [
+      "Waste Management",
+      "Zone D"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9917",
+        "date": "20 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/tangerine-manor-10-incident-1/320/320",
+        "rectificationTime": "25 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9918",
+        "date": "21 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/tangerine-manor-10-incident-2/320/320",
+        "rectificationTime": "26 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9919",
+        "date": "22 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/tangerine-manor-10-incident-3/320/320",
+        "rectificationTime": "27 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9920",
+        "date": "23 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/tangerine-manor-10-incident-4/320/320",
+        "rectificationTime": "1 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9921",
+        "date": "24 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/tangerine-manor-10-incident-5/320/320",
+        "rectificationTime": "2 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-tangerine-manor-10",
+        "points": [
+          [
+            54.66,
+            24.301
+          ],
+          [
+            54.672,
+            24.301
+          ],
+          [
+            54.672,
+            24.289
+          ],
+          [
+            54.66,
+            24.289
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Tangerine Manor 10"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 64
+      },
+      {
+        "month": "Feb",
+        "value": 66
+      },
+      {
+        "month": "Mar",
+        "value": 66
+      },
+      {
+        "month": "Apr",
+        "value": 64
+      },
+      {
+        "month": "May",
+        "value": 64
+      },
+      {
+        "month": "Jun",
+        "value": 68
+      },
+      {
+        "month": "Jul",
+        "value": 73
+      },
+      {
+        "month": "Aug",
+        "value": 73
+      },
+      {
+        "month": "Sep",
+        "value": 74
+      },
+      {
+        "month": "Oct",
+        "value": 77
+      },
+      {
+        "month": "Nov",
+        "value": 80
+      },
+      {
+        "month": "Dec",
+        "value": 81
+      }
+    ],
+    "upcomingPlanId": "231133",
+    "upcomingPlanDatetime": "20 Aug, 2025 12:00am"
+  },
+  {
+    "id": "CP-1021",
+    "uniqueidentifier": "CP-1021",
+    "title": "Aqua Vista",
+    "systemcol1": "Prestige Tower 16 & 17",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste"
+    ],
+    "systemcol3": 3,
+    "systemcol4": "Lot 21",
+    "systemcol5": "Collection Point",
+    "systemcol6": "08:00 AM - 08:00 PM",
+    "systemcol7": "Daily",
+    "systemcol8": "WCR-01",
+    "systemcol9": "contact.aqua-vista@iwmp.example",
+    "systemcol10": "+971504201020",
+    "tags": [
+      "Waste Management",
+      "Zone A"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9920",
+        "date": "21 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/aqua-vista-incident-1/320/320",
+        "rectificationTime": "26 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9921",
+        "date": "22 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/aqua-vista-incident-2/320/320",
+        "rectificationTime": "27 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9922",
+        "date": "23 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/aqua-vista-incident-3/320/320",
+        "rectificationTime": "1 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9923",
+        "date": "24 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/aqua-vista-incident-4/320/320",
+        "rectificationTime": "2 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9924",
+        "date": "25 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/aqua-vista-incident-5/320/320",
+        "rectificationTime": "3 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-aqua-vista",
+        "points": [
+          [
+            54.644,
+            24.304
+          ],
+          [
+            54.656,
+            24.304
+          ],
+          [
+            54.656,
+            24.292
+          ],
+          [
+            54.644,
+            24.292
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Aqua Vista"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 48
+      },
+      {
+        "month": "Feb",
+        "value": 45
+      },
+      {
+        "month": "Mar",
+        "value": 49
+      },
+      {
+        "month": "Apr",
+        "value": 52
+      },
+      {
+        "month": "May",
+        "value": 51
+      },
+      {
+        "month": "Jun",
+        "value": 52
+      },
+      {
+        "month": "Jul",
+        "value": 51
+      },
+      {
+        "month": "Aug",
+        "value": 52
+      },
+      {
+        "month": "Sep",
+        "value": 54
+      },
+      {
+        "month": "Oct",
+        "value": 57
+      },
+      {
+        "month": "Nov",
+        "value": 62
+      },
+      {
+        "month": "Dec",
+        "value": 67
+      }
+    ],
+    "upcomingPlanId": "231140",
+    "upcomingPlanDatetime": "21 Aug, 2025 13:00am"
+  },
+  {
+    "id": "CP-1022",
+    "uniqueidentifier": "CP-1022",
+    "title": "Magenta Meadows",
+    "systemcol1": "Al Reef Village",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste",
+      "Green Waste"
+    ],
+    "systemcol3": 4,
+    "systemcol4": "Lot 22",
+    "systemcol5": "Transfer Station",
+    "systemcol6": "24/7",
+    "systemcol7": "Weekly",
+    "systemcol8": "WCR-02",
+    "systemcol9": "contact.magenta-meadows@iwmp.example",
+    "systemcol10": "+971504201021",
+    "tags": [
+      "Waste Management",
+      "Zone B"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9923",
+        "date": "22 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/magenta-meadows-incident-1/320/320",
+        "rectificationTime": "27 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9924",
+        "date": "23 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/magenta-meadows-incident-2/320/320",
+        "rectificationTime": "1 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9925",
+        "date": "24 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/magenta-meadows-incident-3/320/320",
+        "rectificationTime": "2 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9926",
+        "date": "25 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/magenta-meadows-incident-4/320/320",
+        "rectificationTime": "3 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9927",
+        "date": "26 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/magenta-meadows-incident-5/320/320",
+        "rectificationTime": "4 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-magenta-meadows",
+        "points": [
+          [
+            54.648,
+            24.286
+          ],
+          [
+            54.66,
+            24.286
+          ],
+          [
+            54.66,
+            24.274
+          ],
+          [
+            54.648,
+            24.274
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Magenta Meadows"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 58
+      },
+      {
+        "month": "Feb",
+        "value": 63
+      },
+      {
+        "month": "Mar",
+        "value": 62
+      },
+      {
+        "month": "Apr",
+        "value": 62
+      },
+      {
+        "month": "May",
+        "value": 63
+      },
+      {
+        "month": "Jun",
+        "value": 68
+      },
+      {
+        "month": "Jul",
+        "value": 71
+      },
+      {
+        "month": "Aug",
+        "value": 74
+      },
+      {
+        "month": "Sep",
+        "value": 77
+      },
+      {
+        "month": "Oct",
+        "value": 79
+      },
+      {
+        "month": "Nov",
+        "value": 77
+      },
+      {
+        "month": "Dec",
+        "value": 75
+      }
+    ],
+    "upcomingPlanId": "231147",
+    "upcomingPlanDatetime": "22 Aug, 2025 14:00am"
+  },
+  {
+    "id": "CP-1023",
+    "uniqueidentifier": "CP-1023",
+    "title": "Goldenrod Glade 11",
+    "systemcol1": "Capital Mall",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste",
+      "Green Waste",
+      "Recyclable Waste"
+    ],
+    "systemcol3": 5,
+    "systemcol4": "Lot 23",
+    "systemcol5": "Sorting Facility",
+    "systemcol6": "06:00 AM - 10:00 PM",
+    "systemcol7": "Bi-Weekly",
+    "systemcol8": "WCR-03",
+    "systemcol9": "contact.goldenrod-glade-11@iwmp.example",
+    "systemcol10": "+971504201022",
+    "tags": [
+      "Waste Management",
+      "Zone C"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9926",
+        "date": "23 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/goldenrod-glade-11-incident-1/320/320",
+        "rectificationTime": "1 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9927",
+        "date": "24 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/goldenrod-glade-11-incident-2/320/320",
+        "rectificationTime": "2 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9928",
+        "date": "25 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/goldenrod-glade-11-incident-3/320/320",
+        "rectificationTime": "3 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9929",
+        "date": "26 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/goldenrod-glade-11-incident-4/320/320",
+        "rectificationTime": "4 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9930",
+        "date": "27 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/goldenrod-glade-11-incident-5/320/320",
+        "rectificationTime": "5 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-goldenrod-glade-11",
+        "points": [
+          [
+            54.652,
+            24.289
+          ],
+          [
+            54.664,
+            24.289
+          ],
+          [
+            54.664,
+            24.277
+          ],
+          [
+            54.652,
+            24.277
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Goldenrod Glade 11"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 55
+      },
+      {
+        "month": "Feb",
+        "value": 58
+      },
+      {
+        "month": "Mar",
+        "value": 60
+      },
+      {
+        "month": "Apr",
+        "value": 58
+      },
+      {
+        "month": "May",
+        "value": 61
+      },
+      {
+        "month": "Jun",
+        "value": 66
+      },
+      {
+        "month": "Jul",
+        "value": 64
+      },
+      {
+        "month": "Aug",
+        "value": 66
+      },
+      {
+        "month": "Sep",
+        "value": 66
+      },
+      {
+        "month": "Oct",
+        "value": 69
+      },
+      {
+        "month": "Nov",
+        "value": 66
+      },
+      {
+        "month": "Dec",
+        "value": 67
+      }
+    ],
+    "upcomingPlanId": "231154",
+    "upcomingPlanDatetime": "23 Aug, 2025 15:00am"
+  },
+  {
+    "id": "CP-1024",
+    "uniqueidentifier": "CP-1024",
+    "title": "Goldenrod Glade 12",
+    "systemcol1": "Prestige Tower 16 & 17",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste",
+      "Bulky Waste",
+      "Green Waste",
+      "Recyclable Waste",
+      "Hazardous Waste"
+    ],
+    "systemcol3": 6,
+    "systemcol4": "Lot 24",
+    "systemcol5": "Recycling Center",
+    "systemcol6": "08:00 AM - 08:00 PM",
+    "systemcol7": "Monthly",
+    "systemcol8": "WCR-04",
+    "systemcol9": "contact.goldenrod-glade-12@iwmp.example",
+    "systemcol10": "+971504201023",
+    "tags": [
+      "Waste Management",
+      "Zone D"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9929",
+        "date": "24 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/goldenrod-glade-12-incident-1/320/320",
+        "rectificationTime": "2 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9930",
+        "date": "25 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/goldenrod-glade-12-incident-2/320/320",
+        "rectificationTime": "3 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9931",
+        "date": "26 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/goldenrod-glade-12-incident-3/320/320",
+        "rectificationTime": "4 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9932",
+        "date": "27 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/goldenrod-glade-12-incident-4/320/320",
+        "rectificationTime": "5 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9933",
+        "date": "01 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/goldenrod-glade-12-incident-5/320/320",
+        "rectificationTime": "6 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-goldenrod-glade-12",
+        "points": [
+          [
+            54.656,
+            24.292
+          ],
+          [
+            54.668,
+            24.292
+          ],
+          [
+            54.668,
+            24.28
+          ],
+          [
+            54.656,
+            24.28
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Goldenrod Glade 12"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 63
+      },
+      {
+        "month": "Feb",
+        "value": 67
+      },
+      {
+        "month": "Mar",
+        "value": 71
+      },
+      {
+        "month": "Apr",
+        "value": 70
+      },
+      {
+        "month": "May",
+        "value": 73
+      },
+      {
+        "month": "Jun",
+        "value": 74
+      },
+      {
+        "month": "Jul",
+        "value": 71
+      },
+      {
+        "month": "Aug",
+        "value": 74
+      },
+      {
+        "month": "Sep",
+        "value": 76
+      },
+      {
+        "month": "Oct",
+        "value": 78
+      },
+      {
+        "month": "Nov",
+        "value": 80
+      },
+      {
+        "month": "Dec",
+        "value": 83
+      }
+    ],
+    "upcomingPlanId": "231161",
+    "upcomingPlanDatetime": "24 Aug, 2025 16:00am"
+  },
+  {
+    "id": "CP-1025",
+    "uniqueidentifier": "CP-1025",
+    "title": "Scarlet Ridge",
+    "systemcol1": "Al Reef Village",
+    "systemcol2": [
+      "Residual Waste"
+    ],
+    "systemcol3": 1,
+    "systemcol4": "Lot 25",
+    "systemcol5": "Collection Point",
+    "systemcol6": "24/7",
+    "systemcol7": "Daily",
+    "systemcol8": "WCR-05",
+    "systemcol9": "contact.scarlet-ridge@iwmp.example",
+    "systemcol10": "+971504201024",
+    "tags": [
+      "Waste Management",
+      "Zone A"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9932",
+        "date": "25 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/scarlet-ridge-incident-1/320/320",
+        "rectificationTime": "3 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9933",
+        "date": "26 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/scarlet-ridge-incident-2/320/320",
+        "rectificationTime": "4 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9934",
+        "date": "27 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/scarlet-ridge-incident-3/320/320",
+        "rectificationTime": "5 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9935",
+        "date": "01 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/scarlet-ridge-incident-4/320/320",
+        "rectificationTime": "6 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9936",
+        "date": "02 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/scarlet-ridge-incident-5/320/320",
+        "rectificationTime": "7 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-scarlet-ridge",
+        "points": [
+          [
+            54.66,
+            24.295
+          ],
+          [
+            54.672,
+            24.295
+          ],
+          [
+            54.672,
+            24.283
+          ],
+          [
+            54.66,
+            24.283
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Scarlet Ridge"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 59
+      },
+      {
+        "month": "Feb",
+        "value": 63
+      },
+      {
+        "month": "Mar",
+        "value": 66
+      },
+      {
+        "month": "Apr",
+        "value": 68
+      },
+      {
+        "month": "May",
+        "value": 73
+      },
+      {
+        "month": "Jun",
+        "value": 71
+      },
+      {
+        "month": "Jul",
+        "value": 75
+      },
+      {
+        "month": "Aug",
+        "value": 80
+      },
+      {
+        "month": "Sep",
+        "value": 82
+      },
+      {
+        "month": "Oct",
+        "value": 84
+      },
+      {
+        "month": "Nov",
+        "value": 87
+      },
+      {
+        "month": "Dec",
+        "value": 85
+      }
+    ],
+    "upcomingPlanId": "231168",
+    "upcomingPlanDatetime": "25 Aug, 2025 9:00am"
+  },
+  {
+    "id": "CP-1026",
+    "uniqueidentifier": "CP-1026",
+    "title": "Violet Village",
+    "systemcol1": "Capital Mall",
+    "systemcol2": [
+      "Residual Waste",
+      "Mixed Waste"
+    ],
+    "systemcol3": 2,
+    "systemcol4": "Lot 26",
+    "systemcol5": "Transfer Station",
+    "systemcol6": "06:00 AM - 10:00 PM",
+    "systemcol7": "Weekly",
+    "systemcol8": "WCR-06",
+    "systemcol9": "contact.violet-village@iwmp.example",
+    "systemcol10": "+971504201025",
+    "tags": [
+      "Waste Management",
+      "Zone B"
+    ],
+    "status": "Active",
+    "attendanceLog": [
+      {
+        "guardName": "Arjun Verma",
+        "date": "9 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:02 AM",
+        "clockOut": "04:01 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Al Reem Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "8 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:03 AM",
+        "clockOut": "04:02 PM",
+        "clockInLocation": "Al Reem Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "7 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:04 AM",
+        "clockOut": "04:03 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Khalifa City, Abu Dhabi"
+      },
+      {
+        "guardName": "Ravi Singh",
+        "date": "6 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:05 AM",
+        "clockOut": "04:04 PM",
+        "clockInLocation": "Khalifa City, Abu Dhabi",
+        "clockOutLocation": "Mussafah, Abu Dhabi"
+      },
+      {
+        "guardName": "Arjun Verma",
+        "date": "5 Sep, 2025",
+        "shiftTiming": "08:00 AM - 04:00 PM",
+        "clockIn": "08:06 AM",
+        "clockOut": "04:05 PM",
+        "clockInLocation": "Mussafah, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi"
+      }
+    ],
+    "incidents": [
+      {
+        "incidentId": "IN-9935",
+        "date": "26 May, 25 | 07:00 AM",
+        "area": "Sector A",
+        "category": "Fallen Stack",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/violet-village-incident-1/320/320",
+        "rectificationTime": "4 June, 2025 08:00",
+        "status": "Scheduled"
+      },
+      {
+        "incidentId": "IN-9936",
+        "date": "27 Jun, 25 | 08:07 AM",
+        "area": "Sector B",
+        "category": "Empty Collection Point",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/violet-village-incident-2/320/320",
+        "rectificationTime": "5 July, 2025 09:11",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9937",
+        "date": "01 Jul, 25 | 09:14 AM",
+        "area": "Sector C",
+        "category": "Fallen Stack",
+        "reportedBy": "Ronald Richards",
+        "reporterRole": "Security Guard",
+        "photo": "https://picsum.photos/seed/violet-village-incident-3/320/320",
+        "rectificationTime": "6 August, 2025 10:22",
+        "status": "Ongoing"
+      },
+      {
+        "incidentId": "IN-9938",
+        "date": "02 Aug, 25 | 10:21 AM",
+        "area": "Sector A",
+        "category": "Empty Collection Point",
+        "reportedBy": "Khalid Al-Farsi",
+        "reporterRole": "Inspector",
+        "photo": "https://picsum.photos/seed/violet-village-incident-4/320/320",
+        "rectificationTime": "7 September, 2025 11:33",
+        "status": "Completed"
+      },
+      {
+        "incidentId": "IN-9939",
+        "date": "03 Sep, 25 | 11:28 AM",
+        "area": "Sector B",
+        "category": "Fallen Stack",
+        "reportedBy": "Omar Al-Mansoori",
+        "reporterRole": "Driver",
+        "photo": "https://picsum.photos/seed/violet-village-incident-5/320/320",
+        "rectificationTime": "8 October, 2025 12:44",
+        "status": "Completed"
+      }
+    ],
+    "polygons": [
+      {
+        "id": "poly-violet-village",
+        "points": [
+          [
+            54.644,
+            24.298
+          ],
+          [
+            54.656,
+            24.298
+          ],
+          [
+            54.656,
+            24.286
+          ],
+          [
+            54.644,
+            24.286
+          ]
+        ],
+        "color": "#f79009",
+        "label": "Violet Village"
+      }
+    ],
+    "complianceSeries": [
+      {
+        "month": "Jan",
+        "value": 65
+      },
+      {
+        "month": "Feb",
+        "value": 62
+      },
+      {
+        "month": "Mar",
+        "value": 59
+      },
+      {
+        "month": "Apr",
+        "value": 59
+      },
+      {
+        "month": "May",
+        "value": 61
+      },
+      {
+        "month": "Jun",
+        "value": 61
+      },
+      {
+        "month": "Jul",
+        "value": 61
+      },
+      {
+        "month": "Aug",
+        "value": 64
+      },
+      {
+        "month": "Sep",
+        "value": 66
+      },
+      {
+        "month": "Oct",
+        "value": 70
+      },
+      {
+        "month": "Nov",
+        "value": 72
+      },
+      {
+        "month": "Dec",
+        "value": 71
+      }
+    ],
+    "upcomingPlanId": "231175",
+    "upcomingPlanDatetime": "26 Aug, 2025 10:00am"
+  }
+]

@@ -1,0 +1,131 @@
+{
+  "base": "tenant-native",
+  "module": "preventive-maintenance",
+  "nodes": {
+    "auto_pm_job_order": {
+      "source": "tenant-native"
+    },
+    "fld_pm_creation_date": {
+      "source": "tenant-native"
+    },
+    "fld_pm_current_odometer": {
+      "source": "tenant-native"
+    },
+    "fld_pm_days_elapsed": {
+      "source": "tenant-native"
+    },
+    "fld_pm_days_interval": {
+      "source": "tenant-native"
+    },
+    "fld_pm_days_left": {
+      "source": "tenant-native"
+    },
+    "fld_pm_engine_hours": {
+      "source": "tenant-native"
+    },
+    "fld_pm_hours_elapsed": {
+      "source": "tenant-native"
+    },
+    "fld_pm_hours_interval": {
+      "source": "tenant-native"
+    },
+    "fld_pm_last_service_on": {
+      "source": "tenant-native"
+    },
+    "fld_pm_linked_job_order": {
+      "source": "tenant-native"
+    },
+    "fld_pm_next_service_date": {
+      "source": "tenant-native"
+    },
+    "fld_pm_next_service_odometer": {
+      "source": "tenant-native"
+    },
+    "fld_pm_odo_elapsed": {
+      "source": "tenant-native"
+    },
+    "fld_pm_odo_interval": {
+      "source": "tenant-native"
+    },
+    "fld_pm_odometer_reading": {
+      "source": "tenant-native"
+    },
+    "fld_pm_period_of_interval": {
+      "source": "tenant-native"
+    },
+    "fld_pm_service_type": {
+      "source": "tenant-native"
+    },
+    "fld_pm_status": {
+      "source": "tenant-native"
+    },
+    "fld_pm_tags": {
+      "source": "tenant-native"
+    },
+    "fld_pm_title": {
+      "source": "tenant-native"
+    },
+    "fld_pm_trigger": {
+      "source": "tenant-native"
+    },
+    "fld_pm_vehicle": {
+      "source": "tenant-native"
+    },
+    "flt_pm_service_type": {
+      "source": "tenant-native"
+    },
+    "flt_pm_status": {
+      "source": "tenant-native"
+    },
+    "sec_pm_assets": {
+      "source": "tenant-native"
+    },
+    "sec_pm_odometer": {
+      "source": "tenant-native"
+    },
+    "sec_pm_rule": {
+      "source": "tenant-native"
+    },
+    "sec_pm_schedule": {
+      "source": "tenant-native"
+    },
+    "sts_pm_completed": {
+      "source": "tenant-native"
+    },
+    "sts_pm_job_order_created": {
+      "source": "tenant-native"
+    },
+    "sts_pm_ongoing": {
+      "source": "tenant-native"
+    },
+    "sts_pm_overdue": {
+      "source": "tenant-native"
+    },
+    "sts_pm_scheduled": {
+      "source": "tenant-native"
+    },
+    "sum_pm_completed": {
+      "source": "tenant-native"
+    },
+    "sum_pm_ongoing": {
+      "source": "tenant-native"
+    },
+    "sum_pm_overdue": {
+      "source": "tenant-native"
+    },
+    "sum_pm_scheduled": {
+      "source": "tenant-native"
+    },
+    "tab_pm_details": {
+      "source": "tenant-native"
+    },
+    "tab_pm_linked": {
+      "source": "tenant-native"
+    },
+    "tab_pm_overview": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

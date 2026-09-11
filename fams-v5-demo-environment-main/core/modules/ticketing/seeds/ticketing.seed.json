@@ -1,0 +1,600 @@
+[
+  {
+    "id": "TKT-01",
+    "uniqueidentifier": "TKT-01",
+    "title": "Brake pad wear",
+    "status": "triaged",
+    "systemcol1": "Medium",
+    "systemcol2": "Compliance",
+    "systemcol3": "VEH-04",
+    "systemcol4": [
+      "u_dispatcher",
+      "u_admin"
+    ],
+    "systemcol5": "Omar Nasser",
+    "systemcol6": "2026-05-27T09:00:00Z",
+    "systemcol9": "Lot 1",
+    "systemcol10": "Al Falah City",
+    "tags": [],
+    "description": "Front-axle brake pads on VEH-04 are worn past the 3mm service limit, flagged during the weekly inspection round. Grinding noise reported by the driver on the Al Falah City route; vehicle pulled from rotation pending parts and a workshop slot.",
+    "checklist": [
+      {
+        "id": "chk_01_1",
+        "label": "Inspect front + rear pad thickness",
+        "done": true
+      },
+      {
+        "id": "chk_01_2",
+        "label": "Order OEM replacement pad set",
+        "done": true
+      },
+      {
+        "id": "chk_01_3",
+        "label": "Replace pads + resurface rotors",
+        "done": false
+      },
+      {
+        "id": "chk_01_4",
+        "label": "Road test and sign off",
+        "done": false
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/tkt01-a/640/480",
+        "alt": "Worn front brake pad on VEH-04",
+        "caption": "Front-left pad, 2mm remaining"
+      },
+      {
+        "src": "https://picsum.photos/seed/tkt01-b/640/480",
+        "alt": "Brake rotor scoring on VEH-04",
+        "caption": "Light scoring on the rotor face"
+      },
+      {
+        "src": "https://picsum.photos/seed/tkt01-c/640/480",
+        "alt": "VEH-04 parked in the workshop bay",
+        "caption": "VEH-04 in bay 3, awaiting parts"
+      }
+    ],
+    "attachments": [
+      {
+        "id": "att_01_1",
+        "name": "brake-inspection-report.pdf",
+        "mimeType": "application/pdf"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_01_1",
+        "actor": "Omar Nasser",
+        "action": "reported worn brake pads on VEH-04",
+        "timestamp": "May 25, 9:02 AM",
+        "dateGroup": "May 25"
+      },
+      {
+        "id": "tl_01_2",
+        "actor": "Dana Reyes",
+        "action": "triaged the ticket and assigned it to the workshop queue",
+        "tone": "info",
+        "timestamp": "May 25, 11:40 AM",
+        "dateGroup": "May 25"
+      },
+      {
+        "id": "tl_01_3",
+        "actor": "Avery Stone",
+        "action": "ordered an OEM replacement pad set",
+        "timestamp": "May 26, 2:15 PM",
+        "dateGroup": "May 26"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_01_1",
+        "author": "Dana Reyes",
+        "text": "@Avery can you confirm the pad set arrives before Thursday's inspection slot?",
+        "timestamp": "May 26, 3:00 PM",
+        "dateGroup": "May 26"
+      },
+      {
+        "id": "cm_01_2",
+        "author": "Avery Stone",
+        "text": "@Dana confirmed \u2014 courier tracking shows delivery tomorrow morning, workshop bay 3 is booked for Thursday.",
+        "timestamp": "May 26, 3:22 PM",
+        "dateGroup": "May 26"
+      }
+    ],
+    "systemcol23": "Omar Nasser"
+  },
+  {
+    "id": "TKT-02",
+    "uniqueidentifier": "TKT-02",
+    "title": "Engine warning light",
+    "status": "in-progress",
+    "systemcol1": "Critical",
+    "systemcol2": "Other",
+    "systemcol3": "VEH-07",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Aisha Darwish",
+    "systemcol6": "2026-05-13T09:00:00Z",
+    "systemcol9": "Lot 2",
+    "systemcol10": "Mussafah Yard",
+    "tags": [],
+    "description": "Check-engine light illuminated with an intermittent misfire on cylinder 3, reported at the Mussafah Yard fuel bay. OBD-II scan pulled a P0303 code; vehicle taken off active dispatch pending diagnostics.",
+    "checklist": [
+      {
+        "id": "chk_02_1",
+        "label": "Pull OBD-II codes",
+        "done": true
+      },
+      {
+        "id": "chk_02_2",
+        "label": "Inspect ignition coil + spark plug (cyl. 3)",
+        "done": false
+      },
+      {
+        "id": "chk_02_3",
+        "label": "Clear codes and road test",
+        "done": false
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/tkt02-a/640/480",
+        "alt": "Dashboard check-engine warning light on VEH-07",
+        "caption": "Check-engine light, dash cluster"
+      },
+      {
+        "src": "https://picsum.photos/seed/tkt02-b/640/480",
+        "alt": "OBD-II diagnostic scanner reading on VEH-07",
+        "caption": "Scanner reading P0303"
+      }
+    ],
+    "attachments": [],
+    "timelineEvents": [
+      {
+        "id": "tl_02_1",
+        "actor": "Aisha Darwish",
+        "action": "reported an engine warning light on VEH-07",
+        "tone": "warning",
+        "timestamp": "May 12, 8:20 AM",
+        "dateGroup": "May 12"
+      },
+      {
+        "id": "tl_02_2",
+        "actor": "Avery Stone",
+        "action": "changed priority to Critical",
+        "tone": "error",
+        "timestamp": "May 12, 8:45 AM",
+        "dateGroup": "May 12"
+      },
+      {
+        "id": "tl_02_3",
+        "actor": "Dana Reyes",
+        "action": "moved the ticket to In Progress",
+        "timestamp": "May 12, 1:10 PM",
+        "dateGroup": "May 12"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_02_1",
+        "author": "Avery Stone",
+        "text": "@Dana pull VEH-07 from tomorrow's route until the misfire is cleared.",
+        "timestamp": "May 12, 1:15 PM",
+        "dateGroup": "May 12"
+      },
+      {
+        "id": "cm_02_2",
+        "author": "Dana Reyes",
+        "text": "@Avery done, swapped in VEH-09 for the Mussafah route.",
+        "timestamp": "May 12, 1:30 PM",
+        "dateGroup": "May 12"
+      }
+    ],
+    "systemcol23": "Aisha Darwish"
+  },
+  {
+    "id": "TKT-03",
+    "uniqueidentifier": "TKT-03",
+    "title": "AC not cooling",
+    "status": "resolved",
+    "systemcol1": "Critical",
+    "systemcol2": "Other",
+    "systemcol3": "VEH-10",
+    "systemcol4": [
+      "u_dispatcher",
+      "u_admin"
+    ],
+    "systemcol5": "Nabil Haddad",
+    "systemcol6": "2026-09-04T09:00:00Z",
+    "systemcol9": "Lot 3",
+    "systemcol10": "Khalifa Port Depot",
+    "tags": [],
+    "systemcol23": "Nabil Haddad"
+  },
+  {
+    "id": "TKT-04",
+    "uniqueidentifier": "TKT-04",
+    "title": "Tyre replacement",
+    "status": "new",
+    "systemcol1": "High",
+    "systemcol2": "Compliance",
+    "systemcol3": "VEH-13",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Dina Darwish",
+    "systemcol6": "2026-04-08T09:00:00Z",
+    "systemcol9": "Lot 4",
+    "systemcol10": "ICAD Workshop",
+    "tags": [],
+    "description": "VEH-13's rear offside tyre failed a tread-depth check during the pre-trip inspection at ICAD Workshop (1.4mm, below the 1.6mm legal minimum). All four tyres are past the recommended rotation interval, so a full set is being quoted rather than a single-tyre swap.",
+    "checklist": [
+      {
+        "id": "chk_04_1",
+        "label": "Measure tread depth on all four tyres",
+        "done": true
+      },
+      {
+        "id": "chk_04_2",
+        "label": "Get quote for full tyre set",
+        "done": true
+      },
+      {
+        "id": "chk_04_3",
+        "label": "Approve purchase order",
+        "done": false
+      },
+      {
+        "id": "chk_04_4",
+        "label": "Fit new tyres + balance",
+        "done": false
+      },
+      {
+        "id": "chk_04_5",
+        "label": "Update compliance record",
+        "done": false
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/tkt04-a/640/480",
+        "alt": "Worn rear tyre tread on VEH-13",
+        "caption": "Rear offside tyre, 1.4mm tread"
+      },
+      {
+        "src": "https://picsum.photos/seed/tkt04-b/640/480",
+        "alt": "Tread depth gauge reading on VEH-13",
+        "caption": "Tread depth gauge, below legal minimum"
+      },
+      {
+        "src": "https://picsum.photos/seed/tkt04-c/640/480",
+        "alt": "VEH-13 on the ICAD Workshop lift",
+        "caption": "VEH-13 on the workshop lift"
+      },
+      {
+        "src": "https://picsum.photos/seed/tkt04-d/640/480",
+        "alt": "Full tyre set staged for fitting",
+        "caption": "New tyre set staged for fitting"
+      }
+    ],
+    "attachments": [
+      {
+        "id": "att_04_1",
+        "name": "tyre-quote-icad.pdf",
+        "mimeType": "application/pdf"
+      },
+      {
+        "id": "att_04_2",
+        "name": "compliance-checklist.pdf",
+        "mimeType": "application/pdf"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_04_1",
+        "actor": "Dina Darwish",
+        "action": "reported a failed tread-depth check on VEH-13",
+        "tone": "warning",
+        "timestamp": "Apr 6, 7:50 AM",
+        "dateGroup": "Apr 6"
+      },
+      {
+        "id": "tl_04_2",
+        "actor": "Dana Reyes",
+        "action": "requested a quote for a full tyre set",
+        "timestamp": "Apr 6, 10:05 AM",
+        "dateGroup": "Apr 6"
+      },
+      {
+        "id": "tl_04_3",
+        "actor": "Avery Stone",
+        "action": "changed severity to High pending compliance review",
+        "tone": "warning",
+        "timestamp": "Apr 7, 9:30 AM",
+        "dateGroup": "Apr 7"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_04_1",
+        "author": "Dana Reyes",
+        "text": "@Avery the ICAD quote came in for a full set \u2014 can you approve the PO today so we hit the compliance deadline?",
+        "timestamp": "Apr 7, 9:40 AM",
+        "dateGroup": "Apr 7"
+      },
+      {
+        "id": "cm_04_2",
+        "author": "Avery Stone",
+        "text": "@Dana approved, PO #4471 sent to ICAD Workshop \u2014 fitting slot booked for tomorrow morning.",
+        "timestamp": "Apr 7, 10:12 AM",
+        "dateGroup": "Apr 7"
+      }
+    ],
+    "systemcol23": "Dina Darwish"
+  },
+  {
+    "id": "TKT-05",
+    "uniqueidentifier": "TKT-05",
+    "title": "Registration renewal",
+    "status": "triaged",
+    "systemcol1": "Critical",
+    "systemcol2": "Compliance",
+    "systemcol3": "VEH-16",
+    "systemcol4": [
+      "u_dispatcher",
+      "u_admin"
+    ],
+    "systemcol5": "Faisal Rahman",
+    "systemcol6": "2026-02-10T09:00:00Z",
+    "systemcol9": "Lot 5",
+    "systemcol10": "Al Ain Depot",
+    "tags": [
+      "safety"
+    ],
+    "systemcol23": "Faisal Rahman"
+  },
+  {
+    "id": "TKT-06",
+    "uniqueidentifier": "TKT-06",
+    "title": "GPS offline",
+    "status": "in-progress",
+    "systemcol1": "High",
+    "systemcol2": "Other",
+    "systemcol3": "VEH-19",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Zaid Nasser",
+    "systemcol6": "2026-04-25T09:00:00Z",
+    "systemcol9": "Lot 6",
+    "systemcol10": "Baniyas Yard",
+    "tags": [],
+    "description": "VEH-19's telematics unit stopped reporting position updates three days ago; dispatch is tracking the vehicle manually via driver check-ins in the meantime. Suspected loose antenna connector after a recent bodywork repair at Baniyas Yard.",
+    "checklist": [
+      {
+        "id": "chk_06_1",
+        "label": "Confirm unit power + fuse",
+        "done": true
+      },
+      {
+        "id": "chk_06_2",
+        "label": "Re-seat antenna connector",
+        "done": false
+      },
+      {
+        "id": "chk_06_3",
+        "label": "Verify signal in fleet-tracking console",
+        "done": false
+      }
+    ],
+    "images": [],
+    "attachments": [],
+    "timelineEvents": [
+      {
+        "id": "tl_06_1",
+        "actor": "Zaid Nasser",
+        "action": "reported the GPS unit as offline on VEH-19",
+        "timestamp": "Apr 23, 6:15 AM",
+        "dateGroup": "Apr 23"
+      },
+      {
+        "id": "tl_06_2",
+        "actor": "Dana Reyes",
+        "action": "moved the ticket to In Progress",
+        "timestamp": "Apr 23, 8:00 AM",
+        "dateGroup": "Apr 23"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_06_1",
+        "author": "Dana Reyes",
+        "text": "@Avery flagging this one \u2014 manual check-ins are burning dispatcher time, can we prioritise the antenna check today?",
+        "timestamp": "Apr 23, 8:05 AM",
+        "dateGroup": "Apr 23"
+      }
+    ],
+    "systemcol23": "Zaid Nasser"
+  },
+  {
+    "id": "TKT-07",
+    "uniqueidentifier": "TKT-07",
+    "title": "Windscreen crack",
+    "status": "resolved",
+    "systemcol1": "Critical",
+    "systemcol2": "Compliance",
+    "systemcol3": "VEH-22",
+    "systemcol4": [
+      "u_dispatcher",
+      "u_admin"
+    ],
+    "systemcol5": "Tariq Khan",
+    "systemcol6": "2026-09-18T09:00:00Z",
+    "systemcol9": "Lot 7",
+    "systemcol10": "Mina Zayed Yard",
+    "tags": [],
+    "systemcol23": "Tariq Khan"
+  },
+  {
+    "id": "TKT-08",
+    "uniqueidentifier": "TKT-08",
+    "title": "Oil change overdue",
+    "status": "new",
+    "systemcol1": "Medium",
+    "systemcol2": "Bodywork",
+    "systemcol3": "VEH-25",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Yusuf Darwish",
+    "systemcol6": "2026-09-25T09:00:00Z",
+    "systemcol9": "Lot 8",
+    "systemcol10": "Al Falah City",
+    "tags": [],
+    "systemcol23": "Yusuf Darwish"
+  },
+  {
+    "id": "TKT-09",
+    "uniqueidentifier": "TKT-09",
+    "title": "Battery weak",
+    "status": "triaged",
+    "systemcol1": "Medium",
+    "systemcol2": "Compliance",
+    "systemcol3": "VEH-28",
+    "systemcol4": [
+      "u_dispatcher",
+      "u_admin"
+    ],
+    "systemcol5": "Faisal Haddad",
+    "systemcol6": "2026-03-16T09:00:00Z",
+    "systemcol9": "Lot 1",
+    "systemcol10": "Mussafah Yard",
+    "tags": [],
+    "systemcol23": "Faisal Haddad"
+  },
+  {
+    "id": "TKT-10",
+    "uniqueidentifier": "TKT-10",
+    "title": "Door sensor fault",
+    "status": "in-progress",
+    "systemcol1": "High",
+    "systemcol2": "Bodywork",
+    "systemcol3": "VEH-31",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Layla Saleh",
+    "systemcol6": "2026-04-10T09:00:00Z",
+    "systemcol9": "Lot 2",
+    "systemcol10": "Khalifa Port Depot",
+    "tags": [
+      "safety"
+    ],
+    "systemcol23": "Layla Saleh"
+  },
+  {
+    "id": "TKT-11",
+    "uniqueidentifier": "TKT-11",
+    "title": "Coolant leak",
+    "status": "resolved",
+    "systemcol1": "Low",
+    "systemcol2": "Bodywork",
+    "systemcol3": "VEH-34",
+    "systemcol4": [
+      "u_dispatcher",
+      "u_admin"
+    ],
+    "systemcol5": "Nabil Haddad",
+    "systemcol6": "2026-07-23T09:00:00Z",
+    "systemcol9": "Lot 3",
+    "systemcol10": "ICAD Workshop",
+    "tags": [],
+    "systemcol23": "Nabil Haddad"
+  },
+  {
+    "id": "TKT-12",
+    "uniqueidentifier": "TKT-12",
+    "title": "Headlamp out",
+    "status": "new",
+    "systemcol1": "Low",
+    "systemcol2": "Compliance",
+    "systemcol3": "VEH-37",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Nabil Rahman",
+    "systemcol6": "2026-08-09T09:00:00Z",
+    "systemcol9": "Lot 4",
+    "systemcol10": "Al Ain Depot",
+    "tags": [],
+    "systemcol23": "Nabil Rahman"
+  },
+  {
+    "id": "TKT-13",
+    "uniqueidentifier": "TKT-13",
+    "title": "Suspension noise",
+    "status": "triaged",
+    "systemcol1": "Medium",
+    "systemcol2": "Electrical",
+    "systemcol3": "VEH-40",
+    "systemcol4": [
+      "u_dispatcher",
+      "u_admin"
+    ],
+    "systemcol5": "Noor Farah",
+    "systemcol6": "2026-08-04T09:00:00Z",
+    "systemcol9": "Lot 5",
+    "systemcol10": "Baniyas Yard",
+    "tags": [],
+    "systemcol23": "Noor Farah"
+  },
+  {
+    "id": "TKT-14",
+    "uniqueidentifier": "TKT-14",
+    "title": "Fuel card issue",
+    "status": "in-progress",
+    "systemcol1": "Critical",
+    "systemcol2": "Electrical",
+    "systemcol3": "VEH-43",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Dina Rahman",
+    "systemcol6": "2026-05-21T09:00:00Z",
+    "systemcol9": "Lot 6",
+    "systemcol10": "Mina Zayed Yard",
+    "tags": [],
+    "systemcol23": "Dina Rahman"
+  },
+  {
+    "id": "TKT-15",
+    "uniqueidentifier": "TKT-15",
+    "title": "Annual inspection",
+    "status": "resolved",
+    "systemcol1": "High",
+    "systemcol2": "Other",
+    "systemcol3": "VEH-46",
+    "systemcol4": [
+      "u_dispatcher",
+      "u_admin"
+    ],
+    "systemcol5": "Dina Nasser",
+    "systemcol6": "2026-03-03T09:00:00Z",
+    "systemcol9": "Lot 7",
+    "systemcol10": "Al Falah City",
+    "tags": [
+      "safety"
+    ],
+    "systemcol23": "Dina Nasser"
+  }
+]

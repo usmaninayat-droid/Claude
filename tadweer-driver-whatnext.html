@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Driver - What next?</title>
+<style>
+  @font-face { font-family: 'Gilroy'; src: url('v5-design-system-ai-main/Font/Gilroy-Medium.otf') format('opentype'); font-weight: 500; font-display: swap; }
+  @font-face { font-family: 'Gilroy'; src: url('v5-design-system-ai-main/Font/Gilroy-Semibold.otf') format('opentype'); font-weight: 600; font-display: swap; }
+  @font-face { font-family: 'Gilroy'; src: url('v5-design-system-ai-main/Font/Gilroy-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+  :root {
+    --brand-primary: #8A1538; --ink: #1D2939; --text: #475467; --muted: #667085;
+    --line: #EAECF0; --paper: #F9FAFB; --success: #12B76A; --warning: #F79009; --blue: #1570EF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--ink); background: #5B6470; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  svg { overflow: visible; }
+
+  /* ── modal ── */
+  .modal { width: 1160px; max-width: 100%; background: #fff; border-radius: 20px; box-shadow: 0 30px 80px -20px rgba(16,24,40,.45); overflow: hidden; }
+  .head { display: flex; align-items: flex-start; justify-content: space-between; padding: 32px 36px 0; }
+  .head h1 { font-size: 30px; line-height: 36px; font-weight: 700; }
+  .head p  { font-size: 18px; line-height: 26px; color: var(--muted); font-weight: 500; margin-top: 4px; }
+  .close { width: 40px; height: 40px; border-radius: 12px; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .close svg { width: 22px; height: 22px; stroke: var(--text); fill: none; stroke-width: 2; stroke-linecap: round; }
+  .options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 28px 32px 32px; }
+
+  /* ── option card ── */
+  .opt { position: relative; text-align: center; background: var(--paper); border: 1.5px solid var(--line); border-radius: 18px; padding: 18px 20px 24px; cursor: pointer;
+         transition: transform .18s cubic-bezier(.22,1,.36,1), box-shadow .18s, border-color .18s; }
+  .opt:hover { transform: translateY(-3px); border-color: #D0D5DD; box-shadow: 0 18px 40px -22px rgba(16,24,40,.35); }
+  .opt:focus-visible { outline: 3px solid var(--brand-primary); outline-offset: 2px; }
+  .opt h2 { font-size: 22px; line-height: 28px; font-weight: 700; margin-top: 8px; }
+  .opt p  { font-size: 16px; line-height: 24px; color: var(--text); font-weight: 500; margin-top: 6px; }
+
+  /* state pill above each scene: colour + icon say tank / job state before any reading */
+  .state { position: absolute; top: 14px; left: 14px; display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px 5px 7px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+  .state svg { width: 14px; height: 14px; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .state.full { background: #FFFAEB; border: 1px solid #FEDF89; color: #B54708; } .state.full svg { stroke: #DC6803; fill: #DC6803; }
+  .state.done { background: #ECFDF3; border: 1px solid #ABEFC6; color: #067647; } .state.done svg { stroke: #067647; }
+
+  /* ── scene ── */
+  .scene { position: relative; width: 100%; height: 190px; }
+  .scene svg.route { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .scene .pad { position: absolute; width: 96px; height: 40px; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(29,41,57,.16), rgba(29,41,57,0) 72%); }
+  .scene .truck { position: absolute; width: 138px; height: auto; filter: drop-shadow(0 10px 12px rgba(29,41,57,.18)); animation: idle 3.2s ease-in-out infinite; }
+  @keyframes idle { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  .route path { fill: none; stroke: #98A2B3; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 7 8; animation: flow 1.4s linear infinite; }
+  .route path.back { stroke: var(--brand-primary); }
+  @keyframes flow { to { stroke-dashoffset: -30; } }
+  .route .head-arrow { fill: #98A2B3; } .route .head-arrow.back { fill: var(--brand-primary); }
+
+  /* destination markers: big, generic, unmistakable */
+  .marker { position: absolute; width: 70px; text-align: center; }
+  .marker .pin { width: 56px; height: 56px; margin: 0 auto; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 18px -8px rgba(16,24,40,.45); }
+  .marker .pin svg { width: 28px; height: 28px; transform: rotate(45deg); fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .marker .dot { width: 14px; height: 6px; margin: 10px auto 0; border-radius: 50%; background: rgba(29,41,57,.22); }
+  .marker.station .pin { background: linear-gradient(160deg, #2E90FA, #1570EF); }
+  .marker.site    .pin { background: linear-gradient(160deg, #A21D48, var(--brand-primary)); }
+  .marker.finish  .pin { background: linear-gradient(160deg, #32D583, #12B76A); }
+
+  @media (max-width: 1100px) { .options { grid-template-columns: 1fr; } .modal { width: 520px; } }
+  @media (prefers-reduced-motion: reduce) { .scene .truck, .route path { animation: none; } }
+</style>
+</head>
+<body>
+<div class="modal" role="dialog" aria-labelledby="ttl">
+  <div class="head">
+    <div><h1 id="ttl">What next?</h1><p>Choose one</p></div>
+    <button class="close" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+
+  <div class="options">
+    <!-- 1 ── Discharge & Return: tank full, job NOT finished -->
+    <button class="opt">
+      <span class="state full"><svg viewBox="0 0 24 24"><path d="M12 3c-3.5 4.5-6 7.7-6 11a6 6 0 0 0 12 0c0-3.3-2.5-6.5-6-11z"/></svg>Tank full</span>
+      <div class="scene">
+        <svg class="route" viewBox="0 0 312 190" aria-hidden="true">
+          <path d="M150 128 C 190 128, 205 110, 236 104"/>
+          <polygon class="head-arrow" points="236,98 248,104 236,110"/>
+          <path class="back" d="M244 90 C 240 46, 212 30, 176 36"/>
+          <polygon class="head-arrow back" points="178,29 164,37 178,44"/>
+        </svg>
+        <div class="marker site" style="left:96px; top:0px;"><div class="pin"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="dot"></div></div>
+        <div class="pad" style="left:38px; top:126px;"></div>
+        <img class="truck" src="assets/tadweer-driver-home/tanker-full.svg" alt="" style="left:16px; top:72px;">
+        <div class="marker station" style="left:214px; top:92px;"><div class="pin"><svg viewBox="0 0 24 24"><path d="M12 3c-3.5 4.5-6 7.7-6 11a6 6 0 0 0 12 0c0-3.3-2.5-6.5-6-11z"/><path d="M9 15a3 3 0 0 0 3 3"/></svg></div><div class="dot"></div></div>
+      </div>
+      <h2>Discharge &amp; Return</h2>
+      <p>Tank is full. Empty it, then come back here.</p>
+    </button>
+
+    <!-- 2 ── Complete & Discharge: job done, tank needs emptying -->
+    <button class="opt">
+      <span class="state done"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Job done</span>
+      <div class="scene">
+        <svg class="route" viewBox="0 0 312 190" aria-hidden="true">
+          <path d="M150 122 C 190 122, 205 104, 236 98"/>
+          <polygon class="head-arrow" points="236,92 248,98 236,104"/>
+        </svg>
+        <div class="pad" style="left:38px; top:120px;"></div>
+        <img class="truck" src="assets/tadweer-driver-home/tanker-done.svg" alt="" style="left:16px; top:66px;">
+        <div class="marker station" style="left:214px; top:60px;"><div class="pin"><svg viewBox="0 0 24 24"><path d="M12 3c-3.5 4.5-6 7.7-6 11a6 6 0 0 0 12 0c0-3.3-2.5-6.5-6-11z"/><path d="M9 15a3 3 0 0 0 3 3"/></svg></div><div class="dot"></div></div>
+      </div>
+      <h2>Complete &amp; Discharge</h2>
+      <p>Job done. Empty the tank, then finish.</p>
+    </button>
+
+    <!-- 3 ── Complete Job: job done, no discharge needed -->
+    <button class="opt">
+      <span class="state done"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Job done</span>
+      <div class="scene">
+        <svg class="route" viewBox="0 0 312 190" aria-hidden="true">
+          <path d="M150 122 C 190 122, 205 104, 236 98"/>
+          <polygon class="head-arrow" points="236,92 248,98 236,104"/>
+        </svg>
+        <div class="pad" style="left:38px; top:120px;"></div>
+        <img class="truck" src="assets/tadweer-driver-home/tanker-done.svg" alt="" style="left:16px; top:66px;">
+        <div class="marker finish" style="left:214px; top:60px;"><div class="pin"><svg viewBox="0 0 24 24"><path d="M4 21V4h12l1 3h3v9h-8l-1-3H4"/></svg></div><div class="dot"></div></div>
+      </div>
+      <h2>Complete Job</h2>
+      <p>Job done. Tank not full — no discharge.</p>
+    </button>
+  </div>
+</div>
+</body>
+</html>

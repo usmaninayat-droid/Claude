@@ -1,0 +1,735 @@
+{
+  "code": "asset/vehicle",
+  "kind": "entity",
+  "listcolumns": [
+    {
+      "col": "uniqueidentifier",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_uniqueidentifier",
+      "name": "Vehicle ID"
+    },
+    {
+      "col": "title",
+      "component": {
+        "name": "TextView",
+        "props": {
+          "handleOverflow": true
+        }
+      },
+      "id": "fld_name"
+    },
+    {
+      "col": "systemcol1",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_plate"
+    },
+    {
+      "col": "systemcol2",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_type"
+    },
+    {
+      "col": "status",
+      "component": {
+        "name": "StatusList"
+      },
+      "id": "fld_status"
+    },
+    {
+      "col": "systemcol3",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_brand"
+    },
+    {
+      "col": "systemcol5",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_odometer"
+    },
+    {
+      "col": "tags",
+      "component": {
+        "name": "TagList"
+      },
+      "id": "fld_tags"
+    }
+  ],
+  "name": "Vehicles",
+  "systemcolumns": [
+    {
+      "col": "title",
+      "id": "fld_name",
+      "name": "Vehicle Name",
+      "required": true,
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol1",
+      "id": "fld_plate",
+      "name": "Plate Number",
+      "required": true,
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol2",
+      "id": "fld_type",
+      "listValues": [
+        "Van",
+        "Truck",
+        "Tanker",
+        "Sweeper",
+        "Pickup"
+      ],
+      "name": "Vehicle Type",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "status",
+      "id": "fld_status",
+      "listValues": [
+        "Active",
+        "In Service",
+        "Under Maintenance",
+        "Retired"
+      ],
+      "name": "Status",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol3",
+      "id": "fld_brand",
+      "name": "Brand",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol4",
+      "id": "fld_model",
+      "name": "Model",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol5",
+      "id": "fld_odometer",
+      "name": "Odometer",
+      "type": "Numeric",
+      "unit": "km"
+    },
+    {
+      "col": "systemcol6",
+      "id": "fld_fuel",
+      "listValues": [
+        "Diesel",
+        "Petrol",
+        "Electric",
+        "Hybrid",
+        "CNG"
+      ],
+      "name": "Fuel Type",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol7",
+      "id": "fld_reg_expiry",
+      "name": "Registration Expiry",
+      "type": "Date"
+    },
+    {
+      "col": "systemcol8",
+      "id": "fld_ins_expiry",
+      "name": "Insurance Expiry",
+      "type": "Date"
+    },
+    {
+      "col": "systemcol9",
+      "component": {
+        "name": "PersonView"
+      },
+      "entityType": "workforce/driver",
+      "id": "fld_driver",
+      "name": "Assigned Driver",
+      "refModule": "Entity",
+      "type": "SingleReference"
+    },
+    {
+      "col": "systemcol10",
+      "entityType": "device/tracker",
+      "id": "fld_devices",
+      "name": "Installed Devices",
+      "refModule": "Entity",
+      "type": "MultiReference"
+    },
+    {
+      "col": "systemcol11",
+      "id": "fld_depot",
+      "name": "Depot",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol12",
+      "id": "fld_capacity",
+      "name": "Capacity (m³)",
+      "type": "Numeric",
+      "unit": "m³"
+    },
+    {
+      "col": "systemcol13",
+      "id": "fld_vin",
+      "name": "Vin Number",
+      "type": "SmallText"
+    },
+    {
+      "col": "tags",
+      "id": "fld_tags",
+      "name": "Tags",
+      "type": "tags"
+    }
+  ],
+  "uiConfig": {
+    "filters": [
+      {
+        "col": "systemcol2",
+        "id": "flt_type",
+        "order": 1
+      },
+      {
+        "col": "status",
+        "id": "flt_status",
+        "order": 2
+      },
+      {
+        "col": "systemcol6",
+        "id": "flt_fuel",
+        "order": 3
+      }
+    ],
+    "profile": {
+      "details": [
+        {
+          "col": "systemcol1",
+          "component": {
+            "name": "LinkView"
+          },
+          "id": "fld_plate",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "status",
+          "component": {
+            "name": "StatusList"
+          },
+          "id": "fld_status",
+          "order": 1,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol2",
+          "id": "fld_type",
+          "order": 2,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol3",
+          "id": "fld_brand",
+          "order": 2,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol4",
+          "id": "fld_model",
+          "order": 3,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol5",
+          "id": "fld_odometer",
+          "order": 3,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol6",
+          "id": "fld_fuel",
+          "order": 4,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol7",
+          "component": {
+            "name": "DateView"
+          },
+          "id": "fld_reg_expiry",
+          "order": 4,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol8",
+          "component": {
+            "name": "DateView"
+          },
+          "id": "fld_ins_expiry",
+          "order": 5,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol11",
+          "id": "fld_depot",
+          "order": 5,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol12",
+          "id": "fld_capacity",
+          "order": 6,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol13",
+          "id": "fld_vin",
+          "order": 6,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol9",
+          "id": "fld_driver",
+          "order": 7,
+          "pos": "left"
+        }
+      ],
+      "overview": [
+        {
+          "kind": "gauge",
+          "span": 4,
+          "title": "Fleet Readiness",
+          "value": 82
+        },
+        {
+          "centerValue": "50",
+          "data": [
+            {
+              "color": "var(--status-success)",
+              "name": "Active",
+              "value": 34
+            },
+            {
+              "color": "var(--status-warning)",
+              "name": "Maintenance",
+              "value": 9
+            },
+            {
+              "color": "var(--muted-foreground)",
+              "name": "Retired",
+              "value": 7
+            }
+          ],
+          "kind": "donut",
+          "span": 4,
+          "title": "Status Mix"
+        }
+      ],
+      "rightPanel": {
+        "tabs": [
+          {
+            "component": {
+              "name": "OverviewSummary"
+            },
+            "id": "tab_overview",
+            "key": "overview",
+            "order": 1,
+            "title": "Overview"
+          },
+          {
+            "component": {
+              "name": "sections"
+            },
+            "id": "tab_details",
+            "key": "details",
+            "order": 2,
+            "title": "Details"
+          },
+          {
+            "component": {
+              "name": "SearchableRecordList",
+              "props": {
+                "idKey": "id",
+                "itemsField": "fuelReadings",
+                "leadKey": "id",
+                "strings": {
+                  "emptyText": "Fuel readings for this vehicle will appear here once telematics fuel data is connected."
+                },
+                "titleKey": "title"
+              }
+            },
+            "id": "tab_fuel_monitoring",
+            "key": "fuel-monitoring",
+            "order": 3,
+            "title": "Fuel Monitoring"
+          },
+          {
+            "component": {
+              "name": "ScopedLinkedRecords",
+              "props": {
+                "columns": [
+                  {
+                    "key": "uniqueidentifier",
+                    "label": "Job Order ID",
+                    "type": "idChip"
+                  },
+                  {
+                    "key": "title",
+                    "label": "Title",
+                    "type": "text"
+                  },
+                  {
+                    "key": "systemcol1",
+                    "label": "Maintenance Type",
+                    "type": "text"
+                  },
+                  {
+                    "key": "status",
+                    "label": "Status",
+                    "type": "statusPill"
+                  },
+                  {
+                    "key": "systemcol3",
+                    "label": "Due Date",
+                    "type": "datetime"
+                  }
+                ],
+                "emptyLabel": "No job orders for this vehicle yet",
+                "entityType": "maintenance/job-order",
+                "matchField": "systemcol4",
+                "search": true,
+                "searchPlaceholder": "Search job orders",
+                "statusColors": {
+                  "completed": "#1f7f36",
+                  "invalid": "#b42318",
+                  "ongoing": "#0462ff",
+                  "reported-issues": "#7a2e0e",
+                  "scheduled": "#cd0ea3",
+                  "under-inspection": "#814ee8"
+                }
+              }
+            },
+            "id": "tab_job_orders",
+            "key": "job-orders",
+            "order": 4,
+            "title": "Job Orders"
+          },
+          {
+            "component": {
+              "name": "ScopedLinkedRecords",
+              "props": {
+                "columns": [
+                  {
+                    "key": "title",
+                    "label": "Service",
+                    "type": "text"
+                  },
+                  {
+                    "key": "systemcol2",
+                    "label": "Current Odometer",
+                    "type": "number",
+                    "unit": "km"
+                  },
+                  {
+                    "key": "systemcol3",
+                    "label": "Creation Date",
+                    "type": "datetime"
+                  },
+                  {
+                    "key": "systemcol4",
+                    "label": "Next Service Odometer",
+                    "type": "number",
+                    "unit": "km"
+                  },
+                  {
+                    "key": "systemcol12",
+                    "label": "Odometer Reading",
+                    "targetKey": "systemcol13",
+                    "type": "progress",
+                    "unit": "km"
+                  },
+                  {
+                    "key": "systemcol14",
+                    "label": "Period of Interval",
+                    "targetKey": "systemcol15",
+                    "type": "progress",
+                    "unit": "days"
+                  },
+                  {
+                    "key": "systemcol16",
+                    "label": "Engine Hours",
+                    "targetKey": "systemcol17",
+                    "type": "progress",
+                    "unit": "hrs"
+                  },
+                  {
+                    "key": "systemcol8",
+                    "label": "Last Service On",
+                    "type": "datetime"
+                  },
+                  {
+                    "key": "status",
+                    "label": "Status",
+                    "type": "statusPill"
+                  },
+                  {
+                    "key": "systemcol9",
+                    "label": "Next Service Date",
+                    "type": "datetime"
+                  },
+                  {
+                    "key": "systemcol10",
+                    "label": "Days Left",
+                    "type": "text"
+                  }
+                ],
+                "emptyLabel": "No preventive maintenance rules for this vehicle yet",
+                "entityType": "maintenance/preventive-rule",
+                "matchField": "systemcol1",
+                "search": true,
+                "searchPlaceholder": "Search",
+                "statusColors": {
+                  "completed": "#0d864e",
+                  "jobOrderCreated": "#a21caf",
+                  "ongoing": "#1b6df5",
+                  "overdue": "#e51f11",
+                  "scheduled": "#b54708"
+                }
+              }
+            },
+            "id": "tab_preventive_maintenance",
+            "key": "preventive-maintenance",
+            "order": 5,
+            "title": "Preventive Maintenance"
+          },
+          {
+            "component": {
+              "name": "SearchableRecordList",
+              "props": {
+                "idKey": "id",
+                "itemsField": "inspections",
+                "leadKey": "id",
+                "strings": {
+                  "emptyText": "Inspection records for this vehicle will appear here once inspections are logged."
+                },
+                "titleKey": "title"
+              }
+            },
+            "id": "tab_inspections",
+            "key": "inspections",
+            "order": 6,
+            "title": "Inspections"
+          },
+          {
+            "component": {
+              "name": "SearchableRecordList",
+              "props": {
+                "idKey": "id",
+                "itemsField": "timesheetEntries",
+                "leadKey": "id",
+                "strings": {
+                  "emptyText": "Timesheet entries for this vehicle's assigned driver will appear here once logged."
+                },
+                "titleKey": "title"
+              }
+            },
+            "id": "tab_timesheet",
+            "key": "timesheet",
+            "order": 7,
+            "title": "Timesheet"
+          },
+          {
+            "component": {
+              "name": "SearchableRecordList",
+              "props": {
+                "idKey": "id",
+                "itemsField": "attendanceEntries",
+                "leadKey": "id",
+                "strings": {
+                  "emptyText": "Attendance log entries for this vehicle's assigned driver will appear here once logged."
+                },
+                "titleKey": "title"
+              }
+            },
+            "id": "tab_attendance_log",
+            "key": "attendance-log",
+            "order": 8,
+            "title": "Attendance Log"
+          },
+          {
+            "component": {
+              "name": "ActivityCommentFeed",
+              "props": {
+                "emptyLabel": "Timeline entries for this vehicle will appear here once activity is logged.",
+                "field": "timelineEvents"
+              }
+            },
+            "id": "tab_timeline",
+            "key": "timeline",
+            "order": 9,
+            "title": "Timeline"
+          }
+        ],
+        "type": "tab"
+      },
+      "sections": [
+        {
+          "fields": [
+            {
+              "col": "systemcol1",
+              "component": {
+                "name": "LinkView"
+              },
+              "id": "fld_plate",
+              "order": 1
+            },
+            {
+              "col": "status",
+              "component": {
+                "name": "StatusList"
+              },
+              "id": "fld_status",
+              "order": 2
+            },
+            {
+              "col": "systemcol2",
+              "id": "fld_type",
+              "order": 3
+            },
+            {
+              "col": "systemcol3",
+              "id": "fld_brand",
+              "order": 4
+            },
+            {
+              "col": "systemcol4",
+              "id": "fld_model",
+              "order": 5
+            },
+            {
+              "col": "systemcol6",
+              "id": "fld_fuel",
+              "order": 6
+            },
+            {
+              "col": "systemcol12",
+              "id": "fld_capacity",
+              "order": 7
+            },
+            {
+              "col": "systemcol13",
+              "id": "fld_vin",
+              "order": 8
+            }
+          ],
+          "id": "sec_vehicle_details",
+          "name": "Vehicle Details",
+          "order": 1
+        },
+        {
+          "fields": [
+            {
+              "col": "systemcol7",
+              "component": {
+                "name": "DateView"
+              },
+              "id": "fld_reg_expiry",
+              "order": 1
+            },
+            {
+              "col": "systemcol8",
+              "component": {
+                "name": "DateView"
+              },
+              "id": "fld_ins_expiry",
+              "order": 2
+            }
+          ],
+          "id": "sec_compliance",
+          "name": "Compliance",
+          "order": 2
+        },
+        {
+          "fields": [
+            {
+              "col": "systemcol9",
+              "id": "fld_driver",
+              "order": 1
+            },
+            {
+              "col": "systemcol10",
+              "id": "fld_devices",
+              "order": 2
+            },
+            {
+              "col": "systemcol11",
+              "id": "fld_depot",
+              "order": 3
+            },
+            {
+              "col": "systemcol5",
+              "id": "fld_odometer",
+              "order": 4
+            }
+          ],
+          "id": "sec_assignment",
+          "name": "Assignment",
+          "order": 3
+        }
+      ],
+      "title": {
+        "col": "title",
+        "id": "fld_name",
+        "pos": "left"
+      }
+    },
+    "search": {
+      "columns": [
+        "title",
+        "systemcol1",
+        "systemcol3"
+      ]
+    },
+    "statusList": [
+      {
+        "color": "#027a48",
+        "id": "sts_active",
+        "key": "Active",
+        "label": "Active"
+      },
+      {
+        "color": "#0072d6",
+        "id": "sts_inservice",
+        "key": "In Service",
+        "label": "In Service"
+      },
+      {
+        "color": "#b54708",
+        "id": "sts_maintenance",
+        "key": "Under Maintenance",
+        "label": "Under Maintenance"
+      },
+      {
+        "color": "#475467",
+        "id": "sts_retired",
+        "key": "Retired",
+        "label": "Retired"
+      }
+    ]
+  },
+  "uidPrefix": "VEH",
+  "views": [
+    "list",
+    "hybrid"
+  ]
+}

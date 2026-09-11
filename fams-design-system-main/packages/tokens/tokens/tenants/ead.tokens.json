@@ -1,0 +1,42 @@
+{
+  "_comment": "EAD RMS — navy (real, presets/ead/theme.json). Ramp/transparent additions: figma-token-sync (docs/figma-color-extraction.md §1/§2) — Figma 'EAD' mode. surface-secondary uses EAD's OWN 50-step, NOT Qatar MME's (Figma bug #1 in the extraction doc — do not propagate).",
+  "color": {
+    "primary":              { "$type": "color", "$value": "#004B87" },
+    "primary-foreground":   { "$type": "color", "$value": "#ffffff" },
+    "secondary":            { "$type": "color", "$value": "#667085" },
+    "secondary-foreground": { "$type": "color", "$value": "#ffffff" },
+    "secondary-foreground-strong": { "$type": "color", "$value": "#ffffff", "$description": "Same fix as uccp.tokens.json (designer report 2026-09-07, generic enum dot-chip legibility) — this tenant shares the identical `secondary` (#667085) solid-fill/white-text pairing, so it inherited the same latent bug (core's navy `secondary-foreground-strong` alias against a dark tenant `secondary` fill). Reuses this tenant's own `secondary-foreground` (white), mirroring the dark-theme mirror's own approach." },
+    "accent":               { "$type": "color", "$value": "#004B87" },
+    "accent-foreground":    { "$type": "color", "$value": "#ffffff" },
+    "ring":                 { "$type": "color", "$value": "#004B87" },
+    "chart-1":              { "$type": "color", "$value": "#004B87" },
+
+    "primary-50":  { "$type": "color", "$value": "#E6EDF3" },
+    "primary-100": { "$type": "color", "$value": "#B0C7DA" },
+    "primary-200": { "$type": "color", "$value": "#8AACC8" },
+    "primary-300": { "$type": "color", "$value": "#5486AF" },
+    "primary-400": { "$type": "color", "$value": "#336F9F" },
+    "primary-500": { "$type": "color", "$value": "#004B87" },
+    "primary-600": { "$type": "color", "$value": "#00447B" },
+    "primary-700": { "$type": "color", "$value": "#003560" },
+    "primary-800": { "$type": "color", "$value": "#00294A" },
+    "primary-900": { "$type": "color", "$value": "#002039" },
+
+    "surface-secondary": { "$type": "color", "$value": "#E6EDF3" },
+
+    "transparent-brand-20": { "$type": "color", "$value": "rgba(0, 75, 135, 0.2)" },
+    "transparent-brand-40": { "$type": "color", "$value": "rgba(0, 75, 135, 0.4)" },
+    "transparent-brand-60": { "$type": "color", "$value": "rgba(0, 75, 135, 0.6)" },
+
+    "success-text": {
+      "$type": "color",
+      "$value": "#027a48",
+      "$description": "D-6: explicit override slot, set to the CORE alias (color.success-text = success-scale.700) — EAD's brand ramp is navy, no green step to prefer. 5.41:1 on white."
+    },
+    "error-text": {
+      "$type": "color",
+      "$value": "#b42318",
+      "$description": "D-6: explicit override slot, set to the CORE alias (color.error-text = error.700) — EAD has no red/error ramp of its own. 6.57:1 on white."
+    }
+  }
+}

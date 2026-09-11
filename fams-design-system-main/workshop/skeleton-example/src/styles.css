@@ -1,0 +1,17 @@
+/* Tailwind processes the tokens @theme block into real :root CSS variables
+   (--color-*, --radius-*, --spacing-*), which the skeleton-kit shell + error
+   fallback reference via var(). The dark-mode + tenant selector blocks are
+   plain CSS and apply directly. The APP owns these imports — skeleton-kit only
+   sets the data-theme / data-tenant attributes they key off of. */
+@import "tailwindcss";
+@import "@fams/tokens/theme.css";
+@import "@fams/tokens/animations.css";
+@import "@fams/tokens/fonts.css";
+@import "@fams/tokens/tenants.css";
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}

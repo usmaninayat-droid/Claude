@@ -1,0 +1,563 @@
+{
+  "base": "tenant-native",
+  "module": "incidents",
+  "nodes": {
+    "Z-ALKHOR": {
+      "source": "tenant-native"
+    },
+    "Z-CORNICHE": {
+      "source": "tenant-native"
+    },
+    "Z-INDUSTRIAL": {
+      "source": "tenant-native"
+    },
+    "Z-LUSAIL": {
+      "source": "tenant-native"
+    },
+    "Z-RAYYAN": {
+      "source": "tenant-native"
+    },
+    "Z-SADD": {
+      "source": "tenant-native"
+    },
+    "Z-UMMSALAL": {
+      "source": "tenant-native"
+    },
+    "Z-WAKRAH": {
+      "source": "tenant-native"
+    },
+    "fld_inc_area": {
+      "source": "tenant-native"
+    },
+    "fld_inc_before_images": {
+      "source": "tenant-native"
+    },
+    "fld_inc_category": {
+      "source": "tenant-native"
+    },
+    "fld_inc_category_detail": {
+      "source": "tenant-native"
+    },
+    "fld_inc_contractor": {
+      "source": "tenant-native"
+    },
+    "fld_inc_cust_contact": {
+      "source": "tenant-native"
+    },
+    "fld_inc_cust_contact_detail": {
+      "source": "tenant-native"
+    },
+    "fld_inc_cust_name": {
+      "source": "tenant-native"
+    },
+    "fld_inc_cust_name_detail": {
+      "source": "tenant-native"
+    },
+    "fld_inc_description": {
+      "source": "tenant-native"
+    },
+    "fld_inc_inspector": {
+      "source": "tenant-native"
+    },
+    "fld_inc_inspector_avatar": {
+      "source": "tenant-native"
+    },
+    "fld_inc_last_updated": {
+      "source": "tenant-native"
+    },
+    "fld_inc_lat": {
+      "source": "tenant-native"
+    },
+    "fld_inc_linked_daily_plan": {
+      "source": "tenant-native"
+    },
+    "fld_inc_lng": {
+      "source": "tenant-native"
+    },
+    "fld_inc_loc_pin": {
+      "source": "tenant-native"
+    },
+    "fld_inc_location": {
+      "source": "tenant-native"
+    },
+    "fld_inc_municipality": {
+      "source": "tenant-native"
+    },
+    "fld_inc_onwani": {
+      "source": "tenant-native"
+    },
+    "fld_inc_reopened": {
+      "source": "tenant-native"
+    },
+    "fld_inc_reported_at": {
+      "source": "tenant-native"
+    },
+    "fld_inc_reported_by": {
+      "source": "tenant-native"
+    },
+    "fld_inc_reported_photos": {
+      "source": "tenant-native"
+    },
+    "fld_inc_severity": {
+      "source": "tenant-native"
+    },
+    "fld_inc_source": {
+      "source": "tenant-native"
+    },
+    "fld_inc_source_chip": {
+      "source": "tenant-native"
+    },
+    "fld_inc_source_ref": {
+      "source": "tenant-native"
+    },
+    "fld_inc_source_ref_detail": {
+      "source": "tenant-native"
+    },
+    "fld_inc_status": {
+      "source": "tenant-native"
+    },
+    "fld_inc_subtype": {
+      "source": "tenant-native"
+    },
+    "fld_inc_tanker": {
+      "source": "tenant-native"
+    },
+    "fld_inc_tanker_count": {
+      "source": "tenant-native"
+    },
+    "fld_inc_title": {
+      "source": "tenant-native"
+    },
+    "fld_inc_type": {
+      "source": "tenant-native"
+    },
+    "fld_inc_type_chip": {
+      "source": "tenant-native"
+    },
+    "fld_inc_type_detail": {
+      "source": "tenant-native"
+    },
+    "fld_inc_uniqueidentifier": {
+      "source": "tenant-native"
+    },
+    "fld_inc_veh_driver": {
+      "source": "tenant-native"
+    },
+    "flt_inc_area": {
+      "source": "tenant-native"
+    },
+    "flt_inc_category": {
+      "source": "tenant-native"
+    },
+    "flt_inc_inspector": {
+      "source": "tenant-native"
+    },
+    "flt_inc_last_updated": {
+      "source": "tenant-native"
+    },
+    "flt_inc_municipality": {
+      "source": "tenant-native"
+    },
+    "flt_inc_priority": {
+      "source": "tenant-native"
+    },
+    "flt_inc_reopened": {
+      "source": "tenant-native"
+    },
+    "flt_inc_reported_on": {
+      "source": "tenant-native"
+    },
+    "flt_inc_source": {
+      "source": "tenant-native"
+    },
+    "flt_inc_status": {
+      "source": "tenant-native"
+    },
+    "flt_inc_type": {
+      "source": "tenant-native"
+    },
+    "pl-abu-hamour": {
+      "source": "tenant-native"
+    },
+    "pl-ain-khaled": {
+      "source": "tenant-native"
+    },
+    "pl-al-bidda": {
+      "source": "tenant-native"
+    },
+    "pl-al-gharrafa": {
+      "source": "tenant-native"
+    },
+    "pl-al-jumayliyah": {
+      "source": "tenant-native"
+    },
+    "pl-al-karaana": {
+      "source": "tenant-native"
+    },
+    "pl-al-kharaitiyat": {
+      "source": "tenant-native"
+    },
+    "pl-al-khor": {
+      "source": "tenant-native"
+    },
+    "pl-al-luqta": {
+      "source": "tenant-native"
+    },
+    "pl-al-rayyan": {
+      "source": "tenant-native"
+    },
+    "pl-al-sadd": {
+      "source": "tenant-native"
+    },
+    "pl-al-shahaniya": {
+      "source": "tenant-native"
+    },
+    "pl-al-thakhira": {
+      "source": "tenant-native"
+    },
+    "pl-al-waab": {
+      "source": "tenant-native"
+    },
+    "pl-al-wakrah": {
+      "source": "tenant-native"
+    },
+    "pl-al-wukair": {
+      "source": "tenant-native"
+    },
+    "pl-al-zubarah": {
+      "source": "tenant-native"
+    },
+    "pl-aspire": {
+      "source": "tenant-native"
+    },
+    "pl-barwa-village": {
+      "source": "tenant-native"
+    },
+    "pl-bin-mahmoud": {
+      "source": "tenant-native"
+    },
+    "pl-corniche": {
+      "source": "tenant-native"
+    },
+    "pl-dafna": {
+      "source": "tenant-native"
+    },
+    "pl-duhail": {
+      "source": "tenant-native"
+    },
+    "pl-dukhan": {
+      "source": "tenant-native"
+    },
+    "pl-education-city": {
+      "source": "tenant-native"
+    },
+    "pl-hamad-airport": {
+      "source": "tenant-native"
+    },
+    "pl-industrial-area": {
+      "source": "tenant-native"
+    },
+    "pl-katara": {
+      "source": "tenant-native"
+    },
+    "pl-lusail": {
+      "source": "tenant-native"
+    },
+    "pl-lusail-boulevard": {
+      "source": "tenant-native"
+    },
+    "pl-lusail-marina": {
+      "source": "tenant-native"
+    },
+    "pl-lusail-stadium": {
+      "source": "tenant-native"
+    },
+    "pl-madinat-khalifa": {
+      "source": "tenant-native"
+    },
+    "pl-mansoura": {
+      "source": "tenant-native"
+    },
+    "pl-mesaieed": {
+      "source": "tenant-native"
+    },
+    "pl-mesaimeer": {
+      "source": "tenant-native"
+    },
+    "pl-museum-islamic-art": {
+      "source": "tenant-native"
+    },
+    "pl-najma": {
+      "source": "tenant-native"
+    },
+    "pl-national-museum": {
+      "source": "tenant-native"
+    },
+    "pl-old-airport": {
+      "source": "tenant-native"
+    },
+    "pl-ras-bu-fontas": {
+      "source": "tenant-native"
+    },
+    "pl-ras-laffan": {
+      "source": "tenant-native"
+    },
+    "pl-ruwais": {
+      "source": "tenant-native"
+    },
+    "pl-souq-waqif": {
+      "source": "tenant-native"
+    },
+    "pl-the-pearl": {
+      "source": "tenant-native"
+    },
+    "pl-umm-ghuwailina": {
+      "source": "tenant-native"
+    },
+    "pl-umm-salal": {
+      "source": "tenant-native"
+    },
+    "pl-umm-salal-ali": {
+      "source": "tenant-native"
+    },
+    "pl-villaggio": {
+      "source": "tenant-native"
+    },
+    "pl-west-bay": {
+      "source": "tenant-native"
+    },
+    "poi-checkpoint-corniche": {
+      "source": "tenant-native"
+    },
+    "poi-depot-alrayyan": {
+      "source": "tenant-native"
+    },
+    "poi-depot-industrial": {
+      "source": "tenant-native"
+    },
+    "poi-depot-westbay": {
+      "source": "tenant-native"
+    },
+    "poi-fuel-alwakrah": {
+      "source": "tenant-native"
+    },
+    "poi-fuel-lusail": {
+      "source": "tenant-native"
+    },
+    "poi-hospital-hamad": {
+      "source": "tenant-native"
+    },
+    "poi-mosque-msheireb": {
+      "source": "tenant-native"
+    },
+    "poi-park-aspire": {
+      "source": "tenant-native"
+    },
+    "poi-rest-ummsalal": {
+      "source": "tenant-native"
+    },
+    "poi-service-alkhor": {
+      "source": "tenant-native"
+    },
+    "sec_create_location": {
+      "source": "tenant-native"
+    },
+    "sec_create_source_customer": {
+      "source": "tenant-native"
+    },
+    "sec_inc_address": {
+      "source": "tenant-native"
+    },
+    "sec_inc_attachments": {
+      "source": "tenant-native"
+    },
+    "sec_inc_completion": {
+      "source": "tenant-native"
+    },
+    "sec_inc_driver_photos": {
+      "source": "tenant-native"
+    },
+    "sec_inc_incident_details": {
+      "source": "tenant-native"
+    },
+    "sec_inc_location_details": {
+      "source": "tenant-native"
+    },
+    "sec_inc_reopened": {
+      "source": "tenant-native"
+    },
+    "sec_inc_report": {
+      "source": "tenant-native"
+    },
+    "sec_inc_reported_details": {
+      "source": "tenant-native"
+    },
+    "sec_inc_vehicle": {
+      "source": "tenant-native"
+    },
+    "sts_acknowledged": {
+      "source": "tenant-native"
+    },
+    "sts_assessed": {
+      "source": "tenant-native"
+    },
+    "sts_closed": {
+      "source": "tenant-native"
+    },
+    "sts_intake": {
+      "source": "tenant-native"
+    },
+    "sts_job_completed": {
+      "source": "tenant-native"
+    },
+    "sts_job_ongoing": {
+      "source": "tenant-native"
+    },
+    "sts_reopened": {
+      "source": "tenant-native"
+    },
+    "sts_tanker_assigned": {
+      "source": "tenant-native"
+    },
+    "sts_triage": {
+      "source": "tenant-native"
+    },
+    "sum_inc_critical": {
+      "source": "tenant-native"
+    },
+    "sum_inc_open": {
+      "source": "tenant-native"
+    },
+    "sum_inc_reopened": {
+      "source": "tenant-native"
+    },
+    "tab_inc_related": {
+      "source": "tenant-native"
+    },
+    "tab_inc_timeline": {
+      "source": "tenant-native"
+    },
+    "wx-abu-samra": {
+      "source": "tenant-native"
+    },
+    "wx-al-bidda": {
+      "source": "tenant-native"
+    },
+    "wx-al-daayen": {
+      "source": "tenant-native"
+    },
+    "wx-al-ghuwariyah": {
+      "source": "tenant-native"
+    },
+    "wx-al-jumayliyah": {
+      "source": "tenant-native"
+    },
+    "wx-al-karaanah": {
+      "source": "tenant-native"
+    },
+    "wx-al-khaleej": {
+      "source": "tenant-native"
+    },
+    "wx-al-khor": {
+      "source": "tenant-native"
+    },
+    "wx-al-khor-community": {
+      "source": "tenant-native"
+    },
+    "wx-al-rayyan": {
+      "source": "tenant-native"
+    },
+    "wx-al-ruwais": {
+      "source": "tenant-native"
+    },
+    "wx-al-sadd": {
+      "source": "tenant-native"
+    },
+    "wx-al-shamal": {
+      "source": "tenant-native"
+    },
+    "wx-al-sheehaniya": {
+      "source": "tenant-native"
+    },
+    "wx-al-thumama": {
+      "source": "tenant-native"
+    },
+    "wx-al-wakrah": {
+      "source": "tenant-native"
+    },
+    "wx-al-wukair": {
+      "source": "tenant-native"
+    },
+    "wx-al-zubarah": {
+      "source": "tenant-native"
+    },
+    "wx-barzan": {
+      "source": "tenant-native"
+    },
+    "wx-doha-corniche": {
+      "source": "tenant-native"
+    },
+    "wx-doha-port": {
+      "source": "tenant-native"
+    },
+    "wx-dukhan": {
+      "source": "tenant-native"
+    },
+    "wx-education-city": {
+      "source": "tenant-native"
+    },
+    "wx-fuwayrit": {
+      "source": "tenant-native"
+    },
+    "wx-hamad-international-airport": {
+      "source": "tenant-native"
+    },
+    "wx-industrial-area": {
+      "source": "tenant-native"
+    },
+    "wx-lusail": {
+      "source": "tenant-native"
+    },
+    "wx-madinat-ash-shamal": {
+      "source": "tenant-native"
+    },
+    "wx-mesaieed": {
+      "source": "tenant-native"
+    },
+    "wx-msheireb": {
+      "source": "tenant-native"
+    },
+    "wx-onaiza": {
+      "source": "tenant-native"
+    },
+    "wx-qatar-university": {
+      "source": "tenant-native"
+    },
+    "wx-ras-laffan": {
+      "source": "tenant-native"
+    },
+    "wx-salwa-road": {
+      "source": "tenant-native"
+    },
+    "wx-simaisma": {
+      "source": "tenant-native"
+    },
+    "wx-umm-bab": {
+      "source": "tenant-native"
+    },
+    "wx-umm-said": {
+      "source": "tenant-native"
+    },
+    "wx-umm-salal": {
+      "source": "tenant-native"
+    },
+    "wx-wakrah-south": {
+      "source": "tenant-native"
+    },
+    "wx-west-bay": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "uccp"
+}

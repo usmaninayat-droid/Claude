@@ -1,0 +1,68 @@
+/* Brings the DS fonts, FAMS tokens (default --primary #0072D6), base + tailwind. */
+@import '../vendor/ds/src/styles.css';
+/* Generate the utility classes the DS components use (they live outside our root). */
+@source '../vendor/ds/src';
+
+/* ── Incident map markers ──────────────────────────────────────────────────
+   The DS renders POI pins as rotated teardrops via inline styles. For IIMS we
+   want a clean circular marker: solid status colour, white ring, soft shadow,
+   and a small white centre dot. Override the inline styles (hence !important). */
+.fams-map-poi { background: transparent !important; border: none !important; }
+.fams-map-poi > div > span {
+  border-radius: 9999px !important;   /* circle, not teardrop */
+  transform: none !important;          /* drop the 45° rotation */
+  border: 2.5px solid #fff !important;
+  box-shadow: 0 2px 6px rgba(16, 24, 40, 0.35) !important;
+}
+.fams-map-poi > div > span > span {
+  transform: none !important;          /* keep the inner dot upright */
+}
+
+/* ── Off-duty lock (IIMS · Inspector only) ──────────────────────────────────
+   When the inspector is clocked out (`data-duty="off"` set by IimsShell) the
+   non-Home INS module-rail items stay visible but become non-clickable +
+   dimmed, so the inspector must clock in before switching modules. Home stays
+   fully interactive so they can flip the duty toggle back on.
+   Scoped via `aside:has(button[aria-label="Home"])` — only the Inspector app's
+   module rail contains a "Home" item, so the lock never touches the Project
+   Officer / ESP apps (which reuse "Incidents"/"Inspections" labels). */
+[data-duty="off"] aside:has(button[aria-label="Home"]) button[aria-label="Incidents"],
+[data-duty="off"] aside:has(button[aria-label="Home"]) button[aria-label="Inspections"],
+[data-duty="off"] aside:has(button[aria-label="Home"]) button[aria-label="My Tasks"] {
+  pointer-events: none;
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── Sector-detection animation (Report Incident) ───────────────────────────
+   Timeline + colours live in src/data/sector-detect.json; these keyframes power
+   the sparkle pulse (detecting) and the check draw-in (success). */
+@keyframes iims-sparkle {
+  0%, 100% { transform: scale(0.55) rotate(-8deg); opacity: 0.45; }
+  50%      { transform: scale(1) rotate(0deg);     opacity: 1; }
+}
+.iims-sparkle { animation: iims-sparkle 1.4s ease-in-out infinite; transform-origin: center; }
+@keyframes iims-check-pop {
+  0%   { transform: scale(0);   opacity: 0; }
+  60%  { transform: scale(1.12); }
+  100% { transform: scale(1);   opacity: 1; }
+}
+.iims-check-pop { animation: iims-check-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+@keyframes iims-check-draw { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
+.iims-check-draw { stroke-dasharray: 30; animation: iims-check-draw 0.5s ease-out 0.15s both; }
+@keyframes iims-overlay-in { from { opacity: 0; } to { opacity: 1; } }
+.iims-overlay-in { animation: iims-overlay-in 0.25s ease-out both; }
+
+/* ── Home module: hide the shell's module top-nav ───────────────────────────
+   The INS Home is a full-bleed two-pane surface with its own header, so the
+   generic module top-nav bar is suppressed while Home is active (the marker is
+   set only by the INS Home component, so other apps/modules keep their nav). */
+body[data-ins-home] [data-duty] header {
+  display: none;
+}
+
+/* ── Donut/pie hover tooltip above the center label ─────────────────────────
+   The DS DonutChart paints its center label (e.g. "76,300 / Total Penalties")
+   as an absolute overlay AFTER the chart in the DOM, so the recharts hover
+   tooltip would render *under* it. Lift the tooltip wrapper so it stays on top. */
+.recharts-tooltip-wrapper { z-index: 30; }

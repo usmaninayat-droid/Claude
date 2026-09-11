@@ -1,0 +1,32 @@
+<!doctype html>
+<!--
+  data-theme is set HERE, not by JS, and that is deliberate.
+
+  The token CSS carries
+      @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { …dark… } }
+  which matches the instant the stylesheet loads. skeleton-kit's
+  bootstrapTheme() only runs once the JS module graph has executed, so on an
+  OS in dark mode the page painted DARK for ~120ms and then flipped to light
+  — a visible flash on every load (measured: dark at t+600ms, light at
+  t+720ms). LoginGate's useEffect could not prevent it either; effects run
+  after paint.
+
+  `light` is not a guess: boot.ts bootstraps with defaultTheme: 'light' and
+  the default defaultThemeMode: 'force', so the resolved theme is ALWAYS
+  light regardless of storage or OS. This attribute just states that before
+  the first paint instead of after it. Surfaces that want dark still set it
+  themselves at runtime (see command-center-view.tsx).
+
+  If defaultTheme/defaultThemeMode ever change, change this with them.
+-->
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAMS v5 demo</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

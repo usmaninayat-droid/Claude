@@ -1,0 +1,47 @@
+{
+  "base": "core",
+  "module": "inbox",
+  "nodes": {
+    "fld_nx_assigned": {
+      "source": "core"
+    },
+    "fld_nx_avatar": {
+      "source": "core"
+    },
+    "fld_nx_due": {
+      "source": "core"
+    },
+    "fld_nx_kind": {
+      "source": "core"
+    },
+    "fld_nx_module": {
+      "source": "core"
+    },
+    "fld_nx_read": {
+      "source": "core"
+    },
+    "fld_nx_reference": {
+      "source": "core"
+    },
+    "fld_nx_reminder": {
+      "source": "core"
+    },
+    "fld_nx_severity": {
+      "source": "core"
+    },
+    "fld_nx_snippet": {
+      "source": "core"
+    },
+    "fld_nx_timestamp": {
+      "source": "core"
+    },
+    "fld_nx_title": {
+      "source": "core"
+    },
+    "fld_uniqueidentifier": {
+      "source": "core"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

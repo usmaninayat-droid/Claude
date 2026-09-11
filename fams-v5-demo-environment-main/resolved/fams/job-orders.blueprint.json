@@ -1,0 +1,1032 @@
+{
+  "code": "maintenance/job-order",
+  "kind": "pipeline",
+  "listcolumns": [
+    {
+      "col": "uniqueidentifier",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_jo_uid",
+      "name": "Job Order ID"
+    },
+    {
+      "col": "title",
+      "component": {
+        "name": "TextView",
+        "props": {
+          "handleOverflow": true
+        }
+      },
+      "id": "fld_jo_title"
+    },
+    {
+      "col": "systemcol1",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_jo_maintenance_type"
+    },
+    {
+      "col": "systemcol4",
+      "component": {
+        "name": "LinkView"
+      },
+      "id": "fld_jo_vehicle"
+    },
+    {
+      "col": "systemcol6",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_jo_issue_type"
+    },
+    {
+      "col": "systemcol2",
+      "component": {
+        "name": "PriorityFlagView"
+      },
+      "id": "fld_jo_priority"
+    },
+    {
+      "col": "systemcol3",
+      "component": {
+        "name": "FlagToneDateView",
+        "props": {
+          "flagCol": "systemcol32",
+          "flagValue": "Overdue",
+          "tone": "danger"
+        }
+      },
+      "id": "fld_jo_due_date",
+      "name": "Due Date"
+    },
+    {
+      "col": "status",
+      "component": {
+        "name": "StatusList"
+      },
+      "id": "fld_jo_status"
+    },
+    {
+      "col": "tags",
+      "id": "fld_jo_tags",
+      "name": "Tags"
+    }
+  ],
+  "name": "Job Orders",
+  "systemcolumns": [
+    {
+      "col": "uniqueidentifier",
+      "id": "fld_jo_uid",
+      "name": "Job Order ID",
+      "type": "Auto"
+    },
+    {
+      "col": "systemcol1",
+      "default": "Corrective",
+      "id": "fld_jo_maintenance_type",
+      "listValues": [
+        "Preventive",
+        "Corrective"
+      ],
+      "name": "Maintenance Type",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol2",
+      "component": {
+        "name": "IconSelect",
+        "props": {
+          "icon": "flag-01",
+          "optionTone": {
+            "CRITICAL": "error",
+            "HIGH": "warning",
+            "LOW": "info",
+            "MEDIUM": "success"
+          }
+        }
+      },
+      "default": "MEDIUM",
+      "id": "fld_jo_priority",
+      "listValues": [
+        "CRITICAL",
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ],
+      "name": "Priority",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol3",
+      "id": "fld_jo_due_date",
+      "name": "Due Date",
+      "required": true,
+      "type": "Date"
+    },
+    {
+      "col": "title",
+      "id": "fld_jo_title",
+      "name": "Title",
+      "required": true,
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol4",
+      "component": {
+        "name": "LinkView"
+      },
+      "entityType": "asset/vehicle",
+      "id": "fld_jo_vehicle",
+      "name": "Vehicle",
+      "refModule": "Entity",
+      "required": true,
+      "type": "SingleReference"
+    },
+    {
+      "col": "systemcol5",
+      "id": "fld_jo_reported_on",
+      "name": "Reported On",
+      "type": "Date"
+    },
+    {
+      "col": "systemcol6",
+      "id": "fld_jo_issue_type",
+      "listValues": [
+        "Engine",
+        "Brakes",
+        "Electrical",
+        "Tires",
+        "Body & Chassis",
+        "Transmission",
+        "Cooling System",
+        "Other"
+      ],
+      "name": "Issue Type",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol7",
+      "id": "fld_jo_description",
+      "name": "Description",
+      "type": "BigText"
+    },
+    {
+      "col": "systemcol8",
+      "component": {
+        "name": "Dropzone"
+      },
+      "id": "fld_jo_issue_attachments",
+      "name": "Issue Attachments",
+      "type": "tags"
+    },
+    {
+      "col": "systemcol9",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_garage",
+      "listValues": [
+        "Al Ain Central Garage",
+        "Abu Dhabi Fleet Workshop",
+        "Musaffah Service Center",
+        "Dubai Auto Care",
+        "Sharjah Vehicle Depot"
+      ],
+      "name": "Garage",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol10",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_eta",
+      "name": "Service ETA",
+      "type": "Date"
+    },
+    {
+      "col": "systemcol11",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_service_date",
+      "name": "Service Date",
+      "type": "Date"
+    },
+    {
+      "col": "systemcol12",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_current_odometer",
+      "name": "Current Odometer (at Creation)",
+      "type": "Numeric",
+      "unit": "km"
+    },
+    {
+      "col": "systemcol13",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_completion_date",
+      "name": "Completion Date",
+      "type": "Date"
+    },
+    {
+      "col": "systemcol14",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_invoice_date",
+      "name": "Invoice Date",
+      "type": "Date"
+    },
+    {
+      "col": "systemcol15",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_invoice_number",
+      "name": "Invoice Number",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol16",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_total_amount",
+      "name": "Total Amount",
+      "type": "Currency",
+      "unit": "AED"
+    },
+    {
+      "col": "systemcol17",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_warranty_years",
+      "name": "Warranty in Years",
+      "type": "Numeric",
+      "unit": "yrs"
+    },
+    {
+      "col": "systemcol18",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_report_comments",
+      "name": "Report Comments",
+      "type": "BigText"
+    },
+    {
+      "col": "systemcol19",
+      "component": {
+        "name": "Dropzone"
+      },
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_report_attachments",
+      "name": "Maintenance Report Attachments",
+      "type": "tags"
+    },
+    {
+      "col": "systemcol20",
+      "component": {
+        "name": "PersonView",
+        "props": {
+          "tone": "info"
+        }
+      },
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_assignee",
+      "name": "Assignee",
+      "type": "Assignee"
+    },
+    {
+      "col": "systemcol21",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_reported_by",
+      "name": "Reported By",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol22",
+      "id": "fld_jo_notify_driver_inapp",
+      "name": "Send Reminder to Driver — In-App",
+      "type": "Boolean"
+    },
+    {
+      "col": "systemcol23",
+      "id": "fld_jo_notify_driver_sms",
+      "name": "Send Reminder to Driver — SMS",
+      "type": "Boolean"
+    },
+    {
+      "col": "systemcol24",
+      "id": "fld_jo_notify_driver_email",
+      "name": "Send Reminder to Driver — Email",
+      "type": "Boolean"
+    },
+    {
+      "col": "systemcol25",
+      "id": "fld_jo_additional_inapp",
+      "name": "Additional Reminder — In-App",
+      "type": "Boolean"
+    },
+    {
+      "col": "systemcol26",
+      "id": "fld_jo_additional_inapp_recipients",
+      "name": "Additional Recipients — In-App",
+      "type": "tags"
+    },
+    {
+      "col": "systemcol27",
+      "id": "fld_jo_additional_email",
+      "name": "Additional Reminder — Email",
+      "type": "Boolean"
+    },
+    {
+      "col": "systemcol28",
+      "id": "fld_jo_additional_email_recipients",
+      "name": "Additional Recipients — Email",
+      "type": "tags"
+    },
+    {
+      "col": "systemcol29",
+      "id": "fld_jo_additional_sms",
+      "name": "Additional Reminder — SMS",
+      "type": "Boolean"
+    },
+    {
+      "col": "systemcol30",
+      "id": "fld_jo_additional_sms_recipients",
+      "name": "Additional Recipients — SMS",
+      "type": "tags"
+    },
+    {
+      "col": "systemcol31",
+      "component": {
+        "name": "LinkView"
+      },
+      "creation": {
+        "hidden": true
+      },
+      "entityType": "maintenance/preventive-rule",
+      "id": "fld_jo_source_rule",
+      "name": "Source Rule",
+      "refModule": "Entity",
+      "type": "SingleReference"
+    },
+    {
+      "col": "systemcol32",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_overdue",
+      "listValues": [
+        "Overdue"
+      ],
+      "name": "Overdue",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol33",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_jo_vehicle_plate",
+      "name": "Vehicle Plate Number",
+      "type": "SmallText"
+    },
+    {
+      "col": "status",
+      "creation": {
+        "hidden": true
+      },
+      "default": "reported-issues",
+      "id": "fld_jo_status",
+      "listValues": [
+        "reported-issues",
+        "scheduled",
+        "ongoing",
+        "under-inspection",
+        "completed",
+        "invalid"
+      ],
+      "name": "Status",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "tags",
+      "id": "fld_jo_tags",
+      "name": "Tags",
+      "type": "tags"
+    }
+  ],
+  "uiConfig": {
+    "bulkActions": {
+      "delete": true,
+      "export": true
+    },
+    "creation": {
+      "basicCount": 3,
+      "explicit": true,
+      "fieldChrome": "inset-label",
+      "label": "Create New Job Order",
+      "layout": "wizard",
+      "stepIcons": {
+        "basic": "file-shield-02",
+        "sec_jo_issue": "alert-triangle",
+        "sec_jo_reminders": "bell",
+        "sec_jo_vehicle": "car"
+      },
+      "stepperVariant": "tabs"
+    },
+    "filters": [
+      {
+        "col": "systemcol32",
+        "icon": "calendar",
+        "id": "flt_jo_overdue",
+        "kind": "checkbox-group",
+        "name": "Overdue",
+        "order": 1
+      },
+      {
+        "col": "systemcol1",
+        "icon": "wrench",
+        "id": "flt_jo_maintenance_type",
+        "kind": "checkbox-group",
+        "order": 2
+      },
+      {
+        "col": "status",
+        "icon": "status",
+        "id": "flt_jo_status",
+        "kind": "status",
+        "optionDot": "status",
+        "optionsFrom": "statusList",
+        "order": 3,
+        "showCounts": true
+      },
+      {
+        "col": "systemcol2",
+        "icon": "flag",
+        "id": "flt_jo_priority",
+        "kind": "checkbox-group",
+        "order": 4
+      },
+      {
+        "col": "systemcol21",
+        "icon": "user",
+        "id": "flt_jo_created_by",
+        "kind": "single-select",
+        "name": "Created By",
+        "optionsFrom": "records",
+        "order": 5
+      },
+      {
+        "col": "tags",
+        "icon": "tag",
+        "id": "flt_jo_tags",
+        "kind": "tags",
+        "name": "Tags",
+        "optionsFrom": "records",
+        "order": 6
+      }
+    ],
+    "filtersPanel": {
+      "clearAll": true,
+      "title": "All Filters",
+      "width": 440
+    },
+    "groupByOptions": [
+      {
+        "col": "status",
+        "label": "Status"
+      },
+      {
+        "col": "systemcol1",
+        "label": "Maintenance Type"
+      }
+    ],
+    "hybrid": {
+      "listColumns": [
+        "uniqueidentifier",
+        "title",
+        "systemcol1",
+        "status"
+      ]
+    },
+    "icon": "wrench",
+    "kanbanCard": {
+      "body": [
+        {
+          "col": "systemcol4",
+          "component": {
+            "name": "LinkView",
+            "props": {
+              "icon": "car"
+            }
+          },
+          "id": "fld_jo_vehicle",
+          "order": 2,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol33",
+          "component": {
+            "name": "IconTextView",
+            "props": {
+              "icon": "tag"
+            }
+          },
+          "id": "fld_jo_vehicle_plate",
+          "order": 2,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol12",
+          "component": {
+            "name": "IconNumberView",
+            "props": {
+              "icon": "speedometer-04"
+            }
+          },
+          "id": "fld_jo_current_odometer",
+          "order": 2,
+          "pos": "left"
+        }
+      ],
+      "footer": [
+        {
+          "col": "systemcol20",
+          "component": {
+            "name": "AssigneeList",
+            "props": {
+              "avatarOnly": true
+            }
+          },
+          "id": "fld_jo_assignee",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol3",
+          "component": {
+            "name": "FlagToneDateView",
+            "props": {
+              "flagCol": "systemcol32",
+              "flagValue": "Overdue",
+              "tone": "danger"
+            }
+          },
+          "id": "fld_jo_due_date",
+          "order": 1,
+          "pos": "right"
+        }
+      ],
+      "header": [
+        {
+          "col": "uniqueidentifier",
+          "id": "fld_jo_uid",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol1",
+          "id": "fld_jo_maintenance_type",
+          "order": 1,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol32",
+          "component": {
+            "name": "TagBadgeView",
+            "props": {
+              "variant": "destructive"
+            }
+          },
+          "id": "fld_jo_overdue_flag",
+          "order": 2,
+          "pos": "right"
+        }
+      ]
+    },
+    "listGroupedColumns": [
+      "uniqueidentifier",
+      "title",
+      "systemcol1",
+      "systemcol4",
+      "systemcol6",
+      "systemcol2",
+      "systemcol3",
+      "status",
+      "tags"
+    ],
+    "listSelectable": true,
+    "profile": {
+      "details": [
+        {
+          "col": "systemcol4",
+          "component": {
+            "name": "LinkView"
+          },
+          "id": "fld_jo_vehicle",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol1",
+          "id": "fld_jo_maintenance_type",
+          "order": 2,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol2",
+          "component": {
+            "name": "PriorityFlagView"
+          },
+          "id": "fld_jo_priority",
+          "order": 2,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol6",
+          "id": "fld_jo_issue_type",
+          "order": 3,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol21",
+          "id": "fld_jo_reported_by",
+          "order": 3,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol5",
+          "component": {
+            "name": "DateView"
+          },
+          "id": "fld_jo_reported_on",
+          "order": 4,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol3",
+          "component": {
+            "name": "DateView"
+          },
+          "id": "fld_jo_due_date",
+          "order": 4,
+          "pos": "right"
+        }
+      ],
+      "rightPanel": {
+        "tabs": [
+          {
+            "component": {
+              "name": "TicketTimeline"
+            },
+            "id": "tab_jo_timeline",
+            "key": "timeline",
+            "order": 1,
+            "title": "Timeline"
+          },
+          {
+            "component": {
+              "name": "TicketActivity"
+            },
+            "id": "tab_jo_activity",
+            "key": "activity",
+            "order": 2,
+            "title": "Activity"
+          },
+          {
+            "component": {
+              "name": "RecordList",
+              "props": {
+                "emptyDescription": "Records linked to this job order will appear here.",
+                "emptyTitle": "No linked records",
+                "field": "linked",
+                "variant": "link"
+              }
+            },
+            "id": "tab_jo_linked",
+            "key": "linked",
+            "order": 3,
+            "title": "Linked"
+          },
+          {
+            "component": {
+              "name": "RecordList",
+              "props": {
+                "emptyDescription": "Files attached to this job order will appear here.",
+                "emptyTitle": "No attachments",
+                "field": "attachments",
+                "variant": "file"
+              }
+            },
+            "id": "tab_jo_attachments",
+            "key": "attachments",
+            "order": 4,
+            "title": "Attachments"
+          }
+        ],
+        "type": "tab"
+      },
+      "sections": [
+        {
+          "component": {
+            "name": "LinkedRecordDetailSection",
+            "props": {
+              "emptyLabel": "No vehicle linked yet",
+              "entityType": "asset/vehicle",
+              "refCol": "systemcol4",
+              "viewLabel": "View full profile"
+            }
+          },
+          "fields": [],
+          "id": "sec_jo_asset_details",
+          "name": "Asset Details",
+          "order": 0
+        },
+        {
+          "detailHidden": true,
+          "fields": [
+            {
+              "col": "systemcol4",
+              "id": "fld_jo_vehicle",
+              "order": 1
+            }
+          ],
+          "id": "sec_jo_vehicle",
+          "name": "Add Vehicle",
+          "order": 1
+        },
+        {
+          "fields": [
+            {
+              "col": "title",
+              "id": "fld_jo_title",
+              "order": 1
+            },
+            {
+              "col": "systemcol5",
+              "id": "fld_jo_reported_on",
+              "order": 2
+            },
+            {
+              "col": "systemcol6",
+              "id": "fld_jo_issue_type",
+              "order": 3
+            },
+            {
+              "col": "systemcol7",
+              "id": "fld_jo_description",
+              "order": 4
+            },
+            {
+              "col": "systemcol8",
+              "id": "fld_jo_issue_attachments",
+              "order": 5
+            }
+          ],
+          "id": "sec_jo_issue",
+          "name": "Issue Info",
+          "order": 2
+        },
+        {
+          "fields": [
+            {
+              "col": "systemcol22",
+              "id": "fld_jo_notify_driver_inapp",
+              "order": 1
+            },
+            {
+              "col": "systemcol23",
+              "id": "fld_jo_notify_driver_sms",
+              "order": 2
+            },
+            {
+              "col": "systemcol24",
+              "id": "fld_jo_notify_driver_email",
+              "order": 3
+            },
+            {
+              "col": "systemcol25",
+              "id": "fld_jo_additional_inapp",
+              "order": 4
+            },
+            {
+              "col": "systemcol26",
+              "id": "fld_jo_additional_inapp_recipients",
+              "order": 5
+            },
+            {
+              "col": "systemcol27",
+              "id": "fld_jo_additional_email",
+              "order": 6
+            },
+            {
+              "col": "systemcol28",
+              "id": "fld_jo_additional_email_recipients",
+              "order": 7
+            },
+            {
+              "col": "systemcol29",
+              "id": "fld_jo_additional_sms",
+              "order": 8
+            },
+            {
+              "col": "systemcol30",
+              "id": "fld_jo_additional_sms_recipients",
+              "order": 9
+            }
+          ],
+          "id": "sec_jo_reminders",
+          "name": "Reminders",
+          "order": 3
+        },
+        {
+          "fields": [
+            {
+              "col": "systemcol11",
+              "id": "fld_jo_service_date",
+              "order": 1
+            },
+            {
+              "col": "systemcol10",
+              "id": "fld_jo_eta",
+              "order": 2
+            },
+            {
+              "col": "systemcol9",
+              "id": "fld_jo_garage",
+              "order": 3
+            }
+          ],
+          "id": "sec_jo_schedule",
+          "name": "Schedule Info",
+          "order": 4
+        },
+        {
+          "fields": [
+            {
+              "col": "systemcol12",
+              "id": "fld_jo_current_odometer",
+              "order": 1
+            },
+            {
+              "col": "systemcol13",
+              "id": "fld_jo_completion_date",
+              "order": 2
+            },
+            {
+              "col": "systemcol14",
+              "id": "fld_jo_invoice_date",
+              "order": 3
+            },
+            {
+              "col": "systemcol15",
+              "id": "fld_jo_invoice_number",
+              "order": 4
+            },
+            {
+              "col": "systemcol16",
+              "id": "fld_jo_total_amount",
+              "order": 5
+            },
+            {
+              "col": "systemcol17",
+              "id": "fld_jo_warranty_years",
+              "order": 6
+            },
+            {
+              "col": "systemcol18",
+              "id": "fld_jo_report_comments",
+              "order": 7
+            },
+            {
+              "col": "systemcol19",
+              "id": "fld_jo_report_attachments",
+              "order": 8
+            }
+          ],
+          "id": "sec_jo_report",
+          "name": "Maintenance Report",
+          "order": 5
+        },
+        {
+          "fields": [
+            {
+              "col": "systemcol20",
+              "id": "fld_jo_assignee",
+              "order": 1
+            },
+            {
+              "col": "systemcol21",
+              "id": "fld_jo_reported_by",
+              "order": 2
+            },
+            {
+              "col": "systemcol31",
+              "id": "fld_jo_source_rule",
+              "order": 3
+            },
+            {
+              "col": "systemcol32",
+              "id": "fld_jo_overdue",
+              "order": 4
+            }
+          ],
+          "id": "sec_jo_assignment",
+          "name": "Assignment & Source",
+          "order": 6
+        }
+      ],
+      "title": {
+        "col": "title",
+        "id": "fld_jo_title",
+        "pos": "left"
+      }
+    },
+    "recordNoun": {
+      "many": "job orders",
+      "one": "job order"
+    },
+    "search": {
+      "columns": [
+        "title",
+        "uniqueidentifier"
+      ],
+      "placeholder": "Search anything here"
+    },
+    "statusChangeRule": {
+      "ongoing": [
+        "under-inspection"
+      ],
+      "reported-issues": [
+        "scheduled"
+      ],
+      "scheduled": [
+        "ongoing"
+      ],
+      "under-inspection": [
+        "completed",
+        "invalid"
+      ]
+    },
+    "statusList": [
+      {
+        "color": "#7a2e0e",
+        "id": "sts_jo_reported_issues",
+        "key": "reported-issues",
+        "label": "Reported Issues"
+      },
+      {
+        "color": "#cd0ea3",
+        "id": "sts_jo_scheduled",
+        "key": "scheduled",
+        "label": "Scheduled"
+      },
+      {
+        "color": "#0462ff",
+        "id": "sts_jo_ongoing",
+        "key": "ongoing",
+        "label": "Ongoing"
+      },
+      {
+        "color": "#814ee8",
+        "id": "sts_jo_under_inspection",
+        "key": "under-inspection",
+        "label": "Under Inspection"
+      },
+      {
+        "color": "#1f7f36",
+        "id": "sts_jo_completed",
+        "key": "completed",
+        "label": "Completed"
+      },
+      {
+        "color": "#b42318",
+        "id": "sts_jo_invalid",
+        "key": "invalid",
+        "label": "Invalid"
+      }
+    ],
+    "viewPickerHint": "Corrective and preventive maintenance work orders moving through a six-stage lifecycle, one board per fleet."
+  },
+  "uidPrefix": "JO",
+  "views": [
+    "kanban",
+    "list"
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "base": "core",
+  "module": "vehicle-behaviour",
+  "nodes": {
+    "harsh-acceleration": {
+      "source": "core"
+    },
+    "harsh-braking": {
+      "source": "core"
+    },
+    "harsh-cornering": {
+      "source": "core"
+    },
+    "overspeeding": {
+      "source": "core"
+    },
+    "pill-time-frame": {
+      "source": "core"
+    },
+    "pill-vehicle": {
+      "source": "core"
+    },
+    "safety-score": {
+      "source": "core"
+    },
+    "sev-1": {
+      "source": "core"
+    },
+    "sev-10": {
+      "source": "core"
+    },
+    "sev-11": {
+      "source": "core"
+    },
+    "sev-12": {
+      "source": "core"
+    },
+    "sev-13": {
+      "source": "core"
+    },
+    "sev-14": {
+      "source": "core"
+    },
+    "sev-15": {
+      "source": "core"
+    },
+    "sev-16": {
+      "source": "core"
+    },
+    "sev-17": {
+      "source": "core"
+    },
+    "sev-18": {
+      "source": "core"
+    },
+    "sev-19": {
+      "source": "core"
+    },
+    "sev-2": {
+      "source": "core"
+    },
+    "sev-20": {
+      "source": "core"
+    },
+    "sev-21": {
+      "source": "core"
+    },
+    "sev-22": {
+      "source": "core"
+    },
+    "sev-23": {
+      "source": "core"
+    },
+    "sev-24": {
+      "source": "core"
+    },
+    "sev-25": {
+      "source": "core"
+    },
+    "sev-26": {
+      "source": "core"
+    },
+    "sev-27": {
+      "source": "core"
+    },
+    "sev-28": {
+      "source": "core"
+    },
+    "sev-29": {
+      "source": "core"
+    },
+    "sev-3": {
+      "source": "core"
+    },
+    "sev-30": {
+      "source": "core"
+    },
+    "sev-31": {
+      "source": "core"
+    },
+    "sev-32": {
+      "source": "core"
+    },
+    "sev-4": {
+      "source": "core"
+    },
+    "sev-5": {
+      "source": "core"
+    },
+    "sev-6": {
+      "source": "core"
+    },
+    "sev-7": {
+      "source": "core"
+    },
+    "sev-8": {
+      "source": "core"
+    },
+    "sev-9": {
+      "source": "core"
+    },
+    "veh-1": {
+      "source": "core"
+    },
+    "veh-10": {
+      "source": "core"
+    },
+    "veh-11": {
+      "source": "core"
+    },
+    "veh-12": {
+      "source": "core"
+    },
+    "veh-2": {
+      "source": "core"
+    },
+    "veh-3": {
+      "source": "core"
+    },
+    "veh-4": {
+      "source": "core"
+    },
+    "veh-5": {
+      "source": "core"
+    },
+    "veh-6": {
+      "source": "core"
+    },
+    "veh-7": {
+      "source": "core"
+    },
+    "veh-8": {
+      "source": "core"
+    },
+    "veh-9": {
+      "source": "core"
+    },
+    "vehicle-behaviour": {
+      "source": "core"
+    },
+    "vehicleClass": {
+      "source": "core"
+    },
+    "view-overview": {
+      "source": "core"
+    },
+    "w-critical-events": {
+      "source": "core"
+    },
+    "w-fleet-safety-score": {
+      "source": "core"
+    },
+    "w-high-risk-vehicles": {
+      "source": "core"
+    },
+    "w-operational-progress": {
+      "source": "core"
+    },
+    "w-safety-events-breakdown": {
+      "source": "core"
+    },
+    "w-safety-events-map": {
+      "source": "core"
+    },
+    "w-safety-score-heatmap": {
+      "source": "core"
+    },
+    "w-safety-score-trend": {
+      "source": "core"
+    },
+    "w-safety-summary-column": {
+      "source": "core"
+    },
+    "w-vehicle-leaderboard": {
+      "source": "core"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

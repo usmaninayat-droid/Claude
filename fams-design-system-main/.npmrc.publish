@@ -1,0 +1,27 @@
+; ─────────────────────────────────────────────────────────────────────────────
+; .npmrc.publish — TEMPLATE, not read by pnpm.
+;
+; `scripts/release.mjs` renders this into a TRANSIENT workspace-root `.npmrc`
+; for the duration of a publish, then restores/removes it. It is a template
+; (and there is no committed `.npmrc`) for two reasons:
+;
+;   1. The auth token must never be committed. It only ever exists in the
+;      transient file, at mode 0600, and is removed in a `finally`.
+;   2. A committed `.npmrc` carrying `${FAMS_NPM_REGISTRY}` would print
+;      "Failed to replace env in config" warnings on EVERY `pnpm install` for
+;      as long as the switch stays unset — which is the normal, dormant state.
+;
+; The workspace-root `.npmrc` is the only place `pnpm publish` will actually
+; read a registry from (verified: it ignores `npm_config_*` env vars, and
+; `publishConfig.registry` would outrank the switch — see
+; scripts/guard-publish.mjs and docs/PUBLISHING.md).
+;
+; Placeholders substituted by scripts/release.mjs:
+;   {{REGISTRY}}   ← the FAMS_NPM_REGISTRY env var
+;   {{AUTH_KEY}}   ← //<host><path>/:_authToken derived from {{REGISTRY}}
+;   {{TOKEN}}      ← the FAMS_NPM_TOKEN env var
+; ─────────────────────────────────────────────────────────────────────────────
+
+@fams:registry={{REGISTRY}}
+{{AUTH_KEY}}={{TOKEN}}
+always-auth=true

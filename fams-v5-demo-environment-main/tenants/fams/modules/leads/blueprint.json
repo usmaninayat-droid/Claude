@@ -1,0 +1,122 @@
+{
+  "$schema": "../../../../node_modules/@fams/v5-composer/schemas/PipelineModuleConfig.schema.json",
+  "kind": "pipeline",
+  "code": "crm/lead",
+  "name": "Leads",
+  "uidPrefix": "LEAD",
+  "views": ["kanban", "list"],
+  "systemcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "name": "Lead ID", "type": "Auto" },
+    { "id": "fld_lead_title", "col": "title", "name": "Lead Title", "type": "SmallText", "required": true },
+    { "id": "fld_lead_contact", "col": "systemcol1", "name": "Contact Person", "type": "SingleReference", "refModule": "Entity", "entityType": "crm/contact-person", "required": true, "component": { "name": "LinkView" } },
+    { "id": "fld_lead_owner", "col": "systemcol2", "name": "Owner", "type": "SingleReference", "refModule": "Entity", "entityType": "workforce/driver", "component": { "name": "LinkView" } },
+    { "id": "fld_lead_source", "col": "systemcol3", "name": "Source", "type": "SingleSelect", "listValues": ["Website", "Referral", "Cold Call", "Trade Show", "Social Media"], "component": { "name": "IconTextView", "props": { "icon": "tag" } } },
+    { "id": "fld_lead_priority", "col": "systemcol4", "name": "Priority", "type": "SingleSelect", "listValues": ["CRITICAL", "HIGH", "MEDIUM", "LOW"], "default": "MEDIUM", "component": { "name": "IconSelect", "props": { "icon": "flag", "optionTone": { "CRITICAL": "error", "HIGH": "warning", "MEDIUM": "success", "LOW": "info" } } } },
+    { "id": "fld_lead_value", "col": "systemcol5", "name": "Estimated Value", "type": "Numeric", "unit": "USD" },
+    { "id": "fld_lead_created", "col": "systemcol6", "name": "Created Date", "type": "Date", "creation": { "hidden": true } },
+    { "id": "fld_lead_due", "col": "systemcol7", "name": "Follow-up Due", "type": "Date" },
+    { "id": "fld_lead_deal", "col": "systemcol8", "name": "Converts To Deal", "type": "SingleReference", "refModule": "Entity", "entityType": "crm/deal", "component": { "name": "LinkView" }, "creation": { "hidden": true } },
+    { "id": "fld_lead_note", "col": "systemcol9", "name": "Note", "type": "BigText" },
+    { "id": "fld_lead_status", "col": "status", "name": "Status", "type": "SingleSelect", "listValues": ["new", "contacted", "qualified", "unqualified", "converted"], "default": "new", "creation": { "hidden": true } },
+    { "id": "fld_lead_tags", "col": "tags", "name": "Tags", "type": "tags" }
+  ],
+  "uiConfig": {
+    "icon": "target",
+    "viewPickerHint": "Leads move through qualification on the board, or browse the full list.",
+    "statusList": [
+      { "id": "sts_lead_new", "key": "new", "label": "New", "color": "#0072d6" },
+      { "id": "sts_lead_contacted", "key": "contacted", "label": "Contacted", "color": "#06aed4" },
+      { "id": "sts_lead_qualified", "key": "qualified", "label": "Qualified", "color": "#12b76a" },
+      { "id": "sts_lead_unqualified", "key": "unqualified", "label": "Unqualified", "color": "#98a2b3" },
+      { "id": "sts_lead_converted", "key": "converted", "label": "Converted", "color": "#9e77ed" }
+    ],
+    "kanbanCard": {
+      "header": [
+        { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "pos": "left", "order": 1 },
+        { "id": "fld_lead_priority", "col": "systemcol4", "pos": "right", "order": 1 },
+        { "id": "fld_lead_title", "col": "title", "pos": "left", "order": 2 }
+      ],
+      "body": [
+        { "id": "fld_lead_contact", "col": "systemcol1", "pos": "left", "order": 1 },
+        { "id": "fld_lead_source", "col": "systemcol3", "pos": "left", "order": 2 },
+        { "id": "fld_lead_value", "col": "systemcol5", "pos": "left", "order": 3 }
+      ],
+      "footer": [
+        { "id": "fld_lead_owner", "col": "systemcol2", "pos": "left", "order": 1, "component": { "name": "AssigneeList", "props": { "avatarOnly": true } } },
+        { "id": "fld_lead_due", "col": "systemcol7", "pos": "right", "order": 1 }
+      ]
+    },
+    "profile": {
+      "title": { "id": "fld_lead_title", "col": "title", "pos": "left" },
+      "layout": { "labelWidth": "9.0625rem" },
+      "details": [
+        { "id": "fld_lead_contact", "col": "systemcol1", "pos": "left", "order": 1, "component": { "name": "LinkView" } },
+        { "id": "fld_lead_priority", "col": "systemcol4", "pos": "right", "order": 1, "component": { "name": "PriorityFlagView" } },
+        { "id": "fld_lead_owner", "col": "systemcol2", "pos": "left", "order": 2, "component": { "name": "LinkView" } },
+        { "id": "fld_lead_source", "col": "systemcol3", "pos": "right", "order": 2 },
+        { "id": "fld_lead_value", "col": "systemcol5", "pos": "left", "order": 3 },
+        { "id": "fld_lead_due", "col": "systemcol7", "pos": "right", "order": 3, "component": { "name": "DateView" } },
+        { "id": "fld_lead_created", "col": "systemcol6", "pos": "left", "order": 4, "component": { "name": "DateView" } },
+        { "id": "fld_lead_deal", "col": "systemcol8", "pos": "right", "order": 4, "component": { "name": "LinkView" } }
+      ],
+      "sections": [
+        {
+          "id": "sec_lead_note",
+          "name": "Note",
+          "order": 1,
+          "fields": [
+            { "id": "fld_lead_note", "col": "systemcol9", "pos": "left", "order": 1 }
+          ]
+        }
+      ],
+      "rightPanel": {
+        "type": "tab",
+        "tabs": [
+          { "id": "tab_lead_timeline", "key": "timeline", "title": "Timeline", "order": 1, "component": { "name": "TicketTimeline" } },
+          { "id": "tab_lead_activity", "key": "activity", "title": "Activity", "order": 2, "component": { "name": "TicketActivity" } },
+          { "id": "tab_lead_linked", "key": "linked", "title": "Linked", "order": 3, "component": { "name": "LinkedRecords" } },
+          { "id": "tab_lead_attachments", "key": "attachments", "title": "Attachments", "order": 4, "component": { "name": "RecordList", "props": { "field": "attachments", "variant": "file", "emptyTitle": "No attachments", "emptyDescription": "Files attached to this lead will appear here." } } }
+        ]
+      }
+    },
+    "filtersPanel": { "title": "Filters", "clearAll": true, "width": 448 },
+    "filters": [
+      { "id": "flt_lead_priority", "col": "systemcol4", "order": 1, "kind": "checkbox-group", "icon": "flag" },
+      { "id": "flt_lead_source", "col": "systemcol3", "order": 2, "icon": "tag" },
+      {
+        "id": "flt_lead_status",
+        "col": "status",
+        "order": 3,
+        "kind": "status",
+        "optionsFrom": "statusList",
+        "optionDot": "status",
+        "showCounts": true,
+        "icon": "status"
+      }
+    ],
+    "search": { "columns": ["title", "uniqueidentifier"], "placeholder": "Search Leads" },
+    "groupByOptions": [
+      { "col": "status", "label": "Status" },
+      { "col": "systemcol3", "label": "Source" }
+    ],
+    "rowActions": { "delete": true, "archive": true, "requiredPrivilege": "leads.view" },
+    "bulkActions": { "delete": true, "export": true },
+    "listSelectable": true,
+    "recordNoun": { "one": "lead", "many": "leads" },
+    "listGroupedColumns": ["uniqueidentifier", "title", "systemcol1", "systemcol3", "systemcol4", "systemcol2", "systemcol5", "systemcol7", "status"],
+    "hybrid": { "listColumns": ["uniqueidentifier", "title", "systemcol4", "status"] },
+    "creation": { "layout": "flat", "fieldChrome": "inset-label", "label": "Create New Lead" }
+  },
+  "listcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "name": "Lead ID", "component": { "name": "TextView" } },
+    { "id": "fld_lead_title", "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "id": "fld_lead_contact", "col": "systemcol1", "component": { "name": "LinkView" } },
+    { "id": "fld_lead_source", "col": "systemcol3", "component": { "name": "TextView" } },
+    { "id": "fld_lead_priority", "col": "systemcol4", "name": "Priority", "component": { "name": "TextView" } },
+    { "id": "fld_lead_owner", "col": "systemcol2", "component": { "name": "LinkView" } },
+    { "id": "fld_lead_value", "col": "systemcol5", "name": "Estimated Value" },
+    { "id": "fld_lead_due", "col": "systemcol7", "name": "Follow-up Due" },
+    { "id": "fld_lead_status", "col": "status", "component": { "name": "StatusList" } },
+    { "id": "fld_lead_tags", "col": "tags", "name": "Tags" }
+  ]
+}

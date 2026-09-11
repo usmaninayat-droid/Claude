@@ -1,0 +1,31 @@
+# CODEOWNERS — review routing for this repo.
+#
+# Intent (decision #20 analog, docs/knowledge-base/decisions.md): gate the
+# high-blast-radius surfaces — every published package, the build/lint/CI
+# tooling, and this file's own directory — behind a real review; leave the
+# low-blast-radius surfaces (showcase demo pages, docs prose) free for agents
+# and contributors to move fast in, same reasoning decision #20 applies to
+# small products keeping demo/ in-repo: shared context, cheaper tokens, no
+# production path at risk.
+#
+# `@fams/platform-team` is a PLACEHOLDER — no such GitHub team exists yet.
+# The lines below are commented out so this file has zero enforcement effect
+# until the team is created and these lines are uncommented (swap in the
+# real team handle at that point, e.g. `@fams-org/platform-team`).
+#
+# # Every published package — component/token/build-pipeline changes.
+# /packages/                              @fams/platform-team
+#
+# # Generation/check tooling (registry.json, llms.txt, token lint, …) — a
+# # bug here silently breaks every package's gate.
+# /scripts/                                @fams/platform-team
+#
+# # CI workflow + this file + the PR template — changing the gate itself.
+# /.github/                                @fams/platform-team
+
+# Showcase demo pages (/workshop/showcase/src/demos/) and docs (/docs/)
+# are DELIBERATELY ABSENT from this file — low blast radius (a private
+# preview app, not a published package; prose, not shipped code), so they
+# stay free of a required-reviewer gate for agents and contributors. A
+# pattern with no owner is a no-op in CODEOWNERS syntax, so "no owner" means
+# "don't list it" here, not an empty-owner line.

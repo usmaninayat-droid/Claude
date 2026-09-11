@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collection Evidence — redesign</title>
+<style>
+:root{
+  --primary:#22C58B; --primary-dark:#17A374; --primary-tint:#E8FAF2; --primary-mint:#B6F2D6;
+  --fg:#101828; --fg-2:#475467; --fg-3:#98A2B3;
+  --card:#FFFFFF; --surface:#F9FAFB; --border:#EAECF0; --border-2:#D0D5DD;
+  --scrim:rgba(16,24,40,.72);
+  --radius:8px; --radius-sm:6px; --radius-lg:12px;
+  --sh-sm:0 1px 2px 0 rgba(16,24,40,.06),0 1px 3px 0 rgba(16,24,40,.10);
+  --sh-xl:0 8px 8px -4px rgba(16,24,40,.03),0 20px 24px -4px rgba(16,24,40,.10);
+  --font:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:#1D2939;font-family:var(--font);color:var(--fg);font-size:14px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:32px 16px;gap:16px}
+
+/* ── ruler: shows the height win, sits outside the design ──────────────────── */
+.tools{display:flex;align-items:center;gap:8px;padding:6px;background:#101828;border:1px solid #344054;
+  border-radius:999px;color:#EAECF0;font-size:12px;font-weight:600}
+.tools button{height:30px;padding:0 12px;background:rgba(255,255,255,.1);color:#EAECF0;border:none;
+  border-radius:999px;font-family:var(--font);font-size:12px;font-weight:600;cursor:pointer}
+.tools button:hover{background:rgba(255,255,255,.2)}
+.tools button[aria-pressed="true"]{background:var(--primary);color:#06301F}
+.tools span{padding:0 8px;color:#98A2B3}
+.tools b{color:#EAECF0;font-variant-numeric:tabular-nums}
+
+/* ── modal ─────────────────────────────────────────────────────────────────── */
+.scrim{width:100%;max-width:1120px;background:var(--scrim);border-radius:16px;padding:40px 24px;
+  display:flex;justify-content:center}
+.modal{width:883px;max-width:100%;max-height:78vh;background:var(--card);border-radius:var(--radius-lg);
+  box-shadow:var(--sh-xl);display:flex;flex-direction:column;overflow:hidden}
+
+/* header: 40px icon inline with the title instead of a 98px block above it */
+.mhead{display:flex;align-items:flex-start;gap:12px;padding:20px 24px 16px;border-bottom:1px solid var(--border)}
+.mhead__icon{width:40px;height:40px;flex:none;border-radius:999px;background:var(--primary-mint);
+  color:var(--primary-dark);display:flex;align-items:center;justify-content:center}
+.mhead__text{flex:1;min-width:0}
+.mhead__title{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.mhead__sub{font-size:12px;color:var(--fg-2);margin-top:2px}
+.mhead__close{width:44px;height:44px;flex:none;margin:-6px -8px 0 0;display:flex;align-items:center;
+  justify-content:center;background:none;border:none;border-radius:var(--radius-sm);color:var(--fg-2);cursor:pointer}
+.mhead__close:hover{background:var(--surface);color:var(--fg)}
+.mhead__close:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+
+/* one legend line replaces 10 repeated "Before Image / After Image" labels */
+.legend{display:flex;align-items:center;gap:16px;padding:10px 24px;background:var(--surface);
+  border-bottom:1px solid var(--border);font-size:12px;color:var(--fg-2)}
+.legend__k{display:inline-flex;align-items:center;gap:6px}
+.legend__chip{width:18px;height:18px;border-radius:4px;background:var(--fg);color:#fff;font-size:10px;
+  font-weight:700;display:flex;align-items:center;justify-content:center}
+.legend__chip--a{background:var(--primary-dark)}
+.legend__spacer{flex:1}
+.legend__hint{color:var(--fg-3)}
+
+/* the scroll region is what caps modal height regardless of site count */
+.sites{flex:0 1 auto;min-height:0;overflow-y:auto;padding:16px 24px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(236px,1fr));gap:12px;align-content:start}
+.site{border:1px solid var(--border);border-radius:var(--radius);padding:10px;background:var(--card)}
+.site__top{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+.site__name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.site__meta{margin-left:auto;flex:none;font-size:11px;color:var(--fg-2);font-variant-numeric:tabular-nums}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.shot{position:relative;aspect-ratio:4/3;border:none;padding:0;border-radius:var(--radius-sm);
+  overflow:hidden;cursor:zoom-in;display:block;width:100%}
+.shot:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.shot__img{position:absolute;inset:0}
+.shot__chip{position:absolute;top:6px;left:6px;min-width:20px;height:20px;padding:0 6px;border-radius:4px;
+  background:rgba(16,24,40,.78);color:#fff;font-size:10px;font-weight:700;line-height:20px;text-align:center;
+  letter-spacing:.02em}
+.shot__chip--a{background:rgba(23,163,116,.92)}
+.shot::after{content:"";position:absolute;inset:0;background:rgba(16,24,40,0);transition:background .15s}
+.shot:hover::after{background:rgba(16,24,40,.14)}
+.shot__missing{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:4px;background:var(--surface);border:1px dashed var(--border-2);
+  border-radius:var(--radius-sm);color:var(--fg-3);font-size:10px;font-weight:600}
+
+/* footer stays visible — the old 928px modal pushed OK off a 900px screen */
+.mfoot{display:flex;align-items:center;gap:12px;padding:14px 24px;border-top:1px solid var(--border);
+  background:var(--card)}
+.mfoot__count{flex:1;font-size:12px;color:var(--fg-2)}
+.btn{height:44px;padding:0 20px;border-radius:var(--radius-sm);font-family:var(--font);font-size:14px;
+  font-weight:600;cursor:pointer;border:1px solid var(--border-2);background:var(--card);color:var(--fg)}
+.btn:hover{background:var(--surface)}
+.btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.btn--primary{background:var(--primary);border-color:var(--primary);color:#06301F;min-width:120px}
+.btn--primary:hover{background:var(--primary-dark);border-color:var(--primary-dark);color:#fff}
+
+/* ── lightbox: 60px thumbnails can't verify anything; this is where you look ── */
+.lb{position:fixed;inset:0;z-index:50;background:rgba(16,24,40,.86);display:none;
+  align-items:center;justify-content:center;padding:32px}
+.lb.is-open{display:flex}
+.lb__panel{width:min(900px,100%);background:var(--card);border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--sh-xl)}
+.lb__head{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border)}
+.lb__title{font-size:14px;font-weight:600}
+.lb__sub{font-size:12px;color:var(--fg-2)}
+.lb__body{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border)}
+.lb__cell{position:relative;aspect-ratio:4/3}
+.lb__cap{position:absolute;bottom:0;left:0;right:0;padding:8px 10px;background:linear-gradient(transparent,rgba(16,24,40,.8));
+  color:#fff;font-size:11px;font-weight:600}
+
+/* photo stand-ins (mockup only — real build renders captured photos) */
+.ph{position:absolute;inset:0}
+.ph--wet{background:
+  linear-gradient(180deg,#AFC3D6 0%,#8FA6BA 34%,#5E6E7C 35%,#7B8B99 62%,#4C5A66 63%,#5E6C78 100%)}
+.ph--wet::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(60% 30% at 30% 78%,rgba(255,255,255,.42),transparent 70%),
+  radial-gradient(40% 18% at 72% 88%,rgba(255,255,255,.3),transparent 70%)}
+.ph--dry{background:
+  linear-gradient(180deg,#BFD0DE 0%,#A9BCCB 32%,#6E6E70 33%,#8A8A8C 66%,#5F5F61 67%,#737375 100%)}
+.ph--dry::before{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,transparent 0 22px,rgba(255,255,255,.5) 22px 34px,transparent 34px 70px);
+  top:74%}
+.ph__truck{position:absolute;left:12%;top:30%;width:46%;height:34%;border-radius:3px;
+  background:linear-gradient(180deg,#F2F4F7,#D0D5DD);box-shadow:0 1px 0 rgba(16,24,40,.3)}
+.ph__truck::after{content:"";position:absolute;right:-14%;top:14%;width:20%;height:72%;border-radius:2px;
+  background:#98A2B3}
+.ph--tree{position:absolute;right:8%;top:8%;width:22%;height:38%;border-radius:50% 50% 40% 40%;
+  background:#5B7355;opacity:.85}
+</style>
+</head>
+<body>
+
+<div class="tools" role="group" aria-label="Preview controls">
+  <span>Sites</span>
+  <button id="t5" aria-pressed="true">5</button>
+  <button id="t12" aria-pressed="false">12</button>
+  <span>Modal height <b id="hOut">—</b> · was <b>928px</b></span>
+</div>
+
+<div class="scrim">
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+
+    <header class="mhead">
+      <span class="mhead__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2.7s5.5 5.3 5.5 9.3a5.5 5.5 0 0 1-11 0c0-4 5.5-9.3 5.5-9.3Z"/>
+          <path d="M8 18.6c1.3-.9 2.7-.9 4 0s2.7.9 4 0"/>
+          <path d="M8 21.3c1.3-.9 2.7-.9 4 0s2.7.9 4 0"/>
+        </svg>
+      </span>
+      <div class="mhead__text">
+        <div class="mhead__title" id="mTitle">Collection Evidence</div>
+        <div class="mhead__sub">Rain Water Removal · Job RWR-2841 · M 40, Musaffah Sector A · 31 Aug 2026</div>
+      </div>
+      <button class="mhead__close" aria-label="Close">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </header>
+
+    <div class="legend">
+      <span class="legend__k"><span class="legend__chip">B</span> Before</span>
+      <span class="legend__k"><span class="legend__chip legend__chip--a">A</span> After</span>
+      <span class="legend__spacer"></span>
+      <span class="legend__hint">Tap any photo to inspect full size</span>
+    </div>
+
+    <div class="sites" id="sites"></div>
+
+    <footer class="mfoot">
+      <span class="mfoot__count" id="count"></span>
+      <button class="btn" id="dl">Download all</button>
+      <button class="btn btn--primary">OK</button>
+    </footer>
+  </div>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Evidence photo">
+  <div class="lb__panel">
+    <div class="lb__head">
+      <div style="flex:1">
+        <div class="lb__title" id="lbTitle">Collection Site 1</div>
+        <div class="lb__sub" id="lbSub"></div>
+      </div>
+      <button class="btn" id="lbClose">Close</button>
+    </div>
+    <div class="lb__body">
+      <div class="lb__cell"><span class="ph ph--wet"><i class="ph__truck"></i><i class="ph--tree"></i></span>
+        <div class="lb__cap">Before · 08:12</div></div>
+      <div class="lb__cell"><span class="ph ph--dry"><i class="ph__truck"></i><i class="ph--tree"></i></span>
+        <div class="lb__cap">After · 09:04</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+var SITES = [
+  {name:'Site 1 — Lot 1',  t:'08:12', v:'1,200 L'},
+  {name:'Site 2 — Lot 4',  t:'09:26', v:'980 L'},
+  {name:'Site 3 — Lot 7',  t:'10:41', v:'1,450 L'},
+  {name:'Site 4 — Lot 9',  t:'12:03', v:'760 L'},
+  {name:'Site 5 — Lot 12', t:'13:44', v:'1,310 L', pending:true}
+];
+function expand(n){
+  var out = [];
+  for(var i=0;i<n;i++){
+    var s = SITES[i % SITES.length];
+    out.push({name:'Site ' + (i+1) + ' — Lot ' + (i*3+1), t:s.t, v:s.v, pending:(i === n-1)});
+  }
+  return out;
+}
+
+function photo(kind){
+  return '<span class="ph ph--' + kind + '"><i class="ph__truck"></i><i class="ph--tree"></i></span>';
+}
+
+function render(list){
+  var host = document.getElementById('sites');
+  host.innerHTML = list.map(function(s){
+    var after = s.pending
+      ? '<span class="shot__missing">' +
+        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+        'stroke-linecap="round"><path d="M12 8v5"/><circle cx="12" cy="16.5" r=".6"/>' +
+        '<path d="M10.3 3.9 2.5 17.4A2 2 0 0 0 4.2 20.4h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>' +
+        'Not captured</span>'
+      : '<span class="shot__img">' + photo('dry') + '</span><span class="shot__chip shot__chip--a">A</span>';
+    return '<div class="site">' +
+      '<div class="site__top">' +
+        '<span class="site__name">' + s.name + '</span>' +
+        '<span class="site__meta">' + s.t + ' · ' + s.v + '</span>' +
+      '</div>' +
+      '<div class="pair">' +
+        '<button class="shot" aria-label="' + s.name + ', before photo, taken ' + s.t + '">' +
+          '<span class="shot__img">' + photo('wet') + '</span><span class="shot__chip">B</span></button>' +
+        '<button class="shot" aria-label="' + s.name + ', after photo"' + (s.pending ? ' disabled' : '') + '>' +
+          after + '</button>' +
+      '</div></div>';
+  }).join('');
+
+  var missing = list.filter(function(s){ return s.pending; }).length;
+  var shot = list.length * 2 - missing;
+  document.getElementById('count').textContent =
+    list.length + ' sites · ' + shot + ' photos' + (missing ? ' · ' + missing + ' missing' : '');
+
+  host.querySelectorAll('.shot:not([disabled])').forEach(function(b){
+    b.onclick = function(){
+      var card = b.closest('.site');
+      document.getElementById('lbTitle').textContent = card.querySelector('.site__name').textContent;
+      document.getElementById('lbSub').textContent =
+        'Captured ' + card.querySelector('.site__meta').textContent.split(' · ')[0] + ' · GPS 24.3560, 54.4900';
+      document.getElementById('lb').classList.add('is-open');
+    };
+  });
+
+  requestAnimationFrame(function(){
+    document.getElementById('hOut').textContent =
+      Math.round(document.getElementById('modal').getBoundingClientRect().height) + 'px';
+  });
+}
+
+document.getElementById('lbClose').onclick = function(){ document.getElementById('lb').classList.remove('is-open'); };
+document.getElementById('lb').onclick = function(e){ if(e.target === this) this.classList.remove('is-open'); };
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') document.getElementById('lb').classList.remove('is-open');
+});
+
+function setCount(n, el){
+  document.getElementById('t5').setAttribute('aria-pressed', String(n === 5));
+  document.getElementById('t12').setAttribute('aria-pressed', String(n === 12));
+  render(n === 5 ? SITES : expand(12));
+}
+document.getElementById('t5').onclick  = function(){ setCount(5); };
+document.getElementById('t12').onclick = function(){ setCount(12); };
+document.getElementById('dl').onclick  = function(){};
+render(SITES);
+window.addEventListener('resize', function(){
+  document.getElementById('hOut').textContent =
+    Math.round(document.getElementById('modal').getBoundingClientRect().height) + 'px';
+});
+</script>
+</body>
+</html>

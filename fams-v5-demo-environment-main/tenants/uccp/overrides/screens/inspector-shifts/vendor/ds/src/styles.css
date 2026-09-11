@@ -1,0 +1,87 @@
+/*
+ * FAMS Design System — global stylesheet entry.
+ * Import order mirrors the proven FAMS V5 consumer pattern:
+ *   1. fonts (self-hosted Gilroy @font-face)
+ *   2. theme tokens (CSS variables + Tailwind 4 @theme inline bridge)
+ *   3. tenant override (default = fams-v5)
+ *   4. tailwindcss engine
+ *   5. tw-animate-css (animate-in / fade / slide utilities used by Radix wrappers)
+ */
+@import './tokens/fonts.css';
+@import './tokens/theme.css';
+@import './tokens/fams-v5.theme.css';
+@import './tokens/figma-palette.css';
+/* Qatar MME (UCCP) tenant branding — maroon action/brand role mapping only
+ * (Primary/accent/sidebar/ring/chart-1). Loaded LAST so it wins the cascade.
+ * Statuses (--status-success/-warning/-error), avatar colors, shift-chip
+ * icons, and progress/compliance gauges are untouched here — they stay on
+ * their own semantic tokens, never rerouted through --primary. See
+ * tenants/uccp/overrides/screens/planning-v2/vendor/fms-main-ds/tokens/
+ * qatar-mme.theme.css — same file, same rule, ported verbatim. */
+@import './tokens/qatar-mme.theme.css';
+
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  font-size: var(--text-base);
+  line-height: var(--line-height-base);
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Thin enterprise-density scrollbars. */
+.fams-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-300) transparent;
+}
+.fams-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.fams-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--gray-300);
+  border-radius: 9999px;
+}
+.fams-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Skeleton shimmer (Figma Basics → Skeleton Loader). */
+@keyframes fams-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Multi-line truncation helpers used by card titles / notes. */
+.line-clamp-1,
+.line-clamp-2,
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-1 {
+  -webkit-line-clamp: 1;
+}
+.line-clamp-2 {
+  -webkit-line-clamp: 2;
+}
+.line-clamp-3 {
+  -webkit-line-clamp: 3;
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "../../schemas/PipelineModuleConfig.schema.json",
+  "kind": "pipeline",
+  "code": "crm/deals",
+  "name": "Deals",
+  "uidPrefix": "D",
+  "systemcolumns": [
+    { "col": "title", "name": "Deal", "type": "SmallText", "required": true },
+    { "col": "status", "name": "Stage", "type": "SingleSelect" },
+    { "col": "systemcol1", "name": "Type", "type": "SingleSelect", "listValues": ["NEW", "EXPANSION", "RENEWAL"] },
+    { "col": "systemcol2", "name": "Priority", "type": "SingleSelect", "listValues": ["High", "Medium", "Low"] },
+    { "col": "systemcol3", "name": "Company", "type": "SingleReference", "refModule": "crm/companies" },
+    { "col": "systemcol6", "name": "Owner", "type": "SingleReference", "refModule": "user" },
+    { "col": "systemcol7", "name": "Date", "type": "SmallText" }
+  ],
+  "uiConfig": {
+    "statusList": [
+      { "key": "lead", "label": "Lead", "color": "#94a3b8" },
+      { "key": "qualified", "label": "Qualified", "color": "#0072d6" },
+      { "key": "proposal", "label": "Proposal", "color": "#f79009" },
+      { "key": "won", "label": "Won", "color": "#16a34a" },
+      { "key": "lost", "label": "Lost", "color": "#f04438" }
+    ],
+    "kanbanCard": {
+      "header": [
+        { "col": "systemcol2", "pos": "left", "order": 1, "component": { "name": "PriorityFlag" } },
+        { "col": "systemcol1", "pos": "left", "order": 2 },
+        { "col": "uniqueidentifier", "pos": "right", "order": 1 },
+        { "col": "title", "pos": "left", "order": 3 }
+      ],
+      "body": [
+        { "col": "systemcol3", "pos": "left", "order": 1 },
+        { "col": "status", "pos": "left", "order": 2, "component": { "name": "StageProgress" } }
+      ],
+      "footer": [
+        { "col": "systemcol6", "pos": "left", "order": 1, "component": { "name": "AssigneeList", "props": { "avatarOnly": true } } },
+        { "col": "systemcol7", "pos": "right", "order": 1, "component": { "name": "DateView" } }
+      ]
+    },
+    "profile": {
+      "title": { "col": "title", "pos": "left" },
+      "details": [
+        { "col": "uniqueidentifier", "pos": "left", "order": 1, "name": "Deal ID", "component": { "name": "LinkView" } },
+        { "col": "status", "pos": "right", "order": 1, "component": { "name": "StatusList", "props": { "editable": true } } },
+        { "col": "systemcol3", "pos": "left", "order": 2 },
+        { "col": "systemcol6", "pos": "right", "order": 2, "component": { "name": "AssigneeSelector", "props": { "editable": true } } }
+      ],
+      "sections": [],
+      "rightPanel": { "type": "tab", "tabs": [
+        { "key": "timeline", "title": "Timeline", "order": 1, "component": { "name": "PipelineTimeline" } },
+        { "key": "activity", "title": "Activity", "order": 2, "component": { "name": "ActivityFeed" } },
+        { "key": "linked", "title": "Linked", "order": 3, "component": { "name": "LinkedItems" } },
+        { "key": "attachments", "title": "Files", "order": 4, "component": { "name": "Attachments" } }
+      ] }
+    },
+    "filters": [
+      { "col": "status", "order": 1 },
+      { "col": "systemcol2", "order": 2 }
+    ],
+    "search": { "columns": ["title", "uniqueidentifier", "systemcol3"] }
+  },
+  "listcolumns": [
+    { "col": "uniqueidentifier", "component": { "name": "TextView" } },
+    { "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "col": "status", "component": { "name": "StatusList" } },
+    { "col": "systemcol3", "component": { "name": "TextView" } },
+    { "col": "systemcol6", "component": { "name": "AssigneeList" } }
+  ]
+}

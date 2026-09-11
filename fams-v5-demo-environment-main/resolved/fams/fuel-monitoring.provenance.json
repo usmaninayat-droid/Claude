@@ -1,0 +1,218 @@
+{
+  "base": "core",
+  "module": "fuel-monitoring",
+  "nodes": {
+    "burned": {
+      "source": "core"
+    },
+    "cost": {
+      "source": "core"
+    },
+    "dispensed": {
+      "source": "core"
+    },
+    "distance": {
+      "source": "core"
+    },
+    "drv-1": {
+      "source": "core"
+    },
+    "drv-2": {
+      "source": "core"
+    },
+    "drv-3": {
+      "source": "core"
+    },
+    "drv-4": {
+      "source": "core"
+    },
+    "drv-5": {
+      "source": "core"
+    },
+    "drv-6": {
+      "source": "core"
+    },
+    "drv-7": {
+      "source": "core"
+    },
+    "fe-1": {
+      "source": "core"
+    },
+    "fe-1-veh": {
+      "source": "core"
+    },
+    "fe-10": {
+      "source": "core"
+    },
+    "fe-10-veh": {
+      "source": "core"
+    },
+    "fe-11": {
+      "source": "core"
+    },
+    "fe-11-veh": {
+      "source": "core"
+    },
+    "fe-12": {
+      "source": "core"
+    },
+    "fe-12-veh": {
+      "source": "core"
+    },
+    "fe-2": {
+      "source": "core"
+    },
+    "fe-2-veh": {
+      "source": "core"
+    },
+    "fe-3": {
+      "source": "core"
+    },
+    "fe-3-veh": {
+      "source": "core"
+    },
+    "fe-4": {
+      "source": "core"
+    },
+    "fe-4-veh": {
+      "source": "core"
+    },
+    "fe-5": {
+      "source": "core"
+    },
+    "fe-5-veh": {
+      "source": "core"
+    },
+    "fe-6": {
+      "source": "core"
+    },
+    "fe-6-veh": {
+      "source": "core"
+    },
+    "fe-7": {
+      "source": "core"
+    },
+    "fe-7-veh": {
+      "source": "core"
+    },
+    "fe-8": {
+      "source": "core"
+    },
+    "fe-8-veh": {
+      "source": "core"
+    },
+    "fe-9": {
+      "source": "core"
+    },
+    "fe-9-veh": {
+      "source": "core"
+    },
+    "fuel": {
+      "source": "core"
+    },
+    "fuel-empty": {
+      "source": "core"
+    },
+    "fuel-level": {
+      "source": "core"
+    },
+    "fuel-monitoring": {
+      "source": "core"
+    },
+    "fuel-refueling": {
+      "source": "core"
+    },
+    "fuel-theft": {
+      "source": "core"
+    },
+    "kpi-avg-consumption-km": {
+      "source": "core"
+    },
+    "kpi-avg-cost-km": {
+      "source": "core"
+    },
+    "kpi-co2": {
+      "source": "core"
+    },
+    "kpi-fleet-runway": {
+      "source": "core"
+    },
+    "kpi-forecast-spend": {
+      "source": "core"
+    },
+    "kpi-fuel-consumed": {
+      "source": "core"
+    },
+    "kpi-fuel-reserve": {
+      "source": "core"
+    },
+    "kpi-fuel-theft-events": {
+      "source": "core"
+    },
+    "kpi-fuel-used": {
+      "source": "core"
+    },
+    "kpi-refuel-events": {
+      "source": "core"
+    },
+    "kpi-refueling-events": {
+      "source": "core"
+    },
+    "kpi-total-cost": {
+      "source": "core"
+    },
+    "kpi-total-fuel-consumed": {
+      "source": "core"
+    },
+    "kpi-upcoming-refuels": {
+      "source": "core"
+    },
+    "pill-driver": {
+      "source": "core"
+    },
+    "pill-time-frame": {
+      "source": "core"
+    },
+    "pill-vehicle": {
+      "source": "core"
+    },
+    "refuels": {
+      "source": "core"
+    },
+    "view-overview": {
+      "source": "core"
+    },
+    "w-fleet-fuel-levels": {
+      "source": "core"
+    },
+    "w-fuel-consumed-vs-used": {
+      "source": "core"
+    },
+    "w-fuel-efficiency-score": {
+      "source": "core"
+    },
+    "w-fuel-events-map": {
+      "source": "core"
+    },
+    "w-fuel-left-column": {
+      "source": "core"
+    },
+    "w-fuel-over-distance": {
+      "source": "core"
+    },
+    "w-fuel-right-column": {
+      "source": "core"
+    },
+    "w-high-risk-drivers": {
+      "source": "core"
+    },
+    "w-monthly-fuel-cost": {
+      "source": "core"
+    },
+    "w-refueling-over-time": {
+      "source": "core"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

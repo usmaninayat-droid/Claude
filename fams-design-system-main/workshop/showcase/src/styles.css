@@ -1,0 +1,79 @@
+@import "tailwindcss";
+@import "@fams/tokens/theme.css";
+/* Enter/exit animation utilities (animate-in/out, fade/slide/zoom) for
+   Radix-driven overlays (Sheet, Dialog, Popover, …) — Tailwind v4 ships none
+   of these itself. */
+@import "@fams/tokens/animations.css";
+/* Brand font faces (Gilroy) — so --font-sans resolves to the real brand font. */
+@import "@fams/tokens/fonts.css";
+/* Per-tenant semantic overrides (primary/accent/ring), keyed off data-tenant. */
+@import "@fams/tokens/tenants.css";
+
+/* Tailwind v4 content detection cannot see into the workspace design-system
+   source; @source scans the linked components so their utility classes
+   (bg-primary, text-foreground, text-h3, …) are not purged. */
+@source "../../../packages/ui-kit/src";
+/* DemoConsole (@fams/demo-kit/console) is imported from source in the Demo Kit
+   demo page — scan it so its utility classes are generated too. */
+@source "../../../packages/demo-kit/src";
+
+/* Per-tenant SideNav icon-rail background (iwmp = brand gradient), mirroring
+   frontend-next/app-react. Kept in app scope so no token rebuild is needed. */
+:root {
+  --shell-rail-bg: #101828;
+}
+[data-tenant='iwmp'] {
+  --shell-rail-bg: linear-gradient(180deg, #0f95ba 0%, #26cf7e 100%);
+}
+[data-tenant='fams'],
+[data-tenant='ead'],
+[data-tenant='uccp'] {
+  --shell-rail-bg: #101828;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Craft: monospace stack for code + data, smooth in-page nav, refined selection. */
+:root {
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, 'Cascadia Code', Menlo, monospace;
+}
+code,
+pre,
+.font-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: 'liga' 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+::selection {
+  background: color-mix(in oklab, var(--color-primary) 22%, transparent);
+}
+
+/* Quiet, precise scrollbars for the docs chrome. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

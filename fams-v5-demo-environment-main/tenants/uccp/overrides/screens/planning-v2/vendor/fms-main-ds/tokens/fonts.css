@@ -1,0 +1,108 @@
+/*
+ * FAMS V5 — Gilroy Self-Hosted Fonts
+ * -----------------------------------
+ * The 12 OTF files ship inside this package (./fonts/). The @font-face
+ * `src` paths below are relative to this CSS file, so Vite / Webpack /
+ * Tailwind 4 will rewrite them correctly when the package is imported
+ * from `node_modules/@fams-v5/tokens/fonts.css`.
+ *
+ * Production previously used the public CDN (fonts.cdnfonts.com).
+ * Self-hosting removes the network dependency and is required for offline
+ * tenants and air-gapped deployments.
+ */
+
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('./fonts/Gilroy-Light.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('./fonts/Gilroy-LightItalic.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/Gilroy-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/Gilroy-RegularItalic.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./fonts/Gilroy-Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./fonts/Gilroy-MediumItalic.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./fonts/Gilroy-Semibold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./fonts/Gilroy-SemiboldItalic.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./fonts/Gilroy-Bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./fonts/Gilroy-BoldItalic.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('./fonts/Gilroy-Extrabold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url('./fonts/Gilroy-ExtraboldItalic.otf') format('opentype');
+}

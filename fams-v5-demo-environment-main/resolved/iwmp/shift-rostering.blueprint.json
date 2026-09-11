@@ -1,0 +1,246 @@
+{
+  "code": "shift-rostering/shift",
+  "kind": "entity",
+  "listcolumns": [
+    {
+      "col": "uniqueidentifier",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_uniqueidentifier",
+      "name": "Shift ID"
+    },
+    {
+      "col": "title",
+      "component": {
+        "name": "TextView",
+        "props": {
+          "handleOverflow": true
+        }
+      },
+      "id": "fld_sr_name"
+    },
+    {
+      "col": "systemcol1",
+      "component": {
+        "name": "LinkView"
+      },
+      "id": "fld_sr_worker"
+    },
+    {
+      "col": "systemcol2",
+      "component": {
+        "name": "DateView"
+      },
+      "id": "fld_sr_date"
+    },
+    {
+      "col": "systemcol3",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_sr_start"
+    },
+    {
+      "col": "systemcol4",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_sr_end"
+    },
+    {
+      "col": "systemcol5",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_sr_zone"
+    },
+    {
+      "col": "status",
+      "component": {
+        "name": "StatusList"
+      },
+      "id": "fld_sr_status"
+    }
+  ],
+  "name": "Shift Rostering",
+  "systemcolumns": [
+    {
+      "col": "title",
+      "id": "fld_sr_name",
+      "name": "Shift Name",
+      "required": true,
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol1",
+      "entityType": "workforce/driver",
+      "id": "fld_sr_worker",
+      "name": "Assigned Worker",
+      "refModule": "Entity",
+      "type": "SingleReference"
+    },
+    {
+      "col": "systemcol2",
+      "id": "fld_sr_date",
+      "name": "Shift Date",
+      "required": true,
+      "type": "Date"
+    },
+    {
+      "col": "systemcol3",
+      "id": "fld_sr_start",
+      "name": "Start Time",
+      "type": "DateTime"
+    },
+    {
+      "col": "systemcol4",
+      "id": "fld_sr_end",
+      "name": "End Time",
+      "type": "DateTime"
+    },
+    {
+      "col": "systemcol5",
+      "id": "fld_sr_zone",
+      "name": "Zone",
+      "type": "SmallText"
+    },
+    {
+      "col": "status",
+      "id": "fld_sr_status",
+      "listValues": [
+        "Scheduled",
+        "In Progress",
+        "Completed",
+        "Missed"
+      ],
+      "name": "Status",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "tags",
+      "id": "fld_sr_tags",
+      "name": "Tags",
+      "type": "tags"
+    }
+  ],
+  "uiConfig": {
+    "filters": [
+      {
+        "col": "status",
+        "icon": "status",
+        "id": "flt_sr_status",
+        "kind": "status",
+        "optionDot": "status",
+        "optionsFrom": "statusList",
+        "order": 1,
+        "showCounts": true
+      },
+      {
+        "col": "systemcol5",
+        "icon": "map-pin",
+        "id": "flt_sr_zone",
+        "kind": "checkbox-group",
+        "order": 2
+      }
+    ],
+    "filtersPanel": {
+      "clearAll": true,
+      "title": "Filters",
+      "width": 448
+    },
+    "icon": "calendar",
+    "profile": {
+      "details": [
+        {
+          "col": "systemcol1",
+          "component": {
+            "name": "LinkView"
+          },
+          "id": "fld_sr_worker",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "status",
+          "component": {
+            "name": "StatusList"
+          },
+          "id": "fld_sr_status",
+          "order": 1,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol2",
+          "component": {
+            "name": "DateView"
+          },
+          "id": "fld_sr_date",
+          "order": 2,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol5",
+          "id": "fld_sr_zone",
+          "order": 2,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol3",
+          "id": "fld_sr_start",
+          "order": 3,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol4",
+          "id": "fld_sr_end",
+          "order": 3,
+          "pos": "right"
+        }
+      ],
+      "sections": [],
+      "title": {
+        "col": "title",
+        "id": "fld_sr_name",
+        "pos": "left"
+      }
+    },
+    "search": {
+      "columns": [
+        "title",
+        "systemcol5"
+      ]
+    },
+    "statusList": [
+      {
+        "color": "#0284c7",
+        "id": "sts_sr_sched",
+        "key": "Scheduled",
+        "label": "Scheduled"
+      },
+      {
+        "color": "#f79009",
+        "id": "sts_sr_prog",
+        "key": "In Progress",
+        "label": "In Progress"
+      },
+      {
+        "color": "#16a34a",
+        "id": "sts_sr_done",
+        "key": "Completed",
+        "label": "Completed"
+      },
+      {
+        "color": "#dc2626",
+        "id": "sts_sr_miss",
+        "key": "Missed",
+        "label": "Missed"
+      }
+    ]
+  },
+  "uidPrefix": "SR",
+  "views": [
+    "list",
+    "calendar"
+  ]
+}

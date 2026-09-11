@@ -1,0 +1,5 @@
+[
+  { "id": "u_admin", "name": "Avery Stone", "email": "avery@fams.example", "roles": ["admin"], "persona": "Administrator" },
+  { "id": "u_dispatcher", "name": "Dana Reyes", "email": "dana@fams.example", "roles": ["dispatcher"], "persona": "Dispatcher" },
+  { "id": "u_superadmin", "name": "Sam Okafor", "email": "sam@fams.example", "roles": ["superadmin"], "persona": "Super Admin" }
+]

@@ -1,0 +1,56 @@
+{
+  "$schema": "../../schemas/EntityModuleConfig.schema.json",
+  "kind": "entity",
+  "code": "crm/companies",
+  "name": "Companies",
+  "uidPrefix": "C",
+  "systemcolumns": [
+    { "id": "fld_title", "col": "title", "name": "Company", "type": "SmallText", "required": true },
+    { "id": "fld_status", "col": "status", "name": "Status", "type": "SingleSelect", "listValues": ["Customer", "Prospect", "Churned"] },
+    { "id": "fld_systemcol1", "col": "systemcol1", "name": "Industry", "type": "SmallText" },
+    { "id": "fld_systemcol2", "col": "systemcol2", "name": "Owner", "type": "Assignee" },
+    { "id": "fld_systemcol3", "col": "systemcol3", "name": "ARR", "type": "SmallText" }
+  ],
+  "uiConfig": {
+    "statusList": [
+      { "id": "sts_customer", "key": "Customer", "label": "Customer", "color": "#16a34a" },
+      { "id": "sts_prospect", "key": "Prospect", "label": "Prospect", "color": "#0072d6" },
+      { "id": "sts_churned", "key": "Churned", "label": "Churned", "color": "#94a3b8" }
+    ],
+    "profile": {
+      "title": { "id": "fld_title", "col": "title", "pos": "left" },
+      "details": [
+        { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "pos": "left", "order": 1, "component": { "name": "LinkView" } },
+        { "id": "fld_status", "col": "status", "pos": "right", "order": 1, "component": { "name": "StatusList" } },
+        { "id": "fld_systemcol1", "col": "systemcol1", "pos": "left", "order": 2 },
+        { "id": "fld_systemcol2", "col": "systemcol2", "pos": "right", "order": 2, "component": { "name": "AssigneeList" } },
+        { "id": "fld_systemcol3", "col": "systemcol3", "pos": "left", "order": 3 }
+      ],
+      "sections": [],
+      "overview": [
+        { "kind": "gauge", "title": "Account Health", "span": 4, "value": 78 },
+        { "kind": "donut", "title": "Deals by Stage", "span": 4, "centerValue": "12", "data": [
+          { "name": "Open", "value": 7, "color": "var(--status-info)" },
+          { "name": "Won", "value": 3, "color": "var(--status-success)" },
+          { "name": "Lost", "value": 2, "color": "var(--status-error)" }
+        ] },
+        { "kind": "bar", "title": "Monthly ARR (k AED)", "span": 4, "xKey": "m", "series": [{ "dataKey": "v", "color": "var(--primary)", "name": "ARR" }], "data": [
+          { "m": "Jan", "v": 40 }, { "m": "Feb", "v": 52 }, { "m": "Mar", "v": 48 }, { "m": "Apr", "v": 61 }, { "m": "May", "v": 70 }, { "m": "Jun", "v": 66 }
+        ] }
+      ]
+    },
+    "filters": [
+      { "id": "flt_status", "col": "status", "order": 1 },
+      { "id": "flt_systemcol1", "col": "systemcol1", "order": 2 }
+    ],
+    "search": { "columns": ["title", "systemcol1", "systemcol2"] }
+  },
+  "listcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "component": { "name": "TextView" } },
+    { "id": "fld_title", "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "id": "fld_status", "col": "status", "component": { "name": "StatusList" } },
+    { "id": "fld_systemcol1", "col": "systemcol1", "component": { "name": "TextView" } },
+    { "id": "fld_systemcol2", "col": "systemcol2", "component": { "name": "AssigneeList" } },
+    { "id": "fld_systemcol3", "col": "systemcol3", "component": { "name": "TextView" } }
+  ]
+}

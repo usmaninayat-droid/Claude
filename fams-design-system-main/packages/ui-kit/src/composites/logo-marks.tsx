@@ -1,0 +1,166 @@
+import { useId, type ComponentType, type SVGProps } from 'react'
+import { cn } from '../lib/cn'
+import type { Tenant } from './Logo'
+
+/**
+ * logo-marks.tsx — inline vector lockups for `Logo`'s `variant` prop.
+ *
+ * Source (2026-09-07): `fams-logo-horizontal.svg` (hex-cube mark + "FAMS" +
+ * the "BY FALKENHERZ" byline), copied verbatim into
+ * `assets/logos/fams/logo-horizontal.svg` for provenance/reuse by non-React
+ * consumers. Transcribed here as JSX (root CLAUDE.md convention: ui-kit
+ * embeds brand art as code rather than importing raw SVG files — see
+ * `domain/map/poi-marker-art.ts`/`weather-station-art.ts`) so it ships with
+ * `@fams/ui-kit` and scales crisply at any size via `h-full w-auto`.
+ *
+ * Two deltas from the source file, both fixed here (not upstream — this
+ * repo doesn't own the demo environment's copy):
+ * - `viewBox` cropped from `0 0 86 28` to `4 0 86 28` — the artwork's
+ *   leftmost path starts at x=4, so the raw viewBox left a ~4px empty gap;
+ *   this crops it so the mark sits flush at the start edge.
+ * - The four big "FAMS" letter paths (originally `fill="#3C3C3C"`, near-black)
+ *   use `fill="currentColor"` instead, and the component sets `text-foreground`
+ *   as the default color context — so the lettering follows the DS's existing
+ *   light/dark `--color-foreground` token swap (`:root[data-theme="dark"]` in
+ *   `@fams/tokens`, the same mechanism the showcase header's theme toggle
+ *   already writes) instead of a baked-in dark-mode file variant. The blue
+ *   hex-cube mark (gradients below) and the smaller "BY FALKENHERZ" byline
+ *   (`#438ECC`) are untouched in both themes.
+ *
+ * Gradient ids are re-namespaced per instance via `useId()` — the source file
+ * hardcodes ids ("paint0_linear_5104_10565", …) that would collide if two
+ * `<Logo variant="horizontal">` instances rendered on the same page (e.g. a
+ * showcase Gallery). The gradient/byline hex fills are the artwork's own
+ * brand colors (licensed asset content, not component styling) — root
+ * CLAUDE.md rule 2 governs component style values, not logo art, same as
+ * every other file already committed under `assets/logos/`.
+ */
+
+/** Per-tenant inline horizontal lockups for `Logo`'s `variant="horizontal"`. */
+export const HORIZONTAL_LOGO_MARKS: Partial<Record<Tenant, ComponentType<SVGProps<SVGSVGElement>>>> = {
+  fams: FamsHorizontalMark,
+}
+
+/**
+ * Brand lockup colors — fixed hex values transcribed verbatim from the
+ * licensed FAMS logo artwork (see file header). These are licensed brand
+ * asset content, not theme values, so root CLAUDE.md rule 2 doesn't apply to
+ * them (same reasoning as the file-header note) — but `scripts/lint-tokens.mjs`
+ * can't tell "brand art" from "component styling" by itself, so each constant
+ * below carries an explicit `// token-exempt:` directive. Pulling the hex out
+ * to named constants here (rather than scattering the directive across ~30
+ * JSX attribute lines, which the line-scoped exemption isn't shaped for)
+ * keeps the JSX below free of raw hex entirely.
+ */
+const BRAND_BLUE_DARK = '#1595F2' // token-exempt: brand lockup artwork — fixed brand colors, not theme tokens
+const BRAND_BLUE_LIGHT = '#00BFFB' // token-exempt: brand lockup artwork — fixed brand colors, not theme tokens
+const BRAND_CUBE_SHADOW = '#1D1D1B' // token-exempt: brand lockup artwork — fixed brand colors, not theme tokens
+const BRAND_CUBE_HIGHLIGHT = '#119FFF' // token-exempt: brand lockup artwork — fixed brand colors, not theme tokens
+const BRAND_BYLINE = '#438ECC' // token-exempt: brand lockup artwork — fixed brand colors, not theme tokens
+
+function FamsHorizontalMark({ className, ...props }: SVGProps<SVGSVGElement>) {
+  const uid = useId().replace(/:/g, '')
+  const id = (n: string) => `fams-h-${n}-${uid}`
+  return (
+    <svg
+      viewBox="4 0 86 28"
+      fill="none"
+      role="img"
+      aria-label="FAMS"
+      {...props}
+      className={cn('text-foreground', className)}
+    >
+
+      <path d="M12.1943 4.16134L15.7948 6.30335L22.6907 10.3938L22.6807 10.3987H22.6857L23.9934 9.5747V8.96412C23.9934 8.45778 23.7258 7.98867 23.2883 7.72805L13.9795 2.20547C13.5094 1.925 12.9194 1.93493 12.4568 2.22781L12.1943 2.39411V4.16382V4.16134Z" fill={`url(#${id('paint0')})`}/>
+      <path d="M22.5333 17.2993L12.1945 23.8371L10.7468 24.7529L12.1945 25.6341L12.4445 25.788C12.9171 26.0759 13.5146 26.0709 13.9847 25.7731L23.326 19.8534C23.7435 19.5878 23.996 19.1311 23.996 18.6396V18.1879L22.5333 17.2993Z" fill={`url(#${id('paint1')})`}/>
+      <path d="M10.7467 24.7529L10.2766 24.4675C9.84657 24.2069 9.58404 23.7402 9.58404 23.2413V21.7595L12.1919 20.109V23.837L10.7442 24.7529H10.7467ZM10.7542 3.30545L10.2566 3.62067C9.83907 3.88377 9.58654 4.34295 9.58654 4.83439V18.6892L12.1944 17.0387V2.39453L10.7542 3.30545Z" fill={`url(#${id('paint2')})`}/>
+      <path d="M4.00003 8.36367V19.8357C4.00003 20.3371 4.26257 20.8013 4.69262 21.0619L5.2702 21.4143L6.61038 20.5679V7.64387L6.61788 7.64884V5.92133L4.67012 7.15243C4.25256 7.41552 4.00003 7.87222 4.00003 8.36367Z" fill={`url(#${id('paint3')})`}/>
+      <path d="M23.9953 9.57764V11.8562C23.9953 12.3476 23.7428 12.8043 23.3252 13.0699L22.6126 13.5216L21.97 13.9287L19.4947 12.427L22.6876 10.4091L23.9953 9.58012V9.57764ZM17.0468 13.9709L17.0393 13.9758L12.1962 17.0461V17.0387L9.58834 18.6893V18.7017L6.62044 20.5806L6.61294 20.5856V20.5707L5.27276 21.4171L6.62044 22.2386L6.97049 22.4521C7.44305 22.74 8.04063 22.735 8.5082 22.4397L9.58584 21.7571L12.1937 20.1065L19.5222 15.4725L17.0468 13.9709Z" fill={`url(#${id('paint4')})`}/>
+      <path d="M9.58636 9.44575L6.61846 7.64626V5.91875L6.9085 5.73508C7.37606 5.43971 7.97114 5.43475 8.44371 5.72018L9.58386 6.41268V9.44575H9.58636ZM21.9655 13.9283L21.973 13.9234L19.4977 12.4217H19.4927L12.1992 7.99375V11.0268L17.0499 13.9705L19.5252 15.4722L22.5356 17.299L23.9983 18.1851V16.3732V15.9686C23.9983 15.4672 23.7358 15.0031 23.3057 14.74L21.968 13.9259L21.9655 13.9283Z" fill={`url(#${id('paint5')})`}/>
+      <path opacity="0.25" d="M19.5223 15.4748L17.0344 13.9731L15.9543 14.6656L18.3771 16.202L19.5198 15.4773L19.5223 15.4748Z" fill={`url(#${id('paint6')})`}/>
+      <path opacity="0.3" d="M23.9958 18.1854L22.5281 17.2993L21.4479 17.9918C21.4479 17.9918 23.6857 19.5232 23.7482 19.4438C24.0508 19.0442 23.9958 18.1879 23.9958 18.1879V18.1854Z" fill={`url(#${id('paint7')})`}/>
+      <path opacity="0.7" d="M10.751 24.7501L12.1937 23.8218V22.5063C12.1937 22.5063 9.69833 23.802 9.74584 23.8938C9.99587 24.3927 10.7535 24.7501 10.7535 24.7501H10.751Z" fill={`url(#${id('paint8')})`}/>
+      <path opacity="0.25" d="M12.1943 7.99365V11.0267L13.3619 11.7366V8.70352L12.1943 7.99365Z" fill={`url(#${id('paint9')})`}/>
+      <path opacity="0.4" d="M12.1862 2.3993L12.1937 4.16156L13.3739 4.86398C13.3739 4.86398 13.5164 2.02947 13.4164 2.01458C12.7838 1.91033 12.1862 2.3993 12.1862 2.3993Z" fill={`url(#${id('paint10')})`}/>
+      <path opacity="0.4" d="M6.61858 5.91871L6.61358 7.64622L7.82624 8.37843C7.82624 8.37843 7.92376 5.52903 7.82374 5.51662C7.24116 5.43471 6.61858 5.92119 6.61858 5.92119V5.91871Z" fill={`url(#${id('paint11')})`}/>
+      <path opacity="0.4" d="M5.30545 21.4168L6.61063 20.5704L6.61813 19.1631C6.61813 19.1631 4.2178 20.5679 4.27031 20.6523C4.49534 21.0122 5.30545 21.4168 5.30545 21.4168Z" fill={`url(#${id('paint12')})`}/>
+      <path opacity="0.2" d="M23.9929 9.57969L22.6902 10.3963L21.3825 9.61196C21.3825 9.61196 23.7828 8.21456 23.8328 8.30391C24.0429 8.67374 23.9954 9.58217 23.9954 9.58217L23.9929 9.57969Z" fill={`url(#${id('paint13')})`}/>
+      <path d="M29.6157 24.2393C29.6157 24.7236 29.2316 25.0004 28.5025 25.0004H27.0441V22.2104H28.4106C29.1119 22.2104 29.4737 22.501 29.4737 22.9356C29.4763 23.0619 29.4429 23.1863 29.3774 23.2946C29.3119 23.4028 29.217 23.4904 29.1036 23.5473C29.2546 23.5878 29.3875 23.678 29.4804 23.8031C29.5734 23.9282 29.6211 24.081 29.6157 24.2365M27.6898 22.6948V23.3535H28.3355C28.65 23.3535 28.8225 23.24 28.8225 23.0214C28.8225 22.8027 28.65 22.6948 28.3355 22.6948H27.6898ZM28.9672 24.1728C28.9672 23.9376 28.7863 23.8268 28.4496 23.8268H27.6898V24.516H28.4468C28.7835 24.516 28.9644 24.4109 28.9644 24.1728" fill={BRAND_BYLINE}/>
+      <path d="M33.075 24.0123V25.0004H32.4265V24.004L31.3384 22.2104H32.0286L32.7772 23.4504L33.5286 22.2104H34.166L33.075 24.0123Z" fill={BRAND_BYLINE}/>
+      <path d="M39.5762 22.7308V23.467H40.8731V23.9846H39.5762V25.0004H38.925V22.2104H41.0456V22.7308H39.5762Z" fill={BRAND_BYLINE}/>
+      <path d="M44.8946 24.4026H43.5921L43.3444 25.0004H42.6793L43.9289 22.2104H44.5718L45.8269 25.0004H45.1451L44.8946 24.4026ZM44.6914 23.9126L44.2461 22.8442L43.8009 23.9126H44.6914Z" fill={BRAND_BYLINE}/>
+      <path d="M47.7973 22.2104H48.4458V24.4745H49.8512V25.0004H47.7973V22.2104Z" fill={BRAND_BYLINE}/>
+      <path d="M52.9153 23.9043L52.5396 24.2974V25.0004H51.894V22.2104H52.5396V23.5141L53.7809 22.2104H54.5045L53.3411 23.4559L54.5713 25.0004H53.8143L52.9153 23.9043Z" fill={BRAND_BYLINE}/>
+      <path d="M58.7096 24.4828V25.0004H56.5389V22.2104H58.6596V22.7308H57.1845V23.3342H58.487V23.8379H57.1845V24.4828H58.7096Z" fill={BRAND_BYLINE}/>
+      <path d="M63.477 22.2104V25.0004H62.9454L61.5456 23.3065V25.0004H60.9055V22.2104H61.4426L62.8369 23.9043V22.2104H63.477Z" fill={BRAND_BYLINE}/>
+      <path d="M68.3946 22.2104V25.0004H67.7462V23.8573H66.4688V25.0004H65.8203V22.2104H66.4688V23.312H67.7462V22.2104H68.3946Z" fill={BRAND_BYLINE}/>
+      <path d="M72.9088 24.4828V25.0004H70.738V22.2104H72.8587V22.7308H71.3836V23.3342H72.6861V23.8379H71.3836V24.4828H72.9088Z" fill={BRAND_BYLINE}/>
+      <path d="M76.8913 25.0004L76.3514 24.2226H75.753V25.0004H75.1046V22.2104H76.318C77.0694 22.2104 77.537 22.5979 77.537 23.2234C77.5449 23.4115 77.4937 23.5974 77.3904 23.7551C77.2871 23.9129 77.137 24.0347 76.9609 24.1036L77.5898 25.0004H76.8913ZM76.279 22.7363H75.7502V23.7106H76.279C76.677 23.7106 76.8774 23.5251 76.8774 23.2234C76.8774 22.9217 76.677 22.7363 76.279 22.7363Z" fill={BRAND_BYLINE}/>
+      <path d="M82.001 24.4745V25.0004H79.5491V24.5825L81.0881 22.7363H79.5797V22.2104H81.9397V22.6311L80.4063 24.4745H82.001Z" fill={BRAND_BYLINE}/>
+      <path d="M80.5008 19.5033C80.156 19.5014 79.8226 19.3808 79.5572 19.162C79.2917 18.9432 79.1107 18.6397 79.0448 18.3031C78.979 17.9665 79.0324 17.6177 79.1959 17.3159C79.3595 17.014 79.6231 16.7779 79.942 16.6475C80.2609 16.5172 80.6153 16.5007 80.945 16.6009C81.2747 16.7011 81.5593 16.9118 81.7505 17.1972C81.9416 17.4825 82.0275 17.8249 81.9935 18.1661C81.9595 18.5073 81.8077 18.8263 81.5639 19.0687C81.4251 19.2084 81.2594 19.3188 81.0768 19.3935C80.8941 19.4681 80.6982 19.5055 80.5008 19.5033Z" fill={BRAND_BYLINE}/>
+      <path d="M27 19.8381V3.00657H39.8632L38.4105 7.01171H31.002V9.46683H37.5895L36.1367 13.472H31.002V19.8381H27Z" fill="currentColor"/>
+      <path d="M63.0238 3.0038L59.2444 13.0623L55.4734 3.0038H50.6559V12.9793L53.208 19.8381H54.6607V11.0279L58.0922 19.8381H60.4049L63.8364 11.0279V19.8381H67.8384V3.0038H63.0238Z" fill="currentColor"/>
+      <path d="M45.5156 3.0038H41.5219L35.3686 19.8381H39.5989L40.8679 16.3727H46.1696L47.4387 19.8381H51.6828L45.5156 3.0038ZM42.3262 12.3897L42.5656 11.7393L42.6658 11.432L43.5174 9.12638L44.369 11.432L44.4692 11.7393L44.7085 12.3897H42.3262Z" fill="currentColor"/>
+      <path d="M80.6321 11.6452C80.0299 10.984 79.2713 10.4826 78.4252 10.1865C77.4065 9.84191 76.3625 9.57632 75.3026 9.3921C74.6044 9.27477 73.9167 9.10262 73.2459 8.87727C72.8284 8.71396 72.6197 8.47316 72.6197 8.15208C72.6197 7.47672 73.321 7.1418 74.7237 7.1418C76.3006 7.1827 77.8459 7.59132 79.235 8.33476C79.4799 8.45655 80.8742 9.11254 80.8742 9.11254V4.40712C79.9879 3.9212 79.0341 3.56862 78.0439 3.36086C76.9694 3.1225 75.8718 3.00275 74.771 3.0038C73.3612 2.96612 71.958 3.20891 70.6437 3.71792C70.2031 3.90315 69.7833 4.13417 69.3914 4.40712V12.2153C69.6885 12.3998 70.0037 12.5537 70.3321 12.6748C71.3518 13.0218 72.3941 13.2992 73.4518 13.5052C74.1631 13.6342 74.8629 13.8193 75.5447 14.0588C75.9705 14.2276 76.182 14.4822 76.182 14.8199C76.1797 14.9658 76.1315 15.1073 76.0441 15.2244C75.9568 15.3416 75.8346 15.4286 75.695 15.4732C75.1754 15.6497 74.6262 15.7239 74.078 15.6918C73.1463 15.6848 72.2201 15.5498 71.3256 15.2905C70.6609 15.1052 70.0137 14.8626 69.3914 14.5653V19.1904C69.6252 19.2569 69.8617 19.3233 70.1122 19.3842C71.3964 19.6846 72.7115 19.8351 74.0307 19.8326C75.4409 19.8746 76.8449 19.6316 78.158 19.1185C78.2387 19.0853 78.3055 19.0437 78.3834 19.0078C78.2768 18.7312 78.2221 18.4376 78.222 18.1414C78.2213 17.8221 78.284 17.5057 78.4065 17.2105C78.529 16.9154 78.709 16.6472 78.936 16.4214C79.1631 16.1955 79.4328 16.0166 79.7295 15.8947C80.0263 15.7728 80.3444 15.7105 80.6655 15.7112C80.9026 15.7138 81.1379 15.7511 81.364 15.8219C81.5002 15.3646 81.5687 14.89 81.5672 14.4131C81.5672 13.2487 81.2546 12.3261 80.6293 11.6452" fill="currentColor"/>
+      <defs>
+      <linearGradient id={id('paint0')} x1="8.08871" y1="-0.033342" x2="21.4452" y2="8.36214" gradientUnits="userSpaceOnUse">
+      <stop stopColor={BRAND_BLUE_DARK}/>
+      <stop offset="1" stopColor={BRAND_BLUE_LIGHT}/>
+      </linearGradient>
+      <linearGradient id={id('paint1')} x1="10.7468" y1="21.6479" x2="23.996" y2="21.6479" gradientUnits="userSpaceOnUse">
+      <stop stopColor={BRAND_BLUE_LIGHT}/>
+      <stop offset="1" stopColor={BRAND_BLUE_DARK}/>
+      </linearGradient>
+      <linearGradient id={id('paint2')} x1="11.0017" y1="27.3864" x2="10.8465" y2="6.75549" gradientUnits="userSpaceOnUse">
+      <stop stopColor={BRAND_BLUE_DARK}/>
+      <stop offset="1" stopColor={BRAND_BLUE_LIGHT}/>
+      </linearGradient>
+      <linearGradient id={id('paint3')} x1="5.2652" y1="24.6758" x2="5.33912" y2="5.50434" gradientUnits="userSpaceOnUse">
+      <stop stopColor={BRAND_BLUE_DARK}/>
+      <stop offset="1" stopColor={BRAND_BLUE_LIGHT}/>
+      </linearGradient>
+      <linearGradient id={id('paint4')} x1="7.01799" y1="21.9209" x2="26.7544" y2="9.04338" gradientUnits="userSpaceOnUse">
+      <stop stopColor={BRAND_BLUE_LIGHT}/>
+      <stop offset="1" stopColor={BRAND_BLUE_DARK}/>
+      </linearGradient>
+      <linearGradient id={id('paint5')} x1="2.03534" y1="3.61044" x2="20.3823" y2="14.5627" gradientUnits="userSpaceOnUse">
+      <stop stopColor={BRAND_BLUE_DARK}/>
+      <stop offset="1" stopColor={BRAND_BLUE_LIGHT}/>
+      </linearGradient>
+      <linearGradient id={id('paint6')} x1="18.1696" y1="14.6954" x2="17.228" y2="15.5213" gradientUnits="userSpaceOnUse">
+      <stop stopColor={BRAND_CUBE_SHADOW} stopOpacity="0.5"/>
+      <stop offset="1" stopColor={BRAND_CUBE_HIGHLIGHT} stopOpacity="0"/>
+      </linearGradient>
+      <linearGradient id={id('paint7')} x1="23.3957" y1="17.8007" x2="22.4312" y2="18.9221" gradientUnits="userSpaceOnUse">
+      <stop stopColor={BRAND_CUBE_SHADOW} stopOpacity="0.5"/>
+      <stop offset="1" stopColor={BRAND_CUBE_HIGHLIGHT} stopOpacity="0"/>
+      </linearGradient>
+      <linearGradient id={id('paint8')} x1="-579.298" y1="23.3431" x2="-577.973" y2="23.3431" gradientUnits="userSpaceOnUse">
+      <stop stopColor={BRAND_CUBE_SHADOW} stopOpacity="0.5"/>
+      <stop offset="1" stopColor={BRAND_CUBE_HIGHLIGHT} stopOpacity="0"/>
+      </linearGradient>
+      <linearGradient id={id('paint9')} x1="12.3542" y1="10.0272" x2="13.5247" y2="10.0272" gradientUnits="userSpaceOnUse">
+      <stop stopColor={BRAND_CUBE_SHADOW} stopOpacity="0.5"/>
+      <stop offset="1" stopColor={BRAND_CUBE_HIGHLIGHT} stopOpacity="0"/>
+      </linearGradient>
+      <linearGradient id={id('paint10')} x1="13.1124" y1="3.70461" x2="11.8429" y2="3.69722" gradientUnits="userSpaceOnUse">
+      <stop stopColor={BRAND_CUBE_HIGHLIGHT} stopOpacity="0"/>
+      <stop offset="0.99" stopColor={BRAND_CUBE_SHADOW} stopOpacity="0.5"/>
+      </linearGradient>
+      <linearGradient id={id('paint11')} x1="6.78333" y1="6.93774" x2="8.0394" y2="6.93774" gradientUnits="userSpaceOnUse">
+      <stop stopColor={BRAND_CUBE_SHADOW} stopOpacity="0.5"/>
+      <stop offset="1" stopColor={BRAND_CUBE_HIGHLIGHT} stopOpacity="0"/>
+      </linearGradient>
+      <linearGradient id={id('paint12')} x1="6.16557" y1="21.3349" x2="5.17711" y2="19.3509" gradientUnits="userSpaceOnUse">
+      <stop stopColor={BRAND_CUBE_SHADOW} stopOpacity="0.5"/>
+      <stop offset="1" stopColor={BRAND_CUBE_HIGHLIGHT} stopOpacity="0"/>
+      </linearGradient>
+      <linearGradient id={id('paint13')} x1="23.2903" y1="9.97434" x2="22.627" y2="8.97206" gradientUnits="userSpaceOnUse">
+      <stop stopColor={BRAND_CUBE_SHADOW} stopOpacity="0.5"/>
+      <stop offset="1" stopColor={BRAND_CUBE_HIGHLIGHT} stopOpacity="0"/>
+      </linearGradient>
+      </defs>
+      
+    </svg>
+  )
+}

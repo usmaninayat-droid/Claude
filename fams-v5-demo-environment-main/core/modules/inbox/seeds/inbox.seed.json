@@ -1,0 +1,99 @@
+[
+  {
+    "id": "NTF-01",
+    "uniqueidentifier": "NTF-01",
+    "title": "Approval needed: Fleet maintenance",
+    "snippet": "Vehicle AJ-2341 scheduled maintenance requires your approval before dispatch.",
+    "timestamp": "2026-08-15T08:45:00",
+    "read": false,
+    "kind": "approval",
+    "reference": "TKT-01",
+    "severity": "Critical",
+    "due": "Today",
+    "module": "Ticketing",
+    "assignedToMe": true
+  },
+  {
+    "id": "NTF-02",
+    "uniqueidentifier": "NTF-02",
+    "title": "Minor Incident requires attention",
+    "snippet": "Hazardous waste spill reported at Industrial Zone, Lot 3. Escalated to your team.",
+    "timestamp": "2026-08-15T08:20:00",
+    "read": false,
+    "kind": "notification",
+    "reference": "TKT-02",
+    "severity": "Minor",
+    "module": "Ticketing",
+    "reminder": true
+  },
+  {
+    "id": "NTF-03",
+    "uniqueidentifier": "NTF-03",
+    "title": "Weekly compliance report generated",
+    "snippet": "Your scheduled compliance report for Zone 4 is ready for review.",
+    "timestamp": "2026-08-15T00:01:00",
+    "read": false,
+    "kind": "system",
+    "reference": "TKT-03",
+    "module": "Telematics"
+  },
+  {
+    "id": "NTF-04",
+    "uniqueidentifier": "NTF-04",
+    "title": "Vehicle maintenance plan updated",
+    "snippet": "Ahmed K. updated the Vehicle maintenance plan.",
+    "timestamp": "2026-08-14T11:32:00",
+    "read": false,
+    "kind": "notification",
+    "reference": "TKT-04",
+    "module": "Ticketing",
+    "reminder": true
+  },
+  {
+    "id": "NTF-05",
+    "uniqueidentifier": "NTF-05",
+    "title": "Ahmed K. mentioned you in Pipeline",
+    "snippet": "@you Please review the updated waste collection schedule for next week.",
+    "timestamp": "2026-08-14T12:01:00",
+    "read": false,
+    "kind": "mention",
+    "avatarSrc": "https://picsum.photos/seed/ahmedk/56/56",
+    "reference": "TKT-05",
+    "module": "Ticketing",
+    "assignedToMe": true
+  },
+  {
+    "id": "NTF-06",
+    "uniqueidentifier": "NTF-06",
+    "title": "Telematics alert: Vehicle AJ-1189 exceeded speed limit",
+    "snippet": "Vehicle AJ-1189 recorded 85 km/h in a 60 km/h zone near Al Quoz Industrial Area.",
+    "timestamp": "2026-08-14T21:23:00",
+    "read": false,
+    "kind": "system",
+    "severity": "Critical",
+    "module": "Telematics"
+  },
+  {
+    "id": "NTF-07",
+    "uniqueidentifier": "NTF-07",
+    "title": "Vehicle maintenance plan updated",
+    "snippet": "Ahmed K. updated the Vehicle maintenance plan.",
+    "timestamp": "2026-04-12T00:01:00",
+    "read": true,
+    "kind": "notification",
+    "reference": "TKT-06",
+    "module": "Ticketing"
+  },
+  {
+    "id": "NTF-08",
+    "uniqueidentifier": "NTF-08",
+    "title": "Ahmed K. mentioned you in Pipeline",
+    "snippet": "@you Please review the updated waste collection schedule for next week.",
+    "timestamp": "2026-04-12T00:01:00",
+    "read": true,
+    "kind": "mention",
+    "avatarSrc": "https://picsum.photos/seed/ahmedk/56/56",
+    "reference": "TKT-07",
+    "module": "Ticketing"
+  }
+]

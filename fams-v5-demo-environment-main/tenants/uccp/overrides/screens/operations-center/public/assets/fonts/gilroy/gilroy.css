@@ -1,0 +1,97 @@
+/* Gilroy-Extrabold Regular */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 900;
+  src: url('Gilroy-Extrabold.woff') format('woff');
+}
+
+/* Gilroy-Bold Regular */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 800 700;
+  src: url('Gilroy-Bold.woff') format('woff');
+}
+
+/* Gilroy-Semibold Regular */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600 500;
+  src: url('Gilroy-Semibold.woff') format('woff');
+}
+
+/* Gilroy-Medium Regular */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 400 300 normal;
+  src: url('Gilroy-Medium.woff') format('woff');
+}
+
+/* Gilroy-Regular Regular */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 200;
+  src: url('Gilroy-Regular.woff') format('woff');
+}
+
+/* Gilroy-Light Regular */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 100;
+  src: url('Gilroy-Light.woff') format('woff');
+}
+
+/**********************************/
+
+/* Gilroy-Extrabold Italic */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 900;
+  src: url('Gilroy-ExtraboldItalic.woff') format('woff');
+}
+
+/* Gilroy-Bold Italic */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 800 700;
+  src: url('Gilroy-BoldItalic.woff') format('woff');
+}
+
+/* Gilroy-Semibold Italic */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 600 500;
+  src: url('Gilroy-SemiboldItalic.woff') format('woff');
+}
+
+/* Gilroy-Medium Italic */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 400 300;
+  src: url('Gilroy-MediumItalic.woff') format('woff');
+}
+
+/* Gilroy-Regular Italic */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 200;
+  src: url('Gilroy-RegularItalic.woff') format('woff');
+}
+
+/* Gilroy-Light Italic */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 100;
+  src: url('Gilroy-LightItalic.woff') format('woff');
+}

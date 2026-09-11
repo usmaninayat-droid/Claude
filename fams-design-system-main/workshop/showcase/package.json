@@ -1,0 +1,38 @@
+{
+  "name": "@fams/showcase",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 6100 --strictPort",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 6100 --strictPort",
+    "typecheck": "tsc --noEmit",
+    "e2e": "playwright test",
+    "test:visual": "playwright test --project=visual",
+    "test:visual:update": "playwright test --project=visual --update-snapshots",
+    "test:visual-all": "playwright test --project=visual-all",
+    "test:visual-all:update": "playwright test --project=visual-all --update-snapshots"
+  },
+  "dependencies": {
+    "@fams/tokens": "workspace:*",
+    "@fams/ui-kit": "workspace:*",
+    "@fams/v5-composer": "workspace:*",
+    "@fams/v5-templates": "workspace:*",
+    "cmdk": "^1.1.1",
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@tailwindcss/vite": "^4",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@visual-regression-tracker/agent-playwright": "catalog:",
+    "@vitejs/plugin-react": "^4",
+    "react-docgen-typescript": "^2.4.0",
+    "tailwindcss": "^4",
+    "typescript": "catalog:",
+    "vite": "^6"
+  }
+}

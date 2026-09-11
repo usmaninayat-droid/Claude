@@ -8,15 +8,14 @@
   ============================================================================
   WFMC BLUE REVIEW PROTOTYPE — for internal review 13 Aug 2026
   ----------------------------------------------------------------------------
-  Covers the six BLUE (committed) workstreams from the 06-Aug design sync,
+  Covers the five BLUE (committed) workstreams from the 06-Aug design sync,
   plus the Global Shift entity that blocks four of them.
     1. Global Shift entity                     (settings)
     2. Employee Master — field alignment       (workforce)
     3. Document Expiry Alerts + Dispatch Block (alerts)
     4. Training / Skill Matrix / Materials     (compliance)
     5. Roster board + working-hours rules      (workforce)
-    6. Standby vs Reliever                     (workforce)
-    7. Attendance — two sources                (workforce)
+    6. Attendance — two sources                (workforce)
   Green (good-for-product) and Parked items are intentionally excluded.
   Blue vs Green partitioning is preserved via the topbar banner and nav tags.
   ============================================================================
@@ -75,6 +74,12 @@
   --text-body-xs:12px; --lh-body-xs:18px;
   --text-caption:12px; --lh-caption:14px;   /* platform 12px minimum */
   --lh-base:1.5;
+
+  /* ── FAMS V5 design-system tokens (Tadweer tenant) — used by roster .fcal-*/.ros-* ── */
+  --ds-primary:#22C882; --ds-border:#EAECF0; --ds-gray-300:#D0D5DD; --ds-gray-400:#98A2B3;
+  --ds-gray-600:#475467; --ds-bg:#F9FAFB; --ds-success:#12B76A; --ds-warning:#F79009;
+  --ds-error:#F04438; --ds-error-dark:#B42318; --ds-info:#0072D6; --ds-fg:#101828;
+  --ds-purple:#9E77ED; --ds-ring:#DCFAE6; --ds-fams:#0072D6; --ds-blue-light:#339CE7;
 }
 [data-theme="dark"]{
   --bg:#0C1220; --surface:#131A2A; --surface-2:#1A2338;
@@ -674,7 +679,7 @@ td.block-day::after{content:'\f023';font-family:'Font Awesome 6 Free';font-weigh
    ============================================================================ */
 .ros-screen{margin:-24px -28px -60px;min-height:100vh;background:#F7F8FA;font-family:'Gilroy',var(--font);display:flex;flex-direction:column}
 .ros-header{background:#fff;border-bottom:1px solid var(--line);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.ros-header h1{font-size:18px;font-weight:700;color:#000;margin:0;font-family:'Gilroy',var(--font)}
+.ros-header h1{font-size:18px;font-weight:700;color:var(--ds-fg);margin:0;font-family:'Gilroy',var(--font)}
 .ros-hd-sub{font-size:11.5px;color:var(--ink-3);font-weight:500;margin-top:2px}
 .ros-tab-strip{display:flex;align-items:center;gap:6px}
 .ros-tab-pill{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:4px;background:#F2F4F7;border:none;color:var(--ink);font-size:12.5px;font-weight:600;cursor:pointer;font-family:'Gilroy',var(--font)}
@@ -686,7 +691,7 @@ td.block-day::after{content:'\f023';font-family:'Font Awesome 6 Free';font-weigh
 .ros-week-nav-group{display:flex;align-items:center;gap:4px;background:#fff;border:1px solid var(--line-strong);border-radius:6px;padding:2px}
 .ros-icon-btn{width:28px;height:28px;border-radius:4px;background:transparent;border:none;color:var(--ink-2);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:11px}
 .ros-icon-btn:hover{background:var(--primary-lightest);color:var(--primary)}
-.ros-week-lbl{display:inline-flex;align-items:center;gap:6px;padding:0 12px;font-size:12.5px;font-weight:600;color:#000;white-space:nowrap;height:28px}
+.ros-week-lbl{display:inline-flex;align-items:center;gap:6px;padding:0 12px;font-size:12.5px;font-weight:600;color:var(--ds-fg);white-space:nowrap;height:28px}
 .ros-week-lbl i{color:var(--primary);font-size:11px}
 .ros-filter-group{display:flex;gap:8px}
 .ros-select{background:#fff;border:1px solid var(--line-strong);border-radius:6px;padding:8px 32px 8px 12px;font-size:12.5px;color:var(--ink);font-family:'Gilroy',var(--font);font-weight:600;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%2398A2B3' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");background-repeat:no-repeat;background-position:right 10px center;cursor:pointer;height:34px}
@@ -703,7 +708,7 @@ td.block-day::after{content:'\f023';font-family:'Font Awesome 6 Free';font-weigh
 
 .ros-board-card{margin:0 24px 16px;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
 .ros-board-hd{display:flex;align-items:flex-start;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line);gap:16px}
-.ros-board-title{font-size:15px;font-weight:700;color:#000;font-family:'Gilroy',var(--font)}
+.ros-board-title{font-size:15px;font-weight:700;color:var(--ds-fg);font-family:'Gilroy',var(--font)}
 .ros-board-sub{font-size:11.5px;color:var(--ink-3);font-weight:500;margin-top:2px;line-height:1.5}
 .ros-board-sub em{font-style:normal;color:var(--ink-3);font-size:10.5px}
 .ros-legend{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:var(--ink-2);align-items:center;max-width:520px;justify-content:flex-end}
@@ -785,6 +790,7 @@ td.block-day::after{content:'\f023';font-family:'Font Awesome 6 Free';font-weigh
 .ros-c-card:hover{box-shadow:var(--shadow-2)}
 .ros-c-card.doc{border-left-color:var(--red-500)}
 .ros-c-card.hours{border-left-color:var(--amber-500)}
+.ros-c-card.double{border-left-color:#F79009}
 
 .ros-c-emp{display:flex;gap:12px;align-items:flex-start;border-right:1px solid var(--line);padding-right:20px}
 .ros-c-av{width:44px;height:44px;border-radius:var(--radius-full);color:#fff;font-weight:700;
@@ -800,6 +806,7 @@ td.block-day::after{content:'\f023';font-family:'Font Awesome 6 Free';font-weigh
              font-size:11px;font-weight:700;letter-spacing:.02em;font-family:'Gilroy',var(--font)}
 .ros-c-badge.doc{background:var(--red-100);color:var(--red-500)}
 .ros-c-badge.hours{background:var(--amber-100);color:#B54708}
+.ros-c-badge.double{background:#FEF0C7;color:#B54708}
 .ros-c-badge.rule{background:#F2F4F7;color:var(--ink-2)}
 .ros-c-badge.day{background:var(--blue-100);color:var(--blue-500)}
 .ros-c-desc{font-size:12.5px;color:var(--ink-2);line-height:1.6}
@@ -1624,6 +1631,217 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:0;position:absolute;
 .icon-swatch:hover{border-color:var(--fams)}
 .icon-swatch.selected{border-color:var(--fams);background:var(--fams-50);box-shadow:0 0 0 2px rgba(0,114,214,.15)}
 .icon-swatch img{width:22px;height:22px;object-fit:contain;display:block}
+/* ============================================================================
+   FIGMA TOP NAV — Tadweer node 554:20353 ("Inspector Shifts" → ours: Drivers & Shifts)
+   Bar h48 · bg var(--ds-bg) · border-bottom var(--ds-gray-300) · gap-32 · px-32.
+   ============================================================================ */
+.fcal-hd-bar{height:48px;background:var(--ds-bg);border-bottom:1px solid var(--ds-gray-300);display:flex;align-items:center;gap:32px;padding:0 32px}
+.fcal-hd-title{font-family:'Gilroy',var(--font);font-weight:600;font-size:16px;line-height:18px;color:var(--ds-fg);white-space:nowrap}
+.fcal-hd-tabs{display:flex;align-items:center;gap:8px}
+.fcal-hd-tabrow{display:flex;align-items:stretch;gap:0}
+.fcal-hd-tab{height:48px;padding:0 12px;background:#fff;border:none;border-right:1px solid var(--ds-border);display:flex;align-items:center;cursor:pointer;transition:background .15s,border-color .15s}
+.fcal-hd-tab.is-active{background:transparent;border-left:1px solid var(--ds-border)}
+.fcal-hd-info{display:flex;align-items:center;gap:8px}
+.fcal-hd-ic{width:12px;height:12px;flex:0 0 12px;display:flex;align-items:center;justify-content:center}
+.fcal-hd-ic img{width:12px;height:12px;display:block;object-fit:contain}
+.fcal-hd-lbl{font-family:'Gilroy',var(--font);font-weight:600;font-size:12px;color:var(--ds-fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-flex;align-items:center;gap:6px}
+.fcal-hd-plus{width:16px;height:16px;border:none;background:transparent;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.fcal-hd-plus img{width:16px;height:16px;display:block}
+.fcal-hd-right{display:flex;align-items:center;gap:8px;margin-left:auto}
+.fcal-hd-btn.ros-secondary-btn,.fcal-hd-btn.ros-primary-btn{height:34px}
+
+/* ============================================================================
+   FIGMA CALENDAR VIEW — Tadweer "Shift Scheduling ( Calendar View )"
+   Source: Figma node 554:20313 (Tadweer – April Release), Weekly frame 554:20314.
+   Layout/spec ported 1:1; the DATA is this prototype's roster domain.
+   Geometry from Figma: left column 264px · day cell 48px header · row 154px ·
+   borders #d0d5dd · empty cell #f9fafb · chip card #fff / #eaecf0 r6 p10 gap8.
+   ============================================================================ */
+.fcal-wrap{margin:0 24px 16px}
+
+/* — toolbar row 1 · search + filter — */
+.fcal-tools{display:flex;align-items:center;justify-content:space-between;margin:0 24px 16px}
+.fcal-tools-l{display:flex;gap:12px;align-items:flex-start}
+.fcal-search{position:relative;width:367px;height:40px}
+.fcal-search input{width:100%;height:40px;border:1px solid var(--ds-gray-300);border-radius:4px;padding:0 10px 0 34px;font-family:'Gilroy',var(--font);font-size:12px;font-weight:500;color:var(--ds-fg);background:#fff;outline:none}
+.fcal-search input::placeholder{color:var(--ds-gray-400);font-weight:500}
+.fcal-search img{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;pointer-events:none}
+.fcal-filter{width:40px;height:40px;border:1px solid var(--ds-gray-300);border-radius:4px;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.fcal-filter img{width:16px;height:16px}
+
+/* — toolbar row 2 · segmented + date navigator — */
+.fcal-row2{display:flex;align-items:center;justify-content:space-between;margin:0 24px 16px}
+.fcal-row2-l{display:flex;gap:18px;align-items:center}
+.fcal-seg{background:#edf0f2;height:40px;display:flex;align-items:center;justify-content:center;padding:2px 1px;border-radius:4px}
+.fcal-seg button{height:38px;width:82px;border:none;background:none;border-radius:4px;font-family:'Gilroy',var(--font);font-size:15px;font-weight:500;color:var(--ds-primary);line-height:1.4;cursor:pointer;padding:0 16px;white-space:nowrap}
+.fcal-seg button.active{background:#fff;border:1px solid var(--ds-gray-300);font-weight:600;color:var(--ds-fg)}
+.fcal-datenav{display:flex;gap:6px;align-items:center}
+.fcal-datenav .chev{width:20px;height:20px;flex:none}
+.fcal-datenav .lbl{display:flex;gap:2px;align-items:center;font-family:'Gilroy',var(--font);font-weight:600;line-height:1.4}
+.fcal-datenav .lbl .range{font-size:18px;color:var(--ds-fg)}
+.fcal-datenav .lbl .sub{font-size:12px;color:var(--ds-gray-400)}
+
+/* — KPI cards — */
+.fcal-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:0 24px 16px}
+.fcal-kpi{background:#fff;border:1px solid var(--ds-gray-300);border-radius:5px;padding:16px;display:flex;gap:12px;align-items:center;overflow:hidden}
+.fcal-kpi .av{border-radius:30px;padding:14px;display:flex;align-items:center;flex:none}
+.fcal-kpi .av img{width:20px;height:20px;display:block}
+.fcal-kpi .txt{display:flex;flex-direction:column;align-items:flex-start;flex:1 0 0;min-width:0}
+.fcal-kpi .txt .l{font-family:'Gilroy',var(--font);font-weight:500;font-size:14px;line-height:20px;color:var(--ds-gray-600)}
+.fcal-kpi .txt .v{font-family:'Gilroy',var(--font);font-weight:600;font-size:26px;line-height:28px;color:var(--ds-fg)}
+
+/* — the grid: frozen driver column + scrollable calendar — */
+.fcal-grid{display:flex;align-items:flex-start;background:#fff;border:1px solid var(--ds-gray-300);border-radius:5px;overflow:hidden;margin:0 24px 16px}
+.fcal-left{width:264px;flex:none;display:flex;flex-direction:column}
+.fcal-left-hd{height:48px;border-bottom:1px solid var(--ds-gray-300);border-right:1px solid var(--ds-gray-300);display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 16px}
+.fcal-left-hd span{flex:1 0 0;font-family:'Gilroy',var(--font);font-weight:700;font-size:12px;letter-spacing:.96px;text-transform:uppercase;color:var(--ds-fg);opacity:.7}
+.fcal-left-body{flex:1 0 0;border-right:1px solid var(--ds-gray-300);display:flex;flex-direction:column}
+
+/* driver card — Figma "Inspectors" cell, h154 p12 gap8 */
+.fcal-emp{height:154px;border-bottom:1px solid var(--ds-gray-300);display:flex;flex-direction:column;gap:8px;padding:12px;box-sizing:border-box}
+.fcal-emp-top{display:flex;gap:6px;align-items:flex-start;min-height:32px;flex:none}
+.fcal-emp-av{width:32px;height:32px;border-radius:32px;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Gilroy',var(--font);font-weight:700;font-size:12px}
+.fcal-emp-id{display:flex;flex-direction:column;justify-content:center;font-family:'Gilroy',var(--font);font-weight:600}
+.fcal-emp-id .n{font-size:14px;line-height:17px;color:var(--ds-fg)}
+.fcal-emp-id .r{font-size:12px;line-height:14px;color:var(--ds-gray-400)}
+.fcal-emp-pill{display:inline-flex;align-items:center;justify-content:center;padding:4px;border-radius:4px;font-family:'Gilroy',var(--font);font-weight:600;font-size:10px;line-height:12px;text-transform:uppercase;white-space:nowrap;align-self:flex-start;flex:none}
+.fcal-emp-pill.good{background:#ecfdf3;color:var(--ds-success)}
+.fcal-emp-pill.warn{background:#fef3e6;color:var(--ds-warning)}
+.fcal-emp-pill.bad {background:#fef3f2;color:var(--ds-error)}
+.fcal-emp-metric{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:14px;flex:none}
+.fcal-emp-metric .k{font-family:'Gilroy',var(--font);font-weight:700;font-size:10px;line-height:12px;letter-spacing:.8px;text-transform:uppercase;color:var(--ds-gray-400);opacity:.7;white-space:nowrap}
+.fcal-emp-metric .vwrap{display:flex;gap:10px;align-items:center;width:110px}
+.fcal-emp-metric .bar{flex:1 0 0;min-width:0;height:8px;border-radius:18px;background:#ececec;position:relative;overflow:hidden}
+.fcal-emp-metric .bar i{position:absolute;inset:0 auto 0 0;border-radius:18px;background:var(--ds-success);display:block}
+.fcal-emp-metric .v{display:flex;gap:4px;align-items:center;font-family:'Gilroy',var(--font);font-weight:500;font-size:12px;line-height:14px;color:var(--ds-fg);white-space:nowrap}
+.fcal-emp-metric .v img{width:12px;height:12px;display:block}
+
+/* calendar side */
+.fcal-cal{flex:1 0 0;min-width:0;overflow-x:auto}
+.fcal-cal-inner{min-width:1050px}
+.fcal-days{display:flex;align-items:flex-start;border-bottom:1px solid var(--ds-gray-300)}
+.fcal-day{flex:1 0 0;min-width:0;height:48px;border-right:1px solid var(--ds-gray-300);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 10px;box-sizing:border-box}
+.fcal-day .in{display:flex;gap:6px;align-items:center;text-align:center;white-space:nowrap}
+.fcal-day .wd{font-family:'Gilroy',var(--font);font-weight:500;font-size:12px;line-height:1.4;color:var(--ds-gray-400)}
+.fcal-day.today .wd{color:var(--ds-primary)}
+.fcal-day .nu{font-family:'Gilroy',var(--font);font-weight:600;font-size:16px;line-height:1.4;color:var(--ds-fg)}
+.fcal-body{display:flex;align-items:flex-start}
+.fcal-col{flex:1 0 0;min-width:0;display:flex;flex-direction:column}
+
+/* a day cell — Figma "Card": bg var(--ds-bg), h154, p10, gap6 */
+.fcal-cell{height:154px;box-sizing:border-box;background:var(--ds-bg);border-bottom:1px solid var(--ds-gray-300);border-right:1px solid var(--ds-gray-300);display:flex;flex-direction:column;gap:6px;align-items:flex-start;justify-content:flex-start;padding:10px}
+.fcal-cell>.fcal-chip{flex:1 0 auto;height:100%;align-self:stretch}
+/* chip card — Figma "modal": white, border var(--ds-border), r6, p10, wrap gap8 */
+.fcal-chip{width:100%;box-sizing:border-box;background:#fff;border:1px solid var(--ds-border);border-radius:6px;padding:10px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:8px;overflow:hidden}
+.fcal-chip-item{display:flex;gap:4px;align-items:center;overflow:hidden;flex:none;max-width:100%}
+.fcal-chip-item img,.fcal-chip-item i{width:12px;height:12px;font-size:12px;line-height:12px;display:block;flex:none;color:var(--ds-gray-400,#98a2b3);text-align:center}
+.fcal-chip-item span{font-family:'Gilroy',var(--font);font-weight:500;font-size:12px;line-height:14px;color:var(--ds-fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+/* status badge — Figma spec for shift badges (morning/afternoon/night): soft tinted bg, r2px, p4-8, 12px SemiBold colored (NOT white) normal-case icon+label */
+.fcal-badge{height:22px;box-sizing:border-box;display:flex;gap:4px;align-items:center;padding:5px 6px;border-radius:3px;flex:none;font-family:'Gilroy',var(--font);font-weight:600;font-size:12px;letter-spacing:0;text-transform:none;color:#fff;white-space:nowrap;overflow:hidden}
+.fcal-badge img{width:14px;height:14px;display:block;flex:none}
+/* shift variants: new Figma spec */
+.fcal-badge.morning  {background:rgba(255,191,0,.1);border-radius:2px;padding:4px 8px;color:#FFBF00}
+.fcal-badge.afternoon{background:rgba(255,110,0,.1);border-radius:2px;padding:4px 8px;color:#FF6E00}
+.fcal-badge.night    {background:rgba(0,81,152,.1);border-radius:2px;padding:4px 8px;color:#005198}
+/* non-shift variants: keep original white text uppercase style */
+.fcal-badge.off      {background:var(--ds-gray-400);text-transform:uppercase;letter-spacing:.48px;color:#fff}
+.fcal-badge.docblock {background:var(--ds-error);text-transform:uppercase;letter-spacing:.48px;color:#fff}
+.fcal-badge.dayseven {background:var(--ds-error-dark);text-transform:uppercase;letter-spacing:.48px;color:#fff}
+
+/* ---- Official 15-status set — Figma Launch Pad node 6809:7117. Geometry verbatim from Figma
+   (matches the pre-existing .fcal-badge.solid pattern); colours assigned by severity family
+   pending designer theming (see status-spec.md). Single source of colour per status; labels
+   live in the FCAL_STATUS_LABELS map in JS (fcalStatus()). */
+.fcal-st{height:22px;box-sizing:border-box;display:inline-flex;gap:6px;align-items:center;padding:5px 6px;border-radius:3px;flex:none;overflow:hidden;font-family:'Gilroy',var(--font);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.48px;color:#fff;white-space:nowrap}
+.fcal-st.active      {background:var(--ds-success)}
+.fcal-st.inactive    {background:var(--ds-gray-400)}
+.fcal-st.resigning   {background:var(--ds-warning)}
+.fcal-st.resigned    {background:var(--ds-gray-600)}
+.fcal-st.terminated  {background:var(--ds-error-dark)}
+.fcal-st.docblock    {background:var(--ds-error)}
+.fcal-st.certblock   {background:var(--ds-error)}
+.fcal-st.otpending   {background:var(--ds-warning)}
+.fcal-st.onleave     {background:var(--ds-fams)}
+.fcal-st.leavereq    {background:var(--ds-blue-light)}
+.fcal-st.rostergap   {background:var(--ds-error)}
+.fcal-st.holiday     {background:var(--ds-purple)}
+.fcal-st.dayseven    {background:var(--ds-error-dark)}
+.fcal-st.doubleassign{background:var(--ds-error)}
+.fcal-st.absent      {background:var(--ds-error-dark)}
+
+/* — ROS-01: LOT selector (toolbar row 1) — */
+.fcal-lot{height:40px;border:1px solid var(--ds-gray-300);border-radius:4px;background:#fff;padding:0 10px;font-family:'Gilroy',var(--font);font-size:12px;font-weight:500;color:var(--ds-fg);outline:none;cursor:pointer;min-width:170px}
+.fcal-empty-state{width:100%;padding:64px 24px;text-align:center;font-family:'Gilroy',var(--font);color:var(--ds-gray-400);font-size:14px;font-weight:500}
+
+/* — ROS-02: drag & drop reassignment — */
+.fcal-cell{position:relative;transition:background .15s,box-shadow .15s}
+.fcal-cell.dragging-source{opacity:.4}
+.fcal-cell.drop-valid{box-shadow:inset 0 0 0 2px var(--ds-primary);background:#ecfdf3}
+.fcal-cell.drop-invalid{box-shadow:inset 0 0 0 2px var(--ds-error);background:#fef3f2}
+.fcal-cell.drop-invalid::after{content:'';position:absolute;inset:3px;border:1.5px dashed var(--ds-error);border-radius:4px;pointer-events:none}
+.fcal-chip{cursor:grab;transition:transform .15s,opacity .15s,box-shadow .15s}
+.fcal-chip:active{cursor:grabbing}
+.fcal-chip-ghost{position:fixed;z-index:9999;pointer-events:none;opacity:.9;box-shadow:0 8px 24px rgba(16,24,40,.18);transform:scale(1.02)}
+.fcal-badge.ot-tag{background:var(--ds-warning);margin-left:4px}
+.fcal-undo-pill{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--ds-fg);color:#fff;font-family:'Gilroy',var(--font);font-size:13px;font-weight:600;padding:10px 18px;border-radius:24px;display:flex;gap:12px;align-items:center;z-index:9999;box-shadow:0 8px 24px rgba(16,24,40,.28)}
+.fcal-undo-pill button{background:var(--ds-primary);color:var(--ds-fg);border:none;border-radius:16px;padding:6px 14px;font-family:'Gilroy',var(--font);font-weight:700;font-size:12px;cursor:pointer}
+
+/* ---- ROS-04: Daily job assignment view — hour timeline ---- */
+.fcal-d-hdrow{display:flex;width:100%}
+.fcal-d-hour{flex:1 0 0;min-width:0;height:48px;border-right:1px solid var(--ds-gray-300);display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+.fcal-d-hour .wd{font-family:'Gilroy',var(--font);font-weight:500;font-size:12px;line-height:1.4;color:var(--ds-gray-400);white-space:nowrap}
+.fcal-d-body{display:flex;flex-direction:column;width:100%}
+.fcal-d-row{position:relative;height:154px;border-bottom:1px solid var(--ds-gray-300);background:var(--ds-bg);box-sizing:border-box}
+.fcal-d-row:last-child{border-bottom:none}
+.fcal-d-gridlines{position:absolute;inset:0;display:flex;pointer-events:none}
+.fcal-d-gridlines i{flex:1 0 0;min-width:0;border-right:1px solid var(--ds-border)}
+.fcal-d-gridlines i:last-child{border-right:none}
+.fcal-d-bar{position:absolute;top:50%;transform:translateY(-50%);height:64px;box-sizing:border-box;background:#fff;border:1px solid var(--ds-border);border-radius:6px;padding:0 10px;display:flex;gap:8px;align-items:center;overflow:hidden;cursor:pointer;transition:box-shadow .2s,transform .2s}
+.fcal-d-bar:hover{box-shadow:0 4px 14px rgba(16,24,40,.12)}
+.fcal-d-off{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);text-align:center;font-family:'Gilroy',var(--font);font-size:13px;color:var(--ds-gray-400)}
+.fcal-d-blocked{position:absolute;top:50%;left:8px;right:8px;transform:translateY(-50%);height:64px;box-sizing:border-box;border:1.5px dashed var(--ds-error);border-radius:6px;display:flex;align-items:center;justify-content:center;background:rgba(240,68,56,.04)}
+.fcal-d-cont{font-family:'Gilroy',var(--font);font-size:10px;font-weight:600;color:var(--ds-gray-400);white-space:nowrap}
+.fcal-d-sent{font-family:'Gilroy',var(--font);font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--ds-success);white-space:nowrap}
+.fcal-job-grid{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:start}
+.fcal-job-l{font-family:'Gilroy',var(--font);font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--ds-gray-400);white-space:nowrap;padding-top:1px}
+.fcal-job-v{font-family:'Gilroy',var(--font);font-size:13px;color:var(--ds-fg)}
+
+/* ---- ROS-06: headcount planner + 14-day coverage heat map ---- */
+.fcal-pub-tag{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:3px;font-family:'Gilroy',var(--font);font-weight:700;font-size:10px;letter-spacing:.6px;text-transform:uppercase;white-space:nowrap}
+.fcal-pub-tag.draft{background:#f2f4f7;color:var(--ds-gray-600)}
+.fcal-pub-tag.published{background:#ecfdf3;color:var(--ds-success)}
+.fcal-pub-tag.pending{background:#fef0c7;color:#b54708}
+.ros-primary-btn.pub-dot{position:relative}
+.ros-primary-btn.pub-dot::after{content:'';position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:var(--ds-warning);border:1.5px solid #fff}
+
+/* Focus-visible rings — DS --ds-ring (Tadweer #DCFAE6), roster-scoped interactive elements */
+.fcal-lot:focus-visible,
+.fcal-seg button:focus-visible,
+.fcal-search input:focus-visible,
+.fcal-filter:focus-visible,
+.fcal-chip:focus-visible,
+.fcal-d-bar:focus-visible,
+.ros-primary-btn:focus-visible,
+.ros-secondary-btn:focus-visible{
+  outline:2px solid var(--ds-ring);
+  outline-offset:2px;
+}
+
+/* ROS-04: weekly-cell chips sit inside .fcal-cal (overflow-x:auto, which forces overflow-y to
+   auto too), so the global [data-tip]::after pseudo-tooltip gets clipped for chips near the
+   grid edges — verified: a left-column chip's tooltip box measured ~65px past .fcal-cal's left
+   edge. Chips opt out of the CSS pseudo-tooltip and use a position:fixed pill instead (same
+   precedent as .fcal-chip-ghost, which already escapes this overflow context for drag), driven
+   by fcalChipShowTip/fcalChipHideTip below. Styled to match [data-tip]::after exactly. */
+.fcal-chip[data-tip]::before,.fcal-chip[data-tip]::after{display:none}
+.fcal-tip-pill{
+  position:fixed;z-index:9999;pointer-events:none;
+  background:var(--ink);color:#fff;font-size:11px;font-weight:600;
+  padding:6px 9px;border-radius:var(--radius-sm);box-shadow:var(--shadow-2);
+  font-family:'Gilroy',var(--font);letter-spacing:.01em;line-height:1.35;
+  max-width:280px;text-align:center;opacity:0;transition:opacity .12s ease-out;
+}
+.fcal-tip-pill.show{opacity:1}
 </style>
 </head>
 <body>
@@ -1649,16 +1867,7 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:0;position:absolute;
 
   <!-- Secondary rail (66px) — icon-only SVGs from contract-management/icons, tooltip on hover -->
   <aside class="modrail" aria-label="Modules">
-    <button class="nav-item" data-route="summary" data-tt="Review Summary"><img src="./contract-management/icons/report.svg" alt=""></button>
-    <button class="nav-item" data-route="shift" data-tt="Global Shift Entity"><img src="./contract-management/icons/kpi-clock.svg" alt=""></button>
-    <button class="nav-item" data-route="employee" data-tt="Employee Master"><img src="./contract-management/icons/users.svg" alt=""></button>
     <button class="nav-item" data-route="roster" data-tt="Roster Board"><img src="./contract-management/icons/tour-map.svg" alt=""></button>
-    <button class="nav-item" data-route="pools" data-tt="Standby &amp; Reliever"><img src="./contract-management/icons/user.svg" alt=""></button>
-    <button class="nav-item" data-route="attendance" data-tt="Attendance · 2-source"><img src="./contract-management/icons/signal.svg" alt=""></button>
-    <button class="nav-item" data-route="leave" data-tt="Leave Management"><img src="./contract-management/icons/leave.svg" alt=""></button>
-    <button class="nav-item" data-route="alerts" data-tt="Doc Expiry Alerts"><img src="./contract-management/icons/kpi-alert.svg" alt=""></button>
-    <button class="nav-item" data-route="training" data-tt="Training &amp; Skill"><img src="./contract-management/icons/file-07.svg" alt=""></button>
-    <button class="nav-item" data-route="excluded" data-tt="Green &amp; Parked scope"><img src="./contract-management/icons/folder.svg" alt=""></button>
   </aside>
 
   <main class="main" id="main"></main>
@@ -1727,6 +1936,12 @@ const EMPS = [
   {id:'TJ-5122', name:'Kareem Anwar',   role:'HD Driver',  lot:'LOT 5', depot:'Al Ain',    nat:'Bangladeshi',natCode:'BD', wOff:'Fri', shift:'S-M', licExp:'2026-08-14', eidExp:'2027-01-19', ppExp:'2027-09-22', status:'blocked-lic', src:'plan', avatar:'K', color:'#EC4899', dob:'19 Aug, 88', religion:'Islam',     lang:'Bengali', email:'kareem.anwar@tadweer.ae',    gender:'Male', joinDate:'4 Dec, 2024',  address:'8080 Railroad St.', tags:['Route Champ','Compactor'],        rank:31, team:'Fleet', tenure:'8 months',       exp:'4 years 2 months', phone:'+971 50 678 9012', age:36, education:'High School', maritalStatus:'Single',  employmentType:'Permanent', empNo:'250'},
   {id:'TJ-6001', name:'Nasir Ullah',    role:'Labour',     lot:'LOT 4', depot:'Al Wathba', nat:'Pakistani',  natCode:'PK', wOff:'Fri', shift:'S-A', licExp:'—',          eidExp:'2026-08-19', ppExp:'2027-05-10', status:'blocked-eid', src:'bio',  avatar:'R', color:'#12B76A', dob:'05 Nov, 91', religion:'Islam',     lang:'Urdu',    email:'nasir.ullah@tadweer.ae',     gender:'Male', joinDate:'14 Aug, 2024', address:'8080 Railroad St.', tags:['Recycling'],                       rank:44, team:'Depot', tenure:'11 months',      exp:'2 years 7 months', phone:'+971 50 789 0123', age:33, education:'High School', maritalStatus:'Married', employmentType:'Permanent', empNo:'251'},
   {id:'TJ-6154', name:'Imran Baig',     role:'HD Driver',  lot:'LOT 3', depot:'Musaffah',  nat:'Indian',     natCode:'IN', wOff:'Fri', shift:'S-A', licExp:'2027-05-01', eidExp:'2027-08-08', ppExp:'2029-02-14', status:'active',      src:'plan', avatar:'S', color:'#F04438', dob:'30 May, 87', religion:'Christian', lang:'English', email:'imran.baig@tadweer.ae',      gender:'Male', joinDate:'17 Jan, 2024', address:'8080 Railroad St.', tags:['Certified','Long Haul'],           rank:11, team:'Fleet', tenure:'1 year 7 months', exp:'9 years 3 months', phone:'+971 50 890 1234', age:37, education:'Bachelors',   maritalStatus:'Married', employmentType:'Permanent', empNo:'252'},
+  {id:'TJ-7001', name:'Hassan Mahmood', role:'HD Driver',  lot:'LOT 4', depot:'Musaffah',  nat:'Pakistani',  natCode:'PK', wOff:'Fri', shift:'S-M', licExp:'2026-12-01', eidExp:'2027-03-15', ppExp:'2028-10-20', status:'active',      src:'plan', avatar:'H', color:'#667085', dob:'15 Mar, 86', religion:'Islam',     lang:'Urdu',    email:'hassan.mahmood@tadweer.ae',  gender:'Male', joinDate:'10 Feb, 2024', address:'8080 Railroad St.', tags:['Route Champ','Long Haul'], rank:18, team:'Fleet', tenure:'1 year 6 months', exp:'7 years 3 months', phone:'+971 50 234 5670', age:40, education:'High School', maritalStatus:'Married', employmentType:'Permanent', empNo:'253'},
+  {id:'TJ-7002', name:'Omar Farouk',    role:'LD Driver',  lot:'LOT 4', depot:'Musaffah',  nat:'Egyptian',   natCode:'EG', wOff:'Fri', shift:'S-A', licExp:'2026-11-15', eidExp:'2027-05-22', ppExp:'2028-09-18', status:'active',      src:'plan', avatar:'O', color:'#1570EF', dob:'22 Jul, 88', religion:'Islam',     lang:'Arabic',  email:'omar.farouk@tadweer.ae',     gender:'Male', joinDate:'20 Mar, 2024', address:'8080 Railroad St.', tags:['Night','Compactor'],              rank:25, team:'Fleet', tenure:'1 year 5 months', exp:'6 years 4 months', phone:'+971 50 345 6789', age:38, education:'Diploma',     maritalStatus:'Married', employmentType:'Permanent', empNo:'254'},
+  {id:'TJ-7003', name:'Tariq Aziz',     role:'HD Driver',  lot:'LOT 4', depot:'Musaffah',  nat:'Bangladeshi',natCode:'BD', wOff:'Fri', shift:'S-N', licExp:'2027-02-28', eidExp:'2027-07-11', ppExp:'2029-01-25', status:'active',      src:'bio',  avatar:'T', color:'#00A651', dob:'08 Sep, 85', religion:'Islam',     lang:'Bengali', email:'tariq.aziz@tadweer.ae',      gender:'Male', joinDate:'05 Dec, 2023', address:'8080 Railroad St.', tags:['Senior','Night Driver'],         rank:8,  team:'Fleet', tenure:'1 year 8 months', exp:'10 years 1 month', phone:'+971 50 456 7801', age:41, education:'Bachelors',   maritalStatus:'Married', employmentType:'Permanent', empNo:'255'},
+  {id:'TJ-7004', name:'Junaid Akhtar',  role:'Labour',     lot:'LOT 4', depot:'Musaffah',  nat:'Pakistani',  natCode:'PK', wOff:'Fri', shift:'S-M', licExp:'—',          eidExp:'2026-10-05', ppExp:'2027-11-12', status:'inactive',    src:'bio',  avatar:'J', color:'#FF6B6B', dob:'11 Feb, 92', religion:'Islam',     lang:'Urdu',    email:'junaid.akhtar@tadweer.ae',   gender:'Male', joinDate:'16 Jul, 2024', address:'8080 Railroad St.', tags:['Baler','Safety Cert'],              rank:40, team:'Depot', tenure:'1 year 1 month',  exp:'3 years 5 months', phone:'+971 50 567 8902', age:34, education:'High School', maritalStatus:'Single',  employmentType:'Permanent', empNo:'256'},
+  {id:'TJ-7005', name:'Sanjay Kumar',   role:'HD Driver',  lot:'LOT 4', depot:'Musaffah',  nat:'Indian',     natCode:'IN', wOff:'Sun', shift:'S-A', licExp:'2026-09-20', eidExp:'2027-02-28', ppExp:'2028-06-15', status:'resigning',   src:'plan', avatar:'S', color:'#DB8500', dob:'30 Jun, 89', religion:'Hindu',     lang:'Hindi',   email:'sanjay.kumar@tadweer.ae',    gender:'Male', joinDate:'28 Jan, 2024', address:'8080 Railroad St.', tags:['Compactor','Route Champ'],      rank:27, team:'Fleet', tenure:'1 year 7 months', exp:'8 years 6 months', phone:'+971 50 678 9013', age:37, education:'High School', maritalStatus:'Married', employmentType:'Permanent', empNo:'257'},
+  {id:'TJ-7006', name:'Faisal Rehman',  role:'LD Driver',  lot:'LOT 4', depot:'Musaffah',  nat:'Pakistani',  natCode:'PK', wOff:'Fri', shift:'S-M', licExp:'2027-01-10', eidExp:'2027-04-19', ppExp:'2028-08-03', status:'terminated',  src:'plan', avatar:'F', color:'#6941C6', dob:'19 Oct, 90', religion:'Islam',     lang:'Urdu',    email:'faisal.rehman@tadweer.ae',   gender:'Male', joinDate:'08 Mar, 2024', address:'8080 Railroad St.', tags:['Certified','Long Haul'],           rank:16, team:'Fleet', tenure:'1 year 5 months', exp:'7 years 9 months', phone:'+971 50 789 0124', age:36, education:'High School', maritalStatus:'Married', employmentType:'Permanent', empNo:'258'},
 ];
 
 /* Training catalogue — 10 course types per BRD TRN-01 (approx. 10, validity periods, safety-critical flag).
@@ -1846,13 +2061,13 @@ route('summary', ()=>`
   <div class="page-head">
     <div>
       <h2>What's in this pack</h2>
-      <div class="sub">All seven items below were locked in as BLUE (committed) during the 06-Aug design sync. Kashish · Benjamin · Abusufean review Thursday 13 Aug; finalization Sun 17 Aug. Green scope is intentionally excluded from this deck.</div>
+      <div class="sub">All six items below were locked in as BLUE (committed) during the 06-Aug design sync. Kashish · Benjamin · Abusufean review Thursday 13 Aug; finalization Sun 17 Aug. Green scope is intentionally excluded from this deck.</div>
     </div>
     <div class="ref">MTG · 2026-08-06</div>
   </div>
   <div class="grid-4" style="margin-bottom:16px">
     <div class="kpi"><div class="label">Days to review</div><div class="value">2</div><div class="delta">Due Thu 13 Aug</div></div>
-    <div class="kpi"><div class="label">Committed workstreams</div><div class="value">7</div><div class="delta">6 blue + Shift entity</div></div>
+    <div class="kpi"><div class="label">Committed workstreams</div><div class="value">6</div><div class="delta">5 blue + Shift entity</div></div>
     <div class="kpi"><div class="label">Screens in pack</div><div class="value">18</div><div class="delta">Interactive prototype</div></div>
     <div class="kpi warn"><div class="label">Open dependencies</div><div class="value">3</div><div class="delta">Excel · shift draft · master source</div></div>
   </div>
@@ -1866,8 +2081,7 @@ route('summary', ()=>`
         <tr><td>2</td><td><strong>Doc Expiry + Dispatch Block</strong></td><td>Alerts section (EID · Passport · Licence) at 90/60/30/7 + weekly/monthly digest + blocked state</td><td>Global Shift · Master</td><td><span class="chip green">READY</span></td></tr>
         <tr><td>3</td><td><strong>Training · Skill · Materials</strong></td><td>Catalogue, records, derived skill matrix, new materials library</td><td>—</td><td><span class="chip green">READY</span></td></tr>
         <tr><td>4</td><td><strong>Roster + Working-hours</strong></td><td>Day-6 warn, day-7 hard block, rostered-off unavailable state</td><td>Global Shift · Master</td><td><span class="chip green">READY</span></td></tr>
-        <tr><td>5</td><td><strong>Standby vs Reliever</strong></td><td>Two pools, distinct chip styles, planned vs reactive flows</td><td>Roster</td><td><span class="chip green">READY</span></td></tr>
-        <tr><td>6</td><td><strong>Attendance · Two-source</strong></td><td>Plan-login vs BioTime source column, source-aware punch popups</td><td>Master (role → source)</td><td><span class="chip green">READY</span></td></tr>
+        <tr><td>5</td><td><strong>Attendance · Two-source</strong></td><td>Plan-login vs BioTime source column, source-aware punch popups</td><td>Master (role → source)</td><td><span class="chip green">READY</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -1880,7 +2094,6 @@ route('summary', ()=>`
         <li style="padding:6px 0"><i class="fa-regular fa-square" style="margin-right:8px;color:var(--ink-3)"></i>90/60/30/7 buckets + weekly/monthly digest config is present in Alerts</li>
         <li style="padding:6px 0"><i class="fa-regular fa-square" style="margin-right:8px;color:var(--ink-3)"></i>Skill matrix cells are derived, not editable (tooltip shows source training)</li>
         <li style="padding:6px 0"><i class="fa-regular fa-square" style="margin-right:8px;color:var(--ink-3)"></i>Day-7 shows a hard block, not a warning</li>
-        <li style="padding:6px 0"><i class="fa-regular fa-square" style="margin-right:8px;color:var(--ink-3)"></i>Standby vs Reliever are visually distinguishable on the roster</li>
         <li style="padding:6px 0"><i class="fa-regular fa-square" style="margin-right:8px;color:var(--ink-3)"></i>Attendance shows source per employee (Plan-login vs BioTime)</li>
         <li style="padding:6px 0"><i class="fa-regular fa-square" style="margin-right:8px;color:var(--ink-3)"></i>No Green or Parked scope leaks into the flow</li>
       </ul>
@@ -2980,170 +3193,607 @@ function trnLibrary(){
 /* ================ ROSTER & JOB ASSIGNMENT — BRD FR-ROS §7.4 ================
    ROS-01 weekly board · ROS-02 drag+rule enforcement · ROS-03 conflict check
    ROS-04 daily assignment · ROS-05 publish/republish · ROS-06 headcount planner
-   Meeting decisions: Day-6 warn, Day-7 hard block, Standby vs Reliever pools,
+   Meeting decisions: Day-6 warn, Day-7 hard block,
    dispatch-block on expired safety-critical certs (TRN-05 linkage). */
 let rosterView = 'board';
+let rosterLot = 'LOT 4';
+let rosterMode = 'weekly'; // ROS-04: 'weekly' | 'daily'
+// Hoisted OUT of the route so pointer-drag mutations survive the go('roster') re-render.
+let rosterLayout = null;
+let rosterSentJobs = new Set(); // ROS-04: keys `${emp}|${day}` — job cards pushed to driver tablet
+let rosterOT = new Set(); // keys `${emp}|${day}` for cells where an OT approval was raised (ROS-02)
+let rosterLastMove = null; // one-step undo buffer
+let rosterPublished = false; // ROS-05: has the roster ever been published
+let rosterDirty = false; // ROS-05: mutated since last publish
+const FCAL_SHORTWK = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+/* ---- Official 15-status set (Figma Launch Pad node 6809:7117) — single label source.
+   fcalStatus(key) is the ONLY place that renders a `.fcal-st` badge; colours live in CSS. */
+const FCAL_STATUS_LABELS = {
+  active:'ACTIVE', inactive:'INACTIVE', resigning:'PROCESSING RESIGNATION', resigned:'RESIGNED',
+  terminated:'TERMINATED', docblock:'DOC BLOCK', certblock:'CERT BLOCK', otpending:'OT PENDING',
+  onleave:'ON LEAVE', leavereq:'LEAVE REQUESTED', rostergap:'ROSTER GAP', holiday:'PUBLIC HOLIDAY',
+  dayseven:'DAY 7', doubleassign:'DOUBLE ASSIGNMENT', absent:'ABSENT',
+};
+function fcalStatus(key){
+  const label = FCAL_STATUS_LABELS[key] || String(key).toUpperCase();
+  return `<div class="fcal-st ${key}">${label}</div>`;
+}
+// EMPS.status ('active' | 'blocked-lic' | 'blocked-eid' | 'inactive' | 'resigning' | 'terminated'
+// | 'resigned') -> the fcalStatus() key for the employee-scope badge on the driver card.
+function fcalEmpStatusKey(status){
+  if (status==='blocked-lic' || status==='blocked-eid') return 'docblock';
+  if (FCAL_STATUS_LABELS[status]) return status;
+  return 'inactive';
+}
 function setRosterView(v){ rosterView = v; go('roster'); }
+function setRosterLot(v){ rosterLot = v; go('roster'); }
+function setRosterMode(v){ rosterMode = v; go('roster'); }
+
+/* ---- ROS-04: daily job assignment view (hour-timeline board + job card) ---- */
+const ROSTER_DAILY_START = 5, ROSTER_DAILY_END = 21; // 05:00 -> 21:00, 16h window, 17 hour columns
+function fcalDailyGeom(kind){
+  // returns {left%, width%} within the 05:00-21:00 window, or null for off/empty
+  if (kind==='S-M' || kind==='warn') return {start:5,  end:13, badge:'morning',   label:'Morning Shift',   icon:'shift-morning.svg',  route:'Route A'};
+  if (kind==='S-A')                  return {start:13, end:21, badge:'afternoon', label:'Mid Day Shift',   icon:'shift-midday.svg',   route:'Route B'};
+  if (kind==='S-N')                  return {start:5,  end:6,  badge:'night',     label:'Night Shift',     icon:'shift-night.svg',    route:'Route N', cont:true};
+  return null;
+}
+function fcalJobKey(emp, day){ return emp+'|'+day; }
+// ROS-04: single source of truth for job-assignment fields (vehicle/route/supervisor/sector/depot)
+// so the weekly-cell chip and the job-card modal never disagree. `geom` is fcalDailyGeom(kind)'s result.
+function fcalJobFields(e, geom){
+  const num = e.id.replace(/\D/g,'').slice(-2) || '01';
+  const vehiclePlate = `WM-11${num}`;
+  const shiftTimes = geom.badge==='morning' ? '05:00–13:00' : geom.badge==='afternoon' ? '13:00–21:00' : '22:00–06:00';
+  return {
+    vehicle: vehiclePlate,
+    vehicleFull: `${vehiclePlate} · Compactor 18t`,
+    route: geom.route,
+    supervisor: 'Salim Hassan',
+    sector: 'Sector ' + (e.lot==='LOT 3'?'A':e.lot==='LOT 5'?'C':'B'),
+    depot: e.depot||'—',
+    shiftTimes,
+  };
+}
+function fcalOpenJobCard(emp, day){
+  const row = rosterLayout && rosterLayout.find(r=>r.emp===emp);
+  if (!row) return;
+  const e = EMPS.find(x=>x.id===emp);
+  const kind = row.pattern[day];
+  const geom = fcalDailyGeom(kind);
+  if (!geom) return;
+  const initials = e.name.split(' ').map(x=>x[0]).slice(0,2).join('').toUpperCase();
+  const jf = fcalJobFields(e, geom);
+  const shiftTimes = jf.shiftTimes;
+  const vehicle = jf.vehicleFull;
+  const sector = jf.sector;
+  const sent = rosterSentJobs.has(fcalJobKey(emp, day));
+  const field = (l,v)=>`<div class="fcal-job-l">${l}</div><div class="fcal-job-v">${v}</div>`;
+  modal(`
+    <div class="modal" style="max-width:460px">
+      <div class="h" style="align-items:center">
+        <div class="fcal-emp-av" style="background:${e.color||'#0072D6'};width:36px;height:36px;font-size:13px">${initials}</div>
+        <div style="flex:1;margin-left:10px">
+          <h4 style="margin:0">${e.name}</h4>
+          <div style="font-size:12px;color:#98a2b3">${e.role}</div>
+        </div>
+        <div class="fcal-badge ${geom.badge}">${geom.label}</div>
+        <button class="btn ghost" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="b">
+        <div class="fcal-job-grid">
+          ${field('Employee', e.name + ' · ' + e.role)}
+          ${field('Date', 'Mon, 11 Aug 2026')}
+          ${field('Vehicle', vehicle)}
+          ${field('Route', geom.route)}
+          ${field('Supervisor', jf.supervisor)}
+          ${field('Sector', sector)}
+          ${field('Shift', geom.label + ' ' + shiftTimes)}
+          ${field('Depot', jf.depot + ' Depot')}
+          ${field('Contract', e.lot||'—')}
+        </div>
+        ${sent ? `<div style="margin-top:12px;font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:#12b76a"><i class="fa-solid fa-check"></i> Sent to driver tablet</div>` : ''}
+      </div>
+      <div class="f">
+        <button class="btn ghost" onclick="closeModal()">Close</button>
+        <button class="ros-primary-btn" onclick="fcalPushJobCard('${emp}',${day})"><i class="fa-solid fa-paper-plane"></i> Push to tablet</button>
+      </div>
+    </div>`);
+}
+function fcalPublishRoster(){
+  // ROS-05: publish marks every working driver's Monday job card as sent to the driver tablet.
+  if (rosterPublished && !rosterDirty){
+    toast('No changes since last publish','info');
+    return;
+  }
+  const wasRepublish = rosterPublished && rosterDirty;
+  if (rosterLayout){
+    rosterLayout.forEach(r=>{
+      if (fcalWorkingKind(r.pattern[0])) rosterSentJobs.add(fcalJobKey(r.emp, 0));
+    });
+  }
+  rosterPublished = true;
+  rosterDirty = false;
+  go('roster');
+  toast(wasRepublish ? 'Roster republished — changes synced to supervisors & tablets' : 'Roster published — job cards pushed to driver tablets','ok');
+}
+function fcalPushJobCard(emp, day){
+  const e = EMPS.find(x=>x.id===emp);
+  rosterSentJobs.add(fcalJobKey(emp, day));
+  closeModal();
+  go('roster');
+  toast(`Job card pushed to driver tablet — ${e?e.name:emp}`, 'ok');
+}
+
+/* ---- ROS-04: fixed-position hover/focus tooltip for weekly-cell chips ----
+   .fcal-cal has overflow-x:auto, which forces overflow-y to auto too, clipping any absolutely
+   positioned tooltip that escapes the row/cell (measured/confirmed for left-column chips).
+   position:fixed sidesteps that overflow context entirely (same trick as .fcal-chip-ghost during
+   drag), so we position this pill from getBoundingClientRect on pointerenter/focus and tear it
+   down on pointerleave/blur. Never intercepts pointer events (pointer-events:none), so it can't
+   swallow the drag's pointerdown. */
+let fcalTipEl = null;
+function fcalChipShowTip(ev){
+  const chip = ev.currentTarget;
+  const text = chip.getAttribute('data-tip');
+  if (!text) return;
+  if (!fcalTipEl){ fcalTipEl = document.createElement('div'); fcalTipEl.className = 'fcal-tip-pill'; document.body.appendChild(fcalTipEl); }
+  fcalTipEl.textContent = text;
+  fcalTipEl.classList.remove('show');
+  const r = chip.getBoundingClientRect();
+  const pos = chip.getAttribute('data-tip-pos') || 'top';
+  requestAnimationFrame(()=>{
+    if (!fcalTipEl) return;
+    const tw = fcalTipEl.offsetWidth, th = fcalTipEl.offsetHeight;
+    let top = pos==='bottom' ? r.bottom + 8 : r.top - 8 - th;
+    let left = r.left + r.width/2 - tw/2;
+    left = Math.max(6, Math.min(left, window.innerWidth - tw - 6));
+    top = Math.max(6, Math.min(top, window.innerHeight - th - 6));
+    fcalTipEl.style.left = left+'px';
+    fcalTipEl.style.top = top+'px';
+    fcalTipEl.classList.add('show');
+  });
+}
+function fcalChipHideTip(){ if (fcalTipEl) fcalTipEl.classList.remove('show'); }
+
+/* ---- ROS-02: pointer-based drag & drop for shift chips (+ keyboard/modal fallback) ---- */
+let fcalDrag = null;
+function fcalWorkingKind(k){ return k==='S-M'||k==='S-A'||k==='S-N'||k==='warn'; }
+function fcalChipPointerDown(ev, emp, day){
+  if (ev.button!==undefined && ev.button!==0) return;
+  const chipEl = ev.currentTarget;
+  const cellEl = chipEl.closest('.fcal-cell');
+  fcalDrag = {emp, day, startX:ev.clientX, startY:ev.clientY, chipEl, cellEl, dragging:false, ghost:null};
+  document.addEventListener('pointermove', fcalPointerMove);
+  document.addEventListener('pointerup', fcalPointerUp, {once:true});
+}
+function fcalPointerMove(ev){
+  if (!fcalDrag) return;
+  const dx = ev.clientX-fcalDrag.startX, dy = ev.clientY-fcalDrag.startY;
+  if (!fcalDrag.dragging){
+    if (Math.hypot(dx,dy) < 6) return;
+    fcalDrag.dragging = true;
+    fcalChipHideTip();
+    const rect = fcalDrag.chipEl.getBoundingClientRect();
+    const ghost = fcalDrag.chipEl.cloneNode(true);
+    ghost.className = 'fcal-chip fcal-chip-ghost';
+    ghost.style.width = rect.width+'px';
+    ghost.style.position = 'fixed';
+    ghost.style.left = rect.left+'px';
+    ghost.style.top = rect.top+'px';
+    document.body.appendChild(ghost);
+    fcalDrag.ghost = ghost;
+    fcalDrag.offX = ev.clientX-rect.left;
+    fcalDrag.offY = ev.clientY-rect.top;
+    fcalDrag.cellEl.classList.add('dragging-source');
+  }
+  if (fcalDrag.ghost){
+    fcalDrag.ghost.style.left = (ev.clientX-fcalDrag.offX)+'px';
+    fcalDrag.ghost.style.top = (ev.clientY-fcalDrag.offY)+'px';
+  }
+  document.querySelectorAll('.fcal-cell.drop-valid,.fcal-cell.drop-invalid').forEach(c=>c.classList.remove('drop-valid','drop-invalid'));
+  const el = document.elementFromPoint(ev.clientX, ev.clientY);
+  const targetCell = el && el.closest ? el.closest('.fcal-cell') : null;
+  if (targetCell && targetCell.dataset.emp!==undefined && targetCell!==fcalDrag.cellEl){
+    const day = parseInt(targetCell.dataset.day,10);
+    const emp = targetCell.dataset.emp;
+    const verdict = fcalMoveVerdict(fcalDrag.emp, fcalDrag.day, emp, day);
+    targetCell.classList.add(verdict.ok ? 'drop-valid' : 'drop-invalid');
+  }
+}
+function fcalPointerUp(ev){
+  document.removeEventListener('pointermove', fcalPointerMove);
+  if (!fcalDrag) return;
+  const wasDragging = fcalDrag.dragging;
+  if (fcalDrag.ghost) fcalDrag.ghost.remove();
+  if (fcalDrag.cellEl) fcalDrag.cellEl.classList.remove('dragging-source');
+  document.querySelectorAll('.fcal-cell.drop-valid,.fcal-cell.drop-invalid').forEach(c=>c.classList.remove('drop-valid','drop-invalid'));
+  if (wasDragging){
+    const el = document.elementFromPoint(ev.clientX, ev.clientY);
+    const targetCell = el && el.closest ? el.closest('.fcal-cell') : null;
+    if (targetCell && targetCell.dataset.emp!==undefined && targetCell!==fcalDrag.cellEl){
+      fcalAttemptMove(fcalDrag.emp, fcalDrag.day, targetCell.dataset.emp, parseInt(targetCell.dataset.day,10));
+    }
+  }
+  fcalDrag = null;
+}
+// Pure check used both for live hover-highlighting and for the actual drop/modal path.
+function fcalMoveVerdict(srcEmp, srcDay, tgtEmp, tgtDay){
+  if (srcEmp===tgtEmp && srcDay===tgtDay) return {ok:false, kind:'noop'};
+  const tgtRow = rosterLayout && rosterLayout.find(r=>r.emp===tgtEmp);
+  if (!tgtRow) return {ok:false, kind:'noop'};
+  // Official-status rule: an employee not 'active' (or doc/cert-blocked) cannot be rostered onto at all.
+  const tgtEmpObj = EMPS.find(x=>x.id===tgtEmp);
+  if (tgtEmpObj && tgtEmpObj.status!=='active' && !tgtEmpObj.status.startsWith('blocked')){
+    return {ok:false, kind:'empstatus', status:tgtEmpObj.status};
+  }
+  const tgtKind = tgtRow.pattern[tgtDay];
+  if (fcalWorkingKind(tgtKind)) return {ok:false, kind:'double'};
+  if (tgtKind==='blocked')   return {ok:false, kind:'docblocked'};
+  if (tgtKind==='block')     return {ok:false, kind:'dayseven'};
+  if (tgtKind==='onleave')   return {ok:false, kind:'onleave'};
+  if (tgtKind==='holiday')   return {ok:false, kind:'holiday'};
+  if (tgtKind==='off')       return {ok:true,  kind:'off'};
+  return {ok:true, kind:'empty'};
+}
+function fcalAttemptMove(srcEmp, srcDay, tgtEmp, tgtDay){
+  const v = fcalMoveVerdict(srcEmp, srcDay, tgtEmp, tgtDay);
+  const tgtEmpObj = EMPS.find(x=>x.id===tgtEmp);
+  const tgtName = tgtEmpObj ? tgtEmpObj.name : tgtEmp;
+  const dayName = FCAL_SHORTWK[tgtDay];
+  if (v.kind==='noop') return;
+  if (v.kind==='empstatus'){ toast(`${tgtName} is ${FCAL_STATUS_LABELS[fcalEmpStatusKey(v.status)]} — cannot be rostered`,'err'); return; }
+  if (v.kind==='double'){ toast(`Double assignment blocked — ${tgtName} already has a shift on ${dayName}`,'err'); return; }
+  if (v.kind==='docblocked'){ toast('Driver is doc-blocked — TRN-05','err'); return; }
+  if (v.kind==='dayseven'){ toast('Day 7 is hard-blocked for this driver — move rejected','err'); return; }
+  if (v.kind==='onleave'){ toast(`${tgtName} is on leave on ${dayName} — cannot be rostered`,'err'); return; }
+  if (v.kind==='holiday'){ toast(`${dayName} is a public holiday — cannot be rostered`,'err'); return; }
+  if (v.kind==='off'){
+    modal(`
+      <div class="modal" style="max-width:420px">
+        <div class="h"><i class="fa-solid fa-triangle-exclamation" style="color:#f79009"></i><h4>Assign on weekly off?</h4><button class="btn ghost" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button></div>
+        <div class="b"><p style="color:#475467;font-size:13px;margin:0">This raises an OT approval (ROS-02) for <strong>${tgtName}</strong> on ${dayName}.</p></div>
+        <div class="f"><button class="btn ghost" onclick="closeModal()">Cancel</button><button class="btn primary" onclick="fcalDoMove('${srcEmp}',${srcDay},'${tgtEmp}',${tgtDay},true)">Raise OT approval</button></div>
+      </div>`);
+    return;
+  }
+  fcalDoMove(srcEmp, srcDay, tgtEmp, tgtDay, false);
+}
+function fcalDoMove(srcEmp, srcDay, tgtEmp, tgtDay, ot){
+  const srcRow = rosterLayout.find(r=>r.emp===srcEmp);
+  const tgtRow = rosterLayout.find(r=>r.emp===tgtEmp);
+  if (!srcRow || !tgtRow) return;
+  const movedKind = srcRow.pattern[srcDay];
+  rosterLastMove = {srcEmp, srcDay, srcKind:movedKind, srcWasOT:rosterOT.has(srcEmp+'|'+srcDay),
+                     tgtEmp, tgtDay, tgtKind:tgtRow.pattern[tgtDay], tgtWasOT:rosterOT.has(tgtEmp+'|'+tgtDay)};
+  srcRow.pattern[srcDay] = 'empty';
+  rosterOT.delete(srcEmp+'|'+srcDay);
+  tgtRow.pattern[tgtDay] = movedKind;
+  if (ot) rosterOT.add(tgtEmp+'|'+tgtDay); else rosterOT.delete(tgtEmp+'|'+tgtDay);
+  rosterDirty = true; // ROS-05: any successful move marks the roster dirty since last publish
+  closeModal();
+  go('roster');
+  toast(ot ? 'Shift moved — OT approval raised' : 'Shift reassigned', 'ok');
+  fcalShowUndo();
+}
+function fcalShowUndo(){
+  const old = document.getElementById('fcalUndoPill'); if (old) old.remove();
+  if (!rosterLastMove) return;
+  const pill = document.createElement('div');
+  pill.id = 'fcalUndoPill';
+  pill.className = 'fcal-undo-pill';
+  pill.innerHTML = `<span>Shift moved</span><button onclick="fcalUndoMove()">Undo</button>`;
+  document.body.appendChild(pill);
+  setTimeout(()=>{ if (pill.parentNode) pill.remove(); }, 5000);
+}
+function fcalUndoMove(){
+  if (!rosterLastMove) return;
+  const m = rosterLastMove;
+  const srcRow = rosterLayout.find(r=>r.emp===m.srcEmp);
+  const tgtRow = rosterLayout.find(r=>r.emp===m.tgtEmp);
+  if (srcRow) srcRow.pattern[m.srcDay] = m.srcKind;
+  if (tgtRow) tgtRow.pattern[m.tgtDay] = m.tgtKind;
+  m.srcWasOT ? rosterOT.add(m.srcEmp+'|'+m.srcDay) : rosterOT.delete(m.srcEmp+'|'+m.srcDay);
+  m.tgtWasOT ? rosterOT.add(m.tgtEmp+'|'+m.tgtDay) : rosterOT.delete(m.tgtEmp+'|'+m.tgtDay);
+  rosterLastMove = null;
+  const pill = document.getElementById('fcalUndoPill'); if (pill) pill.remove();
+  toast('Move undone', 'ok');
+  go('roster');
+}
+// Keyboard / no-drag accessible alternative: click a chip to open a "Move shift" modal.
+function fcalOpenMoveModal(emp, day){
+  if (!rosterLayout) return;
+  const empOpts = rosterLayout.map(r=>{
+    const e = EMPS.find(x=>x.id===r.emp);
+    return `<option value="${r.emp}"${r.emp===emp?' selected':''}>${e?e.name:r.emp}</option>`;
+  }).join('');
+  const dayOpts = FCAL_SHORTWK.map((d,i)=>`<option value="${i}"${i===day?' selected':''}>${d}</option>`).join('');
+  modal(`
+    <div class="modal" style="max-width:420px">
+      <div class="h"><i class="fa-solid fa-arrows-up-down-left-right" style="color:var(--blue-500)"></i><h4>Move shift</h4><button class="btn ghost" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button></div>
+      <div class="b">
+        <div class="field"><label>Driver</label><select id="fcalMoveEmp">${empOpts}</select></div>
+        <div class="field"><label>Day</label><select id="fcalMoveDay">${dayOpts}</select></div>
+        <div class="hint">Same rules apply as drag-and-drop: double assignment and doc-blocked drivers are rejected; weekly-off targets require OT approval.</div>
+      </div>
+      <div class="f"><button class="btn ghost" onclick="closeModal()">Cancel</button><button class="btn primary" onclick="fcalSubmitMoveModal('${emp}',${day})">Move</button></div>
+    </div>`);
+}
+function fcalSubmitMoveModal(srcEmp, srcDay){
+  const tgtEmp = document.getElementById('fcalMoveEmp').value;
+  const tgtDay = parseInt(document.getElementById('fcalMoveDay').value, 10);
+  fcalAttemptMove(srcEmp, srcDay, tgtEmp, tgtDay);
+}
+
 route('roster', ()=>{
   const days = ['Mon 11','Tue 12','Wed 13','Thu 14','Fri 15','Sat 16','Sun 17'];
   const shortDays = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  // rows: employee × 7 days
-  const layout = [
-    {emp:'TJ-4712', pattern:['S-M','S-M','S-M','S-M','S-M','warn','block']}, // 6 consec then day 7
-    {emp:'TJ-4288', pattern:['blocked','blocked','blocked','blocked','blocked','blocked','blocked']}, // licence expired
-    {emp:'TJ-4103', pattern:['S-M','S-M','off','S-M','S-M','S-M','off']},
-    {emp:'TJ-5044', pattern:['S-N','S-N','S-N','S-N','off','S-N','S-N']},
-    {emp:'TJ-6154', pattern:['S-A','S-A','S-A','off','S-A','S-A','S-A']},
-    {emp:'STANDBY-1', standby:true, pattern:['sb','sb','sb','sb','sb','sb','sb']},
-    {emp:'RELIEVER-1', reliever:true, pattern:['rv','rv','rv','rv','rv','rv','rv']},
-  ];
+  // rows: employee × 7 days — seeded once, then hoisted to rosterLayout so drag mutations persist re-renders.
+  if (!rosterLayout){
+    rosterLayout = [
+      {emp:'TJ-4712', pattern:['S-M','S-M','S-M','S-M','S-M','warn','block']}, // 6 consec then day 7
+      {emp:'TJ-4288', pattern:['blocked','blocked','blocked','blocked','blocked','blocked','blocked']}, // licence expired
+      {emp:'TJ-4103', pattern:['S-M','S-M','off','S-M','S-M','S-M','off']},
+      {emp:'TJ-5044', pattern:['S-N','S-N','S-N','S-N','off','S-N','S-N']},
+      {emp:'TJ-6154', pattern:['S-A','S-A','S-A','off','S-A','S-A','S-A']},
+      {emp:'TJ-7001', pattern:['S-M','onleave','S-M','off','S-M','S-M','S-M']}, // ROS-status: seeded ON LEAVE cell (Tue)
+      {emp:'TJ-7002', pattern:['S-A','S-A','holiday','S-A','S-A','S-A','off']}, // ROS-status: seeded PUBLIC HOLIDAY cell (Wed)
+      {emp:'TJ-7003', pattern:['S-N','S-N','S-N','S-N','rostergap','S-N','S-N']}, // ROS-status: seeded ROSTER GAP cell (Fri) — leave-approved, uncovered
+      {emp:'TJ-7004', pattern:['S-M','off','S-M','S-M','S-A','S-M','off']}, // status:'inactive' demo row
+      {emp:'TJ-7005', pattern:['S-A','S-A','S-A','S-A','S-A','off','S-M']}, // status:'resigning' demo row
+      {emp:'TJ-7006', pattern:['empty','empty','empty','empty','empty','empty','empty']}, // status:'terminated' — holds no shifts
+    ];
+  }
+  const fullLayout = rosterLayout;
+  // ROS-01: LOT selector filters visible rows; full data stays in rosterLayout for mutations.
+  const layout = rosterLot === 'All LOTs' ? fullLayout : fullLayout.filter(r=>{
+    const e = EMPS.find(x=>x.id===r.emp);
+    return e && e.lot === rosterLot;
+  });
 
   // Coverage KPIs computed from the pattern grid (headcount planner hook — ROS-06)
-  const workingCells   = layout.slice(0,5).flatMap(r=>r.pattern).filter(k=>k==='S-M'||k==='S-A'||k==='S-N'||k==='warn').length;
-  const offCells       = layout.slice(0,5).flatMap(r=>r.pattern).filter(k=>k==='off').length;
-  const blockedCells   = layout.slice(0,5).flatMap(r=>r.pattern).filter(k=>k==='blocked').length;
-  const hardBlockCells = layout.slice(0,5).flatMap(r=>r.pattern).filter(k=>k==='block').length;
-  const rosterHeadcount = 5;
-  const standbyCount   = 2;
-  const relieverCount  = 1;
+  const workingCells   = layout.flatMap(r=>r.pattern).filter(k=>k==='S-M'||k==='S-A'||k==='S-N'||k==='warn').length;
+  const offCells       = layout.flatMap(r=>r.pattern).filter(k=>k==='off').length;
+  const blockedCells   = layout.flatMap(r=>r.pattern).filter(k=>k==='blocked').length;
+  const hardBlockCells = layout.flatMap(r=>r.pattern).filter(k=>k==='block').length;
+  const doubleCount    = 1; // ROS-03: seeded double-assignment conflict (Salim Hassan, Thu 14 Aug)
+  const gapCount       = layout.flatMap(r=>r.pattern).filter(k=>k==='rostergap').length; // ROSTER GAP: leave-approved uncovered shift(s)
+  const rosterHeadcount = layout.length;
   const totalCells     = rosterHeadcount * 7;
-  const validPct       = Math.round(workingCells / totalCells * 100);
-  const offPct         = Math.round(offCells / totalCells * 100);
-  const blockPct       = Math.round((blockedCells + hardBlockCells) / totalCells * 100);
-  const conflictCount  = blockedCells + hardBlockCells; // week-level rule violations (ROS-03)
+  const validPct       = totalCells ? Math.round(workingCells / totalCells * 100) : 0;
+  const offPct         = totalCells ? Math.round(offCells / totalCells * 100) : 0;
+  const blockPct       = totalCells ? Math.round((blockedCells + hardBlockCells) / totalCells * 100) : 0;
+  const conflictCount  = blockedCells + hardBlockCells + doubleCount + gapCount; // week-level rule violations (ROS-03)
 
-  // Reference-pattern cell metadata: shift-kind → time-range + route + emoji (Drivers & Shifts style)
-  const SHIFT_META = {
-    'S-M': {cls:'morning',   t:'05:00 AM – 01:00 PM', em:'🚛', route:'MSW Collection – Route A'},
-    'S-A': {cls:'afternoon', t:'01:00 PM – 09:00 PM', em:'🏢', route:'Commercial Collection – Al Bateen'},
-    'S-N': {cls:'night',     t:'10:00 PM – 06:00 AM', em:'🌙', route:'Night Sweep – Route N'},
-  };
   const shortWk = ['MON','TUE','WED','THU','FRI','SAT','SUN'];
   const dayNums = [11,12,13,14,15,16,17];
-  const dayHdr = shortWk.map((d,i)=>`<th class="day">${d}<span class="dnum">${dayNums[i]}</span></th>`).join('');
 
-  const cellHtml = (kind, depot)=>{
-    if (kind==='off')     return `<div class="off-cell">Off</div>`;
-    if (kind==='block')   return `<div class="block-msg"><i class="fa-solid fa-lock"></i>Day 7<br>hard-block</div>`;
-    if (kind==='blocked') return `<div class="doc-block-cell"><i class="fa-solid fa-lock"></i>Doc<br>block</div>`;
-    if (kind==='sb')      return `<div class="shift-cell standby"><div class="t">Standby</div><div class="r"><span class="em">📞</span>Approved leave cover</div><div class="d"><i class="fa-solid fa-location-dot"></i>${depot||'—'}</div></div>`;
-    if (kind==='rv')      return `<div class="shift-cell reliever"><div class="t">Reliever</div><div class="r"><span class="em">🛡️</span>No-show buffer</div><div class="d"><i class="fa-solid fa-location-dot"></i>${depot||'—'}</div></div>`;
-    const key = (kind==='warn') ? 'S-M' : kind;
-    const m = SHIFT_META[key] || SHIFT_META['S-M'];
-    return `<div class="shift-cell ${m.cls}"><div class="t">${m.t}</div><div class="r"><span class="em">${m.em}</span>${m.route}</div><div class="d"><i class="fa-solid fa-location-dot"></i>${depot||'—'}</div></div>`;
+  const ICO = './assets/figma-icons/';
+  // Figma cell = one or more white chip cards; each chip = icon+label pairs + a status badge.
+  // Short labels keep the chips at the Figma proportions ("Sector A" / "Lot 1").
+  const CELL_META = {
+    'S-M':  {badge:'morning',   label:'Morning Shift',   icon:'shift-morning.svg',  route:'Route A'},
+    'S-A':  {badge:'afternoon', label:'Mid Day Shift',   icon:'shift-midday.svg',   route:'Route B'},
+    'S-N':  {badge:'night',     label:'Night Shift',     icon:'shift-night.svg',    route:'Route N'},
+  };
+  // items: array of {icon:'fa-...', text} for BRD-field lines, or plain strings for the simple
+  // off/block/blocked cells (rendered with the legacy skew icon).
+  const chip = (items, badgeCls, badgeText, icon, draggable, ot, tip, tipPos, stKey)=>`
+    <div class="fcal-chip"${draggable?` tabindex="0" onpointerdown="fcalChipPointerDown(event,'${draggable.emp}',${draggable.day})" onclick="if(!fcalDrag||!fcalDrag.dragging) fcalOpenMoveModal('${draggable.emp}',${draggable.day})"`:''}${tip?` data-tip="${tip.replace(/"/g,'&quot;')}"${tipPos?` data-tip-pos="${tipPos}"`:''} onpointerenter="fcalChipShowTip(event)" onpointerleave="fcalChipHideTip(event)" onfocus="fcalChipShowTip(event)" onblur="fcalChipHideTip(event)"`:''}>
+      ${stKey ? fcalStatus(stKey) : `<div class="fcal-badge ${badgeCls}">${icon?`<img src="./assets/figma-icons/${icon}" alt="">`:''}<span>${badgeText}</span></div>`}
+      ${items.map(t=>typeof t==='string'
+        ? `<div class="fcal-chip-item"><img src="${ICO}skew.svg" alt=""><span>${t}</span></div>`
+        : `<div class="fcal-chip-item"><i class="${t.icon}"></i><span>${t.text}</span></div>`
+      ).join('')}
+      ${ot?fcalStatus('otpending'):''}
+    </div>`;
+
+  // ROS-02: `draggable` carries {emp,day} for chips that can be picked up and moved.
+  // ROS-04: shift cells show only the two highest-priority job-assignment fields on the card
+  // itself — Route (the work) and Vehicle plate (the asset) — beyond the employee/date/shift
+  // already conveyed by row, column header, and badge. The remaining fields (supervisor, sector,
+  // depot, full vehicle string) move to a hover/focus tooltip (global [data-tip] system) and stay
+  // fully available, always, via the job-card modal (fcalOpenJobCard). All fields are derived via
+  // fcalJobFields so the card, tooltip, and modal never disagree.
+  const cellHtml = (kind, e, draggable, rowIdx)=>{
+    if (kind==='empty')     return ''; // moved-away source cell — bare #f9fafb background, no chip
+    if (kind==='off')       return chip(['Weekly off'], 'off', 'Off', null); // OFF is not part of the official 15-status set — kept as-is
+    if (kind==='block')     return chip(['Rest due'], null, null, null, null, false, null, null, 'dayseven');
+    if (kind==='blocked')   return chip(['Licence expired'], null, null, null, null, false, null, null, 'docblock');
+    if (kind==='onleave')   return chip(['Annual leave'], null, null, null, null, false, null, null, 'onleave');
+    if (kind==='holiday')   return chip(['Eid Al Fitr'], null, null, null, null, false, null, null, 'holiday');
+    if (kind==='rostergap') return chip(['Cover required'], null, null, null, null, false, null, null, 'rostergap');
+    const cellKind = kind==='warn' ? 'S-M' : kind;
+    const m = CELL_META[cellKind] || CELL_META['S-M'];
+    const geom = fcalDailyGeom(cellKind) || fcalDailyGeom('S-M');
+    const jf = fcalJobFields(e, geom);
+    const ot = draggable && rosterOT.has(draggable.emp+'|'+draggable.day);
+    const items = [
+      {icon:'fa-solid fa-route',       text: jf.route},
+      {icon:'fa-solid fa-truck',       text: jf.vehicle},
+    ];
+    const tip = `Supervisor · ${jf.supervisor} · Sector · ${jf.sector} · Depot · ${jf.depot} · ${jf.vehicleFull}`;
+    const tipPos = rowIdx===0 ? 'bottom' : 'top';
+    return chip(items, m.badge, m.label, m.icon, draggable, ot, tip, tipPos);
   };
 
-  const rowHtml = layout.map(r=>{
-    let e;
-    if (r.standby)      e={id:'STANDBY POOL',  name:'Farid Al Aziz',    role:'HD Driver · Standby', lot:'LOT 4', depot:'Musaffah Depot', color:'#F79009', avatar:'F'};
-    else if (r.reliever) e={id:'RELIEVER POOL',name:'Yusuf Malik',      role:'HD Driver · Reliever',lot:'LOT 4', depot:'Musaffah Depot', color:'#22C882', avatar:'Y'};
-    else e = EMPS.find(x=>x.id===r.emp);
-    const workedCells = r.pattern.filter(k=>k==='S-M'||k==='S-A'||k==='S-N'||k==='warn'||k==='sb'||k==='rv').length;
-    const utilization = workedCells * 8;
-    const initials = e.name.split(' ').map(p=>p[0]).slice(0,2).join('').toUpperCase();
-    const cells = r.pattern.map((k,i)=>{
-      let cls='day';
-      if (k==='warn') cls+=' warn-day';
-      if (k==='block') cls+=' block-day';
-      return `<td class="${cls}">${cellHtml(k, e.depot)}</td>`;
-    }).join('');
-    return `<tr>
-      <td class="emp">
-        <div class="drv-row">
-          <div class="drv-av" style="background:${e.color||'#0072D6'}">${initials}</div>
-          <div class="drv-info">
-            <div class="drv-name">${e.name}</div>
-            <div class="drv-role">${e.role}</div>
-            <div class="drv-util">Utilized for ${utilization}h per week</div>
+  // Day-header row (Figma Frame 12) — weekday label + date number, today tinted #22c882.
+  const dayHdr = shortWk.map((d,i)=>`
+    <div class="fcal-day${i===0?' today':''}">
+      <div class="in"><span class="wd">${d}</span><span class="nu">${dayNums[i]}</span></div>
+    </div>`).join('');
+
+  // Left "Drivers" column (Figma "Inspectors") — one 154px card per driver.
+  const empHtml = layout.map(r=>{
+    const e = EMPS.find(x=>x.id===r.emp);
+    const worked  = r.pattern.filter(k=>k==='S-M'||k==='S-A'||k==='S-N'||k==='warn').length;
+    const hours   = worked * 8;
+    const idle    = (7 - worked) * 8;
+    const util    = Math.round(worked / 7 * 100);
+    const initials = e.name.split(' ').map(x=>x[0]).slice(0,2).join('').toUpperCase();
+    // Card is a fixed 154px — the official-status badge (fcalStatus) replaces the old
+    // "Utilization: N%" pill (not part of the 15-status set); the % moves into the Shifts
+    // metric label so it stays visible without growing the card.
+    return `
+      <div class="fcal-emp">
+        <div class="fcal-emp-top">
+          <div class="fcal-emp-av" style="background:${e.color||'#0072D6'}">${initials}</div>
+          <div class="fcal-emp-id"><div class="n">${e.name}</div><div class="r">${e.role}</div></div>
+        </div>
+        ${fcalStatus(fcalEmpStatusKey(e.status))}
+        <div class="fcal-emp-metric">
+          <span class="k">Shifts · ${util}%</span>
+          <div class="vwrap">
+            <div class="bar"><i style="width:${util}%"></i></div>
+            <span class="v">${worked}/7</span>
           </div>
         </div>
-      </td>
-      ${cells}
-    </tr>`;
+        <div class="fcal-emp-metric">
+          <span class="k">Hours</span>
+          <span class="v"><img src="${ICO}clock-sm.svg" alt="">${hours}h 00min</span>
+        </div>
+        <div class="fcal-emp-metric">
+          <span class="k">Idle time</span>
+          <span class="v"><img src="${ICO}hourglass-02.svg" alt="">${idle}h 00min</span>
+        </div>
+      </div>`;
+  }).join('');
+
+  // Calendar body is column-major (Figma stacks Cards inside a per-day column).
+  const colHtml = shortWk.map((_,di)=>`
+    <div class="fcal-col">
+      ${layout.map((r,ri)=>{
+        const e = EMPS.find(x=>x.id===r.emp);
+        const kind = r.pattern[di];
+        const draggable = fcalWorkingKind(kind) ? {emp:r.emp, day:di} : null;
+        return `<div class="fcal-cell" data-emp="${r.emp}" data-day="${di}">${cellHtml(kind, e, draggable, ri)}</div>`;
+      }).join('')}
+    </div>`).join('');
+
+  // ROS-04: daily hour-timeline board (Monday only, per BRD daily job assignment view)
+  const dailyHourHdr = Array.from({length: ROSTER_DAILY_END - ROSTER_DAILY_START + 1}, (_,i)=>{
+    const h = ROSTER_DAILY_START + i;
+    return `<div class="fcal-d-hour"><span class="wd">${String(h).padStart(2,'0')}:00</span></div>`;
+  }).join('');
+  const dailyWindow = ROSTER_DAILY_END - ROSTER_DAILY_START;
+  const dailyRows = layout.map(r=>{
+    const e = EMPS.find(x=>x.id===r.emp);
+    const kind = r.pattern[0]; // Monday = pattern index 0
+    let inner = '';
+    if (kind==='off'){
+      inner = `<div class="fcal-d-off">Weekly off</div>`;
+    } else if (kind==='blocked' || kind==='block'){
+      inner = `<div class="fcal-d-blocked"><span class="fcal-badge docblock">DOC BLOCK</span></div>`;
+    } else if (kind==='empty'){
+      inner = '';
+    } else {
+      const geom = fcalDailyGeom(kind);
+      if (geom){
+        const leftPct = Math.max(0, (geom.start - ROSTER_DAILY_START) / dailyWindow * 100);
+        const widthPct = Math.min(100-leftPct, (geom.end - geom.start) / dailyWindow * 100);
+        const sent = rosterSentJobs.has(fcalJobKey(r.emp, 0));
+        inner = `<div class="fcal-d-bar" style="left:${leftPct}%;width:${widthPct}%" onclick="fcalOpenJobCard('${r.emp}',0)">
+          <div class="fcal-chip-item"><img src="${ICO}skew.svg" alt=""><span>${geom.route}</span></div>
+          <div class="fcal-badge ${geom.badge}"><img src="./assets/figma-icons/${geom.icon}" alt=""><span>${geom.label}</span></div>
+          ${geom.cont ? '<span class="fcal-d-cont">cont.</span>' : ''}
+          ${sent ? '<span class="fcal-d-sent">SENT</span>' : ''}
+        </div>`;
+      }
+    }
+    return `<div class="fcal-d-row" data-emp="${r.emp}">
+      <div class="fcal-d-gridlines">${Array.from({length: ROSTER_DAILY_END - ROSTER_DAILY_START + 1}, ()=>'<i></i>').join('')}</div>
+      ${inner}
+    </div>`;
   }).join('');
 
   const totalGridCells   = layout.length * 7;
   const missingCells     = layout.flatMap(r=>r.pattern).filter(k=>k==='off').length; // treat weekly-off as unassigned for the reference indicator
-  const missingPct       = Math.round(missingCells / totalGridCells * 100);
-  const conflictPct      = Math.round(conflictCount / totalGridCells * 100);
+  const missingPct       = totalGridCells ? Math.round(missingCells / totalGridCells * 100) : 0;
+  const conflictPct      = totalGridCells ? Math.round(conflictCount / totalGridCells * 100) : 0;
   const shownDrivers     = layout.length;
   const platformTotal    = 8043;
 
   return `
     <div class="ros-screen">
-      <!-- Header · title + FR-ROS ref -->
-      <div class="ros-header">
-        <div>
-          <h1>Drivers &amp; Shifts</h1>
-          <div class="ros-hd-sub">Roster &amp; Job Assignment · FR-ROS §7.4 · LOT 4 · Musaffah depot</div>
+      <!-- Top nav · Figma Tadweer 554:20353 (ported: Inspector Shifts → Drivers & Shifts) -->
+      <div class="fcal-hd-bar">
+        <div class="fcal-hd-title">Drivers &amp; Shifts</div>
+        <div class="fcal-hd-tabs">
+          <div class="fcal-hd-tabrow">
+            <button class="fcal-hd-tab${rosterView==='board'?' is-active':''}" onclick="setRosterView('board')">
+              <span class="fcal-hd-info">
+                <span class="fcal-hd-ic"><img src="./assets/figma-icons/hd-calendar.svg" alt=""></span>
+                <span class="fcal-hd-lbl">Scheduling</span>
+              </span>
+            </button>
+            <button class="fcal-hd-tab${rosterView==='conflicts'?' is-active':''}" onclick="setRosterView('conflicts')">
+              <span class="fcal-hd-info">
+                <span class="fcal-hd-ic"><img src="./assets/figma-icons/hd-bar-line-chart.svg" alt=""></span>
+                <span class="fcal-hd-lbl">Conflicts${conflictCount>0?`<span class="cnt">${conflictCount}</span>`:''}</span>
+              </span>
+            </button>
+          </div>
+          <button class="fcal-hd-plus" onclick="toast('New view','info')" data-tip="New view">
+            <img src="./assets/figma-icons/hd-plus.svg" alt="">
+          </button>
         </div>
-        <div style="display:flex;gap:8px">
-          <button class="ros-secondary-btn" onclick="toast('Roster saved as draft','ok')"><i class="fa-regular fa-floppy-disk"></i> Save draft</button>
-          <button class="ros-primary-btn" onclick="toast('Roster published — job cards pushed to driver tablets','ok')"><i class="fa-solid fa-paper-plane"></i> Publish</button>
-        </div>
-      </div>
-
-      <!-- Underlined tab strip · Scheduling / Timesheets / Attendance Logs / Conflicts -->
-      <div class="ros-tabs-under">
-        <button class="tab${rosterView==='board'?' active':''}" onclick="setRosterView('board')">Scheduling</button>
-        <button class="tab" onclick="toast('Timesheets view · out of scope for prototype','info')">Timesheets</button>
-        <button class="tab" onclick="toast('Attendance Logs · see Attendance module','info')">Attendance Logs</button>
-        <button class="tab${rosterView==='coverage'?' active':''}" onclick="setRosterView('coverage')">Coverage</button>
-        <button class="tab${rosterView==='conflicts'?' active':''}" onclick="setRosterView('conflicts')">Conflicts${conflictCount>0?`<span class="cnt">${conflictCount}</span>`:''}</button>
-      </div>
-
-      <!-- Toolbar row 1 · search + depot + count + New Shift -->
-      <div class="ros-toolbar-2">
-        <div class="ros-search"><input type="text" placeholder="Search driver name / role"></div>
-        <select class="ros-depot"><option>Musaffah Depot</option><option>Al Wathba Depot</option><option>Al Ain Depot</option><option>Al Bateen Depot</option><option>All depots</option></select>
-        <div class="ros-showing">Showing <strong>${shownDrivers} of ${shownDrivers}</strong> drivers at this depot · ${platformTotal.toLocaleString()} platform-wide</div>
-        <button class="ros-add-btn" onclick="toast('New shift dialog opened','ok')"><i class="fa-solid fa-plus"></i> New Shift</button>
-      </div>
-
-      <!-- Toolbar row 2 · Weekly/Daily + week nav + Highlight Conflicts + percentages -->
-      <div class="ros-toolbar-3">
-        <div class="ros-seg">
-          <button class="active" onclick="toast('Weekly view (current)','info')">Weekly</button>
-          <button onclick="toast('Daily view · switches to day-card layout','info')">Daily</button>
-        </div>
-        <div class="ros-wknav">
-          <button class="wk-btn" title="Previous week"><i class="fa-solid fa-chevron-left"></i></button>
-          <div class="wk-lbl">10 Aug, 2026 – 16 Aug, 2026 (Week 33)</div>
-          <button class="wk-btn" title="Next week"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-        <div class="ros-conflict-toggle-group">
-          <label class="ros-hlight"><input type="checkbox" checked onchange="document.body.classList.toggle('hi-conflicts', this.checked)"> Highlight Conflicts</label>
-          <div class="ros-hlight-stat miss"><span class="dot"></span>Missing Assignment (<strong>${missingPct}%</strong>)</div>
-          <div class="ros-hlight-stat conf"><span class="dot"></span>Conflict (<strong>${conflictPct}%</strong>)</div>
+        <div class="fcal-hd-right">
+          <span class="fcal-pub-tag ${!rosterPublished?'draft':(rosterDirty?'pending':'published')}">${!rosterPublished?'Draft':(rosterDirty?'Changes pending republish':'Published')}</span>
+          <button class="ros-secondary-btn fcal-hd-btn" onclick="toast('Roster saved as draft','ok')"><i class="fa-regular fa-floppy-disk"></i> Save draft</button>
+          <button class="ros-primary-btn fcal-hd-btn${rosterPublished && rosterDirty?' pub-dot':''}"${rosterPublished && !rosterDirty?' style="opacity:.65"':''} onclick="fcalPublishRoster()"><i class="fa-solid fa-paper-plane"></i> ${rosterPublished ? (rosterDirty ? 'Republish' : 'Published ✓') : 'Publish'}</button>
         </div>
       </div>
 
-      <!-- Coverage widget · Fleet-Availability shape · ROS-06 headcount planner -->
-      <div class="tr-avail-widget" style="margin:0 24px 16px">
-        <div class="tr-avail-head">
-          <div class="tr-avail-title-wrap">
-            <div class="tr-avail-icon"><i class="fa-solid fa-people-group"></i></div>
-            <div>
-              <div class="tr-avail-title">Coverage — Week 33</div>
-              <div class="tr-avail-sub">${rosterHeadcount} rostered · ${standbyCount} standby · ${relieverCount} reliever · ${validPct}% shift-cell coverage</div>
+      <!-- Toolbar row 1 · search + filter — Figma 554:20373 -->
+      <div class="fcal-tools">
+        <div class="fcal-tools-l">
+          <div class="fcal-search">
+            <img src="./assets/figma-icons/search-refraction.svg" alt="">
+            <input type="text" placeholder="Search anything here">
+          </div>
+          <button class="fcal-filter" onclick="toast('Filter panel opened','info')" title="Filter">
+            <img src="./assets/figma-icons/filter-funnel-02.svg" alt="">
+          </button>
+          <select class="fcal-lot" title="Filter by LOT" onchange="setRosterLot(this.value)">
+            ${['LOT 4','LOT 3','LOT 5','All LOTs'].map(l=>`<option value="${l}"${rosterLot===l?' selected':''}>${l==='LOT 4'?'LOT 4 (Musaffah)':l}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+
+      <!-- Toolbar row 2 · Weekly/Daily segmented + date navigator — Figma 554:20383 -->
+      <div class="fcal-row2">
+        <div class="fcal-row2-l">
+          <div class="fcal-seg">
+            <button class="${rosterMode==='weekly'?'active':''}" onclick="setRosterMode('weekly')">Weekly</button>
+            <button class="${rosterMode==='daily'?'active':''}" onclick="setRosterMode('daily')">Daily</button>
+          </div>
+          <div class="fcal-datenav">
+            <img class="chev" src="./assets/figma-icons/chevron-selector-horizontal.svg" alt="">
+            <div class="lbl">
+              ${rosterMode==='daily' ? `<span class="range">Mon, 11 Aug 2026</span>` : `<span class="range">10 Aug, 2026 - 16 Aug, 2026</span><span class="sub">( Week 33 )</span>`}
             </div>
           </div>
-          <div class="tr-avail-filter">
-            <select><option>All shifts</option><option>Morning only</option><option>Afternoon only</option><option>Night only</option></select>
-          </div>
         </div>
-        <div class="tr-avail-kpis">
-          <div class="tr-avail-kpi"><div class="tr-avail-lbl">Rostered</div><div class="tr-avail-val neutral">${pad2(rosterHeadcount)}</div></div>
-          <div class="tr-avail-kpi"><div class="tr-avail-lbl">Assigned</div><div class="tr-avail-val valid">${pad2(workingCells)}</div></div>
-          <div class="tr-avail-kpi"><div class="tr-avail-lbl">Weekly off</div><div class="tr-avail-val" style="color:#7C3AED">${pad2(offCells)}</div></div>
-          <div class="tr-avail-kpi"><div class="tr-avail-lbl">Doc-blocked</div><div class="tr-avail-val expired">${pad2(blockedCells)}</div></div>
-          <div class="tr-avail-kpi"><div class="tr-avail-lbl">Hour-limit</div><div class="tr-avail-val" style="color:#EF9F27">${pad2(hardBlockCells)}</div></div>
-          <div class="tr-avail-kpi"><div class="tr-avail-lbl">Standby pool</div><div class="tr-avail-val" style="color:#0BA5EC">${pad2(standbyCount)}</div></div>
+      </div>
+
+      <!-- KPI cards — Figma 554:20395 -->
+      <div class="fcal-kpis">
+        <div class="fcal-kpi">
+          <div class="av" style="background:#f4edf7"><img src="./assets/figma-icons/bar-line-chart.svg" alt=""></div>
+          <div class="txt"><div class="l">Shift-cell coverage</div><div class="v">${validPct}%</div></div>
         </div>
-        <div class="tr-avail-bar">
-          <div class="tr-avail-seg valid"    style="width:${validPct}%"  title="Assigned ${workingCells}"></div>
-          <div class="tr-avail-seg" style="width:${offPct}%;background:#7C3AED"    title="Weekly off ${offCells}"></div>
-          <div class="tr-avail-seg expired"  style="width:${blockPct}%"  title="Blocked ${blockedCells + hardBlockCells}"></div>
+        <div class="fcal-kpi">
+          <div class="av" style="background:#e6f1fb"><img src="./assets/figma-icons/clock-fast-forward.svg" alt=""></div>
+          <div class="txt"><div class="l">Total Shifts</div><div class="v">${workingCells}</div></div>
+        </div>
+        <div class="fcal-kpi">
+          <div class="av" style="background:#ecfdf3"><img src="./assets/figma-icons/check-circle-broken.svg" alt=""></div>
+          <div class="txt"><div class="l">Rostered Drivers</div><div class="v">${rosterHeadcount}</div></div>
+        </div>
+        <div class="fcal-kpi">
+          <div class="av" style="background:#fef3f2"><img src="./assets/figma-icons/alert-octagon.svg" alt=""></div>
+          <div class="txt"><div class="l">Blocked Cells</div><div class="v">${blockedCells + hardBlockCells}</div></div>
         </div>
       </div>
 
@@ -3151,81 +3801,46 @@ route('roster', ()=>{
         <div class="ros-alert">
           <i class="fa-solid fa-triangle-exclamation"></i>
           <div>
-            <strong>${conflictCount} rule violation${conflictCount>1?'s':''} on this week's board</strong> — ${blockedCells>0?`${blockedCells} doc-blocked cell${blockedCells>1?'s':''} (safety-critical certificate expired · TRN-05 linkage)`:''}${blockedCells>0 && hardBlockCells>0?' · ':''}${hardBlockCells>0?`${hardBlockCells} day-7 hard block${hardBlockCells>1?'s':''} (6 consecutive days breached)`:''}. Publish is disabled until these are resolved or overridden by Operations. <em>(ROS-03)</em>
+            <strong>${conflictCount} rule violation${conflictCount>1?'s':''} on this week's board</strong> — ${blockedCells>0?`${blockedCells} doc-blocked cell${blockedCells>1?'s':''} (safety-critical certificate expired · TRN-05 linkage)`:''}${blockedCells>0 && hardBlockCells>0?' · ':''}${hardBlockCells>0?`${hardBlockCells} day-7 hard block${hardBlockCells>1?'s':''} (6 consecutive days breached)`:''}${(blockedCells>0||hardBlockCells>0) && doubleCount>0?' · ':''}${doubleCount>0?`${doubleCount} double assignment${doubleCount>1?'s':''} (overlapping route assignment)`:''}${(blockedCells>0||hardBlockCells>0||doubleCount>0) && gapCount>0?' · ':''}${gapCount>0?`${gapCount} roster gap${gapCount>1?'s':''} (leave-approved shift uncovered)`:''}. Publish is disabled until these are resolved or overridden by Operations. <em>(ROS-03)</em>
           </div>
         </div>` : ''}
 
-      ${rosterView === 'conflicts' ? renderConflictsView({conflictCount, blockedCells, hardBlockCells}) : `
-      <div class="ros-board-card">
-        <div class="ros-board-hd">
-          <div>
-            <div class="ros-board-title">Weekly board</div>
-            <div class="ros-board-sub">Drag shift cells to reassign · double assignment blocked · drop on weekly-off raises OT approval <em>(ROS-02)</em></div>
-          </div>
-          <div class="ros-legend">
-            <span><i class="ros-sw" style="background:#fff;border-left:3px solid var(--green-500)"></i>Morning</span>
-            <span><i class="ros-sw" style="background:#fff;border-left:3px solid var(--violet-500)"></i>Afternoon</span>
-            <span><i class="ros-sw" style="background:#0F172A"></i>Night</span>
-            <span><i class="ros-sw" style="background:#FFFBF0;border-left:3px solid var(--amber-500)"></i>Standby</span>
-            <span><i class="ros-sw" style="background:#F9FAFB;border:1px solid var(--line-strong)"></i>Off</span>
-            <span><i class="ros-sw" style="background:rgba(240,68,56,.10);border:1px dashed #F04438"></i>Doc block</span>
-          </div>
-        </div>
-        <div class="roster ros-board-body">
-          <table>
-            <thead><tr><th class="emp">Drivers</th>${dayHdr}</tr></thead>
-            <tbody>${rowHtml}</tbody>
-          </table>
-        </div>
+      ${rosterView === 'conflicts' ? renderConflictsView({conflictCount, blockedCells, hardBlockCells, doubleCount, gapCount}) : (layout.length===0 ? `
+      <!-- ROS-01: empty state — LOT has no rostered rows -->
+      <div class="fcal-grid">
+        <div class="fcal-empty-state">No drivers rostered in this LOT</div>
       </div>
-
-      <div class="ros-pools-grid">
-        <div class="ros-pool-card">
-          <div class="ros-pool-hd">
-            <div class="ros-pool-icon standby"><i class="fa-regular fa-calendar-check"></i></div>
-            <div>
-              <div class="ros-pool-title">Standby pool <span class="ros-pool-cnt">${standbyCount} employees</span></div>
-              <div class="ros-pool-sub">Planned leave cover · pre-rostered · dispatched before shift start</div>
-            </div>
-          </div>
-          <div class="ros-pool-body">
-            <div class="ros-pool-emp"><div class="ros-pool-av" style="background:#F79009">FA</div><div class="ros-pool-info"><div class="n">Farid Al Aziz</div><div class="m">TJ-9001 · HD Driver · Musaffah</div></div><span class="ros-pool-pill amber">Approved leave cover</span></div>
-            <div class="ros-pool-emp"><div class="ros-pool-av" style="background:#F79009">MA</div><div class="ros-pool-info"><div class="n">Mahmoud Ali</div><div class="m">TJ-9002 · LD Driver · Musaffah</div></div><span class="ros-pool-pill amber">Approved leave cover</span></div>
-          </div>
+      ` : `
+      ${rosterMode === 'weekly' ? `
+      <!-- Calendar grid — Figma 554:20421: frozen 264px driver column + 7 day columns -->
+      <div class="fcal-grid">
+        <div class="fcal-left">
+          <div class="fcal-left-hd"><span>Drivers</span></div>
+          <div class="fcal-left-body">${empHtml}</div>
         </div>
-        <div class="ros-pool-card">
-          <div class="ros-pool-hd">
-            <div class="ros-pool-icon reliever"><i class="fa-solid fa-user-shield"></i></div>
-            <div>
-              <div class="ros-pool-title">Reliever pool <span class="ros-pool-cnt">${relieverCount} employee${relieverCount>1?'s':''}</span></div>
-              <div class="ros-pool-sub">No-show buffer · reactive · dispatched after shift start when a driver doesn't punch in</div>
-            </div>
-          </div>
-          <div class="ros-pool-body">
-            <div class="ros-pool-emp"><div class="ros-pool-av" style="background:#22C882">YM</div><div class="ros-pool-info"><div class="n">Yusuf Malik</div><div class="m">TJ-9003 · HD Driver · Musaffah · On-call</div></div><span class="ros-pool-pill green">No-show cover</span></div>
+        <div class="fcal-cal">
+          <div class="fcal-cal-inner">
+            <div class="fcal-days">${dayHdr}</div>
+            <div class="fcal-body">${colHtml}</div>
           </div>
         </div>
       </div>
-
-      <div class="ros-demo-grid">
-        <div class="ros-demo-card">
-          <div class="ros-demo-hd"><i class="fa-solid fa-hand-point-up" style="color:var(--primary)"></i><h4>Working-hours rule · try it</h4><span class="ros-demo-badge">Hard block</span></div>
-          <p>Attempt to assign <strong>Ahmed Al Sayed</strong> to Sun 17 Aug — he already has 6 consecutive days.</p>
-          <button class="ros-secondary-btn" onclick="showWorkingHoursBlock()"><i class="fa-solid fa-play"></i> Trigger day-7 assignment</button>
-          <div class="ros-demo-note"><i class="fa-solid fa-triangle-exclamation"></i> Day 6 shows an amber warning — the tipping-point cell — so planners see the risk before they try.</div>
+      ` : `
+      <!-- ROS-04: Daily job assignment view — hour timeline 05:00-21:00 -->
+      <div class="fcal-grid">
+        <div class="fcal-left">
+          <div class="fcal-left-hd"><span>Drivers</span></div>
+          <div class="fcal-left-body">${empHtml}</div>
         </div>
-        <div class="ros-demo-card">
-          <div class="ros-demo-hd"><i class="fa-solid fa-route" style="color:var(--primary)"></i><h4>Route auto-assign · rostered-off exclusion</h4></div>
-          <p>When smart planning generates <strong>Route R-27</strong> for Fri 15 Aug, this is the pick list the operator sees:</p>
-          <div class="ros-picker">
-            <div class="ros-pick-row"><div class="ros-pool-av" style="background:#22C882">AS</div><div class="ros-pool-info"><div class="n">Ahmed Al Sayed</div><div class="m">HD Driver · Available · Certified</div></div><span class="ros-pool-pill green">Available</span></div>
-            <div class="ros-pick-row muted"><div class="ros-pool-av" style="background:#98A2B3">RK</div><div class="ros-pool-info"><div class="n">Rashid Khan</div><div class="m" style="color:#F04438"><i class="fa-solid fa-lock"></i> Licence expired · unavailable</div></div><span class="ros-pool-pill red">Doc blocked</span></div>
-            <div class="ros-pick-row muted"><div class="ros-pool-av" style="background:#98A2B3">BI</div><div class="ros-pool-info"><div class="n">Bilal Iqbal</div><div class="m" style="color:var(--ink-3)"><i class="fa-solid fa-bed"></i> Rostered off (Sun)</div></div><span class="ros-pool-pill gray">Off day</span></div>
-            <div class="ros-pick-row muted"><div class="ros-pool-av" style="background:#98A2B3">MZ</div><div class="ros-pool-info"><div class="n">Mohd Zubair</div><div class="m" style="color:var(--ink-3)">6 consecutive days · day 7 blocked</div></div><span class="ros-pool-pill amber">Hour limit</span></div>
+        <div class="fcal-cal">
+          <div class="fcal-cal-inner">
+            <div class="fcal-d-hdrow">${dailyHourHdr}</div>
+            <div class="fcal-d-body">${dailyRows}</div>
           </div>
         </div>
       </div>
       `}
+      `)}
     </div>
   `;
 }, 'Roster Board', 'Workforce › Roster');
@@ -3237,7 +3852,7 @@ route('roster', ()=>{
      · DOC BLOCK   — expired safety-critical certificate (TRN-05 linkage)
      · HOUR LIMIT  — 6 consecutive worked days breach (ROS-03, UAE Labour Law)
    Publish is disabled while any conflict is unresolved (BRD FR-ROS §7.4). */
-function renderConflictsView({conflictCount, blockedCells, hardBlockCells}){
+function renderConflictsView({conflictCount, blockedCells, hardBlockCells, doubleCount}){
   const conflicts = [
     {
       kind:'doc', emp:'TJ-4288', avatarBg:'#F04438',
@@ -3256,7 +3871,7 @@ function renderConflictsView({conflictCount, blockedCells, hardBlockCells}){
       badgeText:'Doc block',
       cells:7,
       actions:[
-        {i:'fa-arrow-right-arrow-left', l:'Reassign to standby',   cls:'primary', tx:'Opening standby pool…'},
+        {i:'fa-arrow-right-arrow-left', l:'Reassign driver',       cls:'primary', tx:'Driver picker opened'},
         {i:'fa-file-arrow-up',          l:'Upload renewed licence', cls:'',        tx:'Upload dialog opened'},
         {i:'fa-ban',                    l:'Override not permitted', cls:'danger locked'},
       ],
@@ -3265,7 +3880,7 @@ function renderConflictsView({conflictCount, blockedCells, hardBlockCells}){
       kind:'hours', emp:'TJ-4712', avatarBg:'#12B76A',
       ruleId:'ROS-03 · 6-day working-hours rule',
       title:'Day-7 mandatory rest breach on Sun 17 Aug',
-      desc:'<strong>Ahmed Al Sayed</strong> has been assigned Mon–Sat (6 consecutive days). Sun 17 is a <strong>mandatory off-day</strong> under UAE Labour Law. The board hard-blocks the Sun cell — a Reliever must cover the shift, or one of the earlier days must be freed to create a rest gap.',
+      desc:'<strong>Ahmed Al Sayed</strong> has been assigned Mon–Sat (6 consecutive days). Sun 17 is a <strong>mandatory off-day</strong> under UAE Labour Law. The board hard-blocks the Sun cell — another rostered driver must cover the shift, or one of the earlier days must be freed to create a rest gap.',
       week:[
         {d:'Mon 11', s:'assigned', l:'MOR'},
         {d:'Tue 12', s:'assigned', l:'MOR'},
@@ -3278,9 +3893,31 @@ function renderConflictsView({conflictCount, blockedCells, hardBlockCells}){
       badgeText:'Hour limit',
       cells:1,
       actions:[
-        {i:'fa-user-shield',            l:'Cover with Reliever',    cls:'primary', tx:'Reliever assigned to Sun 17 — Yusuf Malik'},
+        {i:'fa-user-group',             l:'Reassign Sun 17',        cls:'primary', tx:'Driver picker opened for Sun 17'},
         {i:'fa-shuffle',                l:'Swap earlier shift',     cls:'',        tx:'Shift swap picker opened'},
         {i:'fa-ban',                    l:'Override not permitted', cls:'danger locked'},
+      ],
+    },
+    {
+      kind:'double', emp:'TJ-4103', avatarBg:'#F79009',
+      ruleId:'ROS-03 · double assignment',
+      title:'2 overlapping assignments on Thu 14 Aug',
+      desc:'<strong>Salim Hassan</strong> has <strong>2 assignments</strong> on Thu 14 Aug — Route A and Route B overlap 05:00–13:00. A driver cannot be dispatched on two job cards for the same window; one assignment must be dropped or reassigned before publish.',
+      week:[
+        {d:'Mon 11', s:'assigned', l:'MOR'},
+        {d:'Tue 12', s:'assigned', l:'MOR'},
+        {d:'Wed 13', s:'off',      l:'OFF'},
+        {d:'Thu 14', s:'violate',  l:'2×'},
+        {d:'Fri 15', s:'assigned', l:'MOR'},
+        {d:'Sat 16', s:'assigned', l:'MOR'},
+        {d:'Sun 17', s:'off',      l:'OFF'},
+      ],
+      badgeText:'Double assignment',
+      cells:1,
+      actions:[
+        {i:'fa-check',    l:'Keep Route A, unassign Route B', cls:'primary', tx:'Route B unassigned — Route A kept for Salim Hassan'},
+        {i:'fa-shuffle',  l:'Swap to another driver',         cls:'',        tx:'Driver picker opened for Thu 14'},
+        {i:'fa-ban',      l:'Override not permitted',         cls:'danger locked'},
       ],
     },
   ];
@@ -3310,11 +3947,11 @@ function renderConflictsView({conflictCount, blockedCells, hardBlockCells}){
       </div>
     </div>
 
-    <div class="ros-c-summary">
+    <div class="ros-c-summary" style="grid-template-columns:repeat(5,1fr)">
       <div class="ros-c-stat">
         <div class="lbl">Total conflicts</div>
         <div class="val red">${totalConflicts}</div>
-        <div class="sub">Week 33 · ${blockedCells + hardBlockCells} affected cells</div>
+        <div class="sub">Week 33 · ${blockedCells + hardBlockCells + doubleCount} affected cells</div>
       </div>
       <div class="ros-c-stat">
         <div class="lbl">Doc-block cells</div>
@@ -3325,6 +3962,11 @@ function renderConflictsView({conflictCount, blockedCells, hardBlockCells}){
         <div class="lbl">Hour-limit cells</div>
         <div class="val amber">${hardBlockCells}</div>
         <div class="sub">ROS-03 · 6-day consecutive breach</div>
+      </div>
+      <div class="ros-c-stat">
+        <div class="lbl">Double assignments</div>
+        <div class="val amber">${doubleCount}</div>
+        <div class="sub">ROS-03 · overlapping route assignment</div>
       </div>
       <div class="ros-c-stat">
         <div class="lbl">Publish status</div>
@@ -3340,6 +3982,7 @@ function renderConflictsView({conflictCount, blockedCells, hardBlockCells}){
           <button class="filter-pill active">All (${totalConflicts})</button>
           <button class="filter-pill">Doc block</button>
           <button class="filter-pill">Hour limit</button>
+          <button class="filter-pill">Double assignment</button>
         </div>
       </div>
       ${conflicts.map(c=>{
@@ -3359,7 +4002,7 @@ function renderConflictsView({conflictCount, blockedCells, hardBlockCells}){
           </div>
           <div class="ros-c-body">
             <div class="ros-c-badges">
-              <span class="ros-c-badge ${c.kind}"><i class="fa-solid ${c.kind==='doc'?'fa-lock':'fa-clock'}"></i> ${c.badgeText}</span>
+              ${c.kind==='double' ? fcalStatus('doubleassign') : `<span class="ros-c-badge ${c.kind}"><i class="fa-solid ${c.kind==='doc'?'fa-lock':'fa-clock'}"></i> ${c.badgeText}</span>`}
               <span class="ros-c-badge rule">${c.ruleId}</span>
               <span class="ros-c-badge day"><i class="fa-regular fa-calendar"></i> ${c.cells} cell${c.cells>1?'s':''}</span>
             </div>
@@ -3378,86 +4021,6 @@ function renderConflictsView({conflictCount, blockedCells, hardBlockCells}){
       }).join('')}
     </div>`;
 }
-
-function showWorkingHoursBlock(){
-  modal(`
-    <div class="modal" style="max-width:520px">
-      <div class="h" style="background:var(--red-100)"><i class="fa-solid fa-lock" style="color:var(--red-500);font-size:18px"></i><h4 style="color:var(--red-500)">Cannot assign · working-hours rule</h4><button class="btn ghost" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button></div>
-      <div class="b">
-        <div style="font-size:15px;font-weight:600;margin-bottom:10px">Ahmed Al Sayed (TJ-4712) has worked 6 consecutive days.</div>
-        <div style="font-size:13px;color:var(--ink-2);margin-bottom:14px">Day 7 is a <strong>mandatory off-day</strong> under UAE Labour Law. This is a hard block — no override in this phase.</div>
-        <div style="padding:12px;background:var(--surface-2);border-radius:8px">
-          <div style="font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Consecutive days worked</div>
-          <div style="display:flex;gap:4px">
-            ${['Mon','Tue','Wed','Thu','Fri','Sat'].map(d=>`<div style="flex:1;padding:8px;background:var(--blue-100);color:var(--blue-500);border-radius:5px;text-align:center;font-weight:600;font-size:11px">${d} ✓</div>`).join('')}
-            <div style="flex:1;padding:8px;background:var(--red-100);color:var(--red-500);border-radius:5px;text-align:center;font-weight:600;font-size:11px">Sun ✗</div>
-          </div>
-        </div>
-        <div style="margin-top:14px;font-size:12.5px;color:var(--ink-2)"><strong>What to do:</strong> pick an employee from the Reliever pool, or reassign one of Ahmed's earlier shifts to create a rest gap.</div>
-      </div>
-      <div class="f"><button class="btn ghost" onclick="closeModal()">Cancel</button><button class="btn primary" onclick="closeModal();toast('Reliever pool opened','ok')">Open reliever pool</button></div>
-    </div>
-  `);
-}
-
-
-/* ---------- 5. STANDBY vs RELIEVER ---------- */
-route('pools', ()=>{
-  return `
-    <div class="page-head">
-      <div>
-        <h2>Standby &amp; Reliever pools <span class="chip blue" style="vertical-align:middle;margin-left:6px">Two absence types</span></h2>
-        <div class="sub">Two structurally different substitutions. <strong>Standby</strong> covers planned absence (approved leave) — assigned before the fact. <strong>Reliever</strong> covers unplanned absence (no-show) — assigned live on the roster.</div>
-      </div>
-      <div class="ref">POOL · v1</div>
-    </div>
-
-    <div class="grid-2" style="margin-bottom:18px">
-      <div class="card" style="border-left:4px solid var(--amber-500)">
-        <h3><i class="fa-regular fa-calendar-check" style="color:var(--amber-500)"></i> Standby Workforce · planned</h3>
-        <div style="font-size:12.5px;color:var(--ink-2);margin-bottom:12px">Triggered when a <strong>leave request is approved</strong>. The gap in the roster is flagged; a planner picks a standby before the shift date.</div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">
-          <div class="kpi"><div class="label">Pool size</div><div class="value" style="font-size:20px">12</div></div>
-          <div class="kpi"><div class="label">Assigned</div><div class="value" style="font-size:20px">4</div></div>
-          <div class="kpi"><div class="label">Available</div><div class="value" style="font-size:20px;color:var(--green-500)">8</div></div>
-          <div class="kpi"><div class="label">Gaps this week</div><div class="value" style="font-size:20px">3</div></div>
-        </div>
-        <div style="font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.4px;font-weight:600;margin-bottom:8px">Assigned this week</div>
-        <div class="pool-emp"><div class="av" style="background:var(--amber-500)">FA</div><div class="info"><div class="n">Farid Ahmed · covering Salim Hassan</div><div class="m">Leave: 14–18 Aug · Route R-08</div></div><span class="chip amber">Locked</span></div>
-        <div class="pool-emp"><div class="av" style="background:var(--amber-500)">JI</div><div class="info"><div class="n">Junaid Iqbal · covering Nasir Ullah</div><div class="m">Leave: 15–20 Aug · Route R-22</div></div><span class="chip amber">Locked</span></div>
-      </div>
-
-      <div class="card" style="border-left:4px solid var(--green-500)">
-        <h3><i class="fa-solid fa-bolt" style="color:var(--green-500)"></i> Reliever Workforce · reactive</h3>
-        <div style="font-size:12.5px;color:var(--ink-2);margin-bottom:12px">Pre-rostered <strong>buffer</strong> that reports every shift with no route. Absorbs unauthorised no-shows discovered after shift start. Cost of never sending a route out short-crewed.</div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">
-          <div class="kpi"><div class="label">On duty today</div><div class="value" style="font-size:20px">3+5</div><div class="delta">drivers + helpers</div></div>
-          <div class="kpi"><div class="label">Deployed</div><div class="value" style="font-size:20px">1</div></div>
-          <div class="kpi"><div class="label">Idle</div><div class="value" style="font-size:20px;color:var(--green-500)">7</div></div>
-          <div class="kpi"><div class="label">Avg deploy time</div><div class="value" style="font-size:20px">14m</div></div>
-        </div>
-        <div style="font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.4px;font-weight:600;margin-bottom:8px">Reliever pool · reporting 06:00 today</div>
-        <div class="pool-emp"><div class="av" style="background:var(--green-500)">YM</div><div class="info"><div class="n">Yusuf Malik</div><div class="m">HD Driver · Certified all routes · <strong style="color:var(--red-500)">Deployed 06:14 → R-27 (Rashid no-show)</strong></div></div><span class="chip red">Deployed</span></div>
-        <div class="pool-emp"><div class="av" style="background:var(--green-500)">SK</div><div class="info"><div class="n">Sameer Khan</div><div class="m">HD Driver · Available</div></div><span class="chip green">Ready</span></div>
-        <div class="pool-emp"><div class="av" style="background:var(--green-500)">TR</div><div class="info"><div class="n">Tariq Rehman</div><div class="m">LD Driver · Available</div></div><span class="chip green">Ready</span></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Decision matrix · which pool applies?</h3>
-      <table>
-        <thead><tr><th style="width:30%">Scenario</th><th>Detected when</th><th>Covered by</th><th>Chip on roster</th></tr></thead>
-        <tbody>
-          <tr><td>Annual / sick / Hajj leave (approved)</td><td>Approval workflow · before shift date</td><td><strong>Standby pool</strong></td><td><span class="shift-chip standby" style="display:inline-block">STANDBY</span></td></tr>
-          <tr><td>No-show at shift start</td><td>Attendance ingestion · 15 min past shift start</td><td><strong>Reliever pool</strong></td><td><span class="shift-chip reliever" style="display:inline-block">RELIEVER</span></td></tr>
-          <tr><td>Emergency mid-shift absence</td><td>Supervisor logs incident · live</td><td><strong>Reliever pool</strong></td><td><span class="shift-chip reliever" style="display:inline-block">RELIEVER</span></td></tr>
-          <tr><td>Document expiry (permanent)</td><td>Nightly compliance scan</td><td>Standby (if planned) or Reliever (if surprise)</td><td>Both possible</td></tr>
-        </tbody>
-      </table>
-    </div>
-  `;
-}, 'Standby & Reliever', 'Workforce › Pools');
-
 
 /* ---------- 6. ATTENDANCE TWO-SOURCE ---------- */
 route('attendance', ()=>{
@@ -4611,7 +5174,7 @@ route('excluded', ()=>`
 `, 'Excluded scope', 'Register');
 
 /* ---------- BOOT ---------- */
-const start = (location.hash||'#/summary').replace('#/','');
+const start = (location.hash||'#/roster').replace('#/','');
 go(routes[start]?start:'summary');
 </script>
 </body>

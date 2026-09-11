@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#8A1538" />
+<title>Driver - Sign In</title>
+<style>
+  @font-face { font-family: 'Gilroy'; src: url('v5-design-system-ai-main/Font/Gilroy-Medium.otf') format('opentype'); font-weight: 500; font-display: swap; }
+  @font-face { font-family: 'Gilroy'; src: url('v5-design-system-ai-main/Font/Gilroy-Semibold.otf') format('opentype'); font-weight: 600; font-display: swap; }
+  @font-face { font-family: 'Gilroy'; src: url('v5-design-system-ai-main/Font/Gilroy-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+
+  :root {
+    --brand-primary: #8A1538;
+    --brand-primary-dark: #6B1029;
+    --brand-primary-lightest: #F9EEF1;
+    --brand-overlay: rgba(121, 30, 61, .8);
+    --neutral-lightest: #F9FAFB;
+    --neutral-300: #D0D5DD;
+    --neutral-400: #98A2B3;
+    --neutral-500: #667085;
+    --neutral-700: #344054;
+    --text-darker: #1D2939;
+    --text-darkest: #101828;
+    --ink: #172243;
+    --error: #F04438;
+    --success: #12B76A;
+
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+
+    --ease-out: cubic-bezier(.22, 1, .36, 1);
+    --dur-fast: 160ms;
+    --dur-med: 260ms;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { height: 100%; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #fff; color: var(--text-darker);
+    min-height: 100vh; min-height: 100dvh;
+    overscroll-behavior: none;
+  }
+  button, a, input { font-family: inherit; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+  button { cursor: pointer; border: 0; background: none; color: inherit; }
+  :focus-visible { outline: 3px solid var(--brand-primary); outline-offset: 2px; }
+  .hidden { display: none !important; }
+
+  /* ── Shell: hero + form ── */
+  .shell { display: flex; height: 100vh; height: 100dvh; }
+
+  .hero {
+    position: relative; flex: 1 1 50%; min-width: 0; overflow: hidden;
+    background: var(--brand-primary);
+    display: flex; align-items: flex-end;
+    padding: 40px calc(40px + var(--safe-left)) 40px;
+  }
+  .hero img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 20% center; }
+  .hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(5,5,5,0) 0%, var(--brand-overlay) 100%);
+  }
+  .hero-copy { position: relative; z-index: 1; color: #fff; max-width: 448px; }
+  .hero-copy h2 { font-weight: 700; font-size: 40px; line-height: 38px; margin-bottom: 8px; letter-spacing: -.2px; }
+  .hero-copy ul { list-style: disc; padding-left: 27px; font-weight: 500; font-size: 18px; line-height: 1.7; }
+
+  .pane {
+    position: relative; flex: 1 1 50%; min-width: 0;
+    display: flex; flex-direction: column; align-items: center;
+    padding: calc(32px + var(--safe-top)) 24px calc(24px + var(--safe-bottom)) calc(24px + var(--safe-right));
+    overflow-y: auto;
+  }
+  .pane-inner {
+    flex: 1; width: 100%; max-width: 467px;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-bottom: 24px;
+  }
+  .logo { height: 60px; display: flex; align-items: center; margin-bottom: 24px; }
+  .logo img { height: 56px; width: auto; display: block; }
+  h1 { font-weight: 700; font-size: 32px; line-height: 40px; color: #000; margin-bottom: 24px; }
+
+  .powered { display: flex; align-items: center; gap: 10px; flex-shrink: 0; padding-top: 8px; }
+  .powered span { font-weight: 700; font-size: 12px; color: var(--neutral-500); }
+  .powered img { height: 26px; width: auto; display: block; }
+
+  /* ── Method tiles ── */
+  .tiles { display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 425px; }
+  .tile {
+    position: relative; height: 160px; width: 100%; overflow: hidden;
+    border-radius: 4px; text-align: left;
+    display: flex; align-items: center; padding: 0 24px;
+    font-weight: 600; font-size: 24px;
+    transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out), background var(--dur-fast);
+  }
+  .tile:hover { box-shadow: 0 8px 20px rgba(16,24,40,.12); }
+  .tile:active { transform: scale(.985); }
+  .tile span { position: relative; z-index: 1; max-width: 55%; }
+  .tile img { position: absolute; right: 0; top: 0; height: 100%; width: auto; pointer-events: none; }
+  .tile.primary { background: var(--brand-primary); color: #fff; border: 1px solid var(--brand-primary-dark); }
+  .tile.primary:hover { background: #7C1332; }
+  .tile.secondary { background: #fff; color: var(--neutral-700); border: 1px solid var(--neutral-300); }
+  .tile.secondary:hover { background: var(--neutral-lightest); }
+  .tile.secondary img { height: 95%; right: -4px; top: 6px; }
+
+  /* ── Credentials form ── */
+  .form { display: flex; flex-direction: column; gap: 16px; width: 100%; }
+  .field {
+    position: relative; height: 54px; border: 1px solid var(--neutral-300); border-radius: 4px; background: #fff;
+    display: flex; align-items: center;
+    transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+  }
+  .field:focus-within { border-color: var(--brand-primary); box-shadow: 0 0 0 3px rgba(138,21,56,.12); }
+  .field.invalid { border-color: var(--error); }
+  .field input {
+    flex: 1; height: 100%; border: 0; outline: 0; background: transparent;
+    padding: 20px 12px 6px; font-weight: 500; font-size: 16px; color: var(--text-darker); min-width: 0;
+  }
+  .field input::placeholder { color: transparent; }
+  .field label {
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    font-weight: 500; font-size: 16px; color: var(--neutral-400); pointer-events: none;
+    transition: transform var(--dur-fast) var(--ease-out), font-size var(--dur-fast) var(--ease-out), top var(--dur-fast) var(--ease-out);
+  }
+  .field input:focus + label,
+  .field input:not(:placeholder-shown) + label { top: 8px; transform: none; font-size: 12px; }
+  .field .eye {
+    width: 48px; height: 100%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .field .eye img { width: 19px; height: 18px; display: block; opacity: .7; transition: opacity var(--dur-fast); }
+  .field .eye[aria-pressed="true"] img { opacity: 1; filter: brightness(0) saturate(100%) invert(14%) sepia(60%) saturate(4000%) hue-rotate(320deg); }
+  .field-error { font-weight: 500; font-size: 14px; color: var(--error); margin-top: -8px; display: flex; align-items: center; gap: 6px; }
+  .field-error svg { width: 16px; height: 16px; stroke: var(--error); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+  .actions { display: flex; flex-direction: column; gap: 16px; align-items: stretch; width: 100%; margin-top: 16px; }
+  .btn {
+    height: 48px; border-radius: 4px; padding: 0 30px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    font-weight: 600; font-size: 18px; white-space: nowrap; width: 100%;
+    transition: background var(--dur-fast), opacity var(--dur-fast), transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast);
+  }
+  .btn:active:not(:disabled) { transform: scale(.985); }
+  .btn.primary { background: var(--brand-primary); color: #fff; }
+  .btn.primary:hover:not(:disabled) { background: #7C1332; }
+  .btn.primary:disabled { opacity: .4; cursor: not-allowed; }
+  .btn.outline { background: #fff; color: var(--brand-primary); border: 1px solid var(--brand-primary); }
+  .btn.outline:hover { background: var(--brand-primary-lightest); }
+  .btn.busy { pointer-events: none; }
+  .btn .spin {
+    width: 20px; height: 20px; border-radius: 50%; border: 2.5px solid rgba(255,255,255,.35); border-top-color: #fff;
+    animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .or { display: flex; align-items: center; gap: 17px; color: var(--neutral-400); font-weight: 500; font-size: 16px; }
+  .or::before, .or::after { content: ''; flex: 1; height: 1px; background: var(--neutral-300); }
+
+  .back {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
+    font-weight: 600; font-size: 15px; color: var(--neutral-500); margin: -8px 0 8px -6px; padding: 0 6px;
+    border-radius: 6px;
+  }
+  .back:hover { color: var(--brand-primary); background: var(--neutral-lightest); }
+  .back svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ── View transitions ── */
+  .view { animation: fadeUp var(--dur-med) var(--ease-out) both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  /* ── Modals ── */
+  .scrim {
+    position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,.8);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px calc(20px + var(--safe-right)) calc(20px + var(--safe-bottom)) calc(20px + var(--safe-left));
+    opacity: 0; transition: opacity var(--dur-med) var(--ease-out);
+  }
+  .scrim.open { opacity: 1; }
+  .modal {
+    background: #fff; border: 1px solid #DADADA; border-radius: 4px; width: 505px; max-width: 100%;
+    padding: 40px 56px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 40px;
+    box-shadow: 0 3px 2.3px rgba(0,0,0,.26), 0 24px 48px rgba(0,0,0,.25);
+    transform: translateY(16px) scale(.98); transition: transform var(--dur-med) var(--ease-out);
+    max-height: calc(100dvh - 40px); overflow-y: auto;
+  }
+  .scrim.open .modal { transform: none; }
+  .modal h3 { font-weight: 700; font-size: 24px; line-height: 30px; color: var(--ink); }
+  .modal p { font-weight: 500; font-size: 16px; line-height: 28px; color: var(--neutral-500); letter-spacing: -.32px; max-width: 393px; }
+  .modal .ill { display: block; }
+  .modal .ill.tap { width: 250px; height: 185px; }
+  .modal .ill.round { width: 200px; height: 200px; border-radius: 50%; }
+  .modal .actions { margin-top: 0; }
+  .modal .pulse { animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.04); opacity: .85; } }
+  .modal .close {
+    position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; color: var(--neutral-500);
+  }
+  .modal .close:hover { background: var(--neutral-lightest); color: var(--text-darker); }
+  .modal .close svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+  .modal-wrap { position: relative; width: 505px; max-width: 100%; }
+
+  /* ═══════════════════════ TABLET / SMALL LAPTOP ═══════════════════════ */
+  @media (max-width: 1279px) {
+    .hero { flex-basis: 44%; padding: 32px; }
+    .hero-copy h2 { font-size: 34px; line-height: 36px; }
+    .hero-copy ul { font-size: 16px; }
+    .pane { padding-top: calc(24px + var(--safe-top)); }
+    h1 { font-size: 28px; line-height: 34px; }
+    .tile { height: 140px; font-size: 21px; }
+  }
+  /* landscape phones: keep the split but trim the hero */
+  @media (max-width: 899px) and (orientation: landscape) and (max-height: 520px) {
+    .hero { flex-basis: 38%; padding: 20px; }
+    .hero-copy h2 { font-size: 26px; line-height: 28px; }
+    .hero-copy ul { display: none; }
+    .pane { padding: calc(12px + var(--safe-top)) 20px calc(12px + var(--safe-bottom)); }
+    .logo { height: 44px; margin-bottom: 10px; } .logo img { height: 40px; }
+    h1 { font-size: 22px; line-height: 28px; margin-bottom: 12px; }
+    .tiles { gap: 10px; } .tile { height: 96px; font-size: 18px; padding: 0 18px; }
+    .powered { padding-top: 4px; }
+  }
+
+  /* ═══════════════════════ PHONE / PORTRAIT TABLET ═══════════════════════ */
+  @media (max-width: 639px), (max-width: 899px) and (orientation: portrait) {
+    .shell { flex-direction: column; height: auto; min-height: 100dvh; }
+    .hero {
+      flex: none; height: clamp(200px, 32dvh, 320px);
+      padding: 20px calc(20px + var(--safe-right)) 22px calc(20px + var(--safe-left));
+      padding-top: calc(20px + var(--safe-top));
+      border-radius: 0 0 20px 20px; box-shadow: 0 4px 18px rgba(16,24,40,.16);
+    }
+    .hero img.bg { object-position: 25% 25%; }
+    .hero-copy h2 { font-size: 28px; line-height: 32px; margin-bottom: 6px; }
+    .hero-copy ul { font-size: 15px; line-height: 1.55; padding-left: 20px; }
+    .hero-copy li:nth-child(n+3) { display: none; }
+    .pane { flex: 1; padding: 24px 20px calc(16px + var(--safe-bottom)); overflow: visible; }
+    .pane-inner { justify-content: flex-start; max-width: 480px; padding-bottom: 20px; }
+    .logo { height: 48px; margin-bottom: 16px; } .logo img { height: 44px; }
+    h1 { font-size: 26px; line-height: 32px; margin-bottom: 16px; }
+    .tiles { max-width: none; }
+    .tile { height: 120px; font-size: 20px; padding: 0 18px; }
+    .tile span { max-width: 58%; }
+    .btn { font-size: 17px; }
+    .modal { padding: 32px 22px 24px; gap: 28px; }
+    .modal h3 { font-size: 21px; line-height: 27px; }
+    .modal p { font-size: 15px; line-height: 24px; }
+    .modal .ill.tap { width: 210px; height: 155px; }
+    .modal .ill.round { width: 160px; height: 160px; }
+  }
+  @media (max-height: 640px) and (orientation: portrait) {
+    .hero { height: 170px; }
+    .hero-copy li:nth-child(n+2) { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+    .modal .pulse { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <!-- ── Hero ── -->
+  <section class="hero" aria-label="Welcome">
+    <img class="bg" src="assets/tadweer-driver-login/hero.png" alt="" width="1229" height="1280" />
+    <div class="hero-copy">
+      <h2>Let's Get Started!</h2>
+      <ul>
+        <li>We've got your plan ready.</li>
+        <li>The map will guide you.</li>
+        <li>Everything you need to finish your shift is right here.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Sign-in pane ── -->
+  <main class="pane">
+    <div class="pane-inner">
+      <div class="logo"><img src="assets/tadweer-driver-login/ministry-logo.svg" alt="Ministry of Municipality, State of Qatar" /></div>
+
+      <!-- VIEW: choose method -->
+      <div class="view" id="viewChoose">
+        <h1>Sign In</h1>
+        <div class="tiles">
+          <button class="tile primary" id="btnCard">
+            <span>Login via Driver Card</span>
+            <img src="assets/tadweer-driver-login/art-card.png" alt="" width="191" height="160" />
+          </button>
+          <button class="tile secondary" id="btnCreds">
+            <span>Login via Credentials</span>
+            <img src="assets/tadweer-driver-login/art-credentials.png" alt="" width="188" height="152" />
+          </button>
+        </div>
+      </div>
+
+      <!-- VIEW: credentials -->
+      <form class="view hidden" id="viewCreds" novalidate autocomplete="on">
+        <button type="button" class="back" id="btnBack">
+          <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg> Back
+        </button>
+        <h1>Login via Credentials</h1>
+        <div class="form">
+          <div class="field" id="fUser">
+            <input id="userId" name="username" type="text" placeholder="User ID" autocomplete="username" autocapitalize="none" spellcheck="false" inputmode="text" required />
+            <label for="userId">User ID</label>
+          </div>
+          <div class="field" id="fPass">
+            <input id="password" name="password" type="password" placeholder="Password" autocomplete="current-password" required />
+            <label for="password">Password</label>
+            <button type="button" class="eye" id="eye" aria-label="Show password" aria-pressed="false">
+              <img src="assets/tadweer-driver-login/eye.svg" alt="" width="19" height="18" />
+            </button>
+          </div>
+          <div class="field-error hidden" id="formError" role="alert">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+            <span>User ID or password is incorrect. Check and try again.</span>
+          </div>
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn primary" id="btnLogin" disabled>Login</button>
+          <div class="or">or</div>
+          <button type="button" class="btn outline" id="btnCardAlt">Login via Driver Card</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="powered"><span>Powered by</span><img src="assets/tadweer-driver-login/fams-powered.svg" alt="FAMS" /></div>
+  </main>
+</div>
+
+<!-- ── Modal: tap card ── -->
+<div class="scrim hidden" id="mTap" role="dialog" aria-modal="true" aria-labelledby="mTapTitle">
+  <div class="modal-wrap">
+    <div class="modal">
+      <button class="close" data-close aria-label="Cancel"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <h3 id="mTapTitle">Tap your card on the back of your tablet</h3>
+      <img class="ill tap pulse" src="assets/tadweer-driver-login/ill-tap.png" alt="" width="250" height="185" />
+      <p>Please hold the card at the center on the back of the tablet.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── Modal: reading ── -->
+<div class="scrim hidden" id="mReading" role="dialog" aria-modal="true" aria-labelledby="mReadTitle" aria-live="polite">
+  <div class="modal-wrap">
+    <div class="modal">
+      <h3 id="mReadTitle">Reading the card to log you in...</h3>
+      <img class="ill round pulse" src="assets/tadweer-driver-login/ill-reading.png" alt="" width="200" height="200" />
+    </div>
+  </div>
+</div>
+
+<!-- ── Modal: not identified ── -->
+<div class="scrim hidden" id="mError" role="alertdialog" aria-modal="true" aria-labelledby="mErrTitle">
+  <div class="modal-wrap">
+    <div class="modal">
+      <button class="close" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <h3 id="mErrTitle">Driver not identified! Please log in to link</h3>
+      <img class="ill round" src="assets/tadweer-driver-login/ill-error.png" alt="" width="200" height="200" />
+      <div class="actions">
+        <button class="btn primary" id="btnRetry">Try Again</button>
+        <button class="btn outline" id="btnErrCreds">Login via Credentials</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const HOME = 'tadweer-driver-home.html';
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let attempts = 0, timers = [];
+
+  /* ── views ── */
+  function showView(id) {
+    ['viewChoose', 'viewCreds'].forEach(v => {
+      const el = $(v);
+      el.classList.toggle('hidden', v !== id);
+      if (v === id) { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; }
+    });
+    if (id === 'viewCreds') setTimeout(() => $('userId').focus({ preventScroll: true }), 120);
+    history.replaceState(null, '', id === 'viewCreds' ? '#credentials' : '#');
+  }
+  $('btnCreds').addEventListener('click', () => showView('viewCreds'));
+  $('btnBack').addEventListener('click', () => showView('viewChoose'));
+  if (location.hash === '#credentials') showView('viewCreds');
+
+  /* ── modals ── */
+  let lastFocus = null;
+  function openModal(id) {
+    closeAllModals(true);
+    const m = $(id);
+    lastFocus = document.activeElement;
+    m.classList.remove('hidden');
+    requestAnimationFrame(() => m.classList.add('open'));
+    const focusable = m.querySelector('.btn, .close');
+    if (focusable) setTimeout(() => focusable.focus({ preventScroll: true }), 60);
+  }
+  function closeModal(id) {
+    const m = $(id);
+    if (m.classList.contains('hidden')) return;
+    m.classList.remove('open');
+    setTimeout(() => m.classList.add('hidden'), reduceMotion ? 0 : 220);
+  }
+  function closeAllModals(instant) {
+    timers.forEach(clearTimeout); timers = [];
+    ['mTap', 'mReading', 'mError'].forEach(id => {
+      const m = $(id);
+      if (instant) { m.classList.remove('open'); m.classList.add('hidden'); } else closeModal(id);
+    });
+    if (!instant && lastFocus) lastFocus.focus({ preventScroll: true });
+  }
+  document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => closeAllModals(false)));
+  document.querySelectorAll('.scrim').forEach(s => s.addEventListener('click', (e) => {
+    if (e.target === s && s.id !== 'mReading') closeAllModals(false);
+  }));
+  window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllModals(false); });
+
+  /* ── card flow: tap → reading → (fail first, succeed after) ── */
+  function startCardFlow() {
+    openModal('mTap');
+    timers.push(setTimeout(() => {
+      openModal('mReading');
+      timers.push(setTimeout(() => {
+        attempts++;
+        if (attempts === 1) openModal('mError');
+        else finishLogin();
+      }, 2200));
+    }, 2600));
+  }
+  $('btnCard').addEventListener('click', startCardFlow);
+  $('btnCardAlt').addEventListener('click', startCardFlow);
+  $('btnRetry').addEventListener('click', startCardFlow);
+  $('btnErrCreds').addEventListener('click', () => { closeAllModals(true); showView('viewCreds'); });
+
+  /* ── credentials ── */
+  const user = $('userId'), pass = $('password'), login = $('btnLogin'), err = $('formError');
+  function validate() { login.disabled = !(user.value.trim() && pass.value); }
+  [user, pass].forEach(i => i.addEventListener('input', () => {
+    validate(); err.classList.add('hidden'); $('fUser').classList.remove('invalid'); $('fPass').classList.remove('invalid');
+  }));
+  $('eye').addEventListener('click', (e) => {
+    const b = e.currentTarget, on = b.getAttribute('aria-pressed') !== 'true';
+    b.setAttribute('aria-pressed', String(on));
+    b.setAttribute('aria-label', on ? 'Hide password' : 'Show password');
+    pass.type = on ? 'text' : 'password';
+    pass.focus({ preventScroll: true });
+  });
+  $('viewCreds').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (login.disabled) return;
+    login.classList.add('busy'); login.innerHTML = '<span class="spin" aria-hidden="true"></span> Logging in…';
+    setTimeout(() => {
+      if (pass.value.length < 4) {          // demo failure path
+        login.classList.remove('busy'); login.textContent = 'Login';
+        err.classList.remove('hidden'); $('fPass').classList.add('invalid'); pass.focus();
+        if (navigator.vibrate) navigator.vibrate([10, 40, 10]);
+      } else finishLogin();
+    }, 1200);
+  });
+
+  function finishLogin() {
+    closeAllModals(true);
+    document.body.style.transition = 'opacity .28s ease';
+    document.body.style.opacity = '0';
+    setTimeout(() => { location.href = HOME; }, reduceMotion ? 0 : 280);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          # 22, not 20: the pinned pnpm uses `node:sqlite` (Node 22.5+); on
+          # Node 20 `pnpm store path` throws ERR_UNKNOWN_BUILTIN_MODULE, which
+          # also empties the cache step's `path`.
+          node-version: 22
+
+      - name: Get pnpm store path
+        id: pnpm-store
+        run: echo "path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-store.outputs.path }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build tokens
+        run: pnpm --filter @fams/tokens build
+
+      # Locked gate order (phase 1 §6): install → build tokens → build
+      # packages → typecheck → lint → test → axe sweep. Build moved ahead of
+      # typecheck/lint/test — this is a dist-consuming pipeline (Task 2):
+      # workspace packages resolve each other via `workspace:*` → `dist/**`,
+      # so typecheck/test against a stale or missing dist is dishonest.
+      - name: Build
+        run: pnpm build
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      # `pnpm lint` (turbo run lint) now also covers, per package's
+      # `eslint.config.js`: the Radix ban (decision #7) and the core-tier
+      # boundary rule banning `@fams/v5-*` imports from tokens/ui-kit/
+      # skeleton-kit (decision #13). `pnpm lint:tokens` is the separate raw
+      # hex/px gate (phase 1 §6 Part B) — folded into root `lint` too, so a
+      # single `pnpm lint` here is authoritative.
+      - name: Lint
+        run: pnpm lint
+
+      - name: Test
+        run: pnpm test
+
+      # Dedicated, visible axe-only step (phase 1 §6 Part A) — same suite
+      # (`packages/ui-kit/src/a11y.axe.test.tsx`) already runs inside the
+      # Test step above via the full `pnpm test`; this re-run via
+      # `pnpm test:axe` (a vitest filename filter) makes an axe regression a
+      # distinguishable red check instead of one line inside a big green Test
+      # step.
+      - name: Axe sweep
+        run: pnpm test:axe

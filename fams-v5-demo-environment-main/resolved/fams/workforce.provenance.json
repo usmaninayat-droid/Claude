@@ -1,0 +1,59 @@
+{
+  "base": "core",
+  "module": "workforce",
+  "nodes": {
+    "fld_uniqueidentifier": {
+      "source": "core"
+    },
+    "fld_wf_email": {
+      "source": "core"
+    },
+    "fld_wf_license": {
+      "source": "core"
+    },
+    "fld_wf_name": {
+      "source": "core"
+    },
+    "fld_wf_phone": {
+      "source": "core"
+    },
+    "fld_wf_role": {
+      "source": "core"
+    },
+    "fld_wf_status": {
+      "source": "core"
+    },
+    "fld_wf_tags": {
+      "source": "core"
+    },
+    "fld_wf_vehicle": {
+      "source": "core"
+    },
+    "flt_wf_person": {
+      "source": "core"
+    },
+    "flt_wf_role": {
+      "source": "core"
+    },
+    "flt_wf_status": {
+      "source": "core"
+    },
+    "sts_wf_active": {
+      "source": "core"
+    },
+    "sts_wf_inactive": {
+      "source": "core"
+    },
+    "sts_wf_leave": {
+      "source": "core"
+    },
+    "tab_wf_overview": {
+      "source": "core"
+    },
+    "tab_wf_tablet_activity": {
+      "source": "core"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

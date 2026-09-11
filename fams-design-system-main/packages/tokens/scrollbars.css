@@ -1,0 +1,112 @@
+/* Overlay-style scrollbar treatment for INTERNAL scroll regions — lists,
+   panels, drawers, popover bodies, table/module-list containers: anywhere a
+   component intentionally scrolls its OWN content. Centralized here (one
+   utility class, one place) rather than per-component so every consumer gets
+   the identical rest/hover/scrolling behavior just by adopting the class.
+
+   NEVER apply this to a page-/window-level scroll target — this is purely
+   cosmetic chrome for a container that already decided to scroll; it must
+   not be used to paper over (or hide) a genuine layout overflow bug.
+
+   Usage: add `fams-scroll-region` alongside the element's own
+   `overflow-y-auto` / `overflow-auto` class. At rest the thumb is fully
+   transparent (no visible bar, no reserved-gutter shift since the track stays
+   painted at 0 opacity rather than removed); on `:hover` or `:focus-within`
+   (keyboard users tabbing content into view) the thumb fades to a subtle
+   gray-400-ish tone. `[data-scrolling]` (set by `installScrollRegionBehavior`
+   in `@fams/ui-kit`, one document-level listener, no per-component wiring)
+   additionally reveals it for the duration of an active wheel/trackpad/
+   keyboard scroll even when the pointer isn't over the region at all. */
+
+.fams-scroll-region {
+  /* Firefox honors `scrollbar-width`/`scrollbar-color` directly (no pseudo-
+     elements there). `thin` is set UNCONDITIONALLY, never toggled on hover —
+     changing the gutter width on hover would nudge the content underneath,
+     which is exactly the "feels weird" the request is avoiding. Only the
+     thumb COLOR toggles below, so the reserved space never changes. */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.fams-scroll-region:hover,
+.fams-scroll-region:focus-within,
+.fams-scroll-region[data-scrolling] {
+  scrollbar-color: var(--fams-scrollbar-thumb, rgb(152 162 179 / 0.7)) transparent;
+}
+
+/* Chromium/WebKit — the standard properties above don't yet cover thumb
+   width/radius there, so the legacy pseudo-elements carry the actual paint;
+   both rule sets are needed for Chromium + Firefox to both behave. */
+.fams-scroll-region::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.fams-scroll-region::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.fams-scroll-region::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 9999px;
+}
+
+.fams-scroll-region:hover::-webkit-scrollbar-thumb,
+.fams-scroll-region:focus-within::-webkit-scrollbar-thumb,
+.fams-scroll-region[data-scrolling]::-webkit-scrollbar-thumb {
+  background-color: var(--fams-scrollbar-thumb, rgb(152 162 179 / 0.7));
+}
+
+.fams-scroll-region::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ---------------------------------------------------------------------------
+   `fams-scroll-region-persistent` — the same 8px rounded overlay geometry as
+   `fams-scroll-region`, but with the thumb painted AT REST.
+
+   For regions whose scrollbar is a load-bearing "there is more content this
+   way" affordance rather than decoration — chiefly a DataTable's horizontal
+   column overflow (see `DataTable.tsx`'s scroll-region comment: an
+   invisible-at-rest thumb there would silently hide the fact that more
+   columns exist). The native platform bar does that job too, but reads as
+   heavy chrome against a light table (designer report 2026-09-07: "a heavy
+   horizontal scrollbar at the bottom"); this keeps the affordance and drops
+   the weight. Hover/focus/active-scroll simply darken the same thumb, so the
+   reserved gutter never changes width.
+   --------------------------------------------------------------------------- */
+
+.fams-scroll-region-persistent {
+  scrollbar-width: thin;
+  scrollbar-color: var(--fams-scrollbar-thumb-rest, rgb(152 162 179 / 0.35)) transparent;
+}
+
+.fams-scroll-region-persistent:hover,
+.fams-scroll-region-persistent:focus-within,
+.fams-scroll-region-persistent[data-scrolling] {
+  scrollbar-color: var(--fams-scrollbar-thumb, rgb(152 162 179 / 0.7)) transparent;
+}
+
+.fams-scroll-region-persistent::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.fams-scroll-region-persistent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.fams-scroll-region-persistent::-webkit-scrollbar-thumb {
+  background-color: var(--fams-scrollbar-thumb-rest, rgb(152 162 179 / 0.35));
+  border-radius: 9999px;
+}
+
+.fams-scroll-region-persistent:hover::-webkit-scrollbar-thumb,
+.fams-scroll-region-persistent:focus-within::-webkit-scrollbar-thumb,
+.fams-scroll-region-persistent[data-scrolling]::-webkit-scrollbar-thumb {
+  background-color: var(--fams-scrollbar-thumb, rgb(152 162 179 / 0.7));
+}
+
+.fams-scroll-region-persistent::-webkit-scrollbar-corner {
+  background: transparent;
+}

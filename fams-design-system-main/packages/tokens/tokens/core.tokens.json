@@ -1,0 +1,2481 @@
+{
+  "color": {
+    "background": {
+      "$type": "color",
+      "$value": "#f9fafb"
+    },
+    "foreground": {
+      "$type": "color",
+      "$value": "#101828"
+    },
+    "card": {
+      "$type": "color",
+      "$value": "#ffffff"
+    },
+    "card-foreground": {
+      "$type": "color",
+      "$value": "#1d2939"
+    },
+    "popover": {
+      "$type": "color",
+      "$value": "#ffffff"
+    },
+    "popover-foreground": {
+      "$type": "color",
+      "$value": "#344054"
+    },
+    "primary": {
+      "$type": "color",
+      "$value": "#0072d6"
+    },
+    "primary-foreground": {
+      "$type": "color",
+      "$value": "#ffffff"
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": "#e6f2fc"
+    },
+    "secondary-foreground": {
+      "$type": "color",
+      "$value": "#0072d6"
+    },
+    "secondary-foreground-strong": {
+      "$type": "color",
+      "$value": "{color.info-scale.700}",
+      "$description": "fix7 (P1-2/P1-14 gate blocker, UX round 6): accessible TEXT alias for Badge's `secondary` variant, distinct from `secondary-foreground`. The generic enum dot-chip (`ReadEnum`'s fallback branch — every 'Maintenance Type'/'Issue Type'/'Vehicle Type' chip in the product, one shared code path per P1-14) renders `text-secondary-foreground` (#0072d6) on `bg-secondary` (#e6f2fc) at 4.22:1, short of WCAG AA 4.5:1 — universal, every card/list/detail surface that shows one of these chips. Aliases info-scale.700 (#00478a, an existing ramp step, same hue family as secondary/primary): measured 8.14:1 on secondary (#e6f2fc) — comfortable headroom, well clear of 4.5:1. Deliberately a NEW role slot, not an edit to `secondary-foreground` itself: that token is also Button's secondary-variant text and other non-chip consumers, none of which this finding named or measured. `color.dark.secondary-foreground-strong` below is a literal, not this same alias — dark theme's `secondary`/`secondary-foreground` pairing is a completely different pair of colors (dark gray fill, near-white text, already ~10:1 per that token's own docblock), so the dark mirror simply reuses the already-passing `dark.secondary-foreground` value rather than forcing this light-theme-specific navy onto a dark background it was never measured against."
+    },
+    "muted": {
+      "$type": "color",
+      "$value": "#f9fafb"
+    },
+    "muted-foreground": {
+      "$type": "color",
+      "$value": "#667085"
+    },
+    "muted-foreground-strong": {
+      "$type": "color",
+      "$value": "{color.gray.600}",
+      "$description": "fix7 (A7 gate blocker): accessible field-LABEL role, distinct from `muted-foreground`. Several `FieldGrid`/section-renderer label call sites (`emphasis=\"strong\"`, the identity-panel key-facts list, tile labels) were hardcoded to `text-gray-400` (#98a2b3) citing a Figma spec — but #98a2b3 on `background`/`card` measures 2.46:1, a WCAG AA blocker (A7). This run's rule is 'Figma wins on look, UX heuristics win on behavior'; legibility is behavior. Aliases gray.600 (#475467); measured ~7.36:1 on `background` (#f9fafb), ~7.69:1 on `card` (#ffffff) — both clear 4.5:1 with generous headroom. Deliberately a NEW role slot, not an edit to gray.400 itself: other consumers legitimately keep gray-400's current value, and `color.dark.muted-foreground` below depends on the literal #98a2b3 clearing contrast where IT sits."
+    },
+    "accent": {
+      "$type": "color",
+      "$value": "#0072d6"
+    },
+    "accent-foreground": {
+      "$type": "color",
+      "$value": "#ffffff"
+    },
+    "destructive": {
+      "$type": "color",
+      "$value": "#f04438"
+    },
+    "destructive-foreground": {
+      "$type": "color",
+      "$value": "#ffffff"
+    },
+    "destructive-emphasis": {
+      "$type": "color",
+      "$value": "#d92d20"
+    },
+    "border": {
+      "$type": "color",
+      "$value": "#eaecf0"
+    },
+    "input": {
+      "$type": "color",
+      "$value": "#d0d5dd",
+      "$description": "Input BORDER (shadcn --input convention). Figma binds Grey-300 to text-field outlines (login spec) — one step darker than the generic `border` so fields read as fields."
+    },
+    "input-background": {
+      "$type": "color",
+      "$value": "#ffffff"
+    },
+    "ring": {
+      "$type": "color",
+      "$value": "#0072d6",
+      "$description": "Focus-ring color — PRIMARY, not primary-50 (fix3): the :focus-visible ring must be visible on white surfaces (WCAG 2.4.7 / UX-NOTES 'ring 2px primary'); #e6f2fc was invisible (1.09:1 vs white). Dark theme already used primary."
+    },
+    "success": {
+      "$type": "color",
+      "$value": "#12b76a"
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "#f79009"
+    },
+    "info": {
+      "$type": "color",
+      "$value": "#0072d6"
+    },
+    "success-text": {
+      "$type": "color",
+      "$value": "{color.success-scale.700}",
+      "$description": "D-6 (filters SPEC I.80): accessible TEXT alias for brand green — `success` (#12b76a, 2.62:1 on white) and the Figma-drawn #22c882 (2.18:1 on white) both fail WCAG 4.5:1 as text and must never be used for `Select All` / `Selected to Top` / a create-CTA label. Aliases success-scale.700 (#027a48); measured 5.41:1 on color.card (#ffffff), 5.18:1 on color.background (#f9fafb) — both clear 4.5:1. Fills (checkbox, `Available` badge, chip) are untouched and keep the drawn hex; this token is TEXT-only."
+    },
+    "error-text": {
+      "$type": "color",
+      "$value": "{color.error.700}",
+      "$description": "D-6 (filters SPEC I.80): accessible TEXT alias for the destructive red used as text (`Clear all` / `Unselect All` / the clear `×` glyph) — kept distinct from the singleton `destructive`/`destructive-emphasis` fill slots. Aliases error.700 (#b42318); measured 6.57:1 on color.card (#ffffff), 6.29:1 on color.background (#f9fafb) — both clear 4.5:1."
+    },
+    "warning-text": {
+      "$type": "color",
+      "$value": "{color.warning-scale.700}",
+      "$description": "fix7 (job-orders gate blocker): accessible TEXT alias for the warning amber used as text — same D-6 job as `success-text`/`error-text` above, added because no equivalent existed for `warning`. `warning` (#f79009) measures 2.35:1 on white at body-text size — a WCAG AA blocker found on the Preventive Maintenance list's 'Due Today' `SignedNumberView` cell (`zeroTone: \"warning\"` resolving through `@fams/v5-composer`'s `TONE_TEXT_CLASS`, the same class of defect `error-text` already fixed for `danger`). Deliberately NOT a new ramp value: aliases the EXISTING warning-scale.700 (#b54708, already used ad hoc as text-safe amber elsewhere — `RouteJobCard`, `KpiMetricCard`, `CockpitAlert`) so this token gives that established convention a name instead of inventing a parallel one. Measured (`contrast-lib.mjs`): 5.43:1 on color.card (#ffffff), 5.19:1 on color.background (#f9fafb) — both clear 4.5:1. Fills/borders/icon glyphs (Badge's `warning` variant, `IconBadge`, the tone dot) are untouched and keep the drawn `warning`/`warning-scale-500` hex; this token is TEXT-only."
+    },
+    "surface-primary": {
+      "$type": "color",
+      "$value": "#ffffff"
+    },
+    "surface-minimal": {
+      "$type": "color",
+      "$value": "#f9fafb"
+    },
+    "surface-secondary": {
+      "$type": "color",
+      "$value": "#e6f2fc"
+    },
+    "surface-low-contrast": {
+      "$type": "color",
+      "$value": "#eaecf0"
+    },
+    "brand": {
+      "50": {
+        "$type": "color",
+        "$value": "#e6f2fc"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#cce6f9"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#99cdf3"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#66b5ed"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#339ce7"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#0072d6"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#005cb0"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#00478a"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#003165"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#001c3f"
+      }
+    },
+    "text-color": {
+      "lightest": {
+        "$type": "color",
+        "$value": "#f9fafb",
+        "$description": "Default Text/Lightest — Gray Modern/50 (Figma DS V2)."
+      },
+      "lighter": {
+        "$type": "color",
+        "$value": "#98a2b3",
+        "$description": "Default Text/Lighter — Gray Modern/400 (Figma DS V2)."
+      },
+      "light": {
+        "$type": "color",
+        "$value": "#667085",
+        "$description": "Default Text/Light — Gray Modern/500 (Figma DS V2)."
+      },
+      "normal": {
+        "$type": "color",
+        "$value": "#475467",
+        "$description": "Default Text/Normal — Gray Modern/600 (Figma DS V2)."
+      },
+      "dark": {
+        "$type": "color",
+        "$value": "#344054",
+        "$description": "Default Text/Dark — Gray Modern/700 (Figma DS V2)."
+      },
+      "darker": {
+        "$type": "color",
+        "$value": "#1d2939",
+        "$description": "Default Text/Darker — Gray Modern/800 (Figma DS V2)."
+      },
+      "darkest": {
+        "$type": "color",
+        "$value": "#101828",
+        "$description": "Default Text/Darkest — Gray Modern/900 (Figma DS V2)."
+      }
+    },
+    "gray": {
+      "50": {
+        "$type": "color",
+        "$value": "#f9fafb"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#f2f4f7"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#eaecf0"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#d0d5dd"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#98a2b3"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#667085"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#475467"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#344054"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#1d2939"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#101828"
+      }
+    },
+    "error": {
+      "50": {
+        "$type": "color",
+        "$value": "#fef3f2"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#fee4e2"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#fecdca"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#fda29b"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#f97066"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#f04438"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#d92d20"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#b42318"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#912018"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#7a271a"
+      }
+    },
+    "warning-scale": {
+      "50": {
+        "$type": "color",
+        "$value": "#fffaeb"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#fef0c7"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#fedf89"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#fec84b"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#fdb022"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#f79009"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#dc6803"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#b54708"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#93370d"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#7a2e0e"
+      }
+    },
+    "success-scale": {
+      "50": {
+        "$type": "color",
+        "$value": "#ecfdf3"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#d1fadf"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#a6f4c5"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#6ce9a6"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#32d583"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#12b76a"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#039855"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#027a48"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#05603a"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#054f31"
+      }
+    },
+    "info-scale": {
+      "50": {
+        "$type": "color",
+        "$value": "#e6f2fc"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#cce6f9"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#99cdf3"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#66b5ed"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#339ce7"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#0072d6"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#005cb0"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#00478a"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#003165"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#001c3f"
+      }
+    },
+    "chart": {
+      "1": {
+        "$type": "color",
+        "$value": "#f79009"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "#06b6d4"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "#9e77ed"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "#12b76a"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "#f63d68"
+      }
+    },
+    "chart-series": {
+      "1": {
+        "$type": "color",
+        "$value": "#001c3f"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "#003165"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "#00478a"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "#005cb0"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "#0072d6"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "#339ce7"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "#66b5ed"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "#99cdf3"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "#cce6f9"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "#e6f2fc"
+      }
+    },
+    "chart-accent": {
+      "purple": {
+        "$type": "color",
+        "$value": "#9e77ed"
+      },
+      "orange": {
+        "$type": "color",
+        "$value": "#f79009"
+      },
+      "green": {
+        "$type": "color",
+        "$value": "#12b76a"
+      },
+      "red": {
+        "$type": "color",
+        "$value": "#f04438"
+      },
+      "pink": {
+        "$type": "color",
+        "$value": "#ee46bc"
+      },
+      "teal": {
+        "$type": "color",
+        "$value": "#14b8a6"
+      },
+      "cyan": {
+        "$type": "color",
+        "$value": "#06b6d4"
+      },
+      "yellow": {
+        "$type": "color",
+        "$value": "#f5bb2a"
+      }
+    },
+    "chart-heat": {
+      "0": {
+        "$type": "color",
+        "$value": "#f2f4f7"
+      },
+      "1": {
+        "$type": "color",
+        "$value": "#fedf89"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "#fec84b"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "#fdb022"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "#f04438"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "#b42318"
+      },
+      "$description": "Magnitude (not categorical) heat scales. `0` is the reserved NO-DATA swatch — deliberately out of family (neutral grey, no warm hue) so an unmeasured cell never reads as a low measured value; it is always paired with a glyph, never colour alone. `low`/`mid`/`high` are the original 3-stop warm ramp kept for continuous scales. `1`–`5` are a true 5-stop discrete sequential ramp whose relative luminance decreases monotonically, so a 5-class binned scale no longer has to stretch 3 stops across 5 classes (which left the lightest measured class ~3% from the no-data swatch).",
+      "low": {
+        "$type": "color",
+        "$value": "#fef0c7"
+      },
+      "mid": {
+        "$type": "color",
+        "$value": "#fec84b"
+      },
+      "high": {
+        "$type": "color",
+        "$value": "#f04438"
+      },
+      "cool-0": {
+        "$type": "color",
+        "$value": "#e6f2fc"
+      },
+      "cool-mid": {
+        "$type": "color",
+        "$value": "#339ce7"
+      },
+      "cool-high": {
+        "$type": "color",
+        "$value": "#001c3f"
+      }
+    },
+    "medal": {
+      "$description": "Ordinal (1st/2nd/3rd) podium decoration. A SEPARATE family from the status colours on purpose: a page that already spends red on 'worst bin' and 'negative delta' must not also spend it on 'third place'. Bronze is a real copper hue, not the error tint. `-surface` and `-accent` are FILLED GROUNDS under themed ink (`text-foreground` / `text-muted-foreground`) and therefore carry real dark overrides in `color.dark.medal-*` — the light tints sit at 1.0-1.3:1 against dark-mode foreground. The dark surfaces are luminance-matched to `color.dark.card` (#1d2939) so a podium card reads at the same contrast as any other card. `-border` is a stroke, not a ground, and is deliberately theme-neutral so 1st/2nd/3rd read as the same three metals in either theme (recorded in packages/tokens/test/theme-parity.test.js).",
+      "gold-surface": {
+        "$type": "color",
+        "$value": "#fffaeb"
+      },
+      "gold-accent": {
+        "$type": "color",
+        "$value": "#fef0c7"
+      },
+      "gold-border": {
+        "$type": "color",
+        "$value": "#f5bb2a"
+      },
+      "silver-surface": {
+        "$type": "color",
+        "$value": "#f2f4f7"
+      },
+      "silver-accent": {
+        "$type": "color",
+        "$value": "#e4e7ec"
+      },
+      "silver-border": {
+        "$type": "color",
+        "$value": "#98a2b3"
+      },
+      "bronze-surface": {
+        "$type": "color",
+        "$value": "#fdf3ec"
+      },
+      "bronze-accent": {
+        "$type": "color",
+        "$value": "#f4dcc6"
+      },
+      "bronze-border": {
+        "$type": "color",
+        "$value": "#b26a30"
+      }
+    },
+    "accent-family": {
+      "$description": "Non-status accent hue families (Figma 'Accent' collection) — 5 named stops each. Named accent-family (not accent) because color.accent/accent-foreground already carry the semantic role token; error/success/warning/info families are intentionally omitted here since they already exist as 9-step ramps (color.error, color.success-scale, color.warning-scale, color.info-scale).",
+      "cyan": {
+        "lightest": {
+          "$type": "color",
+          "$value": "#ecfeff"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "#cffafe"
+        },
+        "normal": {
+          "$type": "color",
+          "$value": "#06b6d4"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "#0e7490"
+        },
+        "darkest": {
+          "$type": "color",
+          "$value": "#164e63"
+        }
+      },
+      "gray-blue": {
+        "lightest": {
+          "$type": "color",
+          "$value": "#f3f5fc"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "#e6e9f7"
+        },
+        "normal": {
+          "$type": "color",
+          "$value": "#4e5ba6"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "#353f73"
+        },
+        "darkest": {
+          "$type": "color",
+          "$value": "#1a203a"
+        }
+      },
+      "azure": {
+        "lightest": {
+          "$type": "color",
+          "$value": "#eff6ff"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "#dbeafe"
+        },
+        "normal": {
+          "$type": "color",
+          "$value": "#3b82f6"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "#1d4ed8"
+        },
+        "darkest": {
+          "$type": "color",
+          "$value": "#1e3a8a"
+        }
+      },
+      "lavender": {
+        "lightest": {
+          "$type": "color",
+          "$value": "#f9f5ff"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "#f4ebff"
+        },
+        "normal": {
+          "$type": "color",
+          "$value": "#9e77ed"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "#6941c6"
+        },
+        "darkest": {
+          "$type": "color",
+          "$value": "#42307d"
+        }
+      },
+      "plum": {
+        "lightest": {
+          "$type": "color",
+          "$value": "#fdf4ff"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "#fae8ff"
+        },
+        "normal": {
+          "$type": "color",
+          "$value": "#d946ef"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "#a21caf"
+        },
+        "darkest": {
+          "$type": "color",
+          "$value": "#701a75"
+        }
+      },
+      "pink": {
+        "lightest": {
+          "$type": "color",
+          "$value": "#fdf2fa"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "#fce7f6"
+        },
+        "normal": {
+          "$type": "color",
+          "$value": "#ee46bc"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "#c11574"
+        },
+        "darkest": {
+          "$type": "color",
+          "$value": "#851651"
+        }
+      },
+      "rose": {
+        "lightest": {
+          "$type": "color",
+          "$value": "#fff1f3"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "#ffe4e8"
+        },
+        "normal": {
+          "$type": "color",
+          "$value": "#f63d68"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "#c01048"
+        },
+        "darkest": {
+          "$type": "color",
+          "$value": "#89123e"
+        }
+      },
+      "lime": {
+        "lightest": {
+          "$type": "color",
+          "$value": "#f7fee7"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "#ecfccb"
+        },
+        "normal": {
+          "$type": "color",
+          "$value": "#84cc16"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "#4d7c0f"
+        },
+        "darkest": {
+          "$type": "color",
+          "$value": "#365314"
+        }
+      },
+      "aqua-green": {
+        "lightest": {
+          "$type": "color",
+          "$value": "#e0fcf9"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "#b3f5ed"
+        },
+        "normal": {
+          "$type": "color",
+          "$value": "#14b8a6"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "#0d776e"
+        },
+        "darkest": {
+          "$type": "color",
+          "$value": "#063f39"
+        }
+      },
+      "flame": {
+        "lightest": {
+          "$type": "color",
+          "$value": "#fff7f0"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "#ffead5"
+        },
+        "normal": {
+          "$type": "color",
+          "$value": "#ff6a1a"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "#b74300"
+        },
+        "darkest": {
+          "$type": "color",
+          "$value": "#661f00"
+        }
+      },
+      "yellow": {
+        "lightest": {
+          "$type": "color",
+          "$value": "#fff9e8"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "#faf3e1"
+        },
+        "normal": {
+          "$type": "color",
+          "$value": "#f5bb2a"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "#b78314"
+        },
+        "darkest": {
+          "$type": "color",
+          "$value": "#6e4d0b"
+        }
+      },
+      "bronze": {
+        "lightest": {
+          "$type": "color",
+          "$value": "#f9f5f1"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "#eedfcf"
+        },
+        "normal": {
+          "$type": "color",
+          "$value": "#8b6439"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "#5c3920"
+        },
+        "darkest": {
+          "$type": "color",
+          "$value": "#2f180f"
+        }
+      }
+    },
+    "overlay": {
+      "white-20": {
+        "$type": "color",
+        "$value": "#ffffff33"
+      },
+      "white-40": {
+        "$type": "color",
+        "$value": "#ffffff66"
+      },
+      "white-60": {
+        "$type": "color",
+        "$value": "#ffffff99"
+      },
+      "brand-20": {
+        "$type": "color",
+        "$value": "#0072d633"
+      },
+      "brand-40": {
+        "$type": "color",
+        "$value": "#0072d666"
+      },
+      "brand-60": {
+        "$type": "color",
+        "$value": "#0072d699"
+      },
+      "black-20": {
+        "$type": "color",
+        "$value": "#00000033"
+      },
+      "black-40": {
+        "$type": "color",
+        "$value": "#00000066"
+      },
+      "black-60": {
+        "$type": "color",
+        "$value": "#00000099"
+      }
+    },
+    "dark": {
+      "$description": "Dark-mode overrides (decision #2, ruling ⑤). Emitted by the fams/dark-mode post-build action under :root[data-theme=\"dark\"] and @media (prefers-color-scheme: dark) — same variable names as the light values, not a separate flat namespace.",
+      "text-color-lightest": {
+        "$type": "color",
+        "$value": "#101828",
+        "$description": "Dark-mode mirror of Default Text scale (inverted ramp)."
+      },
+      "text-color-lighter": {
+        "$type": "color",
+        "$value": "#475467"
+      },
+      "text-color-light": {
+        "$type": "color",
+        "$value": "#667085"
+      },
+      "text-color-normal": {
+        "$type": "color",
+        "$value": "#98a2b3"
+      },
+      "text-color-dark": {
+        "$type": "color",
+        "$value": "#d0d5dd"
+      },
+      "text-color-darker": {
+        "$type": "color",
+        "$value": "#eaecf0"
+      },
+      "text-color-darkest": {
+        "$type": "color",
+        "$value": "#f9fafb"
+      },
+      "background": {
+        "$type": "color",
+        "$value": "#101828"
+      },
+      "foreground": {
+        "$type": "color",
+        "$value": "#f9fafb"
+      },
+      "card": {
+        "$type": "color",
+        "$value": "#1d2939"
+      },
+      "card-foreground": {
+        "$type": "color",
+        "$value": "#f9fafb"
+      },
+      "popover": {
+        "$type": "color",
+        "$value": "#1d2939"
+      },
+      "popover-foreground": {
+        "$type": "color",
+        "$value": "#f9fafb"
+      },
+      "primary": {
+        "$type": "color",
+        "$value": "#0072d6"
+      },
+      "primary-foreground": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "#344054",
+        "$description": "Bug fix (consumer parity report 2026-08-22): was #1d2939, identical to dark.card — a secondary button on a card had no visible chrome until hover. Lifted to gray-700 (existing ramp step), giving ~1.41:1 luminance separation from dark.card while secondary-foreground (#f9fafb) still clears 10:1 against it."
+      },
+      "secondary-foreground": {
+        "$type": "color",
+        "$value": "#f9fafb"
+      },
+      "secondary-foreground-strong": {
+        "$type": "color",
+        "$value": "#f9fafb",
+        "$description": "fix7: dark-mode mirror for the new chip-text role (see the light `color.secondary-foreground-strong` docblock). Literal, not an alias — this file's dark section is read un-resolved by `buildDarkModeCss()`. Reuses the exact value of `color.dark.secondary-foreground` above — dark's `secondary`/`secondary-foreground` pairing already clears ~10:1 (see that token's own docblock), so no separate dark value was needed."
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "#1d2939"
+      },
+      "muted-foreground": {
+        "$type": "color",
+        "$value": "#98a2b3",
+        "$description": "Bug fix (consumer parity report 2026-08-22): was #667085 (identical to light muted-foreground), only 2.96:1 on dark.card / 3.06:1 on dark.background — fails WCAG AA body text. Raised to gray-400 (existing ramp step): ~6.90:1 vs dark.background (#101828), ~5.71:1 vs dark.card (#1d2939)."
+      },
+      "muted-foreground-strong": {
+        "$type": "color",
+        "$value": "#98a2b3",
+        "$description": "fix7: dark-mode mirror for the new field-label role (see the light `color.muted-foreground-strong` docblock). Literal, not an alias — this file's dark section is read un-resolved by `buildDarkModeCss()`. Reuses the exact value `color.dark.muted-foreground` above already proved safe (~5.71:1 vs dark.card, ~6.90:1 vs dark.background) rather than introducing an unverified new dark value."
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "#0072d6"
+      },
+      "accent-foreground": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "destructive": {
+        "$type": "color",
+        "$value": "#f04438"
+      },
+      "destructive-foreground": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "destructive-emphasis": {
+        "$type": "color",
+        "$value": "#f97066"
+      },
+      "success-text": {
+        "$type": "color",
+        "$value": "#32d583",
+        "$description": "D-6 dark counterpart of color.success-text — equals color.success-scale.400 (written as a literal here, matching this file's dark-section convention: buildDarkModeCss() in style-dictionary.config.js reads color.dark.* directly off the raw JSON, un-resolved, so an alias string would ship as literal broken CSS). Measured 7.69:1 on color.dark.card (#1d2939), 9.28:1 on color.dark.background (#101828)."
+      },
+      "error-text": {
+        "$type": "color",
+        "$value": "#f97066",
+        "$description": "D-6 dark counterpart of color.error-text — equals color.error.400 (same literal-value convention as success-text above; happens to match color.dark.destructive-emphasis's value, which is coincidental — the two slots serve different roles, text vs. emphasis fill). Measured 5.28:1 on color.dark.card (#1d2939), 6.37:1 on color.dark.background (#101828)."
+      },
+      "warning-text": {
+        "$type": "color",
+        "$value": "#fdb022",
+        "$description": "fix7 dark counterpart of color.warning-text — equals color.warning-scale.400 (literal, matching this file's dark-section convention: `buildDarkModeCss()` reads `color.dark.*` un-resolved, see success-text/error-text above). `warning`/`warning-scale` carry NO dark override elsewhere in this file, so the light ramp's own darkest-legible-on-white step (warning-scale.700, #b54708) would otherwise leak into dark mode at only ~2.71:1 on `color.dark.card` — a real failure this token specifically prevents. Measured 7.99:1 on color.dark.card (#1d2939), 9.64:1 on color.dark.background (#101828)."
+      },
+      "border": {
+        "$type": "color",
+        "$value": "#2b3749",
+        "$description": "Bug fix (consumer parity report 2026-08-22): was #667085, identical to dark.muted-foreground — a CountTabs count drawn in muted-foreground on a border-filled chip rendered at 1.00:1 (invisible). New value is a subtle step above dark.card (#1d2939, ~1.22:1 luminance separation) chosen so dark.muted-foreground (#98a2b3) still clears 4.5:1 (~4.68:1) when drawn on it."
+      },
+      "input": {
+        "$type": "color",
+        "$value": "#475467",
+        "$description": "Bug fix (consumer parity report 2026-08-22): was #667085, identical to dark.muted-foreground (and, pre-fix, to dark.border/dark.sidebar-border) — an input's border was indistinguishable from muted text. Light ramp distinguishes input (gray-300 #d0d5dd) from border (gray-200 #eaecf0) by one ramp step, so the same relationship is mirrored here: raised to gray-600 (#475467, existing ramp step) — a distinct step beyond dark.border (#2b3749, ~1.57:1 luminance separation) and dark.secondary (#344054, ~1.36:1 separation), clearly apart from dark.muted-foreground (#98a2b3, ~2.98:1 separation). ~1.91:1 vs dark.card (#1d2939), ~2.31:1 vs dark.background (#101828) — an input outline is a UI-component boundary (WCAG 1.4.11 territory, not body text), and it now reads as a step distinctly more prominent than the generic border, matching the light-theme convention."
+      },
+      "input-background": {
+        "$type": "color",
+        "$value": "#1d2939"
+      },
+      "surface-primary": {
+        "$type": "color",
+        "$value": "#1d2939",
+        "$description": "Dark override for the white app surface — luminance-matched to color.dark.card so panes built on surface-primary (e.g. the login auth pane) stay coherent with dark foreground/input tokens instead of leaving a white pane under light-on-dark ink (2026-08-25 login contrast bug)."
+      },
+      "surface-minimal": {
+        "$type": "color",
+        "$value": "#101828",
+        "$description": "Dark override matching color.dark.background — used by disabled/read-only field fills."
+      },
+      "surface-low-contrast": {
+        "$type": "color",
+        "$value": "#2b3749",
+        "$description": "Dark override matching color.dark.border."
+      },
+      "ring": {
+        "$type": "color",
+        "$value": "#0072d6"
+      },
+      "sidebar": {
+        "$type": "color",
+        "$value": "#101828"
+      },
+      "sidebar-foreground": {
+        "$type": "color",
+        "$value": "#f9fafb"
+      },
+      "sidebar-primary": {
+        "$type": "color",
+        "$value": "#0072d6"
+      },
+      "sidebar-primary-foreground": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "sidebar-accent": {
+        "$type": "color",
+        "$value": "#1d2939"
+      },
+      "sidebar-accent-foreground": {
+        "$type": "color",
+        "$value": "#f9fafb"
+      },
+      "sidebar-border": {
+        "$type": "color",
+        "$value": "#1a2535",
+        "$description": "Bug fix (consumer parity report 2026-08-22): was #667085, equal to both dark.muted-foreground and (pre-fix) dark.border. Now a distinct third value, a subtle step above dark.sidebar/dark.background (#101828, ~1.15:1 separation), keeping dark.muted-foreground (#98a2b3) at ~6.00:1 when drawn on it."
+      },
+      "sidebar-ring": {
+        "$type": "color",
+        "$value": "#0072d6"
+      },
+      "medal-gold-surface": {
+        "$type": "color",
+        "$value": "#312611"
+      },
+      "medal-gold-accent": {
+        "$type": "color",
+        "$value": "#6b5314"
+      },
+      "medal-silver-surface": {
+        "$type": "color",
+        "$value": "#232830"
+      },
+      "medal-silver-accent": {
+        "$type": "color",
+        "$value": "#4d5665"
+      },
+      "medal-bronze-surface": {
+        "$type": "color",
+        "$value": "#33251a"
+      },
+      "medal-bronze-accent": {
+        "$type": "color",
+        "$value": "#6b4931"
+      }
+    },
+    "sidebar": {
+      "default": {
+        "$type": "color",
+        "$value": "#0072d6"
+      },
+      "foreground": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "primary": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "primary-foreground": {
+        "$type": "color",
+        "$value": "#0072d6"
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "#ffffff26"
+      },
+      "accent-foreground": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "#ffffff33"
+      },
+      "ring": {
+        "$type": "color",
+        "$value": "#ffffff66"
+      }
+    },
+    "wall": {
+      "_comment": "Wall-display surface — the dark, always-on operations screens (Command Center). A deliberately SEPARATE scope from the light semantic set: these surfaces are not a dark-mode variant of a light screen, they are their own always-dark canvas, so they must not flip with data-theme. Values are the ones the Command Center shipped with, moved here verbatim.",
+      "bg": {
+        "$type": "color",
+        "$value": "#0b0e11"
+      },
+      "panel": {
+        "$type": "color",
+        "$value": "rgba(12,14,15,0.86)"
+      },
+      "panel-solid": {
+        "$type": "color",
+        "$value": "#0d0f10"
+      },
+      "panel-border": {
+        "$type": "color",
+        "$value": "rgba(255,255,255,0.08)"
+      },
+      "ink": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "ink-dim": {
+        "$type": "color",
+        "$value": "rgba(255,255,255,0.64)"
+      },
+      "ink-faint": {
+        "$type": "color",
+        "$value": "rgba(255,255,255,0.38)"
+      },
+      "divider": {
+        "$type": "color",
+        "$value": "rgba(255,255,255,0.08)"
+      },
+      "track": {
+        "$type": "color",
+        "$value": "rgba(255,255,255,0.08)"
+      }
+    }
+  },
+  "text": {
+    "h1": {
+      "$type": "dimension",
+      "$value": "48px"
+    },
+    "h2": {
+      "$type": "dimension",
+      "$value": "40px"
+    },
+    "h3": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "h4": {
+      "$type": "dimension",
+      "$value": "28px"
+    },
+    "h5": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "h6": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "body-xl": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "body-lg": {
+      "$type": "dimension",
+      "$value": "18px"
+    },
+    "body-md": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "body-sm": {
+      "$type": "dimension",
+      "$value": "14px"
+    },
+    "body-xs": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "caption": {
+      "$type": "dimension",
+      "$value": "12px",
+      "$description": "Shaheer ticket T-072, decision #2: platform minimum raised 10px → 12px."
+    },
+    "wall-label": {
+      "$type": "dimension",
+      "$value": "10px"
+    },
+    "wall-stat": {
+      "$type": "dimension",
+      "$value": "11px"
+    },
+    "wall-metric": {
+      "$type": "dimension",
+      "$value": "24px"
+    }
+  },
+  "leading": {
+    "base": {
+      "$type": "number",
+      "$value": 1.5
+    },
+    "h1": {
+      "$type": "dimension",
+      "$value": "56px"
+    },
+    "h2": {
+      "$type": "dimension",
+      "$value": "48px"
+    },
+    "h3": {
+      "$type": "dimension",
+      "$value": "40px"
+    },
+    "h4": {
+      "$type": "dimension",
+      "$value": "36px"
+    },
+    "h5": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "h6": {
+      "$type": "dimension",
+      "$value": "26px"
+    },
+    "body-xl": {
+      "$type": "dimension",
+      "$value": "26px"
+    },
+    "body-lg": {
+      "$type": "dimension",
+      "$value": "26px"
+    },
+    "body-md": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "body-sm": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "body-xs": {
+      "$type": "dimension",
+      "$value": "18px"
+    },
+    "caption": {
+      "$type": "dimension",
+      "$value": "14px",
+      "$description": "Shaheer ticket T-072, decision #2: bumped proportionally with text.caption (was 12px @ 10px font)."
+    }
+  },
+  "font-weight": {
+    "normal": {
+      "$type": "fontWeight",
+      "$value": 400
+    },
+    "medium": {
+      "$type": "fontWeight",
+      "$value": 500
+    },
+    "semibold": {
+      "$type": "fontWeight",
+      "$value": 600
+    },
+    "bold": {
+      "$type": "fontWeight",
+      "$value": 700
+    },
+    "extrabold": {
+      "$type": "fontWeight",
+      "$value": 800,
+      "$description": "Gilroy Extrabold — synced with Figma Design System V2's type-style matrix (Sb_heading/Display rows use it); not yet consumed by `text`/`leading` (those stop at bold)."
+    }
+  },
+  "font": {
+    "sans": {
+      "$type": "fontFamily",
+      "$value": "Gilroy, Inter, system-ui, -apple-system, sans-serif"
+    }
+  },
+  "font-size": {
+    "$description": "Figma Design System V2 'FontSize' scale (15 tokens, spec names verbatim, kebab-cased). ADDITIVE — a separate namespace from `text.*` (the pre-existing h1-h6/body-xl../caption scale ui-kit's Heading/Text components already consume). Where the two overlap the values agree (h1 48, h2 40, h3 32, h4 28, h5 24, h6 20) EXCEPT `caption`: this scale's Caption is 10px per Figma, while `text.caption` is deliberately 12px (Shaheer ticket T-072, decision #2 — platform accessibility minimum). Left as a DOCUMENTED CONFLICT, not resolved here — `text.caption` stays 12px; components should keep reading `text.caption`, not `font-size.caption`, until a follow-up reconciles the two (see PROGRESS.md).",
+    "d1": {
+      "$type": "dimension",
+      "$value": "80px"
+    },
+    "d2": {
+      "$type": "dimension",
+      "$value": "72px"
+    },
+    "d3": {
+      "$type": "dimension",
+      "$value": "64px"
+    },
+    "d4": {
+      "$type": "dimension",
+      "$value": "56px"
+    },
+    "h1": {
+      "$type": "dimension",
+      "$value": "48px"
+    },
+    "h2": {
+      "$type": "dimension",
+      "$value": "40px"
+    },
+    "h3": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "h4": {
+      "$type": "dimension",
+      "$value": "28px"
+    },
+    "h5": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "h6": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "sb-heading1": {
+      "$type": "dimension",
+      "$value": "18px"
+    },
+    "sb-heading2": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "body1": {
+      "$type": "dimension",
+      "$value": "14px"
+    },
+    "body2": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "caption": {
+      "$type": "dimension",
+      "$value": "10px",
+      "$description": "Figma spec value. See group $description — `text.caption` (12px) is the one components should keep using; this exists for parity/documentation with the Figma token list."
+    }
+  },
+  "line-height": {
+    "$description": "Figma Design System V2 'LineHeight' scale (13 tokens, spec names verbatim). ADDITIVE — separate namespace from `leading.*` (the pre-existing h1-h6/body-xl../caption line-heights `text`-scale components consume, which stay authoritative for those roles). This scale exists so the `typography.*` composite styles below can reference it by its own Figma-native names.",
+    "7xl": {
+      "$type": "dimension",
+      "$value": "72px"
+    },
+    "6xl": {
+      "$type": "dimension",
+      "$value": "64px"
+    },
+    "5xl": {
+      "$type": "dimension",
+      "$value": "56px"
+    },
+    "4xl": {
+      "$type": "dimension",
+      "$value": "48px"
+    },
+    "3xl": {
+      "$type": "dimension",
+      "$value": "40px"
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": "36px"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "2lg": {
+      "$type": "dimension",
+      "$value": "28px"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "26px"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "normal": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "18px"
+    },
+    "xs": {
+      "$type": "dimension",
+      "$value": "16px"
+    }
+  },
+  "screen": {
+    "$description": "Figma Design System V2 'Responsive' max-widths — CONTAINER/canvas max-widths for the product's own responsive breakpoints (Desktop/Tablet/Mobile design frames), NOT the Tailwind `breakpoint.*` scale below. `breakpoint.*` (640/768/1024/1280/1536, Tailwind defaults) is widely assumed across ui-kit's responsive utilities (`sm:`/`md:`/`lg:`/`xl:`/`2xl:`) and is NOT replaced. `screen.*` is a distinct, additive group for consumers that need to cap a layout's width to match the Figma canvas sizes (e.g. a page shell's `max-width`) — use `max-w-[var(--screen-lg)]`-style consumption or a future `Container` component, never by re-pointing existing `sm:`/`md:`/… utilities at these values.",
+    "2xl": {
+      "$type": "dimension",
+      "$value": "2560px",
+      "$description": "Figma '2xl'."
+    },
+    "xl-desktop": {
+      "$type": "dimension",
+      "$value": "1920px",
+      "$description": "Figma 'xl(desktop)'."
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "1440px"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "1024px"
+    },
+    "sm-tab": {
+      "$type": "dimension",
+      "$value": "786px",
+      "$description": "Figma 'sm(tab)' — value as specified (786, not the conventional 768)."
+    },
+    "sm-mobile": {
+      "$type": "dimension",
+      "$value": "393px",
+      "$description": "Figma 'sm(mobile)'."
+    }
+  },
+  "typography": {
+    "$description": "Composite text styles transcribed from the Figma Design System V2 'style-row' matrix (named text-style cards: Font Family / Weight / Font Size / Line Height / Letter Spacing). Modeled as GROUPED tokens (one leaf per property, `$type` matching DTCG: fontFamily/fontWeight/dimension) rather than a single composite `$value`, consistent with how this file already models every other multi-property concept (no precedent for composite `$value` tokens here) and safe for the existing `css/variables` / `tailwind/theme` formatters, which walk `dictionary.allTokens` and don't special-case a `typography` `$type`. Every leaf aliases the scale token it came from (`font-size.*` / `line-height.*` / `font-weight.*` / `font.sans`) so re-tuning a scale value flows through automatically. Coverage: every row sampled from the Figma matrix images is transcribed exactly; sizes visible in FontSize/LineHeight but not sampled as an individual style-row card (Sb_heading1/2, Body1/2, D1-D4 at weights other than the one shown) are filled in at Regular weight ONLY by the same size→line-height pairing the sampled rows established, flagged '$description: inferred' — verify against Figma before treating as design-final.",
+    "heading-h1-regular-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "heading-h1-regular-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.normal}"
+    },
+    "heading-h1-regular-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h1}"
+    },
+    "heading-h1-regular-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.5xl}"
+    },
+    "heading-h1-regular-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "heading-h1-medium-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "heading-h1-medium-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.medium}"
+    },
+    "heading-h1-medium-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h1}"
+    },
+    "heading-h1-medium-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.5xl}"
+    },
+    "heading-h1-medium-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "heading-h1-semibold-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "heading-h1-semibold-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.semibold}"
+    },
+    "heading-h1-semibold-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h1}"
+    },
+    "heading-h1-semibold-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.5xl}"
+    },
+    "heading-h1-semibold-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "heading-h1-bold-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "heading-h1-bold-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.bold}"
+    },
+    "heading-h1-bold-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h1}"
+    },
+    "heading-h1-bold-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.5xl}"
+    },
+    "heading-h1-bold-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "heading-h2-regular-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "heading-h2-regular-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.normal}"
+    },
+    "heading-h2-regular-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h2}"
+    },
+    "heading-h2-regular-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.4xl}"
+    },
+    "heading-h2-regular-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "heading-h2-medium-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "heading-h2-medium-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.medium}"
+    },
+    "heading-h2-medium-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h2}"
+    },
+    "heading-h2-medium-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.4xl}"
+    },
+    "heading-h2-medium-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "heading-h2-semibold-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "heading-h2-semibold-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.semibold}"
+    },
+    "heading-h2-semibold-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h2}"
+    },
+    "heading-h2-semibold-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.4xl}"
+    },
+    "heading-h2-semibold-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "heading-h2-bold-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "heading-h2-bold-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.bold}"
+    },
+    "heading-h2-bold-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h2}"
+    },
+    "heading-h2-bold-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.4xl}"
+    },
+    "heading-h2-bold-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "heading-h3-regular-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "heading-h3-regular-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.normal}"
+    },
+    "heading-h3-regular-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h3}"
+    },
+    "heading-h3-regular-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.3xl}"
+    },
+    "heading-h3-regular-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "heading-h3-medium-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "heading-h3-medium-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.medium}"
+    },
+    "heading-h3-medium-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h3}"
+    },
+    "heading-h3-medium-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.3xl}"
+    },
+    "heading-h3-medium-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "heading-h3-semibold-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h3-semibold-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.semibold}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h3-semibold-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h3}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h3-semibold-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.3xl}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h3-semibold-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h3-bold-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h3-bold-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.bold}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h3-bold-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h3}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h3-bold-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.3xl}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h3-bold-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-bold-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "heading-h4-bold-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.bold}"
+    },
+    "heading-h4-bold-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h4}"
+    },
+    "heading-h4-bold-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.2xl}"
+    },
+    "heading-h4-bold-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "heading-h4-regular-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-regular-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.normal}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-regular-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h4}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-regular-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.2xl}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-regular-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-medium-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-medium-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.medium}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-medium-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h4}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-medium-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.2xl}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-medium-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-semibold-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-semibold-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.semibold}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-semibold-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h4}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-semibold-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.2xl}",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h4-semibold-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px",
+      "$description": "inferred — pattern-consistent, not individually sampled from a style-row image."
+    },
+    "heading-h5-regular-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}",
+      "$description": "inferred — H5 was not individually sampled; size/line-height follow the FontSize/LineHeight scale pairing the other headings established (24px body/heading size pairs with LineHeight 'xl' 32px in that scale's own progression)."
+    },
+    "heading-h5-regular-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.normal}",
+      "$description": "inferred — H5 was not individually sampled; size/line-height follow the FontSize/LineHeight scale pairing the other headings established (24px body/heading size pairs with LineHeight 'xl' 32px in that scale's own progression)."
+    },
+    "heading-h5-regular-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h5}",
+      "$description": "inferred — H5 was not individually sampled; size/line-height follow the FontSize/LineHeight scale pairing the other headings established (24px body/heading size pairs with LineHeight 'xl' 32px in that scale's own progression)."
+    },
+    "heading-h5-regular-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.xl}",
+      "$description": "inferred — H5 was not individually sampled; size/line-height follow the FontSize/LineHeight scale pairing the other headings established (24px body/heading size pairs with LineHeight 'xl' 32px in that scale's own progression)."
+    },
+    "heading-h5-regular-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px",
+      "$description": "inferred — H5 was not individually sampled; size/line-height follow the FontSize/LineHeight scale pairing the other headings established (24px body/heading size pairs with LineHeight 'xl' 32px in that scale's own progression)."
+    },
+    "heading-h6-regular-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "heading-h6-regular-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.normal}"
+    },
+    "heading-h6-regular-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.h6}"
+    },
+    "heading-h6-regular-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.lg}"
+    },
+    "heading-h6-regular-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "subtitle-xl-medium-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "subtitle-xl-medium-font-style": {
+      "$type": "string",
+      "$value": "normal"
+    },
+    "subtitle-xl-medium-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.medium}"
+    },
+    "subtitle-xl-medium-font-size": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "subtitle-xl-medium-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.lg}"
+    },
+    "subtitle-xl-medium-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "subtitle-xl-semibold-italic-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "subtitle-xl-semibold-italic-font-style": {
+      "$type": "string",
+      "$value": "italic"
+    },
+    "subtitle-xl-semibold-italic-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.semibold}"
+    },
+    "subtitle-xl-semibold-italic-font-size": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "subtitle-xl-semibold-italic-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.lg}"
+    },
+    "subtitle-xl-semibold-italic-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "subtitle-lg-medium-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "subtitle-lg-medium-font-style": {
+      "$type": "string",
+      "$value": "normal"
+    },
+    "subtitle-lg-medium-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.medium}"
+    },
+    "subtitle-lg-medium-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.sb-heading1}"
+    },
+    "subtitle-lg-medium-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.lg}"
+    },
+    "subtitle-lg-medium-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "subtitle-lg-semibold-italic-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "subtitle-lg-semibold-italic-font-style": {
+      "$type": "string",
+      "$value": "italic"
+    },
+    "subtitle-lg-semibold-italic-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.semibold}"
+    },
+    "subtitle-lg-semibold-italic-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.sb-heading1}"
+    },
+    "subtitle-lg-semibold-italic-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.lg}"
+    },
+    "subtitle-lg-semibold-italic-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "subtitle-md-medium-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "subtitle-md-medium-font-style": {
+      "$type": "string",
+      "$value": "normal"
+    },
+    "subtitle-md-medium-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.medium}"
+    },
+    "subtitle-md-medium-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.sb-heading2}"
+    },
+    "subtitle-md-medium-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.md}"
+    },
+    "subtitle-md-medium-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "subtitle-md-semibold-italic-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "subtitle-md-semibold-italic-font-style": {
+      "$type": "string",
+      "$value": "italic"
+    },
+    "subtitle-md-semibold-italic-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.semibold}"
+    },
+    "subtitle-md-semibold-italic-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.sb-heading2}"
+    },
+    "subtitle-md-semibold-italic-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.md}"
+    },
+    "subtitle-md-semibold-italic-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "subtitle-sm-medium-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "subtitle-sm-medium-font-style": {
+      "$type": "string",
+      "$value": "normal"
+    },
+    "subtitle-sm-medium-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.medium}"
+    },
+    "subtitle-sm-medium-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.body1}"
+    },
+    "subtitle-sm-medium-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.normal}"
+    },
+    "subtitle-sm-medium-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "subtitle-sm-semibold-italic-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "subtitle-sm-semibold-italic-font-style": {
+      "$type": "string",
+      "$value": "italic"
+    },
+    "subtitle-sm-semibold-italic-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.semibold}"
+    },
+    "subtitle-sm-semibold-italic-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.body1}"
+    },
+    "subtitle-sm-semibold-italic-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.normal}"
+    },
+    "subtitle-sm-semibold-italic-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "subtitle-xs-medium-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "subtitle-xs-medium-font-style": {
+      "$type": "string",
+      "$value": "normal"
+    },
+    "subtitle-xs-medium-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.medium}"
+    },
+    "subtitle-xs-medium-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.body2}"
+    },
+    "subtitle-xs-medium-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.sm}"
+    },
+    "subtitle-xs-medium-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "subtitle-xs-semibold-italic-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "subtitle-xs-semibold-italic-font-style": {
+      "$type": "string",
+      "$value": "italic"
+    },
+    "subtitle-xs-semibold-italic-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.semibold}"
+    },
+    "subtitle-xs-semibold-italic-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.body2}"
+    },
+    "subtitle-xs-semibold-italic-line-height": {
+      "$type": "dimension",
+      "$value": "{line-height.sm}"
+    },
+    "subtitle-xs-semibold-italic-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "caption-medium-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "caption-medium-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.medium}"
+    },
+    "caption-medium-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.caption}"
+    },
+    "caption-medium-line-height": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "caption-medium-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "caption-bold-font-family": {
+      "$type": "fontFamily",
+      "$value": "{font.sans}"
+    },
+    "caption-bold-font-weight": {
+      "$type": "fontWeight",
+      "$value": "{font-weight.bold}"
+    },
+    "caption-bold-font-size": {
+      "$type": "dimension",
+      "$value": "{font-size.caption}"
+    },
+    "caption-bold-line-height": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "caption-bold-letter-spacing": {
+      "$type": "dimension",
+      "$value": "0px"
+    }
+  },
+  "radius": {
+    "none": {
+      "$type": "dimension",
+      "$value": "0px",
+      "$description": "No rounding (Figma Design System V2)."
+    },
+    "xs": {
+      "$type": "dimension",
+      "$value": "2px",
+      "$description": "Elements shorter than 20px tall (Figma Design System V2)."
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "4px",
+      "$description": "Buttons/inputs/small cards, 20–48px tall (Figma Design System V2)."
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "6px",
+      "$description": "Surfaces ≥48px tall — cards, modals, widgets (Figma Design System V2)."
+    },
+    "full": {
+      "$type": "dimension",
+      "$value": "999px",
+      "$description": "Pills/chips/avatars (Figma Design System V2)."
+    },
+    "sheet": {
+      "$type": "dimension",
+      "$value": "28px",
+      "$description": "Mobile sheet / bottom-sheet top corners \u2014 the large radius where a white sheet meets a brand-colored backdrop (mobile login, drawers). Deliberately its own semantic key rather than an `xl` step: `rounded-xl` is already in use from Tailwind's default scale and must not shift."
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$type": "shadow",
+      "$value": "0px 1px 2px 0px rgba(16,24,40,0.06), 0px 1px 3px 0px rgba(16,24,40,0.10)"
+    },
+    "md": {
+      "$type": "shadow",
+      "$value": "0px 2px 4px -2px rgba(16,24,40,0.06), 0px 4px 8px -2px rgba(16,24,40,0.10)"
+    },
+    "lg": {
+      "$type": "shadow",
+      "$value": "0px 4px 6px -2px rgba(16,24,40,0.03), 0px 12px 16px -4px rgba(16,24,40,0.08)"
+    },
+    "xl": {
+      "$type": "shadow",
+      "$value": "0px 8px 8px -4px rgba(16,24,40,0.03), 0px 20px 24px -4px rgba(16,24,40,0.08)"
+    },
+    "2xl": {
+      "$type": "shadow",
+      "$value": "0px 24px 48px -12px rgba(16,24,40,0.18)"
+    },
+    "3xl": {
+      "$type": "shadow",
+      "$value": "0px 32px 64px -12px rgba(16,24,40,0.14)"
+    },
+    "elevation": {
+      "$type": "shadow",
+      "$value": "0px 4px 6px -2px rgba(16,24,40,0.03), 0px 12px 16px -4px rgba(16,24,40,0.08)"
+    },
+    "popover": {
+      "$type": "shadow",
+      "$value": "6px 10px 23px 0px rgba(0,0,0,0.29)",
+      "$description": "Floating panel/popover elevation (FilterPanel, ColumnCustomizer) — Figma Shadows/Custom/Spreaded."
+    },
+    "popover-sm": {
+      "$type": "shadow",
+      "$value": "1px 2px 6px 0px rgba(0,0,0,0.15)",
+      "$description": "Tight anchored-popover shadow for compact identity/context popovers (UserPopover — Figma Shadows/Custom/Icon Shadow)."
+    },
+    "map": {
+      "$type": "shadow",
+      "$value": "6px 10px 12px 0px rgba(0,0,0,0.05)",
+      "$description": "Map surface overlays (Figma Shadows/Custom/Map)."
+    },
+    "glow": {
+      "$type": "shadow",
+      "$value": "0px 0px 15px 9px #e6f2fc",
+      "$description": "Spreaded brand glow (Figma Shadows/Custom/Spreaded Shadow)."
+    },
+    "wall-panel": {
+      "$type": "shadow",
+      "$value": "0 10px 30px rgba(0,0,0,0.4)"
+    }
+  },
+  "spacing": {
+    "0": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "1": {
+      "$type": "dimension",
+      "$value": "4px"
+    },
+    "2": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "3": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "4": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "5": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "6": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "7": {
+      "$type": "dimension",
+      "$value": "28px",
+      "$description": "App-rail logo/icon-button box (nav-a SPEC.md §1/§2 — 28×28px)."
+    },
+    "8": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "10": {
+      "$type": "dimension",
+      "$value": "40px"
+    },
+    "11": {
+      "$type": "dimension",
+      "$value": "44px",
+      "$description": "Outer app-rail width (nav-a SPEC.md §1)."
+    },
+    "12": {
+      "$type": "dimension",
+      "$value": "48px"
+    },
+    "15": {
+      "$type": "dimension",
+      "$value": "60px",
+      "$description": "Inner module-rail width (nav-a SPEC.md §2)."
+    },
+    "16": {
+      "$type": "dimension",
+      "$value": "64px"
+    },
+    "inline": {
+      "$type": "dimension",
+      "$value": "8px",
+      "$description": "Icon-to-label, chip-to-chip. Same value as spacing.2 — semantic alias, not a new size."
+    },
+    "field": {
+      "$type": "dimension",
+      "$value": "16px",
+      "$description": "Vertical gap between form fields (Stack default gap). Same value as spacing.4."
+    },
+    "section": {
+      "$type": "dimension",
+      "$value": "24px",
+      "$description": "Gap between form sections / page regions. Same value as spacing.6."
+    }
+  },
+  "breakpoint": {
+    "sm": {
+      "$type": "dimension",
+      "$value": "640px"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "768px"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "1024px"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "1280px"
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": "1536px"
+    }
+  },
+  "icon-size": {
+    "2xs": {
+      "$type": "dimension",
+      "$value": "14px"
+    },
+    "xs": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "40px"
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": "48px"
+    }
+  },
+  "duration": {
+    "$description": "Transition/animation durations. Replaces hardcoded `transition-all` timings.",
+    "fast": {
+      "$type": "duration",
+      "$value": "150ms",
+      "$description": "Micro-interactions — hover, focus ring, checkbox toggle."
+    },
+    "normal": {
+      "$type": "duration",
+      "$value": "200ms",
+      "$description": "Default — most component state transitions (button, input, tab)."
+    },
+    "slow": {
+      "$type": "duration",
+      "$value": "300ms",
+      "$description": "Larger surfaces — dialog, drawer, sheet enter/exit."
+    }
+  },
+  "ease": {
+    "$description": "Timing-function curves (Material-derived). Value is a ready-to-use CSS `cubic-bezier()` string, matching this file's convention of pre-formatted CSS values (see shadow, font).",
+    "standard": {
+      "$type": "cubicBezier",
+      "$value": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+      "$description": "General-purpose — the default for most transitions."
+    },
+    "emphasized": {
+      "$type": "cubicBezier",
+      "$value": "cubic-bezier(0.2, 0.0, 0, 1)",
+      "$description": "Larger, more noticeable transitions — dialog/drawer/sheet."
+    },
+    "decelerate": {
+      "$type": "cubicBezier",
+      "$value": "cubic-bezier(0.0, 0.0, 0.2, 1)",
+      "$description": "Entering elements — ease-out."
+    },
+    "accelerate": {
+      "$type": "cubicBezier",
+      "$value": "cubic-bezier(0.4, 0.0, 1, 1)",
+      "$description": "Exiting elements — ease-in."
+    }
+  },
+  "z-index": {
+    "$description": "Semantic stacking scale — never a raw number at point of use (no `z-50`). Ordered so overlays/menus/toasts never collide. Emitted as `--z-index-*` (Tailwind v4's `z-*` utility namespace) with a `--z-*` alias kept for direct `var(--z-…)` consumers — see themeVarName()/isZIndexToken() in style-dictionary.config.js.",
+    "base": {
+      "$type": "number",
+      "$value": 0
+    },
+    "dropdown": {
+      "$type": "number",
+      "$value": 1000
+    },
+    "sticky": {
+      "$type": "number",
+      "$value": 1100
+    },
+    "overlay": {
+      "$type": "number",
+      "$value": 1200,
+      "$description": "Backdrop/scrim behind drawers, dialogs, modals."
+    },
+    "drawer": {
+      "$type": "number",
+      "$value": 1300
+    },
+    "modal": {
+      "$type": "number",
+      "$value": 1400
+    },
+    "popover": {
+      "$type": "number",
+      "$value": 1500
+    },
+    "toast": {
+      "$type": "number",
+      "$value": 1600
+    },
+    "tooltip": {
+      "$type": "number",
+      "$value": 1700,
+      "$description": "Always on top — must render above toasts."
+    }
+  }
+}

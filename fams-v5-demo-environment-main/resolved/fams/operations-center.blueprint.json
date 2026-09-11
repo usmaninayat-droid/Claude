@@ -1,0 +1,1130 @@
+{
+  "code": "operations-center/dispatch-job",
+  "kind": "pipeline",
+  "listcolumns": [
+    {
+      "col": "uniqueidentifier",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_oc_uid",
+      "name": "ID"
+    },
+    {
+      "col": "title",
+      "component": {
+        "name": "TextView",
+        "props": {
+          "handleOverflow": true
+        }
+      },
+      "id": "fld_oc_title"
+    },
+    {
+      "col": "planName",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_oc_plan"
+    },
+    {
+      "col": "plate",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_oc_plate"
+    },
+    {
+      "col": "driver",
+      "component": {
+        "name": "PersonView"
+      },
+      "id": "fld_oc_driver"
+    },
+    {
+      "col": "zone",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_oc_zone"
+    },
+    {
+      "col": "routeType",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_oc_route_type"
+    },
+    {
+      "col": "progressLabel",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_oc_progress_label",
+      "name": "Tasks"
+    },
+    {
+      "col": "plannedWindow",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_oc_planned"
+    },
+    {
+      "col": "actualWindow",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_oc_actual"
+    },
+    {
+      "col": "status",
+      "component": {
+        "name": "StatusList"
+      },
+      "id": "fld_oc_status"
+    }
+  ],
+  "name": "Operations Center",
+  "systemcolumns": [
+    {
+      "col": "uniqueidentifier",
+      "id": "fld_oc_uid",
+      "name": "Job ID",
+      "type": "Auto"
+    },
+    {
+      "col": "title",
+      "id": "fld_oc_title",
+      "name": "Route",
+      "required": true,
+      "type": "SmallText"
+    },
+    {
+      "col": "status",
+      "creation": {
+        "hidden": true
+      },
+      "default": "scheduled",
+      "id": "fld_oc_status",
+      "listValues": [
+        "scheduled",
+        "dispatched",
+        "ongoing",
+        "delayed",
+        "action-required",
+        "completed"
+      ],
+      "name": "Status",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "planName",
+      "id": "fld_oc_plan",
+      "name": "Service Plan",
+      "type": "SmallText"
+    },
+    {
+      "col": "planStatus",
+      "component": {
+        "name": "IconTextView",
+        "props": {
+          "icon": "map-pin"
+        }
+      },
+      "id": "fld_oc_plan_status",
+      "listValues": [
+        "At Depot",
+        "On Site"
+      ],
+      "name": "Plan Status",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "plate",
+      "component": {
+        "name": "IconTextView",
+        "props": {
+          "icon": "truck"
+        }
+      },
+      "id": "fld_oc_plate",
+      "name": "Vehicle Plate",
+      "type": "SmallText"
+    },
+    {
+      "col": "vehicleModel",
+      "id": "fld_oc_model",
+      "name": "Vehicle Model",
+      "type": "SmallText"
+    },
+    {
+      "col": "driver",
+      "component": {
+        "name": "PersonView",
+        "props": {
+          "tone": "info"
+        }
+      },
+      "id": "fld_oc_driver",
+      "name": "Driver",
+      "type": "SmallText"
+    },
+    {
+      "col": "contact",
+      "id": "fld_oc_contact",
+      "name": "Driver Contact",
+      "type": "Phone"
+    },
+    {
+      "col": "shift",
+      "id": "fld_oc_shift",
+      "listValues": [
+        "Morning",
+        "Evening",
+        "Night"
+      ],
+      "name": "Shift",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "zone",
+      "component": {
+        "name": "IconTextView",
+        "props": {
+          "icon": "marker-pin-02"
+        }
+      },
+      "id": "fld_oc_zone",
+      "name": "Zone",
+      "type": "SmallText"
+    },
+    {
+      "col": "depot",
+      "id": "fld_oc_depot",
+      "name": "Depot",
+      "type": "SmallText"
+    },
+    {
+      "col": "progressPct",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_progress",
+      "name": "Progress %",
+      "type": "Numeric"
+    },
+    {
+      "col": "progressLabel",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_progress_label",
+      "name": "Tasks",
+      "type": "SmallText"
+    },
+    {
+      "col": "plannedWindow",
+      "id": "fld_oc_planned",
+      "name": "Planned",
+      "type": "SmallText"
+    },
+    {
+      "col": "actualWindow",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_actual",
+      "name": "Actual",
+      "type": "SmallText"
+    },
+    {
+      "col": "delayText",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_delay",
+      "name": "Delay",
+      "type": "SmallText"
+    },
+    {
+      "col": "riskBanner",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_risk",
+      "name": "Risk Note",
+      "type": "SmallText"
+    },
+    {
+      "col": "riskTone",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_risk_tone",
+      "name": "Risk Tone",
+      "type": "SmallText"
+    },
+    {
+      "col": "speed",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_speed",
+      "name": "Speed",
+      "type": "Numeric"
+    },
+    {
+      "col": "location",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_location",
+      "name": "Location",
+      "type": "SmallText"
+    },
+    {
+      "col": "lastSeen",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_last_seen",
+      "name": "Last Record Received",
+      "type": "SmallText"
+    },
+    {
+      "col": "lat",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_lat",
+      "name": "Latitude",
+      "type": "Numeric"
+    },
+    {
+      "col": "lng",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_lng",
+      "name": "Longitude",
+      "type": "Numeric"
+    },
+    {
+      "col": "heading",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_heading",
+      "name": "Heading",
+      "type": "Numeric"
+    },
+    {
+      "col": "plannedRoute",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_route_planned",
+      "name": "Planned Route Geometry",
+      "type": "tags"
+    },
+    {
+      "col": "actualRoute",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_route_actual",
+      "name": "Actual Route Geometry",
+      "type": "tags"
+    },
+    {
+      "col": "routeType",
+      "id": "fld_oc_route_type",
+      "listValues": [
+        "Collection",
+        "Transfer",
+        "Inspection"
+      ],
+      "name": "Route Type",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "mobility",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_mobility",
+      "listValues": [
+        "moving",
+        "idling",
+        "stopped"
+      ],
+      "name": "Vehicle Activity",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "currentAssignment",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_current_assignment",
+      "name": "Current Assignment",
+      "type": "SmallText"
+    },
+    {
+      "col": "standbyVehicle",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_standby_vehicle",
+      "name": "Standby Vehicle",
+      "type": "SmallText"
+    },
+    {
+      "col": "standbyDriver",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_oc_standby_driver",
+      "name": "Standby Driver",
+      "type": "SmallText"
+    }
+  ],
+  "uiConfig": {
+    "cockpit": {
+      "actions": [
+        {
+          "icon": "broadcast",
+          "id": "act_ck_broadcast",
+          "kind": "toast",
+          "label": "Broadcast",
+          "message": "Broadcast sent to all on-shift drivers"
+        },
+        {
+          "icon": "actions",
+          "id": "act_ck_quick",
+          "items": [
+            {
+              "id": "qa_dispatch_all",
+              "label": "Dispatch all scheduled",
+              "message": "7 scheduled jobs dispatched"
+            },
+            {
+              "id": "qa_notify_depot",
+              "label": "Notify depot supervisors",
+              "message": "Depot supervisors notified"
+            },
+            {
+              "id": "qa_freeze",
+              "label": "Freeze new assignments",
+              "message": "New assignments frozen for this shift"
+            }
+          ],
+          "kind": "menu",
+          "label": "Quick Actions"
+        },
+        {
+          "icon": "export",
+          "id": "act_ck_export",
+          "kind": "toast",
+          "label": "Export",
+          "message": "Dispatch board exported",
+          "primary": true
+        }
+      ],
+      "alert": {
+        "countdown": "42m until shift handover",
+        "text": "3 next-shift routes are at risk of delayed dispatch",
+        "tone": "danger"
+      },
+      "filters": [
+        {
+          "id": "flt_ck_date",
+          "label": "Today",
+          "options": [
+            "Today",
+            "Tomorrow",
+            "This Week"
+          ]
+        },
+        {
+          "col": "shift",
+          "id": "flt_ck_shift",
+          "label": "Shift"
+        },
+        {
+          "col": "routeType",
+          "id": "flt_ck_route_type",
+          "label": "Route Type",
+          "placeholder": true
+        },
+        {
+          "col": "zone",
+          "id": "flt_ck_zone",
+          "label": "Zone",
+          "placeholder": true
+        },
+        {
+          "col": "depot",
+          "id": "flt_ck_depot",
+          "label": "Depot",
+          "placeholder": true
+        }
+      ],
+      "flows": {
+        "assign": {
+          "assignLabel": "Assign",
+          "replaceLabel": "Suggest Replacement",
+          "successDescription": "The dispatcher on shift was notified of the reassignment.",
+          "successTitle": "Route Assigned",
+          "title": "Nearby Routes"
+        },
+        "callLabel": "Call Driver",
+        "issues": {
+          "reasonCol": "riskBanner",
+          "status": "action-required",
+          "suggestLabel": "Suggest Nearby Routes",
+          "title": "Current Shift Issues"
+        },
+        "replace": {
+          "confirmLabel": "Confirm Replacement",
+          "currentCols": [
+            "currentAssignment"
+          ],
+          "label": "Suggest Replacement",
+          "resolveStatus": "ongoing",
+          "standbyCols": [
+            "standbyVehicle",
+            "standbyDriver"
+          ],
+          "successDescription": "The standby vehicle and driver were dispatched to the route.",
+          "successTitle": "Replacement Confirmed",
+          "title": "Replace Vehicle & Driver"
+        },
+        "report": {
+          "dispatchLabel": "Dispatch a replacement vehicle and driver",
+          "label": "Report Breakdown",
+          "noteLabel": "What happened?",
+          "successDescription": "The route was moved to Action Required and the depot was notified.",
+          "successTitle": "Breakdown Reported",
+          "targetStatus": "action-required",
+          "title": "Report Breakdown",
+          "typeLabel": "Breakdown Type",
+          "typeOptions": [
+            "Mechanical",
+            "Electrical",
+            "Tyre / Wheel",
+            "Hydraulics",
+            "Accident"
+          ]
+        }
+      },
+      "kpis": [
+        {
+          "accent": "primary",
+          "countStatus": "scheduled",
+          "detailColumns": [
+            "uniqueidentifier",
+            "title",
+            "plate",
+            "driver",
+            "plannedWindow"
+          ],
+          "id": "kpi_scheduled",
+          "label": "Scheduled Jobs"
+        },
+        {
+          "accent": "info",
+          "countStatus": "dispatched",
+          "detailColumns": [
+            "uniqueidentifier",
+            "title",
+            "plate",
+            "driver",
+            "actualWindow"
+          ],
+          "id": "kpi_dispatched",
+          "label": "Dispatched"
+        },
+        {
+          "countStatus": "ongoing",
+          "detailColumns": [
+            "uniqueidentifier",
+            "title",
+            "plate",
+            "driver",
+            "progressLabel",
+            "actualWindow"
+          ],
+          "id": "kpi_ongoing",
+          "label": "Ongoing"
+        },
+        {
+          "accent": "warning",
+          "badge": {
+            "label": "+1 vs Yest.",
+            "tone": "down"
+          },
+          "countStatus": "delayed",
+          "detailColumns": [
+            "uniqueidentifier",
+            "title",
+            "plate",
+            "driver",
+            "delayText"
+          ],
+          "id": "kpi_delayed",
+          "label": "Delayed"
+        },
+        {
+          "accent": "success",
+          "badge": {
+            "label": "+2.1% vs Yest.",
+            "tone": "up"
+          },
+          "detailColumns": [
+            "uniqueidentifier",
+            "title",
+            "status",
+            "progressLabel",
+            "plannedWindow",
+            "actualWindow"
+          ],
+          "id": "kpi_fulfillment",
+          "label": "Fulfillment Rate",
+          "value": "94%"
+        },
+        {
+          "accent": "danger",
+          "badge": {
+            "label": "View Details",
+            "tone": "link"
+          },
+          "countStatus": "action-required",
+          "detailColumns": [
+            "uniqueidentifier",
+            "title",
+            "plate",
+            "driver",
+            "riskBanner"
+          ],
+          "id": "kpi_action",
+          "label": "Action Required",
+          "opens": "issues"
+        }
+      ],
+      "panels": [
+        {
+          "emptyLabel": "No fleet data",
+          "filter": {
+            "label": "All Vehicles",
+            "options": [
+              "Owned",
+              "Contracted",
+              "Standby"
+            ]
+          },
+          "icon": "group",
+          "id": "panel_fleet",
+          "rows": [
+            {
+              "count": 18,
+              "id": "row_fleet_available",
+              "label": "Available",
+              "tone": "success"
+            },
+            {
+              "count": 4,
+              "id": "row_fleet_maintenance",
+              "label": "In Maintenance",
+              "tone": "warning"
+            },
+            {
+              "count": 2,
+              "id": "row_fleet_out",
+              "label": "Out of Service",
+              "tone": "danger"
+            }
+          ],
+          "stats": [
+            {
+              "id": "st_fleet_total",
+              "label": "Total Vehicles",
+              "value": 24
+            },
+            {
+              "id": "st_fleet_service",
+              "label": "In Service",
+              "value": 18
+            },
+            {
+              "id": "st_fleet_standby",
+              "label": "Standby",
+              "value": 4
+            }
+          ],
+          "title": "Fleet Availability"
+        },
+        {
+          "emptyLabel": "No workforce data",
+          "filter": {
+            "label": "All Workforce",
+            "options": [
+              "Drivers",
+              "Loaders",
+              "Supervisors"
+            ]
+          },
+          "icon": "people",
+          "id": "panel_workforce",
+          "rows": [
+            {
+              "count": 27,
+              "id": "row_wf_duty",
+              "label": "On Duty",
+              "tone": "success"
+            },
+            {
+              "count": 3,
+              "id": "row_wf_break",
+              "label": "On Break",
+              "tone": "info"
+            },
+            {
+              "count": 2,
+              "id": "row_wf_noshow",
+              "label": "No-Show",
+              "tone": "danger"
+            }
+          ],
+          "stats": [
+            {
+              "id": "st_wf_rostered",
+              "label": "Rostered",
+              "value": 32
+            },
+            {
+              "id": "st_wf_checked",
+              "label": "Checked In",
+              "value": 27
+            }
+          ],
+          "title": "Workforce Readiness"
+        }
+      ],
+      "popup": {
+        "commands": [
+          {
+            "id": "cmd_immobilize",
+            "label": "Immobilize vehicle",
+            "message": "Immobilize queued — fires at the next full stop",
+            "tone": "warning"
+          },
+          {
+            "id": "cmd_mobilize",
+            "label": "Mobilize vehicle",
+            "message": "Mobilize command sent"
+          }
+        ],
+        "contactCol": "contact",
+        "maxWidth": "22.5rem"
+      },
+      "queue": {
+        "actualCol": "actualWindow",
+        "avatarCol": "driver",
+        "bannerCol": "riskBanner",
+        "bannerToneCol": "riskTone",
+        "deltaCol": "delayText",
+        "metaCols": [
+          "plate",
+          "driver",
+          "zone",
+          "planStatus"
+        ],
+        "plannedCol": "plannedWindow",
+        "progressCol": "progressPct",
+        "progressLabelCol": "progressLabel",
+        "searchCols": [
+          "uniqueidentifier",
+          "plate",
+          "driver",
+          "planName",
+          "zone",
+          "depot",
+          "routeType"
+        ],
+        "subtitleCol": "planName",
+        "titleCol": "title"
+      },
+      "routes": {
+        "actualCol": "actualRoute",
+        "plannedCol": "plannedRoute"
+      }
+    },
+    "creation": {
+      "fieldChrome": "inset-label",
+      "label": "Create Dispatch Job",
+      "layout": "flat"
+    },
+    "filters": [
+      {
+        "col": "status",
+        "id": "flt_oc_status",
+        "order": 1
+      },
+      {
+        "col": "shift",
+        "id": "flt_oc_shift",
+        "order": 2
+      },
+      {
+        "col": "planStatus",
+        "id": "flt_oc_plan_status",
+        "order": 3
+      },
+      {
+        "col": "routeType",
+        "id": "flt_oc_route_type",
+        "order": 4
+      }
+    ],
+    "icon": "sliders-horizontal",
+    "kanbanCard": {
+      "body": [
+        {
+          "col": "plate",
+          "component": {
+            "name": "IconTextView",
+            "props": {
+              "icon": "truck"
+            }
+          },
+          "id": "fld_oc_plate",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "driver",
+          "component": {
+            "name": "PersonView",
+            "props": {
+              "tone": "info"
+            }
+          },
+          "id": "fld_oc_driver",
+          "order": 2,
+          "pos": "left"
+        },
+        {
+          "col": "zone",
+          "component": {
+            "name": "IconTextView",
+            "props": {
+              "icon": "marker-pin-02"
+            }
+          },
+          "id": "fld_oc_zone",
+          "order": 3,
+          "pos": "left"
+        }
+      ],
+      "footer": [
+        {
+          "col": "progressLabel",
+          "id": "fld_oc_progress_label",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "plannedWindow",
+          "id": "fld_oc_planned",
+          "order": 1,
+          "pos": "right"
+        }
+      ],
+      "header": [
+        {
+          "col": "uniqueidentifier",
+          "id": "fld_oc_uid",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "title",
+          "id": "fld_oc_title",
+          "order": 2,
+          "pos": "left"
+        },
+        {
+          "col": "planStatus",
+          "id": "fld_oc_plan_status",
+          "order": 1,
+          "pos": "right"
+        }
+      ]
+    },
+    "map": {
+      "center": [
+        54.3773,
+        24.4539
+      ],
+      "driverCol": "driver",
+      "headingCol": "heading",
+      "latCol": "lat",
+      "lngCol": "lng",
+      "locationCol": "location",
+      "plateCol": "plate",
+      "popup": {
+        "fields": [
+          {
+            "col": "driver",
+            "icon": "user",
+            "label": "Driver"
+          },
+          {
+            "col": "contact",
+            "icon": "phone",
+            "label": "Contact"
+          },
+          {
+            "col": "speed",
+            "icon": "gauge",
+            "label": "Vehicle Speed",
+            "suffix": " km/h"
+          },
+          {
+            "col": "lastSeen",
+            "icon": "clock",
+            "label": "Last Record"
+          }
+        ]
+      },
+      "speedCol": "speed",
+      "statusCol": "mobility"
+    },
+    "profile": {
+      "details": [
+        {
+          "col": "planName",
+          "id": "fld_oc_plan",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "planStatus",
+          "id": "fld_oc_plan_status",
+          "order": 1,
+          "pos": "right"
+        },
+        {
+          "col": "plate",
+          "id": "fld_oc_plate",
+          "order": 2,
+          "pos": "left"
+        },
+        {
+          "col": "vehicleModel",
+          "id": "fld_oc_model",
+          "order": 2,
+          "pos": "right"
+        },
+        {
+          "col": "driver",
+          "component": {
+            "name": "PersonView",
+            "props": {
+              "tone": "info"
+            }
+          },
+          "id": "fld_oc_driver",
+          "order": 3,
+          "pos": "left"
+        },
+        {
+          "col": "contact",
+          "id": "fld_oc_contact",
+          "order": 3,
+          "pos": "right"
+        },
+        {
+          "col": "shift",
+          "id": "fld_oc_shift",
+          "order": 4,
+          "pos": "left"
+        },
+        {
+          "col": "zone",
+          "id": "fld_oc_zone",
+          "order": 4,
+          "pos": "right"
+        },
+        {
+          "col": "plannedWindow",
+          "id": "fld_oc_planned",
+          "order": 5,
+          "pos": "left"
+        },
+        {
+          "col": "actualWindow",
+          "id": "fld_oc_actual",
+          "order": 5,
+          "pos": "right"
+        },
+        {
+          "col": "progressLabel",
+          "id": "fld_oc_progress_label",
+          "order": 6,
+          "pos": "left"
+        },
+        {
+          "col": "delayText",
+          "id": "fld_oc_delay",
+          "order": 6,
+          "pos": "right"
+        }
+      ],
+      "layout": {
+        "labelWidth": "9.0625rem"
+      },
+      "rightPanel": {
+        "tabs": [
+          {
+            "component": {
+              "name": "TicketTimeline"
+            },
+            "id": "tab_oc_timeline",
+            "key": "timeline",
+            "order": 1,
+            "title": "Timeline"
+          },
+          {
+            "component": {
+              "name": "TicketActivity"
+            },
+            "id": "tab_oc_activity",
+            "key": "activity",
+            "order": 2,
+            "title": "Activity"
+          }
+        ],
+        "type": "tab"
+      },
+      "sections": [
+        {
+          "fields": [
+            {
+              "col": "depot",
+              "id": "fld_oc_depot",
+              "order": 1,
+              "pos": "left"
+            },
+            {
+              "col": "location",
+              "id": "fld_oc_location",
+              "order": 1,
+              "pos": "right"
+            },
+            {
+              "col": "lastSeen",
+              "id": "fld_oc_last_seen",
+              "order": 2,
+              "pos": "left"
+            },
+            {
+              "col": "speed",
+              "id": "fld_oc_speed",
+              "order": 2,
+              "pos": "right"
+            },
+            {
+              "col": "routeType",
+              "id": "fld_oc_route_type",
+              "order": 3,
+              "pos": "left"
+            },
+            {
+              "col": "mobility",
+              "id": "fld_oc_mobility",
+              "order": 3,
+              "pos": "right"
+            },
+            {
+              "col": "standbyVehicle",
+              "id": "fld_oc_standby_vehicle",
+              "order": 4,
+              "pos": "left"
+            },
+            {
+              "col": "standbyDriver",
+              "id": "fld_oc_standby_driver",
+              "order": 4,
+              "pos": "right"
+            }
+          ],
+          "id": "sec_oc_dispatch",
+          "name": "Dispatch Details",
+          "order": 1
+        }
+      ],
+      "title": {
+        "col": "title",
+        "id": "fld_oc_title",
+        "pos": "left"
+      }
+    },
+    "search": {
+      "columns": [
+        "title",
+        "plate",
+        "driver",
+        "planName"
+      ],
+      "placeholder": "Search dispatch jobs"
+    },
+    "statusList": [
+      {
+        "color": "#9E77ED",
+        "id": "sts_oc_scheduled",
+        "key": "scheduled",
+        "label": "Scheduled"
+      },
+      {
+        "color": "#6172F3",
+        "id": "sts_oc_dispatched",
+        "key": "dispatched",
+        "label": "Dispatched"
+      },
+      {
+        "color": "#0072D6",
+        "id": "sts_oc_ongoing",
+        "key": "ongoing",
+        "label": "Ongoing"
+      },
+      {
+        "color": "#F79009",
+        "id": "sts_oc_delayed",
+        "key": "delayed",
+        "label": "Delayed"
+      },
+      {
+        "color": "#F04438",
+        "id": "sts_oc_action",
+        "key": "action-required",
+        "label": "Action Required"
+      },
+      {
+        "color": "#12B76A",
+        "id": "sts_oc_completed",
+        "key": "completed",
+        "label": "Completed"
+      }
+    ],
+    "viewPickerHint": "The cockpit hybrid pairs the dispatch queue with the live map; list and kanban read the same dispatch jobs."
+  },
+  "uidPrefix": "DSP",
+  "views": [
+    "hybrid",
+    "list",
+    "kanban"
+  ]
+}

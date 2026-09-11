@@ -1,0 +1,4 @@
+[
+  { "id": "u_uccp_admin", "name": "UCCP Admin", "email": "admin.uccp@fams.com", "roles": ["admin"], "persona": "Administrator", "password": "Fams@123" },
+  { "id": "u_uccp_inspector", "name": "Ahmed Al-Kubaisi", "email": "inspector.uccp@fams.com", "roles": ["inspector"], "persona": "Field Inspector", "password": "Fams@123" }
+]

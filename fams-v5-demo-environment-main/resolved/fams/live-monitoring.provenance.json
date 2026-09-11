@@ -1,0 +1,380 @@
+{
+  "base": "core",
+  "module": "live-monitoring",
+  "nodes": {
+    "Z-1234": {
+      "source": "core"
+    },
+    "Z-2200": {
+      "source": "core"
+    },
+    "Z-3100": {
+      "source": "core"
+    },
+    "Z-4050": {
+      "source": "core"
+    },
+    "Z-5120": {
+      "source": "core"
+    },
+    "Z-6008": {
+      "source": "core"
+    },
+    "Z-6640": {
+      "source": "core"
+    },
+    "Z-8815": {
+      "source": "core"
+    },
+    "Z-9302": {
+      "source": "core"
+    },
+    "fld_activity": {
+      "source": "core"
+    },
+    "fld_admdate": {
+      "source": "core"
+    },
+    "fld_altitude": {
+      "source": "core"
+    },
+    "fld_assetdocs": {
+      "source": "core"
+    },
+    "fld_astatus": {
+      "source": "core"
+    },
+    "fld_avgfuel": {
+      "source": "core"
+    },
+    "fld_cargo": {
+      "source": "core"
+    },
+    "fld_cargovolume": {
+      "source": "core"
+    },
+    "fld_contact": {
+      "source": "core"
+    },
+    "fld_country": {
+      "source": "core"
+    },
+    "fld_curbweight": {
+      "source": "core"
+    },
+    "fld_devimei": {
+      "source": "core"
+    },
+    "fld_devlife": {
+      "source": "core"
+    },
+    "fld_devmake": {
+      "source": "core"
+    },
+    "fld_devmobile": {
+      "source": "core"
+    },
+    "fld_devmodel": {
+      "source": "core"
+    },
+    "fld_devname": {
+      "source": "core"
+    },
+    "fld_devserial": {
+      "source": "core"
+    },
+    "fld_devstatus": {
+      "source": "core"
+    },
+    "fld_dob": {
+      "source": "core"
+    },
+    "fld_driver": {
+      "source": "core"
+    },
+    "fld_driverdocs": {
+      "source": "core"
+    },
+    "fld_driverref": {
+      "source": "core"
+    },
+    "fld_dwell": {
+      "source": "core"
+    },
+    "fld_email": {
+      "source": "core"
+    },
+    "fld_enginepower": {
+      "source": "core"
+    },
+    "fld_epacity": {
+      "source": "core"
+    },
+    "fld_epacomb": {
+      "source": "core"
+    },
+    "fld_epahwy": {
+      "source": "core"
+    },
+    "fld_firmware": {
+      "source": "core"
+    },
+    "fld_firstname": {
+      "source": "core"
+    },
+    "fld_fuel": {
+      "source": "core"
+    },
+    "fld_gender": {
+      "source": "core"
+    },
+    "fld_grdvolume": {
+      "source": "core"
+    },
+    "fld_gvw": {
+      "source": "core"
+    },
+    "fld_heading": {
+      "source": "core"
+    },
+    "fld_health": {
+      "source": "core"
+    },
+    "fld_height": {
+      "source": "core"
+    },
+    "fld_imei": {
+      "source": "core"
+    },
+    "fld_intvolume": {
+      "source": "core"
+    },
+    "fld_languages": {
+      "source": "core"
+    },
+    "fld_lastname": {
+      "source": "core"
+    },
+    "fld_lastrecord": {
+      "source": "core"
+    },
+    "fld_lat": {
+      "source": "core"
+    },
+    "fld_length": {
+      "source": "core"
+    },
+    "fld_lng": {
+      "source": "core"
+    },
+    "fld_location": {
+      "source": "core"
+    },
+    "fld_make": {
+      "source": "core"
+    },
+    "fld_maxpayload": {
+      "source": "core"
+    },
+    "fld_maxspeed": {
+      "source": "core"
+    },
+    "fld_mobilephone": {
+      "source": "core"
+    },
+    "fld_model": {
+      "source": "core"
+    },
+    "fld_myear": {
+      "source": "core"
+    },
+    "fld_nationality": {
+      "source": "core"
+    },
+    "fld_odometer": {
+      "source": "core"
+    },
+    "fld_plate": {
+      "source": "core"
+    },
+    "fld_ptags": {
+      "source": "core"
+    },
+    "fld_regdate": {
+      "source": "core"
+    },
+    "fld_religion": {
+      "source": "core"
+    },
+    "fld_shift": {
+      "source": "core"
+    },
+    "fld_since": {
+      "source": "core"
+    },
+    "fld_sos": {
+      "source": "core"
+    },
+    "fld_speed": {
+      "source": "core"
+    },
+    "fld_status": {
+      "source": "core"
+    },
+    "fld_tankcap": {
+      "source": "core"
+    },
+    "fld_temp": {
+      "source": "core"
+    },
+    "fld_timestamp": {
+      "source": "core"
+    },
+    "fld_timezone": {
+      "source": "core"
+    },
+    "fld_title": {
+      "source": "core"
+    },
+    "fld_topspeed": {
+      "source": "core"
+    },
+    "fld_uniqueidentifier": {
+      "source": "core"
+    },
+    "fld_vcolor": {
+      "source": "core"
+    },
+    "fld_vin": {
+      "source": "core"
+    },
+    "fld_vtype": {
+      "source": "core"
+    },
+    "fld_width": {
+      "source": "core"
+    },
+    "flt_astatus": {
+      "source": "core"
+    },
+    "flt_fuel": {
+      "source": "core"
+    },
+    "flt_status": {
+      "source": "core"
+    },
+    "flt_vtype": {
+      "source": "core"
+    },
+    "pl-ad-corniche": {
+      "source": "core"
+    },
+    "pl-al-ain-oasis": {
+      "source": "core"
+    },
+    "pl-al-quoz": {
+      "source": "core"
+    },
+    "pl-burj-khalifa": {
+      "source": "core"
+    },
+    "pl-deira-waterfront": {
+      "source": "core"
+    },
+    "pl-difc": {
+      "source": "core"
+    },
+    "pl-dragon-mart": {
+      "source": "core"
+    },
+    "pl-dubai-mall": {
+      "source": "core"
+    },
+    "pl-dubai-marina": {
+      "source": "core"
+    },
+    "pl-dxb-t3": {
+      "source": "core"
+    },
+    "pl-hatta-dam": {
+      "source": "core"
+    },
+    "pl-jafza": {
+      "source": "core"
+    },
+    "pl-jbr": {
+      "source": "core"
+    },
+    "pl-jebel-ali-port": {
+      "source": "core"
+    },
+    "pl-khalifa-port": {
+      "source": "core"
+    },
+    "pl-palm-jumeirah": {
+      "source": "core"
+    },
+    "pl-rak-port": {
+      "source": "core"
+    },
+    "pl-sharjah-corniche": {
+      "source": "core"
+    },
+    "pl-sheikh-zayed-mosque": {
+      "source": "core"
+    },
+    "pl-yas-island": {
+      "source": "core"
+    },
+    "poi-deira-checkpoint": {
+      "source": "core"
+    },
+    "poi-depot": {
+      "source": "core"
+    },
+    "poi-fuel": {
+      "source": "core"
+    },
+    "poi-garhoud-workshop": {
+      "source": "core"
+    },
+    "poi-ibn-battuta-rest": {
+      "source": "core"
+    },
+    "poi-jafza-fuel": {
+      "source": "core"
+    },
+    "poi-jebelali-workshop": {
+      "source": "core"
+    },
+    "poi-jlt": {
+      "source": "core"
+    },
+    "poi-meydan-checkpoint": {
+      "source": "core"
+    },
+    "poi-service": {
+      "source": "core"
+    },
+    "poi-sharjah-fuel": {
+      "source": "core"
+    },
+    "poi-warsan-rest": {
+      "source": "core"
+    },
+    "sts_idling": {
+      "source": "core"
+    },
+    "sts_moving": {
+      "source": "core"
+    },
+    "sts_nonreporting": {
+      "source": "core"
+    },
+    "sts_stopped": {
+      "source": "core"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

@@ -1,0 +1,29 @@
+/* Tailwind + the design-system tokens. The app owns these imports; skeleton-kit
+   only sets the data-theme / data-tenant attributes they key off. */
+@import "tailwindcss";
+@import "@fams/tokens/theme.css";
+@import "@fams/tokens/animations.css";
+@import "@fams/tokens/scrollbars.css";
+@import "@fams/tokens/fonts.css";
+@import "@fams/tokens/tenants.css";
+
+/* The rendered components come from the linked design-system dists; Tailwind v4
+   can't see into them for content detection, so scan the sibling source (same
+   approach as workshop/showcase) — this generates every utility class the
+   ui-kit / v5-templates / composer surfaces + the DemoConsole use. */
+@source "../../../fams-design-system/packages/ui-kit/src";
+@source "../../../fams-design-system/packages/v5-templates/src";
+@source "../../../fams-design-system/packages/v5-composer/src";
+@source "../../../fams-design-system/packages/skeleton-kit/src";
+@source "../../../fams-design-system/packages/demo-kit/src";
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+body {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+}

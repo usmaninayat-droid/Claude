@@ -1,0 +1,14 @@
+{
+  "statuses": ["intake", "triage", "acknowledged", "assessed", "tanker-assigned", "job-ongoing", "job-completed", "closed", "reopened"],
+  "transitions": {
+    "intake": ["triage"],
+    "triage": ["acknowledged"],
+    "acknowledged": ["assessed"],
+    "assessed": ["tanker-assigned"],
+    "tanker-assigned": ["job-ongoing"],
+    "job-ongoing": ["job-completed"],
+    "job-completed": ["closed", "reopened"],
+    "reopened": ["tanker-assigned"],
+    "closed": []
+  }
+}

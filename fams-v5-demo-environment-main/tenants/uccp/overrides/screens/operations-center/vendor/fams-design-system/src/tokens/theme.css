@@ -1,0 +1,535 @@
+/*
+ * FAMS V5 — Canonical Theme Tokens (Tailwind 4 ready)
+ * ----------------------------------------------------
+ * Sources of truth:
+ *   - Figma Design System V2 (file `4FS7S3tHKzZZpdFBA0aGkt`)
+ *   - FAMS V5 production theme values
+ *   - Truemax live theme.css (knowledge-base/live-product-references/10-real-tokens.md)
+ *
+ * Layout:
+ *   1.  :root            — light-mode CSS variables (the values)
+ *   2.  .dark            — dark-mode overrides
+ *   3.  @custom-variant  — Tailwind 4 dark-variant binding
+ *   4.  @theme inline    — Tailwind 4 token → utility mapping (REQUIRED — this is
+ *                          what makes `bg-sidebar`, `text-foreground`, etc. resolve)
+ *   5.  @layer base      — body font-family, base typography on bare elements
+ *
+ * Tenant overrides (tenants/*.theme.css) re-declare a small subset of the :root
+ * variables AFTER this file is imported. The @theme inline block is structural
+ * (var-name → var-name) and never needs tenant overrides.
+ *
+ * Consuming apps need only:
+ *   @import '@fams-v5/tokens/theme.css';
+ *   @import '@fams-v5/tokens/tenants/<tenant>.theme.css';
+ *   @import '@fams-v5/tokens/fonts.css';
+ *   @import 'tailwindcss';
+ *   @source '../../**\/*.{ts,tsx}';
+ *   @import 'tw-animate-css';
+ */
+
+@custom-variant dark (&:is(.dark *));
+
+/* ════════════════════════════════════════════════════════════════════════════
+   1. ROOT — LIGHT MODE TOKEN VALUES
+   ════════════════════════════════════════════════════════════════════════════ */
+:root {
+  /* ── Semantic role colors (drives bg-background, text-foreground, etc.) ── */
+  --background: rgba(249, 250, 251, 1);              /* #F9FAFB */
+  --foreground: rgba(16, 24, 40, 1);                 /* #101828 */
+  --card: rgba(255, 255, 255, 1);                    /* #FFFFFF */
+  --card-foreground: rgba(29, 41, 57, 1);            /* #1D2939 */
+  --popover: rgba(16, 24, 40, 1);                    /* #101828 */
+  --popover-foreground: rgba(249, 250, 251, 1);      /* #F9FAFB */
+
+  --primary: rgba(0, 114, 214, 1);                   /* #0072D6 — FAMS brand blue */
+  --primary-foreground: rgba(255, 255, 255, 1);
+  --primary-lightest: rgba(230, 242, 252, 1);        /* #E6F2FC */
+  --primary-light: rgba(153, 205, 243, 1);           /* #99CDF3 */
+  --primary-dark: rgba(0, 71, 138, 1);               /* #00478A */
+  --primary-darkest: rgba(0, 28, 63, 1);             /* #001C3F */
+
+  --secondary: rgba(230, 242, 252, 1);               /* #E6F2FC */
+  --secondary-foreground: rgba(0, 114, 214, 1);      /* #0072D6 */
+
+  --muted: rgba(249, 250, 251, 1);                   /* #F9FAFB */
+  --muted-foreground: rgba(102, 112, 133, 1);        /* #667085 */
+
+  --accent: rgba(0, 114, 214, 1);                    /* #0072D6 — = primary */
+  --accent-foreground: rgba(255, 255, 255, 1);
+
+  --destructive: rgba(240, 68, 56, 1);               /* #F04438 */
+  --destructive-foreground: rgba(255, 255, 255, 1);
+
+  --border: rgba(234, 236, 240, 1);                  /* #EAECF0 */
+  --input: rgba(255, 255, 255, 1);
+  --input-background: rgba(255, 255, 255, 1);
+  --ring: rgba(230, 242, 252, 1);                    /* #E6F2FC */
+
+  /* ── Sidebar (the most-branded surface — Pattern #01) ──
+     Active item = WHITE pill with brand-blue icon (NOT a dark overlay).
+     This matches the live production design exactly. */
+  --sidebar: rgba(0, 114, 214, 1);                   /* #0072D6 — solid brand blue */
+  --sidebar-foreground: rgba(255, 255, 255, 1);
+  --sidebar-primary: rgba(255, 255, 255, 1);         /* ACTIVE nav-item = solid white pill */
+  --sidebar-primary-foreground: rgba(0, 114, 214, 1);/* active icon = brand blue on white */
+  --sidebar-accent: rgba(255, 255, 255, 0.15);       /* HOVER = subtle white overlay */
+  --sidebar-accent-foreground: rgba(255, 255, 255, 1);
+  --sidebar-border: rgba(255, 255, 255, 0.2);
+  --sidebar-ring: rgba(255, 255, 255, 0.4);
+  --sidebar-gradient: none;                          /* Tadweer overrides */
+
+  /* ── Status / semantic ── */
+  --status-error: #F04438;
+  --status-warning: #F79009;
+  --status-success: #12B76A;
+  --status-info: #0072D6;
+
+  /* ── Chart palette (5 series — Pattern #20) ── */
+  --chart-1: #F79009;   /* orange */
+  --chart-2: #06B6D4;   /* cyan */
+  --chart-3: #9E77ED;   /* purple */
+  --chart-4: #12B76A;   /* green */
+  --chart-5: #F63D68;   /* pink */
+
+  /* ── Chart series ramp (10-step FAMS blue, primary chart palette) ── */
+  --chart-series-1:  #001C3F;
+  --chart-series-2:  #003165;
+  --chart-series-3:  #00478A;
+  --chart-series-4:  #005CB0;
+  --chart-series-5:  #0072D6;
+  --chart-series-6:  #339CE7;
+  --chart-series-7:  #66B5ED;
+  --chart-series-8:  #99CDF3;
+  --chart-series-9:  #CCE6F9;
+  --chart-series-10: #E6F2FC;
+
+  /* ── Chart named accents (semantic per-chart) ── */
+  --chart-accent-purple: #9E77ED;
+  --chart-accent-orange: #F79009;
+  --chart-accent-green:  #12B76A;
+  --chart-accent-red:    #F04438;
+  --chart-accent-pink:   #EE46BC;
+  --chart-accent-teal:   #14B8A6;
+  --chart-accent-cyan:   #06B6D4;
+  --chart-accent-yellow: #F5BB2A;
+
+  /* ── Heatmap intensity scales ── */
+  --chart-heat-0:    #F2F4F7;
+  --chart-heat-low:  #FEF0C7;
+  --chart-heat-mid:  #FEC84B;
+  --chart-heat-high: #F04438;
+  --chart-heat-cool-0:    #E6F2FC;
+  --chart-heat-cool-mid:  #339CE7;
+  --chart-heat-cool-high: #001C3F;
+
+  /* ── Gray ramp (Untitled UI / Gray-Modern) ── */
+  --gray-50:  #F9FAFB;
+  --gray-100: #F2F4F7;
+  --gray-200: #EAECF0;
+  --gray-300: #D0D5DD;
+  --gray-400: #98A2B3;
+  --gray-500: #667085;
+  --gray-600: #475467;
+  --gray-700: #344054;
+  --gray-800: #1D2939;
+  --gray-900: #101828;
+
+  /* ── FAMS brand ramp (50-900) ── */
+  --fams-50:  #E6F2FC;
+  --fams-100: #CCE6F9;
+  --fams-200: #99CDF3;
+  --fams-300: #66B5ED;
+  --fams-400: #339CE7;
+  --fams-500: #0072D6;
+  --fams-600: #005CB0;
+  --fams-700: #00478A;
+  --fams-800: #003165;
+  --fams-900: #001C3F;
+
+  /* ── Support color ramps (16 families × 9 stops) ── */
+  --success-50:  #ECFDF3;
+  --success-100: #D1FADF;
+  --success-200: #A6F4C5;
+  --success-300: #6CE9A6;
+  --success-400: #32D583;
+  --success-500: #12B76A;
+  --success-600: #039855;
+  --success-700: #027A48;
+  --success-800: #05603A;
+  --success-900: #054F31;
+
+  --warning-50:  #FFFAEB;
+  --warning-100: #FEF0C7;
+  --warning-200: #FEDF89;
+  --warning-300: #FEC84B;
+  --warning-400: #FDB022;
+  --warning-500: #F79009;
+  --warning-600: #DC6803;
+  --warning-700: #B54708;
+  --warning-800: #93370D;
+  --warning-900: #7A2E0E;
+
+  --error-50:  #FEF3F2;
+  --error-100: #FEE4E2;
+  --error-200: #FECDCA;
+  --error-300: #FDA29B;
+  --error-400: #F97066;
+  --error-500: #F04438;
+  --error-600: #D92D20;
+  --error-700: #B42318;
+  --error-800: #912018;
+  --error-900: #7A271A;
+
+  /* ── Transparent overlays (Tadweer + nav surfaces) ── */
+  --overlay-white-20: rgba(255, 255, 255, 0.2);
+  --overlay-white-40: rgba(255, 255, 255, 0.4);
+  --overlay-white-60: rgba(255, 255, 255, 0.6);
+  --overlay-brand-20: rgba(0, 114, 214, 0.2);
+  --overlay-brand-40: rgba(0, 114, 214, 0.4);
+  --overlay-brand-60: rgba(0, 114, 214, 0.6);
+  --overlay-black-20: rgba(0, 0, 0, 0.2);
+  --overlay-black-40: rgba(0, 0, 0, 0.4);
+  --overlay-black-60: rgba(0, 0, 0, 0.6);
+
+  /* ── Surface tokens ── */
+  --surface-primary: #FFFFFF;
+  --surface-minimal: #F9FAFB;
+  --surface-secondary: #E6F2FC;
+  --surface-low-contrast: #EAECF0;
+
+  /* ════════════════════════════════════════════════════════════════════════
+     TYPOGRAPHY
+     ════════════════════════════════════════════════════════════════════════ */
+  --font-family-sans: 'Gilroy', 'Inter', system-ui, -apple-system, sans-serif;
+
+  --font-weight-normal:   400;
+  --font-weight-medium:   500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     700;
+
+  /* Tailwind-compatible size scale (Tailwind-compatible size naming).
+     Production retains the quirk that --text-3xl (28px) < --text-lg (32px). */
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 14px;
+  --text-3xl:  28px;   /* h4 */
+  --text-lg:   32px;   /* h3 */
+  --text-xl:   40px;   /* h2 */
+  --text-2xl:  48px;   /* h1 */
+
+  /* Semantic aliases (used by typography components) */
+  --text-h1: 48px;
+  --text-h2: 40px;
+  --text-h3: 32px;
+  --text-h4: 28px;
+  --text-h5: 24px;
+  --text-h6: 20px;
+  --text-body-xl: 20px;
+  --text-body-lg: 18px;
+  --text-body-md: 16px;
+  --text-body-sm: 14px;
+  --text-body-xs: 12px;
+  --text-body:    14px;
+  --text-label:   12px;
+  --text-caption: 10px;
+
+  /* Figma per-step line heights (overrides 1.5 default for headings/body steps) */
+  --line-height-base:    1.5;
+  --line-height-h1:      56px;
+  --line-height-h2:      48px;
+  --line-height-h3:      40px;
+  --line-height-h4:      36px;
+  --line-height-h5:      32px;
+  --line-height-h6:      26px;
+  --line-height-body-xl: 26px;
+  --line-height-body-lg: 26px;
+  --line-height-body-md: 24px;
+  --line-height-body-sm: 20px;
+  --line-height-body-xs: 18px;
+  --line-height-caption: 12px;
+
+  /* ════════════════════════════════════════════════════════════════════════
+     RADIUS (production = 6px default)
+     ════════════════════════════════════════════════════════════════════════ */
+  --radius:    6px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 8px;
+
+  /* ════════════════════════════════════════════════════════════════════════
+     ELEVATION (Figma Standard ladder — Effect Styles)
+     ════════════════════════════════════════════════════════════════════════ */
+  --elevation-sm:
+    0px 1px 2px 0px rgba(16, 24, 40, 0.06),
+    0px 1px 3px 0px rgba(16, 24, 40, 0.10);
+  --elevation-md:
+    0px 2px 4px -2px rgba(16, 24, 40, 0.06),
+    0px 4px 8px -2px rgba(16, 24, 40, 0.10);
+  --elevation-lg:
+    0px 4px 6px -2px rgba(16, 24, 40, 0.03),
+    0px 12px 16px -4px rgba(16, 24, 40, 0.08);
+  --elevation-xl:
+    0px 8px 8px -4px rgba(16, 24, 40, 0.03),
+    0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+  --elevation-2xl:
+    0px 24px 48px -12px rgba(16, 24, 40, 0.18);
+  --elevation-3xl:
+    0px 32px 64px -12px rgba(16, 24, 40, 0.14);
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   2. DARK MODE — scaffolded (production rarely renders dark today)
+   ════════════════════════════════════════════════════════════════════════════ */
+.dark {
+  --background: rgba(16, 24, 40, 1);
+  --foreground: rgba(249, 250, 251, 1);
+  --card: rgba(29, 41, 57, 1);
+  --card-foreground: rgba(249, 250, 251, 1);
+  --popover: rgba(29, 41, 57, 1);
+  --popover-foreground: rgba(249, 250, 251, 1);
+  --primary: rgba(0, 114, 214, 1);
+  --primary-foreground: #FFFFFF;
+  --secondary: rgba(29, 41, 57, 1);
+  --secondary-foreground: rgba(249, 250, 251, 1);
+  --muted: rgba(29, 41, 57, 1);
+  --muted-foreground: rgba(102, 112, 133, 1);
+  --accent: rgba(0, 114, 214, 1);
+  --accent-foreground: #FFFFFF;
+  --destructive: rgba(240, 68, 56, 1);
+  --destructive-foreground: #FFFFFF;
+  --border: rgba(102, 112, 133, 1);
+  --input: #1D2939;
+  --input-background: #1D2939;
+  --ring: rgba(0, 114, 214, 1);
+  --sidebar: rgba(16, 24, 40, 1);
+  --sidebar-foreground: #F9FAFB;
+  --sidebar-primary: #0072D6;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #1D2939;
+  --sidebar-accent-foreground: #F9FAFB;
+  --sidebar-border: #667085;
+  --sidebar-ring: #0072D6;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   3. TAILWIND 4 @theme inline — THE CRITICAL BRIDGE
+   ----------------------------------------------------------------------------
+   This block is what makes utilities like `bg-sidebar`, `text-foreground`,
+   `border-border`, `rounded-lg`, `shadow-sm` actually resolve to the CSS
+   variables above. WITHOUT THIS BLOCK Tailwind 4 has no idea these tokens
+   exist — utilities silently disappear and the UI falls back to white +
+   default fonts. This is the #1 reason a kit-built app looks "too basic".
+   ════════════════════════════════════════════════════════════════════════════ */
+@theme inline {
+  /* Colors — role tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-lightest: var(--primary-lightest);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-darkest: var(--primary-darkest);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-success: var(--status-success);
+  --color-warning: var(--status-warning);
+  --color-info: var(--status-info);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-ring: var(--ring);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Chart */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Gray ramp (text-gray-500, bg-gray-100, border-gray-200 …) */
+  --color-gray-50:  var(--gray-50);
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+  --color-gray-300: var(--gray-300);
+  --color-gray-400: var(--gray-400);
+  --color-gray-500: var(--gray-500);
+  --color-gray-600: var(--gray-600);
+  --color-gray-700: var(--gray-700);
+  --color-gray-800: var(--gray-800);
+  --color-gray-900: var(--gray-900);
+
+  /* FAMS brand ramp (bg-fams-500, text-fams-700 …) */
+  --color-fams-50:  var(--fams-50);
+  --color-fams-100: var(--fams-100);
+  --color-fams-200: var(--fams-200);
+  --color-fams-300: var(--fams-300);
+  --color-fams-400: var(--fams-400);
+  --color-fams-500: var(--fams-500);
+  --color-fams-600: var(--fams-600);
+  --color-fams-700: var(--fams-700);
+  --color-fams-800: var(--fams-800);
+  --color-fams-900: var(--fams-900);
+
+  /* Status ramps (bg-success-50, text-warning-700 …) */
+  --color-success-50:  var(--success-50);
+  --color-success-100: var(--success-100);
+  --color-success-200: var(--success-200);
+  --color-success-300: var(--success-300);
+  --color-success-400: var(--success-400);
+  --color-success-500: var(--success-500);
+  --color-success-600: var(--success-600);
+  --color-success-700: var(--success-700);
+  --color-success-800: var(--success-800);
+  --color-success-900: var(--success-900);
+
+  --color-warning-50:  var(--warning-50);
+  --color-warning-100: var(--warning-100);
+  --color-warning-200: var(--warning-200);
+  --color-warning-300: var(--warning-300);
+  --color-warning-400: var(--warning-400);
+  --color-warning-500: var(--warning-500);
+  --color-warning-600: var(--warning-600);
+  --color-warning-700: var(--warning-700);
+  --color-warning-800: var(--warning-800);
+  --color-warning-900: var(--warning-900);
+
+  --color-error-50:  var(--error-50);
+  --color-error-100: var(--error-100);
+  --color-error-200: var(--error-200);
+  --color-error-300: var(--error-300);
+  --color-error-400: var(--error-400);
+  --color-error-500: var(--error-500);
+  --color-error-600: var(--error-600);
+  --color-error-700: var(--error-700);
+  --color-error-800: var(--error-800);
+  --color-error-900: var(--error-900);
+
+  /* Surface tokens */
+  --color-surface-primary: var(--surface-primary);
+  --color-surface-minimal: var(--surface-minimal);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-surface-low-contrast: var(--surface-low-contrast);
+
+  /* Font family — map Tailwind's `font-sans` utility to the Gilroy stack.
+     NOTE: do NOT re-declare `--font-family-sans` here as `var(--font-family-sans)`.
+     Inside @theme that emits a self-referential :root declaration, which forms a
+     cycle and resolves the variable to EMPTY — silently dropping Gilroy everywhere.
+     The real value lives in §1 :root; we only need to wire Tailwind's font-sans. */
+  --font-sans: 'Gilroy', 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Font size (for utilities like text-h1, text-body-md, text-caption).
+     NOTE: use LITERAL values here — `--text-h1: var(--text-h1)` inside @theme is
+     self-referential, forms a cycle, resolves the token to EMPTY, and the utility
+     silently falls back to the inherited 16px. Line-heights reference the §1
+     --line-height-* tokens (different names) so those are safe. */
+  --text-h1: 48px;
+  --text-h1--line-height: var(--line-height-h1);
+  --text-h2: 40px;
+  --text-h2--line-height: var(--line-height-h2);
+  --text-h3: 32px;
+  --text-h3--line-height: var(--line-height-h3);
+  --text-h4: 28px;
+  --text-h4--line-height: var(--line-height-h4);
+  --text-h5: 24px;
+  --text-h5--line-height: var(--line-height-h5);
+  --text-h6: 20px;
+  --text-h6--line-height: var(--line-height-h6);
+  --text-body-xl: 20px;
+  --text-body-xl--line-height: var(--line-height-body-xl);
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: var(--line-height-body-lg);
+  --text-body-md: 16px;
+  --text-body-md--line-height: var(--line-height-body-md);
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: var(--line-height-body-sm);
+  --text-body-xs: 12px;
+  --text-body-xs--line-height: var(--line-height-body-xs);
+  --text-caption: 10px;
+  --text-caption--line-height: var(--line-height-caption);
+
+  /* Radius — LITERAL values (self-reference would zero out every rounded-* utility). */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 8px;
+  --radius: 6px;
+
+  /* Shadow (utilities: shadow-sm, shadow, shadow-md, shadow-lg, shadow-xl, shadow-2xl, shadow-3xl) */
+  --shadow-sm: var(--elevation-sm);
+  --shadow-DEFAULT: var(--elevation-md);
+  --shadow-md: var(--elevation-md);
+  --shadow-lg: var(--elevation-lg);
+  --shadow-xl: var(--elevation-xl);
+  --shadow-2xl: var(--elevation-2xl);
+  --shadow-3xl: var(--elevation-3xl);
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   4. BASE LAYER — body font + bare-element typography
+   ════════════════════════════════════════════════════════════════════════════ */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    font-family: var(--font-family-sans);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-family-sans);
+    font-size: var(--text-base);
+    line-height: var(--line-height-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Base typography on bare elements without explicit text-* classes */
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 { font-size: var(--text-h1); line-height: var(--line-height-h1); font-weight: var(--font-weight-semibold); font-family: var(--font-family-sans); }
+    h2 { font-size: var(--text-h2); line-height: var(--line-height-h2); font-weight: var(--font-weight-semibold); font-family: var(--font-family-sans); }
+    h3 { font-size: var(--text-h3); line-height: var(--line-height-h3); font-weight: var(--font-weight-semibold); font-family: var(--font-family-sans); }
+    h4 { font-size: var(--text-h4); line-height: var(--line-height-h4); font-weight: var(--font-weight-semibold); font-family: var(--font-family-sans); }
+    h5 { font-size: var(--text-h5); line-height: var(--line-height-h5); font-weight: var(--font-weight-semibold); font-family: var(--font-family-sans); }
+    h6 { font-size: var(--text-h6); line-height: var(--line-height-h6); font-weight: var(--font-weight-semibold); font-family: var(--font-family-sans); }
+    p, button, input, textarea, select {
+      font-size: var(--text-base);
+      line-height: var(--line-height-base);
+      font-family: var(--font-family-sans);
+    }
+    label { font-size: var(--text-xs); font-weight: var(--font-weight-semibold); font-family: var(--font-family-sans); }
+  }
+}

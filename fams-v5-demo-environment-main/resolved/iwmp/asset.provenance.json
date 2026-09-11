@@ -1,0 +1,86 @@
+{
+  "base": "tenant-native",
+  "module": "asset",
+  "nodes": {
+    "fld_contractor": {
+      "source": "tenant-native"
+    },
+    "fld_email": {
+      "source": "tenant-native"
+    },
+    "fld_location": {
+      "source": "tenant-native"
+    },
+    "fld_lot": {
+      "source": "tenant-native"
+    },
+    "fld_name": {
+      "source": "tenant-native"
+    },
+    "fld_operational_timing": {
+      "source": "tenant-native"
+    },
+    "fld_phone": {
+      "source": "tenant-native"
+    },
+    "fld_service_frequency": {
+      "source": "tenant-native"
+    },
+    "fld_service_type": {
+      "source": "tenant-native"
+    },
+    "fld_status": {
+      "source": "tenant-native"
+    },
+    "fld_tags": {
+      "source": "tenant-native"
+    },
+    "fld_uniqueidentifier": {
+      "source": "tenant-native"
+    },
+    "fld_waste_type_count": {
+      "source": "tenant-native"
+    },
+    "fld_waste_types": {
+      "source": "tenant-native"
+    },
+    "flt_cp_service_type": {
+      "source": "tenant-native"
+    },
+    "flt_cp_status": {
+      "source": "tenant-native"
+    },
+    "sec_cp_details": {
+      "source": "tenant-native"
+    },
+    "sts_cp_active": {
+      "source": "tenant-native"
+    },
+    "sts_cp_inactive": {
+      "source": "tenant-native"
+    },
+    "tab_cp_attendance": {
+      "source": "tenant-native"
+    },
+    "tab_cp_details": {
+      "source": "tenant-native"
+    },
+    "tab_cp_incidents": {
+      "source": "tenant-native"
+    },
+    "tab_cp_inspections": {
+      "source": "tenant-native"
+    },
+    "tab_cp_overview": {
+      "source": "tenant-native"
+    },
+    "tab_cp_plans": {
+      "source": "tenant-native"
+    },
+    "tab_cp_security": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "iwmp"
+}

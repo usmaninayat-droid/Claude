@@ -15,25 +15,38 @@
     {
       "name": "static-preview",
       "runtimeExecutable": "python3",
-<<<<<<< Updated upstream
       "runtimeArgs": [
         "-I",
         "-c",
         "import http.server,functools,os; root='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/3b49e090-9182-44ee-adc4-42a95b51a779/scratchpad/preview'; port=int(os.environ.get('PORT') or 0); h=functools.partial(http.server.SimpleHTTPRequestHandler, directory=root); s=http.server.HTTPServer(('127.0.0.1',port),h); print('serving %s on http://127.0.0.1:%d'%(root,s.server_address[1]),flush=True); s.serve_forever()"
       ],
       "autoPort": true
-=======
-      "runtimeArgs": ["/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/28a7d7ba-78f3-4924-bbeb-43cda99087a7/scratchpad/serve.py"],
-      "port": 8790,
-      "url": "http://127.0.0.1:8790"
     },
     {
       "name": "audit-preview",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8791", "--bind", "127.0.0.1", "--directory", "/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/c2d153ca-b80b-4200-8401-4c44d8a9ac3b/scratchpad/audit-preview"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8791",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/c2d153ca-b80b-4200-8401-4c44d8a9ac3b/scratchpad/audit-preview"
+      ],
       "port": 8791,
       "url": "http://127.0.0.1:8791"
->>>>>>> Stashed changes
+    },
+    {
+      "name": "claude-project",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-I",
+        "-c",
+        "import http.server,functools; h=functools.partial(http.server.SimpleHTTPRequestHandler, directory='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/23936540-c175-4d0c-b908-5ba352124326/scratchpad/preview'); print('serving on 8792',flush=True); http.server.HTTPServer(('127.0.0.1',8792),h).serve_forever()"
+      ],
+      "port": 8792,
+      "url": "http://127.0.0.1:8792"
     },
     {
       "name": "v5-design-system",
@@ -47,6 +60,149 @@
         "127.0.0.1"
       ],
       "port": 5180
+    },
+    {
+      "name": "wfmc-roster",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-I",
+        "-c",
+        "import http.server,functools; h=functools.partial(http.server.SimpleHTTPRequestHandler, directory='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/fe8946c7-1a0d-4910-b8d3-bbcc57bf4dfa/scratchpad/site'); print('serving on 8796',flush=True); http.server.HTTPServer(('127.0.0.1',8796),h).serve_forever()"
+      ],
+      "port": 8796,
+      "url": "http://127.0.0.1:8796"
+    },
+    {
+      "name": "interactive-replay",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-I",
+        "-c",
+        "import http.server,functools; h=functools.partial(http.server.SimpleHTTPRequestHandler, directory='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/b63290ef-0949-4a8b-b21d-a9ba123c3bff/scratchpad/replay'); print('serving on 8798',flush=True); http.server.HTTPServer(('127.0.0.1',8798),h).serve_forever()"
+      ],
+      "port": 8798,
+      "url": "http://127.0.0.1:8798"
+    },
+    {
+      "name": "contract-management",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-I",
+        "-c",
+        "import http.server,functools; h=functools.partial(http.server.SimpleHTTPRequestHandler, directory='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/860bb2ec-da6b-451d-8c1b-f5437377b58a/scratchpad/cm'); print('serving on 8799',flush=True); http.server.HTTPServer(('127.0.0.1',8799),h).serve_forever()"
+      ],
+      "port": 8799,
+      "url": "http://127.0.0.1:8799"
+    },
+    {
+      "name": "shift-rostering",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8797",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "/Users/usmaninayat/Documents/GitHub/Claude/shift-rostering"
+      ],
+      "port": 8797,
+      "url": "http://127.0.0.1:8797"
+    },
+    {
+      "name": "tadweer-driver-home",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-I",
+        "-c",
+        "import http.server,functools; h=functools.partial(http.server.SimpleHTTPRequestHandler, directory='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/8271daf8-652d-493c-ae1d-162f3353c84e/scratchpad/site'); print('serving on 8803',flush=True); http.server.HTTPServer(('127.0.0.1',8803),h).serve_forever()"
+      ],
+      "port": 8803,
+      "url": "http://127.0.0.1:8803"
+    },
+    {
+      "name": "driver-job-chat",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-I",
+        "-c",
+        "import http.server,functools; h=functools.partial(http.server.SimpleHTTPRequestHandler, directory='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/e4f94c79-82b8-47b7-8547-fc3618e8d8ef/scratchpad/preview'); print('serving on 8802',flush=True); http.server.HTTPServer(('127.0.0.1',8802),h).serve_forever()"
+      ],
+      "port": 8802,
+      "url": "http://127.0.0.1:8802"
+    },
+    {
+      "name": "driver-header",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-I",
+        "-c",
+        "import http.server,functools; h=functools.partial(http.server.SimpleHTTPRequestHandler, directory='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/dd97b2e2-aec4-43dd-ae97-ca072fcd53e4/scratchpad/site'); print('serving on 8805',flush=True); http.server.HTTPServer(('127.0.0.1',8805),h).serve_forever()"
+      ],
+      "port": 8805,
+      "url": "http://127.0.0.1:8805"
+    },
+    {
+      "name": "ticketing-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-I",
+        "-c",
+        "import http.server,functools; h=functools.partial(http.server.SimpleHTTPRequestHandler, directory='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/5b62c71b-e74d-4a27-8bff-10f7fefc6163/scratchpad/ticketing-preview'); print('serving on 8811',flush=True); http.server.HTTPServer(('127.0.0.1',8811),h).serve_forever()"
+      ],
+      "port": 8811,
+      "url": "http://127.0.0.1:8811"
+    },
+    {
+      "name": "roster-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-I",
+        "-c",
+        "import http.server,functools; h=functools.partial(http.server.SimpleHTTPRequestHandler, directory='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/5b62c71b-e74d-4a27-8bff-10f7fefc6163/scratchpad/roster'); print('serving on 8812',flush=True); http.server.HTTPServer(('127.0.0.1',8812),h).serve_forever()"
+      ],
+      "port": 8812,
+      "url": "http://127.0.0.1:8812"
+    },
+    {
+      "name": "fams-v5-demo",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--dir",
+        "/Users/usmaninayat/Documents/GitHub/Claude/fams-v5-demo-environment-main",
+        "dev"
+      ],
+      "port": 6300,
+      "url": "http://localhost:6300"
+    },
+    {
+      "name": "fams-iwmp-roster",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--dir",
+        "/Users/usmaninayat/Documents/GitHub/Claude/fams-v5-demo-environment-main/tenants/iwmp/overrides/screens/shift-rostering",
+        "dev"
+      ],
+      "port": 6395,
+      "url": "http://localhost:6395"
+    },
+    {
+      "name": "driver-home-live",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-I", "-c", "import http.server,functools; h=functools.partial(http.server.SimpleHTTPRequestHandler, directory='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/ce3f1620-c0b9-4909-a55e-7cc8b7d93947/scratchpad/site'); print('serving on 8851',flush=True); http.server.HTTPServer(('127.0.0.1',8851),h).serve_forever()"],
+      "port": 8851,
+      "url": "http://127.0.0.1:8851"
+    },
+    {
+      "name": "manpower-blueprint",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-I",
+        "-c",
+        "import http.server,functools; h=functools.partial(http.server.SimpleHTTPRequestHandler, directory='/private/tmp/claude-501/-Users-usmaninayat-Documents-GitHub-Claude/eccdee18-89cc-462e-8a6a-af349e2e1240/scratchpad/site'); print('serving on 8813',flush=True); http.server.HTTPServer(('127.0.0.1',8813),h).serve_forever()"
+      ],
+      "port": 8813,
+      "url": "http://127.0.0.1:8813"
     }
   ]
 }

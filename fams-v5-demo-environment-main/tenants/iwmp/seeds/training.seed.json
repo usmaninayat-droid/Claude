@@ -1,0 +1,1183 @@
+[
+  {
+    "id": "TRN-1001",
+    "uniqueidentifier": "TRN-1001",
+    "title": "Defensive Driving",
+    "systemcol1": "DEF",
+    "systemcol2": "Safety",
+    "systemcol3": [
+      "HD Driver",
+      "LD Driver"
+    ],
+    "systemcol4": [],
+    "systemcol5": "Any valid licence",
+    "systemcol6": 24,
+    "systemcol7": 90,
+    "systemcol10": "WCR-02",
+    "tags": [
+      "Safety"
+    ],
+    "status": "Active",
+    "kpiCertified": "19",
+    "kpiRetraining": "1",
+    "kpiExpired": "0",
+    "kpiNotCompleted": "0",
+    "kpiCompliance": "100%",
+    "trainedEmployees": [
+      {
+        "employee": "Tariq Mehmood",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "10 Dec, 2023",
+        "expiresOn": "29 Nov, 2025",
+        "status": "Re-training Due"
+      },
+      {
+        "employee": "Ahmed Al Sayed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "28 May, 2025",
+        "expiresOn": "18 May, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Arun Pillai",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "8 Jan, 2025",
+        "expiresOn": "29 Dec, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Bilal Ahmed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Annual Leave",
+        "completedOn": "12 Mar, 2025",
+        "expiresOn": "2 Mar, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Faisal Rahman",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "22 Jan, 2025",
+        "expiresOn": "12 Jan, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Hassan Mahmood",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "2 Jul, 2025",
+        "expiresOn": "22 Jun, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Imran Sheikh",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "29 Jan, 2025",
+        "expiresOn": "19 Jan, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Iqbal Hussain",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "21 May, 2025",
+        "expiresOn": "11 May, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Mahesh Singh",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "6 Aug, 2025",
+        "expiresOn": "27 Jul, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Naveen Kumar",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "19 Feb, 2025",
+        "expiresOn": "9 Feb, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Noor Ahmed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "5 Feb, 2025",
+        "expiresOn": "26 Jan, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Omar Farouk",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "25 Jun, 2025",
+        "expiresOn": "15 Jun, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Ramesh Yadav",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Licence Expired",
+        "completedOn": "20 Aug, 2025",
+        "expiresOn": "10 Aug, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Rashid Khan",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "HSE Expired",
+        "completedOn": "9 Jul, 2025",
+        "expiresOn": "29 Jun, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Salim Haddad",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "26 Feb, 2025",
+        "expiresOn": "16 Feb, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Sami Kollannur",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "15 Jan, 2025",
+        "expiresOn": "5 Jan, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Vikram Chauhan",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "23 Apr, 2025",
+        "expiresOn": "13 Apr, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Vinod Nambiar",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "1 Jan, 2025",
+        "expiresOn": "22 Dec, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Yaser Al Balushi",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "12 Feb, 2025",
+        "expiresOn": "2 Feb, 2027",
+        "status": "Valid"
+      },
+      {
+        "employee": "Yusuf Rahman",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "HSE Expired",
+        "completedOn": "9 Apr, 2025",
+        "expiresOn": "30 Mar, 2027",
+        "status": "Valid"
+      }
+    ]
+  },
+  {
+    "id": "TRN-1002",
+    "uniqueidentifier": "TRN-1002",
+    "title": "Waste Collection Safety",
+    "systemcol1": "WCS",
+    "systemcol2": "Safety",
+    "systemcol3": [
+      "Helper"
+    ],
+    "systemcol4": [],
+    "systemcol5": "Any valid licence",
+    "systemcol6": 6,
+    "systemcol7": 90,
+    "systemcol10": "WCR-02",
+    "tags": [
+      "Safety"
+    ],
+    "status": "Active",
+    "kpiCertified": "20",
+    "kpiRetraining": "0",
+    "kpiExpired": "0",
+    "kpiNotCompleted": "0",
+    "kpiCompliance": "100%",
+    "trainedEmployees": [
+      {
+        "employee": "Amit Gupta",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "16 Oct, 2025",
+        "expiresOn": "14 Apr, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Amit Prasad",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "30 Nov, 2025",
+        "expiresOn": "29 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Anil Thapa",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "14 Aug, 2025",
+        "expiresOn": "10 Feb, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Ashok Varma",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "9 Dec, 2025",
+        "expiresOn": "7 Jun, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Bishnu Gurung",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "7 Oct, 2025",
+        "expiresOn": "5 Apr, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Deepak Sharma",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "6 Nov, 2025",
+        "expiresOn": "5 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Emeka Sunday",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Resigned",
+        "completedOn": "28 Sep, 2025",
+        "expiresOn": "27 Mar, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Farooq Vahid",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "3 Nov, 2025",
+        "expiresOn": "2 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Ganesh Poudel",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "13 Sep, 2025",
+        "expiresOn": "12 Mar, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Joseph Mathew",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "30 Nov, 2025",
+        "expiresOn": "29 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Kiran Bhandari",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "21 Nov, 2025",
+        "expiresOn": "20 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Manoj Kurian",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "29 Aug, 2025",
+        "expiresOn": "25 Feb, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Mohan Reddy",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "21 Nov, 2025",
+        "expiresOn": "20 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Nabin Shrestha",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "1 Oct, 2025",
+        "expiresOn": "30 Mar, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Prakash Rai",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Terminated",
+        "completedOn": "3 Dec, 2025",
+        "expiresOn": "1 Jun, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Rakesh Menon",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "20 Aug, 2025",
+        "expiresOn": "16 Feb, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Ravi Menon",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Sick Leave",
+        "completedOn": "6 Dec, 2025",
+        "expiresOn": "4 Jun, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Santosh Bista",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Medical Expired",
+        "completedOn": "28 Oct, 2025",
+        "expiresOn": "26 Apr, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Suresh Kumar",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "23 Aug, 2025",
+        "expiresOn": "19 Feb, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Zahid Iqbal",
+        "role": "Helper",
+        "licence": "—",
+        "employeeStatus": "Active",
+        "completedOn": "7 Sep, 2025",
+        "expiresOn": "6 Mar, 2026",
+        "status": "Valid"
+      }
+    ]
+  },
+  {
+    "id": "TRN-1003",
+    "uniqueidentifier": "TRN-1003",
+    "title": "Rear End Loader Operation",
+    "systemcol1": "RL",
+    "systemcol2": "Equipment",
+    "systemcol3": [
+      "HD Driver"
+    ],
+    "systemcol4": [
+      "RL — Rear End Loader"
+    ],
+    "systemcol5": "HDD — Heavy Duty Driver",
+    "systemcol6": 12,
+    "systemcol7": 90,
+    "systemcol10": "WCR-02",
+    "tags": [
+      "Equipment",
+      "Roster Eligibility"
+    ],
+    "status": "Active",
+    "kpiCertified": "9",
+    "kpiRetraining": "0",
+    "kpiExpired": "1",
+    "kpiNotCompleted": "3",
+    "kpiCompliance": "69%",
+    "trainedEmployees": [
+      {
+        "employee": "Salim Haddad",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "5 Sep, 2024",
+        "expiresOn": "31 Aug, 2025",
+        "status": "Expired"
+      },
+      {
+        "employee": "Ahmed Al Sayed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Noor Ahmed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Ramesh Yadav",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Licence Expired",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Bilal Ahmed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Annual Leave",
+        "completedOn": "9 Aug, 2025",
+        "expiresOn": "4 Aug, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Faisal Rahman",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "24 May, 2025",
+        "expiresOn": "19 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Hassan Mahmood",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "27 May, 2025",
+        "expiresOn": "22 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Imran Sheikh",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "4 Jun, 2025",
+        "expiresOn": "30 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Mahesh Singh",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "21 Jul, 2025",
+        "expiresOn": "16 Jul, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Rashid Khan",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "HSE Expired",
+        "completedOn": "7 Jun, 2025",
+        "expiresOn": "2 Jun, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Tariq Mehmood",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "31 Aug, 2025",
+        "expiresOn": "26 Aug, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Vikram Chauhan",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "6 Feb, 2025",
+        "expiresOn": "1 Feb, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Yaser Al Balushi",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "26 Jun, 2025",
+        "expiresOn": "21 Jun, 2026",
+        "status": "Valid"
+      }
+    ]
+  },
+  {
+    "id": "TRN-1004",
+    "uniqueidentifier": "TRN-1004",
+    "title": "Side Loader Operation",
+    "systemcol1": "SL",
+    "systemcol2": "Equipment",
+    "systemcol3": [
+      "HD Driver"
+    ],
+    "systemcol4": [
+      "SL — Side Loader"
+    ],
+    "systemcol5": "HDD — Heavy Duty Driver",
+    "systemcol6": 12,
+    "systemcol7": 90,
+    "systemcol10": "WCR-02",
+    "tags": [
+      "Equipment",
+      "Roster Eligibility"
+    ],
+    "status": "Active",
+    "kpiCertified": "9",
+    "kpiRetraining": "0",
+    "kpiExpired": "0",
+    "kpiNotCompleted": "4",
+    "kpiCompliance": "69%",
+    "trainedEmployees": [
+      {
+        "employee": "Imran Sheikh",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Salim Haddad",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Tariq Mehmood",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Vikram Chauhan",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Ahmed Al Sayed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "2 Apr, 2025",
+        "expiresOn": "28 Mar, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Bilal Ahmed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Annual Leave",
+        "completedOn": "9 Aug, 2025",
+        "expiresOn": "4 Aug, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Faisal Rahman",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "24 May, 2025",
+        "expiresOn": "19 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Hassan Mahmood",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "27 May, 2025",
+        "expiresOn": "22 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Mahesh Singh",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "21 Jul, 2025",
+        "expiresOn": "16 Jul, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Noor Ahmed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "15 Jun, 2025",
+        "expiresOn": "10 Jun, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Ramesh Yadav",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Licence Expired",
+        "completedOn": "12 Aug, 2025",
+        "expiresOn": "7 Aug, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Rashid Khan",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "HSE Expired",
+        "completedOn": "7 Jun, 2025",
+        "expiresOn": "2 Jun, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Yaser Al Balushi",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "26 Jun, 2025",
+        "expiresOn": "21 Jun, 2026",
+        "status": "Valid"
+      }
+    ]
+  },
+  {
+    "id": "TRN-1005",
+    "uniqueidentifier": "TRN-1005",
+    "title": "Hook Loader Operation",
+    "systemcol1": "HLC",
+    "systemcol2": "Equipment",
+    "systemcol3": [
+      "HD Driver"
+    ],
+    "systemcol4": [
+      "HLC — Hook Loader"
+    ],
+    "systemcol5": "HDD — Heavy Duty Driver",
+    "systemcol6": 12,
+    "systemcol7": 90,
+    "systemcol10": "WCR-02",
+    "tags": [
+      "Equipment",
+      "Roster Eligibility"
+    ],
+    "status": "Active",
+    "kpiCertified": "10",
+    "kpiRetraining": "0",
+    "kpiExpired": "0",
+    "kpiNotCompleted": "3",
+    "kpiCompliance": "77%",
+    "trainedEmployees": [
+      {
+        "employee": "Faisal Rahman",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Mahesh Singh",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Rashid Khan",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "HSE Expired",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Ahmed Al Sayed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "20 Mar, 2025",
+        "expiresOn": "15 Mar, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Bilal Ahmed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Annual Leave",
+        "completedOn": "27 Jul, 2025",
+        "expiresOn": "22 Jul, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Hassan Mahmood",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "14 May, 2025",
+        "expiresOn": "9 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Imran Sheikh",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "22 May, 2025",
+        "expiresOn": "17 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Noor Ahmed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "2 Jun, 2025",
+        "expiresOn": "28 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Ramesh Yadav",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Licence Expired",
+        "completedOn": "30 Jul, 2025",
+        "expiresOn": "25 Jul, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Salim Haddad",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "5 Jul, 2025",
+        "expiresOn": "30 Jun, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Tariq Mehmood",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "18 Aug, 2025",
+        "expiresOn": "13 Aug, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Vikram Chauhan",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "1 Oct, 2025",
+        "expiresOn": "26 Sep, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Yaser Al Balushi",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "13 Jun, 2025",
+        "expiresOn": "8 Jun, 2026",
+        "status": "Valid"
+      }
+    ]
+  },
+  {
+    "id": "TRN-1006",
+    "uniqueidentifier": "TRN-1006",
+    "title": "Compactor Container Operation",
+    "systemcol1": "CCV",
+    "systemcol2": "Equipment",
+    "systemcol3": [
+      "HD Driver"
+    ],
+    "systemcol4": [
+      "CCV — Compactor Container Vehicle"
+    ],
+    "systemcol5": "HDD — Heavy Duty Driver",
+    "systemcol6": 12,
+    "systemcol7": 90,
+    "systemcol10": "WCR-02",
+    "tags": [
+      "Equipment",
+      "Roster Eligibility"
+    ],
+    "status": "Active",
+    "kpiCertified": "10",
+    "kpiRetraining": "0",
+    "kpiExpired": "0",
+    "kpiNotCompleted": "3",
+    "kpiCompliance": "77%",
+    "trainedEmployees": [
+      {
+        "employee": "Bilal Ahmed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Annual Leave",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Hassan Mahmood",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Yaser Al Balushi",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Ahmed Al Sayed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "20 Mar, 2025",
+        "expiresOn": "15 Mar, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Faisal Rahman",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "11 May, 2025",
+        "expiresOn": "6 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Imran Sheikh",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "22 May, 2025",
+        "expiresOn": "17 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Mahesh Singh",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "8 Jul, 2025",
+        "expiresOn": "3 Jul, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Noor Ahmed",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "2 Jun, 2025",
+        "expiresOn": "28 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Ramesh Yadav",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Licence Expired",
+        "completedOn": "30 Jul, 2025",
+        "expiresOn": "25 Jul, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Rashid Khan",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "HSE Expired",
+        "completedOn": "25 May, 2025",
+        "expiresOn": "20 May, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Salim Haddad",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "5 Jul, 2025",
+        "expiresOn": "30 Jun, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Tariq Mehmood",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "18 Aug, 2025",
+        "expiresOn": "13 Aug, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Vikram Chauhan",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "completedOn": "1 Oct, 2025",
+        "expiresOn": "26 Sep, 2026",
+        "status": "Valid"
+      }
+    ]
+  },
+  {
+    "id": "TRN-1007",
+    "uniqueidentifier": "TRN-1007",
+    "title": "Bin Washer Operation",
+    "systemcol1": "BWC",
+    "systemcol2": "Equipment",
+    "systemcol3": [
+      "LD Driver"
+    ],
+    "systemcol4": [
+      "BWC — Bin Washer"
+    ],
+    "systemcol5": "LDD — Light Duty Driver",
+    "systemcol6": 12,
+    "systemcol7": 90,
+    "systemcol10": "WCR-02",
+    "tags": [
+      "Equipment",
+      "Roster Eligibility"
+    ],
+    "status": "Active",
+    "kpiCertified": "4",
+    "kpiRetraining": "0",
+    "kpiExpired": "0",
+    "kpiNotCompleted": "3",
+    "kpiCompliance": "57%",
+    "trainedEmployees": [
+      {
+        "employee": "Arun Pillai",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Naveen Kumar",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Omar Farouk",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Iqbal Hussain",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "9 Mar, 2025",
+        "expiresOn": "4 Mar, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Sami Kollannur",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "30 Apr, 2025",
+        "expiresOn": "25 Apr, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Vinod Nambiar",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "8 Apr, 2025",
+        "expiresOn": "3 Apr, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Yusuf Rahman",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "HSE Expired",
+        "completedOn": "9 Sep, 2025",
+        "expiresOn": "4 Sep, 2026",
+        "status": "Valid"
+      }
+    ]
+  },
+  {
+    "id": "TRN-1008",
+    "uniqueidentifier": "TRN-1008",
+    "title": "Truck Wash Safety",
+    "systemcol1": "TW",
+    "systemcol2": "Equipment",
+    "systemcol3": [
+      "LD Driver"
+    ],
+    "systemcol4": [
+      "TW — Truck Wash Bay"
+    ],
+    "systemcol5": "Any valid licence",
+    "systemcol6": 12,
+    "systemcol7": 90,
+    "systemcol10": "WCR-02",
+    "tags": [
+      "Equipment",
+      "Roster Eligibility"
+    ],
+    "status": "Active",
+    "kpiCertified": "3",
+    "kpiRetraining": "0",
+    "kpiExpired": "0",
+    "kpiNotCompleted": "4",
+    "kpiCompliance": "43%",
+    "trainedEmployees": [
+      {
+        "employee": "Iqbal Hussain",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Sami Kollannur",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Vinod Nambiar",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Yusuf Rahman",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "HSE Expired",
+        "completedOn": "—",
+        "expiresOn": "—",
+        "status": "Not Completed"
+      },
+      {
+        "employee": "Arun Pillai",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "2 May, 2025",
+        "expiresOn": "27 Apr, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Naveen Kumar",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "7 Jul, 2025",
+        "expiresOn": "2 Jul, 2026",
+        "status": "Valid"
+      },
+      {
+        "employee": "Omar Farouk",
+        "role": "LD Driver",
+        "licence": "LDD",
+        "employeeStatus": "Active",
+        "completedOn": "16 May, 2025",
+        "expiresOn": "11 May, 2026",
+        "status": "Valid"
+      }
+    ]
+  }
+]

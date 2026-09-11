@@ -1,0 +1,82 @@
+{
+  "name": "@fams/v5-templates",
+  "version": "0.9.1",
+  "type": "module",
+  "license": "UNLICENSED",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "sideEffects": false,
+  "description": "v5-family product patterns \u2014 opt-in compositions of @fams/ui-kit (multi-tab profile drawer, v5 side-sheet behavior, entity detail scaffolds). Products outside the v5 family consume @fams/ui-kit only and never need this package.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./map": {
+      "types": "./dist/map/index.d.ts",
+      "import": "./dist/map/index.js"
+    },
+    "./utilities.css": "./dist/fams-v5-templates.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepublishOnly": "node ../../scripts/guard-publish.mjs",
+    "build": "tsup --config tsup.map.config.ts && tsup --config tsup.config.ts && node ../../scripts/copy-utilities.mjs v5-templates fams-v5-templates",
+    "dev": "tsup --config tsup.map.config.ts && tsup --config tsup.config.ts --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@atlaskit/pragmatic-drag-and-drop": "catalog:",
+    "@atlaskit/pragmatic-drag-and-drop-live-region": "catalog:",
+    "@fams/tokens": "workspace:*",
+    "@fams/ui-kit": "workspace:*",
+    "@fams/v5-composer": "workspace:*",
+    "@fams/v5-templates": "workspace:*",
+    "@deck.gl/mapbox": "catalog:",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "deck.gl": "catalog:",
+    "maplibre-gl": "catalog:",
+    "react-hook-form": "catalog:",
+    "react-map-gl": "catalog:",
+    "supercluster": "catalog:",
+    "tailwind-merge": "^3.6.0",
+    "terra-draw": "catalog:",
+    "terra-draw-maplibre-gl-adapter": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@testing-library/dom": "^10",
+    "@testing-library/jest-dom": "^6",
+    "@testing-library/react": "^16",
+    "@types/geojson": "^7946.0.16",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/supercluster": "^7.1.3",
+    "eslint": "^9.39.4",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^15.15.0",
+    "jsdom": "^25",
+    "react": "^19",
+    "react-dom": "^19",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "typescript-eslint": "^8.62.1",
+    "vitest": "catalog:",
+    "vitest-axe": "^0.1.0"
+  }
+}

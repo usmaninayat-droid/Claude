@@ -1,0 +1,434 @@
+{
+  "$schema": "../../../../node_modules/@fams/v5-composer/schemas/EntityModuleConfig.schema.json",
+  "kind": "entity",
+  "code": "training/course",
+  "name": "Training Management",
+  "uidPrefix": "TRN",
+  "views": [
+    "list"
+  ],
+  "systemcolumns": [
+    {
+      "id": "fld_trn_name",
+      "col": "title",
+      "name": "Training Name",
+      "type": "SmallText",
+      "required": true
+    },
+    {
+      "id": "fld_trn_code",
+      "col": "systemcol1",
+      "name": "Training Code",
+      "type": "SmallText",
+      "required": true
+    },
+    {
+      "id": "fld_trn_category",
+      "col": "systemcol2",
+      "name": "Category",
+      "type": "SingleSelect",
+      "listValues": [
+        "Equipment",
+        "Safety",
+        "Compliance",
+        "Operations"
+      ]
+    },
+    {
+      "id": "fld_trn_applies_to",
+      "col": "systemcol3",
+      "name": "Applies To",
+      "type": "MultiSelect",
+      "listValues": [
+        "HD Driver",
+        "LD Driver",
+        "Helper",
+        "Inspector",
+        "Supervisor"
+      ]
+    },
+    {
+      "id": "fld_trn_vehicle_cats",
+      "col": "systemcol4",
+      "name": "Vehicle Categories",
+      "type": "MultiSelect",
+      "listValues": [
+        "RL — Rear End Loader",
+        "SL — Side Loader",
+        "HLC — Hook Loader",
+        "CCV — Compactor Container Vehicle",
+        "BWC — Bin Washer",
+        "TW — Truck Wash Bay"
+      ]
+    },
+    {
+      "id": "fld_trn_licence",
+      "col": "systemcol5",
+      "name": "Licence Class Required",
+      "type": "SingleSelect",
+      "listValues": [
+        "HDD — Heavy Duty Driver",
+        "LDD — Light Duty Driver",
+        "Any valid licence"
+      ]
+    },
+    {
+      "id": "fld_trn_validity",
+      "col": "systemcol6",
+      "name": "Validity (Months)",
+      "type": "Numeric"
+    },
+    {
+      "id": "fld_trn_grace",
+      "col": "systemcol7",
+      "name": "Grace Period (Days)",
+      "type": "Numeric"
+    },
+    {
+      "id": "fld_trn_owner",
+      "col": "systemcol10",
+      "name": "Training Owner",
+      "type": "SingleReference",
+      "refModule": "Entity",
+      "entityType": "workforce/driver"
+    },
+    {
+      "id": "fld_trn_tags",
+      "col": "tags",
+      "name": "Tags",
+      "type": "tags"
+    },
+    {
+      "id": "fld_trn_status",
+      "col": "status",
+      "name": "Status",
+      "type": "SingleSelect",
+      "listValues": [
+        "Active",
+        "Inactive"
+      ]
+    },
+    {
+      "id": "fld_trn_uid",
+      "col": "uniqueidentifier",
+      "name": "Training ID",
+      "type": "Auto"
+    }
+  ],
+  "uiConfig": {
+    "icon": "shield-tick",
+    "statusList": [
+      {
+        "id": "sts_trn_active",
+        "key": "Active",
+        "label": "Active",
+        "color": "#15794f"
+      },
+      {
+        "id": "sts_trn_inactive",
+        "key": "Inactive",
+        "label": "Inactive",
+        "color": "#475467"
+      }
+    ],
+    "profile": {
+      "title": {
+        "id": "fld_trn_name",
+        "col": "title",
+        "pos": "left"
+      },
+      "infoTitle": "Training Details",
+      "placeholderIcon": "wrench",
+      "details": [
+        {
+          "id": "fld_trn_code",
+          "col": "systemcol1",
+          "pos": "left",
+          "order": 1,
+          "component": {
+            "name": "IconTextView",
+            "props": {
+              "icon": "hash"
+            }
+          }
+        },
+        {
+          "id": "fld_trn_category",
+          "col": "systemcol2",
+          "pos": "left",
+          "order": 2
+        },
+        {
+          "id": "fld_trn_licence",
+          "col": "systemcol5",
+          "pos": "left",
+          "order": 3
+        },
+        {
+          "id": "fld_trn_validity",
+          "col": "systemcol6",
+          "pos": "left",
+          "order": 4
+        },
+        {
+          "id": "fld_trn_grace",
+          "col": "systemcol7",
+          "pos": "left",
+          "order": 5
+        },
+        {
+          "id": "fld_trn_owner",
+          "col": "systemcol10",
+          "pos": "left",
+          "order": 7,
+          "component": {
+            "name": "PersonView"
+          }
+        }
+      ],
+      "sections": [
+        {
+          "id": "sec_trn_general",
+          "name": "Training Information",
+          "order": 1,
+          "fields": [
+            {
+              "id": "fld_trn_code",
+              "col": "systemcol1",
+              "order": 1
+            },
+            {
+              "id": "fld_trn_category",
+              "col": "systemcol2",
+              "order": 2
+            }
+          ]
+        },
+        {
+          "id": "sec_trn_eligibility",
+          "name": "Eligibility Rules",
+          "order": 2,
+          "fields": [
+            {
+              "id": "fld_trn_applies_to",
+              "col": "systemcol3",
+              "order": 1
+            },
+            {
+              "id": "fld_trn_vehicle_cats",
+              "col": "systemcol4",
+              "order": 2
+            },
+            {
+              "id": "fld_trn_licence",
+              "col": "systemcol5",
+              "order": 3
+            },
+            {
+              "id": "fld_trn_validity",
+              "col": "systemcol6",
+              "order": 4
+            },
+            {
+              "id": "fld_trn_grace",
+              "col": "systemcol7",
+              "order": 5
+            }
+          ]
+        }
+      ],
+      "rightPanel": {
+        "type": "tab",
+        "tabs": [
+          {
+            "id": "tab_trn_overview",
+            "key": "overview",
+            "title": "Overview",
+            "order": 1,
+            "component": {
+              "name": "OverviewWidgets",
+              "props": {
+                "widgets": [
+                  {
+                    "type": "kpiTiles",
+                    "columns": 2,
+                    "tiles": [
+                      {
+                        "label": "Certified",
+                        "valueField": "kpiCertified",
+                        "icon": "shield-tick",
+                        "tone": "success"
+                      },
+                      {
+                        "label": "Re-training Due",
+                        "valueField": "kpiRetraining",
+                        "icon": "clock",
+                        "tone": "warning"
+                      },
+                      {
+                        "label": "Expired",
+                        "valueField": "kpiExpired",
+                        "icon": "alert-triangle",
+                        "tone": "danger"
+                      },
+                      {
+                        "label": "Not Completed",
+                        "valueField": "kpiNotCompleted",
+                        "icon": "users",
+                        "tone": "neutral"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "id": "tab_trn_details",
+            "key": "details",
+            "title": "Details",
+            "order": 2,
+            "component": {
+              "name": "sections"
+            }
+          },
+          {
+            "id": "tab_trn_employees",
+            "key": "employees",
+            "title": "Training Register",
+            "order": 3,
+            "component": {
+              "name": "RecordTable",
+              "props": {
+                "field": "trainedEmployees",
+                "search": true,
+                "columns": [
+                  {
+                    "key": "employee",
+                    "label": "EMPLOYEE",
+                    "type": "avatar"
+                  },
+                  {
+                    "key": "role",
+                    "label": "ROLE",
+                    "type": "text"
+                  },
+                  {
+                    "key": "licence",
+                    "label": "LICENCE",
+                    "type": "text"
+                  },
+                  {
+                    "key": "employeeStatus",
+                    "label": "EMPLOYEE STATUS",
+                    "type": "text"
+                  },
+                  {
+                    "key": "completedOn",
+                    "label": "COMPLETED ON",
+                    "type": "text"
+                  },
+                  {
+                    "key": "expiresOn",
+                    "label": "EXPIRES ON",
+                    "type": "text"
+                  },
+                  {
+                    "key": "status",
+                    "label": "CERTIFICATE",
+                    "type": "statusPill"
+                  }
+                ],
+                "statusColors": {
+                  "Valid": "#2AAA48",
+                  "Re-training Due": "#F17B2B",
+                  "Expired": "#F04438",
+                  "Not Completed": "#475467"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "filters": [
+      {
+        "id": "flt_trn_category",
+        "col": "systemcol2",
+        "order": 1
+      },
+      {
+        "id": "flt_trn_licence",
+        "col": "systemcol5",
+        "order": 2
+      },
+      {
+        "id": "flt_trn_status",
+        "col": "status",
+        "order": 3
+      }
+    ],
+    "search": {
+      "columns": [
+        "title",
+        "systemcol1"
+      ],
+      "placeholder": "Search trainings"
+    },
+    "creation": {
+      "label": "New Training",
+      "layout": "flat",
+      "fieldChrome": "inset-label"
+    },
+    "listRowHeight": "md",
+    "listSort": false
+  },
+  "listcolumns": [
+    {
+      "id": "fld_trn_uid",
+      "col": "uniqueidentifier",
+      "component": {
+        "name": "IdChip"
+      }
+    },
+    {
+      "id": "fld_trn_name",
+      "col": "title",
+      "name": "Training",
+      "component": {
+        "name": "TextView",
+        "props": {
+          "handleOverflow": true
+        }
+      }
+    },
+    {
+      "id": "fld_trn_code",
+      "col": "systemcol1",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_trn_category",
+      "col": "systemcol2",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_trn_licence",
+      "col": "systemcol5",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_trn_validity",
+      "col": "systemcol6",
+      "component": {
+        "name": "TextView"
+      }
+    }
+  ]
+}

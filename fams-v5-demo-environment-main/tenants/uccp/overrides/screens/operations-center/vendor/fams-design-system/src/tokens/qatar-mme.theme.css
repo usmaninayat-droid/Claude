@@ -1,0 +1,55 @@
+/*
+ * Tenant · Qatar MME (Ministry of Municipality and Environment) — UCCP
+ * ---------------------------------------------------------------------
+ * Maroon primary (#6E112D), solid rail (no gradient — Pattern #47 is a
+ * Tadweer-only device; Qatar MME uses a plain solid sidebar like FAMS V5).
+ *
+ * Values mirrored verbatim from the current fams-design-system monorepo's
+ * `packages/tokens/tokens/tenants/qatar-mme.tokens.json` (itself mirrored
+ * from `uccp.tokens.json` — Figma's "Qatar MME" mode). Same variable
+ * surface as `fams-v5.theme.css` / `tadweer.theme.css` — only the values
+ * differ, per this DS's tenant-override contract (theme.css → this file,
+ * see `styles.css` import order).
+ */
+
+:root {
+  --primary: #6E112D;                                /* Qatar MME maroon */
+  --primary-foreground: #FFFFFF;
+  --primary-lightest: #F9EBEF;                       /* primary-50 */
+  --primary-light: #E7A7BA;                          /* primary-200 */
+  --primary-dark: #4B091D;                           /* primary-700 */
+  --primary-darkest: #2A030F;                         /* primary-900 */
+
+  --secondary: #667085;
+  --secondary-foreground: #FFFFFF;
+
+  --accent: #6E112D;                                 /* = primary */
+  --accent-foreground: #FFFFFF;
+
+  --ring: #6E112D;
+
+  --surface-secondary: #F9EBEF;
+
+  /*
+   * Sidebar — solid maroon rail (no gradient device for this tenant).
+   * ACTIVE item = solid WHITE pill with maroon icon (Pattern #01, same
+   * as FAMS V5's rail — Qatar MME does not use Tadweer's gradient rail).
+   */
+  --sidebar: #6E112D;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #FFFFFF;                        /* WHITE active pill */
+  --sidebar-primary-foreground: #6E112D;             /* maroon icon on white */
+  --sidebar-accent: rgba(255, 255, 255, 0.15);       /* subtle hover */
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: rgba(255, 255, 255, 0.2);
+  --sidebar-ring: rgba(255, 255, 255, 0.4);
+
+  --sidebar-gradient: none;
+
+  /* Transparent brand overlays (used by map/marker/tooltip highlight states
+     that read --overlay-brand-* off theme.css; re-declared per-tenant like
+     tadweer.theme.css's --sidebar-gradient precedent). */
+  --overlay-brand-20: rgba(110, 17, 45, 0.2);
+  --overlay-brand-40: rgba(110, 17, 45, 0.4);
+  --overlay-brand-60: rgba(110, 17, 45, 0.6);
+}

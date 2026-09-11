@@ -1,0 +1,38 @@
+{
+  "$schema": "../../node_modules/@fams/v5-composer/schemas/TenantConfig.schema.json",
+  "id": "iwmp",
+  "name": "IWMP Waste",
+  "fontFamily": "Gilroy",
+  "modules": [
+    "asset",
+    "workforce",
+    "ticketing",
+    "shift-rostering",
+    "training"
+  ],
+  "applications": [
+    {
+      "id": "iwmp",
+      "name": "IWMP",
+      "icon": "iwmp",
+      "modules": [
+        "asset",
+        "workforce",
+        "ticketing",
+        "shift-rostering",
+        "training"
+      ]
+    }
+  ],
+  "branding": {
+    "logo": "iwmp",
+    "hideName": true,
+    "poweredBy": true
+  },
+  "login": {
+    "quote": "Cleaner Cities, Smarter Waste Operations",
+    "subtext": "Log in to Tadweer's integrated waste management platform to plan collections, track your fleet, and keep every collection point on schedule.",
+    "background": "#1B8354",
+    "supportingText": "Log in to Tadweer IWMP for real-time visibility and operational control."
+  }
+}

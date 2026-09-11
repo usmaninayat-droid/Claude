@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schemas/Blueprint.schema.json",
+  "id": "fleet",
+  "tenant": "fams",
+  "brand": { "name": "FAMS Fleet" },
+  "user": { "id": "u_mgr", "roles": ["FleetManager"] },
+  "modules": [
+    {
+      "id": "vehicles",
+      "type": "entity",
+      "label": "Vehicles",
+      "icon": "Truck01",
+      "views": ["list"],
+      "dataSource": { "code": "fleet/vehicles" },
+      "config": "./vehicles.module.json",
+      "create": {
+        "fields": [
+          { "id": "title", "label": "Vehicle", "type": "text", "required": true },
+          { "id": "systemcol1", "label": "Make", "type": "text" },
+          { "id": "systemcol2", "label": "Model", "type": "text" },
+          { "id": "systemcol3", "label": "Plate", "type": "text" }
+        ]
+      }
+    }
+  ],
+  "seeds": {
+    "fleet/vehicles": "./vehicles.seed.json"
+  }
+}

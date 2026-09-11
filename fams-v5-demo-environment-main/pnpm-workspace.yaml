@@ -1,0 +1,29 @@
+# Two workspace packages: the repo root (the resolve/check/capture/promote tool
+# suite) and `app/` (the Vite demo application, task 3.3). This file is also the
+# pnpm-11 home for build settings (they moved out of package.json in pnpm 11).
+packages:
+  - "."
+  - "app"
+
+# vitest's esbuild needs its platform binary linked at install time.
+allowBuilds:
+  # Transitive optional dep of deck.gl's bundled (unused) @deck.gl/arcgis
+  # submodule (via @arcgis/toolkit → @vaadin/grid), reached through
+  # @fams/v5-templates' MapPanel stack. Its postinstall is a telemetry ping;
+  # denied — same verdict, same wording as the design system's own
+  # pnpm-workspace.yaml.
+  #
+  # It only becomes THIS repo's decision on the versioned/registry consumption
+  # path: with `link:` deps the whole @fams graph resolves through the design
+  # system's own node_modules, so its allowBuilds policy covered it. Declared
+  # here unconditionally so both consumption modes install without an
+  # ERR_PNPM_IGNORED_BUILDS prompt.
+  '@vaadin/vaadin-usage-statistics': false
+  esbuild: true
+  # msw ships prebuilt; its install script only prints a CLI notice and copies
+  # the browser worker (the app runs `pnpm --filter app msw:init` instead).
+  msw: false
+
+minimumReleaseAgeExclude:
+  - '@tanstack/query-core@5.101.4'
+  - '@tanstack/react-query@5.101.4'

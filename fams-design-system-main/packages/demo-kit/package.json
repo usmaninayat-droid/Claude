@@ -1,0 +1,70 @@
+{
+  "name": "@fams/demo-kit",
+  "version": "0.9.1",
+  "type": "module",
+  "license": "UNLICENSED",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "sideEffects": false,
+  "description": "CORE-tier, product-agnostic demo machinery: a relational in-browser store with referential integrity, session persistence, a seed loader, a persona auth shim, and an MSW mock-API generator. Contains no v5 vocabulary and imports no @fams/v5-* package; the demo app bridges these generic contracts to the product kits.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js"
+    },
+    "./console": {
+      "types": "./dist/console/index.d.ts",
+      "import": "./dist/console/index.js"
+    },
+    "./utilities.css": "./dist/fams-demo-kit.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepublishOnly": "node ../../scripts/guard-publish.mjs",
+    "build": "tsup && node ../../scripts/copy-utilities.mjs demo-kit fams-demo-kit",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@base-ui/react": "catalog:",
+    "@fams/tokens": "workspace:*",
+    "msw": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "^19"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@testing-library/react": "^16",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^19",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^15.15.0",
+    "jsdom": "^25",
+    "react": "^19",
+    "react-dom": "^19",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "typescript-eslint": "^8.62.1",
+    "vitest": "catalog:",
+    "vitest-axe": "^0.1.0"
+  }
+}

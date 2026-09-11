@@ -1,0 +1,275 @@
+{
+  "$schema": "../../../tools/schemas/OpsFile.schema.json",
+  "module": "asset",
+  "ops": [
+    {
+      "after": "tab_details",
+      "op": "addTab",
+      "opId": "cap_asset_1",
+      "tab": {
+        "component": {
+          "name": "SearchableRecordList",
+          "props": {
+            "idKey": "id",
+            "itemsField": "fuelReadings",
+            "leadKey": "id",
+            "strings": {
+              "emptyText": "Fuel readings for this vehicle will appear here once telematics fuel data is connected."
+            },
+            "titleKey": "title"
+          }
+        },
+        "id": "tab_fuel_monitoring",
+        "key": "fuel-monitoring",
+        "order": 3,
+        "title": "Fuel Monitoring"
+      }
+    },
+    {
+      "after": "tab_fuel_monitoring",
+      "op": "addTab",
+      "opId": "cap_asset_2",
+      "tab": {
+        "component": {
+          "name": "ScopedLinkedRecords",
+          "props": {
+            "columns": [
+              {
+                "key": "uniqueidentifier",
+                "label": "Job Order ID",
+                "type": "idChip"
+              },
+              {
+                "key": "title",
+                "label": "Title",
+                "type": "text"
+              },
+              {
+                "key": "systemcol1",
+                "label": "Maintenance Type",
+                "type": "text"
+              },
+              {
+                "key": "status",
+                "label": "Status",
+                "type": "statusPill"
+              },
+              {
+                "key": "systemcol3",
+                "label": "Due Date",
+                "type": "datetime"
+              }
+            ],
+            "emptyLabel": "No job orders for this vehicle yet",
+            "entityType": "maintenance/job-order",
+            "matchField": "systemcol4",
+            "search": true,
+            "searchPlaceholder": "Search job orders",
+            "statusColors": {
+              "completed": "#1f7f36",
+              "invalid": "#b42318",
+              "ongoing": "#0462ff",
+              "reported-issues": "#7a2e0e",
+              "scheduled": "#cd0ea3",
+              "under-inspection": "#814ee8"
+            }
+          }
+        },
+        "id": "tab_job_orders",
+        "key": "job-orders",
+        "order": 4,
+        "title": "Job Orders"
+      }
+    },
+    {
+      "after": "tab_job_orders",
+      "op": "addTab",
+      "opId": "cap_asset_3",
+      "tab": {
+        "component": {
+          "name": "ScopedLinkedRecords",
+          "props": {
+            "columns": [
+              {
+                "key": "title",
+                "label": "Service",
+                "type": "text"
+              },
+              {
+                "key": "systemcol2",
+                "label": "Current Odometer",
+                "type": "number",
+                "unit": "km"
+              },
+              {
+                "key": "systemcol3",
+                "label": "Creation Date",
+                "type": "datetime"
+              },
+              {
+                "key": "systemcol4",
+                "label": "Next Service Odometer",
+                "type": "number",
+                "unit": "km"
+              },
+              {
+                "key": "systemcol12",
+                "label": "Odometer Reading",
+                "targetKey": "systemcol13",
+                "type": "progress",
+                "unit": "km"
+              },
+              {
+                "key": "systemcol14",
+                "label": "Period of Interval",
+                "targetKey": "systemcol15",
+                "type": "progress",
+                "unit": "days"
+              },
+              {
+                "key": "systemcol16",
+                "label": "Engine Hours",
+                "targetKey": "systemcol17",
+                "type": "progress",
+                "unit": "hrs"
+              },
+              {
+                "key": "systemcol8",
+                "label": "Last Service On",
+                "type": "datetime"
+              },
+              {
+                "key": "status",
+                "label": "Status",
+                "type": "statusPill"
+              },
+              {
+                "key": "systemcol9",
+                "label": "Next Service Date",
+                "type": "datetime"
+              },
+              {
+                "key": "systemcol10",
+                "label": "Days Left",
+                "type": "text"
+              }
+            ],
+            "emptyLabel": "No preventive maintenance rules for this vehicle yet",
+            "entityType": "maintenance/preventive-rule",
+            "matchField": "systemcol1",
+            "search": true,
+            "searchPlaceholder": "Search",
+            "statusColors": {
+              "completed": "#0d864e",
+              "jobOrderCreated": "#a21caf",
+              "ongoing": "#1b6df5",
+              "overdue": "#e51f11",
+              "scheduled": "#b54708"
+            }
+          }
+        },
+        "id": "tab_preventive_maintenance",
+        "key": "preventive-maintenance",
+        "order": 5,
+        "title": "Preventive Maintenance"
+      }
+    },
+    {
+      "after": "tab_preventive_maintenance",
+      "op": "addTab",
+      "opId": "cap_asset_4",
+      "tab": {
+        "component": {
+          "name": "SearchableRecordList",
+          "props": {
+            "idKey": "id",
+            "itemsField": "inspections",
+            "leadKey": "id",
+            "strings": {
+              "emptyText": "Inspection records for this vehicle will appear here once inspections are logged."
+            },
+            "titleKey": "title"
+          }
+        },
+        "id": "tab_inspections",
+        "key": "inspections",
+        "order": 6,
+        "title": "Inspections"
+      }
+    },
+    {
+      "after": "tab_inspections",
+      "op": "addTab",
+      "opId": "cap_asset_5",
+      "tab": {
+        "component": {
+          "name": "SearchableRecordList",
+          "props": {
+            "idKey": "id",
+            "itemsField": "timesheetEntries",
+            "leadKey": "id",
+            "strings": {
+              "emptyText": "Timesheet entries for this vehicle's assigned driver will appear here once logged."
+            },
+            "titleKey": "title"
+          }
+        },
+        "id": "tab_timesheet",
+        "key": "timesheet",
+        "order": 7,
+        "title": "Timesheet"
+      }
+    },
+    {
+      "after": "tab_timesheet",
+      "op": "addTab",
+      "opId": "cap_asset_6",
+      "tab": {
+        "component": {
+          "name": "SearchableRecordList",
+          "props": {
+            "idKey": "id",
+            "itemsField": "attendanceEntries",
+            "leadKey": "id",
+            "strings": {
+              "emptyText": "Attendance log entries for this vehicle's assigned driver will appear here once logged."
+            },
+            "titleKey": "title"
+          }
+        },
+        "id": "tab_attendance_log",
+        "key": "attendance-log",
+        "order": 8,
+        "title": "Attendance Log"
+      }
+    },
+    {
+      "after": "tab_attendance_log",
+      "op": "addTab",
+      "opId": "cap_asset_7",
+      "tab": {
+        "component": {
+          "name": "ActivityCommentFeed",
+          "props": {
+            "emptyLabel": "Timeline entries for this vehicle will appear here once activity is logged.",
+            "field": "timelineEvents"
+          }
+        },
+        "id": "tab_timeline",
+        "key": "timeline",
+        "order": 9,
+        "title": "Timeline"
+      }
+    },
+    {
+      "id": "tab_assignments",
+      "op": "hideTab",
+      "opId": "cap_asset_8"
+    },
+    {
+      "id": "tab_documents",
+      "op": "hideTab",
+      "opId": "cap_asset_9"
+    }
+  ]
+}

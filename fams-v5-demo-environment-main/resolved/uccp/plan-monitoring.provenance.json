@@ -1,0 +1,122 @@
+{
+  "base": "tenant-native",
+  "module": "plan-monitoring",
+  "nodes": {
+    "Al Daayen": {
+      "source": "tenant-native"
+    },
+    "Al Rayyan": {
+      "source": "tenant-native"
+    },
+    "Al Wakrah": {
+      "source": "tenant-native"
+    },
+    "Doha": {
+      "source": "tenant-native"
+    },
+    "Umm Salal": {
+      "source": "tenant-native"
+    },
+    "fld_pm_blackspot": {
+      "source": "tenant-native"
+    },
+    "fld_pm_compliance": {
+      "source": "tenant-native"
+    },
+    "fld_pm_driver": {
+      "source": "tenant-native"
+    },
+    "fld_pm_inspector": {
+      "source": "tenant-native"
+    },
+    "fld_pm_lat": {
+      "source": "tenant-native"
+    },
+    "fld_pm_lng": {
+      "source": "tenant-native"
+    },
+    "fld_pm_plandate": {
+      "source": "tenant-native"
+    },
+    "fld_pm_plannedend": {
+      "source": "tenant-native"
+    },
+    "fld_pm_plannedstart": {
+      "source": "tenant-native"
+    },
+    "fld_pm_progressdone": {
+      "source": "tenant-native"
+    },
+    "fld_pm_progresstotal": {
+      "source": "tenant-native"
+    },
+    "fld_pm_shift": {
+      "source": "tenant-native"
+    },
+    "fld_pm_sourceplan": {
+      "source": "tenant-native"
+    },
+    "fld_pm_sourcerequest": {
+      "source": "tenant-native"
+    },
+    "fld_pm_status": {
+      "source": "tenant-native"
+    },
+    "fld_pm_tanker": {
+      "source": "tenant-native"
+    },
+    "fld_pm_title": {
+      "source": "tenant-native"
+    },
+    "fld_pm_uniqueidentifier": {
+      "source": "tenant-native"
+    },
+    "fld_pm_watercollected": {
+      "source": "tenant-native"
+    },
+    "fld_pm_zone": {
+      "source": "tenant-native"
+    },
+    "flt_pm_shift": {
+      "source": "tenant-native"
+    },
+    "flt_pm_status": {
+      "source": "tenant-native"
+    },
+    "flt_pm_zone": {
+      "source": "tenant-native"
+    },
+    "sec_pm_execution": {
+      "source": "tenant-native"
+    },
+    "sec_pm_progress": {
+      "source": "tenant-native"
+    },
+    "sts_pm_completed": {
+      "source": "tenant-native"
+    },
+    "sts_pm_executing": {
+      "source": "tenant-native"
+    },
+    "sts_pm_scheduled": {
+      "source": "tenant-native"
+    },
+    "sum_pm_completed": {
+      "source": "tenant-native"
+    },
+    "sum_pm_executing": {
+      "source": "tenant-native"
+    },
+    "sum_pm_scheduled": {
+      "source": "tenant-native"
+    },
+    "sum_pm_total": {
+      "source": "tenant-native"
+    },
+    "tab_pm_details": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "uccp"
+}

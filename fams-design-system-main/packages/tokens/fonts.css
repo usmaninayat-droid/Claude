@@ -1,0 +1,101 @@
+/* FAMS brand font — Gilroy.
+   Self-hosted .woff faces shipped in this package under ./fonts/.
+   Import via `@import '@fams/tokens/fonts.css';` alongside theme.css.
+   Weight map: 300 Light · 400 Regular · 500 Medium · 600 Semibold · 700 Bold · 800 Extrabold.
+   Each weight has a normal + italic face. font-display: swap. */
+
+/* ── Light (300) ─────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('./fonts/Gilroy-Light.woff') format('woff');
+}
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('./fonts/Gilroy-LightItalic.woff') format('woff');
+}
+
+/* ── Regular (400) ───────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/Gilroy-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/Gilroy-RegularItalic.woff') format('woff');
+}
+
+/* ── Medium (500) ────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./fonts/Gilroy-Medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./fonts/Gilroy-MediumItalic.woff') format('woff');
+}
+
+/* ── Semibold (600) ──────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./fonts/Gilroy-Semibold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./fonts/Gilroy-SemiboldItalic.woff') format('woff');
+}
+
+/* ── Bold (700) ──────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./fonts/Gilroy-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./fonts/Gilroy-BoldItalic.woff') format('woff');
+}
+
+/* ── Extrabold (800) ─────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('./fonts/Gilroy-Extrabold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Gilroy';
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url('./fonts/Gilroy-ExtraboldItalic.woff') format('woff');
+}

@@ -1,0 +1,12 @@
+# Playwright visual-regression baselines are environment-specific (Playwright
+# names them per-OS, e.g. *-darwin.png). CI runs on Linux, so the correct
+# shared baselines must be generated on the CI OS (Linux — via Docker
+# `mcr.microsoft.com/playwright` or a CI --update-snapshots job) and committed
+# THEN. Until VR is wired into CI, baselines stay local-only and are not
+# committed (avoids bloating the repo with wrong-OS binaries).
+# To generate locally:  pnpm --filter @fams/showcase test:visual:update
+e2e/**/*-snapshots/
+
+# Playwright run artifacts
+test-results/
+playwright-report/

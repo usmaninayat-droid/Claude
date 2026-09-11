@@ -1,0 +1,71 @@
+# Self-hosted Visual Regression Tracker (VRT) — phase 4 §2.
+#
+# Official images only (visualregressiontracker/{ui,api,migration} + postgres),
+# versions pinned to a known-matched release trio (mirrors the upstream
+# project's own committed `.env` at the time of writing — bump all three in
+# lockstep, don't mix). Apache-2.0 (github.com/Visual-Regression-Tracker/
+# Visual-Regression-Tracker) — compliant with the DS's "MIT/Apache-2.0/BSD
+# only" hard rule #1.
+#
+# Usage: see README.md in this directory.
+services:
+  ui:
+    image: visualregressiontracker/ui:${VRT_UI_VERSION:-5.1.2}
+    ports:
+      - '${VRT_UI_PORT:-8080}:8080'
+    environment:
+      REACT_APP_API_URL: ${VRT_API_URL:-http://localhost:4200}
+      VRT_VERSION: ${VRT_UI_VERSION:-5.1.2}
+      PORT: 8080
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  api:
+    image: visualregressiontracker/api:${VRT_API_VERSION:-5.1.1}
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-vrt_db}
+      APP_FRONTEND_URL: ${VRT_UI_URL:-http://localhost:8080}
+      JWT_SECRET: ${VRT_JWT_SECRET:-changeme-local-only}
+      JWT_LIFE_TIME: ${VRT_JWT_LIFE_TIME:-1d}
+      BODY_PARSER_JSON_LIMIT: ${VRT_BODY_PARSER_JSON_LIMIT:-5mb}
+      # Local filesystem image storage (no AWS/S3 dependency — no paid deps).
+      STATIC_SERVICE: local
+    ports:
+      - '${VRT_API_PORT:-4200}:3000'
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ./data/imageUploads:/imageUploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      migration:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  migration:
+    image: visualregressiontracker/migration:${VRT_MIGRATION_VERSION:-5.1.0}
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-vrt_db}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: on-failure
+
+  postgres:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-vrt_db}
+    ports:
+      - '${VRT_POSTGRES_PORT:-5432}:5432'
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -d $$POSTGRES_DB -U $$POSTGRES_USER']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped

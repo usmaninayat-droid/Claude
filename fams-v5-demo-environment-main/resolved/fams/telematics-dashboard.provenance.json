@@ -1,0 +1,164 @@
+{
+  "base": "core",
+  "module": "telematics-dashboard",
+  "nodes": {
+    "distance": {
+      "source": "core"
+    },
+    "duration": {
+      "source": "core"
+    },
+    "engine-off": {
+      "source": "core"
+    },
+    "ev-1": {
+      "source": "core"
+    },
+    "ev-1-drv": {
+      "source": "core"
+    },
+    "ev-1-loc": {
+      "source": "core"
+    },
+    "ev-1-veh": {
+      "source": "core"
+    },
+    "ev-2": {
+      "source": "core"
+    },
+    "ev-2-drv": {
+      "source": "core"
+    },
+    "ev-2-loc": {
+      "source": "core"
+    },
+    "ev-2-veh": {
+      "source": "core"
+    },
+    "ev-3": {
+      "source": "core"
+    },
+    "ev-3-drv": {
+      "source": "core"
+    },
+    "ev-3-loc": {
+      "source": "core"
+    },
+    "ev-3-veh": {
+      "source": "core"
+    },
+    "ev-4": {
+      "source": "core"
+    },
+    "ev-4-drv": {
+      "source": "core"
+    },
+    "ev-4-loc": {
+      "source": "core"
+    },
+    "ev-4-veh": {
+      "source": "core"
+    },
+    "ev-5": {
+      "source": "core"
+    },
+    "ev-5-drv": {
+      "source": "core"
+    },
+    "ev-5-loc": {
+      "source": "core"
+    },
+    "ev-5-veh": {
+      "source": "core"
+    },
+    "ev-6": {
+      "source": "core"
+    },
+    "ev-6-drv": {
+      "source": "core"
+    },
+    "ev-6-loc": {
+      "source": "core"
+    },
+    "ev-6-veh": {
+      "source": "core"
+    },
+    "idle": {
+      "source": "core"
+    },
+    "idling": {
+      "source": "core"
+    },
+    "kpi-idle-duration": {
+      "source": "core"
+    },
+    "kpi-idling-assets": {
+      "source": "core"
+    },
+    "kpi-moving-assets": {
+      "source": "core"
+    },
+    "kpi-non-reporting": {
+      "source": "core"
+    },
+    "kpi-overspeed-events": {
+      "source": "core"
+    },
+    "kpi-stopped-assets": {
+      "source": "core"
+    },
+    "kpi-total-assets": {
+      "source": "core"
+    },
+    "overspeed": {
+      "source": "core"
+    },
+    "overspeeding": {
+      "source": "core"
+    },
+    "pill-time-frame": {
+      "source": "core"
+    },
+    "telematics-dashboard": {
+      "source": "core"
+    },
+    "trips": {
+      "source": "core"
+    },
+    "view-overview": {
+      "source": "core"
+    },
+    "w-critical-events": {
+      "source": "core"
+    },
+    "w-event-distribution": {
+      "source": "core"
+    },
+    "w-idle-by-vehicle": {
+      "source": "core"
+    },
+    "w-idle-over-time": {
+      "source": "core"
+    },
+    "w-number-of-trips": {
+      "source": "core"
+    },
+    "w-overspeeding-by-vehicle": {
+      "source": "core"
+    },
+    "w-overspeeding-over-time": {
+      "source": "core"
+    },
+    "w-trip-distance": {
+      "source": "core"
+    },
+    "w-trip-duration": {
+      "source": "core"
+    },
+    "zone-out": {
+      "source": "core"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

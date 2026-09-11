@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" font-family="'Inter','Segoe UI',system-ui,-apple-system,sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 z" fill="#64748B"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 z" fill="#FF3B30"/>
+    </marker>
+  </defs>
+
+  <!-- title -->
+  <text x="46" y="48" font-size="26" font-weight="700" fill="#1B2733">Recenter button — states &amp; transitions</text>
+  <text x="46" y="76" font-size="15" fill="#64748B">Browse mode: the map shows the driver and their next stop. No turn-by-turn.</text>
+
+  <!-- initial marker -->
+  <circle cx="62" cy="260" r="8" fill="#FF3B30"/>
+  <path d="M72 260 H148" stroke="#64748B" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <text x="72" y="248" font-size="13" fill="#64748B">on load</text>
+
+  <!-- STATE: Following / Fitted -->
+  <rect x="152" y="200" width="290" height="120" rx="14" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="176" y="248" font-size="21" font-weight="700" fill="#1B2733">Following</text>
+  <text x="176" y="278" font-size="15" fill="#475569">Driver + next stop framed in view.</text>
+  <text x="176" y="300" font-size="15" fill="#475569">Button idle.</text>
+
+  <!-- STATE: Panned -->
+  <rect x="580" y="200" width="290" height="120" rx="14" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="604" y="248" font-size="21" font-weight="700" fill="#1B2733">Panned</text>
+  <text x="604" y="278" font-size="15" fill="#475569">User moved / zoomed the map.</text>
+  <text x="604" y="300" font-size="15" fill="#475569">Button active.</text>
+
+  <!-- transition: Following -> Panned (top) -->
+  <path d="M442 238 Q511 220 580 238" stroke="#64748B" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <text x="511" y="212" font-size="14" fill="#475569" text-anchor="middle">drag / pinch the map</text>
+
+  <!-- transition: Panned -> Following (bottom) — the button action, in red -->
+  <path d="M580 290 Q511 310 442 290" stroke="#FF3B30" stroke-width="2.5" fill="none" marker-end="url(#arrowRed)"/>
+  <g transform="translate(455,318) scale(0.72)" fill="none" stroke="#FF3B30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M12 3v3M12 18v3M3 12h3M18 12h3"/>
+    <circle cx="12" cy="12" r="8"/>
+  </g>
+  <text x="478" y="334" font-size="14" font-weight="600" fill="#FF3B30">tap Recenter</text>
+
+  <!-- self-loop: Following (live location update -> re-fit) -->
+  <path d="M212 200 C212 148 302 148 302 200" stroke="#64748B" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <text x="257" y="138" font-size="14" fill="#475569" text-anchor="middle">location updates</text>
+  <text x="257" y="120" font-size="13" fill="#94A3B8" text-anchor="middle">map re-fits to keep both in view</text>
+
+  <!-- self-loop: Panned (live location update -> stays put) -->
+  <path d="M640 200 C640 148 730 148 730 200" stroke="#64748B" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <text x="685" y="138" font-size="14" fill="#475569" text-anchor="middle">location updates</text>
+  <text x="685" y="120" font-size="13" fill="#94A3B8" text-anchor="middle">map stays put — no auto-follow</text>
+
+  <!-- legend -->
+  <line x1="152" y1="392" x2="182" y2="392" stroke="#FF3B30" stroke-width="2.5"/>
+  <text x="190" y="397" font-size="13" fill="#64748B">the button's action</text>
+  <line x1="330" y1="392" x2="360" y2="392" stroke="#64748B" stroke-width="2"/>
+  <text x="368" y="397" font-size="13" fill="#64748B">user gesture / live GPS update</text>
+</svg>

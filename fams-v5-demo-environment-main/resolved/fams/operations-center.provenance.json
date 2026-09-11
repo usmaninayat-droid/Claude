@@ -1,0 +1,239 @@
+{
+  "base": "core",
+  "module": "operations-center",
+  "nodes": {
+    "act_ck_broadcast": {
+      "source": "core"
+    },
+    "act_ck_export": {
+      "source": "core"
+    },
+    "act_ck_quick": {
+      "source": "core"
+    },
+    "cmd_immobilize": {
+      "source": "core"
+    },
+    "cmd_mobilize": {
+      "source": "core"
+    },
+    "fld_oc_actual": {
+      "source": "core"
+    },
+    "fld_oc_contact": {
+      "source": "core"
+    },
+    "fld_oc_current_assignment": {
+      "source": "core"
+    },
+    "fld_oc_delay": {
+      "source": "core"
+    },
+    "fld_oc_depot": {
+      "source": "core"
+    },
+    "fld_oc_driver": {
+      "source": "core"
+    },
+    "fld_oc_heading": {
+      "source": "core"
+    },
+    "fld_oc_last_seen": {
+      "source": "core"
+    },
+    "fld_oc_lat": {
+      "source": "core"
+    },
+    "fld_oc_lng": {
+      "source": "core"
+    },
+    "fld_oc_location": {
+      "source": "core"
+    },
+    "fld_oc_mobility": {
+      "source": "core"
+    },
+    "fld_oc_model": {
+      "source": "core"
+    },
+    "fld_oc_plan": {
+      "source": "core"
+    },
+    "fld_oc_plan_status": {
+      "source": "core"
+    },
+    "fld_oc_planned": {
+      "source": "core"
+    },
+    "fld_oc_plate": {
+      "source": "core"
+    },
+    "fld_oc_progress": {
+      "source": "core"
+    },
+    "fld_oc_progress_label": {
+      "source": "core"
+    },
+    "fld_oc_risk": {
+      "source": "core"
+    },
+    "fld_oc_risk_tone": {
+      "source": "core"
+    },
+    "fld_oc_route_actual": {
+      "source": "core"
+    },
+    "fld_oc_route_planned": {
+      "source": "core"
+    },
+    "fld_oc_route_type": {
+      "source": "core"
+    },
+    "fld_oc_shift": {
+      "source": "core"
+    },
+    "fld_oc_speed": {
+      "source": "core"
+    },
+    "fld_oc_standby_driver": {
+      "source": "core"
+    },
+    "fld_oc_standby_vehicle": {
+      "source": "core"
+    },
+    "fld_oc_status": {
+      "source": "core"
+    },
+    "fld_oc_title": {
+      "source": "core"
+    },
+    "fld_oc_uid": {
+      "source": "core"
+    },
+    "fld_oc_zone": {
+      "source": "core"
+    },
+    "flt_ck_date": {
+      "source": "core"
+    },
+    "flt_ck_depot": {
+      "source": "core"
+    },
+    "flt_ck_route_type": {
+      "source": "core"
+    },
+    "flt_ck_shift": {
+      "source": "core"
+    },
+    "flt_ck_zone": {
+      "source": "core"
+    },
+    "flt_oc_plan_status": {
+      "source": "core"
+    },
+    "flt_oc_route_type": {
+      "source": "core"
+    },
+    "flt_oc_shift": {
+      "source": "core"
+    },
+    "flt_oc_status": {
+      "source": "core"
+    },
+    "kpi_action": {
+      "source": "core"
+    },
+    "kpi_delayed": {
+      "source": "core"
+    },
+    "kpi_dispatched": {
+      "source": "core"
+    },
+    "kpi_fulfillment": {
+      "source": "core"
+    },
+    "kpi_ongoing": {
+      "source": "core"
+    },
+    "kpi_scheduled": {
+      "source": "core"
+    },
+    "panel_fleet": {
+      "source": "core"
+    },
+    "panel_workforce": {
+      "source": "core"
+    },
+    "qa_dispatch_all": {
+      "source": "core"
+    },
+    "qa_freeze": {
+      "source": "core"
+    },
+    "qa_notify_depot": {
+      "source": "core"
+    },
+    "row_fleet_available": {
+      "source": "core"
+    },
+    "row_fleet_maintenance": {
+      "source": "core"
+    },
+    "row_fleet_out": {
+      "source": "core"
+    },
+    "row_wf_break": {
+      "source": "core"
+    },
+    "row_wf_duty": {
+      "source": "core"
+    },
+    "row_wf_noshow": {
+      "source": "core"
+    },
+    "sec_oc_dispatch": {
+      "source": "core"
+    },
+    "st_fleet_service": {
+      "source": "core"
+    },
+    "st_fleet_standby": {
+      "source": "core"
+    },
+    "st_fleet_total": {
+      "source": "core"
+    },
+    "st_wf_checked": {
+      "source": "core"
+    },
+    "st_wf_rostered": {
+      "source": "core"
+    },
+    "sts_oc_action": {
+      "source": "core"
+    },
+    "sts_oc_completed": {
+      "source": "core"
+    },
+    "sts_oc_delayed": {
+      "source": "core"
+    },
+    "sts_oc_dispatched": {
+      "source": "core"
+    },
+    "sts_oc_ongoing": {
+      "source": "core"
+    },
+    "sts_oc_scheduled": {
+      "source": "core"
+    },
+    "tab_oc_activity": {
+      "source": "core"
+    },
+    "tab_oc_timeline": {
+      "source": "core"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

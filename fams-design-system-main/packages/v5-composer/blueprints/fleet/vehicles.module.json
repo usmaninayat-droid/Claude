@@ -1,0 +1,56 @@
+{
+  "$schema": "../../schemas/EntityModuleConfig.schema.json",
+  "kind": "entity",
+  "code": "fleet/vehicles",
+  "name": "Vehicles",
+  "uidPrefix": "V",
+  "systemcolumns": [
+    { "id": "fld_title", "col": "title", "name": "Vehicle", "type": "SmallText", "required": true },
+    { "id": "fld_status", "col": "status", "name": "Status", "type": "SingleSelect", "listValues": ["Available", "In Service", "Maintenance", "Retired"] },
+    { "id": "fld_systemcol1", "col": "systemcol1", "name": "Make", "type": "SmallText" },
+    { "id": "fld_systemcol2", "col": "systemcol2", "name": "Model", "type": "SmallText" },
+    { "id": "fld_systemcol3", "col": "systemcol3", "name": "Plate", "type": "SmallText" },
+    { "id": "fld_systemcol4", "col": "systemcol4", "name": "Odometer (km)", "type": "SmallText" },
+    { "id": "fld_systemcol5", "col": "systemcol5", "name": "Driver", "type": "Assignee" }
+  ],
+  "uiConfig": {
+    "statusList": [
+      { "id": "sts_available", "key": "Available", "label": "Available", "color": "#16a34a" },
+      { "id": "sts_inservice", "key": "In Service", "label": "In Service", "color": "#0072d6" },
+      { "id": "sts_maintenance", "key": "Maintenance", "label": "Maintenance", "color": "#f79009" },
+      { "id": "sts_retired", "key": "Retired", "label": "Retired", "color": "#94a3b8" }
+    ],
+    "profile": {
+      "title": { "id": "fld_title", "col": "title", "pos": "left" },
+      "details": [
+        { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "pos": "left", "order": 1, "name": "Asset ID", "component": { "name": "LinkView" } },
+        { "id": "fld_status", "col": "status", "pos": "right", "order": 1, "component": { "name": "StatusList" } },
+        { "id": "fld_systemcol1", "col": "systemcol1", "pos": "left", "order": 2 },
+        { "id": "fld_systemcol2", "col": "systemcol2", "pos": "right", "order": 2 },
+        { "id": "fld_systemcol3", "col": "systemcol3", "pos": "left", "order": 3 },
+        { "id": "fld_systemcol4", "col": "systemcol4", "pos": "right", "order": 3 },
+        { "id": "fld_systemcol5", "col": "systemcol5", "pos": "left", "order": 4, "component": { "name": "AssigneeList" } }
+      ],
+      "sections": [],
+      "rightPanel": { "type": "tab", "tabs": [
+        { "id": "tab_overview", "key": "overview", "title": "Overview", "order": 1, "component": { "name": "VehicleOverview" } },
+        { "id": "tab_maintenance", "key": "maintenance", "title": "Maintenance", "order": 2, "component": { "name": "MaintenanceLog" } },
+        { "id": "tab_documents", "key": "documents", "title": "Documents", "order": 3, "component": { "name": "Attachments" } }
+      ] }
+    },
+    "filters": [
+      { "id": "flt_status", "col": "status", "order": 1 },
+      { "id": "flt_systemcol1", "col": "systemcol1", "order": 2 }
+    ],
+    "search": { "columns": ["title", "systemcol1", "systemcol2", "systemcol3"] }
+  },
+  "listcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "component": { "name": "TextView" } },
+    { "id": "fld_title", "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "id": "fld_status", "col": "status", "component": { "name": "StatusList" } },
+    { "id": "fld_systemcol1", "col": "systemcol1", "component": { "name": "TextView" } },
+    { "id": "fld_systemcol2", "col": "systemcol2", "component": { "name": "TextView" } },
+    { "id": "fld_systemcol3", "col": "systemcol3", "component": { "name": "TextView" } },
+    { "id": "fld_systemcol5", "col": "systemcol5", "component": { "name": "AssigneeList" } }
+  ]
+}

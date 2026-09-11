@@ -1,0 +1,14 @@
+{
+  "statuses": ["scheduled", "dispatched", "ongoing", "delayed", "action-required", "completed"],
+  "transitions": {
+    "scheduled": ["dispatched"],
+    "dispatched": ["ongoing", "scheduled"],
+    "ongoing": ["delayed", "action-required", "completed"],
+    "delayed": ["ongoing", "action-required", "completed"],
+    "action-required": ["ongoing", "completed"],
+    "completed": []
+  },
+  "transition_rules": {
+    "action-required->completed": { "$.user.roles": { "$in": ["admin"] } }
+  }
+}

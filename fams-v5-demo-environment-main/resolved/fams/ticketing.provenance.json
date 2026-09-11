@@ -1,0 +1,182 @@
+{
+  "base": "core",
+  "module": "ticketing",
+  "nodes": {
+    "fld_tk_area_manager": {
+      "source": "core"
+    },
+    "fld_tk_asset": {
+      "source": "core"
+    },
+    "fld_tk_assignee": {
+      "source": "core"
+    },
+    "fld_tk_assignee_name": {
+      "source": "core"
+    },
+    "fld_tk_category": {
+      "source": "core"
+    },
+    "fld_tk_customer_language": {
+      "source": "core"
+    },
+    "fld_tk_customer_name": {
+      "source": "core"
+    },
+    "fld_tk_driver_name": {
+      "source": "core"
+    },
+    "fld_tk_driver_phone": {
+      "source": "core"
+    },
+    "fld_tk_due": {
+      "source": "core"
+    },
+    "fld_tk_geo": {
+      "source": "core"
+    },
+    "fld_tk_highlight": {
+      "source": "core"
+    },
+    "fld_tk_kpi": {
+      "source": "core"
+    },
+    "fld_tk_kpi_category": {
+      "source": "core"
+    },
+    "fld_tk_kpi_compliance_time": {
+      "source": "core"
+    },
+    "fld_tk_location": {
+      "source": "core"
+    },
+    "fld_tk_location_lot": {
+      "source": "core"
+    },
+    "fld_tk_lot": {
+      "source": "core"
+    },
+    "fld_tk_non_compliance": {
+      "source": "core"
+    },
+    "fld_tk_note": {
+      "source": "core"
+    },
+    "fld_tk_phone": {
+      "source": "core"
+    },
+    "fld_tk_priority": {
+      "source": "core"
+    },
+    "fld_tk_reopened": {
+      "source": "core"
+    },
+    "fld_tk_reported_by": {
+      "source": "core"
+    },
+    "fld_tk_reported_time": {
+      "source": "core"
+    },
+    "fld_tk_reporter": {
+      "source": "core"
+    },
+    "fld_tk_service_type": {
+      "source": "core"
+    },
+    "fld_tk_sla_breached": {
+      "source": "core"
+    },
+    "fld_tk_source": {
+      "source": "core"
+    },
+    "fld_tk_status": {
+      "source": "core"
+    },
+    "fld_tk_tags": {
+      "source": "core"
+    },
+    "fld_tk_ticket_type": {
+      "source": "core"
+    },
+    "fld_tk_time_remaining": {
+      "source": "core"
+    },
+    "fld_tk_title": {
+      "source": "core"
+    },
+    "fld_tk_upload": {
+      "source": "core"
+    },
+    "fld_uniqueidentifier": {
+      "source": "core"
+    },
+    "flt_tk_category": {
+      "source": "core"
+    },
+    "flt_tk_priority": {
+      "source": "core"
+    },
+    "flt_tk_status": {
+      "source": "core"
+    },
+    "sec_tk_customer_contact": {
+      "source": "core"
+    },
+    "sec_tk_driver": {
+      "source": "core"
+    },
+    "sec_tk_kpi": {
+      "source": "core"
+    },
+    "sec_tk_location": {
+      "source": "core"
+    },
+    "sec_tk_note": {
+      "source": "core"
+    },
+    "sec_tk_notes": {
+      "source": "core"
+    },
+    "sec_tk_photos": {
+      "source": "core"
+    },
+    "sec_tk_priority_language": {
+      "source": "core"
+    },
+    "sec_tk_supervisor": {
+      "source": "core"
+    },
+    "sts_inprogress": {
+      "source": "core"
+    },
+    "sts_new": {
+      "source": "core"
+    },
+    "sts_resolved": {
+      "source": "core"
+    },
+    "sts_triaged": {
+      "source": "core"
+    },
+    "sum_tk_active": {
+      "source": "core"
+    },
+    "sum_tk_breached": {
+      "source": "core"
+    },
+    "sum_tk_closed": {
+      "source": "core"
+    },
+    "sum_tk_critical": {
+      "source": "core"
+    },
+    "sum_tk_pending": {
+      "source": "core"
+    },
+    "tab_tk_timeline": {
+      "source": "core"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

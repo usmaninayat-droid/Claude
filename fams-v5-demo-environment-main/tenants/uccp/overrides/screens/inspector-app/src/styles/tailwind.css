@@ -1,0 +1,7 @@
+@import 'tailwindcss' source(none);
+/* The DS is vendored at src/ds, so this single recursive glob over src/ now
+   also scans the DS chrome (nav / settings / map / primitives) for the utility
+   classes they use — no external @source paths needed. */
+@source '../**/*.{js,ts,jsx,tsx}';
+
+@import 'tw-animate-css';

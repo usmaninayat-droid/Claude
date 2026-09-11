@@ -1,0 +1,86 @@
+{
+  "base": "tenant-native",
+  "module": "deals",
+  "nodes": {
+    "fld_deal_amount": {
+      "source": "tenant-native"
+    },
+    "fld_deal_close_date": {
+      "source": "tenant-native"
+    },
+    "fld_deal_company": {
+      "source": "tenant-native"
+    },
+    "fld_deal_contact": {
+      "source": "tenant-native"
+    },
+    "fld_deal_created": {
+      "source": "tenant-native"
+    },
+    "fld_deal_lead": {
+      "source": "tenant-native"
+    },
+    "fld_deal_note": {
+      "source": "tenant-native"
+    },
+    "fld_deal_owner": {
+      "source": "tenant-native"
+    },
+    "fld_deal_priority": {
+      "source": "tenant-native"
+    },
+    "fld_deal_product": {
+      "source": "tenant-native"
+    },
+    "fld_deal_status": {
+      "source": "tenant-native"
+    },
+    "fld_deal_tags": {
+      "source": "tenant-native"
+    },
+    "fld_deal_title": {
+      "source": "tenant-native"
+    },
+    "fld_uniqueidentifier": {
+      "source": "tenant-native"
+    },
+    "flt_deal_priority": {
+      "source": "tenant-native"
+    },
+    "flt_deal_status": {
+      "source": "tenant-native"
+    },
+    "sec_deal_note": {
+      "source": "tenant-native"
+    },
+    "sts_deal_lost": {
+      "source": "tenant-native"
+    },
+    "sts_deal_negotiation": {
+      "source": "tenant-native"
+    },
+    "sts_deal_proposal": {
+      "source": "tenant-native"
+    },
+    "sts_deal_qualification": {
+      "source": "tenant-native"
+    },
+    "sts_deal_won": {
+      "source": "tenant-native"
+    },
+    "tab_deal_activity": {
+      "source": "tenant-native"
+    },
+    "tab_deal_attachments": {
+      "source": "tenant-native"
+    },
+    "tab_deal_linked": {
+      "source": "tenant-native"
+    },
+    "tab_deal_timeline": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#8A1538" />
+<title>Driver - Home</title>
+<style>
+  @font-face { font-family: 'Gilroy'; src: url('v5-design-system-ai-main/Font/Gilroy-Medium.otf') format('opentype'); font-weight: 500; font-display: swap; }
+  @font-face { font-family: 'Gilroy'; src: url('v5-design-system-ai-main/Font/Gilroy-Semibold.otf') format('opentype'); font-weight: 600; font-display: swap; }
+  @font-face { font-family: 'Gilroy'; src: url('v5-design-system-ai-main/Font/Gilroy-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+
+  :root {
+    --brand-primary: #8A1538;
+    --action-blue: #1570EF;
+    --action-blue-dark: #175CD3;
+    --teal: #1CADA2;
+    --neutral-lightest: #F9FAFB;
+    --border-lightest: #EAECF0;
+    --text-darker: #1D2939;
+    --text-normal: #475467;
+    --text-light: #667085;
+    --neutral-400: #98A2B3;
+    --neutral-300: #D0D5DD;
+    --success: #12B76A;
+    --warning: #F79009;
+    --error: #F04438;
+
+    /* layout tokens */
+    --rail-w: 112px;
+    --panel-w: 440px;
+    --gutter: 16px;
+    --radius-card: 12px;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+
+    /* motion tokens */
+    --ease-out: cubic-bezier(.22, 1, .36, 1);
+    --ease-sheet: cubic-bezier(.32, .72, 0, 1);
+    --dur-fast: 160ms;
+    --dur-med: 260ms;
+    --dur-sheet: 340ms;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { height: 100%; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #fff; color: var(--text-darker);
+    height: 100vh; height: 100dvh; overflow: hidden;
+    overscroll-behavior: none;
+  }
+  button, a { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+  button { font-family: inherit; cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--action-blue); outline-offset: 2px; }
+
+  .screen { display: flex; height: 100%; width: 100%; }
+
+  /* ── Sidebar / rail ── */
+  .sidebar {
+    width: var(--rail-w); flex-shrink: 0; background: var(--brand-primary);
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: space-between;
+    padding: calc(24px + var(--safe-top)) 14px calc(24px + var(--safe-bottom)) calc(14px + var(--safe-left));
+    z-index: 10;
+  }
+  .sidebar-logo { width: 64px; height: 66px; }
+  .sidebar-logo img { width: 100%; height: 100%; display: block; }
+  .sidebar-nav { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+  .nav-btn {
+    width: 52px; height: 52px; border-radius: 500px;
+    background: rgba(255,255,255,0.16); border: none;
+    display: flex; align-items: center; justify-content: center;
+    transition: background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+  }
+  .nav-btn:hover { background: rgba(255,255,255,0.26); }
+  .nav-btn:active { transform: scale(.94); background: rgba(255,255,255,0.3); }
+  .nav-btn img { width: 26px; height: 26px; display: block; }
+  .fams-logo { width: 52px; height: 55px; margin-top: 8px; }
+  .fams-logo img { width: 100%; height: 100%; display: block; }
+
+  /* ── Content: two cards ── */
+  .main { flex: 1; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+  .topbar {
+    display: flex; align-items: center; gap: 16px; flex-shrink: 0;
+    padding: calc(14px + var(--safe-top)) calc(var(--gutter) + 8px + var(--safe-right)) 4px calc(var(--gutter) + 8px);
+  }
+  .veh { display: flex; align-items: center; gap: 16px; min-width: 0; flex: 1; }
+  .veh-icon { width: 96px; height: 56px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .veh-icon svg { width: 100%; height: 100%; display: block; }
+  .veh-name { font-weight: 700; font-size: 24px; line-height: 30px; color: var(--text-darkest, #101828); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .veh-id { font-weight: 500; font-size: 16px; line-height: 22px; color: var(--text-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .veh-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .veh-chip { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 13px; color: var(--text-normal); background: var(--neutral-lightest); border: 1px solid var(--border-lightest); border-radius: 999px; padding: 4px 10px; }
+  .veh-chip svg { width: 14px; height: 14px; stroke: var(--text-light); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .veh-chip.ok { color: #067647; background: #ECFDF3; border-color: #ABEFC6; } .veh-chip.ok svg { stroke: #067647; }
+  .nav-link {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px; flex-shrink: 0;
+    min-height: 48px; padding: 0 22px; border-radius: 4px; text-decoration: none;
+    border: 1.5px solid var(--brand-primary); color: var(--brand-primary); background: #fff;
+    font-weight: 600; font-size: 17px;
+    transition: background var(--dur-fast), transform var(--dur-fast) var(--ease-out);
+  }
+  .nav-link:hover { background: #FBF3F5; }
+  .nav-link:active { transform: scale(.97); }
+  .nav-link svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .nav-link .short { display: none; }
+  /* inspector contact — replaces the vehicle block while on standby (inspector = primary contact) */
+  .insp { display: flex; align-items: center; gap: 14px; min-width: 0; flex: 1; }
+  .insp-avatar { width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; background: #F2D9E0; color: var(--brand-primary); font-weight: 700; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+  .insp-name { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .insp-name .veh-name { font-size: 22px; line-height: 28px; }
+  .insp-phone { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; font-weight: 600; font-size: 14px; color: var(--text-normal); background: var(--neutral-lightest); border: 1px solid var(--border-lightest); border-radius: 999px; padding: 4px 11px 4px 9px; }
+  .insp-phone svg { width: 14px; height: 14px; stroke: var(--brand-primary); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .insp-call { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 56px; height: 56px; border-radius: 14px; background: var(--brand-primary); border: none; text-decoration: none; transition: transform var(--dur-fast) var(--ease-out); }
+  .insp-call:active { transform: scale(.94); }
+  .insp-call svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .panel-wrap.flash { box-shadow: 0 0 0 3px rgba(138,21,56,.25); transition: box-shadow var(--dur-med) var(--ease-out); }
+
+  .content { flex: 1; display: flex; gap: var(--gutter); padding: var(--gutter); min-width: 0; min-height: 0; }
+
+  /* step progress (assembly → jobs) */
+  .steps { display: flex; gap: 12px; margin: 4px 0 12px; }
+  .steps span { flex: 1; height: 5px; border-radius: 3px; background: var(--border-lightest); transition: background var(--dur-med) var(--ease-out); }
+  .steps span.on { background: var(--brand-primary); }
+  .panel-sub.center { text-align: center; }
+
+  .btn-primary {
+    width: 100%; height: 68px; border-radius: 8px; background: var(--brand-primary); color: #fff;
+    display: flex; align-items: center; gap: 16px; padding: 0 8px 0 7px;
+    font-weight: 600; font-size: 18px; border: 0;
+    transition: background var(--dur-fast), transform var(--dur-fast) var(--ease-out);
+  }
+  .btn-primary:hover { background: #7C1332; }
+  .btn-primary:active { transform: scale(.985); }
+  .btn-primary .ic { width: 54px; height: 54px; border-radius: 6px; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .btn-primary .ic svg { width: 24px; height: 24px; stroke: var(--brand-primary); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .btn-primary .lbl { flex: 1; text-align: center; padding-right: 54px; }
+
+  /* styled POI pins */
+  .poi { position: relative; width: 44px; height: 58px; }
+  .poi::before { content: ''; position: absolute; inset: -8px -12px -6px; }
+  .poi svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 3px 6px rgba(16,24,40,.3)); }
+  .poi-dot { position: absolute; left: 50%; bottom: -8px; width: 6px; height: 6px; border-radius: 50%; transform: translateX(-50%); }
+
+  /* left panel card (wrap = visual card; panel = scroll region; footer = primary CTA) */
+  .panel-wrap {
+    width: var(--panel-w); flex-shrink: 0; min-height: 0;
+    background: #fff; border: 1px solid var(--border-lightest); border-radius: var(--radius-card);
+    padding: 28px 24px 20px;
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .panel { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+  .sheet-grip { display: none; }
+  .panel-head { flex-shrink: 0; }
+  .panel-title { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .panel-title h1 { font-weight: 700; font-size: 26px; line-height: 32px; color: var(--text-darker); flex: 1; min-width: 0; }
+  .panel-sub { font-weight: 500; font-size: 15px; line-height: 22px; color: var(--text-light); margin-bottom: 8px; }
+  .panel-body { flex: 1; min-height: 0; overflow-y: auto; margin: 0 -8px; padding: 8px; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+  .panel-footer { margin-top: 16px; flex-shrink: 0; }
+
+  /* info rows */
+  .row { display: flex; gap: 18px; align-items: center; padding: 18px 4px; }
+  .row + .row { border-top: 1px solid var(--border-lightest); }
+  .row .r-icon { width: 40px; height: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .row .r-icon svg { width: 30px; height: 30px; stroke: var(--text-light); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .row > div:not(.r-icon) { min-width: 0; flex: 1; }
+  .row .r-val { font-weight: 700; font-size: 19px; line-height: 26px; color: var(--text-darker); overflow-wrap: anywhere; }
+  .row .r-key { font-weight: 500; font-size: 15px; color: var(--text-light); margin-top: 2px; }
+  .row .r-link {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 6px;
+    font-weight: 600; font-size: 14px; color: var(--action-blue); text-decoration: none;
+    min-height: 44px;
+  }
+  .row .r-link svg { width: 15px; height: 15px; stroke: var(--action-blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .row .r-link:hover { text-decoration: underline; }
+  .row .r-side { flex: none; margin-left: auto; }
+
+  .call-btn {
+    width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+    background: #ECFDF3; border: 1px solid #ABEFC6;
+    display: flex; align-items: center; justify-content: center; text-decoration: none;
+    transition: background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+  }
+  .call-btn:hover { background: #D1FADF; }
+  .call-btn:active { transform: scale(.94); }
+  .call-btn svg { width: 22px; height: 22px; stroke: #067647; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* photo previews */
+  .photos { display: flex; gap: 10px; margin-top: 10px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; scroll-snap-type: x proximity; }
+  .photos::-webkit-scrollbar { display: none; }
+  .photo {
+    width: 96px; height: 72px; border-radius: 8px; overflow: hidden; flex-shrink: 0;
+    border: 1px solid var(--border-lightest); position: relative;
+    padding: 0; background: none; scroll-snap-align: start;
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .photo:active { transform: scale(.96); }
+  .photo svg { width: 100%; height: 100%; display: block; }
+
+  /* jobs: full ticket cards, scrollable */
+  .ticket-scroll { scroll-snap-type: y proximity; }
+  .ticket-card {
+    border: 1.5px solid var(--border-lightest); border-radius: 12px;
+    background: #fff; padding: 20px 20px 16px; scroll-snap-align: start;
+    transition: border-color var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out);
+    animation: rise var(--dur-med) var(--ease-out) both;
+  }
+  .ticket-card:nth-child(2) { animation-delay: 40ms; }
+  .ticket-card:nth-child(3) { animation-delay: 80ms; }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .ticket-card + .ticket-card { margin-top: 14px; }
+  .ticket-card.selected { border-color: var(--action-blue); box-shadow: 0 0 0 1px var(--action-blue); }
+  .ticket-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .ticket-num {
+    width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 16px; color: #fff;
+  }
+  .ticket-head h2 { font-weight: 700; font-size: 19px; line-height: 25px; color: var(--text-darker); flex: 1; min-width: 0; }
+  .ticket-card .row { padding: 14px 0; }
+  .ticket-card .row .r-val { font-size: 17px; line-height: 24px; }
+  .ticket-card .slider { margin-top: 12px; height: 60px; }
+  .ticket-card .slider-handle { width: 46px; height: 46px; }
+
+  .jobs-count {
+    background: var(--brand-primary); color: #fff; border-radius: 999px;
+    font-weight: 600; font-size: 14px; padding: 4px 12px; flex-shrink: 0;
+  }
+  .badge {
+    border-radius: 4px; padding: 4px 9px; flex-shrink: 0;
+    font-weight: 600; font-size: 12px; line-height: 14px; color: #fff;
+  }
+
+  /* waiting */
+  /* standby: icon-first, minimal text (drivers = low literacy) — a clock, not a spinner: spinner reads as "loading/broken" */
+  .waiting { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100%; text-align: center; padding: 24px; }
+  .waiting .illus {
+    position: relative; width: 132px; height: 132px; border-radius: 50%; margin: 10px 0 22px;
+    background: linear-gradient(160deg, #FBEAEF, #F7F0F2); display: flex; align-items: center; justify-content: center;
+  }
+  .waiting .illus::before, .waiting .illus::after { content: ""; position: absolute; inset: -12px; border-radius: 50%; border: 2px solid rgba(138,21,56,.14); animation: pulse 2.4s ease-out infinite; }
+  .waiting .illus::after { inset: -24px; border-color: rgba(138,21,56,.07); animation-delay: .6s; }
+  @keyframes pulse { 0% { transform: scale(.94); opacity: 1; } 100% { transform: scale(1.06); opacity: .35; } }
+  .waiting .illus svg { width: 68px; height: 68px; stroke: var(--brand-primary); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .waiting h3 { font-weight: 700; font-size: 26px; line-height: 32px; color: var(--text-darker); margin-bottom: 8px; }
+  .waiting .bell { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; color: var(--text-light); }
+  .waiting .bell svg { width: 18px; height: 18px; stroke: var(--text-light); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .checkin-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #ECFDF3; border: 1.5px solid #ABEFC6; color: #067647;
+    border-radius: 999px; padding: 7px 14px 7px 9px; font-weight: 700; font-size: 14px;
+  }
+  .checkin-chip .chk { width: 20px; height: 20px; border-radius: 50%; background: var(--success); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .checkin-chip svg { width: 12px; height: 12px; stroke: #fff; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  @media (prefers-reduced-motion: reduce) { .waiting .illus::before, .waiting .illus::after { animation: none; } }
+
+  /* slider (blue, swipe-to-confirm) */
+  .slider {
+    position: relative; height: 68px; border-radius: 8px;
+    background: var(--brand-primary);
+    overflow: hidden; user-select: none; -webkit-user-select: none; touch-action: none; width: 100%;
+    transition: background var(--dur-med) var(--ease-out);
+  }
+  .slider-text {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-weight: 600; font-size: 18px; color: #fff; pointer-events: none; padding-left: 44px;
+  }
+  .slider-handle {
+    position: absolute; top: 7px; left: 7px; width: 54px; height: 54px;
+    border-radius: 6px; background: #fff;
+    box-shadow: 0 2px 8px rgba(16,24,40,.25);
+    display: flex; align-items: center; justify-content: center;
+    cursor: grab; z-index: 2; will-change: left;
+  }
+  .slider-handle:active { cursor: grabbing; }
+  .slider-handle svg { width: 24px; height: 24px; stroke: var(--brand-primary); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .slider.done { background: var(--success); }
+  .slider.done .slider-text { padding-left: 0; }
+
+  /* ── Map card ── */
+  .stage {
+    position: relative; flex: 1; min-width: 0; overflow: auto;
+    border: 1px solid var(--border-lightest); border-radius: var(--radius-card); background: #F2F3F4;
+    cursor: grab; -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
+    scrollbar-width: none;
+  }
+  .stage::-webkit-scrollbar { display: none; }
+  .stage.panning { cursor: grabbing; }
+  .map-inner { position: relative; width: 1700px; height: 1220px; }
+  .map { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+  .map-marker { position: absolute; transform: translate(-50%, -100%); z-index: 3; transition: opacity var(--dur-med) var(--ease-out), filter var(--dur-med) var(--ease-out); animation: drop var(--dur-med) var(--ease-out) both; }
+  @keyframes drop { from { opacity: 0; transform: translate(-50%, -130%); } to { opacity: 1; transform: translate(-50%, -100%); } }
+  .pin { position: relative; width: 46px; height: 58px; cursor: pointer; }
+  /* extend the tap area beyond the pin artwork (≥44×44 target) */
+  .pin::before { content: ''; position: absolute; inset: -8px -12px -6px; }
+  .pin svg { width: 100%; height: 100%; filter: drop-shadow(0 3px 6px rgba(16,24,40,.3)); }
+  .pin .pin-num {
+    position: absolute; top: 10px; left: 0; width: 46px; text-align: center;
+    font-weight: 700; font-size: 17px; color: #fff; pointer-events: none;
+  }
+  .map-marker .m-label {
+    position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+    background: #101828; color: #fff; border-radius: 6px;
+    padding: 6px 12px; font-weight: 600; font-size: 13px; white-space: nowrap;
+  }
+  .map-marker.dim { opacity: .35; filter: grayscale(.6); }
+  .map-marker .pin { transition: transform .2s var(--ease-out); transform-origin: bottom center; }
+  .map-marker.selected .pin { transform: scale(1.18); }
+
+  .marker-driver { position: absolute; transform: translate(-50%, -50%); z-index: 3; transition: left 1.2s ease, top 1.2s ease; }
+  .driver-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: #2970FF; border: 4px solid #fff;
+    box-shadow: 0 0 0 6px rgba(41,112,255,.22), 0 2px 8px rgba(16,24,40,.3);
+  }
+
+  /* floating "recenter" control (all sizes; essential on phones where the map is behind the sheet) */
+  .map-fab {
+    position: relative; z-index: 5; width: 48px; height: 48px; border-radius: 50%;
+    background: #fff; border: 1px solid var(--border-lightest);
+    box-shadow: 0 4px 12px rgba(16,24,40,.16);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+  }
+  .map-fab:active { transform: scale(.94); background: var(--neutral-lightest); }
+  .map-fab svg { width: 22px; height: 22px; stroke: var(--text-normal); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .map-fab-wrap { position: absolute; right: calc(var(--gutter) + 12px); top: calc(var(--gutter) + 12px); z-index: 5; }
+  .content { position: relative; }
+
+  .hidden { display: none !important; }
+
+  /* ═══════════════════════════════════════════════════════════
+     TABLET / SMALL LAPTOP (side-by-side, compacted)
+     ═══════════════════════════════════════════════════════════ */
+  @media (max-width: 1279px) {
+    :root { --rail-w: 84px; --panel-w: clamp(320px, 38vw, 420px); --gutter: 12px; }
+    .sidebar-logo { width: 52px; height: 54px; }
+    .fams-logo { width: 44px; height: 46px; }
+    .panel-wrap { padding: 22px 18px 16px; }
+    .panel-title h1 { font-size: 23px; line-height: 29px; }
+    .row { gap: 14px; padding: 16px 4px; }
+    .row .r-val { font-size: 17px; line-height: 24px; }
+    .ticket-card { padding: 16px 16px 14px; }
+    .veh-icon { width: 72px; height: 44px; }
+    .veh-name { font-size: 20px; line-height: 26px; }
+    .veh-id { font-size: 14px; line-height: 20px; }
+    .nav-link { min-height: 44px; padding: 0 16px; font-size: 15px; }
+  }
+  /* landscape phones: keep side layout but shrink the rail to a 56px strip */
+  @media (max-width: 899px) and (orientation: landscape) and (max-height: 520px) {
+    :root { --rail-w: 64px; --panel-w: clamp(300px, 44vw, 380px); --gutter: 8px; }
+    .sidebar { padding-top: calc(10px + var(--safe-top)); padding-bottom: calc(10px + var(--safe-bottom)); }
+    .sidebar-logo { width: 40px; height: 41px; }
+    .sidebar-nav { gap: 10px; }
+    .nav-btn { width: 44px; height: 44px; }
+    .nav-btn img { width: 22px; height: 22px; }
+    .fams-logo { display: none; }
+    .panel-wrap { padding: 12px 14px 10px; }
+    .panel-title h1 { font-size: 19px; line-height: 24px; }
+    .panel-sub { font-size: 14px; line-height: 20px; margin-bottom: 4px; }
+    .row { padding: 10px 2px; }
+    .slider { height: 56px; }
+    .slider-handle { width: 42px; height: 42px; top: 7px; }
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     PHONE / PORTRAIT TABLET → top bar + map + bottom sheet
+     (query string mirrored in JS as MOBILE_MQ)
+     ═══════════════════════════════════════════════════════════ */
+  @media (max-width: 639px), (max-width: 899px) and (orientation: portrait) {
+    :root { --gutter: 0px; }
+    .screen { flex-direction: column; }
+    .topbar {
+      padding: 8px calc(12px + var(--safe-right)) 8px calc(12px + var(--safe-left)); gap: 10px;
+      border-bottom: 1px solid var(--border-lightest); background: #fff;
+    }
+    .veh { gap: 10px; }
+    .veh-icon { width: 52px; height: 32px; }
+    .veh-name { font-size: 16px; line-height: 20px; }
+    .veh-id { font-size: 13px; line-height: 16px; }
+    .veh-meta { display: none; }
+    .insp { gap: 10px; }
+    .insp-avatar { width: 44px; height: 44px; font-size: 15px; }
+    .insp-name .veh-name { font-size: 16px; line-height: 20px; }
+    .insp-phone { display: none; } /* the call button is the affordance on phones */
+    .insp-call { width: 44px; height: 44px; border-radius: 12px; } .insp-call svg { width: 20px; height: 20px; }
+    .nav-link { min-width: 44px; height: 44px; min-height: 44px; padding: 0 12px; font-size: 15px; gap: 8px; }
+    .nav-link .long { display: none; } .nav-link .short { display: inline; }
+    .btn-primary { height: 60px; } .btn-primary .ic { width: 46px; height: 46px; } .btn-primary .lbl { padding-right: 46px; }
+
+    /* rail → top app bar */
+    .sidebar {
+      width: 100%; flex-direction: row; justify-content: space-between; align-items: center;
+      height: auto; padding: calc(8px + var(--safe-top)) calc(16px + var(--safe-right)) 8px calc(16px + var(--safe-left));
+      box-shadow: 0 2px 8px rgba(16,24,40,.18);
+    }
+    .sidebar-logo { width: 40px; height: 41px; }
+    .sidebar-nav { flex-direction: row; gap: 10px; }
+    .nav-btn { width: 44px; height: 44px; }
+    .nav-btn img { width: 22px; height: 22px; }
+    .fams-logo { width: 34px; height: 36px; margin: 0 0 0 4px; }
+
+    /* map fills everything under the bar */
+    .content { display: block; padding: 0; flex: 1; min-height: 0; position: relative; }
+    .stage { position: absolute; inset: 0; border: 0; border-radius: 0; }
+    .map-fab-wrap { right: calc(12px + var(--safe-right)); top: 12px; }
+
+    /* bottom sheet */
+    .panel-wrap {
+      position: absolute; left: 0; right: 0; bottom: 0; width: auto;
+      padding: 0; background: transparent; border: 0; border-radius: 0;
+      overflow: visible; z-index: 20; pointer-events: none;
+    }
+    .panel {
+      pointer-events: auto; background: #fff; flex: none;
+      height: var(--sheet-h, 70dvh);
+      border-radius: 18px 18px 0 0;
+      box-shadow: 0 -10px 36px rgba(16,24,40,.22);
+      padding: 0 20px 12px;
+      transform: translate3d(0, var(--sheet-ty, 0px), 0);
+      transition: transform var(--dur-sheet) var(--ease-sheet);
+      will-change: transform;
+    }
+    .panel.dragging { transition: none; }
+    .sheet-grip {
+      display: flex; justify-content: center; align-items: center;
+      height: 28px; margin: 0 -20px; touch-action: none; cursor: grab; flex-shrink: 0;
+    }
+    .sheet-grip span { width: 44px; height: 5px; border-radius: 3px; background: var(--neutral-300); transition: background var(--dur-fast); }
+    .panel.dragging .sheet-grip span { background: var(--neutral-400); }
+    .panel-head { touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }
+    .panel-title { margin-bottom: 4px; }
+    .panel-title h1 { font-size: 21px; line-height: 27px; }
+    .panel-sub { font-size: 14px; line-height: 20px; margin-bottom: 8px; }
+    .panel-body { margin: 0 -4px; padding: 4px; }
+    .panel-body.locked { overflow: hidden; }
+
+    /* primary CTA lives in a fixed bar under the sheet: always reachable */
+    .panel-footer {
+      pointer-events: auto; margin: 0; background: #fff; position: relative; z-index: 2;
+      padding: 12px calc(16px + var(--safe-right)) calc(12px + var(--safe-bottom)) calc(16px + var(--safe-left));
+      border-top: 1px solid var(--border-lightest);
+    }
+    .slider { height: 60px; }
+    .slider-handle { width: 46px; height: 46px; top: 7px; }
+    .slider-text { font-size: 17px; }
+
+    .row { gap: 14px; padding: 14px 2px; }
+    .row .r-icon { width: 34px; height: 34px; }
+    .row .r-icon svg { width: 26px; height: 26px; }
+    .row .r-val { font-size: 17px; line-height: 24px; }
+    .row .r-key { font-size: 14px; }
+    .ticket-card { padding: 16px 14px 14px; }
+    .ticket-head h2 { font-size: 17px; line-height: 23px; }
+    .waiting { padding: 20px 16px 16px; justify-content: flex-start; min-height: 0; }
+  }
+  @media (max-width: 380px) {
+    .panel { padding: 0 14px 10px; }
+    .sheet-grip { margin: 0 -14px; }
+    .panel-title h1 { font-size: 19px; line-height: 25px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+    .marker-driver { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="screen">
+  <aside class="sidebar">
+    <div class="sidebar-logo"><img src="assets/tadweer-driver-home/logo.svg" alt="Tadweer" /></div>
+    <nav class="sidebar-nav" aria-label="Driver actions">
+      <button class="nav-btn" title="Alerts" aria-label="Alerts"><img src="assets/tadweer-driver-home/alert-octagon.svg" alt="" /></button>
+      <a class="nav-btn" href="tadweer-driver-login.html" title="Log out" aria-label="Log out"><img src="assets/tadweer-driver-home/logout.svg" alt="" /></a>
+      <div class="fams-logo"><img src="assets/tadweer-driver-home/fams-logo.svg" alt="FAMS" /></div>
+    </nav>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <!-- standby: inspector is the driver's primary contact — shown instead of the vehicle -->
+      <div class="insp hidden" id="inspBlock">
+        <div class="insp-avatar" aria-hidden="true">SW</div>
+        <div style="min-width:0">
+          <div class="insp-name">
+            <div class="veh-name">Saim Bin Wali</div>
+            <span class="insp-phone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>+974 55 789 0123</span>
+          </div>
+          <div class="veh-id">Inspector</div>
+        </div>
+        <a class="insp-call" href="tel:+974557890123" aria-label="Call inspector Saim Bin Wali">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+        </a>
+      </div>
+      <div class="veh" id="vehBlock">
+        <div class="veh-icon" aria-hidden="true">
+          <svg viewBox="0 0 96 56" fill="none" stroke-linejoin="round" stroke-linecap="round">
+            <rect x="26" y="8" width="62" height="28" rx="14" fill="#DCE3EA" stroke="#8B9AAB" stroke-width="2"/>
+            <path d="M40 8v28M56 8v28M72 8v28" stroke="#B4C0CC" stroke-width="2"/>
+            <path d="M8 22h18v16H8z" fill="#EEF2F5" stroke="#8B9AAB" stroke-width="2"/>
+            <path d="M12 22l4-8h10v8" fill="#fff" stroke="#8B9AAB" stroke-width="2"/>
+            <path d="M6 38h84v6H6z" fill="#8B9AAB"/>
+            <circle cx="18" cy="46" r="7" fill="#344054"/><circle cx="18" cy="46" r="3" fill="#fff"/>
+            <circle cx="64" cy="46" r="7" fill="#344054"/><circle cx="64" cy="46" r="3" fill="#fff"/>
+            <circle cx="80" cy="46" r="7" fill="#344054"/><circle cx="80" cy="46" r="3" fill="#fff"/>
+          </svg>
+        </div>
+        <div style="min-width:0">
+          <div class="veh-name">Vacuum Tanker 30 CBM</div>
+          <div class="veh-id">Vehicle ID #987619870</div>
+        </div>
+        <div class="veh-meta">
+          <span class="veh-chip ok"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Checklist done</span>
+          <span class="veh-chip"><svg viewBox="0 0 24 24"><path d="M8 3h8l2 4v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V7l2-4z"/><path d="M6 13h12"/></svg>Tank 10%</span>
+        </div>
+      </div>
+      <button class="nav-link" id="navLink" type="button">
+        <svg viewBox="0 0 24 24"><path d="M3 21V10l9-6 9 6v11"/><path d="M9 21v-7h6v7"/></svg>
+        <span class="long">Go to Assembly Point</span><span class="short">Assembly</span>
+      </button>
+    </header>
+
+  <div class="content">
+    <!-- ── Left panel / bottom sheet ── -->
+    <div class="panel-wrap" id="panelWrap">
+      <div class="panel" id="panel" role="region" aria-label="Job panel">
+        <div class="sheet-grip" id="sheetGrip" aria-hidden="true"><span></span></div>
+
+        <div class="panel-head" id="panelHead">
+          <!-- STATE 1: go to assembly -->
+          <div class="panel-state" id="assemblyState">
+            <div class="panel-title"><h1>Go to Your Assembly Point</h1></div>
+            <div class="steps" aria-hidden="true"><span class="on" id="step1"></span><span id="step2"></span></div>
+            <p class="panel-sub center" id="assemblySub">Slide to start heading to your assembly point.</p>
+          </div>
+          <!-- STATE 1.5: waiting -->
+          <div class="panel-state hidden" id="waitingHead">
+            <div class="panel-title"><h1>Checked In</h1></div>
+            <p class="panel-sub">You are at the assembly point.</p>
+          </div>
+          <!-- STATE 2: job list -->
+          <div class="panel-state hidden" id="jobsHead">
+            <div class="panel-title"><h1>New Jobs</h1><span class="jobs-count" id="jobsCount">3</span></div>
+            <p class="panel-sub">Scroll to browse your assigned jobs.</p>
+          </div>
+          <!-- STATE 4: started -->
+          <div class="panel-state hidden" id="startedHead">
+            <div class="panel-title"><h1 id="sTitle">Job Started</h1></div>
+            <p class="panel-sub">Navigate to the site. Progress is tracked automatically.</p>
+          </div>
+        </div>
+
+        <div class="panel-body" id="assemblyBody">
+          <div class="row">
+            <div class="r-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>
+              <div class="r-val">Assembly Point A · Zone 38</div>
+              <div class="r-key">Al Saad, Doha</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="r-icon"><svg viewBox="0 0 24 24"><path d="M8 3h8l2 4v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V7l2-4z"/><path d="M6 13h12"/></svg></div>
+            <div>
+              <div class="r-val">10% · 1,000 / 10,000 L</div>
+              <div class="r-key">Tanker Fill Level · 9,000 L available</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="r-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            <div>
+              <div class="r-val">06:00 AM – 02:00 PM</div>
+              <div class="r-key">Shift Timings</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-body hidden" id="waitingBody">
+          <div class="waiting" role="status" aria-live="polite">
+            <div class="checkin-chip"><span class="chk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>At assembly point · 6:12 AM</div>
+            <div class="illus" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+            <h3>Wait here</h3>
+            <div class="bell"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>You will start getting jobs soon</div>
+          </div>
+        </div>
+
+        <div class="panel-body ticket-scroll hidden" id="jobsBody"><div id="jobList"></div></div>
+
+        <div class="panel-body hidden" id="startedBody">
+          <div class="row">
+            <div class="r-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>
+              <div class="r-val" id="sArea"></div>
+              <div class="r-key" id="sOnwani"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="r-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            <div>
+              <div class="r-val" id="sEta"></div>
+              <div class="r-key">Estimated arrival</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-footer" id="panelFooter">
+        <div class="slider" id="arriveSlider">
+          <div class="slider-text">Slide to Start</div>
+          <div class="slider-handle"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </div>
+        <button class="btn-primary hidden" id="reachedBtn">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="lbl">Assembly Point Reached</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Map card ── -->
+    <div class="stage" id="stage">
+      <div class="map-inner">
+      <svg class="map" viewBox="0 0 1400 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1400" height="1000" fill="#F2F3F4"/>
+        <g fill="#E9EAEC">
+          <rect x="60" y="60" width="280" height="200" rx="10"/>
+          <rect x="410" y="80" width="240" height="170" rx="10"/>
+          <rect x="720" y="60" width="220" height="150" rx="10"/>
+          <rect x="80" y="360" width="220" height="190" rx="10"/>
+          <rect x="370" y="340" width="280" height="210" rx="10"/>
+          <rect x="440" y="680" width="270" height="190" rx="10"/>
+          <rect x="790" y="660" width="320" height="200" rx="10"/>
+          <rect x="1160" y="600" width="200" height="260" rx="10"/>
+          <rect x="1080" y="80" width="280" height="190" rx="10"/>
+          <rect x="770" y="450" width="190" height="130" rx="10"/>
+        </g>
+        <g fill="#DFE9E0">
+          <rect x="1000" y="350" width="150" height="150" rx="12"/>
+          <rect x="150" y="660" width="210" height="180" rx="12"/>
+        </g>
+        <path d="M1210 0 L1400 0 L1400 320 C1330 350 1260 280 1250 200 C1240 130 1225 60 1210 0 Z" fill="#D8E9F5"/>
+        <g stroke="#FFFFFF" fill="none" stroke-linecap="round">
+          <path d="M0 310 H1400" stroke-width="26"/>
+          <path d="M0 620 H1400" stroke-width="22"/>
+          <path d="M350 0 V1000" stroke-width="26"/>
+          <path d="M690 0 V1000" stroke-width="18"/>
+          <path d="M980 0 V1000" stroke-width="22"/>
+          <path d="M0 140 H1190" stroke-width="12"/>
+          <path d="M1140 310 C1190 400 1230 460 1330 510 L1400 545" stroke-width="14"/>
+          <path d="M120 790 H1400" stroke-width="12"/>
+          <path d="M0 480 H690" stroke-width="10"/>
+        </g>
+        <g font-family="Gilroy, sans-serif" font-size="17" font-weight="600" fill="#98A2B3">
+          <text x="760" y="300">Street 850</text>
+          <text x="110" y="610">Al Saad St</text>
+          <text x="988" y="700" transform="rotate(90 988 700)">Zone 38 Rd</text>
+          <text x="360" y="120" transform="rotate(90 360 120)">Salwa Rd</text>
+        </g>
+        <polygon id="zonePoly" points="" fill="rgba(105,65,198,.18)" stroke="#7A5AF8" stroke-width="4" style="display:none"/>
+        <path id="routePath" d="M690 760 L690 310 L950 310 L950 280 L976 280"
+              fill="none" stroke="#7A5AF8" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"
+              stroke-dasharray="18 14">
+          <animate attributeName="stroke-dashoffset" from="32" to="0" dur="1s" repeatCount="indefinite"/>
+        </path>
+      </svg>
+
+      <div class="marker-driver" id="driverMarker" style="left:49%; top:76%"><div class="driver-dot"></div></div>
+
+      <div class="map-marker" id="assemblyMarker" style="left:70%; top:28%">
+        <div class="m-label">Assembly Point A</div>
+        <div class="poi" role="img" aria-label="Assembly Point A">
+          <svg viewBox="0 0 44 58"><path d="M6 0h32a6 6 0 0 1 6 6v32a6 6 0 0 1-6 6H29l-7 10-7-10H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6z" fill="#0F4C3A" stroke="#fff" stroke-width="2"/><path d="M13 30V19l9-6 9 6v11z" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/><path d="M17 30v-7h10v7M17 26h10" stroke="#fff" stroke-width="2" fill="none"/></svg>
+          <span class="poi-dot" style="background:#0F4C3A"></span>
+        </div>
+      </div>
+      <div class="map-marker" id="dischargeMarker" style="left:26%; top:24%">
+        <div class="m-label">Discharge Station B</div>
+        <div class="poi" role="img" aria-label="Discharge Station B">
+          <svg viewBox="0 0 44 58"><path d="M6 0h32a6 6 0 0 1 6 6v32a6 6 0 0 1-6 6H29l-7 10-7-10H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6z" fill="#1570EF" stroke="#fff" stroke-width="2"/><path d="M22 9c-4 6-8 10-8 15a8 8 0 0 0 16 0c0-5-4-9-8-15z" fill="#fff"/></svg>
+          <span class="poi-dot" style="background:#1570EF"></span>
+        </div>
+      </div>
+
+      <div id="jobMarkers"></div>
+      </div>
+    </div>
+
+    <div class="map-fab-wrap">
+      <button class="map-fab" id="recenterBtn" aria-label="Recenter map on my position">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg>
+      </button>
+    </div>
+  </div>
+  </div>
+</div>
+
+<script>
+  const JOB_HEX = { Low: '#12B76A', Medium: '#F79009', High: '#F04438' };
+  const MOBILE_MQ = '(max-width: 639px), (max-width: 899px) and (orientation: portrait)';
+  const mobileMQ = window.matchMedia(MOBILE_MQ);
+  const isMobile = () => mobileMQ.matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const vh = () => document.documentElement.clientHeight || window.innerHeight;
+
+  const PHOTO_SCENES = [
+    `<svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="72" fill="#C9D6DF"/><rect y="44" width="96" height="28" fill="#5B7A99"/><ellipse cx="48" cy="58" rx="40" ry="10" fill="#7FA6C9"/><rect x="8" y="14" width="22" height="30" fill="#9AA8B5"/><rect x="64" y="10" width="24" height="34" fill="#8795A3"/></svg>`,
+    `<svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="72" fill="#BFCBD6"/><rect y="38" width="96" height="34" fill="#4E6E8E"/><ellipse cx="30" cy="55" rx="26" ry="9" fill="#6E96BA"/><ellipse cx="72" cy="60" rx="20" ry="7" fill="#7FA6C9"/><rect x="40" y="8" width="30" height="30" fill="#93A2B0"/></svg>`,
+    `<svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="72" fill="#CBD5DE"/><rect y="50" width="96" height="22" fill="#587A9B"/><ellipse cx="56" cy="60" rx="34" ry="8" fill="#7FA6C9"/><rect x="12" y="12" width="18" height="38" fill="#8E9CAA"/><rect x="70" y="16" width="16" height="34" fill="#9AA8B5"/></svg>`
+  ];
+
+  const JOBS = [
+    { id: 1, title: 'Rain Water Removal', priority: 'High',
+      area: 'Al Saad · Zone 38', onwani: 'Onwani 3821 · Street 850 · Bldg 14',
+      gps: '25.2843,51.5262', depth: '0.8 m', volume: '12,000 L', dist: '2.1 km', eta: '6 min',
+      inspector: 'Khalid Al Marri', phone: '+974 5512 3388', photos: 3, x: 56, y: 18,
+      zone: '640,120 840,120 860,260 660,270' },
+    { id: 2, title: 'Rain Water Removal', priority: 'Medium',
+      area: 'Al Saad · Zone 38', onwani: 'Onwani 3866 · Street 862 · Bldg 3',
+      gps: '25.2791,51.5330', depth: '0.5 m', volume: '8,000 L', dist: '3.4 km', eta: '9 min',
+      inspector: 'Mariam Al Kuwari', phone: '+974 5599 7714', photos: 2, x: 84, y: 52,
+      zone: '1060,430 1330,430 1330,590 1080,600' },
+    { id: 3, title: 'Water Collection', priority: 'Low',
+      area: 'Al Muntazah · Zone 37', onwani: 'Onwani 3710 · Street 910 · Bldg 22',
+      gps: '25.2712,51.5188', depth: '0.3 m', volume: '5,000 L', dist: '4.8 km', eta: '13 min',
+      inspector: 'Yousef Hassan', phone: '+974 5533 2160', photos: 3, x: 30, y: 52,
+      zone: '300,420 560,410 570,580 320,590' },
+  ];
+  let selectedJob = null;
+
+  const $ = (id) => document.getElementById(id);
+  const show = (id) => $(id).classList.remove('hidden');
+  const hide = (id) => $(id).classList.add('hidden');
+
+  /* ───────────────────────── MAP: pan + recenter ───────────────────────── */
+  const stage = $('stage');
+  const mapInner = stage.querySelector('.map-inner');
+  const driverMarker = $('driverMarker');
+
+  /* scroll the map so a point (given as % of the map) sits in the visible area
+     — on phones, "visible" excludes the part covered by the sheet */
+  function centerMapOn(pctX, pctY, smooth) {
+    const visibleH = stage.clientHeight - (isMobile() ? Sheet.visibleHeight() + $('panelFooter').offsetHeight : 0);
+    const x = mapInner.offsetWidth * pctX / 100 - stage.clientWidth / 2;
+    const y = mapInner.offsetHeight * pctY / 100 - Math.max(visibleH, 120) / 2;
+    stage.scrollTo({ left: x, top: y, behavior: smooth && !reduceMotion ? 'smooth' : 'auto' });
+  }
+  function centerOnDriver(smooth) {
+    centerMapOn(parseFloat(driverMarker.style.left), parseFloat(driverMarker.style.top), smooth);
+  }
+  $('recenterBtn').addEventListener('click', () => centerOnDriver(true));
+
+  (function () {
+    let panning = false, sx = 0, sy = 0, sl = 0, st = 0;
+    stage.addEventListener('mousedown', (e) => {
+      if (e.target.closest('.pin')) return;
+      panning = true;
+      sx = e.clientX; sy = e.clientY; sl = stage.scrollLeft; st = stage.scrollTop;
+      stage.classList.add('panning');
+      e.preventDefault();
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!panning) return;
+      stage.scrollLeft = sl - (e.clientX - sx);
+      stage.scrollTop = st - (e.clientY - sy);
+    });
+    window.addEventListener('mouseup', () => { panning = false; stage.classList.remove('panning'); });
+  })();
+
+  /* ───────────────────────── BOTTOM SHEET (phones / portrait tablets) ───────────────────────── */
+  const Sheet = (function () {
+    const panel = $('panel'), grip = $('sheetGrip'), head = $('panelHead'), footer = $('panelFooter'), wrap = $('panelWrap');
+    let snap = 'peek';           // 'peek' | 'half' | 'full'
+    let sheetH = 0, ty = 0;
+    let dragging = false, startY = 0, startTy = 0, lastY = 0, lastT = 0, velocity = 0, moved = false, bodyEl = null;
+
+    function activeBody() { return panel.querySelector('.panel-body:not(.hidden)'); }
+    function footerH() { return footer.classList.contains('hidden') ? 0 : footer.offsetHeight; }
+    function peekH() { return grip.offsetHeight + head.offsetHeight + 8; }
+    function halfH() { return Math.min(sheetH, Math.max(peekH() + 140, Math.round(vh() * 0.48))); }
+    function targetVisible(s) { return s === 'full' ? sheetH : s === 'half' ? halfH() : peekH(); }
+
+    function measure() {
+      if (!isMobile()) {
+        panel.style.height = ''; panel.style.setProperty('--sheet-ty', '0px'); panel.style.removeProperty('--sheet-h');
+        panel.querySelectorAll('.panel-body').forEach(b => b.classList.remove('locked'));
+        return;
+      }
+      const top = document.querySelector('.content').getBoundingClientRect().top;
+      sheetH = Math.max(240, vh() - top - 8 - footerH());
+      panel.style.setProperty('--sheet-h', sheetH + 'px');
+      apply(targetVisible(snap), false);
+    }
+    function setTy(v) {
+      ty = Math.max(0, Math.min(sheetH - peekH(), v));
+      panel.style.setProperty('--sheet-ty', ty + 'px');
+    }
+    function apply(visibleH, animate) {
+      if (!animate) panel.classList.add('dragging');
+      setTy(sheetH - visibleH);
+      if (!animate) requestAnimationFrame(() => panel.classList.remove('dragging'));
+      const full = visibleH >= sheetH - 2;
+      panel.querySelectorAll('.panel-body').forEach(b => b.classList.toggle('locked', !full));
+      panel.setAttribute('aria-expanded', String(full));
+    }
+    function goTo(s, animate = true) {
+      snap = s;
+      if (!isMobile()) return;
+      apply(targetVisible(s), animate);
+    }
+    function visibleHeight() { return isMobile() ? sheetH - ty : 0; }
+    function isFull() { return snap === 'full' && !dragging; }
+
+    /* drag */
+    function onStart(e, fromBody) {
+      if (!isMobile()) return;
+      if (e.target.closest('.slider, .photos, a, button')) return;
+      bodyEl = fromBody ? activeBody() : null;
+      dragging = true; moved = false;
+      startY = lastY = e.touches ? e.touches[0].clientY : e.clientY;
+      startTy = ty; lastT = performance.now(); velocity = 0;
+    }
+    function onMove(e) {
+      if (!dragging) return;
+      const y = e.touches ? e.touches[0].clientY : e.clientY;
+      const dy = y - startY;
+      /* body: let it scroll natively when the sheet is fully open and not at the top pulling down */
+      if (bodyEl && snap === 'full' && !moved) {
+        if (!(bodyEl.scrollTop <= 0 && dy > 0)) { dragging = false; return; }
+      }
+      if (Math.abs(dy) > 4 && !moved) { moved = true; panel.classList.add('dragging'); }
+      if (!moved) return;
+      const now = performance.now();
+      velocity = (y - lastY) / Math.max(1, now - lastT);
+      lastY = y; lastT = now;
+      setTy(startTy + dy);
+      if (e.cancelable) e.preventDefault();
+    }
+    function onEnd() {
+      if (!dragging) return;
+      dragging = false;
+      if (!moved) return;
+      panel.classList.remove('dragging');
+      const visible = sheetH - ty;
+      const stops = ['peek', 'half', 'full'];
+      const heights = stops.map(targetVisible);
+      let target;
+      if (Math.abs(velocity) > 0.5) {
+        /* fling: next stop in the direction of travel */
+        const idx = stops.indexOf(snap);
+        const cur = stops.reduce((best, s, i) => Math.abs(heights[i] - visible) < Math.abs(heights[best] - visible) ? i : best, idx);
+        target = stops[Math.max(0, Math.min(2, cur + (velocity < 0 ? 1 : -1)))];
+      } else {
+        target = stops.reduce((best, s, i) => Math.abs(heights[i] - visible) < Math.abs(targetVisible(best) - visible) ? s : best, 'peek');
+      }
+      goTo(target);
+    }
+    [grip, head].forEach(el => {
+      el.addEventListener('touchstart', (e) => onStart(e, false), { passive: true });
+      el.addEventListener('mousedown', (e) => { onStart(e, false); e.preventDefault(); });
+    });
+    panel.addEventListener('touchstart', (e) => { if (e.target.closest('.panel-body')) onStart(e, true); }, { passive: true });
+    panel.addEventListener('touchmove', onMove, { passive: false });
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('touchend', onEnd); window.addEventListener('touchcancel', onEnd); window.addEventListener('mouseup', onEnd);
+    /* tap on grip/header toggles */
+    grip.addEventListener('click', () => { if (!moved) goTo(snap === 'peek' ? 'half' : snap === 'half' ? 'full' : 'peek'); });
+
+    /* keyboard access for the sheet */
+    panel.setAttribute('tabindex', '-1');
+    panel.addEventListener('keydown', (e) => {
+      if (!isMobile()) return;
+      if (e.key === 'ArrowUp') { goTo(snap === 'peek' ? 'half' : 'full'); e.preventDefault(); }
+      if (e.key === 'ArrowDown') { goTo(snap === 'full' ? 'half' : 'peek'); e.preventDefault(); }
+    });
+
+    /* re-measure on any header/footer size change */
+    const ro = new ResizeObserver(() => measure());
+    ro.observe(head); ro.observe(footer); ro.observe(document.querySelector('.sidebar')); ro.observe(document.querySelector('.topbar'));
+    window.addEventListener('resize', measure);
+    mobileMQ.addEventListener ? mobileMQ.addEventListener('change', measure) : mobileMQ.addListener(measure);
+    measure();
+
+    return { goTo, measure, visibleHeight, isFull, get snap() { return snap; } };
+  })();
+
+  /* ───────────────────────── swipe-to-confirm ───────────────────────── */
+  function initSlider(el, onComplete) {
+    const handle = el.querySelector('.slider-handle');
+    const text = el.querySelector('.slider-text');
+    const pad = 7;
+    let dragging = false, startX = 0, pos = 0, max = 0;
+    const setPos = (x) => {
+      pos = Math.max(0, Math.min(x, max));
+      handle.style.left = (pad + pos) + 'px';
+      text.style.opacity = Math.max(0, 1 - (pos / max) * 1.2);
+    };
+    el.reset = () => { el.classList.remove('done'); handle.style.display = ''; setPos(0); text.style.opacity = 1; };
+    const onStart = (e) => {
+      if (el.classList.contains('done')) return;
+      dragging = true;
+      max = el.clientWidth - handle.offsetWidth - pad * 2;
+      startX = (e.touches ? e.touches[0] : e).clientX - pos;
+      e.preventDefault();
+    };
+    const onMove = (e) => {
+      if (!dragging) return;
+      setPos(((e.touches ? e.touches[0] : e).clientX) - startX);
+      if (e.cancelable) e.preventDefault();
+    };
+    const onEnd = () => {
+      if (!dragging) return;
+      dragging = false;
+      if (pos >= max * 0.9) {
+        setPos(max);
+        el.classList.add('done');
+        handle.style.display = 'none';
+        text.style.opacity = 1;
+        if (navigator.vibrate) navigator.vibrate(12);
+        onComplete();
+      } else {
+        handle.style.transition = 'left .25s cubic-bezier(.22,1,.36,1)';
+        setPos(0);
+        setTimeout(() => { handle.style.transition = ''; }, 260);
+      }
+    };
+    handle.addEventListener('mousedown', onStart);
+    handle.addEventListener('touchstart', onStart, { passive: false });
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('touchmove', onMove, { passive: false });
+    window.addEventListener('mouseup', onEnd);
+    window.addEventListener('touchend', onEnd);
+    window.addEventListener('touchcancel', onEnd);
+  }
+
+  /* ───────────────────────── State 1 → waiting → jobs ───────────────────────── */
+  initSlider($('arriveSlider'), () => {
+    document.querySelector('#arriveSlider .slider-text').textContent = 'Navigation started';
+    setTimeout(() => {
+      hide('arriveSlider'); show('reachedBtn');
+      $('assemblySub').textContent = 'Heading towards the assembly point';
+      $('step1').classList.add('on');
+      Sheet.goTo('peek');
+      setTimeout(() => centerOnDriver(true), 50);
+    }, 700);
+  });
+  /* header shortcut: focus the assembly-point step (in-app, not external navigation) */
+  $('navLink').addEventListener('click', () => {
+    const m = $('assemblyMarker');
+    centerMapOn(parseFloat(m.style.left), parseFloat(m.style.top), true);
+    if (isMobile()) Sheet.goTo('half');
+    else { const w = $('panelWrap'); w.classList.add('flash'); setTimeout(() => w.classList.remove('flash'), 900); }
+    if (navigator.vibrate) navigator.vibrate(8);
+  });
+  $('reachedBtn').addEventListener('click', () => {
+    $('step2').classList.add('on');
+    setTimeout(() => {
+      hide('assemblyState'); hide('assemblyBody'); hide('panelFooter'); hide('navLink');
+      hide('vehBlock'); show('inspBlock'); /* standby: inspector replaces vehicle in the top bar */
+      $('routePath').style.display = 'none';
+      driverMarker.style.left = '70%'; driverMarker.style.top = '30%';
+      show('waitingHead'); show('waitingBody');
+      Sheet.goTo('half');
+      setTimeout(() => centerOnDriver(true), 50);
+      setTimeout(assignJobs, 3000);
+    }, 900);
+  });
+
+  function assignJobs() {
+    hide('waitingHead'); hide('waitingBody');
+    hide('inspBlock'); show('vehBlock'); /* jobs assigned: vehicle info matters again */
+    show('jobsHead'); show('jobsBody');
+    Sheet.goTo('half');
+
+    const wrap = $('jobMarkers');
+    JOBS.forEach((j, i) => {
+      setTimeout(() => {
+        const m = document.createElement('div');
+        m.className = 'map-marker';
+        m.id = 'jobMarker' + j.id;
+        m.style.left = j.x + '%';
+        m.style.top = j.y + '%';
+        m.innerHTML = `
+          <div class="pin" role="button" tabindex="0" aria-label="Job ${j.id}: ${j.title}, ${j.priority} priority">
+            <svg viewBox="0 0 44 56"><path d="M22 0C9.85 0 0 9.85 0 22c0 15.5 22 34 22 34s22-18.5 22-34C44 9.85 34.15 0 22 0z" fill="${JOB_HEX[j.priority]}"/><circle cx="22" cy="21" r="13" fill="rgba(255,255,255,.28)"/></svg>
+            <div class="pin-num">${j.id}</div>
+          </div>`;
+        const pick = () => focusTicket(j.id, true);
+        m.addEventListener('click', pick);
+        m.querySelector('.pin').addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+        wrap.appendChild(m);
+      }, 250 * i);
+    });
+
+    $('jobList').innerHTML = JOBS.map(j => `
+      <div class="ticket-card" id="ticket${j.id}" data-id="${j.id}">
+        <div class="ticket-head">
+          <div class="ticket-num" style="background:${JOB_HEX[j.priority]}">${j.id}</div>
+          <h2>${j.title} · #${1200 + j.id}</h2>
+          <span class="badge" style="background:${JOB_HEX[j.priority]}">${j.priority}</span>
+        </div>
+        <div class="row">
+          <div class="r-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div>
+            <div class="r-val">${j.area}</div>
+            <div class="r-key">Area · ${j.dist} · ${j.eta}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="r-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg></div>
+          <div>
+            <div class="r-val">${j.onwani}</div>
+            <div class="r-key">Onwani Address</div>
+            <a class="r-link" href="https://www.google.com/maps/search/?api=1&query=${j.gps}" target="_blank" rel="noopener">
+              Open in Google Maps
+              <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="r-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7l1.5-3h5L16 7"/><circle cx="12" cy="13" r="3.5"/></svg></div>
+          <div>
+            <div class="r-val">Complaint Photos (${j.photos})</div>
+            <div class="photos">${PHOTO_SCENES.slice(0, j.photos).map((svg, i) =>
+              `<button class="photo" aria-label="Complaint photo ${i + 1}">${svg}</button>`).join('')}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="r-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg></div>
+          <div>
+            <div class="r-val">${j.inspector}</div>
+            <div class="r-key">Inspector · ${j.phone}</div>
+          </div>
+          <a class="call-btn r-side" href="tel:${j.phone.replace(/ /g, '')}" aria-label="Call ${j.inspector}">
+            <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .8 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.7 2.9.8a2 2 0 0 1 1.6 2z"/></svg>
+          </a>
+        </div>
+        <div class="slider" id="startSlider${j.id}">
+          <div class="slider-text">Slide to Start</div>
+          <div class="slider-handle"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </div>
+      </div>`).join('');
+
+    JOBS.forEach(j => initSlider($('startSlider' + j.id), () => startJob(j.id)));
+
+    const body = $('jobsBody');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => { if (en.isIntersecting && en.intersectionRatio > 0.6) focusTicket(+en.target.dataset.id, false); });
+    }, { root: body, threshold: [0.65] });
+    JOBS.forEach(j => io.observe($('ticket' + j.id)));
+  }
+
+  function focusTicket(id, fromMap) {
+    selectedJob = JOBS.find(j => j.id === id);
+    JOBS.forEach(o => {
+      const c = $('ticket' + o.id);
+      if (c) c.classList.toggle('selected', o.id === id);
+      const m = $('jobMarker' + o.id);
+      if (m) { m.classList.toggle('selected', o.id === id); m.classList.toggle('dim', o.id !== id); }
+    });
+    const poly = $('zonePoly');
+    poly.setAttribute('points', selectedJob.zone);
+    poly.style.display = '';
+    if (fromMap) {
+      if (isMobile() && Sheet.snap === 'peek') Sheet.goTo('half');
+      $('ticket' + id).scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+    }
+  }
+
+  function startJob(id) {
+    selectedJob = JOBS.find(j => j.id === id);
+    setTimeout(() => {
+      hide('jobsHead'); hide('jobsBody');
+      JOBS.forEach(o => {
+        const m = $('jobMarker' + o.id);
+        if (m) m.style.display = o.id === id ? '' : 'none';
+        if (m && o.id === id) m.classList.remove('dim');
+      });
+      const poly = $('zonePoly');
+      poly.setAttribute('points', selectedJob.zone);
+      poly.style.display = '';
+      $('sTitle').textContent = selectedJob.title + ' · #' + (1200 + selectedJob.id);
+      $('sArea').textContent = selectedJob.area;
+      $('sOnwani').textContent = selectedJob.onwani;
+      $('sEta').textContent = selectedJob.eta + ' · ' + selectedJob.dist;
+      show('startedHead'); show('startedBody');
+      Sheet.goTo('half');
+      setTimeout(() => centerMapOn(selectedJob.x, selectedJob.y, true), 60);
+    }, 900);
+  }
+
+  /* initial map framing: driver + assembly point both in view */
+  requestAnimationFrame(() => {
+    Sheet.measure();
+    if (isMobile()) centerOnDriver(false); else { stage.scrollLeft = 120; stage.scrollTop = 60; }
+  });
+</script>
+</body>
+</html>

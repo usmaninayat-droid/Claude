@@ -1,0 +1,70 @@
+{
+  "$schema": "../../schemas/PipelineModuleConfig.schema.json",
+  "kind": "pipeline",
+  "code": "crm/deals",
+  "name": "Deals",
+  "uidPrefix": "D",
+  "systemcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "name": "Deal ID", "type": "Auto" },
+    { "id": "fld_title", "col": "title", "name": "Deal", "type": "SmallText", "required": true },
+    { "id": "fld_status", "col": "status", "name": "Stage", "type": "SingleSelect" },
+    { "id": "fld_systemcol1", "col": "systemcol1", "name": "Type", "type": "SingleSelect", "listValues": ["NEW", "EXPANSION", "RENEWAL"] },
+    { "id": "fld_systemcol2", "col": "systemcol2", "name": "Priority", "type": "SingleSelect", "listValues": ["High", "Medium", "Low"] },
+    { "id": "fld_systemcol3", "col": "systemcol3", "name": "Company", "type": "SingleReference", "refModule": "Entity", "entityType": "crm/companies" },
+    { "id": "fld_systemcol6", "col": "systemcol6", "name": "Owner", "type": "Assignee" },
+    { "id": "fld_systemcol7", "col": "systemcol7", "name": "Date", "type": "SmallText" }
+  ],
+  "uiConfig": {
+    "statusList": [
+      { "id": "sts_lead", "key": "lead", "label": "Lead", "color": "#94a3b8" },
+      { "id": "sts_qualified", "key": "qualified", "label": "Qualified", "color": "#0072d6" },
+      { "id": "sts_proposal", "key": "proposal", "label": "Proposal", "color": "#f79009" },
+      { "id": "sts_won", "key": "won", "label": "Won", "color": "#16a34a" },
+      { "id": "sts_lost", "key": "lost", "label": "Lost", "color": "#f04438" }
+    ],
+    "kanbanCard": {
+      "header": [
+        { "id": "fld_systemcol2", "col": "systemcol2", "pos": "left", "order": 1, "component": { "name": "PriorityFlag" } },
+        { "id": "fld_systemcol1", "col": "systemcol1", "pos": "left", "order": 2 },
+        { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "pos": "right", "order": 1 },
+        { "id": "fld_title", "col": "title", "pos": "left", "order": 3 }
+      ],
+      "body": [
+        { "id": "fld_systemcol3", "col": "systemcol3", "pos": "left", "order": 1 },
+        { "id": "fld_status", "col": "status", "pos": "left", "order": 2, "component": { "name": "StageProgress" } }
+      ],
+      "footer": [
+        { "id": "fld_systemcol6", "col": "systemcol6", "pos": "left", "order": 1, "component": { "name": "AssigneeList", "props": { "avatarOnly": true } } },
+        { "id": "fld_systemcol7", "col": "systemcol7", "pos": "right", "order": 1, "component": { "name": "DateView" } }
+      ]
+    },
+    "profile": {
+      "title": { "id": "fld_title", "col": "title", "pos": "left" },
+      "details": [
+        { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "pos": "left", "order": 1, "name": "Deal ID", "component": { "name": "LinkView" } },
+        { "id": "fld_status", "col": "status", "pos": "right", "order": 1, "component": { "name": "StatusList", "props": { "editable": true } } },
+        { "id": "fld_systemcol3", "col": "systemcol3", "pos": "left", "order": 2 },
+        { "id": "fld_systemcol6", "col": "systemcol6", "pos": "right", "order": 2, "component": { "name": "AssigneeSelector", "props": { "editable": true } } }
+      ],
+      "sections": [],
+      "rightPanel": { "type": "tab", "tabs": [
+        { "id": "tab_timeline", "key": "timeline", "title": "Timeline", "order": 1, "component": { "name": "PipelineTimeline" } },
+        { "id": "tab_activity", "key": "activity", "title": "Activity", "order": 2, "component": { "name": "ActivityFeed" } },
+        { "id": "tab_linked", "key": "linked", "title": "Linked", "order": 3, "component": { "name": "LinkedItems" } },
+        { "id": "tab_attachments", "key": "attachments", "title": "Files", "order": 4, "component": { "name": "Attachments" } }
+      ] }
+    },
+    "filters": [
+      { "id": "flt_status", "col": "status", "order": 1 },
+      { "id": "flt_systemcol2", "col": "systemcol2", "order": 2 }
+    ],
+    "search": { "columns": ["title", "uniqueidentifier", "systemcol3"] }
+  },
+  "listcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "component": { "name": "TextView" } },
+    { "id": "fld_title", "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "id": "fld_status", "col": "status", "component": { "name": "StatusList" } },
+    { "id": "fld_systemcol3", "col": "systemcol3", "component": { "name": "TextView" } },
+    { "id": "fld_systemcol6", "col": "systemcol6", "component": { "name": "AssigneeList" } }
+  ]
+}

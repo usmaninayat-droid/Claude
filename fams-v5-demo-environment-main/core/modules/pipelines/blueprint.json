@@ -1,0 +1,221 @@
+{
+  "$schema": "../../../node_modules/@fams/v5-composer/schemas/PipelineModuleConfig.schema.json",
+  "kind": "pipeline",
+  "code": "pipelines/task",
+  "name": "Pipeline Management",
+  "uidPrefix": "IMS",
+  "views": ["list", "kanban", "hybrid", "calendar"],
+  "systemcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "name": "Task ID", "type": "Auto" },
+    { "id": "fld_pl_title", "col": "title", "name": "Title", "type": "SmallText", "required": true },
+    { "id": "fld_pl_created_date", "col": "systemcol7", "name": "Created Date", "type": "DateTime", "creation": { "hidden": true } },
+    { "id": "fld_pl_due", "col": "systemcol8", "name": "Due Date", "type": "DateTime" },
+    { "id": "fld_pl_scheduled", "col": "systemcol9", "name": "Scheduled Date", "type": "Date" },
+    { "id": "fld_pl_priority", "col": "systemcol1", "name": "Priority", "type": "SingleSelect", "listValues": ["CRITICAL", "HIGH", "MEDIUM", "LOW"], "default": "MEDIUM", "component": { "name": "IconSelect", "props": { "icon": "flag", "optionTone": { "CRITICAL": "error", "HIGH": "warning", "MEDIUM": "success", "LOW": "info" } } } },
+    { "id": "fld_pl_service_type", "col": "systemcol2", "name": "Service Type", "type": "SingleSelect", "listValues": ["Container Cleaning", "Household Collection", "Green Waste Collection", "Bulky Waste Removal", "Street Sweeping", "Dead Animal Removal"], "component": { "name": "IconTextView", "props": { "icon": "wrench" } } },
+    { "id": "fld_pl_role", "col": "systemcol3", "name": "Role", "type": "SingleSelect", "listValues": ["ESP", "PMO", "Contractor", "Inspector"], "component": { "name": "IconTextView", "props": { "icon": "users" } }, "creation": { "hidden": true } },
+    { "id": "fld_pl_assignee", "col": "systemcol4", "name": "Assignee", "type": "Assignee", "component": { "name": "PersonView", "props": { "tone": "info" } } },
+    { "id": "fld_pl_lot", "col": "systemcol5", "name": "Lot", "type": "SingleSelect", "listValues": ["Lot 1", "Lot 2", "Lot 3", "Lot 4", "Lot 5", "Lot 6"], "component": { "name": "IconSelect", "props": { "icon": "skew" } } },
+    { "id": "fld_pl_location", "col": "systemcol6", "name": "Location", "type": "SmallText", "component": { "name": "IconTextView", "props": { "icon": "marker-pin-02" } } },
+    { "id": "fld_pl_cover", "col": "systemcol10", "name": "Cover Image", "type": "SmallText", "creation": { "hidden": true } },
+    { "id": "fld_pl_lat", "col": "systemcol11", "name": "Latitude", "type": "Number", "creation": { "hidden": true } },
+    { "id": "fld_pl_lng", "col": "systemcol12", "name": "Longitude", "type": "Number", "creation": { "hidden": true } },
+    { "id": "fld_pl_zone", "col": "systemcol13", "name": "Zone", "type": "SingleSelect", "listValues": ["Z-AF-01", "Z-KH-02", "Z-MU-03", "Z-YS-04"], "creation": { "hidden": true } },
+    { "id": "fld_pl_entity_type", "col": "systemcol14", "name": "Entity Type", "type": "SingleSelect", "listValues": ["Container", "Vehicle", "Street", "Facility"], "component": { "name": "IconTextView", "props": { "icon": "tag" } } },
+    { "id": "fld_pl_entity_id", "col": "systemcol15", "name": "Entity ID", "type": "SmallText", "component": { "name": "IconTextView", "props": { "icon": "hash" } } },
+    { "id": "fld_pl_reporter", "col": "systemcol16", "name": "Reported By", "type": "SmallText", "component": { "name": "PersonView", "props": { "tone": "success" } }, "creation": { "hidden": true } },
+    { "id": "fld_pl_note", "col": "systemcol17", "name": "Note", "type": "BigText" },
+    { "id": "fld_pl_status", "col": "status", "name": "Status", "type": "SingleSelect", "listValues": ["created-new", "assigned", "in-progress", "delayed", "in-inspection", "resolved"], "default": "created-new", "creation": { "hidden": true } },
+    { "id": "fld_pl_tags", "col": "tags", "name": "Tags", "type": "tags", "creation": { "hidden": true } }
+  ],
+  "uiConfig": {
+    "icon": "route",
+    "viewPickerHint": "One pipeline, four lenses — the board, the list, the map and the calendar all read the same records.",
+    "statusList": [
+      { "id": "sts_created_new", "key": "created-new", "label": "Created New", "color": "#006fd1" },
+      { "id": "sts_assigned", "key": "assigned", "label": "Assigned", "color": "#0d7f4a" },
+      { "id": "sts_inprogress", "key": "in-progress", "label": "In Progress", "color": "#814ee8" },
+      { "id": "sts_delayed", "key": "delayed", "label": "Delayed", "color": "#da1e10" },
+      { "id": "sts_ininspection", "key": "in-inspection", "label": "In Inspection", "color": "#047994" },
+      { "id": "sts_resolved", "key": "resolved", "label": "Resolved", "color": "#1069e5" }
+    ],
+    "kanbanCard": {
+      "header": [
+        { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "pos": "left", "order": 1 },
+        { "id": "fld_pl_priority", "col": "systemcol1", "pos": "right", "order": 1 },
+        { "id": "fld_pl_role", "col": "systemcol3", "pos": "left", "order": 2 },
+        { "id": "fld_pl_title", "col": "title", "pos": "left", "order": 3 }
+      ],
+      "body": [
+        { "id": "fld_pl_service_type", "col": "systemcol2", "pos": "left", "order": 1 },
+        { "id": "fld_pl_entity_type", "col": "systemcol14", "pos": "left", "order": 2 },
+        { "id": "fld_pl_entity_id", "col": "systemcol15", "pos": "left", "order": 3 },
+        { "id": "fld_pl_lot", "col": "systemcol5", "pos": "left", "order": 4 },
+        { "id": "fld_pl_location", "col": "systemcol6", "pos": "left", "order": 5 }
+      ],
+      "footer": [
+        { "id": "fld_pl_assignee", "col": "systemcol4", "pos": "left", "order": 1, "component": { "name": "AssigneeList", "props": { "avatarOnly": true } } },
+        { "id": "fld_pl_due", "col": "systemcol8", "pos": "right", "order": 1 }
+      ],
+      "image": { "col": "systemcol10" }
+    },
+    "map": {
+      "center": [54.3705, 24.4667],
+      "latCol": "systemcol11",
+      "lngCol": "systemcol12",
+      "zoneCol": "systemcol13",
+      "zones": [
+        { "id": "Z-AF-01", "label": "Z-AF-01", "parent": "Lot 1", "points": [[54.340, 24.440], [54.372, 24.440], [54.372, 24.468], [54.340, 24.468]] },
+        { "id": "Z-KH-02", "label": "Z-KH-02", "parent": "Lot 2", "points": [[54.386, 24.452], [54.418, 24.452], [54.418, 24.478], [54.386, 24.478]] },
+        { "id": "Z-MU-03", "label": "Z-MU-03", "parent": "Lot 3", "points": [[54.352, 24.482], [54.382, 24.482], [54.382, 24.506], [54.352, 24.506]] },
+        { "id": "Z-YS-04", "label": "Z-YS-04", "parent": "Lot 4", "points": [[54.412, 24.492], [54.446, 24.492], [54.446, 24.520], [54.412, 24.520]] }
+      ],
+      "records": {
+        "colorBy": {
+          "col": "systemcol1",
+          "legendTitle": "Priority",
+          "filterable": true,
+          "values": [
+            { "value": "CRITICAL", "label": "Critical", "color": "var(--color-destructive)" },
+            { "value": "HIGH", "label": "High", "color": "#f79009" },
+            { "value": "MEDIUM", "label": "Medium", "color": "var(--color-success)" },
+            { "value": "LOW", "label": "Low", "color": "#0072d6" }
+          ],
+          "fallbackColor": "#98a2b3"
+        },
+        "fillOpacity": 0.12,
+        "radius": 7
+      }
+    },
+    "profile": {
+      "title": { "id": "fld_pl_title", "col": "title", "pos": "left" },
+      "layout": { "labelWidth": "9.0625rem" },
+      "details": [
+        { "id": "fld_pl_priority", "col": "systemcol1", "pos": "left", "order": 1, "component": { "name": "PriorityFlagView" } },
+        { "id": "fld_pl_service_type", "col": "systemcol2", "pos": "right", "order": 1 },
+        { "id": "fld_pl_assignee", "col": "systemcol4", "pos": "left", "order": 2, "component": { "name": "PersonView", "props": { "tone": "info" } } },
+        { "id": "fld_pl_reporter", "col": "systemcol16", "pos": "right", "order": 2, "component": { "name": "PersonView", "props": { "tone": "success" } } },
+        { "id": "fld_pl_entity_type", "col": "systemcol14", "pos": "left", "order": 3 },
+        { "id": "fld_pl_entity_id", "col": "systemcol15", "pos": "right", "order": 3 },
+        { "id": "fld_pl_created_date", "col": "systemcol7", "pos": "left", "order": 4 },
+        { "id": "fld_pl_due", "col": "systemcol8", "pos": "right", "order": 4 },
+        { "id": "fld_pl_scheduled", "col": "systemcol9", "pos": "left", "order": 5 },
+        { "id": "fld_pl_role", "col": "systemcol3", "pos": "right", "order": 5 }
+      ],
+      "sections": [
+        {
+          "id": "sec_pl_location",
+          "name": "Location",
+          "order": 1,
+          "showLabel": true,
+          "layout": { "labelWidth": "8.25rem" },
+          "fields": [
+            { "id": "fld_pl_lot", "col": "systemcol5", "pos": "left", "order": 1 },
+            { "id": "fld_pl_location", "col": "systemcol6", "pos": "right", "order": 1 },
+            { "id": "fld_pl_zone", "col": "systemcol13", "pos": "left", "order": 2 }
+          ]
+        },
+        {
+          "id": "sec_pl_note",
+          "name": "Note",
+          "order": 2,
+          "fields": [
+            { "id": "fld_pl_note", "col": "systemcol17", "pos": "left", "order": 1 }
+          ]
+        }
+      ],
+      "rightPanel": {
+        "type": "tab",
+        "tabs": [
+          { "id": "tab_pl_timeline", "key": "timeline", "title": "Timeline", "order": 1, "component": { "name": "TicketTimeline" } },
+          { "id": "tab_pl_activity", "key": "activity", "title": "Activity", "order": 2, "component": { "name": "TicketActivity" } },
+          { "id": "tab_pl_linked", "key": "linked", "title": "Linked", "order": 3, "component": { "name": "RecordList", "props": { "field": "linked", "variant": "link", "emptyTitle": "No linked records", "emptyDescription": "Records linked to this task will appear here." } } },
+          { "id": "tab_pl_attachments", "key": "attachments", "title": "Attachments", "order": 4, "component": { "name": "RecordList", "props": { "field": "attachments", "variant": "file", "emptyTitle": "No attachments", "emptyDescription": "Files attached to this task will appear here." } } }
+        ]
+      }
+    },
+    "filtersPanel": { "title": "Filters", "clearAll": true, "width": 448 },
+    "filters": [
+      { "id": "flt_pl_priority", "col": "systemcol1", "order": 1, "kind": "checkbox-group", "icon": "flag" },
+      { "id": "flt_pl_service_type", "col": "systemcol2", "order": 2, "icon": "wrench" },
+      {
+        "id": "flt_pl_status",
+        "col": "status",
+        "order": 3,
+        "kind": "status",
+        "optionsFrom": "statusList",
+        "optionDot": "status",
+        "showCounts": true,
+        "icon": "status"
+      },
+      { "id": "flt_pl_lot", "col": "systemcol5", "order": 4, "icon": "shapes" },
+      {
+        "id": "flt_pl_tags",
+        "col": "tags",
+        "order": 5,
+        "name": "Tags",
+        "kind": "tags",
+        "icon": "tag",
+        "optionsFrom": "records",
+        "options": [
+          { "value": "overflowing", "label": "Overflowing", "category": "Container" },
+          { "value": "damaged-bin", "label": "Damaged Bin", "category": "Container" },
+          { "value": "needs-service", "label": "Needs Service", "category": "Vehicle" },
+          { "value": "gps-issue", "label": "GPS Issue", "category": "Vehicle" },
+          { "value": "pothole", "label": "Pothole", "category": "Street" },
+          { "value": "debris", "label": "Debris", "category": "Street" },
+          { "value": "access-blocked", "label": "Access Blocked", "category": "Facility" },
+          { "value": "lighting-issue", "label": "Lighting Issue", "category": "Facility" },
+          { "value": "sla-watch", "label": "SLA Watch", "category": "Operational" },
+          { "value": "follow-up", "label": "Follow Up", "category": "Operational" }
+        ]
+      },
+      {
+        "id": "flt_pl_assignee",
+        "col": "systemcol4",
+        "order": 6,
+        "name": "Assignee",
+        "kind": "entity",
+        "icon": "user",
+        "expandable": true,
+        "expandView": {
+          "columns": [
+            { "col": "title", "label": "Assignee", "sortable": true, "minWidth": 200 },
+            { "col": "count", "label": "Assigned Tasks", "sortable": true, "minWidth": 140 }
+          ],
+          "searchable": true,
+          "sortable": true,
+          "columnSettings": true,
+          "selectedToTop": true,
+          "rowTemplate": { "avatar": "title", "title": "title", "idPill": "id" }
+        }
+      }
+    ],
+    "search": { "columns": ["title", "uniqueidentifier", "systemcol6"], "placeholder": "Search Task" },
+    "groupByOptions": [
+      { "col": "status", "label": "Status" },
+      { "col": "systemcol2", "label": "Service Type" }
+    ],
+    "rowActions": { "delete": true, "archive": true, "requiredPrivilege": "pipelines.view" },
+    "bulkActions": { "delete": true, "export": true },
+    "listSelectable": true,
+    "recordNoun": { "one": "task", "many": "tasks" },
+    "listGroupedColumns": ["uniqueidentifier", "title", "systemcol2", "systemcol14", "systemcol15", "systemcol5", "systemcol6", "systemcol1", "systemcol4", "systemcol8"],
+    "hybrid": { "listColumns": ["uniqueidentifier", "title", "systemcol1", "status"] },
+    "creation": { "layout": "flat", "fieldChrome": "inset-label", "label": "Create New Task" }
+  },
+  "listcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "name": "Task ID", "component": { "name": "TextView" } },
+    { "id": "fld_pl_title", "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "id": "fld_pl_service_type", "col": "systemcol2", "component": { "name": "TextView" } },
+    { "id": "fld_pl_entity_type", "col": "systemcol14", "component": { "name": "TextView" } },
+    { "id": "fld_pl_entity_id", "col": "systemcol15", "component": { "name": "TextView" } },
+    { "id": "fld_pl_lot", "col": "systemcol5", "component": { "name": "TextView" } },
+    { "id": "fld_pl_location", "col": "systemcol6", "component": { "name": "TextView" } },
+    { "id": "fld_pl_priority", "col": "systemcol1", "name": "Priority", "component": { "name": "TextView" } },
+    { "id": "fld_pl_assignee", "col": "systemcol4", "component": { "name": "PersonView" } },
+    { "id": "fld_pl_due", "col": "systemcol8", "name": "Due Date" },
+    { "id": "fld_pl_status", "col": "status", "component": { "name": "StatusList" } },
+    { "id": "fld_pl_tags", "col": "tags", "name": "Tags" }
+  ]
+}

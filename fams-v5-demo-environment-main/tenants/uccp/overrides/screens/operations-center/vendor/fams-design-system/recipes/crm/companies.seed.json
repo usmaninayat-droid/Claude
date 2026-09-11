@@ -1,0 +1,8 @@
+[
+  { "id": "C-01", "uniqueidentifier": "C-01", "title": "Northwind Traders", "systemcol1": "Logistics", "systemcol2": "Dana Reyes", "systemcol3": "$120k", "status": "Customer" },
+  { "id": "C-02", "uniqueidentifier": "C-02", "title": "Globex Corp", "systemcol1": "Manufacturing", "systemcol2": "Sam Patel", "systemcol3": "$0", "status": "Prospect" },
+  { "id": "C-03", "uniqueidentifier": "C-03", "title": "Initech", "systemcol1": "Software", "systemcol2": "Dana Reyes", "systemcol3": "$64k", "status": "Customer" },
+  { "id": "C-04", "uniqueidentifier": "C-04", "title": "Soylent Inc", "systemcol1": "Food & Bev", "systemcol2": "Mia Chen", "systemcol3": "$0", "status": "Prospect" },
+  { "id": "C-05", "uniqueidentifier": "C-05", "title": "Hooli", "systemcol1": "Technology", "systemcol2": "Sam Patel", "systemcol3": "$210k", "status": "Customer" },
+  { "id": "C-06", "uniqueidentifier": "C-06", "title": "Vehement Capital", "systemcol1": "Finance", "systemcol2": "Mia Chen", "systemcol3": "$0", "status": "Churned" }
+]

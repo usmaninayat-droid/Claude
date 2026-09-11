@@ -1,0 +1,69 @@
+/* Tailwind + the design-system tokens — the SAME imports the host app owns
+   (app/src/styles.css), so this screen renders with the identical token set,
+   fonts and tenant theme. Nothing here defines a colour, size or font of its
+   own: every value below resolves to an @fams/tokens variable. */
+@import "tailwindcss";
+@import "@fams/tokens/theme.css";
+@import "@fams/tokens/animations.css";
+@import "@fams/tokens/scrollbars.css";
+@import "@fams/tokens/fonts.css";
+@import "@fams/tokens/tenants.css";
+
+/* The components come from the linked design-system dist; Tailwind v4 cannot
+   see into it, so scan the sibling source for the utilities they use. */
+@source "../../../../../../../fams-design-system/packages/ui-kit/src";
+
+html, body, #root { height: 100%; margin: 0; }
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Semantic duty tones ───────────────────────────────────────────────────
+   The board never prints a duty CODE — every duty is spelled out, and colour
+   carries meaning, not identity. Five status tones (the same discipline the
+   Figma reference uses) plus a neutral "route" card and a "secondary" accent.
+   Each is only an ALIAS onto an @fams/tokens variable, so the board re-themes
+   with the tenant and carries no literal value. Consumed as inline
+   `var(--tone-*)` reads on the `.tone-<name>` element. */
+.tone-route       { --tone-fg: var(--color-foreground);            --tone-bg: var(--color-card);              --tone-bd: var(--color-border); }
+.tone-muted       { --tone-fg: var(--color-muted-foreground);      --tone-bg: var(--color-muted);             --tone-bd: var(--color-border); }
+.tone-info        { --tone-fg: var(--color-info-scale-700);        --tone-bg: var(--color-info-scale-50);     --tone-bd: var(--color-info-scale-200); }
+.tone-warning     { --tone-fg: var(--color-warning-scale-700);     --tone-bg: var(--color-warning-scale-50);  --tone-bd: var(--color-warning-scale-200); }
+.tone-destructive { --tone-fg: var(--color-error-700);             --tone-bg: var(--color-error-50);          --tone-bd: var(--color-error-200); }
+.tone-success     { --tone-fg: var(--color-success-scale-700);     --tone-bg: var(--color-success-scale-50);  --tone-bd: var(--color-success-scale-200); }
+.tone-secondary   { --tone-fg: var(--color-secondary-foreground-strong); --tone-bg: var(--color-secondary);   --tone-bd: var(--color-border); }
+
+/* Pointer drag ghost — follows the cursor; the source cell dims. */
+.drag-ghost { pointer-events: none; position: fixed; z-index: var(--z-tooltip, 60); opacity: .92; transform: translate(-50%, -50%) rotate(-1.5deg); box-shadow: var(--shadow-lg, 0 8px 24px rgb(0 0 0 / .18)); }
+.drag-source { opacity: .35; }
+.drop-ok   { box-shadow: inset 0 0 0 2px var(--color-success); }
+.drop-bad  { box-shadow: inset 0 0 0 2px var(--color-error-500); }
+
+/* ── Board layout ──────────────────────────────────────────────────────────
+   One scroll container scrolls both axes; the day header sticks to its top
+   and the employee column sticks to its start. Rows are absolutely positioned
+   by the virtualiser inside a relative body of the full list height. */
+.rg-scroll { overflow: auto; scrollbar-gutter: stable; }
+.rg-cols { grid-template-columns: 18rem repeat(7, minmax(11.5rem, 1fr)); min-width: 98rem; }
+.rg-cell { padding: 6px; }
+.rg-head { position: sticky; top: 0; z-index: 20; }
+.rg-frozen { position: sticky; left: 0; z-index: 10; background: var(--color-card); }
+.rg-head .rg-frozen { z-index: 30; background: var(--color-muted); }
+
+/* Highlight-conflicts toggle: flagged rows tint faintly and float to the top
+   (the board reorders them); every other row dims so the conflicts pop. */
+.rg-conflict { background: color-mix(in srgb, var(--color-error-500) 5%, transparent); }
+.rg-dimmed { opacity: .55; }
+.rg-dimmed:hover { opacity: 1; }
+
+/* Roving-tabindex focus ring on the active gridcell. */
+[role="gridcell"]:focus-visible { outline: 2px solid var(--color-primary); outline-offset: -2px; }
+[role="gridcell"][aria-selected="true"] {
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-primary) 55%, transparent);
+}
+
+@media print { .no-print { display: none !important; } }

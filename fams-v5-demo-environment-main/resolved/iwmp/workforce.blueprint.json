@@ -1,0 +1,434 @@
+{
+  "code": "workforce/driver",
+  "kind": "entity",
+  "listcolumns": [
+    {
+      "col": "uniqueidentifier",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_uniqueidentifier",
+      "name": "Employee ID"
+    },
+    {
+      "col": "title",
+      "component": {
+        "name": "TextView",
+        "props": {
+          "handleOverflow": true
+        }
+      },
+      "id": "fld_wf_name"
+    },
+    {
+      "col": "systemcol1",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_wf_role"
+    },
+    {
+      "col": "status",
+      "component": {
+        "name": "StatusList"
+      },
+      "id": "fld_wf_status"
+    },
+    {
+      "col": "systemcol2",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_wf_phone"
+    },
+    {
+      "col": "tags",
+      "component": {
+        "name": "TagList"
+      },
+      "id": "fld_wf_tags"
+    }
+  ],
+  "name": "Workforce",
+  "systemcolumns": [
+    {
+      "col": "title",
+      "id": "fld_wf_name",
+      "name": "Full Name",
+      "required": true,
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol1",
+      "id": "fld_wf_role",
+      "listValues": [
+        "Driver",
+        "Supervisor",
+        "Technician",
+        "Dispatcher"
+      ],
+      "name": "Role",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol2",
+      "id": "fld_wf_phone",
+      "name": "Phone",
+      "type": "Phone"
+    },
+    {
+      "col": "systemcol3",
+      "id": "fld_wf_email",
+      "name": "Email",
+      "type": "Email"
+    },
+    {
+      "col": "status",
+      "id": "fld_wf_status",
+      "listValues": [
+        "Active",
+        "Inactive",
+        "On Leave"
+      ],
+      "name": "Status",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol4",
+      "entityType": "asset/vehicle",
+      "id": "fld_wf_vehicle",
+      "name": "Assigned Vehicle",
+      "refModule": "Entity",
+      "type": "SingleReference"
+    },
+    {
+      "col": "systemcol5",
+      "id": "fld_wf_license",
+      "name": "License Expiry",
+      "type": "Date"
+    },
+    {
+      "col": "tags",
+      "id": "fld_wf_tags",
+      "name": "Tags",
+      "type": "tags"
+    }
+  ],
+  "uiConfig": {
+    "filters": [
+      {
+        "col": "systemcol1",
+        "icon": "users",
+        "id": "flt_wf_role",
+        "kind": "checkbox-group",
+        "order": 1
+      },
+      {
+        "col": "status",
+        "icon": "status",
+        "id": "flt_wf_status",
+        "kind": "status",
+        "optionDot": "status",
+        "optionsFrom": "statusList",
+        "order": 2,
+        "showCounts": true
+      },
+      {
+        "col": "title",
+        "createFromSearch": {
+          "enabled": true,
+          "entity": "workforce/driver",
+          "requirePrivilege": "workforce.create"
+        },
+        "expandView": {
+          "columnSettings": true,
+          "columns": [
+            {
+              "col": "title",
+              "label": "Full Name",
+              "minWidth": 200,
+              "sortable": true
+            },
+            {
+              "col": "uniqueidentifier",
+              "hidden": true,
+              "label": "ID",
+              "minWidth": 96,
+              "sortable": true
+            },
+            {
+              "col": "systemcol1",
+              "label": "Role",
+              "minWidth": 120,
+              "sortable": true
+            },
+            {
+              "col": "status",
+              "label": "Status",
+              "minWidth": 120,
+              "sortable": true
+            },
+            {
+              "col": "systemcol2",
+              "label": "Phone",
+              "minWidth": 140,
+              "sortable": true
+            },
+            {
+              "col": "systemcol3",
+              "hidden": true,
+              "label": "Email",
+              "minWidth": 180,
+              "sortable": true
+            },
+            {
+              "col": "systemcol4",
+              "label": "Assigned Vehicle",
+              "minWidth": 140,
+              "sortable": true
+            },
+            {
+              "col": "systemcol5",
+              "hidden": true,
+              "label": "License Expiry",
+              "minWidth": 120,
+              "sortable": true
+            },
+            {
+              "col": "tags",
+              "label": "Tags",
+              "minWidth": 140,
+              "sortable": false
+            }
+          ],
+          "rowTemplate": {
+            "avatar": "title",
+            "idPill": "uniqueidentifier",
+            "statusBadge": {
+              "col": "status",
+              "colors": {
+                "Active": "success",
+                "Inactive": "muted",
+                "On Leave": "warning"
+              }
+            },
+            "title": "title"
+          },
+          "searchable": true,
+          "selectedToTop": true,
+          "sortable": true
+        },
+        "expandable": true,
+        "icon": "user",
+        "id": "flt_wf_person",
+        "kind": "entity",
+        "name": "Person",
+        "order": 3
+      }
+    ],
+    "filtersPanel": {
+      "clearAll": true,
+      "title": "Filters",
+      "width": 448
+    },
+    "profile": {
+      "details": [
+        {
+          "col": "systemcol1",
+          "id": "fld_wf_role",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "status",
+          "component": {
+            "name": "StatusList"
+          },
+          "id": "fld_wf_status",
+          "order": 1,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol2",
+          "id": "fld_wf_phone",
+          "order": 2,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol3",
+          "id": "fld_wf_email",
+          "order": 2,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol4",
+          "component": {
+            "name": "LinkView"
+          },
+          "id": "fld_wf_vehicle",
+          "order": 3,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol5",
+          "component": {
+            "name": "DateView"
+          },
+          "id": "fld_wf_license",
+          "order": 3,
+          "pos": "right"
+        }
+      ],
+      "rightPanel": {
+        "tabs": [
+          {
+            "component": {
+              "name": "OverviewSummary"
+            },
+            "id": "tab_wf_overview",
+            "key": "overview",
+            "order": 1,
+            "title": "Overview"
+          },
+          {
+            "component": {
+              "name": "OverviewWidgets",
+              "props": {
+                "widgets": [
+                  {
+                    "filters": [
+                      {
+                        "icon": "calendar",
+                        "kind": "dateRange",
+                        "label": "Date Range",
+                        "value": "Last 7 Days"
+                      }
+                    ],
+                    "type": "filterBar"
+                  },
+                  {
+                    "columns": 3,
+                    "tiles": [
+                      {
+                        "icon": "clock",
+                        "label": "Total Active Time",
+                        "tone": "primary",
+                        "valueField": "tabletActiveTimeTotal"
+                      },
+                      {
+                        "icon": "alert-triangle",
+                        "label": "Total Inactive Time",
+                        "tone": "warning",
+                        "valueField": "tabletInactiveTimeTotal"
+                      },
+                      {
+                        "icon": "percent",
+                        "label": "App Usage %",
+                        "tone": "success",
+                        "valueField": "tabletAppUsagePct"
+                      }
+                    ],
+                    "type": "kpiTiles"
+                  },
+                  {
+                    "icon": "bar-chart-01",
+                    "rowsField": "tabletDailyActivity",
+                    "subtitle": "Driver-app usage against the planned shift window",
+                    "title": "Daily Activity Timeline",
+                    "type": "dailyTimeline",
+                    "windowEnd": "19:00",
+                    "windowStart": "05:00"
+                  },
+                  {
+                    "columns": [
+                      {
+                        "key": "date",
+                        "label": "Date"
+                      },
+                      {
+                        "key": "startTime",
+                        "label": "Start"
+                      },
+                      {
+                        "key": "endTime",
+                        "label": "End"
+                      },
+                      {
+                        "key": "duration",
+                        "label": "Duration"
+                      }
+                    ],
+                    "emptyText": "No inactive events in this range.",
+                    "icon": "clock-fast-forward",
+                    "iconMap": {
+                      "Brief": "clock",
+                      "Major": "alert-hexagon",
+                      "Minor": "alert-triangle"
+                    },
+                    "idKey": "id",
+                    "itemsField": "tabletInactiveEvents",
+                    "labelKey": "label",
+                    "layout": "columns",
+                    "severityKey": "severity",
+                    "severityToneMap": {
+                      "Brief": "info",
+                      "Major": "danger",
+                      "Minor": "warning"
+                    },
+                    "title": "Inactive Events",
+                    "toneMap": {
+                      "Brief": "info",
+                      "Major": "danger",
+                      "Minor": "warning"
+                    },
+                    "type": "eventList",
+                    "typeKey": "severity"
+                  }
+                ]
+              }
+            },
+            "id": "tab_wf_tablet_activity",
+            "key": "tablet_activity",
+            "order": 2,
+            "title": "Tablet Activity"
+          }
+        ],
+        "type": "tab"
+      },
+      "sections": [],
+      "title": {
+        "col": "title",
+        "id": "fld_wf_name",
+        "pos": "left"
+      }
+    },
+    "search": {
+      "columns": [
+        "title",
+        "systemcol2",
+        "systemcol3"
+      ]
+    },
+    "statusList": [
+      {
+        "color": "#16a34a",
+        "id": "sts_wf_active",
+        "key": "Active",
+        "label": "Active"
+      },
+      {
+        "color": "#94a3b8",
+        "id": "sts_wf_inactive",
+        "key": "Inactive",
+        "label": "Inactive"
+      },
+      {
+        "color": "#f79009",
+        "id": "sts_wf_leave",
+        "key": "On Leave",
+        "label": "On Leave"
+      }
+    ]
+  },
+  "uidPrefix": "WF"
+}

@@ -1,0 +1,5446 @@
+[
+  {
+    "id": "IMS-12301",
+    "uniqueidentifier": "IMS-12301",
+    "title": "Missed household collection round — Mussafah M-9",
+    "status": "created-new",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-07-19T07:07:00Z",
+    "systemcol8": "2026-07-23T16:00:00Z",
+    "systemcol9": "2026-07-21",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1001",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [],
+    "systemcol11": 24.48788,
+    "systemcol12": 54.45117,
+    "description": "Missed household collection round — Mussafah M-9. Reported by Layla Haddad on the Lot 2 route; assigned to the PMO crew for household collection.",
+    "checklist": [
+      {
+        "id": "chk_1_1",
+        "label": "Verify the report on site",
+        "done": true
+      },
+      {
+        "id": "chk_1_2",
+        "label": "Dispatch the crew",
+        "done": false
+      },
+      {
+        "id": "chk_1_3",
+        "label": "Confirm completion with the inspector",
+        "done": false
+      }
+    ],
+    "attachments": [
+      {
+        "id": "att_1_1",
+        "name": "ims-12301-site-report.pdf",
+        "mimeType": "application/pdf"
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/ims1-a/640/480",
+        "alt": "IMS-12301 site photo",
+        "caption": "Khalifa City A — on arrival"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_1_1",
+        "actor": "Layla Haddad",
+        "action": "reported household collection at Khalifa City A",
+        "timestamp": "2026-07-19 08:10",
+        "dateGroup": "2026-07-19"
+      },
+      {
+        "id": "tl_1_2",
+        "actor": "Dana Reyes",
+        "action": "triaged the task and set the priority",
+        "tone": "info",
+        "timestamp": "2026-07-19 09:25",
+        "dateGroup": "2026-07-19"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_1_1",
+        "actor": "Avery Stone",
+        "action": "Crew is en route, ETA 30 minutes.",
+        "timestamp": "2026-07-19 10:02",
+        "dateGroup": "2026-07-19"
+      }
+    ]
+  },
+  {
+    "id": "IMS-12302",
+    "uniqueidentifier": "IMS-12302",
+    "title": "Green waste pile blocking access road — Shakhbout City",
+    "status": "created-new",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-08-25T08:14:00Z",
+    "systemcol8": "2026-08-30T16:00:00Z",
+    "systemcol9": "2026-08-28",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1002",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.52735,
+    "systemcol12": 54.4379,
+    "description": "Green waste pile blocking access road — Shakhbout City. Reported by Sami Aziz on the Lot 3 route; assigned to the Contractor crew for green waste collection.",
+    "checklist": [
+      {
+        "id": "chk_2_1",
+        "label": "Verify the report on site",
+        "done": true
+      },
+      {
+        "id": "chk_2_2",
+        "label": "Dispatch the crew",
+        "done": false
+      },
+      {
+        "id": "chk_2_3",
+        "label": "Confirm completion with the inspector",
+        "done": false
+      }
+    ],
+    "attachments": [
+      {
+        "id": "att_2_1",
+        "name": "ims-12302-site-report.pdf",
+        "mimeType": "application/pdf"
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/ims2-a/640/480",
+        "alt": "IMS-12302 site photo",
+        "caption": "Mussafah M-9 — on arrival"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_2_1",
+        "actor": "Sami Aziz",
+        "action": "reported green waste collection at Mussafah M-9",
+        "timestamp": "2026-08-25 08:10",
+        "dateGroup": "2026-08-25"
+      },
+      {
+        "id": "tl_2_2",
+        "actor": "Dana Reyes",
+        "action": "triaged the task and set the priority",
+        "tone": "info",
+        "timestamp": "2026-08-25 09:25",
+        "dateGroup": "2026-08-25"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_2_1",
+        "actor": "Avery Stone",
+        "action": "Crew is en route, ETA 30 minutes.",
+        "timestamp": "2026-08-25 10:02",
+        "dateGroup": "2026-08-25"
+      }
+    ]
+  },
+  {
+    "id": "IMS-12303",
+    "uniqueidentifier": "IMS-12303",
+    "title": "Bulky furniture dumped at kerbside — Yas Island",
+    "status": "created-new",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-09-10T08:00:00Z",
+    "systemcol8": "2026-09-12T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1003",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.44905,
+    "systemcol12": 54.3629
+  },
+  {
+    "id": "IMS-12304",
+    "uniqueidentifier": "IMS-12304",
+    "title": "Street sweeping schedule breach — Al Reem Island",
+    "status": "created-new",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-09-10T09:07:00Z",
+    "systemcol8": "2026-09-13T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1004",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.47442,
+    "systemcol12": 54.3794
+  },
+  {
+    "id": "IMS-12305",
+    "uniqueidentifier": "IMS-12305",
+    "title": "Dead animal removal request — Al Falah City",
+    "status": "created-new",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-06-23T11:35:00Z",
+    "systemcol8": "2026-07-01T16:00:00Z",
+    "systemcol9": "2026-06-25",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1005",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.5034,
+    "systemcol12": 54.36607
+  },
+  {
+    "id": "IMS-12306",
+    "uniqueidentifier": "IMS-12306",
+    "title": "Container lid damaged beyond repair — Shakhbout City",
+    "status": "created-new",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-07-11T12:42:00Z",
+    "systemcol8": "2026-07-14T16:00:00Z",
+    "systemcol9": "2026-07-14",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1006",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.51351,
+    "systemcol12": 54.37182
+  },
+  {
+    "id": "IMS-12307",
+    "uniqueidentifier": "IMS-12307",
+    "title": "Illegal dumping near school gate — Madinat Zayed",
+    "status": "created-new",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-09-10T10:14:00Z",
+    "systemcol8": "2026-09-14T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1007",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.49552,
+    "systemcol12": 54.34954
+  },
+  {
+    "id": "IMS-12308",
+    "uniqueidentifier": "IMS-12308",
+    "title": "Skip bin not returned after service — Shakhbout City",
+    "status": "created-new",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-08-18T14:56:00Z",
+    "systemcol8": "2026-08-23T16:00:00Z",
+    "systemcol9": "2026-08-19",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1008",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin",
+      "follow-up"
+    ],
+    "systemcol11": 24.50363,
+    "systemcol12": 54.36653
+  },
+  {
+    "id": "IMS-12309",
+    "uniqueidentifier": "IMS-12309",
+    "title": "Litter accumulation on service road — Shakhbout City",
+    "status": "assigned",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-06-17T15:03:00Z",
+    "systemcol8": "2026-06-23T16:00:00Z",
+    "systemcol9": "2026-06-19",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1009",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.48857,
+    "systemcol12": 54.36692,
+    "description": "Litter accumulation on service road — Shakhbout City. Reported by Noura Al Ameri on the Lot 4 route; assigned to the PMO crew for bulky waste removal.",
+    "checklist": [
+      {
+        "id": "chk_9_1",
+        "label": "Verify the report on site",
+        "done": true
+      },
+      {
+        "id": "chk_9_2",
+        "label": "Dispatch the crew",
+        "done": true
+      },
+      {
+        "id": "chk_9_3",
+        "label": "Confirm completion with the inspector",
+        "done": false
+      }
+    ],
+    "attachments": [
+      {
+        "id": "att_9_1",
+        "name": "ims-12309-site-report.pdf",
+        "mimeType": "application/pdf"
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/ims9-a/640/480",
+        "alt": "IMS-12309 site photo",
+        "caption": "Khalifa City A — on arrival"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_9_1",
+        "actor": "Noura Al Ameri",
+        "action": "reported bulky waste removal at Khalifa City A",
+        "timestamp": "2026-06-17 08:10",
+        "dateGroup": "2026-06-17"
+      },
+      {
+        "id": "tl_9_2",
+        "actor": "Dana Reyes",
+        "action": "triaged the task and set the priority",
+        "tone": "info",
+        "timestamp": "2026-06-17 09:25",
+        "dateGroup": "2026-06-17"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_9_1",
+        "actor": "Avery Stone",
+        "action": "Crew is en route, ETA 30 minutes.",
+        "timestamp": "2026-06-17 10:02",
+        "dateGroup": "2026-06-17"
+      }
+    ]
+  },
+  {
+    "id": "IMS-12310",
+    "uniqueidentifier": "IMS-12310",
+    "title": "Compactor vehicle breakdown en route — Madinat Zayed",
+    "status": "assigned",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-06-04T16:10:00Z",
+    "systemcol8": "2026-06-11T16:00:00Z",
+    "systemcol9": "2026-06-07",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1010",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.47143,
+    "systemcol12": 54.33455,
+    "description": "Compactor vehicle breakdown en route — Madinat Zayed. Reported by Yusuf Karim on the Lot 5 route; assigned to the Contractor crew for street sweeping.",
+    "checklist": [
+      {
+        "id": "chk_10_1",
+        "label": "Verify the report on site",
+        "done": true
+      },
+      {
+        "id": "chk_10_2",
+        "label": "Dispatch the crew",
+        "done": true
+      },
+      {
+        "id": "chk_10_3",
+        "label": "Confirm completion with the inspector",
+        "done": false
+      }
+    ],
+    "attachments": [
+      {
+        "id": "att_10_1",
+        "name": "ims-12310-site-report.pdf",
+        "mimeType": "application/pdf"
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/ims10-a/640/480",
+        "alt": "IMS-12310 site photo",
+        "caption": "Mussafah M-9 — on arrival"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_10_1",
+        "actor": "Yusuf Karim",
+        "action": "reported street sweeping at Mussafah M-9",
+        "timestamp": "2026-06-04 08:10",
+        "dateGroup": "2026-06-04"
+      },
+      {
+        "id": "tl_10_2",
+        "actor": "Dana Reyes",
+        "action": "triaged the task and set the priority",
+        "tone": "info",
+        "timestamp": "2026-06-04 09:25",
+        "dateGroup": "2026-06-04"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_10_1",
+        "actor": "Avery Stone",
+        "action": "Crew is en route, ETA 30 minutes.",
+        "timestamp": "2026-06-04 10:02",
+        "dateGroup": "2026-06-04"
+      }
+    ]
+  },
+  {
+    "id": "IMS-12311",
+    "uniqueidentifier": "IMS-12311",
+    "title": "Recycling bin contamination reported — Khalifa City A",
+    "status": "assigned",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-06-26T17:17:00Z",
+    "systemcol8": "2026-07-04T16:00:00Z",
+    "systemcol9": "2026-06-30",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1011",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.51105,
+    "systemcol12": 54.40334
+  },
+  {
+    "id": "IMS-12312",
+    "uniqueidentifier": "IMS-12312",
+    "title": "Bin bay wash-down overdue — Madinat Zayed",
+    "status": "assigned",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-06-30T06:24:00Z",
+    "systemcol8": "2026-07-03T16:00:00Z",
+    "systemcol9": "2026-07-01",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1012",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.45033,
+    "systemcol12": 54.37005
+  },
+  {
+    "id": "IMS-12313",
+    "uniqueidentifier": "IMS-12313",
+    "title": "Access gate blocked by parked vehicle — Shakhbout City",
+    "status": "assigned",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-06-21T07:31:00Z",
+    "systemcol8": "2026-06-25T16:00:00Z",
+    "systemcol9": "2026-06-23",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1013",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.4437,
+    "systemcol12": 54.38816
+  },
+  {
+    "id": "IMS-12314",
+    "uniqueidentifier": "IMS-12314",
+    "title": "Odour complaint at transfer point — Al Reem Island",
+    "status": "assigned",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-06-10T08:38:00Z",
+    "systemcol8": "2026-06-15T16:00:00Z",
+    "systemcol9": "2026-06-13",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1014",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [],
+    "systemcol11": 24.45197,
+    "systemcol12": 54.44168
+  },
+  {
+    "id": "IMS-12315",
+    "uniqueidentifier": "IMS-12315",
+    "title": "Container relocation request — Shakhbout City",
+    "status": "assigned",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-06-11T09:45:00Z",
+    "systemcol8": "2026-06-17T16:00:00Z",
+    "systemcol9": "2026-06-15",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1015",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue",
+      "follow-up"
+    ],
+    "systemcol11": 24.44156,
+    "systemcol12": 54.42446
+  },
+  {
+    "id": "IMS-12316",
+    "uniqueidentifier": "IMS-12316",
+    "title": "Sweeper missed the roundabout circuit — Mussafah M-9",
+    "status": "assigned",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-06-24T10:52:00Z",
+    "systemcol8": "2026-07-01T16:00:00Z",
+    "systemcol9": "2026-06-25",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1016",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.49065,
+    "systemcol12": 54.41707
+  },
+  {
+    "id": "IMS-12317",
+    "uniqueidentifier": "IMS-12317",
+    "title": "Bulky waste collection rescheduled — Yas Island",
+    "status": "assigned",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-09-10T11:21:00Z",
+    "systemcol8": "2026-09-15T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1017",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.44388,
+    "systemcol12": 54.45325
+  },
+  {
+    "id": "IMS-12318",
+    "uniqueidentifier": "IMS-12318",
+    "title": "Overflowing container reported — Mussafah M-9",
+    "status": "assigned",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-07-15T12:06:00Z",
+    "systemcol8": "2026-07-18T16:00:00Z",
+    "systemcol9": "2026-07-18",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1018",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.47237,
+    "systemcol12": 54.34438
+  },
+  {
+    "id": "IMS-12319",
+    "uniqueidentifier": "IMS-12319",
+    "title": "Missed household collection round — Al Reem Island",
+    "status": "assigned",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-08-26T13:13:00Z",
+    "systemcol8": "2026-08-30T16:00:00Z",
+    "systemcol9": "2026-08-30",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1019",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.50091,
+    "systemcol12": 54.40169
+  },
+  {
+    "id": "IMS-12320",
+    "uniqueidentifier": "IMS-12320",
+    "title": "Green waste pile blocking access road — Al Falah City",
+    "status": "assigned",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-07-08T14:20:00Z",
+    "systemcol8": "2026-07-13T16:00:00Z",
+    "systemcol9": "2026-07-09",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1020",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.51965,
+    "systemcol12": 54.44181
+  },
+  {
+    "id": "IMS-12321",
+    "uniqueidentifier": "IMS-12321",
+    "title": "Bulky furniture dumped at kerbside — Al Falah City",
+    "status": "assigned",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-08-25T15:27:00Z",
+    "systemcol8": "2026-08-31T16:00:00Z",
+    "systemcol9": "2026-08-27",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1021",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.52871,
+    "systemcol12": 54.42546
+  },
+  {
+    "id": "IMS-12322",
+    "uniqueidentifier": "IMS-12322",
+    "title": "Street sweeping schedule breach — Mussafah M-9",
+    "status": "assigned",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-06-27T16:34:00Z",
+    "systemcol8": "2026-07-04T16:00:00Z",
+    "systemcol9": "2026-06-30",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1022",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "pothole",
+      "follow-up"
+    ],
+    "systemcol13": "Z-KH-02"
+  },
+  {
+    "id": "IMS-12323",
+    "uniqueidentifier": "IMS-12323",
+    "title": "Dead animal removal request — Madinat Zayed",
+    "status": "assigned",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-06-03T17:41:00Z",
+    "systemcol8": "2026-06-11T16:00:00Z",
+    "systemcol9": "2026-06-07",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1023",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.44367,
+    "systemcol12": 54.39346
+  },
+  {
+    "id": "IMS-12324",
+    "uniqueidentifier": "IMS-12324",
+    "title": "Container lid damaged beyond repair — Al Reem Island",
+    "status": "assigned",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-08-21T06:48:00Z",
+    "systemcol8": "2026-08-24T16:00:00Z",
+    "systemcol9": "2026-08-22",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1024",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.49512,
+    "systemcol12": 54.35147
+  },
+  {
+    "id": "IMS-12325",
+    "uniqueidentifier": "IMS-12325",
+    "title": "Illegal dumping near school gate — Khalifa City A",
+    "status": "assigned",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-08-27T07:55:00Z",
+    "systemcol8": "2026-08-31T16:00:00Z",
+    "systemcol9": "2026-08-29",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1025",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.47102,
+    "systemcol12": 54.33951
+  },
+  {
+    "id": "IMS-12326",
+    "uniqueidentifier": "IMS-12326",
+    "title": "Skip bin not returned after service — Khalifa City A",
+    "status": "assigned",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-06-06T08:02:00Z",
+    "systemcol8": "2026-06-11T16:00:00Z",
+    "systemcol9": "2026-06-09",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1026",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.48404,
+    "systemcol12": 54.44565
+  },
+  {
+    "id": "IMS-12327",
+    "uniqueidentifier": "IMS-12327",
+    "title": "Litter accumulation on service road — Madinat Zayed",
+    "status": "in-progress",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-07-30T09:09:00Z",
+    "systemcol8": "2026-08-05T16:00:00Z",
+    "systemcol9": "2026-08-03",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1027",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [],
+    "systemcol11": 24.4977,
+    "systemcol12": 54.36711,
+    "description": "Litter accumulation on service road — Madinat Zayed. Reported by Noura Al Ameri on the Lot 4 route; assigned to the Inspector crew for bulky waste removal.",
+    "checklist": [
+      {
+        "id": "chk_27_1",
+        "label": "Verify the report on site",
+        "done": true
+      },
+      {
+        "id": "chk_27_2",
+        "label": "Dispatch the crew",
+        "done": true
+      },
+      {
+        "id": "chk_27_3",
+        "label": "Confirm completion with the inspector",
+        "done": false
+      }
+    ],
+    "attachments": [
+      {
+        "id": "att_27_1",
+        "name": "ims-12327-site-report.pdf",
+        "mimeType": "application/pdf"
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/ims27-a/640/480",
+        "alt": "IMS-12327 site photo",
+        "caption": "Yas Island — on arrival"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_27_1",
+        "actor": "Noura Al Ameri",
+        "action": "reported bulky waste removal at Yas Island",
+        "timestamp": "2026-07-30 08:10",
+        "dateGroup": "2026-07-30"
+      },
+      {
+        "id": "tl_27_2",
+        "actor": "Dana Reyes",
+        "action": "triaged the task and set the priority",
+        "tone": "info",
+        "timestamp": "2026-07-30 09:25",
+        "dateGroup": "2026-07-30"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_27_1",
+        "actor": "Avery Stone",
+        "action": "Crew is en route, ETA 30 minutes.",
+        "timestamp": "2026-07-30 10:02",
+        "dateGroup": "2026-07-30"
+      }
+    ]
+  },
+  {
+    "id": "IMS-12328",
+    "uniqueidentifier": "IMS-12328",
+    "title": "Compactor vehicle breakdown en route — Al Reem Island",
+    "status": "in-progress",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-07-07T10:16:00Z",
+    "systemcol8": "2026-07-14T16:00:00Z",
+    "systemcol9": "2026-07-08",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1028",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.51572,
+    "systemcol12": 54.39005,
+    "description": "Compactor vehicle breakdown en route — Al Reem Island. Reported by Yusuf Karim on the Lot 5 route; assigned to the ESP crew for street sweeping.",
+    "checklist": [
+      {
+        "id": "chk_28_1",
+        "label": "Verify the report on site",
+        "done": true
+      },
+      {
+        "id": "chk_28_2",
+        "label": "Dispatch the crew",
+        "done": true
+      },
+      {
+        "id": "chk_28_3",
+        "label": "Confirm completion with the inspector",
+        "done": false
+      }
+    ],
+    "attachments": [
+      {
+        "id": "att_28_1",
+        "name": "ims-12328-site-report.pdf",
+        "mimeType": "application/pdf"
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/ims28-a/640/480",
+        "alt": "IMS-12328 site photo",
+        "caption": "Al Reem Island — on arrival"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_28_1",
+        "actor": "Yusuf Karim",
+        "action": "reported street sweeping at Al Reem Island",
+        "timestamp": "2026-07-07 08:10",
+        "dateGroup": "2026-07-07"
+      },
+      {
+        "id": "tl_28_2",
+        "actor": "Dana Reyes",
+        "action": "triaged the task and set the priority",
+        "tone": "info",
+        "timestamp": "2026-07-07 09:25",
+        "dateGroup": "2026-07-07"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_28_1",
+        "actor": "Avery Stone",
+        "action": "Crew is en route, ETA 30 minutes.",
+        "timestamp": "2026-07-07 10:02",
+        "dateGroup": "2026-07-07"
+      }
+    ]
+  },
+  {
+    "id": "IMS-12329",
+    "uniqueidentifier": "IMS-12329",
+    "title": "Recycling bin contamination reported — Khalifa City A",
+    "status": "in-progress",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-06-11T11:23:00Z",
+    "systemcol8": "2026-06-19T16:00:00Z",
+    "systemcol9": "2026-06-13",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1029",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service",
+      "follow-up"
+    ],
+    "systemcol11": 24.48949,
+    "systemcol12": 54.37014
+  },
+  {
+    "id": "IMS-12330",
+    "uniqueidentifier": "IMS-12330",
+    "title": "Bin bay wash-down overdue — Khalifa City A",
+    "status": "in-progress",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-06-25T12:30:00Z",
+    "systemcol8": "2026-06-28T16:00:00Z",
+    "systemcol9": "2026-06-28",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1030",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.44757,
+    "systemcol12": 54.39668
+  },
+  {
+    "id": "IMS-12331",
+    "uniqueidentifier": "IMS-12331",
+    "title": "Access gate blocked by parked vehicle — Yas Island",
+    "status": "in-progress",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-08-01T13:37:00Z",
+    "systemcol8": "2026-08-05T16:00:00Z",
+    "systemcol9": "2026-08-05",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1031",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.47123,
+    "systemcol12": 54.33989
+  },
+  {
+    "id": "IMS-12332",
+    "uniqueidentifier": "IMS-12332",
+    "title": "Odour complaint at transfer point — Al Reem Island",
+    "status": "in-progress",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-09-10T12:28:00Z",
+    "systemcol8": "2026-09-16T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1032",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.44105,
+    "systemcol12": 54.40639
+  },
+  {
+    "id": "IMS-12333",
+    "uniqueidentifier": "IMS-12333",
+    "title": "Container relocation request — Mussafah M-9",
+    "status": "in-progress",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-06-01T15:51:00Z",
+    "systemcol8": "2026-06-07T16:00:00Z",
+    "systemcol9": "2026-06-03",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1033",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.47754,
+    "systemcol12": 54.33254
+  },
+  {
+    "id": "IMS-12334",
+    "uniqueidentifier": "IMS-12334",
+    "title": "Sweeper missed the roundabout circuit — Mussafah M-9",
+    "status": "in-progress",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-06-14T16:58:00Z",
+    "systemcol8": "2026-06-21T16:00:00Z",
+    "systemcol9": "2026-06-17",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1034",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.48273,
+    "systemcol12": 54.36841
+  },
+  {
+    "id": "IMS-12335",
+    "uniqueidentifier": "IMS-12335",
+    "title": "Bulky waste collection rescheduled — Shakhbout City",
+    "status": "in-progress",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-07-03T17:05:00Z",
+    "systemcol8": "2026-07-11T16:00:00Z",
+    "systemcol9": "2026-07-07",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1035",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.50955,
+    "systemcol12": 54.45098
+  },
+  {
+    "id": "IMS-12336",
+    "uniqueidentifier": "IMS-12336",
+    "title": "Overflowing container reported — Madinat Zayed",
+    "status": "in-progress",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-08-12T06:12:00Z",
+    "systemcol8": "2026-08-15T16:00:00Z",
+    "systemcol9": "2026-08-13",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1036",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing",
+      "follow-up"
+    ],
+    "systemcol11": 24.45771,
+    "systemcol12": 54.36921
+  },
+  {
+    "id": "IMS-12337",
+    "uniqueidentifier": "IMS-12337",
+    "title": "Missed household collection round — Khalifa City A",
+    "status": "in-progress",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-09-10T13:35:00Z",
+    "systemcol8": "2026-09-12T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1037",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ]
+  },
+  {
+    "id": "IMS-12338",
+    "uniqueidentifier": "IMS-12338",
+    "title": "Green waste pile blocking access road — Al Reem Island",
+    "status": "in-progress",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-08-28T08:26:00Z",
+    "systemcol8": "2026-09-02T16:00:00Z",
+    "systemcol9": "2026-08-31",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1038",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.47412,
+    "systemcol12": 54.45212
+  },
+  {
+    "id": "IMS-12339",
+    "uniqueidentifier": "IMS-12339",
+    "title": "Bulky furniture dumped at kerbside — Al Bateen",
+    "status": "in-progress",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-09-10T14:42:00Z",
+    "systemcol8": "2026-09-13T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1039",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.50478,
+    "systemcol12": 54.45721
+  },
+  {
+    "id": "IMS-12340",
+    "uniqueidentifier": "IMS-12340",
+    "title": "Street sweeping schedule breach — Shakhbout City",
+    "status": "in-progress",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-08-25T10:40:00Z",
+    "systemcol8": "2026-09-01T16:00:00Z",
+    "systemcol9": "2026-08-26",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1040",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch"
+    ],
+    "systemcol11": 24.49678,
+    "systemcol12": 54.36383
+  },
+  {
+    "id": "IMS-12341",
+    "uniqueidentifier": "IMS-12341",
+    "title": "Dead animal removal request — Al Falah City",
+    "status": "in-progress",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-09-10T15:49:00Z",
+    "systemcol8": "2026-09-14T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1041",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.51742,
+    "systemcol12": 54.33231
+  },
+  {
+    "id": "IMS-12342",
+    "uniqueidentifier": "IMS-12342",
+    "title": "Container lid damaged beyond repair — Al Reem Island",
+    "status": "in-progress",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-09-10T16:56:00Z",
+    "systemcol8": "2026-09-15T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1042",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.48864,
+    "systemcol12": 54.4409
+  },
+  {
+    "id": "IMS-12343",
+    "uniqueidentifier": "IMS-12343",
+    "title": "Illegal dumping near school gate — Mussafah M-9",
+    "status": "in-progress",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-06-09T13:01:00Z",
+    "systemcol8": "2026-06-13T16:00:00Z",
+    "systemcol9": "2026-06-13",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1043",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue",
+      "follow-up"
+    ],
+    "systemcol11": 24.48082,
+    "systemcol12": 54.39845
+  },
+  {
+    "id": "IMS-12344",
+    "uniqueidentifier": "IMS-12344",
+    "title": "Skip bin not returned after service — Shakhbout City",
+    "status": "in-progress",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-06-08T14:08:00Z",
+    "systemcol8": "2026-06-13T16:00:00Z",
+    "systemcol9": "2026-06-09",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1044",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol13": "Z-MU-03",
+    "systemcol11": 24.4948,
+    "systemcol12": 54.37315
+  },
+  {
+    "id": "IMS-12345",
+    "uniqueidentifier": "IMS-12345",
+    "title": "Litter accumulation on service road — Madinat Zayed",
+    "status": "in-progress",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-06-13T15:15:00Z",
+    "systemcol8": "2026-06-19T16:00:00Z",
+    "systemcol9": "2026-06-15",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1045",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.51361,
+    "systemcol12": 54.3565
+  },
+  {
+    "id": "IMS-12346",
+    "uniqueidentifier": "IMS-12346",
+    "title": "Compactor vehicle breakdown en route — Mussafah M-9",
+    "status": "in-progress",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-07-14T16:22:00Z",
+    "systemcol8": "2026-07-21T16:00:00Z",
+    "systemcol9": "2026-07-17",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1046",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.49906,
+    "systemcol12": 54.44104
+  },
+  {
+    "id": "IMS-12347",
+    "uniqueidentifier": "IMS-12347",
+    "title": "Recycling bin contamination reported — Al Reem Island",
+    "status": "in-progress",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-08-10T17:29:00Z",
+    "systemcol8": "2026-08-18T16:00:00Z",
+    "systemcol9": "2026-08-14",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1047",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.48214,
+    "systemcol12": 54.39846
+  },
+  {
+    "id": "IMS-12348",
+    "uniqueidentifier": "IMS-12348",
+    "title": "Bin bay wash-down overdue — Al Bateen",
+    "status": "in-progress",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-07-27T06:36:00Z",
+    "systemcol8": "2026-07-30T16:00:00Z",
+    "systemcol9": "2026-07-28",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1048",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.48579,
+    "systemcol12": 54.42537
+  },
+  {
+    "id": "IMS-12349",
+    "uniqueidentifier": "IMS-12349",
+    "title": "Access gate blocked by parked vehicle — Al Bateen",
+    "status": "in-progress",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-09-10T08:03:00Z",
+    "systemcol8": "2026-09-16T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1049",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.44456,
+    "systemcol12": 54.34502
+  },
+  {
+    "id": "IMS-12350",
+    "uniqueidentifier": "IMS-12350",
+    "title": "Odour complaint at transfer point — Al Reem Island",
+    "status": "in-progress",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-07-21T08:50:00Z",
+    "systemcol8": "2026-07-26T16:00:00Z",
+    "systemcol9": "2026-07-24",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1050",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "debris",
+      "follow-up"
+    ],
+    "systemcol11": 24.51224,
+    "systemcol12": 54.40019
+  },
+  {
+    "id": "IMS-12351",
+    "uniqueidentifier": "IMS-12351",
+    "title": "Container relocation request — Khalifa City A",
+    "status": "delayed",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-07-16T09:57:00Z",
+    "systemcol8": "2026-07-22T16:00:00Z",
+    "systemcol9": "2026-07-20",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1051",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.49059,
+    "systemcol12": 54.35284,
+    "description": "Container relocation request — Khalifa City A. Reported by Noura Al Ameri on the Lot 4 route; assigned to the Inspector crew for bulky waste removal.",
+    "checklist": [
+      {
+        "id": "chk_51_1",
+        "label": "Verify the report on site",
+        "done": true
+      },
+      {
+        "id": "chk_51_2",
+        "label": "Dispatch the crew",
+        "done": true
+      },
+      {
+        "id": "chk_51_3",
+        "label": "Confirm completion with the inspector",
+        "done": false
+      }
+    ],
+    "attachments": [
+      {
+        "id": "att_51_1",
+        "name": "ims-12351-site-report.pdf",
+        "mimeType": "application/pdf"
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/ims51-a/640/480",
+        "alt": "IMS-12351 site photo",
+        "caption": "Yas Island — on arrival"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_51_1",
+        "actor": "Noura Al Ameri",
+        "action": "reported bulky waste removal at Yas Island",
+        "timestamp": "2026-07-16 08:10",
+        "dateGroup": "2026-07-16"
+      },
+      {
+        "id": "tl_51_2",
+        "actor": "Dana Reyes",
+        "action": "triaged the task and set the priority",
+        "tone": "info",
+        "timestamp": "2026-07-16 09:25",
+        "dateGroup": "2026-07-16"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_51_1",
+        "actor": "Avery Stone",
+        "action": "Crew is en route, ETA 30 minutes.",
+        "timestamp": "2026-07-16 10:02",
+        "dateGroup": "2026-07-16"
+      }
+    ]
+  },
+  {
+    "id": "IMS-12352",
+    "uniqueidentifier": "IMS-12352",
+    "title": "Sweeper missed the roundabout circuit — Al Bateen",
+    "status": "delayed",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-06-18T10:04:00Z",
+    "systemcol8": "2026-06-25T16:00:00Z",
+    "systemcol9": "2026-06-19",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1052",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.45285,
+    "systemcol12": 54.3727,
+    "description": "Sweeper missed the roundabout circuit — Al Bateen. Reported by Yusuf Karim on the Lot 5 route; assigned to the ESP crew for street sweeping.",
+    "checklist": [
+      {
+        "id": "chk_52_1",
+        "label": "Verify the report on site",
+        "done": true
+      },
+      {
+        "id": "chk_52_2",
+        "label": "Dispatch the crew",
+        "done": true
+      },
+      {
+        "id": "chk_52_3",
+        "label": "Confirm completion with the inspector",
+        "done": false
+      }
+    ],
+    "attachments": [
+      {
+        "id": "att_52_1",
+        "name": "ims-12352-site-report.pdf",
+        "mimeType": "application/pdf"
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/ims52-a/640/480",
+        "alt": "IMS-12352 site photo",
+        "caption": "Al Reem Island — on arrival"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_52_1",
+        "actor": "Yusuf Karim",
+        "action": "reported street sweeping at Al Reem Island",
+        "timestamp": "2026-06-18 08:10",
+        "dateGroup": "2026-06-18"
+      },
+      {
+        "id": "tl_52_2",
+        "actor": "Dana Reyes",
+        "action": "triaged the task and set the priority",
+        "tone": "info",
+        "timestamp": "2026-06-18 09:25",
+        "dateGroup": "2026-06-18"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_52_1",
+        "actor": "Avery Stone",
+        "action": "Crew is en route, ETA 30 minutes.",
+        "timestamp": "2026-06-18 10:02",
+        "dateGroup": "2026-06-18"
+      }
+    ]
+  },
+  {
+    "id": "IMS-12353",
+    "uniqueidentifier": "IMS-12353",
+    "title": "Bulky waste collection rescheduled — Al Bateen",
+    "status": "delayed",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-08-18T11:11:00Z",
+    "systemcol8": "2026-08-26T16:00:00Z",
+    "systemcol9": "2026-08-20",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1053",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [],
+    "systemcol11": 24.50309,
+    "systemcol12": 54.41273
+  },
+  {
+    "id": "IMS-12354",
+    "uniqueidentifier": "IMS-12354",
+    "title": "Overflowing container reported — Yas Island",
+    "status": "delayed",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-06-27T12:18:00Z",
+    "systemcol8": "2026-06-30T16:00:00Z",
+    "systemcol9": "2026-06-30",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1054",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.51507,
+    "systemcol12": 54.39151
+  },
+  {
+    "id": "IMS-12355",
+    "uniqueidentifier": "IMS-12355",
+    "title": "Missed household collection round — Yas Island",
+    "status": "in-inspection",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-06-29T13:25:00Z",
+    "systemcol8": "2026-07-03T16:00:00Z",
+    "systemcol9": "2026-07-03",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1055",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.49267,
+    "systemcol12": 54.35986,
+    "description": "Missed household collection round — Yas Island. Reported by Layla Haddad on the Lot 2 route; assigned to the Inspector crew for household collection.",
+    "checklist": [
+      {
+        "id": "chk_55_1",
+        "label": "Verify the report on site",
+        "done": true
+      },
+      {
+        "id": "chk_55_2",
+        "label": "Dispatch the crew",
+        "done": true
+      },
+      {
+        "id": "chk_55_3",
+        "label": "Confirm completion with the inspector",
+        "done": false
+      }
+    ],
+    "attachments": [
+      {
+        "id": "att_55_1",
+        "name": "ims-12355-site-report.pdf",
+        "mimeType": "application/pdf"
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/ims55-a/640/480",
+        "alt": "IMS-12355 site photo",
+        "caption": "Shakhbout City — on arrival"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_55_1",
+        "actor": "Layla Haddad",
+        "action": "reported household collection at Shakhbout City",
+        "timestamp": "2026-06-29 08:10",
+        "dateGroup": "2026-06-29"
+      },
+      {
+        "id": "tl_55_2",
+        "actor": "Dana Reyes",
+        "action": "triaged the task and set the priority",
+        "tone": "info",
+        "timestamp": "2026-06-29 09:25",
+        "dateGroup": "2026-06-29"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_55_1",
+        "actor": "Avery Stone",
+        "action": "Crew is en route, ETA 30 minutes.",
+        "timestamp": "2026-06-29 10:02",
+        "dateGroup": "2026-06-29"
+      }
+    ]
+  },
+  {
+    "id": "IMS-12356",
+    "uniqueidentifier": "IMS-12356",
+    "title": "Green waste pile blocking access road — Yas Island",
+    "status": "in-inspection",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-08-10T14:32:00Z",
+    "systemcol8": "2026-08-15T16:00:00Z",
+    "systemcol9": "2026-08-11",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1056",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.52125,
+    "systemcol12": 54.4332,
+    "description": "Green waste pile blocking access road — Yas Island. Reported by Sami Aziz on the Lot 3 route; assigned to the ESP crew for green waste collection.",
+    "checklist": [
+      {
+        "id": "chk_56_1",
+        "label": "Verify the report on site",
+        "done": true
+      },
+      {
+        "id": "chk_56_2",
+        "label": "Dispatch the crew",
+        "done": true
+      },
+      {
+        "id": "chk_56_3",
+        "label": "Confirm completion with the inspector",
+        "done": false
+      }
+    ],
+    "attachments": [
+      {
+        "id": "att_56_1",
+        "name": "ims-12356-site-report.pdf",
+        "mimeType": "application/pdf"
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/ims56-a/640/480",
+        "alt": "IMS-12356 site photo",
+        "caption": "Al Falah City — on arrival"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_56_1",
+        "actor": "Sami Aziz",
+        "action": "reported green waste collection at Al Falah City",
+        "timestamp": "2026-08-10 08:10",
+        "dateGroup": "2026-08-10"
+      },
+      {
+        "id": "tl_56_2",
+        "actor": "Dana Reyes",
+        "action": "triaged the task and set the priority",
+        "tone": "info",
+        "timestamp": "2026-08-10 09:25",
+        "dateGroup": "2026-08-10"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_56_1",
+        "actor": "Avery Stone",
+        "action": "Crew is en route, ETA 30 minutes.",
+        "timestamp": "2026-08-10 10:02",
+        "dateGroup": "2026-08-10"
+      }
+    ]
+  },
+  {
+    "id": "IMS-12357",
+    "uniqueidentifier": "IMS-12357",
+    "title": "Bulky furniture dumped at kerbside — Yas Island",
+    "status": "in-inspection",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-06-21T15:39:00Z",
+    "systemcol8": "2026-06-27T16:00:00Z",
+    "systemcol9": "2026-06-23",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1057",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service",
+      "follow-up"
+    ],
+    "systemcol11": 24.4492,
+    "systemcol12": 54.36634
+  },
+  {
+    "id": "IMS-12358",
+    "uniqueidentifier": "IMS-12358",
+    "title": "Street sweeping schedule breach — Mussafah M-9",
+    "status": "in-inspection",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-07-26T16:46:00Z",
+    "systemcol8": "2026-08-02T16:00:00Z",
+    "systemcol9": "2026-07-29",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1058",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.52019,
+    "systemcol12": 54.44165
+  },
+  {
+    "id": "IMS-12359",
+    "uniqueidentifier": "IMS-12359",
+    "title": "Dead animal removal request — Al Bateen",
+    "status": "in-inspection",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-08-14T17:53:00Z",
+    "systemcol8": "2026-08-22T16:00:00Z",
+    "systemcol9": "2026-08-18",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1059",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.5191,
+    "systemcol12": 54.45008
+  },
+  {
+    "id": "IMS-12360",
+    "uniqueidentifier": "IMS-12360",
+    "title": "Container lid damaged beyond repair — Mussafah M-9",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-08-25T06:00:00Z",
+    "systemcol8": "2026-08-28T16:00:00Z",
+    "systemcol9": "2026-08-26",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1060",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.44155,
+    "systemcol12": 54.39541,
+    "description": "Container lid damaged beyond repair — Mussafah M-9. Reported by Omar Nasser on the Lot 1 route; assigned to the ESP crew for container cleaning.",
+    "checklist": [
+      {
+        "id": "chk_60_1",
+        "label": "Verify the report on site",
+        "done": true
+      },
+      {
+        "id": "chk_60_2",
+        "label": "Dispatch the crew",
+        "done": true
+      },
+      {
+        "id": "chk_60_3",
+        "label": "Confirm completion with the inspector",
+        "done": true
+      }
+    ],
+    "attachments": [
+      {
+        "id": "att_60_1",
+        "name": "ims-12360-site-report.pdf",
+        "mimeType": "application/pdf"
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/ims60-a/640/480",
+        "alt": "IMS-12360 site photo",
+        "caption": "Al Reem Island — on arrival"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_60_1",
+        "actor": "Omar Nasser",
+        "action": "reported container cleaning at Al Reem Island",
+        "timestamp": "2026-08-25 08:10",
+        "dateGroup": "2026-08-25"
+      },
+      {
+        "id": "tl_60_2",
+        "actor": "Dana Reyes",
+        "action": "triaged the task and set the priority",
+        "tone": "info",
+        "timestamp": "2026-08-25 09:25",
+        "dateGroup": "2026-08-25"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_60_1",
+        "actor": "Avery Stone",
+        "action": "Crew is en route, ETA 30 minutes.",
+        "timestamp": "2026-08-25 10:02",
+        "dateGroup": "2026-08-25"
+      }
+    ]
+  },
+  {
+    "id": "IMS-12361",
+    "uniqueidentifier": "IMS-12361",
+    "title": "Illegal dumping near school gate — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-09-10T09:10:00Z",
+    "systemcol8": "2026-09-12T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1061",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.51825,
+    "systemcol12": 54.34052,
+    "description": "Illegal dumping near school gate — Al Bateen. Reported by Layla Haddad on the Lot 2 route; assigned to the PMO crew for household collection.",
+    "checklist": [
+      {
+        "id": "chk_61_1",
+        "label": "Verify the report on site",
+        "done": true
+      },
+      {
+        "id": "chk_61_2",
+        "label": "Dispatch the crew",
+        "done": true
+      },
+      {
+        "id": "chk_61_3",
+        "label": "Confirm completion with the inspector",
+        "done": true
+      }
+    ],
+    "attachments": [
+      {
+        "id": "att_61_1",
+        "name": "ims-12361-site-report.pdf",
+        "mimeType": "application/pdf"
+      }
+    ],
+    "images": [
+      {
+        "src": "https://picsum.photos/seed/ims61-a/640/480",
+        "alt": "IMS-12361 site photo",
+        "caption": "Madinat Zayed — on arrival"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_61_1",
+        "actor": "Layla Haddad",
+        "action": "reported household collection at Madinat Zayed",
+        "timestamp": "2026-09-21 08:10",
+        "dateGroup": "2026-09-21"
+      },
+      {
+        "id": "tl_61_2",
+        "actor": "Dana Reyes",
+        "action": "triaged the task and set the priority",
+        "tone": "info",
+        "timestamp": "2026-09-21 09:25",
+        "dateGroup": "2026-09-21"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_61_1",
+        "actor": "Avery Stone",
+        "action": "Crew is en route, ETA 30 minutes.",
+        "timestamp": "2026-09-21 10:02",
+        "dateGroup": "2026-09-21"
+      }
+    ]
+  },
+  {
+    "id": "IMS-12362",
+    "uniqueidentifier": "IMS-12362",
+    "title": "Skip bin not returned after service — Shakhbout City",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-06-19T08:14:00Z",
+    "systemcol8": "2026-06-24T16:00:00Z",
+    "systemcol9": "2026-06-22",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1062",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.47006,
+    "systemcol12": 54.39537
+  },
+  {
+    "id": "IMS-12363",
+    "uniqueidentifier": "IMS-12363",
+    "title": "Litter accumulation on service road — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-06-18T09:21:00Z",
+    "systemcol8": "2026-06-24T16:00:00Z",
+    "systemcol9": "2026-06-22",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1063",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.50812,
+    "systemcol12": 54.43033
+  },
+  {
+    "id": "IMS-12364",
+    "uniqueidentifier": "IMS-12364",
+    "title": "Compactor vehicle breakdown en route — Al Falah City",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-07-24T10:28:00Z",
+    "systemcol8": "2026-07-31T16:00:00Z",
+    "systemcol9": "2026-07-25",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1064",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing",
+      "follow-up"
+    ],
+    "systemcol11": 24.4863,
+    "systemcol12": 54.33539
+  },
+  {
+    "id": "IMS-12365",
+    "uniqueidentifier": "IMS-12365",
+    "title": "Recycling bin contamination reported — Yas Island",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-07-04T11:35:00Z",
+    "systemcol8": "2026-07-12T16:00:00Z",
+    "systemcol9": "2026-07-06",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1065",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.51858,
+    "systemcol12": 54.36925
+  },
+  {
+    "id": "IMS-12366",
+    "uniqueidentifier": "IMS-12366",
+    "title": "Bin bay wash-down overdue — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-09-10T10:17:00Z",
+    "systemcol8": "2026-09-13T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1066",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [],
+    "systemcol13": "Z-YS-04"
+  },
+  {
+    "id": "IMS-12367",
+    "uniqueidentifier": "IMS-12367",
+    "title": "Access gate blocked by parked vehicle — Yas Island",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-06-12T13:49:00Z",
+    "systemcol8": "2026-06-16T16:00:00Z",
+    "systemcol9": "2026-06-16",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1067",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.44153,
+    "systemcol12": 54.42355
+  },
+  {
+    "id": "IMS-12368",
+    "uniqueidentifier": "IMS-12368",
+    "title": "Odour complaint at transfer point — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-07-25T14:56:00Z",
+    "systemcol8": "2026-07-30T16:00:00Z",
+    "systemcol9": "2026-07-26",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1068",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.4824,
+    "systemcol12": 54.35962
+  },
+  {
+    "id": "IMS-12369",
+    "uniqueidentifier": "IMS-12369",
+    "title": "Container relocation request — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-09-10T11:24:00Z",
+    "systemcol8": "2026-09-14T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1069",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.48774,
+    "systemcol12": 54.37876
+  },
+  {
+    "id": "IMS-12370",
+    "uniqueidentifier": "IMS-12370",
+    "title": "Sweeper missed the roundabout circuit — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-08-24T16:10:00Z",
+    "systemcol8": "2026-08-31T16:00:00Z",
+    "systemcol9": "2026-08-27",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1070",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.44922,
+    "systemcol12": 54.34581
+  },
+  {
+    "id": "IMS-12371",
+    "uniqueidentifier": "IMS-12371",
+    "title": "Bulky waste collection rescheduled — Yas Island",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-07-05T17:17:00Z",
+    "systemcol8": "2026-07-13T16:00:00Z",
+    "systemcol9": "2026-07-09",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1071",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked",
+      "follow-up"
+    ],
+    "systemcol11": 24.48304,
+    "systemcol12": 54.39659
+  },
+  {
+    "id": "IMS-12372",
+    "uniqueidentifier": "IMS-12372",
+    "title": "Overflowing container reported — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-07-14T06:24:00Z",
+    "systemcol8": "2026-07-17T16:00:00Z",
+    "systemcol9": "2026-07-15",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1072",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.48516,
+    "systemcol12": 54.37269
+  },
+  {
+    "id": "IMS-12373",
+    "uniqueidentifier": "IMS-12373",
+    "title": "Missed household collection round — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-06-02T07:31:00Z",
+    "systemcol8": "2026-06-06T16:00:00Z",
+    "systemcol9": "2026-06-04",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1073",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.50593,
+    "systemcol12": 54.34051
+  },
+  {
+    "id": "IMS-12374",
+    "uniqueidentifier": "IMS-12374",
+    "title": "Green waste pile blocking access road — Yas Island",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-07-17T08:38:00Z",
+    "systemcol8": "2026-07-22T16:00:00Z",
+    "systemcol9": "2026-07-20",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1074",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ]
+  },
+  {
+    "id": "IMS-12375",
+    "uniqueidentifier": "IMS-12375",
+    "title": "Bulky furniture dumped at kerbside — Mussafah M-9",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-07-02T09:45:00Z",
+    "systemcol8": "2026-07-08T16:00:00Z",
+    "systemcol9": "2026-07-06",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1075",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.46187,
+    "systemcol12": 54.34394
+  },
+  {
+    "id": "IMS-12376",
+    "uniqueidentifier": "IMS-12376",
+    "title": "Street sweeping schedule breach — Shakhbout City",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-06-22T10:52:00Z",
+    "systemcol8": "2026-06-29T16:00:00Z",
+    "systemcol9": "2026-06-23",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1076",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.45388,
+    "systemcol12": 54.43562
+  },
+  {
+    "id": "IMS-12377",
+    "uniqueidentifier": "IMS-12377",
+    "title": "Dead animal removal request — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-08-17T11:59:00Z",
+    "systemcol8": "2026-08-25T16:00:00Z",
+    "systemcol9": "2026-08-19",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1077",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.46416,
+    "systemcol12": 54.45717
+  },
+  {
+    "id": "IMS-12378",
+    "uniqueidentifier": "IMS-12378",
+    "title": "Container lid damaged beyond repair — Yas Island",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-09-10T12:31:00Z",
+    "systemcol8": "2026-09-15T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1078",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "debris",
+      "follow-up"
+    ],
+    "systemcol11": 24.49286,
+    "systemcol12": 54.35236
+  },
+  {
+    "id": "IMS-12379",
+    "uniqueidentifier": "IMS-12379",
+    "title": "Illegal dumping near school gate — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-09-10T13:38:00Z",
+    "systemcol8": "2026-09-16T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1079",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [],
+    "systemcol11": 24.52972,
+    "systemcol12": 54.4453
+  },
+  {
+    "id": "IMS-12380",
+    "uniqueidentifier": "IMS-12380",
+    "title": "Skip bin not returned after service — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-07-11T14:20:00Z",
+    "systemcol8": "2026-07-16T16:00:00Z",
+    "systemcol9": "2026-07-12",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1080",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.46634,
+    "systemcol12": 54.36421
+  },
+  {
+    "id": "IMS-12381",
+    "uniqueidentifier": "IMS-12381",
+    "title": "Litter accumulation on service road — Shakhbout City",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-07-12T15:27:00Z",
+    "systemcol8": "2026-07-18T16:00:00Z",
+    "systemcol9": "2026-07-14",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1081",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.4768,
+    "systemcol12": 54.40438
+  },
+  {
+    "id": "IMS-12382",
+    "uniqueidentifier": "IMS-12382",
+    "title": "Compactor vehicle breakdown en route — Shakhbout City",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-06-09T16:34:00Z",
+    "systemcol8": "2026-06-16T16:00:00Z",
+    "systemcol9": "2026-06-12",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1082",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.44241,
+    "systemcol12": 54.41227
+  },
+  {
+    "id": "IMS-12383",
+    "uniqueidentifier": "IMS-12383",
+    "title": "Recycling bin contamination reported — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-06-05T17:41:00Z",
+    "systemcol8": "2026-06-13T16:00:00Z",
+    "systemcol9": "2026-06-09",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1083",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.49628,
+    "systemcol12": 54.33549
+  },
+  {
+    "id": "IMS-12384",
+    "uniqueidentifier": "IMS-12384",
+    "title": "Bin bay wash-down overdue — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-06-10T06:48:00Z",
+    "systemcol8": "2026-06-13T16:00:00Z",
+    "systemcol9": "2026-06-11",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1084",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.44616,
+    "systemcol12": 54.38955
+  },
+  {
+    "id": "IMS-12385",
+    "uniqueidentifier": "IMS-12385",
+    "title": "Access gate blocked by parked vehicle — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-08-31T07:55:00Z",
+    "systemcol8": "2026-09-04T16:00:00Z",
+    "systemcol9": "2026-09-02",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1085",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue",
+      "follow-up"
+    ],
+    "systemcol11": 24.50224,
+    "systemcol12": 54.34655
+  },
+  {
+    "id": "IMS-12386",
+    "uniqueidentifier": "IMS-12386",
+    "title": "Odour complaint at transfer point — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-06-22T08:02:00Z",
+    "systemcol8": "2026-06-27T16:00:00Z",
+    "systemcol9": "2026-06-25",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1086",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.4706,
+    "systemcol12": 54.40054
+  },
+  {
+    "id": "IMS-12387",
+    "uniqueidentifier": "IMS-12387",
+    "title": "Container relocation request — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-07-20T09:09:00Z",
+    "systemcol8": "2026-07-26T16:00:00Z",
+    "systemcol9": "2026-07-24",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1087",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.51994,
+    "systemcol12": 54.34105
+  },
+  {
+    "id": "IMS-12388",
+    "uniqueidentifier": "IMS-12388",
+    "title": "Sweeper missed the roundabout circuit — Al Falah City",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-07-02T10:16:00Z",
+    "systemcol8": "2026-07-09T16:00:00Z",
+    "systemcol9": "2026-07-03",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1088",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol13": "Z-AF-01",
+    "systemcol11": 24.45987,
+    "systemcol12": 54.3503
+  },
+  {
+    "id": "IMS-12389",
+    "uniqueidentifier": "IMS-12389",
+    "title": "Bulky waste collection rescheduled — Mussafah M-9",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-07-18T11:23:00Z",
+    "systemcol8": "2026-07-26T16:00:00Z",
+    "systemcol9": "2026-07-20",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1089",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.51742,
+    "systemcol12": 54.35209
+  },
+  {
+    "id": "IMS-12390",
+    "uniqueidentifier": "IMS-12390",
+    "title": "Overflowing container reported — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-09-10T14:45:00Z",
+    "systemcol8": "2026-09-12T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1090",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.44248,
+    "systemcol12": 54.41752
+  },
+  {
+    "id": "IMS-12391",
+    "uniqueidentifier": "IMS-12391",
+    "title": "Missed household collection round — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-08-31T13:37:00Z",
+    "systemcol8": "2026-09-04T16:00:00Z",
+    "systemcol9": "2026-09-04",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1091",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.48069,
+    "systemcol12": 54.37335
+  },
+  {
+    "id": "IMS-12392",
+    "uniqueidentifier": "IMS-12392",
+    "title": "Green waste pile blocking access road — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-07-10T14:44:00Z",
+    "systemcol8": "2026-07-15T16:00:00Z",
+    "systemcol9": "2026-07-11",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1092",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch"
+    ],
+    "systemcol11": 24.4546,
+    "systemcol12": 54.39237
+  },
+  {
+    "id": "IMS-12393",
+    "uniqueidentifier": "IMS-12393",
+    "title": "Bulky furniture dumped at kerbside — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-08-25T15:51:00Z",
+    "systemcol8": "2026-08-31T16:00:00Z",
+    "systemcol9": "2026-08-27",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1093",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.47565,
+    "systemcol12": 54.44617
+  },
+  {
+    "id": "IMS-12394",
+    "uniqueidentifier": "IMS-12394",
+    "title": "Street sweeping schedule breach — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-08-25T16:58:00Z",
+    "systemcol8": "2026-09-01T16:00:00Z",
+    "systemcol9": "2026-08-28",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1094",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.45085,
+    "systemcol12": 54.43272
+  },
+  {
+    "id": "IMS-12395",
+    "uniqueidentifier": "IMS-12395",
+    "title": "Dead animal removal request — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-08-18T17:05:00Z",
+    "systemcol8": "2026-08-26T16:00:00Z",
+    "systemcol9": "2026-08-22",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1095",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.52636,
+    "systemcol12": 54.33024
+  },
+  {
+    "id": "IMS-12396",
+    "uniqueidentifier": "IMS-12396",
+    "title": "Container lid damaged beyond repair — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-06-23T06:12:00Z",
+    "systemcol8": "2026-06-26T16:00:00Z",
+    "systemcol9": "2026-06-24",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1096",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.47863,
+    "systemcol12": 54.42177
+  },
+  {
+    "id": "IMS-12397",
+    "uniqueidentifier": "IMS-12397",
+    "title": "Illegal dumping near school gate — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-07-22T07:19:00Z",
+    "systemcol8": "2026-07-26T16:00:00Z",
+    "systemcol9": "2026-07-24",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1097",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.51958,
+    "systemcol12": 54.44555
+  },
+  {
+    "id": "IMS-12398",
+    "uniqueidentifier": "IMS-12398",
+    "title": "Skip bin not returned after service — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-06-30T08:26:00Z",
+    "systemcol8": "2026-07-05T16:00:00Z",
+    "systemcol9": "2026-07-03",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1098",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.47747,
+    "systemcol12": 54.41936
+  },
+  {
+    "id": "IMS-12399",
+    "uniqueidentifier": "IMS-12399",
+    "title": "Litter accumulation on service road — Mussafah M-9",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-07-07T09:33:00Z",
+    "systemcol8": "2026-07-13T16:00:00Z",
+    "systemcol9": "2026-07-11",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1099",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked",
+      "follow-up"
+    ],
+    "systemcol11": 24.48392,
+    "systemcol12": 54.4321
+  },
+  {
+    "id": "IMS-12400",
+    "uniqueidentifier": "IMS-12400",
+    "title": "Compactor vehicle breakdown en route — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-06-04T10:40:00Z",
+    "systemcol8": "2026-06-11T16:00:00Z",
+    "systemcol9": "2026-06-05",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1100",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.50568,
+    "systemcol12": 54.40498
+  },
+  {
+    "id": "IMS-12401",
+    "uniqueidentifier": "IMS-12401",
+    "title": "Recycling bin contamination reported — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-07-03T11:47:00Z",
+    "systemcol8": "2026-07-11T16:00:00Z",
+    "systemcol9": "2026-07-05",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1101",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.45968,
+    "systemcol12": 54.4374
+  },
+  {
+    "id": "IMS-12402",
+    "uniqueidentifier": "IMS-12402",
+    "title": "Bin bay wash-down overdue — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-07-13T12:54:00Z",
+    "systemcol8": "2026-07-16T16:00:00Z",
+    "systemcol9": "2026-07-16",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1102",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.45701,
+    "systemcol12": 54.40133
+  },
+  {
+    "id": "IMS-12403",
+    "uniqueidentifier": "IMS-12403",
+    "title": "Access gate blocked by parked vehicle — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-09-10T15:52:00Z",
+    "systemcol8": "2026-09-13T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1103",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.49733,
+    "systemcol12": 54.37801
+  },
+  {
+    "id": "IMS-12404",
+    "uniqueidentifier": "IMS-12404",
+    "title": "Odour complaint at transfer point — Al Falah City",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-07-09T14:08:00Z",
+    "systemcol8": "2026-07-14T16:00:00Z",
+    "systemcol9": "2026-07-10",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1104",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.45156,
+    "systemcol12": 54.40759
+  },
+  {
+    "id": "IMS-12405",
+    "uniqueidentifier": "IMS-12405",
+    "title": "Container relocation request — Yas Island",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-06-07T15:15:00Z",
+    "systemcol8": "2026-06-13T16:00:00Z",
+    "systemcol9": "2026-06-09",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1105",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [],
+    "systemcol11": 24.49625,
+    "systemcol12": 54.42993
+  },
+  {
+    "id": "IMS-12406",
+    "uniqueidentifier": "IMS-12406",
+    "title": "Sweeper missed the roundabout circuit — Mussafah M-9",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-06-28T16:22:00Z",
+    "systemcol8": "2026-07-05T16:00:00Z",
+    "systemcol9": "2026-07-01",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1106",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "pothole",
+      "follow-up"
+    ],
+    "systemcol11": 24.50795,
+    "systemcol12": 54.37336
+  },
+  {
+    "id": "IMS-12407",
+    "uniqueidentifier": "IMS-12407",
+    "title": "Bulky waste collection rescheduled — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-09-10T16:59:00Z",
+    "systemcol8": "2026-09-14T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1107",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.44826,
+    "systemcol12": 54.40077
+  },
+  {
+    "id": "IMS-12408",
+    "uniqueidentifier": "IMS-12408",
+    "title": "Overflowing container reported — Mussafah M-9",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-07-12T06:36:00Z",
+    "systemcol8": "2026-07-15T16:00:00Z",
+    "systemcol9": "2026-07-13",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1108",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.48731,
+    "systemcol12": 54.35955
+  },
+  {
+    "id": "IMS-12409",
+    "uniqueidentifier": "IMS-12409",
+    "title": "Missed household collection round — Al Falah City",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-08-11T07:43:00Z",
+    "systemcol8": "2026-08-15T16:00:00Z",
+    "systemcol9": "2026-08-13",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1109",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.44818,
+    "systemcol12": 54.44725
+  },
+  {
+    "id": "IMS-12410",
+    "uniqueidentifier": "IMS-12410",
+    "title": "Green waste pile blocking access road — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-07-06T08:50:00Z",
+    "systemcol8": "2026-07-11T16:00:00Z",
+    "systemcol9": "2026-07-09",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1110",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol13": "Z-KH-02"
+  },
+  {
+    "id": "IMS-12411",
+    "uniqueidentifier": "IMS-12411",
+    "title": "Bulky furniture dumped at kerbside — Al Falah City",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-09-10T08:06:00Z",
+    "systemcol8": "2026-09-15T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1111",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ]
+  },
+  {
+    "id": "IMS-12412",
+    "uniqueidentifier": "IMS-12412",
+    "title": "Street sweeping schedule breach — Al Falah City",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-08-25T10:04:00Z",
+    "systemcol8": "2026-09-01T16:00:00Z",
+    "systemcol9": "2026-08-26",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1112",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.4627,
+    "systemcol12": 54.40827
+  },
+  {
+    "id": "IMS-12413",
+    "uniqueidentifier": "IMS-12413",
+    "title": "Dead animal removal request — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-06-06T11:11:00Z",
+    "systemcol8": "2026-06-14T16:00:00Z",
+    "systemcol9": "2026-06-08",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1113",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue",
+      "follow-up"
+    ],
+    "systemcol11": 24.48856,
+    "systemcol12": 54.43724
+  },
+  {
+    "id": "IMS-12414",
+    "uniqueidentifier": "IMS-12414",
+    "title": "Container lid damaged beyond repair — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-08-18T12:18:00Z",
+    "systemcol8": "2026-08-21T16:00:00Z",
+    "systemcol9": "2026-08-21",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1114",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.44993,
+    "systemcol12": 54.34592
+  },
+  {
+    "id": "IMS-12415",
+    "uniqueidentifier": "IMS-12415",
+    "title": "Illegal dumping near school gate — Al Falah City",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-08-18T13:25:00Z",
+    "systemcol8": "2026-08-22T16:00:00Z",
+    "systemcol9": "2026-08-22",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1115",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.46255,
+    "systemcol12": 54.44371
+  },
+  {
+    "id": "IMS-12416",
+    "uniqueidentifier": "IMS-12416",
+    "title": "Skip bin not returned after service — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-06-16T14:32:00Z",
+    "systemcol8": "2026-06-21T16:00:00Z",
+    "systemcol9": "2026-06-17",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1116",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.51013,
+    "systemcol12": 54.39029
+  },
+  {
+    "id": "IMS-12417",
+    "uniqueidentifier": "IMS-12417",
+    "title": "Litter accumulation on service road — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-07-09T15:39:00Z",
+    "systemcol8": "2026-07-15T16:00:00Z",
+    "systemcol9": "2026-07-11",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1117",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.44322,
+    "systemcol12": 54.34994
+  },
+  {
+    "id": "IMS-12418",
+    "uniqueidentifier": "IMS-12418",
+    "title": "Compactor vehicle breakdown en route — Mussafah M-9",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-06-15T16:46:00Z",
+    "systemcol8": "2026-06-22T16:00:00Z",
+    "systemcol9": "2026-06-18",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1118",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [],
+    "systemcol11": 24.47573,
+    "systemcol12": 54.39082
+  },
+  {
+    "id": "IMS-12419",
+    "uniqueidentifier": "IMS-12419",
+    "title": "Recycling bin contamination reported — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-09-10T09:13:00Z",
+    "systemcol8": "2026-09-16T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1119",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.5091,
+    "systemcol12": 54.45756
+  },
+  {
+    "id": "IMS-12420",
+    "uniqueidentifier": "IMS-12420",
+    "title": "Bin bay wash-down overdue — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-06-14T06:00:00Z",
+    "systemcol8": "2026-06-17T16:00:00Z",
+    "systemcol9": "2026-06-15",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1120",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin",
+      "follow-up"
+    ],
+    "systemcol11": 24.48296,
+    "systemcol12": 54.37609
+  },
+  {
+    "id": "IMS-12421",
+    "uniqueidentifier": "IMS-12421",
+    "title": "Access gate blocked by parked vehicle — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-08-02T07:07:00Z",
+    "systemcol8": "2026-08-06T16:00:00Z",
+    "systemcol9": "2026-08-04",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1121",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.44788,
+    "systemcol12": 54.34488
+  },
+  {
+    "id": "IMS-12422",
+    "uniqueidentifier": "IMS-12422",
+    "title": "Odour complaint at transfer point — Al Falah City",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-07-01T08:14:00Z",
+    "systemcol8": "2026-07-06T16:00:00Z",
+    "systemcol9": "2026-07-04",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1122",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.48002,
+    "systemcol12": 54.43732
+  },
+  {
+    "id": "IMS-12423",
+    "uniqueidentifier": "IMS-12423",
+    "title": "Container relocation request — Mussafah M-9",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-06-16T09:21:00Z",
+    "systemcol8": "2026-06-22T16:00:00Z",
+    "systemcol9": "2026-06-20",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1123",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.51663,
+    "systemcol12": 54.37569
+  },
+  {
+    "id": "IMS-12424",
+    "uniqueidentifier": "IMS-12424",
+    "title": "Sweeper missed the roundabout circuit — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-09-10T10:20:00Z",
+    "systemcol8": "2026-09-12T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1124",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.52632,
+    "systemcol12": 54.33959
+  },
+  {
+    "id": "IMS-12425",
+    "uniqueidentifier": "IMS-12425",
+    "title": "Bulky waste collection rescheduled — Al Falah City",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-06-08T11:35:00Z",
+    "systemcol8": "2026-06-16T16:00:00Z",
+    "systemcol9": "2026-06-10",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1125",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.49298,
+    "systemcol12": 54.43344
+  },
+  {
+    "id": "IMS-12426",
+    "uniqueidentifier": "IMS-12426",
+    "title": "Overflowing container reported — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-06-29T12:42:00Z",
+    "systemcol8": "2026-07-02T16:00:00Z",
+    "systemcol9": "2026-07-02",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1126",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.52775,
+    "systemcol12": 54.43138
+  },
+  {
+    "id": "IMS-12427",
+    "uniqueidentifier": "IMS-12427",
+    "title": "Missed household collection round — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-07-08T13:49:00Z",
+    "systemcol8": "2026-07-12T16:00:00Z",
+    "systemcol9": "2026-07-12",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1127",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue",
+      "follow-up"
+    ],
+    "systemcol11": 24.51582,
+    "systemcol12": 54.35057
+  },
+  {
+    "id": "IMS-12428",
+    "uniqueidentifier": "IMS-12428",
+    "title": "Green waste pile blocking access road — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-07-04T14:56:00Z",
+    "systemcol8": "2026-07-09T16:00:00Z",
+    "systemcol9": "2026-07-05",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1128",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.50745,
+    "systemcol12": 54.44115
+  },
+  {
+    "id": "IMS-12429",
+    "uniqueidentifier": "IMS-12429",
+    "title": "Bulky furniture dumped at kerbside — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-09-10T11:27:00Z",
+    "systemcol8": "2026-09-13T17:00:00Z",
+    "systemcol9": "2026-09-10",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1129",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.52923,
+    "systemcol12": 54.41253
+  },
+  {
+    "id": "IMS-12430",
+    "uniqueidentifier": "IMS-12430",
+    "title": "Street sweeping schedule breach — Mussafah M-9",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-09-15T16:10:00Z",
+    "systemcol8": "2026-09-22T16:00:00Z",
+    "systemcol9": "2026-09-18",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1130",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.47941,
+    "systemcol12": 54.40355
+  },
+  {
+    "id": "IMS-12431",
+    "uniqueidentifier": "IMS-12431",
+    "title": "Dead animal removal request — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-07-28T17:17:00Z",
+    "systemcol8": "2026-08-05T16:00:00Z",
+    "systemcol9": "2026-08-01",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1131",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [],
+    "systemcol11": 24.46345,
+    "systemcol12": 54.34469
+  },
+  {
+    "id": "IMS-12432",
+    "uniqueidentifier": "IMS-12432",
+    "title": "Container lid damaged beyond repair — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-07-10T06:24:00Z",
+    "systemcol8": "2026-07-13T16:00:00Z",
+    "systemcol9": "2026-07-11",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1132",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol13": "Z-MU-03",
+    "systemcol11": 24.49274,
+    "systemcol12": 54.37099
+  },
+  {
+    "id": "IMS-12433",
+    "uniqueidentifier": "IMS-12433",
+    "title": "Illegal dumping near school gate — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-06-07T07:31:00Z",
+    "systemcol8": "2026-06-11T16:00:00Z",
+    "systemcol9": "2026-06-09",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1133",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.44773,
+    "systemcol12": 54.37906
+  },
+  {
+    "id": "IMS-12434",
+    "uniqueidentifier": "IMS-12434",
+    "title": "Skip bin not returned after service — Mussafah M-9",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-07-31T08:38:00Z",
+    "systemcol8": "2026-08-05T16:00:00Z",
+    "systemcol9": "2026-08-03",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1134",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "pothole",
+      "follow-up"
+    ],
+    "systemcol11": 24.44477,
+    "systemcol12": 54.39582
+  },
+  {
+    "id": "IMS-12435",
+    "uniqueidentifier": "IMS-12435",
+    "title": "Litter accumulation on service road — Shakhbout City",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-08-26T09:45:00Z",
+    "systemcol8": "2026-09-01T16:00:00Z",
+    "systemcol9": "2026-08-30",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1135",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.47575,
+    "systemcol12": 54.39692
+  },
+  {
+    "id": "IMS-12436",
+    "uniqueidentifier": "IMS-12436",
+    "title": "Compactor vehicle breakdown en route — Al Falah City",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-06-02T10:52:00Z",
+    "systemcol8": "2026-06-09T16:00:00Z",
+    "systemcol9": "2026-06-03",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1136",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.48773,
+    "systemcol12": 54.33182
+  },
+  {
+    "id": "IMS-12437",
+    "uniqueidentifier": "IMS-12437",
+    "title": "Recycling bin contamination reported — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-09-18T11:59:00Z",
+    "systemcol8": "2026-09-26T16:00:00Z",
+    "systemcol9": "2026-09-20",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1137",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.47225,
+    "systemcol12": 54.40905
+  },
+  {
+    "id": "IMS-12438",
+    "uniqueidentifier": "IMS-12438",
+    "title": "Bin bay wash-down overdue — Yas Island",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-06-24T12:06:00Z",
+    "systemcol8": "2026-06-27T16:00:00Z",
+    "systemcol9": "2026-06-27",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1138",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.46326,
+    "systemcol12": 54.45175
+  },
+  {
+    "id": "IMS-12439",
+    "uniqueidentifier": "IMS-12439",
+    "title": "Access gate blocked by parked vehicle — Yas Island",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-07-23T13:13:00Z",
+    "systemcol8": "2026-07-27T16:00:00Z",
+    "systemcol9": "2026-07-27",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1139",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.50133,
+    "systemcol12": 54.33003
+  },
+  {
+    "id": "IMS-12440",
+    "uniqueidentifier": "IMS-12440",
+    "title": "Odour complaint at transfer point — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-08-20T14:20:00Z",
+    "systemcol8": "2026-08-25T16:00:00Z",
+    "systemcol9": "2026-08-21",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1140",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.47712,
+    "systemcol12": 54.41322
+  },
+  {
+    "id": "IMS-12441",
+    "uniqueidentifier": "IMS-12441",
+    "title": "Container relocation request — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-06-13T15:27:00Z",
+    "systemcol8": "2026-06-19T16:00:00Z",
+    "systemcol9": "2026-06-15",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1141",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service",
+      "follow-up"
+    ],
+    "systemcol11": 24.52397,
+    "systemcol12": 54.40501
+  },
+  {
+    "id": "IMS-12442",
+    "uniqueidentifier": "IMS-12442",
+    "title": "Sweeper missed the roundabout circuit — Yas Island",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-09-24T16:34:00Z",
+    "systemcol8": "2026-10-01T16:00:00Z",
+    "systemcol9": "2026-09-27",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1142",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.44842,
+    "systemcol12": 54.41334
+  },
+  {
+    "id": "IMS-12443",
+    "uniqueidentifier": "IMS-12443",
+    "title": "Bulky waste collection rescheduled — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-08-19T17:41:00Z",
+    "systemcol8": "2026-08-27T16:00:00Z",
+    "systemcol9": "2026-08-23",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1143",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.51732,
+    "systemcol12": 54.35074
+  },
+  {
+    "id": "IMS-12444",
+    "uniqueidentifier": "IMS-12444",
+    "title": "Overflowing container reported — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-06-12T06:48:00Z",
+    "systemcol8": "2026-06-15T16:00:00Z",
+    "systemcol9": "2026-06-13",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1144",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch"
+    ],
+    "systemcol11": 24.50858,
+    "systemcol12": 54.45926
+  },
+  {
+    "id": "IMS-12445",
+    "uniqueidentifier": "IMS-12445",
+    "title": "Missed household collection round — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-07-01T07:55:00Z",
+    "systemcol8": "2026-07-05T16:00:00Z",
+    "systemcol9": "2026-07-03",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1145",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.50781,
+    "systemcol12": 54.42384
+  },
+  {
+    "id": "IMS-12446",
+    "uniqueidentifier": "IMS-12446",
+    "title": "Green waste pile blocking access road — Al Falah City",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-07-15T08:02:00Z",
+    "systemcol8": "2026-07-20T16:00:00Z",
+    "systemcol9": "2026-07-18",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1146",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.46877,
+    "systemcol12": 54.41961
+  },
+  {
+    "id": "IMS-12447",
+    "uniqueidentifier": "IMS-12447",
+    "title": "Bulky furniture dumped at kerbside — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-09-22T09:09:00Z",
+    "systemcol8": "2026-09-28T16:00:00Z",
+    "systemcol9": "2026-09-26",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1147",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.48854,
+    "systemcol12": 54.45232
+  },
+  {
+    "id": "IMS-12448",
+    "uniqueidentifier": "IMS-12448",
+    "title": "Street sweeping schedule breach — Yas Island",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-06-20T10:16:00Z",
+    "systemcol8": "2026-06-27T16:00:00Z",
+    "systemcol9": "2026-06-21",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1148",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin",
+      "follow-up"
+    ]
+  },
+  {
+    "id": "IMS-12449",
+    "uniqueidentifier": "IMS-12449",
+    "title": "Dead animal removal request — Shakhbout City",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-08-16T11:23:00Z",
+    "systemcol8": "2026-08-24T16:00:00Z",
+    "systemcol9": "2026-08-18",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1149",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.49928,
+    "systemcol12": 54.41308
+  },
+  {
+    "id": "IMS-12450",
+    "uniqueidentifier": "IMS-12450",
+    "title": "Container lid damaged beyond repair — Shakhbout City",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-08-28T12:30:00Z",
+    "systemcol8": "2026-08-31T16:00:00Z",
+    "systemcol9": "2026-08-31",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1150",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.50264,
+    "systemcol12": 54.42984
+  },
+  {
+    "id": "IMS-12451",
+    "uniqueidentifier": "IMS-12451",
+    "title": "Illegal dumping near school gate — Al Falah City",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-06-25T13:37:00Z",
+    "systemcol8": "2026-06-29T16:00:00Z",
+    "systemcol9": "2026-06-29",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1151",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.51044,
+    "systemcol12": 54.33762
+  },
+  {
+    "id": "IMS-12452",
+    "uniqueidentifier": "IMS-12452",
+    "title": "Skip bin not returned after service — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-08-21T14:44:00Z",
+    "systemcol8": "2026-08-26T16:00:00Z",
+    "systemcol9": "2026-08-22",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1152",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.46007,
+    "systemcol12": 54.40007
+  },
+  {
+    "id": "IMS-12453",
+    "uniqueidentifier": "IMS-12453",
+    "title": "Litter accumulation on service road — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-09-13T15:51:00Z",
+    "systemcol8": "2026-09-19T16:00:00Z",
+    "systemcol9": "2026-09-15",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1153",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.52804,
+    "systemcol12": 54.40768
+  },
+  {
+    "id": "IMS-12454",
+    "uniqueidentifier": "IMS-12454",
+    "title": "Compactor vehicle breakdown en route — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-09-03T16:58:00Z",
+    "systemcol8": "2026-09-10T16:00:00Z",
+    "systemcol9": "2026-09-06",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1154",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol13": "Z-YS-04"
+  },
+  {
+    "id": "IMS-12455",
+    "uniqueidentifier": "IMS-12455",
+    "title": "Recycling bin contamination reported — Mussafah M-9",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-08-26T17:05:00Z",
+    "systemcol8": "2026-09-03T16:00:00Z",
+    "systemcol9": "2026-08-30",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1155",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue",
+      "follow-up"
+    ],
+    "systemcol11": 24.46036,
+    "systemcol12": 54.35803
+  },
+  {
+    "id": "IMS-12456",
+    "uniqueidentifier": "IMS-12456",
+    "title": "Bin bay wash-down overdue — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-06-19T06:12:00Z",
+    "systemcol8": "2026-06-22T16:00:00Z",
+    "systemcol9": "2026-06-20",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1156",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.50791,
+    "systemcol12": 54.44828
+  },
+  {
+    "id": "IMS-12457",
+    "uniqueidentifier": "IMS-12457",
+    "title": "Access gate blocked by parked vehicle — Mussafah M-9",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-08-18T07:19:00Z",
+    "systemcol8": "2026-08-22T16:00:00Z",
+    "systemcol9": "2026-08-20",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1157",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [],
+    "systemcol11": 24.44076,
+    "systemcol12": 54.34068
+  },
+  {
+    "id": "IMS-12458",
+    "uniqueidentifier": "IMS-12458",
+    "title": "Odour complaint at transfer point — Yas Island",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-08-19T08:26:00Z",
+    "systemcol8": "2026-08-24T16:00:00Z",
+    "systemcol9": "2026-08-22",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1158",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.48051,
+    "systemcol12": 54.45385
+  },
+  {
+    "id": "IMS-12459",
+    "uniqueidentifier": "IMS-12459",
+    "title": "Container relocation request — Shakhbout City",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-08-18T09:33:00Z",
+    "systemcol8": "2026-08-24T16:00:00Z",
+    "systemcol9": "2026-08-22",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1159",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.4735,
+    "systemcol12": 54.33877
+  },
+  {
+    "id": "IMS-12460",
+    "uniqueidentifier": "IMS-12460",
+    "title": "Sweeper missed the roundabout circuit — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-06-17T10:40:00Z",
+    "systemcol8": "2026-06-24T16:00:00Z",
+    "systemcol9": "2026-06-18",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1160",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.51767,
+    "systemcol12": 54.38466
+  },
+  {
+    "id": "IMS-12461",
+    "uniqueidentifier": "IMS-12461",
+    "title": "Bulky waste collection rescheduled — Al Falah City",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-06-01T11:47:00Z",
+    "systemcol8": "2026-06-09T16:00:00Z",
+    "systemcol9": "2026-06-03",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1161",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.45638,
+    "systemcol12": 54.33039
+  },
+  {
+    "id": "IMS-12462",
+    "uniqueidentifier": "IMS-12462",
+    "title": "Overflowing container reported — Al Falah City",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-09-04T12:54:00Z",
+    "systemcol8": "2026-09-07T16:00:00Z",
+    "systemcol9": "2026-09-07",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1162",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "debris",
+      "follow-up"
+    ],
+    "systemcol11": 24.50536,
+    "systemcol12": 54.45791
+  },
+  {
+    "id": "IMS-12463",
+    "uniqueidentifier": "IMS-12463",
+    "title": "Missed household collection round — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-06-20T13:01:00Z",
+    "systemcol8": "2026-06-24T16:00:00Z",
+    "systemcol9": "2026-06-24",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1163",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.50296,
+    "systemcol12": 54.4033
+  },
+  {
+    "id": "IMS-12464",
+    "uniqueidentifier": "IMS-12464",
+    "title": "Green waste pile blocking access road — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-06-15T14:08:00Z",
+    "systemcol8": "2026-06-20T16:00:00Z",
+    "systemcol9": "2026-06-16",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1164",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.46941,
+    "systemcol12": 54.36113
+  },
+  {
+    "id": "IMS-12465",
+    "uniqueidentifier": "IMS-12465",
+    "title": "Bulky furniture dumped at kerbside — Shakhbout City",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-07-29T15:15:00Z",
+    "systemcol8": "2026-08-04T16:00:00Z",
+    "systemcol9": "2026-07-31",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1165",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.45358,
+    "systemcol12": 54.44005
+  },
+  {
+    "id": "IMS-12466",
+    "uniqueidentifier": "IMS-12466",
+    "title": "Street sweeping schedule breach — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-07-17T16:22:00Z",
+    "systemcol8": "2026-07-24T16:00:00Z",
+    "systemcol9": "2026-07-20",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1166",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.47149,
+    "systemcol12": 54.34538
+  },
+  {
+    "id": "IMS-12467",
+    "uniqueidentifier": "IMS-12467",
+    "title": "Dead animal removal request — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-08-25T17:29:00Z",
+    "systemcol8": "2026-09-02T16:00:00Z",
+    "systemcol9": "2026-08-29",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1167",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.44988,
+    "systemcol12": 54.40815
+  },
+  {
+    "id": "IMS-12468",
+    "uniqueidentifier": "IMS-12468",
+    "title": "Container lid damaged beyond repair — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-09-08T06:36:00Z",
+    "systemcol8": "2026-09-11T16:00:00Z",
+    "systemcol9": "2026-09-09",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1168",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing"
+    ],
+    "systemcol11": 24.45042,
+    "systemcol12": 54.44223
+  },
+  {
+    "id": "IMS-12469",
+    "uniqueidentifier": "IMS-12469",
+    "title": "Illegal dumping near school gate — Shakhbout City",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Household Collection",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-07-05T07:43:00Z",
+    "systemcol8": "2026-07-09T16:00:00Z",
+    "systemcol9": "2026-07-07",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1169",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service",
+      "follow-up"
+    ],
+    "systemcol11": 24.47359,
+    "systemcol12": 54.41697
+  },
+  {
+    "id": "IMS-12470",
+    "uniqueidentifier": "IMS-12470",
+    "title": "Skip bin not returned after service — Yas Island",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-06-03T08:50:00Z",
+    "systemcol8": "2026-06-08T16:00:00Z",
+    "systemcol9": "2026-06-06",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1170",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [],
+    "systemcol11": 24.44673,
+    "systemcol12": 54.35669
+  },
+  {
+    "id": "IMS-12471",
+    "uniqueidentifier": "IMS-12471",
+    "title": "Litter accumulation on service road — Shakhbout City",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-07-13T09:57:00Z",
+    "systemcol8": "2026-07-19T16:00:00Z",
+    "systemcol9": "2026-07-17",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1171",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.5255,
+    "systemcol12": 54.44808
+  },
+  {
+    "id": "IMS-12472",
+    "uniqueidentifier": "IMS-12472",
+    "title": "Compactor vehicle breakdown en route — Mussafah M-9",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Al Reem Island",
+    "systemcol7": "2026-08-12T10:04:00Z",
+    "systemcol8": "2026-08-19T16:00:00Z",
+    "systemcol9": "2026-08-13",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1172",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Al Reem Island round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "damaged-bin"
+    ],
+    "systemcol11": 24.48482,
+    "systemcol12": 54.41108
+  },
+  {
+    "id": "IMS-12473",
+    "uniqueidentifier": "IMS-12473",
+    "title": "Recycling bin contamination reported — Madinat Zayed",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Madinat Zayed",
+    "systemcol7": "2026-08-24T11:11:00Z",
+    "systemcol8": "2026-09-01T16:00:00Z",
+    "systemcol9": "2026-08-26",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1173",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Madinat Zayed round sheet. Crew notes attached.",
+    "tags": [
+      "gps-issue"
+    ],
+    "systemcol11": 24.49578,
+    "systemcol12": 54.34469
+  },
+  {
+    "id": "IMS-12474",
+    "uniqueidentifier": "IMS-12474",
+    "title": "Bin bay wash-down overdue — Al Reem Island",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Container Cleaning",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 1",
+    "systemcol6": "Al Bateen",
+    "systemcol7": "2026-06-26T12:18:00Z",
+    "systemcol8": "2026-06-29T16:00:00Z",
+    "systemcol9": "2026-06-29",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1174",
+    "systemcol16": "Omar Nasser",
+    "systemcol17": "Logged from the Al Bateen round sheet. Crew notes attached.",
+    "tags": [
+      "debris"
+    ],
+    "systemcol11": 24.52554,
+    "systemcol12": 54.4372
+  },
+  {
+    "id": "IMS-12475",
+    "uniqueidentifier": "IMS-12475",
+    "title": "Access gate blocked by parked vehicle — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Household Collection",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 2",
+    "systemcol6": "Shakhbout City",
+    "systemcol7": "2026-07-16T13:25:00Z",
+    "systemcol8": "2026-07-20T16:00:00Z",
+    "systemcol9": "2026-07-20",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1175",
+    "systemcol16": "Layla Haddad",
+    "systemcol17": "Logged from the Shakhbout City round sheet. Crew notes attached.",
+    "tags": [
+      "access-blocked"
+    ],
+    "systemcol11": 24.46967,
+    "systemcol12": 54.34189
+  },
+  {
+    "id": "IMS-12476",
+    "uniqueidentifier": "IMS-12476",
+    "title": "Odour complaint at transfer point — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "CRITICAL",
+    "systemcol2": "Green Waste Collection",
+    "systemcol3": "ESP",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 3",
+    "systemcol6": "Al Falah City",
+    "systemcol7": "2026-08-25T14:32:00Z",
+    "systemcol8": "2026-08-30T16:00:00Z",
+    "systemcol9": "2026-08-26",
+    "systemcol14": "Container",
+    "systemcol15": "CON-1176",
+    "systemcol16": "Sami Aziz",
+    "systemcol17": "Logged from the Al Falah City round sheet. Crew notes attached.",
+    "tags": [
+      "sla-watch",
+      "overflowing",
+      "follow-up"
+    ],
+    "systemcol13": "Z-AF-01",
+    "systemcol11": 24.45583,
+    "systemcol12": 54.34978
+  },
+  {
+    "id": "IMS-12477",
+    "uniqueidentifier": "IMS-12477",
+    "title": "Container relocation request — Khalifa City A",
+    "status": "resolved",
+    "systemcol1": "HIGH",
+    "systemcol2": "Bulky Waste Removal",
+    "systemcol3": "PMO",
+    "systemcol4": [
+      "u_admin",
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 4",
+    "systemcol6": "Khalifa City A",
+    "systemcol7": "2026-07-06T15:39:00Z",
+    "systemcol8": "2026-07-12T16:00:00Z",
+    "systemcol9": "2026-07-08",
+    "systemcol14": "Vehicle",
+    "systemcol15": "VEH-1177",
+    "systemcol16": "Noura Al Ameri",
+    "systemcol17": "Logged from the Khalifa City A round sheet. Crew notes attached.",
+    "tags": [
+      "needs-service"
+    ],
+    "systemcol11": 24.47202,
+    "systemcol12": 54.44566
+  },
+  {
+    "id": "IMS-12478",
+    "uniqueidentifier": "IMS-12478",
+    "title": "Sweeper missed the roundabout circuit — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "MEDIUM",
+    "systemcol2": "Street Sweeping",
+    "systemcol3": "Contractor",
+    "systemcol4": [
+      "u_admin"
+    ],
+    "systemcol5": "Lot 5",
+    "systemcol6": "Mussafah M-9",
+    "systemcol7": "2026-06-28T16:46:00Z",
+    "systemcol8": "2026-07-05T16:00:00Z",
+    "systemcol9": "2026-07-01",
+    "systemcol14": "Street",
+    "systemcol15": "STR-1178",
+    "systemcol16": "Yusuf Karim",
+    "systemcol17": "Logged from the Mussafah M-9 round sheet. Crew notes attached.",
+    "tags": [
+      "pothole"
+    ],
+    "systemcol11": 24.44292,
+    "systemcol12": 54.42508
+  },
+  {
+    "id": "IMS-12479",
+    "uniqueidentifier": "IMS-12479",
+    "title": "Bulky waste collection rescheduled — Al Bateen",
+    "status": "resolved",
+    "systemcol1": "LOW",
+    "systemcol2": "Dead Animal Removal",
+    "systemcol3": "Inspector",
+    "systemcol4": [
+      "u_dispatcher"
+    ],
+    "systemcol5": "Lot 6",
+    "systemcol6": "Yas Island",
+    "systemcol7": "2026-06-05T17:53:00Z",
+    "systemcol8": "2026-06-13T16:00:00Z",
+    "systemcol9": "2026-06-09",
+    "systemcol14": "Facility",
+    "systemcol15": "FAC-1179",
+    "systemcol16": "Hessa Al Mansoori",
+    "systemcol17": "Logged from the Yas Island round sheet. Crew notes attached.",
+    "tags": [
+      "lighting-issue"
+    ],
+    "systemcol11": 24.52388,
+    "systemcol12": 54.33187
+  }
+]

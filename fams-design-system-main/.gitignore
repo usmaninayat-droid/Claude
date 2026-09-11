@@ -1,0 +1,20 @@
+node_modules
+dist
+storybook-static
+*.log
+.turbo
+.DS_Store
+test-results
+playwright-report
+blob-report
+playwright/.cache
+
+# sdd scratch (review packages)
+.superpowers/
+
+# Self-hosted VRT (infra/vrt/) — local secrets + volume-mounted data, never committed.
+infra/vrt/.env
+infra/vrt/data/
+
+# python hook bytecode
+.claude/hooks/__pycache__/

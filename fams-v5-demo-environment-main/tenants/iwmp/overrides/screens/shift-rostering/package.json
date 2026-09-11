@@ -1,0 +1,40 @@
+{
+  "name": "iwmp-shift-rostering",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@10.34.5",
+  "description": "IWMP Manpower Rostering (IWMP-SCOPE-ROSTER-V01) — the Shift Rostering override screen for the iwmp tenant: roster board, crew view and week validation over the blueprint's eligibility engine. Self-contained: does NOT participate in the fams-v5-demo-environment pnpm workspace (same isolation route as tenants/uccp/overrides/screens/*), embedded in the host via <iframe>. Unlike the ported uccp screens it is NEW React 19 code and consumes the design system as linked `dist` exactly as the host app does — nothing is vendored and nothing in ../fams-design-system is modified.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@fams/tokens": "link:../../../../../../fams-design-system/packages/tokens",
+    "@fams/ui-kit": "link:../../../../../../fams-design-system/packages/ui-kit",
+    "@tanstack/react-virtual": "^3.14.5",
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4",
+    "@types/node": "^22.20.1",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4",
+    "jsdom": "^25",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vite": "^6",
+    "vitest": "^3.2.7"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "@tailwindcss/oxide"
+    ]
+  }
+}

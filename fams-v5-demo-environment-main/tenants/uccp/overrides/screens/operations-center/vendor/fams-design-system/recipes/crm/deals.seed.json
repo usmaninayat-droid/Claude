@@ -1,0 +1,8 @@
+[
+  { "id": "D-101", "uniqueidentifier": "D-101", "title": "Globex — Platform pilot", "status": "lead", "systemcol1": "NEW", "systemcol2": "Medium", "systemcol3": "Globex Corp", "systemcol6": "u_rep", "systemcol7": "28 Feb" },
+  { "id": "D-102", "uniqueidentifier": "D-102", "title": "Soylent — Annual plan", "status": "lead", "systemcol1": "NEW", "systemcol2": "Low", "systemcol3": "Soylent Inc", "systemcol6": "u_mgr", "systemcol7": "02 Mar" },
+  { "id": "D-103", "uniqueidentifier": "D-103", "title": "Initech — Seat expansion", "status": "qualified", "systemcol1": "EXPANSION", "systemcol2": "High", "systemcol3": "Initech", "systemcol6": "u_rep", "systemcol7": "24 Feb" },
+  { "id": "D-104", "uniqueidentifier": "D-104", "title": "Hooli — Enterprise rollout", "status": "proposal", "systemcol1": "NEW", "systemcol2": "High", "systemcol3": "Hooli", "systemcol6": "u_mgr", "systemcol7": "20 Feb" },
+  { "id": "D-105", "uniqueidentifier": "D-105", "title": "Northwind — Add-on modules", "status": "proposal", "systemcol1": "EXPANSION", "systemcol2": "Medium", "systemcol3": "Northwind Traders", "systemcol6": "u_rep", "systemcol7": "21 Feb" },
+  { "id": "D-106", "uniqueidentifier": "D-106", "title": "Northwind — Renewal", "status": "won", "systemcol1": "RENEWAL", "systemcol2": "Medium", "systemcol3": "Northwind Traders", "systemcol6": "u_mgr", "systemcol7": "10 Feb" }
+]

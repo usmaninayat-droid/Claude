@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "fams-v5/SettingsModuleConfig",
+  "title": "SettingsModuleConfig",
+  "description": "Declarative settings module config. Renders the 3-column chrome via @fams-v5/modules/settings.",
+  "type": "object",
+  "required": ["kind", "tree", "screens"],
+  "properties": {
+    "kind": {
+      "const": "settings"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Header label in the tree column. Default 'Settings'."
+    },
+    "searchPlaceholder": {
+      "type": "string",
+      "description": "Placeholder for the inline search in the top breadcrumb bar."
+    },
+    "tree": {
+      "type": "object",
+      "required": ["sections"],
+      "properties": {
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["screens"],
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Optional uppercase header above this section (e.g. 'Organization Settings')."
+              },
+              "screens": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Ordered screen ids in this section."
+              }
+            }
+          }
+        }
+      }
+    },
+    "screens": {
+      "type": "object",
+      "description": "Keyed by screen id (matches tree.sections[i].screens entries).",
+      "additionalProperties": {
+        "$ref": "#/definitions/Screen"
+      }
+    },
+    "rbac": {
+      "type": "object",
+      "description": "RBAC config — which roles can access which screens.",
+      "additionalProperties": true
+    }
+  },
+  "definitions": {
+    "Screen": {
+      "type": "object",
+      "required": ["id", "label", "sections"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string", "description": "Label shown in the tree." },
+        "icon": { "type": "string", "description": "Lucide icon name." },
+        "pageTitle": { "type": "string", "description": "h1 above the cards. Defaults to `label`." },
+        "pageSubtitle": { "type": "string" },
+        "sections": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Section" }
+        }
+      }
+    },
+    "Section": {
+      "type": "object",
+      "required": ["id", "title", "fields"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string", "description": "Section h3 inside the card header." },
+        "subtitle": { "type": "string" },
+        "icon": { "type": "string", "description": "Lucide icon — rendered in a soft-blue tile." },
+        "columns": { "type": "number", "enum": [1, 2, 3], "default": 2 },
+        "fields": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Field" }
+        }
+      }
+    },
+    "Field": {
+      "type": "object",
+      "required": ["id", "label", "kind"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string", "description": "Caption inside the field's top edge." },
+        "kind": {
+          "type": "string",
+          "enum": ["text", "number", "select", "multi-select", "currency", "date", "time", "toggle", "textarea"]
+        },
+        "placeholder": { "type": "string" },
+        "icon": { "type": "string", "description": "Lucide icon — leading position." },
+        "options": {
+          "type": "array",
+          "description": "For select / multi-select.",
+          "items": {
+            "type": "object",
+            "required": ["value", "label"],
+            "properties": {
+              "value": { "type": "string" },
+              "label": { "type": "string" }
+            }
+          }
+        },
+        "unit": { "type": "string", "description": "For currency — trailing label (e.g. 'AED')." },
+        "required": { "type": "boolean" },
+        "helperText": { "type": "string" }
+      }
+    }
+  }
+}

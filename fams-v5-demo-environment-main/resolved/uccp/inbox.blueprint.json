@@ -1,0 +1,114 @@
+{
+  "code": "inbox/notification",
+  "kind": "inbox",
+  "name": "Inbox",
+  "systemcolumns": [
+    {
+      "col": "uniqueidentifier",
+      "id": "fld_uniqueidentifier",
+      "name": "Notification ID",
+      "type": "Auto"
+    },
+    {
+      "col": "title",
+      "id": "fld_nx_title",
+      "name": "Title",
+      "required": true,
+      "type": "SmallText"
+    },
+    {
+      "col": "snippet",
+      "id": "fld_nx_snippet",
+      "name": "Message",
+      "type": "BigText"
+    },
+    {
+      "col": "timestamp",
+      "id": "fld_nx_timestamp",
+      "name": "Received At",
+      "type": "DateTime"
+    },
+    {
+      "col": "read",
+      "id": "fld_nx_read",
+      "name": "Read",
+      "type": "SmallText"
+    },
+    {
+      "col": "kind",
+      "id": "fld_nx_kind",
+      "listValues": [
+        "notification",
+        "approval",
+        "system",
+        "mention"
+      ],
+      "name": "Kind",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "avatarSrc",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_nx_avatar",
+      "name": "Avatar",
+      "type": "SmallText"
+    },
+    {
+      "col": "reference",
+      "entityType": "ticketing/ticket",
+      "id": "fld_nx_reference",
+      "name": "Reference",
+      "refModule": "Entity",
+      "type": "SingleReference"
+    },
+    {
+      "col": "severity",
+      "id": "fld_nx_severity",
+      "listValues": [
+        "Critical",
+        "Minor"
+      ],
+      "name": "Severity",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "due",
+      "id": "fld_nx_due",
+      "name": "Due",
+      "type": "SmallText"
+    },
+    {
+      "col": "module",
+      "id": "fld_nx_module",
+      "name": "Module",
+      "type": "SmallText"
+    },
+    {
+      "col": "reminder",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_nx_reminder",
+      "name": "Reminder",
+      "type": "SmallText"
+    },
+    {
+      "col": "assignedToMe",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_nx_assigned",
+      "name": "Assigned To Me",
+      "type": "SmallText"
+    }
+  ],
+  "uiConfig": {
+    "icon": "inbox"
+  },
+  "uidPrefix": "NTF",
+  "views": [
+    "list"
+  ]
+}

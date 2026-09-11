@@ -1,0 +1,60 @@
+/*
+ * BUILD-ONLY ENTRY — not published, not imported by app code.
+ *
+ * THE ONE Tailwind compile for the whole design system. It scans EVERY
+ * package that ships markup and emits a single stylesheet,
+ * `packages/tokens/dist/utilities.css`, exported as
+ * `@fams/tokens/utilities.css` and copied verbatim into each markup
+ * package's own dist for its `./utilities.css` export (see
+ * scripts/build-css.mjs and scripts/copy-utilities.mjs).
+ *
+ * WHY ONE COMPILE AND NOT ONE PER PACKAGE. Tailwind orders its output so a
+ * variant (`md:flex`, `lg:hidden`) always comes AFTER the plain utility it
+ * overrides (`flex`, `hidden`) — same specificity, so only source order
+ * decides. That ordering is a property of a SINGLE compile. Four independent
+ * compiles each emit their own unconditional base utilities, and the consumer
+ * concatenates them into one `utilities` cascade layer: a later package's
+ * plain `.hidden` then beats an earlier package's `md:flex` and responsive
+ * layouts silently collapse. One compile makes the cascade deterministic and
+ * removes the need for `!important` band-aids.
+ *
+ * Three deliberate choices, unchanged from the per-package entries this
+ * replaced:
+ *
+ * 1. NO PREFLIGHT. A bare `@import "tailwindcss"` would pull Tailwind's global
+ *    reset, which is meant to load exactly once per page. The consuming app
+ *    already emits it; a second copy would re-apply its rules at whatever
+ *    point this file loads and could silently beat app styles. We import ONLY
+ *    the utilities layer.
+ *
+ * 2. THEME BY REFERENCE, IN THREE LAYERS. `@reference` makes theme variables
+ *    visible to the compiler WITHOUT emitting them.
+ *      - `tailwindcss` first, for the scales @fams/tokens does not redefine.
+ *        @fams/tokens declares only --radius-none/xs/sm/md/full, so without
+ *        the default theme `rounded-xl` and `rounded-lg` are silently DROPPED
+ *        (a utility whose value does not exist is simply not generated).
+ *      - `./dist/theme.css` second, so our tokens win where they overlap.
+ *      - `./animations.css` for the keyframe/animation utilities.
+ *    Because nothing is emitted, the utilities still say
+ *    `var(--color-primary)` and the app's own theme.css + tenants.css imports
+ *    stay the single source of those values — which is what keeps tenant
+ *    branding and dark mode able to override them.
+ *    If you add a component whose classes come from a NEW source (a plugin, a
+ *    custom `@utility`, a theme scale we don't define), add the matching
+ *    `@reference` here or the class is silently dropped, with no error.
+ *
+ * 3. EXPLICIT @source, ONE PER MARKUP PACKAGE. This is a build-time scan, not
+ *    an import: no package gains a dependency on another tier, so the layer
+ *    rules in docs/BOUNDARIES.md are unaffected. skeleton-kit and v5-kit are
+ *    absent on purpose — they contain no markup. A new markup package must
+ *    add its `@source` line here.
+ */
+@layer theme, base, components, utilities;
+@reference "tailwindcss";
+@reference "./dist/theme.css";
+@reference "./animations.css";
+@import "tailwindcss/utilities.css" layer(utilities);
+@source "../ui-kit/src";
+@source "../v5-templates/src";
+@source "../v5-composer/src";
+@source "../demo-kit/src";

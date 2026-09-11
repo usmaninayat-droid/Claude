@@ -1,0 +1,5806 @@
+{
+  "$schema": "../../../node_modules/@fams/v5-composer/schemas/DashboardModuleConfig.schema.json",
+  "kind": "dashboard",
+  "id": "vehicle-behaviour",
+  "displayName": {
+    "singular": "Vehicle Behaviour Dashboard",
+    "plural": "Vehicle Behaviour Dashboards"
+  },
+  "icon": "shield-alert",
+  "description": "Driving-behaviour overview — fleet safety score, safety events by category, and per-vehicle behaviour ranking.",
+  "filterPills": [
+    {
+      "id": "pill-time-frame",
+      "label": "Time Frame",
+      "type": "time-range",
+      "defaultValue": "last-30-days",
+      "options": [
+        {
+          "value": "today",
+          "label": "Today"
+        },
+        {
+          "value": "last-7-days",
+          "label": "Last 7 days"
+        },
+        {
+          "value": "last-30-days",
+          "label": "Last 30 days"
+        }
+      ],
+      "dimension": "timeframe"
+    },
+    {
+      "id": "pill-vehicle",
+      "label": "Vehicle",
+      "type": "single-select",
+      "entityId": "asset",
+      "options": [
+        {
+          "value": "VEH-01",
+          "label": "DXB-B-1007"
+        },
+        {
+          "value": "VEH-02",
+          "label": "DXB-C-1014"
+        },
+        {
+          "value": "VEH-03",
+          "label": "DXB-D-1021"
+        },
+        {
+          "value": "VEH-04",
+          "label": "DXB-E-1028"
+        },
+        {
+          "value": "VEH-05",
+          "label": "DXB-F-1035"
+        },
+        {
+          "value": "VEH-06",
+          "label": "DXB-G-1042"
+        },
+        {
+          "value": "VEH-07",
+          "label": "DXB-H-1049"
+        },
+        {
+          "value": "VEH-08",
+          "label": "DXB-I-1056"
+        },
+        {
+          "value": "VEH-09",
+          "label": "DXB-J-1063"
+        },
+        {
+          "value": "VEH-10",
+          "label": "DXB-K-1070"
+        },
+        {
+          "value": "VEH-11",
+          "label": "DXB-L-1077"
+        },
+        {
+          "value": "VEH-12",
+          "label": "DXB-M-1084"
+        }
+      ],
+      "dimension": "vehicle",
+      "allLabel": "All vehicles"
+    }
+  ],
+  "widgetGrid": [
+    {
+      "id": "w-safety-summary-column",
+      "type": "stack",
+      "span": 4,
+      "children": [
+        {
+          "id": "w-fleet-safety-score",
+          "type": "compliance-gauge",
+          "dataSource": {
+            "kind": "static",
+            "value": 81,
+            "min": 0,
+            "max": 100,
+            "unit": "pts",
+            "sectors": [
+              {
+                "to": 33,
+                "color": "var(--color-error-500)"
+              },
+              {
+                "to": 66,
+                "color": "var(--color-warning)"
+              },
+              {
+                "to": 85,
+                "color": "var(--color-success-scale-300)"
+              },
+              {
+                "to": 100,
+                "color": "var(--color-success)"
+              }
+            ],
+            "centerLabel": {
+              "value": "81 pts",
+              "caption": "Fleet Safety Score"
+            },
+            "height": 260,
+            "ariaLabel": "Fleet safety score — the fleet score out of 100 points.",
+            "emptyText": "No safety score for the selected filters.",
+            "axis": {
+              "y": {
+                "title": "0–33 critical, 34–66 at risk, 67–84 good, 85–100 excellent"
+              }
+            },
+            "variants": [
+              {
+                "when": {
+                  "timeframe": "today"
+                },
+                "value": 86,
+                "centerLabel": {
+                  "value": "86 pts",
+                  "caption": "Fleet Safety Score"
+                }
+              },
+              {
+                "when": {
+                  "timeframe": "last-7-days"
+                },
+                "value": 83,
+                "centerLabel": {
+                  "value": "83 pts",
+                  "caption": "Fleet Safety Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-01"
+                },
+                "value": 87,
+                "centerLabel": {
+                  "value": "87 pts",
+                  "caption": "Fleet Safety Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-02"
+                },
+                "value": 46,
+                "centerLabel": {
+                  "value": "46 pts",
+                  "caption": "Fleet Safety Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-03"
+                },
+                "value": 71,
+                "centerLabel": {
+                  "value": "71 pts",
+                  "caption": "Fleet Safety Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-04"
+                },
+                "value": 58,
+                "centerLabel": {
+                  "value": "58 pts",
+                  "caption": "Fleet Safety Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-05"
+                },
+                "value": 78,
+                "centerLabel": {
+                  "value": "78 pts",
+                  "caption": "Fleet Safety Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-06"
+                },
+                "value": 49,
+                "centerLabel": {
+                  "value": "49 pts",
+                  "caption": "Fleet Safety Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-07"
+                },
+                "value": 49,
+                "centerLabel": {
+                  "value": "49 pts",
+                  "caption": "Fleet Safety Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-08"
+                },
+                "value": 45,
+                "centerLabel": {
+                  "value": "45 pts",
+                  "caption": "Fleet Safety Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-09"
+                },
+                "value": 87,
+                "centerLabel": {
+                  "value": "87 pts",
+                  "caption": "Fleet Safety Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-10"
+                },
+                "value": 84,
+                "centerLabel": {
+                  "value": "84 pts",
+                  "caption": "Fleet Safety Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-11"
+                },
+                "value": 87,
+                "centerLabel": {
+                  "value": "87 pts",
+                  "caption": "Fleet Safety Score"
+                }
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-12"
+                },
+                "value": 45,
+                "centerLabel": {
+                  "value": "45 pts",
+                  "caption": "Fleet Safety Score"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "w-critical-events",
+          "title": "Number of Critical Events",
+          "type": "kpi-card",
+          "dataSource": {
+            "kind": "static",
+            "value": 36,
+            "icon": "alert-triangle",
+            "tone": "danger",
+            "ariaLabel": "Number of critical events in the selected period.",
+            "variants": [
+              {
+                "when": {
+                  "timeframe": "today"
+                },
+                "value": 2
+              },
+              {
+                "when": {
+                  "timeframe": "last-7-days"
+                },
+                "value": 9
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-01"
+                },
+                "value": 34
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-02"
+                },
+                "value": 22
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-03"
+                },
+                "value": 39
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-04"
+                },
+                "value": 28
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-05"
+                },
+                "value": 41
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-06"
+                },
+                "value": 40
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-07"
+                },
+                "value": 34
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-08"
+                },
+                "value": 38
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-09"
+                },
+                "value": 35
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-10"
+                },
+                "value": 35
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-11"
+                },
+                "value": 27
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-12"
+                },
+                "value": 35
+              }
+            ]
+          }
+        },
+        {
+          "id": "w-high-risk-vehicles",
+          "title": "High Risk Vehicles",
+          "type": "kpi-card",
+          "dataSource": {
+            "kind": "static",
+            "value": 14,
+            "icon": "car",
+            "tone": "warning",
+            "ariaLabel": "High risk vehicles in the selected period.",
+            "variants": [
+              {
+                "when": {
+                  "timeframe": "today"
+                },
+                "value": 3
+              },
+              {
+                "when": {
+                  "timeframe": "last-7-days"
+                },
+                "value": 6
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-01"
+                },
+                "value": 1
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-02"
+                },
+                "value": 1
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-03"
+                },
+                "value": 1
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-04"
+                },
+                "value": 1
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-05"
+                },
+                "value": 1
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-06"
+                },
+                "value": 0
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-07"
+                },
+                "value": 0
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-08"
+                },
+                "value": 0
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-09"
+                },
+                "value": 0
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-10"
+                },
+                "value": 0
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-11"
+                },
+                "value": 0
+              },
+              {
+                "when": {
+                  "vehicle": "VEH-12"
+                },
+                "value": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "w-safety-score-trend",
+      "title": "Safety Score Trend",
+      "type": "line",
+      "span": 8,
+      "dataSource": {
+        "kind": "static",
+        "smooth": true,
+        "categories": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+          "31"
+        ],
+        "categoryDimensions": [
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "today",
+              "last-7-days",
+              "last-30-days"
+            ]
+          }
+        ],
+        "series": [
+          {
+            "id": "safety-score",
+            "label": "Safety score",
+            "unit": "pts",
+            "colorIndex": 3,
+            "data": [
+              90,
+              86,
+              88,
+              81,
+              76,
+              79,
+              72,
+              66,
+              69,
+              61,
+              74,
+              58,
+              52,
+              47,
+              31,
+              44,
+              63,
+              49,
+              42,
+              38,
+              45,
+              33,
+              29,
+              34,
+              24,
+              19,
+              26,
+              15,
+              11,
+              6,
+              2
+            ]
+          }
+        ],
+        "axis": {
+          "x": {
+            "title": "Days"
+          },
+          "y": {
+            "title": "Safety Score",
+            "format": "int"
+          }
+        },
+        "height": 360,
+        "ariaLabel": "Safety score trend — line chart of the daily fleet safety score.",
+        "emptyText": "No safety score history for the selected filters.",
+        "subtitle": "Daily fleet safety score across the selected period.",
+        "icon": "trending-up",
+        "tone": "primary",
+        "variants": [
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "series": [
+              {
+                "id": "safety-score",
+                "label": "Safety score",
+                "unit": "pts",
+                "colorIndex": 3,
+                "data": [
+                  58,
+                  56,
+                  52,
+                  53,
+                  44,
+                  52,
+                  49,
+                  37,
+                  42,
+                  35,
+                  50,
+                  38,
+                  34,
+                  28,
+                  17,
+                  24,
+                  40,
+                  31,
+                  29,
+                  26,
+                  25,
+                  19,
+                  17,
+                  21,
+                  13,
+                  13,
+                  16,
+                  8,
+                  7,
+                  4,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "series": [
+              {
+                "id": "safety-score",
+                "label": "Safety score",
+                "unit": "pts",
+                "colorIndex": 3,
+                "data": [
+                  105,
+                  95,
+                  100,
+                  100,
+                  87,
+                  90,
+                  90,
+                  81,
+                  81,
+                  60,
+                  83,
+                  65,
+                  65,
+                  49,
+                  35,
+                  50,
+                  76,
+                  58,
+                  49,
+                  43,
+                  44,
+                  36,
+                  31,
+                  36,
+                  28,
+                  19,
+                  26,
+                  16,
+                  13,
+                  6,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "series": [
+              {
+                "id": "safety-score",
+                "label": "Safety score",
+                "unit": "pts",
+                "colorIndex": 3,
+                "data": [
+                  103,
+                  78,
+                  83,
+                  89,
+                  85,
+                  80,
+                  82,
+                  73,
+                  67,
+                  67,
+                  72,
+                  59,
+                  54,
+                  44,
+                  33,
+                  41,
+                  64,
+                  51,
+                  40,
+                  36,
+                  43,
+                  36,
+                  33,
+                  35,
+                  25,
+                  21,
+                  25,
+                  15,
+                  10,
+                  6,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "series": [
+              {
+                "id": "safety-score",
+                "label": "Safety score",
+                "unit": "pts",
+                "colorIndex": 3,
+                "data": [
+                  80,
+                  66,
+                  69,
+                  61,
+                  68,
+                  58,
+                  61,
+                  55,
+                  58,
+                  54,
+                  55,
+                  49,
+                  47,
+                  41,
+                  24,
+                  36,
+                  47,
+                  42,
+                  33,
+                  29,
+                  34,
+                  28,
+                  26,
+                  28,
+                  18,
+                  14,
+                  23,
+                  12,
+                  8,
+                  5,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "series": [
+              {
+                "id": "safety-score",
+                "label": "Safety score",
+                "unit": "pts",
+                "colorIndex": 3,
+                "data": [
+                  61,
+                  60,
+                  59,
+                  45,
+                  42,
+                  49,
+                  43,
+                  42,
+                  44,
+                  35,
+                  48,
+                  34,
+                  29,
+                  26,
+                  17,
+                  26,
+                  35,
+                  27,
+                  27,
+                  22,
+                  26,
+                  19,
+                  17,
+                  24,
+                  14,
+                  13,
+                  15,
+                  9,
+                  6,
+                  3,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "series": [
+              {
+                "id": "safety-score",
+                "label": "Safety score",
+                "unit": "pts",
+                "colorIndex": 3,
+                "data": [
+                  89,
+                  87,
+                  88,
+                  86,
+                  81,
+                  85,
+                  66,
+                  75,
+                  75,
+                  56,
+                  78,
+                  64,
+                  51,
+                  48,
+                  29,
+                  44,
+                  58,
+                  56,
+                  43,
+                  36,
+                  51,
+                  34,
+                  31,
+                  35,
+                  23,
+                  20,
+                  28,
+                  16,
+                  12,
+                  6,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "series": [
+              {
+                "id": "safety-score",
+                "label": "Safety score",
+                "unit": "pts",
+                "colorIndex": 3,
+                "data": [
+                  56,
+                  48,
+                  55,
+                  53,
+                  48,
+                  43,
+                  45,
+                  37,
+                  37,
+                  33,
+                  41,
+                  35,
+                  28,
+                  29,
+                  16,
+                  22,
+                  37,
+                  26,
+                  27,
+                  21,
+                  26,
+                  20,
+                  19,
+                  21,
+                  15,
+                  10,
+                  14,
+                  10,
+                  7,
+                  4,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "series": [
+              {
+                "id": "safety-score",
+                "label": "Safety score",
+                "unit": "pts",
+                "colorIndex": 3,
+                "data": [
+                  71,
+                  69,
+                  70,
+                  64,
+                  68,
+                  76,
+                  60,
+                  60,
+                  57,
+                  55,
+                  66,
+                  51,
+                  45,
+                  47,
+                  29,
+                  42,
+                  50,
+                  43,
+                  41,
+                  35,
+                  42,
+                  28,
+                  28,
+                  28,
+                  21,
+                  18,
+                  24,
+                  14,
+                  10,
+                  5,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "series": [
+              {
+                "id": "safety-score",
+                "label": "Safety score",
+                "unit": "pts",
+                "colorIndex": 3,
+                "data": [
+                  80,
+                  78,
+                  86,
+                  88,
+                  77,
+                  85,
+                  80,
+                  69,
+                  72,
+                  64,
+                  78,
+                  52,
+                  49,
+                  46,
+                  30,
+                  41,
+                  65,
+                  48,
+                  48,
+                  40,
+                  51,
+                  30,
+                  28,
+                  38,
+                  26,
+                  18,
+                  29,
+                  14,
+                  12,
+                  6,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "series": [
+              {
+                "id": "safety-score",
+                "label": "Safety score",
+                "unit": "pts",
+                "colorIndex": 3,
+                "data": [
+                  72,
+                  79,
+                  84,
+                  63,
+                  61,
+                  76,
+                  67,
+                  62,
+                  64,
+                  57,
+                  64,
+                  53,
+                  42,
+                  40,
+                  27,
+                  34,
+                  54,
+                  47,
+                  35,
+                  29,
+                  42,
+                  26,
+                  24,
+                  27,
+                  19,
+                  18,
+                  23,
+                  13,
+                  8,
+                  5,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-11"
+            },
+            "series": [
+              {
+                "id": "safety-score",
+                "label": "Safety score",
+                "unit": "pts",
+                "colorIndex": 3,
+                "data": [
+                  75,
+                  69,
+                  70,
+                  75,
+                  61,
+                  67,
+                  64,
+                  57,
+                  63,
+                  47,
+                  69,
+                  49,
+                  50,
+                  41,
+                  29,
+                  38,
+                  58,
+                  39,
+                  34,
+                  35,
+                  35,
+                  27,
+                  22,
+                  31,
+                  22,
+                  17,
+                  23,
+                  11,
+                  8,
+                  5,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-12"
+            },
+            "series": [
+              {
+                "id": "safety-score",
+                "label": "Safety score",
+                "unit": "pts",
+                "colorIndex": 3,
+                "data": [
+                  99,
+                  107,
+                  100,
+                  100,
+                  78,
+                  93,
+                  76,
+                  81,
+                  74,
+                  60,
+                  75,
+                  57,
+                  58,
+                  51,
+                  36,
+                  49,
+                  69,
+                  51,
+                  47,
+                  40,
+                  49,
+                  34,
+                  35,
+                  41,
+                  30,
+                  23,
+                  31,
+                  17,
+                  11,
+                  7,
+                  2
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "w-safety-events-breakdown",
+      "title": "Safety Events Breakdown",
+      "type": "donut",
+      "span": 6,
+      "dataSource": {
+        "kind": "static",
+        "legendOrientation": "vertical",
+        "slices": [
+          {
+            "id": "harsh-braking",
+            "label": "Harsh Braking",
+            "value": 12,
+            "colorIndex": 2,
+            "colorToken": "var(--color-primary)"
+          },
+          {
+            "id": "harsh-cornering",
+            "label": "Harsh Cornering",
+            "value": 4,
+            "colorIndex": 4,
+            "colorToken": "var(--color-chart-4)"
+          },
+          {
+            "id": "harsh-acceleration",
+            "label": "Harsh Acceleration",
+            "value": 9,
+            "colorIndex": 1,
+            "colorToken": "var(--color-chart-1)"
+          },
+          {
+            "id": "overspeeding",
+            "label": "Overspeeding",
+            "value": 11,
+            "colorIndex": 3,
+            "colorToken": "var(--color-error-500)"
+          }
+        ],
+        "centerLabel": {
+          "value": "36",
+          "caption": "Total Safety Events"
+        },
+        "height": 320,
+        "ariaLabel": "Safety events breakdown — donut chart of four behaviour event types.",
+        "emptyText": "No safety events in the selected period.",
+        "subtitle": "Which driving behaviours drive the safety events.",
+        "icon": "shield-alert",
+        "tone": "warning",
+        "variants": [
+          {
+            "when": {
+              "timeframe": "today"
+            },
+            "slices": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "value": 1,
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "value": 0,
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "value": 1,
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 0,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ],
+            "centerLabel": {
+              "value": "2",
+              "caption": "Total Safety Events"
+            }
+          },
+          {
+            "when": {
+              "timeframe": "last-7-days"
+            },
+            "slices": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "value": 3,
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "value": 1,
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "value": 2,
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 3,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ],
+            "centerLabel": {
+              "value": "9",
+              "caption": "Total Safety Events"
+            }
+          },
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "slices": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "value": 8,
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "value": 3,
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "value": 7,
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 9,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ],
+            "centerLabel": {
+              "value": "27",
+              "caption": "Total Safety Events"
+            }
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "slices": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "value": 10,
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "value": 3,
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "value": 8,
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 9,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ],
+            "centerLabel": {
+              "value": "30",
+              "caption": "Total Safety Events"
+            }
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "slices": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "value": 10,
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "value": 3,
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "value": 8,
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 10,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ],
+            "centerLabel": {
+              "value": "31",
+              "caption": "Total Safety Events"
+            }
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "slices": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "value": 14,
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "value": 4,
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "value": 9,
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 14,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ],
+            "centerLabel": {
+              "value": "41",
+              "caption": "Total Safety Events"
+            }
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "slices": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "value": 13,
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "value": 5,
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "value": 10,
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 12,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ],
+            "centerLabel": {
+              "value": "40",
+              "caption": "Total Safety Events"
+            }
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "slices": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "value": 8,
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "value": 3,
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "value": 6,
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 7,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ],
+            "centerLabel": {
+              "value": "24",
+              "caption": "Total Safety Events"
+            }
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "slices": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "value": 12,
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "value": 4,
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "value": 9,
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 12,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ],
+            "centerLabel": {
+              "value": "37",
+              "caption": "Total Safety Events"
+            }
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "slices": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "value": 12,
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "value": 4,
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "value": 8,
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 12,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ],
+            "centerLabel": {
+              "value": "36",
+              "caption": "Total Safety Events"
+            }
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "slices": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "value": 13,
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "value": 5,
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "value": 9,
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 11,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ],
+            "centerLabel": {
+              "value": "38",
+              "caption": "Total Safety Events"
+            }
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "slices": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "value": 8,
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "value": 2,
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "value": 6,
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 6,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ],
+            "centerLabel": {
+              "value": "22",
+              "caption": "Total Safety Events"
+            }
+          },
+          {
+            "when": {
+              "vehicle": "VEH-11"
+            },
+            "slices": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "value": 10,
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "value": 4,
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "value": 7,
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 9,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ],
+            "centerLabel": {
+              "value": "30",
+              "caption": "Total Safety Events"
+            }
+          },
+          {
+            "when": {
+              "vehicle": "VEH-12"
+            },
+            "slices": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "value": 8,
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "value": 3,
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "value": 6,
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "value": 6,
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ],
+            "centerLabel": {
+              "value": "23",
+              "caption": "Total Safety Events"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "w-operational-progress",
+      "title": "Operational Progress Overview",
+      "type": "stacked-bar",
+      "span": 6,
+      "dataSource": {
+        "kind": "static",
+        "stacked": true,
+        "categories": [
+          "2",
+          "4",
+          "6",
+          "8",
+          "10",
+          "12",
+          "14",
+          "16",
+          "18",
+          "20",
+          "22",
+          "24",
+          "26",
+          "28",
+          "30"
+        ],
+        "categoryDimensions": [
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "last-7-days",
+              "last-30-days"
+            ]
+          },
+          {
+            "timeframe": [
+              "today",
+              "last-7-days",
+              "last-30-days"
+            ]
+          }
+        ],
+        "series": [
+          {
+            "id": "harsh-braking",
+            "label": "Harsh Braking",
+            "colorIndex": 2,
+            "stackId": "events",
+            "data": [
+              312,
+              197,
+              84,
+              232,
+              259,
+              166,
+              265,
+              316,
+              279,
+              267,
+              84,
+              205,
+              195,
+              261,
+              259
+            ],
+            "colorToken": "var(--color-primary)"
+          },
+          {
+            "id": "harsh-cornering",
+            "label": "Harsh Cornering",
+            "colorIndex": 4,
+            "stackId": "events",
+            "data": [
+              156,
+              179,
+              94,
+              170,
+              269,
+              140,
+              246,
+              127,
+              168,
+              133,
+              179,
+              205,
+              146,
+              250,
+              296
+            ],
+            "colorToken": "var(--color-chart-4)"
+          },
+          {
+            "id": "harsh-acceleration",
+            "label": "Harsh Acceleration",
+            "colorIndex": 1,
+            "stackId": "events",
+            "data": [
+              82,
+              160,
+              168,
+              181,
+              80,
+              181,
+              228,
+              99,
+              109,
+              254,
+              176,
+              244,
+              138,
+              129,
+              135
+            ],
+            "colorToken": "var(--color-chart-1)"
+          },
+          {
+            "id": "overspeeding",
+            "label": "Overspeeding",
+            "colorIndex": 3,
+            "stackId": "events",
+            "data": [
+              174,
+              133,
+              103,
+              135,
+              152,
+              152,
+              135,
+              90,
+              197,
+              101,
+              160,
+              166,
+              168,
+              193,
+              156
+            ],
+            "colorToken": "var(--color-error-500)"
+          }
+        ],
+        "axis": {
+          "x": {
+            "title": "Date"
+          },
+          "y": {
+            "title": "Event Count",
+            "format": "int",
+            "max": 1000,
+            "min": 0
+          }
+        },
+        "height": 320,
+        "ariaLabel": "Operational progress overview — stacked column chart of four behaviour event types per day.",
+        "emptyText": "No behaviour events in the selected period.",
+        "subtitle": "Safety events per day, split by behaviour type.",
+        "icon": "activity",
+        "tone": "info",
+        "legendPlacement": "top",
+        "variants": [
+          {
+            "when": {
+              "vehicle": "VEH-01"
+            },
+            "series": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "colorIndex": 2,
+                "stackId": "events",
+                "data": [
+                  240,
+                  147,
+                  65,
+                  165,
+                  193,
+                  126,
+                  206,
+                  235,
+                  219,
+                  226,
+                  72,
+                  184,
+                  154,
+                  207,
+                  226
+                ],
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "colorIndex": 4,
+                "stackId": "events",
+                "data": [
+                  137,
+                  139,
+                  81,
+                  135,
+                  217,
+                  122,
+                  195,
+                  110,
+                  120,
+                  113,
+                  135,
+                  177,
+                  116,
+                  202,
+                  211
+                ],
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "colorIndex": 1,
+                "stackId": "events",
+                "data": [
+                  64,
+                  120,
+                  133,
+                  130,
+                  61,
+                  161,
+                  192,
+                  86,
+                  85,
+                  207,
+                  155,
+                  191,
+                  109,
+                  109,
+                  95
+                ],
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "colorIndex": 3,
+                "stackId": "events",
+                "data": [
+                  156,
+                  96,
+                  77,
+                  111,
+                  117,
+                  125,
+                  121,
+                  78,
+                  151,
+                  86,
+                  129,
+                  130,
+                  121,
+                  168,
+                  134
+                ],
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-02"
+            },
+            "series": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "colorIndex": 2,
+                "stackId": "events",
+                "data": [
+                  207,
+                  129,
+                  52,
+                  145,
+                  172,
+                  109,
+                  160,
+                  205,
+                  181,
+                  158,
+                  55,
+                  125,
+                  113,
+                  188,
+                  148
+                ],
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "colorIndex": 4,
+                "stackId": "events",
+                "data": [
+                  98,
+                  126,
+                  55,
+                  107,
+                  166,
+                  87,
+                  177,
+                  77,
+                  114,
+                  77,
+                  118,
+                  139,
+                  97,
+                  167,
+                  198
+                ],
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "colorIndex": 1,
+                "stackId": "events",
+                "data": [
+                  47,
+                  92,
+                  112,
+                  120,
+                  58,
+                  109,
+                  165,
+                  59,
+                  78,
+                  177,
+                  124,
+                  140,
+                  83,
+                  93,
+                  95
+                ],
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "colorIndex": 3,
+                "stackId": "events",
+                "data": [
+                  121,
+                  77,
+                  72,
+                  91,
+                  87,
+                  99,
+                  97,
+                  56,
+                  141,
+                  70,
+                  112,
+                  108,
+                  108,
+                  128,
+                  92
+                ],
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-03"
+            },
+            "series": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "colorIndex": 2,
+                "stackId": "events",
+                "data": [
+                  312,
+                  181,
+                  88,
+                  211,
+                  249,
+                  149,
+                  278,
+                  338,
+                  310,
+                  259,
+                  76,
+                  197,
+                  179,
+                  266,
+                  251
+                ],
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "colorIndex": 4,
+                "stackId": "events",
+                "data": [
+                  151,
+                  199,
+                  89,
+                  180,
+                  280,
+                  157,
+                  263,
+                  130,
+                  185,
+                  144,
+                  199,
+                  193,
+                  146,
+                  268,
+                  305
+                ],
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "colorIndex": 1,
+                "stackId": "events",
+                "data": [
+                  82,
+                  179,
+                  168,
+                  179,
+                  87,
+                  199,
+                  228,
+                  87,
+                  108,
+                  224,
+                  185,
+                  268,
+                  131,
+                  142,
+                  151
+                ],
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "colorIndex": 3,
+                "stackId": "events",
+                "data": [
+                  184,
+                  126,
+                  91,
+                  135,
+                  163,
+                  135,
+                  150,
+                  91,
+                  211,
+                  105,
+                  163,
+                  154,
+                  175,
+                  201,
+                  154
+                ],
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-04"
+            },
+            "series": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "colorIndex": 2,
+                "stackId": "events",
+                "data": [
+                  321,
+                  186,
+                  82,
+                  253,
+                  267,
+                  154,
+                  267,
+                  312,
+                  264,
+                  297,
+                  94,
+                  232,
+                  211,
+                  282,
+                  253
+                ],
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "colorIndex": 4,
+                "stackId": "events",
+                "data": [
+                  178,
+                  186,
+                  103,
+                  194,
+                  302,
+                  137,
+                  243,
+                  128,
+                  162,
+                  142,
+                  207,
+                  203,
+                  169,
+                  257,
+                  296
+                ],
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "colorIndex": 1,
+                "stackId": "events",
+                "data": [
+                  75,
+                  186,
+                  162,
+                  198,
+                  86,
+                  207,
+                  237,
+                  109,
+                  101,
+                  285,
+                  192,
+                  236,
+                  151,
+                  142,
+                  147
+                ],
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "colorIndex": 3,
+                "stackId": "events",
+                "data": [
+                  203,
+                  142,
+                  103,
+                  157,
+                  145,
+                  152,
+                  126,
+                  90,
+                  201,
+                  104,
+                  185,
+                  190,
+                  194,
+                  219,
+                  154
+                ],
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-05"
+            },
+            "series": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "colorIndex": 2,
+                "stackId": "events",
+                "data": [
+                  309,
+                  209,
+                  88,
+                  216,
+                  228,
+                  159,
+                  257,
+                  341,
+                  310,
+                  272,
+                  81,
+                  205,
+                  215,
+                  292,
+                  236
+                ],
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "colorIndex": 4,
+                "stackId": "events",
+                "data": [
+                  161,
+                  177,
+                  84,
+                  178,
+                  250,
+                  144,
+                  239,
+                  121,
+                  170,
+                  122,
+                  179,
+                  226,
+                  130,
+                  268,
+                  317
+                ],
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "colorIndex": 1,
+                "stackId": "events",
+                "data": [
+                  74,
+                  179,
+                  163,
+                  199,
+                  78,
+                  176,
+                  203,
+                  91,
+                  110,
+                  274,
+                  164,
+                  261,
+                  135,
+                  134,
+                  127
+                ],
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "colorIndex": 3,
+                "stackId": "events",
+                "data": [
+                  155,
+                  120,
+                  107,
+                  135,
+                  167,
+                  169,
+                  128,
+                  80,
+                  177,
+                  102,
+                  147,
+                  149,
+                  161,
+                  205,
+                  147
+                ],
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-06"
+            },
+            "series": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "colorIndex": 2,
+                "stackId": "events",
+                "data": [
+                  303,
+                  186,
+                  71,
+                  190,
+                  252,
+                  145,
+                  258,
+                  307,
+                  276,
+                  226,
+                  72,
+                  192,
+                  172,
+                  218,
+                  256
+                ],
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "colorIndex": 4,
+                "stackId": "events",
+                "data": [
+                  124,
+                  171,
+                  93,
+                  158,
+                  269,
+                  139,
+                  217,
+                  107,
+                  145,
+                  133,
+                  171,
+                  181,
+                  146,
+                  209,
+                  253
+                ],
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "colorIndex": 1,
+                "stackId": "events",
+                "data": [
+                  78,
+                  148,
+                  138,
+                  153,
+                  66,
+                  156,
+                  203,
+                  95,
+                  110,
+                  235,
+                  155,
+                  202,
+                  137,
+                  128,
+                  111
+                ],
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "colorIndex": 3,
+                "stackId": "events",
+                "data": [
+                  143,
+                  133,
+                  92,
+                  125,
+                  144,
+                  120,
+                  125,
+                  83,
+                  190,
+                  85,
+                  131,
+                  145,
+                  151,
+                  191,
+                  132
+                ],
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-07"
+            },
+            "series": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "colorIndex": 2,
+                "stackId": "events",
+                "data": [
+                  204,
+                  128,
+                  52,
+                  136,
+                  162,
+                  96,
+                  149,
+                  168,
+                  173,
+                  151,
+                  45,
+                  109,
+                  106,
+                  143,
+                  168
+                ],
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "colorIndex": 4,
+                "stackId": "events",
+                "data": [
+                  102,
+                  103,
+                  53,
+                  90,
+                  146,
+                  86,
+                  138,
+                  68,
+                  105,
+                  86,
+                  115,
+                  110,
+                  89,
+                  158,
+                  196
+                ],
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "colorIndex": 1,
+                "stackId": "events",
+                "data": [
+                  47,
+                  84,
+                  108,
+                  107,
+                  45,
+                  109,
+                  149,
+                  51,
+                  64,
+                  154,
+                  98,
+                  155,
+                  72,
+                  84,
+                  88
+                ],
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "colorIndex": 3,
+                "stackId": "events",
+                "data": [
+                  99,
+                  82,
+                  67,
+                  87,
+                  88,
+                  86,
+                  72,
+                  49,
+                  130,
+                  60,
+                  106,
+                  93,
+                  91,
+                  123,
+                  103
+                ],
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-08"
+            },
+            "series": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "colorIndex": 2,
+                "stackId": "events",
+                "data": [
+                  294,
+                  158,
+                  72,
+                  210,
+                  235,
+                  143,
+                  226,
+                  303,
+                  260,
+                  211,
+                  67,
+                  191,
+                  177,
+                  230,
+                  235
+                ],
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "colorIndex": 4,
+                "stackId": "events",
+                "data": [
+                  129,
+                  140,
+                  82,
+                  165,
+                  244,
+                  120,
+                  195,
+                  98,
+                  158,
+                  119,
+                  170,
+                  177,
+                  118,
+                  209,
+                  258
+                ],
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "colorIndex": 1,
+                "stackId": "events",
+                "data": [
+                  65,
+                  134,
+                  132,
+                  145,
+                  75,
+                  155,
+                  207,
+                  78,
+                  93,
+                  208,
+                  169,
+                  236,
+                  123,
+                  114,
+                  128
+                ],
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "colorIndex": 3,
+                "stackId": "events",
+                "data": [
+                  167,
+                  105,
+                  83,
+                  115,
+                  144,
+                  148,
+                  127,
+                  74,
+                  192,
+                  99,
+                  128,
+                  150,
+                  140,
+                  178,
+                  150
+                ],
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-09"
+            },
+            "series": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "colorIndex": 2,
+                "stackId": "events",
+                "data": [
+                  370,
+                  213,
+                  99,
+                  272,
+                  313,
+                  212,
+                  271,
+                  392,
+                  295,
+                  341,
+                  90,
+                  222,
+                  204,
+                  282,
+                  262
+                ],
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "colorIndex": 4,
+                "stackId": "events",
+                "data": [
+                  187,
+                  196,
+                  108,
+                  199,
+                  343,
+                  164,
+                  317,
+                  143,
+                  209,
+                  167,
+                  204,
+                  217,
+                  185,
+                  305,
+                  323
+                ],
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "colorIndex": 1,
+                "stackId": "events",
+                "data": [
+                  94,
+                  204,
+                  176,
+                  204,
+                  86,
+                  202,
+                  286,
+                  128,
+                  134,
+                  301,
+                  221,
+                  289,
+                  157,
+                  159,
+                  146
+                ],
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "colorIndex": 3,
+                "stackId": "events",
+                "data": [
+                  190,
+                  147,
+                  130,
+                  168,
+                  154,
+                  196,
+                  160,
+                  106,
+                  208,
+                  127,
+                  186,
+                  200,
+                  209,
+                  244,
+                  188
+                ],
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-10"
+            },
+            "series": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "colorIndex": 2,
+                "stackId": "events",
+                "data": [
+                  239,
+                  131,
+                  57,
+                  163,
+                  189,
+                  113,
+                  179,
+                  229,
+                  214,
+                  173,
+                  54,
+                  138,
+                  144,
+                  165,
+                  200
+                ],
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "colorIndex": 4,
+                "stackId": "events",
+                "data": [
+                  120,
+                  119,
+                  62,
+                  112,
+                  202,
+                  101,
+                  183,
+                  90,
+                  129,
+                  106,
+                  137,
+                  154,
+                  98,
+                  197,
+                  204
+                ],
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "colorIndex": 1,
+                "stackId": "events",
+                "data": [
+                  59,
+                  102,
+                  117,
+                  139,
+                  61,
+                  114,
+                  165,
+                  65,
+                  87,
+                  164,
+                  115,
+                  194,
+                  88,
+                  96,
+                  95
+                ],
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "colorIndex": 3,
+                "stackId": "events",
+                "data": [
+                  109,
+                  99,
+                  80,
+                  102,
+                  114,
+                  113,
+                  89,
+                  68,
+                  152,
+                  72,
+                  108,
+                  105,
+                  116,
+                  149,
+                  119
+                ],
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-11"
+            },
+            "series": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "colorIndex": 2,
+                "stackId": "events",
+                "data": [
+                  210,
+                  142,
+                  55,
+                  166,
+                  170,
+                  125,
+                  165,
+                  195,
+                  184,
+                  185,
+                  53,
+                  158,
+                  127,
+                  163,
+                  167
+                ],
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "colorIndex": 4,
+                "stackId": "events",
+                "data": [
+                  109,
+                  129,
+                  64,
+                  109,
+                  173,
+                  109,
+                  177,
+                  98,
+                  107,
+                  99,
+                  137,
+                  151,
+                  97,
+                  156,
+                  191
+                ],
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "colorIndex": 1,
+                "stackId": "events",
+                "data": [
+                  57,
+                  104,
+                  127,
+                  122,
+                  57,
+                  119,
+                  150,
+                  66,
+                  76,
+                  160,
+                  134,
+                  169,
+                  95,
+                  101,
+                  90
+                ],
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "colorIndex": 3,
+                "stackId": "events",
+                "data": [
+                  111,
+                  95,
+                  66,
+                  100,
+                  114,
+                  111,
+                  90,
+                  65,
+                  142,
+                  65,
+                  104,
+                  128,
+                  111,
+                  139,
+                  117
+                ],
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          },
+          {
+            "when": {
+              "vehicle": "VEH-12"
+            },
+            "series": [
+              {
+                "id": "harsh-braking",
+                "label": "Harsh Braking",
+                "colorIndex": 2,
+                "stackId": "events",
+                "data": [
+                  258,
+                  183,
+                  72,
+                  200,
+                  217,
+                  134,
+                  229,
+                  293,
+                  254,
+                  255,
+                  76,
+                  201,
+                  190,
+                  263,
+                  228
+                ],
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "id": "harsh-cornering",
+                "label": "Harsh Cornering",
+                "colorIndex": 4,
+                "stackId": "events",
+                "data": [
+                  138,
+                  180,
+                  91,
+                  145,
+                  254,
+                  120,
+                  215,
+                  114,
+                  157,
+                  129,
+                  168,
+                  177,
+                  145,
+                  234,
+                  242
+                ],
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "id": "harsh-acceleration",
+                "label": "Harsh Acceleration",
+                "colorIndex": 1,
+                "stackId": "events",
+                "data": [
+                  81,
+                  140,
+                  141,
+                  182,
+                  68,
+                  156,
+                  228,
+                  89,
+                  91,
+                  245,
+                  177,
+                  237,
+                  127,
+                  114,
+                  123
+                ],
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "id": "overspeeding",
+                "label": "Overspeeding",
+                "colorIndex": 3,
+                "stackId": "events",
+                "data": [
+                  149,
+                  114,
+                  85,
+                  111,
+                  134,
+                  144,
+                  129,
+                  87,
+                  193,
+                  80,
+                  140,
+                  151,
+                  139,
+                  182,
+                  136
+                ],
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "w-safety-events-map",
+      "title": "Safety Events",
+      "type": "geospatial-heatmap",
+      "span": 12,
+      "dataSource": {
+        "kind": "static",
+        "render": "heat",
+        "height": 520,
+        "axis": {
+          "y": {
+            "title": "Events"
+          }
+        },
+        "legend": [
+          {
+            "id": "harsh-braking",
+            "label": "Harsh Braking",
+            "colorToken": "var(--color-primary)"
+          },
+          {
+            "id": "harsh-cornering",
+            "label": "Harsh Cornering",
+            "colorToken": "var(--color-chart-4)"
+          },
+          {
+            "id": "harsh-acceleration",
+            "label": "Harsh Acceleration",
+            "colorToken": "var(--color-chart-1)"
+          },
+          {
+            "id": "overspeeding",
+            "label": "Overspeeding",
+            "colorToken": "var(--color-error-500)"
+          }
+        ],
+        "items": [
+          {
+            "id": "sev-1",
+            "title": "Harsh Braking",
+            "category": "harsh-braking",
+            "severity": "warning",
+            "position": [
+              54.4197,
+              24.4592
+            ],
+            "weight": 0.4,
+            "dimensions": {
+              "vehicle": "VEH-01",
+              "timeframe": [
+                "today",
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-2",
+            "title": "Harsh Cornering",
+            "category": "harsh-cornering",
+            "severity": "warning",
+            "position": [
+              54.4656,
+              24.3596
+            ],
+            "weight": 0.94,
+            "dimensions": {
+              "vehicle": "VEH-02",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-3",
+            "title": "Harsh Acceleration",
+            "category": "harsh-acceleration",
+            "severity": "warning",
+            "position": [
+              54.603,
+              24.4417
+            ],
+            "weight": 0.83,
+            "dimensions": {
+              "vehicle": "VEH-03",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-4",
+            "title": "Overspeeding",
+            "category": "overspeeding",
+            "severity": "critical",
+            "position": [
+              54.5767,
+              24.4617
+            ],
+            "weight": 0.79,
+            "dimensions": {
+              "vehicle": "VEH-04",
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-5",
+            "title": "Harsh Braking",
+            "category": "harsh-braking",
+            "severity": "warning",
+            "position": [
+              54.3429,
+              24.5149
+            ],
+            "weight": 0.89,
+            "dimensions": {
+              "vehicle": "VEH-05",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-6",
+            "title": "Harsh Cornering",
+            "category": "harsh-cornering",
+            "severity": "warning",
+            "position": [
+              54.338,
+              24.485
+            ],
+            "weight": 0.26,
+            "dimensions": {
+              "vehicle": "VEH-06",
+              "timeframe": [
+                "today",
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-7",
+            "title": "Harsh Acceleration",
+            "category": "harsh-acceleration",
+            "severity": "warning",
+            "position": [
+              54.4934,
+              24.3865
+            ],
+            "weight": 0.8,
+            "dimensions": {
+              "vehicle": "VEH-07",
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-8",
+            "title": "Overspeeding",
+            "category": "overspeeding",
+            "severity": "critical",
+            "position": [
+              54.5358,
+              24.4133
+            ],
+            "weight": 0.57,
+            "dimensions": {
+              "vehicle": "VEH-08",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-9",
+            "title": "Harsh Braking",
+            "category": "harsh-braking",
+            "severity": "warning",
+            "position": [
+              54.6398,
+              24.4529
+            ],
+            "weight": 0.26,
+            "dimensions": {
+              "vehicle": "VEH-09",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-10",
+            "title": "Harsh Cornering",
+            "category": "harsh-cornering",
+            "severity": "warning",
+            "position": [
+              54.3218,
+              24.4861
+            ],
+            "weight": 0.31,
+            "dimensions": {
+              "vehicle": "VEH-10",
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-11",
+            "title": "Harsh Acceleration",
+            "category": "harsh-acceleration",
+            "severity": "warning",
+            "position": [
+              54.3536,
+              24.4927
+            ],
+            "weight": 0.38,
+            "dimensions": {
+              "vehicle": "VEH-11",
+              "timeframe": [
+                "today",
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-12",
+            "title": "Overspeeding",
+            "category": "overspeeding",
+            "severity": "critical",
+            "position": [
+              54.4836,
+              24.319
+            ],
+            "weight": 0.67,
+            "dimensions": {
+              "vehicle": "VEH-12",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-13",
+            "title": "Harsh Braking",
+            "category": "harsh-braking",
+            "severity": "warning",
+            "position": [
+              54.6016,
+              24.4064
+            ],
+            "weight": 0.63,
+            "dimensions": {
+              "vehicle": "VEH-01",
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-14",
+            "title": "Harsh Cornering",
+            "category": "harsh-cornering",
+            "severity": "warning",
+            "position": [
+              54.6278,
+              24.4883
+            ],
+            "weight": 0.73,
+            "dimensions": {
+              "vehicle": "VEH-02",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-15",
+            "title": "Harsh Acceleration",
+            "category": "harsh-acceleration",
+            "severity": "warning",
+            "position": [
+              54.3347,
+              24.4768
+            ],
+            "weight": 0.33,
+            "dimensions": {
+              "vehicle": "VEH-03",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-16",
+            "title": "Overspeeding",
+            "category": "overspeeding",
+            "severity": "critical",
+            "position": [
+              54.4011,
+              24.4877
+            ],
+            "weight": 0.99,
+            "dimensions": {
+              "vehicle": "VEH-04",
+              "timeframe": [
+                "today",
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-17",
+            "title": "Harsh Braking",
+            "category": "harsh-braking",
+            "severity": "warning",
+            "position": [
+              54.4856,
+              24.3248
+            ],
+            "weight": 0.47,
+            "dimensions": {
+              "vehicle": "VEH-05",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-18",
+            "title": "Harsh Cornering",
+            "category": "harsh-cornering",
+            "severity": "warning",
+            "position": [
+              54.6121,
+              24.4178
+            ],
+            "weight": 0.58,
+            "dimensions": {
+              "vehicle": "VEH-06",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-19",
+            "title": "Harsh Acceleration",
+            "category": "harsh-acceleration",
+            "severity": "warning",
+            "position": [
+              54.6071,
+              24.5317
+            ],
+            "weight": 0.79,
+            "dimensions": {
+              "vehicle": "VEH-07",
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-20",
+            "title": "Overspeeding",
+            "category": "overspeeding",
+            "severity": "critical",
+            "position": [
+              54.298,
+              24.4327
+            ],
+            "weight": 0.83,
+            "dimensions": {
+              "vehicle": "VEH-08",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-21",
+            "title": "Harsh Braking",
+            "category": "harsh-braking",
+            "severity": "warning",
+            "position": [
+              54.3464,
+              24.4284
+            ],
+            "weight": 0.54,
+            "dimensions": {
+              "vehicle": "VEH-09",
+              "timeframe": [
+                "today",
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-22",
+            "title": "Harsh Cornering",
+            "category": "harsh-cornering",
+            "severity": "warning",
+            "position": [
+              54.5058,
+              24.3958
+            ],
+            "weight": 0.65,
+            "dimensions": {
+              "vehicle": "VEH-10",
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-23",
+            "title": "Harsh Acceleration",
+            "category": "harsh-acceleration",
+            "severity": "warning",
+            "position": [
+              54.6124,
+              24.4208
+            ],
+            "weight": 0.55,
+            "dimensions": {
+              "vehicle": "VEH-11",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-24",
+            "title": "Overspeeding",
+            "category": "overspeeding",
+            "severity": "critical",
+            "position": [
+              54.6067,
+              24.4443
+            ],
+            "weight": 0.82,
+            "dimensions": {
+              "vehicle": "VEH-12",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-25",
+            "title": "Harsh Braking",
+            "category": "harsh-braking",
+            "severity": "warning",
+            "position": [
+              54.3782,
+              24.4913
+            ],
+            "weight": 0.58,
+            "dimensions": {
+              "vehicle": "VEH-01",
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-26",
+            "title": "Harsh Cornering",
+            "category": "harsh-cornering",
+            "severity": "warning",
+            "position": [
+              54.3931,
+              24.4132
+            ],
+            "weight": 0.37,
+            "dimensions": {
+              "vehicle": "VEH-02",
+              "timeframe": [
+                "today",
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-27",
+            "title": "Harsh Acceleration",
+            "category": "harsh-acceleration",
+            "severity": "warning",
+            "position": [
+              54.5355,
+              24.3078
+            ],
+            "weight": 0.41,
+            "dimensions": {
+              "vehicle": "VEH-03",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-28",
+            "title": "Overspeeding",
+            "category": "overspeeding",
+            "severity": "critical",
+            "position": [
+              54.5265,
+              24.4448
+            ],
+            "weight": 0.64,
+            "dimensions": {
+              "vehicle": "VEH-04",
+              "timeframe": [
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-29",
+            "title": "Harsh Braking",
+            "category": "harsh-braking",
+            "severity": "warning",
+            "position": [
+              54.5645,
+              24.4788
+            ],
+            "weight": 0.58,
+            "dimensions": {
+              "vehicle": "VEH-05",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-30",
+            "title": "Harsh Cornering",
+            "category": "harsh-cornering",
+            "severity": "warning",
+            "position": [
+              54.3131,
+              24.5164
+            ],
+            "weight": 0.46,
+            "dimensions": {
+              "vehicle": "VEH-06",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-31",
+            "title": "Harsh Acceleration",
+            "category": "harsh-acceleration",
+            "severity": "warning",
+            "position": [
+              54.3823,
+              24.4279
+            ],
+            "weight": 0.67,
+            "dimensions": {
+              "vehicle": "VEH-07",
+              "timeframe": [
+                "today",
+                "last-7-days",
+                "last-30-days"
+              ]
+            }
+          },
+          {
+            "id": "sev-32",
+            "title": "Overspeeding",
+            "category": "overspeeding",
+            "severity": "critical",
+            "position": [
+              54.5546,
+              24.3669
+            ],
+            "weight": 0.89,
+            "dimensions": {
+              "vehicle": "VEH-08",
+              "timeframe": [
+                "last-30-days"
+              ]
+            }
+          }
+        ],
+        "ariaLabel": "Safety events — geospatial heat map of behaviour-event density across Abu Dhabi, filtered by four behaviour categories.",
+        "emptyText": "No safety events in the selected period.",
+        "subtitle": "Colour shows event density, not category — the checkboxes choose which events feed the surface.",
+        "icon": "map-pin",
+        "tone": "danger"
+      }
+    },
+    {
+      "id": "w-vehicle-leaderboard",
+      "title": "Vehicle Leaderboard",
+      "type": "leaderboard",
+      "span": 12,
+      "dataSource": {
+        "kind": "static",
+        "variant": "podium",
+        "podiumCount": 3,
+        "searchable": true,
+        "columns": [
+          {
+            "key": "plate",
+            "label": "Plate Number",
+            "minWidth": "9rem"
+          },
+          {
+            "key": "events",
+            "label": "Critical Events",
+            "minWidth": "14rem",
+            "render": "counters",
+            "counters": [
+              {
+                "label": "Harsh Braking",
+                "icon": "circle-stop",
+                "colorIndex": 2,
+                "colorToken": "var(--color-primary)"
+              },
+              {
+                "label": "Harsh Cornering",
+                "icon": "navigation",
+                "colorIndex": 4,
+                "colorToken": "var(--color-chart-4)"
+              },
+              {
+                "label": "Harsh Acceleration",
+                "icon": "zap",
+                "colorIndex": 1,
+                "colorToken": "var(--color-chart-1)"
+              },
+              {
+                "label": "Overspeeding",
+                "icon": "gauge",
+                "colorIndex": 3,
+                "colorToken": "var(--color-error-500)"
+              }
+            ]
+          },
+          {
+            "key": "score",
+            "label": "Behavior Score",
+            "align": "end",
+            "minWidth": "8rem"
+          }
+        ],
+        "rows": [
+          {
+            "id": "veh-1",
+            "rank": 1,
+            "rankDelta": 1,
+            "primary": "Toyota Hilux",
+            "secondary": "DXB-B-1007",
+            "podium": "gold",
+            "score": 98,
+            "cells": {
+              "plate": "DXB-B-1007",
+              "events": [
+                1,
+                1,
+                0,
+                0
+              ],
+              "score": "98 pts",
+              "vehicleClass": "pickup"
+            },
+            "scoreDelta": 4,
+            "media": {
+              "icon": "truck",
+              "tone": "primary",
+              "label": "Vehicle"
+            },
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "id": "veh-2",
+            "rank": 2,
+            "rankDelta": 1,
+            "primary": "Hino NPR",
+            "secondary": "DXB-C-1014",
+            "podium": "silver",
+            "score": 94,
+            "cells": {
+              "plate": "DXB-C-1014",
+              "events": [
+                2,
+                2,
+                1,
+                1
+              ],
+              "score": "94 pts",
+              "vehicleClass": "light-truck"
+            },
+            "scoreDelta": 2,
+            "media": {
+              "icon": "truck",
+              "tone": "primary",
+              "label": "Vehicle"
+            },
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "id": "veh-3",
+            "rank": 3,
+            "rankDelta": 1,
+            "primary": "MAN TGX",
+            "secondary": "DXB-D-1021",
+            "podium": "bronze",
+            "score": 90,
+            "cells": {
+              "plate": "DXB-D-1021",
+              "events": [
+                3,
+                1,
+                2,
+                2
+              ],
+              "score": "90 pts",
+              "vehicleClass": "heavy-truck"
+            },
+            "scoreDelta": 3,
+            "media": {
+              "icon": "truck",
+              "tone": "primary",
+              "label": "Vehicle"
+            },
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "id": "veh-4",
+            "rank": 4,
+            "rankDelta": -2,
+            "primary": "Nissan Transit",
+            "secondary": "DXB-E-1028",
+            "score": 86,
+            "cells": {
+              "plate": "DXB-E-1028",
+              "events": [
+                1,
+                2,
+                0,
+                3
+              ],
+              "score": "86 pts",
+              "vehicleClass": "van"
+            },
+            "scoreDelta": -6,
+            "media": {
+              "icon": "truck",
+              "tone": "primary",
+              "label": "Vehicle"
+            },
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "id": "veh-5",
+            "rank": 5,
+            "rankDelta": 0,
+            "primary": "Ford Sprinter",
+            "secondary": "DXB-F-1035",
+            "score": 82,
+            "cells": {
+              "plate": "DXB-F-1035",
+              "events": [
+                2,
+                1,
+                1,
+                0
+              ],
+              "score": "82 pts",
+              "vehicleClass": "van"
+            },
+            "scoreDelta": 1,
+            "media": {
+              "icon": "truck",
+              "tone": "primary",
+              "label": "Vehicle"
+            },
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "id": "veh-6",
+            "rank": 6,
+            "rankDelta": 3,
+            "primary": "Isuzu Sweeper",
+            "secondary": "DXB-G-1042",
+            "score": 78,
+            "cells": {
+              "plate": "DXB-G-1042",
+              "events": [
+                3,
+                2,
+                2,
+                1
+              ],
+              "score": "78 pts",
+              "vehicleClass": "sweeper"
+            },
+            "scoreDelta": 5,
+            "media": {
+              "icon": "truck",
+              "tone": "primary",
+              "label": "Vehicle"
+            },
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "id": "veh-7",
+            "rank": 7,
+            "rankDelta": -1,
+            "primary": "Toyota Cabstar",
+            "secondary": "DXB-H-1049",
+            "score": 74,
+            "cells": {
+              "plate": "DXB-H-1049",
+              "events": [
+                1,
+                1,
+                0,
+                2
+              ],
+              "score": "74 pts",
+              "vehicleClass": "pickup"
+            },
+            "scoreDelta": -3,
+            "media": {
+              "icon": "truck",
+              "tone": "primary",
+              "label": "Vehicle"
+            },
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "id": "veh-8",
+            "rank": 8,
+            "rankDelta": 2,
+            "primary": "Ford NPR",
+            "secondary": "DXB-I-1056",
+            "score": 70,
+            "cells": {
+              "plate": "DXB-I-1056",
+              "events": [
+                2,
+                2,
+                1,
+                3
+              ],
+              "score": "70 pts",
+              "vehicleClass": "light-truck"
+            },
+            "scoreDelta": 2,
+            "media": {
+              "icon": "truck",
+              "tone": "primary",
+              "label": "Vehicle"
+            },
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "id": "veh-9",
+            "rank": 9,
+            "rankDelta": 0,
+            "primary": "MAN NPR",
+            "secondary": "DXB-J-1063",
+            "score": 66,
+            "cells": {
+              "plate": "DXB-J-1063",
+              "events": [
+                3,
+                1,
+                2,
+                0
+              ],
+              "score": "66 pts",
+              "vehicleClass": "light-truck"
+            },
+            "scoreDelta": -1,
+            "media": {
+              "icon": "truck",
+              "tone": "primary",
+              "label": "Vehicle"
+            },
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "id": "veh-10",
+            "rank": 10,
+            "rankDelta": -3,
+            "primary": "Nissan Hilux",
+            "secondary": "DXB-K-1070",
+            "score": 62,
+            "cells": {
+              "plate": "DXB-K-1070",
+              "events": [
+                1,
+                2,
+                0,
+                1
+              ],
+              "score": "62 pts",
+              "vehicleClass": "pickup"
+            },
+            "scoreDelta": -8,
+            "media": {
+              "icon": "truck",
+              "tone": "primary",
+              "label": "Vehicle"
+            },
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "id": "veh-11",
+            "rank": 11,
+            "rankDelta": 1,
+            "primary": "Hino Transit",
+            "secondary": "DXB-L-1077",
+            "score": 58,
+            "cells": {
+              "plate": "DXB-L-1077",
+              "events": [
+                2,
+                1,
+                1,
+                2
+              ],
+              "score": "58 pts",
+              "vehicleClass": "van"
+            },
+            "scoreDelta": 3,
+            "media": {
+              "icon": "truck",
+              "tone": "primary",
+              "label": "Vehicle"
+            },
+            "dimensions": {
+              "vehicle": "VEH-11"
+            }
+          },
+          {
+            "id": "veh-12",
+            "rank": 12,
+            "rankDelta": -1,
+            "primary": "Toyota Transit",
+            "secondary": "DXB-M-1084",
+            "score": 54,
+            "cells": {
+              "plate": "DXB-M-1084",
+              "events": [
+                3,
+                2,
+                2,
+                3
+              ],
+              "score": "54 pts",
+              "vehicleClass": "pickup"
+            },
+            "scoreDelta": -12,
+            "media": {
+              "icon": "truck",
+              "tone": "primary",
+              "label": "Vehicle"
+            },
+            "dimensions": {
+              "vehicle": "VEH-12"
+            }
+          }
+        ],
+        "ariaLabel": "Vehicle leaderboard — twelve vehicles ranked by behaviour score, with the top three on podium cards.",
+        "emptyText": "No vehicles match this filter.",
+        "subtitle": "Vehicles ranked by behaviour score over the selected period.",
+        "icon": "trophy",
+        "tone": "warning",
+        "searchPlaceholder": "Search Vehicle",
+        "scoreLabel": "Behavior score",
+        "scoreUnit": "pts",
+        "detailLabel": "Critical events",
+        "detailKey": "events",
+        "podiumEmblem": "trophy",
+        "scopeFilter": {
+          "id": "vehicleClass",
+          "label": "Vehicle class",
+          "options": [
+            {
+              "value": "pickup",
+              "label": "Pickups"
+            },
+            {
+              "value": "light-truck",
+              "label": "Light trucks"
+            },
+            {
+              "value": "heavy-truck",
+              "label": "Heavy trucks"
+            },
+            {
+              "value": "van",
+              "label": "Vans"
+            },
+            {
+              "value": "sweeper",
+              "label": "Sweepers"
+            }
+          ],
+          "allLabel": "All Vehicles"
+        },
+        "entityLabel": "Vehicle"
+      }
+    },
+    {
+      "id": "w-safety-score-heatmap",
+      "title": "Safety Score Heatmap by Vehicle",
+      "type": "heatmap-calendar",
+      "span": 12,
+      "dataSource": {
+        "kind": "static",
+        "height": 440,
+        "max": 100,
+        "categories": [
+          "Jan W1",
+          "Jan W2",
+          "Jan W3",
+          "Jan W4",
+          "Feb W1",
+          "Feb W2",
+          "Feb W3",
+          "Feb W4",
+          "Mar W1",
+          "Mar W2",
+          "Mar W3",
+          "Mar W4",
+          "Apr W1",
+          "Apr W2",
+          "Apr W3",
+          "Apr W4"
+        ],
+        "cells": [
+          {
+            "x": "Jan W1",
+            "y": "DXB-B-1007",
+            "value": 85,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Jan W2",
+            "y": "DXB-B-1007",
+            "value": 87,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Jan W3",
+            "y": "DXB-B-1007",
+            "value": 86,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Jan W4",
+            "y": "DXB-B-1007",
+            "value": 91,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Feb W1",
+            "y": "DXB-B-1007",
+            "value": 90,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Feb W2",
+            "y": "DXB-B-1007",
+            "value": 81,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Feb W3",
+            "y": "DXB-B-1007",
+            "value": 90,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Feb W4",
+            "y": "DXB-B-1007",
+            "value": 86,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Mar W1",
+            "y": "DXB-B-1007",
+            "value": 94,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Mar W2",
+            "y": "DXB-B-1007",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Mar W3",
+            "y": "DXB-B-1007",
+            "value": 91,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Mar W4",
+            "y": "DXB-B-1007",
+            "value": 83,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Apr W1",
+            "y": "DXB-B-1007",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Apr W2",
+            "y": "DXB-B-1007",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Apr W3",
+            "y": "DXB-B-1007",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Apr W4",
+            "y": "DXB-B-1007",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-01"
+            }
+          },
+          {
+            "x": "Jan W1",
+            "y": "DXB-C-1014",
+            "value": 83,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Jan W2",
+            "y": "DXB-C-1014",
+            "value": 77,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Jan W3",
+            "y": "DXB-C-1014",
+            "value": 70,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Jan W4",
+            "y": "DXB-C-1014",
+            "value": 68,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Feb W1",
+            "y": "DXB-C-1014",
+            "value": 74,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Feb W2",
+            "y": "DXB-C-1014",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Feb W3",
+            "y": "DXB-C-1014",
+            "value": 91,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Feb W4",
+            "y": "DXB-C-1014",
+            "value": 96,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Mar W1",
+            "y": "DXB-C-1014",
+            "value": 93,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Mar W2",
+            "y": "DXB-C-1014",
+            "value": 90,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Mar W3",
+            "y": "DXB-C-1014",
+            "value": 95,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Mar W4",
+            "y": "DXB-C-1014",
+            "value": 89,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Apr W1",
+            "y": "DXB-C-1014",
+            "value": 96,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Apr W2",
+            "y": "DXB-C-1014",
+            "value": 87,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Apr W3",
+            "y": "DXB-C-1014",
+            "value": 93,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Apr W4",
+            "y": "DXB-C-1014",
+            "value": 97,
+            "dimensions": {
+              "vehicle": "VEH-02"
+            }
+          },
+          {
+            "x": "Jan W1",
+            "y": "DXB-D-1021",
+            "value": 64,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Jan W2",
+            "y": "DXB-D-1021",
+            "value": 55,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Jan W3",
+            "y": "DXB-D-1021",
+            "value": 63,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Jan W4",
+            "y": "DXB-D-1021",
+            "value": 54,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Feb W1",
+            "y": "DXB-D-1021",
+            "value": 54,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Feb W2",
+            "y": "DXB-D-1021",
+            "value": 60,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Feb W3",
+            "y": "DXB-D-1021",
+            "value": 65,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Feb W4",
+            "y": "DXB-D-1021",
+            "value": 63,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Mar W1",
+            "y": "DXB-D-1021",
+            "value": 67,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Mar W2",
+            "y": "DXB-D-1021",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Mar W3",
+            "y": "DXB-D-1021",
+            "value": 60,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Mar W4",
+            "y": "DXB-D-1021",
+            "value": 63,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Apr W1",
+            "y": "DXB-D-1021",
+            "value": 55,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Apr W2",
+            "y": "DXB-D-1021",
+            "value": 45,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Apr W3",
+            "y": "DXB-D-1021",
+            "value": 36,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Apr W4",
+            "y": "DXB-D-1021",
+            "value": 32,
+            "dimensions": {
+              "vehicle": "VEH-03"
+            }
+          },
+          {
+            "x": "Jan W1",
+            "y": "DXB-E-1028",
+            "value": 78,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Jan W2",
+            "y": "DXB-E-1028",
+            "value": 76,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Jan W3",
+            "y": "DXB-E-1028",
+            "value": 84,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Jan W4",
+            "y": "DXB-E-1028",
+            "value": 78,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Feb W1",
+            "y": "DXB-E-1028",
+            "value": 84,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Feb W2",
+            "y": "DXB-E-1028",
+            "value": 78,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Feb W3",
+            "y": "DXB-E-1028",
+            "value": 86,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Feb W4",
+            "y": "DXB-E-1028",
+            "value": 87,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Mar W1",
+            "y": "DXB-E-1028",
+            "value": 97,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Mar W2",
+            "y": "DXB-E-1028",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Mar W3",
+            "y": "DXB-E-1028",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Mar W4",
+            "y": "DXB-E-1028",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Apr W1",
+            "y": "DXB-E-1028",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Apr W2",
+            "y": "DXB-E-1028",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Apr W3",
+            "y": "DXB-E-1028",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Apr W4",
+            "y": "DXB-E-1028",
+            "value": 89,
+            "dimensions": {
+              "vehicle": "VEH-04"
+            }
+          },
+          {
+            "x": "Jan W1",
+            "y": "DXB-F-1035",
+            "value": 77,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Jan W2",
+            "y": "DXB-F-1035",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Jan W3",
+            "y": "DXB-F-1035",
+            "value": 82,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Jan W4",
+            "y": "DXB-F-1035",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Feb W1",
+            "y": "DXB-F-1035",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Feb W2",
+            "y": "DXB-F-1035",
+            "value": 63,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Feb W3",
+            "y": "DXB-F-1035",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Feb W4",
+            "y": "DXB-F-1035",
+            "value": 51,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Mar W1",
+            "y": "DXB-F-1035",
+            "value": 55,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Mar W2",
+            "y": "DXB-F-1035",
+            "value": 48,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Mar W3",
+            "y": "DXB-F-1035",
+            "value": 51,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Mar W4",
+            "y": "DXB-F-1035",
+            "value": 56,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Apr W1",
+            "y": "DXB-F-1035",
+            "value": 62,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Apr W2",
+            "y": "DXB-F-1035",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Apr W3",
+            "y": "DXB-F-1035",
+            "value": 62,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Apr W4",
+            "y": "DXB-F-1035",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-05"
+            }
+          },
+          {
+            "x": "Jan W1",
+            "y": "DXB-G-1042",
+            "value": 45,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Jan W2",
+            "y": "DXB-G-1042",
+            "value": 51,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Jan W3",
+            "y": "DXB-G-1042",
+            "value": 44,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Jan W4",
+            "y": "DXB-G-1042",
+            "value": 48,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Feb W1",
+            "y": "DXB-G-1042",
+            "value": 40,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Feb W2",
+            "y": "DXB-G-1042",
+            "value": 42,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Feb W3",
+            "y": "DXB-G-1042",
+            "value": 45,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Feb W4",
+            "y": "DXB-G-1042",
+            "value": 38,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Mar W1",
+            "y": "DXB-G-1042",
+            "value": 39,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Mar W2",
+            "y": "DXB-G-1042",
+            "value": 46,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Mar W3",
+            "y": "DXB-G-1042",
+            "value": 47,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Mar W4",
+            "y": "DXB-G-1042",
+            "value": 40,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Apr W1",
+            "y": "DXB-G-1042",
+            "value": 40,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Apr W2",
+            "y": "DXB-G-1042",
+            "value": 31,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Apr W3",
+            "y": "DXB-G-1042",
+            "value": 43,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Apr W4",
+            "y": "DXB-G-1042",
+            "value": 54,
+            "dimensions": {
+              "vehicle": "VEH-06"
+            }
+          },
+          {
+            "x": "Jan W1",
+            "y": "DXB-H-1049",
+            "value": 85,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Jan W2",
+            "y": "DXB-H-1049",
+            "value": 84,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Jan W3",
+            "y": "DXB-H-1049",
+            "value": 87,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Jan W4",
+            "y": "DXB-H-1049",
+            "value": 79,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Feb W1",
+            "y": "DXB-H-1049",
+            "value": 72,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Feb W2",
+            "y": "DXB-H-1049",
+            "value": 64,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Feb W3",
+            "y": "DXB-H-1049",
+            "value": 63,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Feb W4",
+            "y": "DXB-H-1049",
+            "value": 63,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Mar W1",
+            "y": "DXB-H-1049",
+            "value": 60,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Mar W2",
+            "y": "DXB-H-1049",
+            "value": 71,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Mar W3",
+            "y": "DXB-H-1049",
+            "value": 82,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Mar W4",
+            "y": "DXB-H-1049",
+            "value": 80,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Apr W1",
+            "y": "DXB-H-1049",
+            "value": 77,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Apr W2",
+            "y": "DXB-H-1049",
+            "value": 82,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Apr W3",
+            "y": "DXB-H-1049",
+            "value": 87,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Apr W4",
+            "y": "DXB-H-1049",
+            "value": 83,
+            "dimensions": {
+              "vehicle": "VEH-07"
+            }
+          },
+          {
+            "x": "Jan W1",
+            "y": "DXB-I-1056",
+            "value": 70,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Jan W2",
+            "y": "DXB-I-1056",
+            "value": 65,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Jan W3",
+            "y": "DXB-I-1056",
+            "value": 61,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Jan W4",
+            "y": "DXB-I-1056",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Feb W1",
+            "y": "DXB-I-1056",
+            "value": 56,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Feb W2",
+            "y": "DXB-I-1056",
+            "value": 67,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Feb W3",
+            "y": "DXB-I-1056",
+            "value": 72,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Feb W4",
+            "y": "DXB-I-1056",
+            "value": 79,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Mar W1",
+            "y": "DXB-I-1056",
+            "value": 73,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Mar W2",
+            "y": "DXB-I-1056",
+            "value": 72,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Mar W3",
+            "y": "DXB-I-1056",
+            "value": 78,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Mar W4",
+            "y": "DXB-I-1056",
+            "value": 88,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Apr W1",
+            "y": "DXB-I-1056",
+            "value": 81,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Apr W2",
+            "y": "DXB-I-1056",
+            "value": 92,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Apr W3",
+            "y": "DXB-I-1056",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Apr W4",
+            "y": "DXB-I-1056",
+            "value": 91,
+            "dimensions": {
+              "vehicle": "VEH-08"
+            }
+          },
+          {
+            "x": "Jan W1",
+            "y": "DXB-J-1063",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Jan W2",
+            "y": "DXB-J-1063",
+            "value": 94,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Jan W3",
+            "y": "DXB-J-1063",
+            "value": 85,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Jan W4",
+            "y": "DXB-J-1063",
+            "value": 84,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Feb W1",
+            "y": "DXB-J-1063",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Feb W2",
+            "y": "DXB-J-1063",
+            "value": 76,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Feb W3",
+            "y": "DXB-J-1063",
+            "value": 86,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Feb W4",
+            "y": "DXB-J-1063",
+            "value": 89,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Mar W1",
+            "y": "DXB-J-1063",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Mar W2",
+            "y": "DXB-J-1063",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Mar W3",
+            "y": "DXB-J-1063",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Mar W4",
+            "y": "DXB-J-1063",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Apr W1",
+            "y": "DXB-J-1063",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Apr W2",
+            "y": "DXB-J-1063",
+            "value": 99,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Apr W3",
+            "y": "DXB-J-1063",
+            "value": 97,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Apr W4",
+            "y": "DXB-J-1063",
+            "value": 90,
+            "dimensions": {
+              "vehicle": "VEH-09"
+            }
+          },
+          {
+            "x": "Jan W1",
+            "y": "DXB-K-1070",
+            "value": 59,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Jan W2",
+            "y": "DXB-K-1070",
+            "value": 52,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Jan W3",
+            "y": "DXB-K-1070",
+            "value": 48,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Jan W4",
+            "y": "DXB-K-1070",
+            "value": 55,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Feb W1",
+            "y": "DXB-K-1070",
+            "value": 59,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Feb W2",
+            "y": "DXB-K-1070",
+            "value": 59,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Feb W3",
+            "y": "DXB-K-1070",
+            "value": 51,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Feb W4",
+            "y": "DXB-K-1070",
+            "value": null,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Mar W1",
+            "y": "DXB-K-1070",
+            "value": 49,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Mar W2",
+            "y": "DXB-K-1070",
+            "value": 45,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Mar W3",
+            "y": "DXB-K-1070",
+            "value": 49,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Mar W4",
+            "y": "DXB-K-1070",
+            "value": 49,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Apr W1",
+            "y": "DXB-K-1070",
+            "value": 53,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Apr W2",
+            "y": "DXB-K-1070",
+            "value": 55,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Apr W3",
+            "y": "DXB-K-1070",
+            "value": 49,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          },
+          {
+            "x": "Apr W4",
+            "y": "DXB-K-1070",
+            "value": 43,
+            "dimensions": {
+              "vehicle": "VEH-10"
+            }
+          }
+        ],
+        "bins": [
+          {
+            "label": "No Data",
+            "noData": true,
+            "color": "var(--color-chart-heat-0)"
+          },
+          {
+            "to": 40,
+            "label": "0–40",
+            "color": "var(--color-chart-heat-5)"
+          },
+          {
+            "to": 60,
+            "label": "41–60",
+            "color": "var(--color-chart-heat-4)"
+          },
+          {
+            "to": 75,
+            "label": "61–75",
+            "color": "var(--color-chart-heat-3)"
+          },
+          {
+            "to": 90,
+            "label": "76–90",
+            "color": "var(--color-chart-heat-2)"
+          },
+          {
+            "to": 100,
+            "label": "91–100",
+            "color": "var(--color-chart-heat-1)"
+          }
+        ],
+        "axis": {
+          "x": {
+            "title": "Months",
+            "groups": [
+              {
+                "label": "Jan",
+                "span": 4
+              },
+              {
+                "label": "Feb",
+                "span": 4
+              },
+              {
+                "label": "Mar",
+                "span": 4
+              },
+              {
+                "label": "Apr",
+                "span": 4
+              }
+            ],
+            "tickLabels": [
+              "W1",
+              "W2",
+              "W3",
+              "W4",
+              "W1",
+              "W2",
+              "W3",
+              "W4",
+              "W1",
+              "W2",
+              "W3",
+              "W4",
+              "W1",
+              "W2",
+              "W3",
+              "W4"
+            ]
+          },
+          "y": {
+            "title": "Vehicles"
+          }
+        },
+        "ariaLabel": "Safety score heatmap by vehicle — ten vehicles scored 0 to 100 across sixteen weekly periods from January to April, in six bands.",
+        "emptyText": "No safety scores for the selected filters.",
+        "subtitle": "Weekly safety score per vehicle — darker means a worse score.",
+        "icon": "layout-grid",
+        "tone": "primary"
+      }
+    }
+  ],
+  "views": [
+    {
+      "id": "view-overview",
+      "label": "Overview",
+      "isDefault": true
+    }
+  ]
+}

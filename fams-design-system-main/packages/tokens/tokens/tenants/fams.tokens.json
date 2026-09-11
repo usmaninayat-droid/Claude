@@ -1,0 +1,41 @@
+{
+  "_comment": "FAMS — corporate blue (real, from presets/fams/theme.json). Ramp/transparent additions: figma-token-sync (docs/figma-color-extraction.md §1/§2) — Figma 'FAMS V5' mode.",
+  "color": {
+    "primary":              { "$type": "color", "$value": "#0072D6" },
+    "primary-foreground":   { "$type": "color", "$value": "#ffffff" },
+    "primary-text":         { "$type": "color", "$value": "#0072D6", "$description": "D-6 family, navbar parity: the AA-safe on-WHITE step of this tenant's brand ramp, used for the nav rail's ACTIVE row. FAMS' primary #0072D6 already measures 4.80:1 on white, so the slot equals primary." },
+    "secondary":            { "$type": "color", "$value": "#e6f2fc" },
+    "secondary-foreground": { "$type": "color", "$value": "#0072d6" },
+    "accent":               { "$type": "color", "$value": "#0072D6" },
+    "accent-foreground":    { "$type": "color", "$value": "#ffffff" },
+    "ring":                 { "$type": "color", "$value": "#0072D6" },
+
+    "primary-50":  { "$type": "color", "$value": "#E6F2FC" },
+    "primary-100": { "$type": "color", "$value": "#CCE6F9" },
+    "primary-200": { "$type": "color", "$value": "#99CDF3" },
+    "primary-300": { "$type": "color", "$value": "#66B5ED" },
+    "primary-400": { "$type": "color", "$value": "#339CE7" },
+    "primary-500": { "$type": "color", "$value": "#0072D6" },
+    "primary-600": { "$type": "color", "$value": "#005CB0" },
+    "primary-700": { "$type": "color", "$value": "#00478A" },
+    "primary-800": { "$type": "color", "$value": "#003165" },
+    "primary-900": { "$type": "color", "$value": "#001C3F" },
+
+    "surface-secondary": { "$type": "color", "$value": "#E6F2FC" },
+
+    "transparent-brand-20": { "$type": "color", "$value": "rgba(0, 114, 214, 0.2)" },
+    "transparent-brand-40": { "$type": "color", "$value": "rgba(0, 114, 214, 0.4)" },
+    "transparent-brand-60": { "$type": "color", "$value": "rgba(0, 114, 214, 0.6)" },
+
+    "success-text": {
+      "$type": "color",
+      "$value": "#027a48",
+      "$description": "D-6: explicit override slot, set to the CORE alias (color.success-text = success-scale.700) — FAMS's own brand ramp is blue (this tenant's `primary` IS core's `primary`), no green step to prefer. 5.41:1 on white."
+    },
+    "error-text": {
+      "$type": "color",
+      "$value": "#b42318",
+      "$description": "D-6: explicit override slot, set to the CORE alias (color.error-text = error.700) — FAMS has no red/error ramp of its own. 6.57:1 on white."
+    }
+  }
+}

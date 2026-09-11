@@ -1,0 +1,194 @@
+/*
+ * App stylesheet. The design system ships the full entry (Gilroy fonts +
+ * Figma-aligned tokens + the Tailwind engine + tw-animate-css utilities),
+ * so we import it once here instead of re-declaring tokens.
+ */
+@import "@fams/design-system/styles.css";
+
+/* FAMS V5 brand (default DS theme) — no explicit theme import needed since the
+   DS's default tokens already are FAMS V5; kept here as a no-op marker in case
+   a future tenant needs an explicit override again. */
+
+:root {
+  /* "Flame" accent (Inbox "Today" due-time chip, Figma node 2227:… inbox notification
+     card) — not part of the DS's status/gray ramps, added here rather than touching
+     the read-only vendored package. */
+  --accent-flame: #ff6a1a;
+  --accent-flame-light: #ffead5;
+
+  /* Home page 2 (Figma "FAMS Landing" 5442:2635) — the "Assets Management" module
+     badge uses Accent/Info/Dark (#00478A), a dark navy that the DS token set has no
+     equivalent for (its --status-info is the brighter #0072D6). Added here, same
+     precedent as --accent-flame, rather than editing the vendored package. */
+  --badge-info-dark: #00478a;
+
+  /* FAMS V5 "Brand/Primary/Light" (#99CDF3) — the blue tint of the brand primary,
+     matching the DS's --primary-light, used by the Home page's background gradient. */
+  --brand-primary-light: #99cdf3;
+}
+
+/* The DS component source lives outside app/ (workspace package), so Tailwind's
+   auto-detection won't scan it — point it there so DS utility classes are generated. */
+@source "../../packages/design-system/src/**/*.{ts,tsx}";
+
+/* Hide the scrollbar while keeping the element scrollable (used by the Live GIS
+   Map routes list — invisible scrollbar for now). */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* The DS `SettingsNav` (read-only, vendored) has no scrollbar-hiding class to apply, so this
+   targets it by its `aria-label` instead of touching the package — same fix as `no-scrollbar`,
+   applied via attribute selector. Keeps the settings nav list scrollable without ever showing a
+   scrollbar (not even on hover, unlike `.hover-scrollbar`). */
+nav[aria-label="Settings"] {
+  scrollbar-width: none;
+}
+nav[aria-label="Settings"]::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== Manual Bin Reassignment micro-animations ===== */
+/* Guidance tooltip entrance (runs once): +6px rise + fade, 400ms ease-out,
+   after a 300ms delay. `both` keeps it hidden during the delay. Animates
+   `transform` (NOT the `translate` property — Tailwind v4's translate-*
+   utilities use `translate`, and a filled animation would stomp them). */
+@keyframes mbr-tip-enter { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+/* Indicator dot (8×8) entrance: 0.5→1 scale with a spring overshoot
+   (ease-out-back), 0→1 opacity, 350ms, once. */
+@keyframes mbr-dot-in { from { scale: 0.5; opacity: 0; } to { scale: 1; opacity: 1; } }
+/* Indicator ping ring (16×16): 1→2.4 scale, 0.75→0 opacity over 1600ms, then a
+   200ms gap (88.89% = 1600/1800). 3 cycles at 0 / 1800 / 3600ms. */
+@keyframes mbr-ping3 {
+  0% { scale: 1; opacity: 0.75; }
+  88.89% { scale: 2.4; opacity: 0; }
+  100% { scale: 2.4; opacity: 0; }
+}
+@keyframes mbr-nudge {
+  0%, 100% { translate: 0 0; }
+  20% { translate: -6px 0; }
+  40% { translate: 5px 0; }
+  60% { translate: -4px 0; }
+  80% { translate: 2px 0; }
+}
+@keyframes mbr-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 45%, transparent); }
+  100% { box-shadow: 0 0 0 12px transparent; }
+}
+@keyframes mbr-twinkle {
+  0%, 100% { transform: scale(0.65); opacity: 0.35; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+@utility mbr-tip-enter { animation: mbr-tip-enter 400ms ease-out 300ms both; }
+@utility mbr-dot-in { animation: mbr-dot-in 350ms cubic-bezier(0.34, 1.56, 0.64, 1) both; transform-origin: center; }
+@utility mbr-ping3 { animation: mbr-ping3 1800ms ease-out 3 both; transform-origin: center; }
+@utility mbr-tip-nudge { animation: mbr-nudge 0.5s ease; }
+@utility mbr-tool-pulse { animation: mbr-pulse 0.9s ease; }
+@utility mbr-twinkle { animation: mbr-twinkle 1.2s ease-in-out infinite; }
+
+/* ===== Launcher Version D ("Showcase") ambient aurora ===== */
+/* Three large blurred colour blobs drift very slowly behind the glass panels
+   (8–16s ease-in-out loops, transform-only so they stay cheap). Guarded below
+   for prefers-reduced-motion. */
+@keyframes launch-drift-1 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(70px, -50px) scale(1.15); } }
+@keyframes launch-drift-2 { 0%, 100% { transform: translate(0, 0) scale(1.05); } 50% { transform: translate(-80px, 60px) scale(0.95); } }
+@keyframes launch-drift-3 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(50px, 70px) scale(1.12); } }
+@utility launch-drift-1 { animation: launch-drift-1 12s ease-in-out infinite; }
+@utility launch-drift-2 { animation: launch-drift-2 15s ease-in-out infinite; }
+@utility launch-drift-3 { animation: launch-drift-3 18s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .launch-drift-1, .launch-drift-2, .launch-drift-3 { animation: none; }
+}
+
+/* Map marker hover tooltip — matches the DS Tooltip primitive (popover surface,
+   not Leaflet's default white box). */
+.leaflet-tooltip {
+  background: #090d16 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  padding: 6px 10px !important;
+  font-family: inherit !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  line-height: 1.4 !important;
+}
+.leaflet-tooltip-top::before { border-top-color: #090d16 !important; }
+.leaflet-tooltip-bottom::before { border-bottom-color: #090d16 !important; }
+.leaflet-tooltip-left::before { border-left-color: #090d16 !important; }
+.leaflet-tooltip-right::before { border-right-color: #090d16 !important; }
+
+/* Custom: Make the truck icon inside a default (blue) vehicle marker green */
+.fams-map-marker svg path {
+  stroke: var(--primary) !important;
+}
+
+/* Minimal floating scrollbar — completely hidden to take exactly 0 space */
+.floating-minimal-scrollbar {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.floating-minimal-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Minimal custom scrollbar shown only on hover */
+.hover-scrollbar {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.hover-scrollbar::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+.hover-scrollbar::-webkit-scrollbar-thumb {
+  background: transparent !important;
+  border-radius: 4px !important;
+}
+.hover-scrollbar::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.hover-scrollbar:hover {
+  scrollbar-width: thin !important;
+}
+.hover-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: var(--gray-300, #cbd5e1) !important;
+}
+.hover-scrollbar:hover::-webkit-scrollbar-track {
+  background: var(--gray-50, #f8fafc) !important;
+}
+
+/* Minimal always-visible scrollbar — thin, rounded, subtle pill thumb (inset via a
+   transparent border + content-box clip) that darkens on hover. Used where the scroll
+   affordance should be visible but quiet (Home dashboard main column + notifications panel). */
+.minimal-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-300, #d0d5dd) transparent;
+}
+.minimal-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.minimal-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.minimal-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--gray-300, #d0d5dd);
+  border-radius: 9999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+.minimal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400, #98a2b3);
+  background-clip: content-box;
+}
+
+
+

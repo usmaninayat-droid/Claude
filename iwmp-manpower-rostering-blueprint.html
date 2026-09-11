@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" data-tenant="iwmp">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IWMP — Manpower Rostering Blueprint · Tajmee'e</title>
+<!-- FAMS design system: Gilroy + semantic tokens + IWMP tenant overrides -->
+<link rel="stylesheet" href="fams-design-system/packages/tokens/fonts.css">
+<link rel="stylesheet" href="fams-design-system/packages/tokens/dist/tokens.css">
+<link rel="stylesheet" href="fams-design-system/packages/tokens/dist/tenants.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* ---------- design tokens: aliases onto the FAMS design system (tokens.css + tenants.css, tenant=iwmp) ---------- */
+:root{
+ --navy:var(--fams-color-sidebar-default);--navy-2:var(--fams-color-sidebar-accent);
+ --green-500:var(--color-primary,var(--fams-color-primary));--green-600:var(--color-primary-700,var(--fams-color-success-scale-700));--green-100:var(--color-primary-50,var(--fams-color-success-scale-50));
+ --blue-500:var(--fams-color-brand-500);--blue-100:var(--fams-color-brand-50);
+ --amber-500:var(--fams-color-warning-scale-600);--amber-100:var(--fams-color-warning-scale-100);
+ --red-500:var(--fams-color-error-600);--red-100:var(--fams-color-error-100);
+ --violet-500:var(--fams-color-accent-family-lavender-dark);--violet-100:var(--fams-color-accent-family-lavender-light);
+ --grey-500:var(--fams-color-gray-500);--grey-100:var(--fams-color-gray-100);
+ --bg:var(--fams-color-background);--surface:var(--fams-color-card);--surface-2:var(--fams-color-gray-50);--line:var(--fams-color-border);
+ --ink:var(--fams-color-text-color-darkest);--ink-2:var(--fams-color-text-color-dark);--ink-3:var(--fams-color-text-color-light);
+ --shadow:var(--fams-shadow-md);
+ --r-sm:var(--fams-radius-sm);--r:var(--fams-radius-md);--r-lg:12px;--r-full:var(--fams-radius-full);
+ --font-sans:var(--fams-font-sans);--font-mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+ --side-bg:var(--color-sidebar-gradient,linear-gradient(180deg,var(--navy),var(--navy-2)));
+ --side-fg:var(--fams-color-sidebar-foreground);--side-fg-2:rgba(255,255,255,.72);--side-fg-3:rgba(255,255,255,.55);
+}
+:root[data-theme=dark]{--surface-2:var(--fams-color-muted);--green-600:var(--fams-color-success-text);--amber-500:var(--fams-color-warning-text);--red-500:var(--fams-color-error-text);
+ --green-100:rgba(34,200,130,.16);--blue-100:rgba(0,114,214,.18);--amber-100:rgba(247,144,9,.16);--red-100:rgba(240,68,56,.16);--violet-100:rgba(158,119,237,.18);--grey-100:var(--fams-color-gray-800);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);font-size:13.5px;line-height:1.45}
+.mono{font-family:var(--font-mono)}
+.app{display:grid;grid-template-columns:236px 1fr;min-height:100vh}
+aside{background:var(--side-bg);color:var(--side-fg);padding:18px 12px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column}
+.brand{display:flex;gap:10px;align-items:center;padding:4px 8px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.brand i{width:36px;height:36px;border-radius:var(--r);background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:16px}
+.brand b{display:block;font-size:14px;letter-spacing:.4px}.brand span{font-size:10.5px;color:var(--side-fg-2);letter-spacing:.8px;text-transform:uppercase}
+.nav{margin-top:14px;display:flex;flex-direction:column;gap:2px}
+.nav .grp{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--side-fg-3);padding:12px 10px 4px}
+.nav a{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:var(--r);color:var(--side-fg-2);text-decoration:none;font-size:13px;border-left:3px solid transparent}
+.nav a i{width:16px;text-align:center;color:var(--side-fg-2)}.nav a:hover{background:rgba(255,255,255,.08);color:var(--side-fg)}
+.nav a.on{background:rgba(255,255,255,.16);color:var(--side-fg);border-left-color:#fff}.nav a.on i{color:var(--side-fg)}
+.nav .badge{margin-left:auto}
+.side-foot{margin-top:auto;font-size:11px;color:var(--side-fg-2);padding:12px 8px;border-top:1px solid rgba(255,255,255,.1)}
+main{padding:0 26px 40px}
+.topbar{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);margin-bottom:18px;position:sticky;top:0;background:var(--bg);z-index:5}
+.crumb{font-size:12.5px;color:var(--ink-3)}.crumb b{color:var(--ink)}
+.topbar .sp{flex:1}
+.page-title{font-size:22px;font-weight:800;letter-spacing:-.3px}.page-sub{color:var(--ink-3);font-size:12.5px;margin-top:2px}
+.page-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;flex-wrap:wrap}.page-actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow)}
+.card-h{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}.card-h h3{font-size:13.5px;font-weight:700}.hint{font-size:11.5px;color:var(--ink-3)}
+.card-b{padding:14px 16px}
+.grid{display:grid;gap:14px}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g6{grid-template-columns:repeat(6,1fr)}.g7{grid-template-columns:repeat(7,1fr)}
+.kpi{padding:14px 16px;border-top:3px solid var(--kpi,var(--blue-500));cursor:pointer;transition:transform .15s}.kpi:hover{transform:translateY(-2px)}
+.kpi .l{font-size:10.5px;letter-spacing:.7px;text-transform:uppercase;color:var(--ink-3);font-weight:700;display:flex;justify-content:space-between}
+.kpi .v{font-size:26px;font-weight:800;font-family:var(--font-mono);margin:4px 0 2px}.kpi .f{font-size:11.5px;color:var(--ink-3)}
+.kpi .ic{width:26px;height:26px;border-radius:var(--r);display:grid;place-items:center;font-size:12px}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:var(--r);border:1px solid var(--fams-color-input);background:var(--surface);color:var(--ink);font-weight:600;font-size:12.5px;cursor:pointer;font-family:inherit}
+.btn:hover{background:var(--surface-2)}.btn.primary{background:var(--green-500);color:var(--fams-color-primary-foreground);border-color:var(--green-500)}.btn.primary:hover{background:var(--color-primary-600,var(--green-500))}.btn.green{background:var(--green-500);color:var(--fams-color-primary-foreground);border-color:var(--green-500)}
+.btn.danger{background:var(--fams-color-destructive);color:var(--fams-color-destructive-foreground);border-color:var(--fams-color-destructive)}.btn.sm{padding:5px 9px;font-size:11.5px;border-radius:var(--r)}.btn.ghost{background:transparent}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:var(--r-full);font-size:11px;font-weight:700;white-space:nowrap}
+.badge.green{background:var(--green-100);color:var(--green-600)}.badge.blue{background:var(--blue-100);color:var(--blue-500)}.badge.amber{background:var(--amber-100);color:var(--amber-500)}
+.badge.red{background:var(--red-100);color:var(--red-500)}.badge.violet{background:var(--violet-100);color:var(--violet-500)}.badge.grey{background:var(--grey-100);color:var(--grey-500)}
+select,input[type=date],input[type=text],input[type=number],input[type=search]{padding:8px 11px;border:1px solid var(--fams-color-input);border-radius:var(--r);background:var(--fams-color-input-background);color:var(--ink);font-family:inherit;font-size:12.5px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filters label{font-size:11px;color:var(--ink-3);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-left:4px}
+table.data{width:100%;border-collapse:collapse;font-size:12.5px}table.data th{position:sticky;top:0;background:var(--surface-2);text-align:left;font-size:10.5px;letter-spacing:.7px;text-transform:uppercase;color:var(--ink-3);padding:9px 10px;border-bottom:1px solid var(--line)}
+table.data td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}table.data tbody tr:hover{background:var(--surface-2)}
+.tbl-wrap{overflow:auto;max-height:62vh}
+.pager{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;font-size:12px;color:var(--ink-3)}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:var(--r-full);border:1px solid var(--fams-color-input);font-size:11.5px;font-weight:600;cursor:pointer;background:var(--surface)}.chip.on{background:var(--green-500);color:var(--fams-color-primary-foreground);border-color:var(--green-500)}
+.chart-box{position:relative;height:240px}.chart-box.tall{height:300px}
+.empty{text-align:center;padding:30px;color:var(--ink-3)}.empty i{font-size:28px;display:block;margin-bottom:8px}.empty b{display:block;color:var(--ink);margin-bottom:4px}
+/* roster grid */
+.rg{display:grid;grid-template-columns:250px repeat(7,1fr);font-size:12px;min-width:960px}
+.rg>div{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:6px 7px;min-height:52px}
+.rg .h{background:var(--surface-2);font-size:10.5px;letter-spacing:.6px;text-transform:uppercase;color:var(--ink-3);font-weight:700;position:sticky;top:0;z-index:2;min-height:0;padding:8px}
+.rg .emp{position:sticky;left:0;background:var(--surface);z-index:1;display:flex;gap:8px;align-items:center}
+.rg .cell{cursor:pointer;display:flex;align-items:center;justify-content:center}.rg .cell:hover{background:var(--surface-2)}
+.duty{padding:4px 8px;border-radius:var(--r);font-family:var(--font-mono);font-size:11px;font-weight:700;width:100%;text-align:center;border:1px solid transparent}
+.duty.RT{background:var(--blue-100);color:var(--blue-500)}.duty.RL{background:var(--violet-100);color:var(--violet-500)}.duty.WO{background:var(--grey-100);color:var(--grey-500);border-style:dashed;border-color:var(--line)}
+.duty.AV{background:var(--amber-100);color:var(--amber-500)}.duty.EL{background:var(--red-100);color:var(--red-500)}.duty.OC{background:var(--fams-color-accent-family-azure-light);color:var(--fams-color-accent-family-azure-dark)}.duty.SB{background:var(--fams-color-accent-family-aqua-green-light);color:var(--fams-color-accent-family-aqua-green-dark)}.duty.EX{background:var(--fams-color-accent-family-flame-light);color:var(--fams-color-accent-family-flame-dark)}
+.duty.blank{background:transparent;color:var(--ink-3);border:1px dashed var(--line)}
+.duty.warn{outline:2px solid var(--amber-500)}.duty.block{outline:2px solid var(--red-500)}
+.avatar{display:inline-grid;place-items:center;border-radius:50%;color:#fff;font-weight:700;font-size:11px;width:28px;height:28px;flex-shrink:0}
+/* modal/toast */
+.veil{position:fixed;inset:0;background:rgba(16,24,40,.5);display:grid;place-items:center;z-index:50;padding:20px;backdrop-filter:blur(2px)}
+.modal{background:var(--surface);border-radius:var(--r-lg);width:min(760px,100%);max-height:92vh;display:flex;flex-direction:column;box-shadow:var(--fams-shadow-2xl)}
+.modal.lg{width:min(1040px,100%)}.modal.sm{width:min(520px,100%)}
+.modal-h{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid var(--line)}.modal-h h3{font-size:15px;flex:1}
+.modal-b{padding:18px 20px;overflow:auto}.modal-f{display:flex;gap:8px;justify-content:flex-end;padding:14px 20px;border-top:1px solid var(--line)}
+.frm{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fld{display:flex;flex-direction:column;gap:5px}.fld label{font-size:11px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.5px}.fld.span2{grid-column:1/-1}.req{color:var(--red-500)}
+.fld select,.fld input{width:100%}
+#toasts{position:fixed;right:18px;top:18px;z-index:60;display:flex;flex-direction:column;gap:8px;width:340px}
+.toast{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--green-500);border-radius:var(--r-lg);padding:11px 13px;box-shadow:var(--shadow);font-size:12.5px;animation:in .2s}.toast b{display:block;margin-bottom:2px}.toast.red{border-left-color:var(--red-500)}.toast.amber{border-left-color:var(--amber-500)}.toast.blue{border-left-color:var(--blue-500)}
+@keyframes in{from{opacity:0;transform:translateY(-6px)}to{opacity:1}}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:14px}.tab{padding:9px 14px;border:0;background:transparent;color:var(--ink-3);font-weight:700;font-size:12.5px;cursor:pointer;border-bottom:2px solid transparent;font-family:inherit}.tab.on{color:var(--green-600);border-bottom-color:var(--green-500)}
+.legend{display:flex;gap:6px;flex-wrap:wrap;font-size:11px}
+.progress{height:7px;background:var(--grey-100);border-radius:var(--r-full);overflow:hidden}.progress i{display:block;height:100%;background:var(--green-500)}
+.rule{font-size:12px;color:var(--ink-2);background:var(--amber-100);border-radius:var(--r);padding:8px 11px}
+.formula{font-size:11.5px;color:var(--ink-3);font-family:var(--font-mono)}
+.matrix td,.matrix th{text-align:center}.matrix td:first-child,.matrix th:first-child{text-align:left}
+@media(max-width:1100px){.g4,.g6,.g7{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}.app{grid-template-columns:1fr}aside{display:none}}
+@media print{aside,.topbar,.page-actions,.filters{display:none}main{padding:0}.card{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside>
+  <div class="brand"><i class="fa-solid fa-recycle"></i><div><b>IWMP · TAJMEE'E</b><span>Manpower Rostering</span></div></div>
+  <nav class="nav" id="nav"></nav>
+  <div class="side-foot">Blueprint v01 · LOT 4 pilot dataset<br>Ref: IWMP-SCOPE-ROSTER-V01</div>
+</aside>
+<main>
+  <div class="topbar"><div class="crumb">Workforce Management · <b id="crumb">Deployment Dashboard</b></div><div class="sp"></div>
+    <button class="btn sm" onclick="App.theme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
+    <span class="badge green"><i class="fa-solid fa-circle-check"></i> Smart Plan v2026-09 approved</span>
+    <span class="badge blue" id="syncBadge"><i class="fa-solid fa-fingerprint"></i> Attendance synced 13:40</span></div>
+  <div id="view"></div>
+</main>
+</div>
+<div id="toasts"></div>
+<div id="modalRoot"></div>
+
+<script>
+/* =========================================================== DATA LAYER */
+const DB = (() => {
+  let seed = 20260901; const rnd = () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
+  const ri = (a, b) => a + Math.floor(rnd() * (b - a + 1)); const pick = a => a[Math.floor(rnd() * a.length)];
+  const iso = d => d.toISOString().slice(0, 10); const addD = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+  const TODAY = new Date('2026-09-01');
+  const DOW = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+  /* ---- Training master: equipment / competency, validity months (HSE-configurable) ---- */
+  const trainings = [
+    { id: 'T-SL', name: 'Side Loader Operation', validity: 12, cat: 'Driver' },
+    { id: 'T-RL', name: 'Rear End Loader Operation', validity: 12, cat: 'Driver' },
+    { id: 'T-HL', name: 'Hook Loader (HLC) Operation', validity: 12, cat: 'Driver' },
+    { id: 'T-HLG', name: 'Hook Loader with Grabber', validity: 12, cat: 'Driver' },
+    { id: 'T-SK', name: 'Skip / Double Skip Loader (DSL)', validity: 12, cat: 'Driver' },
+    { id: 'T-DT', name: 'Dump Truck / Tipper (TC15, TT48)', validity: 12, cat: 'Driver' },
+    { id: 'T-3T', name: '3-Ton Pickup Operation', validity: 12, cat: 'Driver' },
+    { id: 'T-CCV', name: 'Compactor Container Vehicle (CCV)', validity: 12, cat: 'Driver' },
+    { id: 'T-BW', name: 'Bin Washer Vehicle (BWC)', validity: 6, cat: 'Driver' },
+    { id: 'T-LB', name: 'Low Bed Trailer', validity: 12, cat: 'Driver' },
+    { id: 'T-TW', name: 'Truck Wash Bay Operation', validity: 6, cat: 'Driver' },
+    { id: 'T-DD', name: 'Defensive Driving', validity: 24, cat: 'Driver' },
+    { id: 'T-HS', name: 'Waste Collection Safety (Helper)', validity: 6, cat: 'Helper' },
+    { id: 'T-BH', name: 'Manual Bin Handling', validity: 6, cat: 'Helper' },
+    { id: 'T-FM', name: 'Flag Man / Traffic Marshal', validity: 6, cat: 'Helper' },
+    { id: 'T-TBT', name: 'HSE Induction', validity: 12, cat: 'All' },
+  ];
+  /* ---- Vehicle category ↔ required training matrix (route prefix → category) ---- */
+  const vehicleCats = [
+    { code: 'SL', name: 'Side Loader', lic: 'HDD', req: ['T-SL', 'T-DD'], helperReq: ['T-HS'] },
+    { code: 'RL', name: 'Rear End Loader', lic: 'HDD', req: ['T-RL', 'T-DD'], helperReq: ['T-HS', 'T-BH'] },
+    { code: 'HLC', name: 'Hook Loader Compactor', lic: 'HDD', req: ['T-HL', 'T-DD'], helperReq: ['T-HS'] },
+    { code: 'HLG', name: 'Hook Loader + Grabber', lic: 'HDD', req: ['T-HL', 'T-HLG', 'T-DD'], helperReq: ['T-HS'] },
+    { code: 'DSL', name: 'Double Skip Loader', lic: 'HDD', req: ['T-SK', 'T-DD'], helperReq: ['T-HS'] },
+    { code: 'TC15', name: 'Dump Truck 15m³', lic: 'HDD', req: ['T-DT', 'T-DD'], helperReq: ['T-HS', 'T-BH'] },
+    { code: 'TT48', name: 'Tipper Trailer 48m³', lic: 'HDD', req: ['T-DT', 'T-DD'], helperReq: ['T-HS'] },
+    { code: '3TPU', name: '3-Ton Pickup', lic: 'LDD', req: ['T-3T', 'T-DD'], helperReq: ['T-HS', 'T-BH'] },
+    { code: 'CCV', name: 'Compactor Container Vehicle', lic: 'HDD', req: ['T-CCV', 'T-DD'], helperReq: ['T-HS'] },
+    { code: 'BWC', name: 'Bin Washer', lic: 'HDD', req: ['T-BW', 'T-DD'], helperReq: ['T-HS'] },
+    { code: 'TW', name: 'Truck Wash Bay', lic: 'ANY', req: ['T-TW'], helperReq: ['T-HS'] },
+    { code: 'LB', name: 'Low Bed', lic: 'HDD', req: ['T-LB', 'T-DD'], helperReq: [] },
+  ];
+  const catOf = code => vehicleCats.find(c => c.code === code);
+
+  /* ---- Duty codes ---- */
+  const duties = [
+    { code: 'RT', name: 'Route (Smart Plan)', desc: 'Assigned to an approved smart-plan route; cell shows the route ID' },
+    { code: 'RL', name: 'Reliever', desc: 'Covers weekly-offs / absences on the reliever pool; route decided day-of by dispatcher' },
+    { code: 'WO', name: 'Weekly Off', desc: 'Contracted rest day — one per 7 days, staggered' },
+    { code: 'AV', name: 'Annual Vacation', desc: 'Approved annual leave block' },
+    { code: 'EL', name: 'Emergency Leave', desc: 'Approved emergency leave' },
+    { code: 'OC', name: 'On Call', desc: 'Standby at depot for the shift; deployable within 30 min' },
+    { code: 'SB', name: 'Standby / OJT', desc: 'On-the-job training or standby — not counted as deployed' },
+    { code: 'EX', name: 'Extra Assignment', desc: 'Supervisor support · security · flag man · JCB support · bin deployment · truck wash · WCP · dispatch' },
+  ];
+  const extraTypes = ['Supervisor support', 'Helper as security', 'Flag man', 'JCB support', 'Bin deployment', 'Truck wash', 'WCP', 'Dispatch support', 'Workshop support', 'Camp support'];
+
+  /* ---- Smart plan routes (approved) ---- */
+  const districts = ['Mohammed Bin Zayed City', 'Shawamekh', 'Baniyas', 'Al Wathba', 'Musaffah Commercial', 'Al Falah', 'Madinat Al Riyad', 'Shamkha', 'Al Shawamekh Commercial', 'Mafraq Industrial'];
+  const routes = [];
+  const mk = (pfx, sl, n, shiftMix, freq, proj) => { for (let i = 1; i <= n; i++) routes.push({ id: `${pfx}_04_${sl}_${String(100 + i).padStart(3, '0')}`, cat: pfx, serviceLine: sl === 'MSW' ? 'MSW' : sl === 'BKW' ? 'BULKY' : sl, project: proj, shift: pick(shiftMix), freq: typeof freq === 'function' ? freq(i) : freq, district: pick(districts), target: ri(120, 190), status: 'Approved', plan: 'SP-2026-09' }); };
+  mk('SL', 'MSW', 36, ['DAY', 'NIGHT'], i => i % 2 ? 'ALT ODD' : 'ALT EVEN', 'MSW');
+  mk('RL', 'MSW', 52, ['DAY', 'NIGHT', 'NIGHT'], 'DAILY', 'MSW');
+  mk('HLC', 'MSW', 28, ['DAY', 'NIGHT'], 'DAILY', 'MSW');
+  mk('HLG', 'BKW', 6, ['DAY'], 'DAILY', 'MSW');
+  mk('TC15', 'BKW', 22, ['DAY', 'NIGHT'], 'DAILY', 'MSW');
+  mk('TT48', 'BKW', 14, ['DAY', 'NIGHT'], 'DAILY', 'MSW');
+  mk('3TPU', 'BKW', 20, ['DAY'], i => i % 3 ? 'DAILY' : 'EVERY 6 DAYS', 'MSW');
+  mk('DSL', 'BKW', 6, ['DAY', 'MID'], 'DAILY', 'MSW');
+  mk('CCV', 'MSW', 7, ['DAY', 'AFN'], 'DAILY', 'Commercial');
+  mk('BWC', 'MSW', 4, ['DAY'], 'DAILY', 'MSW');
+  mk('TW', 'TW', 10, ['DAY', 'AFN', 'NIGHT'], 'DAILY', 'MSW');
+  mk('RL', 'COM', 12, ['NIGHT', 'AFN'], 'DAILY', 'Commercial');
+  mk('SL', 'COM', 6, ['NIGHT'], 'DAILY', 'Commercial');
+
+  /* ---- Employees (synthetic, shaped on the LOT 4 roster workbook) ---- */
+  const FN = ['RAM', 'SHYAM', 'BINOD', 'DIPAK', 'NAKUL', 'SANJIB', 'AMAN', 'SHER', 'SALMAN', 'JAFFAR', 'NOMAN', 'IBRAR', 'ZUHAIB', 'RAJ', 'DHARMJIT', 'ASIM', 'SUKHVIR', 'VINU', 'NAUSAD', 'TUFAIL', 'ASHARAF', 'LAKHAN', 'MANGLA', 'TITU', 'RAKESH', 'AMIT', 'PRASHANTH', 'SAFIKUL', 'TULARAM', 'DEVENDHAR', 'ASRAR', 'HALIM', 'ARIF', 'ASHIK', 'ASHISH', 'NADEEM', 'DINESH', 'SAHID', 'KASIM', 'DEEPAK', 'ATIKUL', 'FIROZ', 'AJAY', 'PEMBA', 'RESAM', 'PADAM', 'LAXMAN', 'ANIL', 'PRAVEEN', 'AJIT', 'AMIR', 'MAHESH', 'SUMAN', 'SHAHID', 'KESHMAN', 'YUB RAJ', 'SANJAYA', 'HANUMAN', 'ASGAR', 'MITHUN', 'RAVI', 'ABDUL', 'SHIV', 'KRISHNA', 'GYAN', 'MIN', 'TAHIR', 'KHAISTA', 'KAPIL', 'SONIHAL', 'TOSEEF', 'AJMER', 'SHAHZAD'];
+  const LN = ['BAHADUR', 'SINGH', 'KUMAR', 'TAMANG', 'LAMA', 'RUMBA', 'BHANDARI', 'MUKTAN', 'KHAN', 'ULLAH', 'ALAM', 'SK', 'SEKH', 'GUJAR', 'ADHIKARI', 'BUKYA', 'MAGAR', 'THAPA', 'YADAV', 'DAS', 'ANSARI', 'SARDAR', 'RAHAMAN', 'ISLAM', 'HUSSAIN', 'MOHAMMAD', 'GHARTI', 'BASYAL', 'SUNAR', 'CHAUDHARY', 'KOONA', 'MACHA', 'ODDITTI', 'RAGALLA', 'NEMBANG', 'SIRPALI', 'BISHOWKARMA', 'BASHIR', 'JAN', 'HARI'];
+  const AVC = ['#0072d6', '#22c882', '#9e77ed', '#f79009', '#06b6d4', '#ee46bc', '#6941c6', '#b74300']; // FAMS chart accents
+  const employees = [];
+  let sap = 40200;
+  const mkEmp = (desig, lot, n, opts) => {
+    for (let i = 0; i < n; i++) {
+      sap += ri(1, 7);
+      const isD = desig.includes('DRIVER'); const isH = desig === 'HELPER';
+      const shift = pick(opts.shifts || ['DAY', 'DAY', 'NIGHT', 'NIGHT', 'AFN', 'EVENING', 'MID']);
+      const r = rnd();
+      const status = r < .90 ? 'Active' : r < .94 ? 'On Leave' : r < .97 ? 'Training' : 'Inactive';
+      const serviceLine = isD ? pick(['MSW', 'MSW', 'MSW', 'BULKY', 'BULKY', 'RELIEVER', 'WCP', 'TRUCK WASHING']) : isH ? pick(['MSW', 'MSW', 'MSW', 'BULKY', 'BULKY', 'WCP']) : 'OPERATIONS';
+      const project = serviceLine === 'WCP' ? 'Commercial' : rnd() < .12 ? 'Commercial' : 'MSW';
+      // competencies: drivers get 1–3 equipment trainings, helpers get helper set
+      const tr = [];
+      const give = (id, ageDays) => { const t = trainings.find(x => x.id === id); const on = addD(TODAY, -ageDays); tr.push({ id, date: iso(on), expiry: iso(addD(on, Math.round(t.validity * 30.4))) }); };
+      if (isD) {
+        const lic = desig === 'LIGHT DUTY DRIVER' ? 'LDD' : 'HDD';
+        const pool = lic === 'LDD' ? ['T-3T', 'T-3T', 'T-TW'] : ['T-RL', 'T-RL', 'T-RL', 'T-SL', 'T-SL', 'T-HL', 'T-HL', 'T-DT', 'T-DT', 'T-SK', 'T-CCV', 'T-BW', 'T-HLG', 'T-LB'];
+        const k = ri(1, lic === 'LDD' ? 2 : 3);
+        const chosen = [...new Set(Array.from({ length: k }, () => pick(pool)))];
+        chosen.forEach(id => give(id, ri(10, 400)));
+        if (rnd() < .96) give('T-DD', ri(30, 700)); if (rnd() < .95) give('T-TBT', ri(10, 380));
+      } else if (isH) {
+        if (rnd() < .96) give('T-HS', ri(5, 200)); if (rnd() < .85) give('T-BH', ri(5, 200)); if (rnd() < .12) give('T-FM', ri(5, 180)); if (rnd() < .95) give('T-TBT', ri(10, 380));
+      } else { give('T-TBT', ri(10, 300)); }
+      employees.push({
+        id: 'E' + sap, sap, name: pick(FN) + ' ' + pick(LN), desig, lot, licence: isD ? (desig === 'LIGHT DUTY DRIVER' ? 'LDD' : 'HDD') : '', contractor: isH ? 'BEEAH-SIDRA' : pick(['BEEAH', 'BEEAH', 'SIDRA CAMP', 'REACH']),
+        shift, serviceLine, project, status, weeklyOff: pick(DOW), color: pick(AVC), trainings: tr,
+        family: status !== 'Active' ? (status === 'On Leave' ? 'ON LEAVE' : status === 'Training' ? 'TRAINING' : 'INACTIVE') : (serviceLine === 'RELIEVER' ? 'RELIEVER' : serviceLine === 'WCP' ? 'WCP' : rnd() < .08 ? 'EXTRA ASSIGNMENT' : 'ROSTERED'),
+        extraType: null, route: null, vehicle: isD ? String(ri(10000, 99999)) : ''
+      });
+    }
+  };
+  mkEmp('HEAVY DUTY DRIVER', 'LOT 4', 203, {});
+  mkEmp('LIGHT DUTY DRIVER', 'LOT 4', 29, { shifts: ['DAY', 'DAY', 'AFN'] });
+  mkEmp('HELPER', 'LOT 4', 380, {});
+  mkEmp('SUPERVISOR', 'LOT 4', 14, { shifts: ['DAY', 'NIGHT', 'AFN'] });
+  mkEmp('FLEET CONTROLLER', 'LOT 4', 4, { shifts: ['DAY', 'NIGHT'] });
+  mkEmp('DISPATCHER', 'LOT 4', 3, { shifts: ['DAY', 'NIGHT'] });
+  mkEmp('AREA MANAGER', 'LOT 4', 2, { shifts: ['DAY'] });
+  mkEmp('OPERATIONS MANAGER', 'LOT 4', 1, { shifts: ['DAY'] });
+  mkEmp('HEAVY DUTY DRIVER', 'LOT 3', 40, {}); mkEmp('HELPER', 'LOT 3', 60, {});
+  mkEmp('HEAVY DUTY DRIVER', 'LOT 5', 22, {}); mkEmp('HELPER', 'LOT 5', 30, {});
+  employees.forEach(e => { if (e.family === 'EXTRA ASSIGNMENT') e.extraType = pick(extraTypes); });
+  const MGMT = new Set(['AREA MANAGER', 'OPERATIONS MANAGER']);
+
+  /* ---- Training status helper ---- */
+  const trStatus = (rec) => { const d = Math.round((new Date(rec.expiry) - TODAY) / 86400000); return d > 30 ? 'Valid' : d >= 0 ? 'Expiring' : d >= -90 ? 'Expired' : 'Blocked'; };
+  const daysTo = rec => Math.round((new Date(rec.expiry) - TODAY) / 86400000);
+
+  /* ---- Eligibility engine ---- */
+  const eligibility = (e, routeId, day) => {
+    const reasons = [], warns = [];
+    if (e.status !== 'Active') reasons.push(`Employee status is ${e.status} — only Active employees can be rostered`);
+    const rt = routes.find(r => r.id === routeId);
+    if (rt) {
+      const cat = catOf(rt.cat);
+      const isD = e.desig.includes('DRIVER'), isH = e.desig === 'HELPER';
+      if (isD && cat.lic !== 'ANY' && cat.lic !== e.licence) reasons.push(`${cat.name} requires ${cat.lic} licence — employee holds ${e.licence}`);
+      const need = isH ? cat.helperReq : cat.req;
+      need.forEach(tid => {
+        const t = trainings.find(x => x.id === tid); const rec = e.trainings.find(x => x.id === tid);
+        if (!rec) reasons.push(`Training not completed: ${t.name}`);
+        else { const s = trStatus(rec); if (s === 'Blocked') reasons.push(`${t.name} expired ${-daysTo(rec)} days ago (> 90-day grace) — re-training required`); else if (s === 'Expired') warns.push(`${t.name} expired ${-daysTo(rec)} days ago — within 90-day grace, re-training overdue`); else if (s === 'Expiring') warns.push(`${t.name} expires in ${daysTo(rec)} days`); }
+      });
+      if (rt.shift !== e.shift) warns.push(`Route shift ${rt.shift} differs from employee shift ${e.shift}`);
+    }
+    if (day) { const c = roster[e.id]?.[day]; if (c && ['AV', 'EL'].includes(c.code)) reasons.push(`Employee is on ${c.code === 'AV' ? 'annual vacation' : 'emergency leave'} on this date`); }
+    return { ok: reasons.length === 0, reasons, warns };
+  };
+
+  /* ---- Roster period: 4 weeks Mon 24 Aug – Sun 20 Sep 2026 ---- */
+  const days = []; for (let i = 0; i < 28; i++) days.push(iso(addD(new Date('2026-08-24'), i)));
+  const roster = {}; // empId -> day -> {code, ref}
+  const routeCrew = {}; // routeId -> {driver, helpers:[]}
+  const byShiftCat = {};
+  routes.forEach(r => (byShiftCat[r.shift + '|' + r.cat] = byShiftCat[r.shift + '|' + r.cat] || []).push(r));
+  const drvOK = (e, r) => eligibility(e, r.id).ok;
+  // assign primary routes to eligible drivers
+  const unassignedRoutes = [...routes];
+  employees.filter(e => e.desig.includes('DRIVER') && e.family === 'ROSTERED').forEach(e => {
+    let idx = unassignedRoutes.findIndex(r => r.shift === e.shift && drvOK(e, r));
+    if (idx < 0) idx = unassignedRoutes.findIndex(r => drvOK(e, r));
+    if (idx >= 0) { const r = unassignedRoutes.splice(idx, 1)[0]; e.route = r.id; e.shift = r.shift; routeCrew[r.id] = { driver: e.id, helpers: [] }; }
+  });
+  // helpers: 2 per RL/TC15/3TPU route, 1 for SL/HLC etc
+  const hpool = employees.filter(e => e.desig === 'HELPER' && e.family === 'ROSTERED');
+  let hi = 0;
+  routes.filter(r => routeCrew[r.id]).forEach(r => { const n = ['RL', 'TC15', '3TPU', 'TT48'].includes(r.cat) ? 2 : ['TW', 'LB', 'BWC'].includes(r.cat) ? 0 : 1; for (let k = 0; k < n && hi < hpool.length; k++) { const h = hpool[hi++]; h.route = r.id; h.shift = r.shift; routeCrew[r.id].helpers.push(h.id); } });
+  // leave blocks
+  const leaveOf = {}; employees.forEach(e => { const r = rnd(); if (r < .06) { const s = ri(0, 20); leaveOf[e.id] = { code: 'AV', from: s, to: s + ri(5, 14) }; } else if (r < .09) { const s = ri(0, 24); leaveOf[e.id] = { code: 'EL', from: s, to: s + ri(1, 4) }; } });
+  employees.forEach(e => {
+    roster[e.id] = {};
+    days.forEach((d, i) => {
+      const dow = DOW[(new Date(d).getDay() + 6) % 7];
+      const lv = leaveOf[e.id];
+      if (lv && i >= lv.from && i <= lv.to) { roster[e.id][d] = { code: lv.code }; return; }
+      if (e.status === 'Inactive') { roster[e.id][d] = null; return; }
+      if (e.status === 'On Leave') { roster[e.id][d] = { code: 'AV' }; return; }
+      if (dow === e.weeklyOff) { roster[e.id][d] = { code: 'WO' }; return; }
+      if (e.status === 'Training') { roster[e.id][d] = { code: 'SB', ref: 'OJT' }; return; }
+      if (e.family === 'RELIEVER') { roster[e.id][d] = { code: 'RL' }; return; }
+      if (e.family === 'EXTRA ASSIGNMENT') { roster[e.id][d] = { code: 'EX', ref: e.extraType }; return; }
+      if (e.family === 'WCP') { roster[e.id][d] = { code: 'EX', ref: 'WCP' }; return; }
+      if (e.route) {
+        const rt = routes.find(r => r.id === e.route); const dom = new Date(d).getDate();
+        if (rt.freq === 'ALT ODD' && dom % 2 === 0) { roster[e.id][d] = { code: 'RT', ref: rt.id.replace(/_(\d{3})$/, (m, n) => '_' + String(+n + 1).padStart(3, '0')) }; return; }
+        if (rt.freq === 'ALT EVEN' && dom % 2 === 1) { roster[e.id][d] = { code: 'RT', ref: rt.id.replace(/_(\d{3})$/, (m, n) => '_' + String(+n - 1).padStart(3, '0')) }; return; }
+        if (rt.freq === 'EVERY 6 DAYS' && i % 6 !== 0) { roster[e.id][d] = { code: 'OC' }; return; }
+        roster[e.id][d] = { code: 'RT', ref: rt.id }; return;
+      }
+      if (!e.desig.includes('DRIVER') && e.desig !== 'HELPER') { roster[e.id][d] = { code: 'EX', ref: 'Operations' }; return; }
+      roster[e.id][d] = null; // pending rostering
+    });
+  });
+  // roster status per week
+  const weeks = [0, 1, 2, 3].map(w => ({ w, from: days[w * 7], to: days[w * 7 + 6], status: w === 0 ? 'Published' : w === 1 ? 'Published' : w === 2 ? 'Approved' : 'Draft', version: w === 3 ? 'v3' : 'v5' }));
+
+  /* ---- Attendance (biometric) for days ≤ today ---- */
+  const attendance = {}; // empId -> day -> {in, out, status}
+  employees.forEach(e => {
+    attendance[e.id] = {};
+    days.forEach(d => {
+      if (d > iso(TODAY)) return;
+      const c = roster[e.id][d]; if (!c || ['WO', 'AV', 'EL'].includes(c.code)) return;
+      const r = rnd();
+      if (r < .935) attendance[e.id][d] = { in: `0${ri(3, 5)}:${String(ri(40, 59)).padStart(2, '0')}`, out: `1${ri(2, 4)}:${String(ri(0, 30)).padStart(2, '0')}`, status: r < .90 ? 'Present' : 'Late' };
+      else attendance[e.id][d] = null; // absent
+    });
+  });
+
+  return { TODAY, iso, addD, rnd, ri, pick, DOW, trainings, vehicleCats, catOf, duties, extraTypes, routes, employees, roster, routeCrew, days, weeks, attendance, eligibility, trStatus, daysTo, MGMT };
+})();
+
+/* =========================================================== UI HELPERS */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const fmtD = d => new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+const num = n => Number(n).toLocaleString();
+const initials = n => n.split(' ').map(w => w[0]).slice(0, 2).join('');
+const avatar = (e, sz = 28) => `<span class="avatar" style="background:${e.color};width:${sz}px;height:${sz}px">${initials(e.name)}</span>`;
+const UI = {
+  toast(t, m, col = '', icon = 'fa-circle-check') { const el = document.createElement('div'); el.className = 'toast ' + col; el.innerHTML = `<b><i class="fa-solid ${icon}"></i> ${t}</b>${m}`; $('#toasts').appendChild(el); setTimeout(() => el.remove(), 5200); },
+  ok(t, m) { UI.toast(t, m) }, err(t, m) { UI.toast(t, m, 'red', 'fa-circle-xmark') }, warn(t, m) { UI.toast(t, m, 'amber', 'fa-triangle-exclamation') },
+  modal({ title, icon = 'fa-window-maximize', body, footer = '<button class="btn primary" data-close>Close</button>', size = '' }) {
+    const v = document.createElement('div'); v.className = 'veil';
+    v.innerHTML = `<div class="modal ${size}"><div class="modal-h"><i class="fa-solid ${icon}" style="color:var(--green-500)"></i><h3>${title}</h3><button class="btn sm ghost" data-close><i class="fa-solid fa-xmark"></i></button></div><div class="modal-b">${body}</div><div class="modal-f">${footer}</div></div>`;
+    v.addEventListener('click', e => { if (e.target === v || e.target.closest('[data-close]')) v.remove(); });
+    $('#modalRoot').appendChild(v); return v;
+  },
+  close() { const v = $$('.veil').pop(); if (v) v.remove(); },
+  charts: {}, chart(id, cfg) { const el = document.getElementById(id); if (!el) return; if (typeof Chart === 'undefined') { el.closest('.chart-box').innerHTML = '<div class="empty"><i class="fa-solid fa-chart-line"></i><b>Chart unavailable offline</b>Connect to the internet to load Chart.js.</div>'; return; } if (UI.charts[id]) UI.charts[id].destroy(); Chart.defaults.font.family = 'Gilroy, Inter, system-ui, sans-serif'; Chart.defaults.color = getComputedStyle(document.body).getPropertyValue('--ink-3'); UI.charts[id] = new Chart(el, cfg); },
+  killCharts() { Object.values(UI.charts).forEach(c => c.destroy()); UI.charts = {}; },
+  statusBadge(s) { const m = { Active: 'green', 'On Leave': 'amber', Training: 'blue', Inactive: 'grey', Valid: 'green', Expiring: 'amber', Expired: 'red', Blocked: 'red', Published: 'green', Approved: 'blue', Draft: 'amber', Present: 'green', Late: 'amber', Absent: 'red' }; return `<span class="badge ${m[s] || 'grey'}">${esc(s)}</span>`; },
+  table(hostId, rows, cols, { pageSize = 12, search = true, exportName = 'export' } = {}) {
+    const host = document.getElementById(hostId); let page = 0, q = '';
+    const paint = () => {
+      const f = rows.filter(r => !q || cols.some(c => String(c.get ? c.get(r) : r[c.key] ?? '').toLowerCase().includes(q)));
+      const pages = Math.max(1, Math.ceil(f.length / pageSize)); page = Math.min(page, pages - 1);
+      const slice = f.slice(page * pageSize, (page + 1) * pageSize);
+      host.innerHTML = `<div style="display:flex;gap:8px;padding:12px 16px;align-items:center;border-bottom:1px solid var(--line)">
+        ${search ? `<input type="search" placeholder="Search…" value="${esc(q)}" id="${hostId}_q" style="width:240px">` : ''}<span class="hint">${f.length} records</span>
+        <span style="margin-left:auto;display:flex;gap:6px"><button class="btn sm" onclick="UI.exportCSV('${hostId}')"><i class="fa-solid fa-file-excel" style="color:var(--green-500)"></i> Excel</button><button class="btn sm" onclick="window.print()"><i class="fa-solid fa-print"></i> Print</button></span></div>
+        <div class="tbl-wrap"><table class="data"><thead><tr>${cols.map(c => `<th>${c.label}</th>`).join('')}</tr></thead><tbody>
+        ${slice.map(r => `<tr ${r.__click ? `style="cursor:pointer" onclick="${r.__click}"` : ''}>${cols.map(c => `<td class="${c.mono ? 'mono' : ''}">${c.render ? c.render(r) : esc(c.get ? c.get(r) : r[c.key] ?? '—')}</td>`).join('')}</tr>`).join('') || `<tr><td colspan="${cols.length}"><div class="empty"><i class="fa-regular fa-folder-open"></i><b>No records</b></div></td></tr>`}</tbody></table></div>
+        <div class="pager"><span>Showing ${f.length ? page * pageSize + 1 : 0}–${Math.min(f.length, (page + 1) * pageSize)} of ${f.length}</span><span style="display:flex;gap:4px"><button class="btn sm" ${page === 0 ? 'disabled' : ''} id="${hostId}_p">‹</button><span style="padding:5px 8px">${page + 1} / ${pages}</span><button class="btn sm" ${page >= pages - 1 ? 'disabled' : ''} id="${hostId}_n">›</button></span></div>`;
+      if (search) $('#' + hostId + '_q').oninput = e => { q = e.target.value.toLowerCase(); page = 0; paint(); };
+      $('#' + hostId + '_p').onclick = () => { page--; paint(); }; $('#' + hostId + '_n').onclick = () => { page++; paint(); };
+      UI._tables[hostId] = { rows: f, cols, exportName };
+    };
+    paint();
+  },
+  _tables: {},
+  exportCSV(hostId) { const t = UI._tables[hostId]; if (!t) return; const lines = [t.cols.map(c => c.label).join(',')].concat(t.rows.map(r => t.cols.map(c => `"${String(c.get ? c.get(r) : r[c.key] ?? '').replace(/"/g, '""')}"`).join(','))); const blob = new Blob(['\ufeff' + lines.join('\n')], { type: 'application/vnd.ms-excel' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = t.exportName + '.xls'; a.click(); UI.ok('Exported', t.rows.length + ' rows exported to Excel.'); },
+};
+
+/* =========================================================== APP */
+const NAV = [
+  { grp: 'Rostering' },
+  { id: 'dashboard', label: 'Deployment Dashboard', icon: 'fa-gauge-high' },
+  { id: 'roster', label: 'Roster Board', icon: 'fa-table-cells' },
+  { id: 'attendance', label: 'Attendance Reconciliation', icon: 'fa-fingerprint' },
+  { grp: 'Competency' },
+  { id: 'training', label: 'Training & Eligibility', icon: 'fa-graduation-cap', badge: () => DB.employees.reduce((s, e) => s + e.trainings.filter(t => ['Expired', 'Blocked'].includes(DB.trStatus(t))).length, 0) },
+  { grp: 'Configuration' },
+  { id: 'masters', label: 'Masters & Rules', icon: 'fa-sliders' },
+  { id: 'migration', label: 'Excel → IWMP Mapping', icon: 'fa-file-excel' },
+];
+const App = {
+  F: { date: '2026-08-31', project: 'All', lot: 'All', desig: 'All', shift: 'All', sl: 'All', lotR: 'LOT 4', cat: 'Drivers', week: 1, shiftR: 'All', slR: 'All' },
+  init() {
+    $('#nav').innerHTML = NAV.map(n => n.grp ? `<div class="grp">${n.grp}</div>` : `<a href="#/${n.id}" data-id="${n.id}"><i class="fa-solid ${n.icon}"></i>${n.label}${n.badge ? `<span class="badge red">${n.badge()}</span>` : ''}</a>`).join('');
+    window.addEventListener('hashchange', App.route); App.route();
+  },
+  route() { const id = (location.hash.replace('#/', '') || 'dashboard'); UI.killCharts(); $$('#nav a').forEach(a => a.classList.toggle('on', a.dataset.id === id)); const n = NAV.find(x => x.id === id); $('#crumb').textContent = n ? n.label : id; $('#view').innerHTML = Views[id] ? Views[id]() : '<div class="empty">Not found</div>'; Views['_' + id]?.(); window.scrollTo(0, 0); },
+  theme() { const h = document.documentElement; h.dataset.theme = h.dataset.theme === 'dark' ? 'light' : 'dark'; App.route(); },
+  setF(k, v) { App.F[k] = v; App.route(); },
+  filtered() { const F = App.F; return DB.employees.filter(e => (F.project === 'All' || e.project === F.project) && (F.lot === 'All' || e.lot === F.lot) && (F.desig === 'All' || e.desig === F.desig) && (F.shift === 'All' || e.shift === F.shift) && (F.sl === 'All' || e.serviceLine === F.sl)); },
+};
+const Views = {};
+const globalFilters = () => `<div class="card" style="margin-bottom:14px"><div class="card-b filters">
+  <label>Date</label><input type="date" value="${App.F.date}" min="${DB.days[0]}" max="${DB.days.at(-1)}" onchange="App.setF('date',this.value)">
+  <label>Project</label><select onchange="App.setF('project',this.value)">${['All', 'MSW', 'Commercial'].map(o => `<option ${App.F.project === o ? 'selected' : ''}>${o}</option>`).join('')}</select>
+  <label>LOT</label><select onchange="App.setF('lot',this.value)">${['All', 'LOT 3', 'LOT 4', 'LOT 5'].map(o => `<option ${App.F.lot === o ? 'selected' : ''}>${o}</option>`).join('')}</select>
+  <label>Designation</label><select onchange="App.setF('desig',this.value)">${['All', ...new Set(DB.employees.map(e => e.desig))].map(o => `<option ${App.F.desig === o ? 'selected' : ''}>${o}</option>`).join('')}</select>
+  <label>Shift</label><select onchange="App.setF('shift',this.value)">${['All', 'DAY', 'NIGHT', 'AFN', 'EVENING', 'MID'].map(o => `<option ${App.F.shift === o ? 'selected' : ''}>${o}</option>`).join('')}</select>
+  <label>Service line</label><select onchange="App.setF('sl',this.value)">${['All', ...new Set(DB.employees.map(e => e.serviceLine))].map(o => `<option ${App.F.sl === o ? 'selected' : ''}>${o}</option>`).join('')}</select>
+  <button class="btn sm ghost" style="margin-left:auto" onclick="App.F={...App.F,project:'All',lot:'All',desig:'All',shift:'All',sl:'All'};App.route()"><i class="fa-solid fa-rotate-left"></i> Reset</button></div></div>`;
+
+/* ---------- KPI computations (single source for dashboard + doc) ---------- */
+const KPI = {
+  isDriver: e => e.desig.includes('DRIVER'), isHelper: e => e.desig === 'HELPER', isOps: e => !DB.MGMT.has(e.desig),
+  pendingRoster: (E, from, to) => E.filter(e => e.status === 'Active' && KPI.isOps(e) && !DB.days.filter(d => d >= from && d <= to).some(d => DB.roster[e.id][d] && DB.roster[e.id][d].code !== 'WO')),
+  trainingIssues: E => E.filter(e => e.status !== 'Inactive').map(e => { const issues = []; const isD = KPI.isDriver(e), isH = KPI.isHelper(e); const need = isD ? ['T-DD', 'T-TBT'] : isH ? ['T-HS', 'T-TBT'] : ['T-TBT']; need.forEach(t => { if (!e.trainings.find(x => x.id === t)) issues.push({ t, s: 'Pending' }); }); e.trainings.forEach(x => { const s = DB.trStatus(x); if (s === 'Expired' || s === 'Blocked') issues.push({ t: x.id, s }); }); if (isD && !e.trainings.some(x => DB.trainings.find(t => t.id === x.id).cat === 'Driver' && x.id !== 'T-DD')) issues.push({ t: 'EQUIP', s: 'Pending' }); return { e, issues }; }).filter(x => x.issues.length),
+  dayBreakdown: (E, d) => {
+    const total = E.filter(e => e.status !== 'Inactive').length;
+    let planned = 0, reported = 0, wo = 0, vac = 0, absent = 0, late = 0;
+    E.forEach(e => { const c = DB.roster[e.id]?.[d]; if (!c) return; if (c.code === 'WO') wo++; else if (c.code === 'AV' || c.code === 'EL') vac++; else { if (c.code !== 'SB') planned++; const a = DB.attendance[e.id]?.[d]; if (d <= DB.iso(DB.TODAY)) { if (a) { reported++; if (a.status === 'Late') late++; } else if (c.code !== 'SB') absent++; } } });
+    const future = d > DB.iso(DB.TODAY);
+    return { total, planned, reported: future ? null : reported, absent: future ? null : absent, late, wo, vac, available: future ? null : total - reported - wo - vac };
+  }
+};
+
+/* =========================================================== DASHBOARD */
+Views.dashboard = () => {
+  const E = App.filtered(); const F = App.F;
+  const drivers = E.filter(KPI.isDriver), helpers = E.filter(KPI.isHelper), ops = E.filter(KPI.isOps);
+  const wk = DB.weeks.find(w => F.date >= w.from && F.date <= w.to) || DB.weeks[1];
+  const pend = KPI.pendingRoster(E, wk.from, wk.to); const tri = KPI.trainingIssues(E);
+  const b = KPI.dayBreakdown(E, F.date);
+  const kpi = (l, v, ic, col, f, click) => `<div class="card kpi" style="--kpi:var(--${col}-500)" onclick="${click || ''}"><div class="l">${l}<span class="ic" style="background:var(--${col}-100);color:var(--${col}-500)"><i class="fa-solid ${ic}"></i></span></div><div class="v">${v}</div><div class="f">${f}</div></div>`;
+  return `<div class="page-head"><div><div class="page-title">Manpower Deployment Dashboard</div><div class="page-sub">Insight built from Employee Master + Roster + Attendance machine · filters apply to every card below</div></div>
+    <div class="page-actions"><button class="btn" onclick="Views.dailySheet()"><i class="fa-solid fa-clipboard-list"></i> Daily deployment sheet</button><button class="btn primary" onclick="location.hash='#/roster'"><i class="fa-solid fa-table-cells"></i> Open roster</button></div></div>
+  ${globalFilters()}
+  <div class="grid g6" style="margin-bottom:14px">
+    ${kpi('Total manpower', num(E.length), 'fa-users', 'blue', 'Employee master · all statuses', `Views.list('all')`)}
+    ${kpi('Drivers', num(drivers.length), 'fa-truck', 'green', `HDD ${drivers.filter(e => e.licence === 'HDD').length} · LDD ${drivers.filter(e => e.licence === 'LDD').length}`, `Views.list('drivers')`)}
+    ${kpi('Helpers', num(helpers.length), 'fa-people-carry-box', 'violet', 'Route · supervisor · extra assignments', `Views.list('helpers')`)}
+    ${kpi('Operational staff', num(ops.length), 'fa-helmet-safety', 'blue', 'Excludes Area Manager and above', `Views.list('ops')`)}
+    ${kpi('Pending rostering', num(pend.length), 'fa-calendar-xmark', pend.length ? 'red' : 'grey', `Active, no duty in week ${wk.w + 1}`, `Views.list('pending')`)}
+    ${kpi('Training pending / expired', num(tri.length), 'fa-graduation-cap', tri.length ? 'amber' : 'grey', `${tri.filter(x => x.issues.some(i => i.s === 'Blocked')).length} blocked from rostering`, `Views.list('training')`)}
+  </div>
+  <div class="card" style="margin-bottom:14px"><div class="card-h"><h3>Headcount breakdown — ${new Date(F.date).toLocaleDateString('en-GB', { weekday: 'long', day: '2-digit', month: 'long' })}</h3><span class="hint">${F.date > DB.iso(DB.TODAY) ? 'future date · planned only, attendance not yet available' : 'reported HC from attendance machine'}</span>
+    <span class="formula" style="margin-left:auto">Available = Total − Reported − Weekly off − Vacation</span></div>
+    <div class="card-b grid g7">
+      ${[['Total head count', b.total, 'grey', 'Active + on leave + training'], ['Planned head count', b.planned, 'blue', 'Rostered to route / reliever / on call / extra'], ['Reported head count', b.reported ?? '—', 'green', 'Punched in (attendance machine)'], ['Absenteeism', b.absent ?? '—', 'red', `${b.reported != null && b.planned ? Math.round(b.absent / b.planned * 100) + '% of planned' : 'planned but no punch'}`], ['Weekly off', b.wo, 'grey', 'Contracted rest day'], ['Vacation', b.vac, 'amber', 'Annual + emergency leave'], ['Available head count', b.available ?? '—', 'violet', 'Not deployed, not off, not on leave']]
+      .map(k => `<div style="border:1px solid var(--line);border-radius:11px;padding:11px 12px;border-top:3px solid var(--${k[2]}-500);cursor:pointer" onclick="Views.dayList('${k[0]}')"><div style="font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--ink-3);font-weight:700">${k[0]}</div><div class="mono" style="font-size:22px;font-weight:800;margin:3px 0">${typeof k[1] === 'number' ? num(k[1]) : k[1]}</div><div style="font-size:11px;color:var(--ink-3)">${k[3]}</div></div>`).join('')}
+    </div></div>
+  <div class="grid" style="grid-template-columns:1.4fr 1fr 1fr;margin-bottom:14px">
+    <div class="card"><div class="card-h"><h3>Deployment by service line — ${fmtD(F.date)}</h3><span class="hint">planned vs reported</span></div><div class="card-b"><div class="chart-box"><canvas id="chSL"></canvas></div></div></div>
+    <div class="card"><div class="card-h"><h3>Deployment by project</h3></div><div class="card-b"><div class="chart-box"><canvas id="chProj"></canvas></div></div></div>
+    <div class="card"><div class="card-h"><h3>Deployment by LOT</h3></div><div class="card-b"><div class="chart-box"><canvas id="chLot"></canvas></div></div></div>
+  </div>
+  <div class="grid g2">
+    <div class="card"><div class="card-h"><h3>Requirement vs onboard vs deployed</h3><span class="hint">replaces the workbook summary sheet</span></div><div class="card-b">
+      <table class="data"><thead><tr><th>Category</th><th>LOT 4 requirement</th><th>Onboard</th><th>Deployed (${fmtD(F.date)})</th><th>Under training / OJT</th><th>Day</th><th>Night</th><th>Balance</th></tr></thead><tbody>
+      ${[['HDD', 249, e => e.licence === 'HDD'], ['LDD', 27, e => e.licence === 'LDD'], ['Helper', 397, KPI.isHelper]].map(([n, req, fn]) => { const g = E.filter(fn).filter(e => e.lot === 'LOT 4'); const dep = g.filter(e => { const c = DB.roster[e.id][F.date]; return c && ['RT', 'RL', 'OC', 'EX'].includes(c.code); }); const trn = g.filter(e => e.status === 'Training'); const day = dep.filter(e => ['DAY', 'AFN', 'MID'].includes(e.shift)).length; return `<tr><td><b>${n}</b></td><td class="mono">${req}</td><td class="mono">${g.filter(e => e.status !== 'Inactive').length}</td><td class="mono">${dep.length}</td><td class="mono">${trn.length}</td><td class="mono">${day}</td><td class="mono">${dep.length - day}</td><td>${req - g.filter(e => e.status !== 'Inactive').length > 0 ? `<span class="badge red">−${req - g.filter(e => e.status !== 'Inactive').length}</span>` : `<span class="badge green">+${g.filter(e => e.status !== 'Inactive').length - req}</span>`}</td></tr>`; }).join('')}</tbody></table></div></div>
+    <div class="card"><div class="card-h"><h3>Duty mix for the day</h3><span class="hint">what the filtered workforce is doing on ${fmtD(F.date)}</span></div><div class="card-b"><div class="chart-box"><canvas id="chDuty"></canvas></div></div></div>
+  </div>`;
+};
+Views._dashboard = () => {
+  const E = App.filtered(), d = App.F.date, grid = 'rgba(131,147,169,.18)';
+  const isDep = c => c && ['RT', 'RL', 'OC', 'EX'].includes(c.code);
+  const sls = [...new Set(E.map(e => e.serviceLine))];
+  UI.chart('chSL', { type: 'bar', data: { labels: sls, datasets: [{ label: 'Planned', data: sls.map(s => E.filter(e => e.serviceLine === s && isDep(DB.roster[e.id][d])).length), backgroundColor: '#0072d6', borderRadius: 4 }, { label: 'Reported', data: sls.map(s => E.filter(e => e.serviceLine === s && isDep(DB.roster[e.id][d]) && DB.attendance[e.id][d]).length), backgroundColor: '#22c882', borderRadius: 4 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, usePointStyle: true } } }, scales: { y: { grid: { color: grid } }, x: { grid: { display: false } } } } });
+  const donut = (id, labels, data, cols) => UI.chart(id, { type: 'doughnut', data: { labels, datasets: [{ data, backgroundColor: cols, borderWidth: 2, borderColor: getComputedStyle(document.body).getPropertyValue('--surface') }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '60%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, usePointStyle: true } } } } });
+  donut('chProj', ['MSW', 'Commercial'], ['MSW', 'Commercial'].map(p => E.filter(e => e.project === p && isDep(DB.roster[e.id][d])).length), ['#22c882', '#9e77ed']);
+  donut('chLot', ['LOT 3', 'LOT 4', 'LOT 5'], ['LOT 3', 'LOT 4', 'LOT 5'].map(l => E.filter(e => e.lot === l && isDep(DB.roster[e.id][d])).length), ['#0072d6', '#22c882', '#f79009']);
+  const codes = ['RT', 'RL', 'OC', 'EX', 'SB', 'WO', 'AV', 'EL']; const cnt = codes.map(c => E.filter(e => DB.roster[e.id][d]?.code === c).length); cnt.push(E.filter(e => e.status !== 'Inactive' && !DB.roster[e.id][d]).length);
+  UI.chart('chDuty', { type: 'bar', data: { labels: [...codes.map(c => DB.duties.find(x => x.code === c).name), 'Not rostered'], datasets: [{ data: cnt, backgroundColor: ['#0072d6', '#9e77ed', '#005cb0', '#b74300', '#0d776e', '#667085', '#f79009', '#f04438', '#98a2b3'], borderRadius: 4 }] }, options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: grid } }, y: { grid: { display: false }, ticks: { font: { size: 10.5 } } } } } });
+};
+Views.list = kind => {
+  const E = App.filtered(); const wk = DB.weeks.find(w => App.F.date >= w.from && App.F.date <= w.to) || DB.weeks[1];
+  const sets = { all: ['All manpower (filtered)', E], drivers: ['Drivers — HDD + LDD', E.filter(KPI.isDriver)], helpers: ['Helpers', E.filter(KPI.isHelper)], ops: ['Operational staff (excl. managers)', E.filter(KPI.isOps)], pending: [`Pending rostering — week ${wk.w + 1}`, KPI.pendingRoster(E, wk.from, wk.to)], training: ['Training pending / expired', KPI.trainingIssues(E).map(x => ({ ...x.e, __issues: x.issues.map(i => `${i.t === 'EQUIP' ? 'Equipment training' : DB.trainings.find(t => t.id === i.t).name} — ${i.s}`).join('; ') }))] };
+  const [title, rows] = sets[kind];
+  const v = UI.modal({ title: `${title} (${rows.length})`, icon: 'fa-list', size: 'lg', body: `<div id="lst"></div>`, footer: '<button class="btn primary" data-close>Close</button>' });
+  UI.table('lst', rows.map(r => ({ ...r, __click: `UI.close();Views.empCard('${r.id}')` })), [{ key: 'sap', label: 'SAP ID', mono: true }, { key: 'name', label: 'Name' }, { key: 'desig', label: 'Designation' }, { key: 'lot', label: 'LOT' }, { key: 'shift', label: 'Shift' }, { key: 'serviceLine', label: 'Service line' }, { key: 'status', label: 'Status', render: r => UI.statusBadge(r.status) }, ...(kind === 'training' ? [{ key: '__issues', label: 'Issue' }] : [{ key: 'route', label: 'Primary route', mono: true, get: r => r.route || (r.family !== 'ROSTERED' ? r.family : '— pending —') }])], { pageSize: 10, exportName: title.replace(/\W+/g, '_') });
+};
+Views.dayList = which => {
+  const E = App.filtered(), d = App.F.date;
+  const fn = { 'Planned head count': e => { const c = DB.roster[e.id][d]; return c && ['RT', 'RL', 'OC', 'EX'].includes(c.code); }, 'Reported head count': e => DB.attendance[e.id][d], 'Absenteeism': e => { const c = DB.roster[e.id][d]; return c && ['RT', 'RL', 'OC', 'EX'].includes(c.code) && !DB.attendance[e.id][d] && d <= DB.iso(DB.TODAY); }, 'Weekly off': e => DB.roster[e.id][d]?.code === 'WO', 'Vacation': e => ['AV', 'EL'].includes(DB.roster[e.id][d]?.code), 'Available head count': e => e.status !== 'Inactive' && !DB.attendance[e.id][d] && !['WO', 'AV', 'EL'].includes(DB.roster[e.id][d]?.code) && d <= DB.iso(DB.TODAY), 'Total head count': e => e.status !== 'Inactive' }[which];
+  const rows = E.filter(fn).map(e => ({ ...e, duty: DB.roster[e.id][d] ? (DB.roster[e.id][d].ref || DB.duties.find(x => x.code === DB.roster[e.id][d].code).name) : 'Not rostered', punch: DB.attendance[e.id][d] ? DB.attendance[e.id][d].in + ' – ' + DB.attendance[e.id][d].out : '—', __click: `UI.close();Views.empCard('${e.id}')` }));
+  UI.modal({ title: `${which} — ${fmtD(d)} (${rows.length})`, icon: 'fa-list', size: 'lg', body: `<div id="lst"></div>` });
+  UI.table('lst', rows, [{ key: 'sap', label: 'SAP ID', mono: true }, { key: 'name', label: 'Name' }, { key: 'desig', label: 'Designation' }, { key: 'shift', label: 'Shift' }, { key: 'serviceLine', label: 'Service line' }, { key: 'duty', label: 'Duty', mono: true }, { key: 'punch', label: 'Punch', mono: true }], { pageSize: 10, exportName: which.replace(/\W+/g, '_') + '_' + d });
+};
+Views.dailySheet = () => { const d = App.F.date; const rows = DB.routes.filter(r => DB.routeCrew[r.id]).map(r => { const c = DB.routeCrew[r.id]; const drv = DB.employees.find(e => e.id === c.driver); const hs = c.helpers.map(h => DB.employees.find(e => e.id === h)); return { route: r.id, cat: DB.catOf(r.cat).name, shift: r.shift, district: r.district, driver: drv.name + ' (' + drv.sap + ')', drvAtt: DB.attendance[drv.id][d] ? '✓' : (d <= DB.iso(DB.TODAY) ? '✗' : '—'), helpers: hs.map(h => h.name).join(', ') || '—', hAtt: hs.length ? hs.map(h => DB.attendance[h.id][d] ? '✓' : (d <= DB.iso(DB.TODAY) ? '✗' : '—')).join(' ') : '—' }; }); UI.modal({ title: 'Daily deployment sheet — ' + fmtD(d), icon: 'fa-clipboard-list', size: 'lg', body: '<div id="lst"></div>' }); UI.table('lst', rows, [{ key: 'route', label: 'Route', mono: true }, { key: 'cat', label: 'Vehicle' }, { key: 'shift', label: 'Shift' }, { key: 'district', label: 'District' }, { key: 'driver', label: 'Driver' }, { key: 'drvAtt', label: 'Punch' }, { key: 'helpers', label: 'Helpers' }, { key: 'hAtt', label: 'Punch' }], { pageSize: 12, exportName: 'Daily_Deployment_' + d }); };
+
+/* ---------- Employee card (training + eligibility) ---------- */
+Views.empCard = id => {
+  const e = DB.employees.find(x => x.id === id);
+  const rt = e.route ? DB.routes.find(r => r.id === e.route) : null;
+  const el = rt ? DB.eligibility(e, rt.id) : null;
+  UI.modal({
+    title: e.name + ' — ' + e.sap, icon: 'fa-id-badge', size: 'lg',
+    body: `<div style="display:flex;gap:14px;align-items:center;margin-bottom:14px">${avatar(e, 48)}<div><b style="font-size:15px">${esc(e.name)}</b> ${UI.statusBadge(e.status)}<div style="font-size:12.5px;color:var(--ink-2)">${e.desig} ${e.licence ? '· ' + e.licence : ''} · ${e.lot} · ${e.shift} · ${e.serviceLine} · ${e.project} · ${e.contractor} · Weekly off ${e.weeklyOff}</div></div></div>
+    <div class="grid g2"><div><div style="font-size:11px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Trainings completed</div>
+      ${e.trainings.length ? e.trainings.map(t => { const m = DB.trainings.find(x => x.id === t.id); const s = DB.trStatus(t); return `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--line);font-size:12.5px"><span>${m.name}<br><span class="hint">Attended ${fmtD(t.date)} · valid ${m.validity} mo · expires ${fmtD(t.expiry)}</span></span>${UI.statusBadge(s)}</div>`; }).join('') : '<div class="empty" style="padding:14px">No training records</div>'}
+      <button class="btn sm" style="margin-top:10px" onclick="UI.close();Views.assignTraining('${e.id}')"><i class="fa-solid fa-plus"></i> Assign training</button></div>
+    <div><div style="font-size:11px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Eligible vehicle categories</div>
+      <div class="legend">${DB.vehicleCats.map(c => { const chk = DB.eligibility({ ...e, status: 'Active' }, DB.routes.find(r => r.cat === c.code)?.id); return `<span class="badge ${chk.ok ? (chk.warns.length ? 'amber' : 'green') : 'grey'}" title="${esc(chk.reasons.concat(chk.warns).join(' | '))}">${c.code}</span>`; }).join('')}</div>
+      <p class="hint" style="margin-top:6px">Green = eligible · amber = eligible with warning (expiring / grace) · grey = not eligible (hover for reason)</p>
+      <div style="font-size:11px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.5px;margin:12px 0 6px">Current assignment</div>
+      ${rt ? `<div class="mono" style="font-size:13px"><b>${rt.id}</b></div><div class="hint">${DB.catOf(rt.cat).name} · ${rt.shift} · ${rt.freq} · ${rt.district}</div>${el.ok ? (el.warns.length ? `<div class="rule" style="margin-top:8px"><i class="fa-solid fa-triangle-exclamation"></i> ${el.warns.join('<br>')}</div>` : '<div style="margin-top:8px"><span class="badge green">Eligibility OK</span></div>') : `<div class="rule" style="margin-top:8px;background:var(--red-100)"><i class="fa-solid fa-ban"></i> ${el.reasons.join('<br>')}</div>`}` : `<span class="badge ${e.family === 'ROSTERED' ? 'red' : 'grey'}">${e.family === 'ROSTERED' ? 'Pending rostering' : e.family + (e.extraType ? ' · ' + e.extraType : '')}</span>`}</div></div>`
+  });
+};
+
+/* =========================================================== ROSTER BOARD */
+Views.roster = () => {
+  const F = App.F; const wk = DB.weeks[F.week];
+  return `<div class="page-head"><div><div class="page-title">Roster Board</div><div class="page-sub">Assignments against approved Smart Plan SP-2026-09 · one cell per employee per day · eligibility enforced on every route assignment</div></div>
+    <div class="page-actions">
+      <button class="btn" onclick="Views.validate()"><i class="fa-solid fa-shield-halved"></i> Validate week</button>
+      <button class="btn" onclick="Views.crewView()"><i class="fa-solid fa-people-group"></i> Crew view</button>
+      <button class="btn" onclick="Views.exportRoster()"><i class="fa-solid fa-file-excel" style="color:var(--green-500)"></i> Export (workbook layout)</button>
+      ${wk.status === 'Draft' ? `<button class="btn green" onclick="Views.approve()"><i class="fa-solid fa-check"></i> Submit for approval</button>` : wk.status === 'Approved' ? `<button class="btn primary" onclick="Views.publish()"><i class="fa-solid fa-paper-plane"></i> Publish</button>` : `<button class="btn primary" disabled><i class="fa-solid fa-lock"></i> Published</button>`}
+    </div></div>
+  <div class="card" style="margin-bottom:14px"><div class="card-b filters">
+    <label>Week</label><select onchange="App.setF('week',+this.value)">${DB.weeks.map(w => `<option value="${w.w}" ${F.week === w.w ? 'selected' : ''}>Week ${w.w + 1} · ${fmtD(w.from)} – ${fmtD(w.to)} · ${w.status}</option>`).join('')}</select>
+    <label>Category</label><select onchange="App.setF('cat',this.value)">${['Drivers', 'Helpers', 'Relievers', 'Extra assignments', 'Supervisors & support'].map(o => `<option ${F.cat === o ? 'selected' : ''}>${o}</option>`).join('')}</select>
+    <label>LOT</label><select onchange="App.setF('lotR',this.value)">${['All', 'LOT 3', 'LOT 4', 'LOT 5'].map(o => `<option ${F.lotR === o ? 'selected' : ''}>${o}</option>`).join('')}</select>
+    <label>Shift</label><select onchange="App.setF('shiftR',this.value)">${['All', 'DAY', 'NIGHT', 'AFN', 'EVENING', 'MID'].map(o => `<option ${F.shiftR === o ? 'selected' : ''}>${o}</option>`).join('')}</select>
+    <label>Service line</label><select onchange="App.setF('slR',this.value)">${['All', 'MSW', 'BULKY', 'RELIEVER', 'WCP', 'TRUCK WASHING'].map(o => `<option ${F.slR === o ? 'selected' : ''}>${o}</option>`).join('')}</select>
+    <span style="margin-left:auto" class="legend">${DB.duties.map(d => `<span class="duty ${d.code}" style="width:auto" title="${esc(d.desc)}">${d.code}</span>`).join('')}</span></div></div>
+  <div class="card"><div class="card-h"><h3>Week ${wk.w + 1} · ${fmtD(wk.from)} – ${fmtD(wk.to)}</h3>${UI.statusBadge(wk.status)}<span class="hint">roster ${wk.version} · smart plan SP-2026-09 · click any cell to assign</span><span class="hint" id="rgCount" style="margin-left:auto"></span></div>
+    <div class="tbl-wrap" style="max-height:66vh"><div class="rg" id="rg"></div></div></div>`;
+};
+Views._roster = () => {
+  const F = App.F; const wk = DB.weeks[F.week]; const days = DB.days.slice(wk.w * 7, wk.w * 7 + 7);
+  const catFn = { 'Drivers': e => KPI.isDriver(e) && e.family !== 'RELIEVER' && e.family !== 'EXTRA ASSIGNMENT' && e.family !== 'WCP', 'Helpers': e => KPI.isHelper(e) && e.family !== 'EXTRA ASSIGNMENT' && e.family !== 'WCP', 'Relievers': e => e.family === 'RELIEVER', 'Extra assignments': e => ['EXTRA ASSIGNMENT', 'WCP'].includes(e.family), 'Supervisors & support': e => !KPI.isDriver(e) && !KPI.isHelper(e) }[F.cat];
+  const E = DB.employees.filter(e => catFn(e) && (F.lotR === 'All' || e.lot === F.lotR) && (F.shiftR === 'All' || e.shift === F.shiftR) && (F.slR === 'All' || e.serviceLine === F.slR) && e.status !== 'Inactive').slice(0, 80);
+  $('#rgCount').textContent = `${E.length} employees shown (first 80 of category)`;
+  const cell = (e, d) => { const c = DB.roster[e.id][d]; if (!c) return `<span class="duty blank">assign</span>`; if (c.code === 'RT') { const el = DB.eligibility(e, c.ref); return `<span class="duty RT ${el.ok ? (el.warns.length ? 'warn' : '') : 'block'}" title="${esc(el.reasons.concat(el.warns).join(' | ') || c.ref)}">${c.ref.replace('_04_', '·')}</span>`; } if (c.code === 'EX') return `<span class="duty EX" title="${esc(c.ref)}">EX·${esc(c.ref.split(' ')[0].slice(0, 6))}</span>`; if (c.code === 'SB') return `<span class="duty SB">SB·${c.ref || 'STBY'}</span>`; return `<span class="duty ${c.code}">${c.code}</span>`; };
+  $('#rg').innerHTML = `<div class="h emp" style="z-index:3">Employee</div>` + days.map(d => `<div class="h">${DB.DOW[(new Date(d).getDay() + 6) % 7]} ${fmtD(d)}</div>`).join('') +
+    E.map(e => `<div class="emp" onclick="Views.empCard('${e.id}')" style="cursor:pointer">${avatar(e, 26)}<span><b style="font-size:12px">${esc(e.name)}</b><br><span class="hint mono">${e.sap} · ${e.licence || e.desig.slice(0, 6)} · ${e.shift}${e.route ? ' · ' + e.route.replace('_04_', '·') : ''}</span></span></div>` + days.map(d => `<div class="cell" onclick="Views.assignCell('${e.id}','${d}')">${cell(e, d)}</div>`).join('')).join('');
+};
+Views.assignCell = (id, d) => {
+  const e = DB.employees.find(x => x.id === id); const wk = DB.weeks.find(w => d >= w.from && d <= w.to);
+  if (wk.status === 'Published') { UI.warn('Week is published', 'Published rosters are locked. Raise a roster change request to modify a live week.'); return; }
+  const cur = DB.roster[e.id][d];
+  const isH = KPI.isHelper(e);
+  const cands = DB.routes.filter(r => r.status === 'Approved').map(r => ({ r, el: DB.eligibility(e, r.id, d) }));
+  const elig = cands.filter(x => x.el.ok).sort((a, b) => (a.r.shift === e.shift ? 0 : 1) - (b.r.shift === e.shift ? 0 : 1));
+  const inel = cands.filter(x => !x.el.ok);
+  UI.modal({
+    title: `Assign duty — ${e.name} · ${DB.DOW[(new Date(d).getDay() + 6) % 7]} ${fmtD(d)}`, icon: 'fa-pen-to-square', size: 'lg',
+    body: `<div style="display:flex;gap:10px;align-items:center;margin-bottom:12px;font-size:12.5px">${avatar(e, 32)}<span><b>${esc(e.name)}</b> · ${e.desig} ${e.licence ? '· ' + e.licence : ''} · ${e.shift} · ${e.serviceLine}</span>${UI.statusBadge(e.status)}<span class="hint" style="margin-left:auto">Current: <b class="mono">${cur ? (cur.ref || cur.code) : 'unassigned'}</b></span></div>
+    ${e.status !== 'Active' ? `<div class="rule" style="background:var(--red-100);margin-bottom:12px"><i class="fa-solid fa-ban"></i> Employee status is <b>${e.status}</b> — routes and reliever duties cannot be assigned. Only leave / off codes are allowed.</div>` : ''}
+    <div class="tabs" id="asTabs">${['Route (Smart Plan)', 'Other duty'].map((t, i) => `<button class="tab ${i ? '' : 'on'}" data-tab="${i}">${t}</button>`).join('')}</div>
+    <div id="asBody"></div>`,
+    footer: `<button class="btn" data-close>Cancel</button>`
+  });
+  const body = $('#asBody');
+  const render = i => {
+    if (i === 0) {
+      body.innerHTML = `<input type="search" id="rtq" placeholder="Search route ID / district / vehicle…" style="width:100%;margin-bottom:10px">
+        <div style="max-height:46vh;overflow:auto;border:1px solid var(--line);border-radius:10px" id="rtList"></div>
+        <p class="hint" style="margin-top:8px">${elig.length} eligible routes · ${inel.length} blocked for this employee (shown greyed with the reason). Eligibility = Active status + licence class + valid training for the vehicle category + not on leave.</p>`;
+      const paint = q => { $('#rtList').innerHTML = [...elig, ...inel].filter(x => !q || (x.r.id + x.r.district + DB.catOf(x.r.cat).name).toLowerCase().includes(q)).slice(0, 120).map(x => `<div style="display:flex;gap:10px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--line);font-size:12.5px;${x.el.ok ? 'cursor:pointer' : 'opacity:.55'}" ${x.el.ok ? `onclick="Views.setDuty('${e.id}','${d}','RT','${x.r.id}')"` : ''}>
+        <span class="mono" style="min-width:150px"><b>${x.r.id}</b></span><span style="min-width:170px">${DB.catOf(x.r.cat).name}</span><span class="badge grey">${x.r.shift}</span><span class="hint">${x.r.freq} · ${x.r.district}</span>
+        <span style="margin-left:auto">${x.el.ok ? (x.el.warns.length ? `<span class="badge amber" title="${esc(x.el.warns.join(' | '))}">Warning</span>` : '<span class="badge green">Eligible</span>') : `<span class="badge red" title="${esc(x.el.reasons.join(' | '))}">${esc(x.el.reasons[0].slice(0, 60))}${x.el.reasons[0].length > 60 ? '…' : ''}</span>`}</span></div>`).join('') || '<div class="empty">No routes match</div>'; };
+      paint(''); $('#rtq').oninput = ev => paint(ev.target.value.toLowerCase());
+      return;
+    }
+    body.innerHTML = `<div class="grid g4">${DB.duties.filter(x => x.code !== 'RT').map(x => { const blocked = e.status !== 'Active' && ['RL', 'OC', 'SB', 'EX'].includes(x.code); return `<div class="card" style="padding:12px;cursor:${blocked ? 'not-allowed' : 'pointer'};opacity:${blocked ? .5 : 1}" onclick="${blocked ? '' : (x.code === 'EX' ? `Views.pickExtra('${e.id}','${d}')` : `Views.setDuty('${e.id}','${d}','${x.code}')`)}"><span class="duty ${x.code}" style="width:auto;display:inline-block">${x.code}</span><b style="display:block;margin-top:6px;font-size:12.5px">${x.name}</b><span class="hint">${x.desc}</span></div>`; }).join('')}</div>
+      ${cur ? `<button class="btn sm danger" style="margin-top:12px" onclick="Views.setDuty('${e.id}','${d}',null)"><i class="fa-solid fa-eraser"></i> Clear cell</button>` : ''}`;
+  };
+  render(0); $$('#asTabs .tab').forEach(t => t.onclick = () => { $$('#asTabs .tab').forEach(x => x.classList.remove('on')); t.classList.add('on'); render(+t.dataset.tab); });
+};
+Views.pickExtra = (id, d) => { const v = UI.modal({ title: 'Extra assignment type', icon: 'fa-list', size: 'sm', body: DB.extraTypes.map(t => `<div style="padding:9px 4px;border-bottom:1px solid var(--line);cursor:pointer" onclick="UI.close();Views.setDuty('${id}','${d}','EX','${t}')">${t}</div>`).join('') }); };
+Views.setDuty = (id, d, code, ref) => {
+  const e = DB.employees.find(x => x.id === id);
+  if (code === 'RT') { const el = DB.eligibility(e, ref, d); if (!el.ok) { UI.err('Assignment blocked', el.reasons[0]); return; } if (el.warns.length) UI.warn('Assigned with warning', el.warns[0]); }
+  if (code === 'WO') { const wkDays = DB.days.filter(x => Math.floor(DB.days.indexOf(x) / 7) === Math.floor(DB.days.indexOf(d) / 7)); if (wkDays.some(x => x !== d && DB.roster[e.id][x]?.code === 'WO')) UI.warn('Second weekly off', 'Employee already has a weekly off in this week — flagged for supervisor review.'); }
+  DB.roster[e.id][d] = code ? { code, ref } : null;
+  while ($$('.veil').length) UI.close();
+  UI.ok('Roster updated', `${e.name} · ${fmtD(d)} → ${code ? (ref || DB.duties.find(x => x.code === code).name) : 'cleared'}. Change logged to roster audit trail.`);
+  if ($('#rg')) Views._roster(); else if (location.hash.includes('dashboard') || !location.hash) App.route();
+};
+Views.validate = () => {
+  const wk = DB.weeks[App.F.week]; const days = DB.days.slice(wk.w * 7, wk.w * 7 + 7);
+  const issues = [];
+  DB.employees.filter(e => e.status !== 'Inactive').forEach(e => {
+    const wo = days.filter(d => DB.roster[e.id][d]?.code === 'WO').length;
+    const working = days.filter(d => DB.roster[e.id][d] && !['WO', 'AV', 'EL'].includes(DB.roster[e.id][d].code)).length;
+    if (working === 7) issues.push({ e, t: 'No weekly off in week', s: 'High' });
+    if (wo > 1) issues.push({ e, t: `${wo} weekly offs in week`, s: 'Low' });
+    days.forEach(d => { const c = DB.roster[e.id][d]; if (c?.code === 'RT') { const el = DB.eligibility(e, c.ref, d); if (!el.ok) issues.push({ e, t: `${fmtD(d)} ${c.ref}: ${el.reasons[0]}`, s: 'High' }); else if (el.warns.length) issues.push({ e, t: `${fmtD(d)} ${c.ref}: ${el.warns[0]}`, s: 'Medium' }); } });
+    if (e.status === 'Active' && KPI.isOps(e) && !days.some(d => DB.roster[e.id][d] && DB.roster[e.id][d].code !== 'WO')) issues.push({ e, t: 'Pending rostering — no duty in week', s: 'Medium' });
+  });
+  // route double assignment
+  days.forEach(d => { const seen = {}; DB.employees.forEach(e => { const c = DB.roster[e.id][d]; if (c?.code === 'RT' && KPI.isDriver(e)) { if (seen[c.ref]) issues.push({ e, t: `${fmtD(d)} ${c.ref} has two drivers (${seen[c.ref]})`, s: 'High' }); seen[c.ref] = e.name; } }); });
+  const hi = issues.filter(i => i.s === 'High').length;
+  UI.modal({ title: `Validation — week ${wk.w + 1} (${issues.length} findings · ${hi} blocking)`, icon: 'fa-shield-halved', size: 'lg', body: `<div id="lst"></div><p class="hint" style="margin-top:8px">High findings block approval; Medium require supervisor acknowledgement; Low are advisory.</p>` });
+  UI.table('lst', issues.slice(0, 400).map(i => ({ sap: i.e.sap, name: i.e.name, desig: i.e.desig, finding: i.t, sev: i.s, __click: `UI.close();Views.empCard('${i.e.id}')` })), [{ key: 'sap', label: 'SAP ID', mono: true }, { key: 'name', label: 'Employee' }, { key: 'desig', label: 'Designation' }, { key: 'finding', label: 'Finding' }, { key: 'sev', label: 'Severity', render: r => `<span class="badge ${r.sev === 'High' ? 'red' : r.sev === 'Medium' ? 'amber' : 'grey'}">${r.sev}</span>` }], { pageSize: 10, exportName: 'Roster_Validation_W' + (wk.w + 1) });
+};
+Views.approve = () => { const wk = DB.weeks[App.F.week]; wk.status = 'Approved'; UI.ok('Submitted & approved', `Week ${wk.w + 1} roster ${wk.version} approved by Operations Manager (demo auto-approve). Publish to release to dispatch and driver tablets.`); App.route(); };
+Views.publish = () => { const wk = DB.weeks[App.F.week]; wk.status = 'Published'; UI.ok('Roster published', `Week ${wk.w + 1} pushed to dispatcher console, LOT supervisors and driver tablets. Week is now locked — changes go through roster change requests.`); App.route(); };
+Views.crewView = () => { const d = DB.days[App.F.week * 7]; const rows = DB.routes.filter(r => DB.routeCrew[r.id]).map(r => { const c = DB.routeCrew[r.id]; const drv = DB.employees.find(e => e.id === c.driver); const hs = c.helpers.map(h => DB.employees.find(e => e.id === h)); const el = DB.eligibility(drv, r.id); return { route: r.id, cat: DB.catOf(r.cat).name, shift: r.shift, freq: r.freq, driver: drv.name, drvOk: el.ok ? (el.warns.length ? 'Warning' : 'OK') : 'Blocked', helpers: hs.map(h => h.name).join(', ') || '—', need: (['RL', 'TC15', '3TPU', 'TT48'].includes(r.cat) ? 2 : ['TW', 'LB', 'BWC'].includes(r.cat) ? 0 : 1), have: hs.length }; }); UI.modal({ title: 'Crew view — driver + helpers per route', icon: 'fa-people-group', size: 'lg', body: '<div id="lst"></div>' }); UI.table('lst', rows, [{ key: 'route', label: 'Route', mono: true }, { key: 'cat', label: 'Vehicle' }, { key: 'shift', label: 'Shift' }, { key: 'freq', label: 'Frequency' }, { key: 'driver', label: 'Driver' }, { key: 'drvOk', label: 'Eligibility', render: r => `<span class="badge ${r.drvOk === 'OK' ? 'green' : r.drvOk === 'Warning' ? 'amber' : 'red'}">${r.drvOk}</span>` }, { key: 'helpers', label: 'Helpers' }, { key: 'have', label: 'Crew', render: r => `<span class="badge ${r.have >= r.need ? 'green' : 'red'}">${r.have}/${r.need}</span>` }], { pageSize: 12, exportName: 'Crew_View' }); };
+Views.exportRoster = () => { const wk = DB.weeks[App.F.week]; const days = DB.days.slice(wk.w * 7, wk.w * 7 + 7); const rows = DB.employees.filter(e => e.status !== 'Inactive' && (KPI.isDriver(e) || KPI.isHelper(e))).map(e => { const o = { SL: '', SAPID: e.sap, NAME: e.name, LICENCE: e.licence, 'ROUTE NUMBER': e.route || '', VEHICLE: e.vehicle, 'SERVICE LINE': e.serviceLine, 'VEHICLE TYPE': e.route ? DB.catOf(DB.routes.find(r => r.id === e.route).cat).name : '', 'ACTIVE/INACTIVE': e.status.toUpperCase(), SHIFT: e.shift }; days.forEach(d => { const c = DB.roster[e.id][d]; o[d] = c ? (c.code === 'RT' ? c.ref : c.code === 'WO' ? 'DAY OFF' : c.code === 'EX' ? c.ref : c.code) : ''; }); return o; }); const cols = Object.keys(rows[0]).map(k => ({ key: k, label: k })); UI._tables.__x = { rows, cols, exportName: 'LOT4_ROSTER_W' + (wk.w + 1) + '_' + wk.version }; UI.exportCSV('__x'); };
+
+/* =========================================================== ATTENDANCE RECONCILIATION */
+Views.attendance = () => {
+  const d = App.F.date <= DB.iso(DB.TODAY) ? App.F.date : DB.iso(DB.TODAY);
+  const E = App.filtered(); const b = KPI.dayBreakdown(E, d);
+  return `<div class="page-head"><div><div class="page-title">Attendance Reconciliation</div><div class="page-sub">Roster vs attendance machine · absenteeism auto-derived · no manual attendance entry</div></div>
+    <div class="page-actions"><button class="btn" onclick="$('#syncBadge').innerHTML='<i class=\\'fa-solid fa-fingerprint\\'></i> Attendance synced now';UI.ok('Sync complete','4 depot controllers polled · 12 new punches ingested · dashboard refreshed.')"><i class="fa-solid fa-rotate"></i> Sync attendance machine</button><button class="btn primary" onclick="Views.dailySheet()"><i class="fa-solid fa-clipboard-list"></i> Daily deployment sheet</button></div></div>
+  ${globalFilters()}
+  <div class="grid g4" style="margin-bottom:14px">
+    ${[['Planned', b.planned, 'blue'], ['Reported', b.reported, 'green'], ['Absent', b.absent, 'red'], ['Late arrivals', b.late, 'amber']].map(k => `<div class="card kpi" style="--kpi:var(--${k[2]}-500)"><div class="l">${k[0]}</div><div class="v">${num(k[1] ?? 0)}</div><div class="f">${fmtD(d)} · filtered scope</div></div>`).join('')}
+  </div>
+  <div class="card"><div class="card-h"><h3>Roster vs actual — ${fmtD(d)}</h3><span class="hint">exceptions first</span></div><div id="attTable"></div></div>`;
+};
+Views._attendance = () => {
+  const d = App.F.date <= DB.iso(DB.TODAY) ? App.F.date : DB.iso(DB.TODAY);
+  const rows = App.filtered().filter(e => DB.roster[e.id][d] && !['WO', 'AV', 'EL'].includes(DB.roster[e.id][d].code)).map(e => { const c = DB.roster[e.id][d]; const a = DB.attendance[e.id][d]; return { ...e, duty: c.ref || DB.duties.find(x => x.code === c.code).name, att: a ? a.status : 'Absent', pin: a ? a.in : '—', pout: a ? a.out : '—', __click: `Views.empCard('${e.id}')` }; }).sort((a, b) => (a.att === 'Absent' ? 0 : a.att === 'Late' ? 1 : 2) - (b.att === 'Absent' ? 0 : b.att === 'Late' ? 1 : 2));
+  UI.table('attTable', rows, [{ key: 'sap', label: 'SAP ID', mono: true }, { key: 'name', label: 'Employee' }, { key: 'desig', label: 'Designation' }, { key: 'shift', label: 'Shift' }, { key: 'duty', label: 'Rostered duty', mono: true }, { key: 'att', label: 'Attendance', render: r => UI.statusBadge(r.att) }, { key: 'pin', label: 'In', mono: true }, { key: 'pout', label: 'Out', mono: true }, { key: 'x', label: 'Action', render: r => r.att === 'Absent' ? `<button class="btn sm" onclick="event.stopPropagation();UI.ok('Reliever dispatched','Nearest reliever on ${r.shift} shift assigned to ${esc(r.duty)}.')">Dispatch reliever</button>` : '' }], { pageSize: 12, exportName: 'Attendance_Reconciliation_' + d });
+};
+
+/* =========================================================== TRAINING & ELIGIBILITY */
+Views.training = () => {
+  const all = DB.employees.flatMap(e => e.trainings.map(t => ({ e, t, s: DB.trStatus(t) })));
+  const c = s => all.filter(x => x.s === s).length;
+  return `<div class="page-head"><div><div class="page-title">Training & Eligibility</div><div class="page-sub">Completed trainings per employee with attendance date and HSE-driven validity · feeds the rostering eligibility engine</div></div>
+    <div class="page-actions"><button class="btn" onclick="Views.reminders()"><i class="fa-solid fa-bell"></i> Expiry reminders</button><button class="btn primary" onclick="Views.assignTraining()"><i class="fa-solid fa-plus"></i> Assign completed training</button></div></div>
+  <div class="grid g4" style="margin-bottom:14px">
+    ${[['Valid', c('Valid'), 'green', 'More than 30 days to expiry'], ['Expiring ≤ 30 days', c('Expiring'), 'amber', 'Reminder sent to supervisor & HSE'], ['Expired (grace ≤ 90 d)', c('Expired'), 'red', 'Rosterable with warning · re-train'], ['Blocked (> 90 d)', c('Blocked'), 'red', 'Cannot be rostered on that category']].map(k => `<div class="card kpi" style="--kpi:var(--${k[2]}-500)" onclick="Views.trList('${k[0].split(' ')[0]}')"><div class="l">${k[0]}</div><div class="v">${num(k[1])}</div><div class="f">${k[3]}</div></div>`).join('')}
+  </div>
+  <div class="rule" style="margin-bottom:14px"><i class="fa-solid fa-circle-info"></i> Rule set: validity per training is a master value (6 / 12 / 24 months) maintained by HSE. Expiry = attendance date + validity. Reminders at 30 / 15 / 7 days. Expired ≤ 90 days: rosterable with warning and mandatory re-training booking. Expired &gt; 90 days: hard block on the affected vehicle category until re-trained.</div>
+  <div class="card"><div class="card-h"><h3>Employee competency register</h3><span class="hint">click a row for the full card and eligible categories</span></div><div id="trTable"></div></div>`;
+};
+Views._training = () => {
+  const rows = DB.employees.filter(e => KPI.isOps(e)).map(e => ({ ...e, tr: e.trainings, worst: e.trainings.map(DB.trStatus).sort((a, b) => ['Blocked', 'Expired', 'Expiring', 'Valid'].indexOf(a) - ['Blocked', 'Expired', 'Expiring', 'Valid'].indexOf(b))[0] || 'None', __click: `Views.empCard('${e.id}')` }));
+  UI.table('trTable', rows, [{ key: 'sap', label: 'SAP ID', mono: true }, { key: 'name', label: 'Employee' }, { key: 'desig', label: 'Designation' }, { key: 'licence', label: 'Lic.' }, { key: 'lot', label: 'LOT' }, { key: 'trs', label: 'Trainings (status)', get: r => r.tr.map(t => t.id).join(' '), render: r => r.tr.map(t => { const s = DB.trStatus(t); return `<span class="badge ${{ Valid: 'green', Expiring: 'amber', Expired: 'red', Blocked: 'red' }[s]}" title="${DB.trainings.find(x => x.id === t.id).name} · attended ${fmtD(t.date)} · expires ${fmtD(t.expiry)}">${t.id.replace('T-', '')}${s === 'Blocked' ? ' ⛔' : s === 'Expired' ? ' !' : ''}</span>`; }).join(' ') || '<span class="badge grey">None</span>' }, { key: 'worst', label: 'Overall', render: r => UI.statusBadge(r.worst === 'None' ? 'Inactive' : r.worst) }], { pageSize: 12, exportName: 'Competency_Register' });
+};
+Views.trList = s => { const rows = DB.employees.flatMap(e => e.trainings.filter(t => DB.trStatus(t) === s).map(t => ({ sap: e.sap, name: e.name, desig: e.desig, training: DB.trainings.find(x => x.id === t.id).name, date: fmtD(t.date), expiry: fmtD(t.expiry), days: DB.daysTo(t), __click: `UI.close();Views.empCard('${e.id}')` }))); UI.modal({ title: `${s} trainings (${rows.length})`, icon: 'fa-graduation-cap', size: 'lg', body: '<div id="lst"></div>' }); UI.table('lst', rows, [{ key: 'sap', label: 'SAP ID', mono: true }, { key: 'name', label: 'Employee' }, { key: 'desig', label: 'Designation' }, { key: 'training', label: 'Training' }, { key: 'date', label: 'Attended' }, { key: 'expiry', label: 'Expiry' }, { key: 'days', label: 'Days', mono: true }], { pageSize: 10, exportName: 'Training_' + s }); };
+Views.reminders = () => { const rows = DB.employees.flatMap(e => e.trainings.filter(t => ['Expiring', 'Expired', 'Blocked'].includes(DB.trStatus(t))).map(t => ({ e, t, s: DB.trStatus(t) }))).sort((a, b) => DB.daysTo(a.t) - DB.daysTo(b.t)); UI.modal({ title: 'Expiry reminders queue', icon: 'fa-bell', size: 'lg', body: `<p class="hint" style="margin-bottom:10px">Sent to LOT supervisor, HSE and the employee (SMS). Blocked items also raise a roster exception.</p><div id="lst"></div>`, footer: `<button class="btn" onclick="UI.ok('Re-training sessions','Batch booking created for ${rows.filter(x => x.s !== 'Expiring').length} overdue employees — HSE notified.')"><i class="fa-solid fa-calendar-plus"></i> Book re-training batch</button><button class="btn primary" data-close>Close</button>` }); UI.table('lst', rows.map(x => ({ sap: x.e.sap, name: x.e.name, training: DB.trainings.find(t => t.id === x.t.id).name, expiry: fmtD(x.t.expiry), days: DB.daysTo(x.t), s: x.s, __click: `UI.close();Views.empCard('${x.e.id}')` })), [{ key: 'sap', label: 'SAP ID', mono: true }, { key: 'name', label: 'Employee' }, { key: 'training', label: 'Training' }, { key: 'expiry', label: 'Expiry' }, { key: 'days', label: 'Days', mono: true }, { key: 's', label: 'Status', render: r => UI.statusBadge(r.s) }], { pageSize: 10, exportName: 'Training_Reminders' }); };
+Views.assignTraining = pre => {
+  const E = DB.employees.filter(e => KPI.isOps(e) && e.status !== 'Inactive');
+  UI.modal({
+    title: 'Assign completed training', icon: 'fa-graduation-cap',
+    body: `<div class="frm"><div class="fld span2"><label>Employee <span class="req">*</span></label><select id="atEmp">${E.slice(0, 500).map(e => `<option value="${e.id}" ${e.id === pre ? 'selected' : ''}>${esc(e.name)} — ${e.sap} · ${e.desig}</option>`).join('')}</select></div>
+      <div class="fld span2"><label>Trainings completed (multi-select — an employee can complete several in one session)</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;border:1px solid var(--line);border-radius:10px;padding:10px;max-height:220px;overflow:auto" id="atList">${DB.trainings.map(t => `<label style="display:flex;gap:8px;align-items:center;font-size:12.5px"><input type="checkbox" value="${t.id}"> ${t.name} <span class="hint">· ${t.validity} mo</span></label>`).join('')}</div></div>
+      <div class="fld"><label>Attendance date <span class="req">*</span></label><input type="date" id="atDate" value="${DB.iso(DB.TODAY)}"></div>
+      <div class="fld"><label>Trainer / certificate ref</label><input type="text" placeholder="e.g. HSE-TRN-2026-0912"></div>
+      <div class="fld span2"><label>Certificate</label><div style="border:1px dashed var(--line);border-radius:10px;padding:12px;text-align:center;color:var(--ink-3);cursor:pointer" onclick="UI.ok('Attached','Certificate attached to the training record.')"><i class="fa-solid fa-paperclip"></i> Attach certificate / attendance sheet</div></div></div>
+      <p class="hint" style="margin-top:8px">Expiry is computed automatically: attendance date + validity from the training master. Existing records for the same training are superseded.</p>`,
+    footer: `<button class="btn" data-close>Cancel</button><button class="btn primary" onclick="Views._atSave()">Save training records</button>`
+  });
+};
+Views._atSave = () => { const e = DB.employees.find(x => x.id === $('#atEmp').value); const ids = $$('#atList input:checked').map(i => i.value); if (!ids.length) { UI.err('Nothing selected', 'Tick at least one completed training.'); return; } const on = new Date($('#atDate').value); ids.forEach(id => { const t = DB.trainings.find(x => x.id === id); e.trainings = e.trainings.filter(x => x.id !== id); e.trainings.push({ id, date: DB.iso(on), expiry: DB.iso(DB.addD(on, Math.round(t.validity * 30.4))) }); }); UI.close(); UI.ok('Training recorded', `${ids.length} training(s) saved for ${e.name}. Eligibility re-evaluated — roster exceptions cleared where applicable.`); App.route(); };
+
+/* =========================================================== MASTERS & RULES */
+Views.masters = () => `<div class="page-head"><div><div class="page-title">Masters & Rules</div><div class="page-sub">Configurable — no code release needed to change validity, matrix or codes</div></div></div>
+  <div class="tabs" id="mTabs">${['Training master', 'Vehicle category ↔ training matrix', 'Duty codes', 'Smart plan routes', 'Business rules'].map((t, i) => `<button class="tab ${i ? '' : 'on'}" data-tab="${i}">${t}</button>`).join('')}</div><div id="mBody"></div>`;
+Views._masters = () => {
+  const body = $('#mBody');
+  const render = i => {
+    if (i === 0) body.innerHTML = `<div class="card"><div class="card-b"><table class="data"><thead><tr><th>ID</th><th>Training</th><th>Applies to</th><th>Validity (months)</th><th>Reminder days</th><th>Grace after expiry</th></tr></thead><tbody>${DB.trainings.map(t => `<tr><td class="mono">${t.id}</td><td><b>${t.name}</b></td><td>${t.cat}</td><td><input type="number" value="${t.validity}" style="width:80px" onchange="Views.setValidity('${t.id}',this.value)"></td><td class="mono">30 / 15 / 7</td><td class="mono">90 days</td></tr>`).join('')}</tbody></table><p class="hint" style="margin-top:10px">Changing validity re-computes expiry for all existing records and re-runs eligibility overnight.</p></div></div>`;
+    else if (i === 1) body.innerHTML = `<div class="card"><div class="card-b"><div class="tbl-wrap"><table class="data matrix"><thead><tr><th>Vehicle category (route prefix)</th><th>Licence</th>${DB.trainings.filter(t => t.cat !== 'All').map(t => `<th title="${t.name}">${t.id.replace('T-', '')}</th>`).join('')}</tr></thead><tbody>${DB.vehicleCats.map(c => `<tr><td><b>${c.code}</b> — ${c.name}</td><td><span class="badge grey">${c.lic}</span></td>${DB.trainings.filter(t => t.cat !== 'All').map(t => `<td>${c.req.includes(t.id) ? '<i class="fa-solid fa-truck" style="color:var(--blue-500)" title="Driver requirement"></i>' : ''}${c.helperReq.includes(t.id) ? ' <i class="fa-solid fa-person" style="color:var(--violet-500)" title="Helper requirement"></i>' : ''}</td>`).join('')}</tr>`).join('')}</tbody></table></div><p class="hint" style="margin-top:10px"><i class="fa-solid fa-truck" style="color:var(--blue-500)"></i> required for the driver · <i class="fa-solid fa-person" style="color:var(--violet-500)"></i> required for helpers on that vehicle. Example: an employee trained only on HLC cannot be rostered to an SL route.</p><button class="btn sm" onclick="UI.ok('Matrix editor','Opens the matrix in edit mode — changes need HSE Manager approval.')"><i class="fa-solid fa-pen"></i> Edit matrix</button></div></div>`;
+    else if (i === 2) body.innerHTML = `<div class="card"><div class="card-b"><table class="data"><thead><tr><th>Code</th><th>Duty</th><th>Counted as planned</th><th>Description</th></tr></thead><tbody>${DB.duties.map(d => `<tr><td><span class="duty ${d.code}" style="width:auto;display:inline-block">${d.code}</span></td><td><b>${d.name}</b></td><td>${['RT', 'RL', 'OC', 'EX'].includes(d.code) ? '<span class="badge green">Yes</span>' : '<span class="badge grey">No</span>'}</td><td>${d.desc}</td></tr>`).join('')}</tbody></table><p class="hint" style="margin-top:10px">Extra assignment types: ${DB.extraTypes.join(' · ')}</p></div></div>`;
+    else if (i === 3) { body.innerHTML = `<div class="card" id="rtTable"></div>`; UI.table('rtTable', DB.routes.map(r => ({ ...r, catName: DB.catOf(r.cat).name, crew: DB.routeCrew[r.id] ? 'Crewed' : 'Uncrewed' })), [{ key: 'id', label: 'Route ID', mono: true }, { key: 'plan', label: 'Smart plan', mono: true }, { key: 'catName', label: 'Vehicle category' }, { key: 'serviceLine', label: 'Service line' }, { key: 'project', label: 'Project' }, { key: 'shift', label: 'Shift' }, { key: 'freq', label: 'Frequency' }, { key: 'district', label: 'District' }, { key: 'target', label: 'Daily target', mono: true }, { key: 'crew', label: 'Crew', render: r => UI.statusBadge(r.crew === 'Crewed' ? 'Active' : 'Inactive') }], { pageSize: 12, exportName: 'Smart_Plan_Routes' }); }
+    else body.innerHTML = `<div class="card"><div class="card-b"><table class="data"><thead><tr><th>#</th><th>Rule</th><th>Enforcement</th></tr></thead><tbody>${[
+      ['BR-01', 'Only employees with status Active can be assigned a route, reliever, on-call or extra-assignment duty.', 'Hard block'],
+      ['BR-02', 'Route assignment requires valid training for the route\u2019s vehicle category (per matrix) and the matching licence class.', 'Hard block'],
+      ['BR-03', 'Training expiry = attendance date + validity (6 / 12 / 24 months, configurable per training by HSE).', 'System-computed'],
+      ['BR-04', 'Training expired ≤ 90 days: assignment allowed with warning; re-training booking mandatory.', 'Warning'],
+      ['BR-05', 'Training expired > 90 days or never completed: assignment blocked for that category.', 'Hard block'],
+      ['BR-06', 'One duty per employee per day; a route can have one driver per shift per day.', 'Hard block'],
+      ['BR-07', 'One weekly off per 7-day period; zero or two weekly offs flagged for supervisor review.', 'Warning'],
+      ['BR-08', 'Employees on AV / EL cannot receive work duties for those dates; leave approved in Leave module writes the code automatically.', 'Hard block'],
+      ['BR-09', 'Routes come only from the approved Smart Plan version; unapproved routes are not selectable.', 'Hard block'],
+      ['BR-10', 'Published weeks are locked; changes require a roster change request with reason and approval.', 'Workflow'],
+      ['BR-11', 'Reported headcount and absenteeism are derived from the attendance machine only; no manual attendance marking in the roster.', 'System'],
+      ['BR-12', 'Available HC = Total HC − Reported HC − Weekly off HC − Vacation HC (Annual + Emergency).', 'KPI definition'],
+    ].map(r => `<tr><td class="mono">${r[0]}</td><td>${r[1]}</td><td>${UI.statusBadge(r[2] === 'Hard block' ? 'Blocked' : r[2] === 'Warning' ? 'Expiring' : 'Valid').replace(/>[^<]+</, '>' + r[2] + '<')}</td></tr>`).join('')}</tbody></table></div></div>`;
+  };
+  render(0); $$('#mTabs .tab').forEach(t => t.onclick = () => { $$('#mTabs .tab').forEach(x => x.classList.remove('on')); t.classList.add('on'); render(+t.dataset.tab); });
+};
+Views.setValidity = (id, v) => { const t = DB.trainings.find(x => x.id === id); t.validity = +v; DB.employees.forEach(e => e.trainings.filter(x => x.id === id).forEach(x => x.expiry = DB.iso(DB.addD(new Date(x.date), Math.round(t.validity * 30.4))))); UI.ok('Validity updated', `${t.name} → ${v} months. Expiries recomputed for all records; eligibility refreshed.`); };
+
+/* =========================================================== EXCEL → IWMP MAPPING */
+Views.migration = () => `<div class="page-head"><div><div class="page-title">Excel workbook → IWMP function mapping</div><div class="page-sub">LOT4_DRIVERS & HELPERS THEORETICAL ROSTER (49 tabs, 17 roster versions) → what replaces each</div></div></div>
+  <div class="card"><div class="card-b"><table class="data"><thead><tr><th>Workbook tab(s)</th><th>What it does today</th><th>IWMP function</th><th>Blueprint screen</th></tr></thead><tbody>${[
+    ['DRIVERS & HELPERS Details', 'Master list of drivers/helpers with licence, shift, status, service line, assignment family; pivot counts', 'Employee master (already in WFMC) + assignment family attribute', 'Deployment Dashboard · KPI lists'],
+    ['Sheet1 (summary)', 'Requirement vs onboard vs deployed vs under training, day/night split per HDD / LDD / Helper', 'Requirement vs onboard table with live counts', 'Deployment Dashboard'],
+    ['LOT4 DRIVERS ROSTER V1 … V17', 'Driver roster: route number, vehicle, frequency, district, vehicle type, shift, one column per day with route / DAY OFF / ON CALL / STANDBY', 'Roster board (drivers) with versioning, approval and publish; frequency handled by smart plan', 'Roster Board'],
+    ['Route Helpers Roster V1 … V4', 'Helper roster by route with MON–SUN duty codes, permit helpers, relievers', 'Roster board (helpers) + crew view per route', 'Roster Board · Crew view'],
+    ['HELPERS FOR SUPERVISORS V1–V3', 'Helpers mapped to a supervisor code per day', 'Extra assignment — Supervisor support', 'Roster Board · Extra assignments'],
+    ['HELPERS AS SECURITY v1–V3 · FLAG MAN · HELPERS FOR JCB · FOR WCP · WCP NOUSHAD · WCP SCHDL · LAVAJET', 'Non-route allocations by location / shift', 'Extra assignment types (security, flag man, JCB, WCP, bin deployment, dispatch, workshop, camp)', 'Roster Board · Extra assignments'],
+    ['CURRENT OJT', 'Drivers on standby / on-the-job training with target vehicle type', 'Duty code SB (Standby / OJT) + Training status; not counted as deployed', 'Roster Board · Training'],
+    ['Detail1 … Detail7', 'Pivot drill-downs (extra assignments, rostered helpers)', 'Click-through lists on every KPI card', 'Deployment Dashboard'],
+    ['Sheet2 (route list)', 'Route ID, shift, active, frequency (alternate odd/even), target, district, vehicle', 'Smart plan route master (from Dispatcher / Smart Planning module)', 'Masters · Smart plan routes'],
+    ['(none — manual)', 'Checking who is trained for which vehicle before assigning', 'Training master + vehicle category matrix + eligibility engine', 'Training & Eligibility · Masters'],
+    ['(none — manual)', 'Comparing roster with attendance the next day', 'Attendance machine sync + reconciliation + absenteeism KPI', 'Attendance Reconciliation'],
+  ].map(r => `<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td><span class="badge blue">${r[3]}</span></td></tr>`).join('')}</tbody></table>
+  <p class="hint" style="margin-top:12px">The export on the roster board reproduces the V17 column layout (SL, SAPID, NAME, LICENCE, ROUTE NUMBER, VEHICLE, SERVICE LINE, VEHICLE TYPE, ACTIVE/INACTIVE, SHIFT, one column per day) so downstream users are not disrupted during transition.</p></div></div>`;
+
+document.addEventListener('DOMContentLoaded', App.init);
+</script>
+</body>
+</html>

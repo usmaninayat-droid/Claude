@@ -1,0 +1,856 @@
+{
+  "$schema": "../../../../node_modules/@fams/v5-composer/schemas/EntityModuleConfig.schema.json",
+  "kind": "entity",
+  "code": "maintenance/preventive-rule",
+  "name": "Preventive Maintenance",
+  "uidPrefix": "PMR",
+  "views": [
+    "grouped-list"
+  ],
+  "systemcolumns": [
+    {
+      "id": "fld_pm_title",
+      "col": "title",
+      "name": "Service",
+      "type": "SmallText",
+      "required": true
+    },
+    {
+      "id": "fld_pm_vehicle",
+      "col": "systemcol1",
+      "name": "Vehicle",
+      "type": "SingleReference",
+      "refModule": "Entity",
+      "entityType": "asset/vehicle",
+      "required": true
+    },
+    {
+      "id": "fld_pm_current_odometer",
+      "col": "systemcol2",
+      "name": "Current Odometer",
+      "type": "Numeric",
+      "unit": "km",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_pm_creation_date",
+      "col": "systemcol3",
+      "name": "Creation Date",
+      "type": "Date",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_pm_next_service_odometer",
+      "col": "systemcol4",
+      "name": "Next Service Odometer",
+      "type": "Numeric",
+      "unit": "km"
+    },
+    {
+      "id": "fld_pm_odometer_reading",
+      "col": "systemcol5",
+      "name": "Odometer Reading",
+      "type": "Numeric",
+      "unit": "km"
+    },
+    {
+      "id": "fld_pm_period_of_interval",
+      "col": "systemcol6",
+      "name": "Period of Interval",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_pm_engine_hours",
+      "col": "systemcol7",
+      "name": "Engine Hours",
+      "type": "Numeric",
+      "unit": "hrs"
+    },
+    {
+      "id": "fld_pm_last_service_on",
+      "col": "systemcol8",
+      "name": "Last Service On",
+      "type": "Date"
+    },
+    {
+      "id": "fld_pm_status",
+      "col": "status",
+      "name": "Status",
+      "type": "SingleSelect",
+      "listValues": [
+        "scheduled",
+        "jobOrderCreated",
+        "ongoing",
+        "overdue",
+        "completed"
+      ],
+      "default": "scheduled",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_pm_next_service_date",
+      "col": "systemcol9",
+      "name": "Next Service Date",
+      "type": "Date"
+    },
+    {
+      "id": "fld_pm_days_left",
+      "col": "systemcol10",
+      "name": "Days Left",
+      "type": "Numeric",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_pm_service_type",
+      "col": "systemcol11",
+      "name": "Service Type",
+      "type": "SingleSelect",
+      "listValues": [
+        "Oil Change",
+        "Tire Rotation",
+        "Brake Inspection",
+        "Filter Replacement",
+        "General Inspection",
+        "Coolant Flush"
+      ],
+      "component": {
+        "name": "IconTextView",
+        "props": {
+          "icon": "wrench"
+        }
+      }
+    },
+    {
+      "id": "fld_pm_odo_elapsed",
+      "col": "systemcol12",
+      "name": "Odometer Reading",
+      "type": "Numeric",
+      "unit": "km",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_pm_odo_interval",
+      "col": "systemcol13",
+      "name": "Odometer Reading Target",
+      "type": "Numeric",
+      "unit": "km",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_pm_days_elapsed",
+      "col": "systemcol14",
+      "name": "Period of Interval",
+      "type": "Numeric",
+      "unit": "days",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_pm_days_interval",
+      "col": "systemcol15",
+      "name": "Period of Interval Target",
+      "type": "Numeric",
+      "unit": "days",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_pm_hours_elapsed",
+      "col": "systemcol16",
+      "name": "Engine Hours",
+      "type": "Numeric",
+      "unit": "hrs",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_pm_hours_interval",
+      "col": "systemcol17",
+      "name": "Engine Hours Target",
+      "type": "Numeric",
+      "unit": "hrs",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_pm_tags",
+      "col": "tags",
+      "name": "Tags",
+      "type": "tags"
+    },
+    {
+      "id": "fld_pm_trigger",
+      "col": "systemcol18",
+      "name": "Trigger",
+      "type": "SingleSelect",
+      "listValues": [
+        "armed",
+        "fired"
+      ],
+      "default": "armed",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_pm_linked_job_order",
+      "col": "systemcol19",
+      "name": "Linked Job Order",
+      "type": "SingleReference",
+      "refModule": "Entity",
+      "entityType": "maintenance/job-order",
+      "component": {
+        "name": "LinkView"
+      },
+      "creation": {
+        "hidden": true
+      }
+    }
+  ],
+  "uiConfig": {
+    "icon": "wrench",
+    "viewPickerHint": "Maintenance rules grouped by vehicle — one register, browsed and edited, not a work-order board.",
+    "statusList": [
+      {
+        "id": "sts_pm_scheduled",
+        "key": "scheduled",
+        "label": "Scheduled",
+        "color": "#b54708"
+      },
+      {
+        "id": "sts_pm_job_order_created",
+        "key": "jobOrderCreated",
+        "label": "Job Order Created",
+        "color": "#a21caf"
+      },
+      {
+        "id": "sts_pm_ongoing",
+        "key": "ongoing",
+        "label": "Ongoing",
+        "color": "#1b6df5"
+      },
+      {
+        "id": "sts_pm_overdue",
+        "key": "overdue",
+        "label": "Overdue",
+        "color": "#e51f11"
+      },
+      {
+        "id": "sts_pm_completed",
+        "key": "completed",
+        "label": "Completed",
+        "color": "#0d864e"
+      }
+    ],
+    "statusChangeRule": {
+      "scheduled": [
+        "jobOrderCreated"
+      ],
+      "jobOrderCreated": [
+        "ongoing"
+      ],
+      "ongoing": [
+        "overdue",
+        "completed"
+      ],
+      "overdue": [
+        "completed"
+      ]
+    },
+    "recordAutomation": [
+      {
+        "id": "auto_pm_job_order",
+        "when": {
+          "col": "systemcol18",
+          "equals": "fired"
+        },
+        "create": {
+          "entityType": "maintenance/job-order",
+          "values": {
+            "title": {
+              "fromCol": "title"
+            },
+            "systemcol1": {
+              "const": "Preventive"
+            },
+            "systemcol4": {
+              "fromCol": "systemcol1"
+            },
+            "systemcol31": {
+              "fromCol": "id"
+            },
+            "status": {
+              "const": "reported-issues"
+            }
+          }
+        },
+        "patchSource": {
+          "status": {
+            "const": "jobOrderCreated"
+          },
+          "systemcol19": {
+            "fromCreated": "id"
+          }
+        }
+      }
+    ],
+    "profile": {
+      "placeholderIcon": "wrench",
+      "title": {
+        "id": "fld_pm_title",
+        "col": "title",
+        "pos": "left"
+      },
+      "details": [
+        {
+          "id": "fld_pm_vehicle",
+          "col": "systemcol1",
+          "pos": "left",
+          "order": 1,
+          "component": {
+            "name": "LinkView"
+          }
+        },
+        {
+          "id": "fld_pm_status",
+          "col": "status",
+          "pos": "right",
+          "order": 1,
+          "component": {
+            "name": "StatusList"
+          }
+        },
+        {
+          "id": "fld_pm_service_type",
+          "col": "systemcol11",
+          "pos": "left",
+          "order": 2
+        },
+        {
+          "id": "fld_pm_period_of_interval",
+          "col": "systemcol6",
+          "pos": "right",
+          "order": 2
+        },
+        {
+          "id": "fld_pm_last_service_on",
+          "col": "systemcol8",
+          "pos": "left",
+          "order": 3,
+          "component": {
+            "name": "DateView"
+          }
+        },
+        {
+          "id": "fld_pm_next_service_date",
+          "col": "systemcol9",
+          "pos": "right",
+          "order": 3,
+          "component": {
+            "name": "DateView"
+          }
+        },
+        {
+          "id": "fld_pm_creation_date",
+          "col": "systemcol3",
+          "pos": "left",
+          "order": 4,
+          "component": {
+            "name": "DateView"
+          }
+        },
+        {
+          "id": "fld_pm_days_left",
+          "col": "systemcol10",
+          "pos": "right",
+          "order": 4
+        },
+        {
+          "id": "fld_pm_trigger",
+          "col": "systemcol18",
+          "pos": "left",
+          "order": 5
+        },
+        {
+          "id": "fld_pm_linked_job_order",
+          "col": "systemcol19",
+          "pos": "right",
+          "order": 5,
+          "component": {
+            "name": "LinkView"
+          }
+        }
+      ],
+      "sections": [
+        {
+          "id": "sec_pm_rule",
+          "name": "Rule Details",
+          "order": 1,
+          "fields": [
+            {
+              "id": "fld_pm_service_type",
+              "col": "systemcol11",
+              "order": 1
+            },
+            {
+              "id": "fld_pm_period_of_interval",
+              "col": "systemcol6",
+              "order": 2
+            }
+          ]
+        },
+        {
+          "id": "sec_pm_odometer",
+          "name": "Odometer & Engine Hours",
+          "order": 2,
+          "fields": [
+            {
+              "id": "fld_pm_current_odometer",
+              "col": "systemcol2",
+              "order": 1
+            },
+            {
+              "id": "fld_pm_odometer_reading",
+              "col": "systemcol5",
+              "order": 2
+            },
+            {
+              "id": "fld_pm_next_service_odometer",
+              "col": "systemcol4",
+              "order": 3
+            },
+            {
+              "id": "fld_pm_engine_hours",
+              "col": "systemcol7",
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": "sec_pm_schedule",
+          "name": "Schedule",
+          "order": 3,
+          "fields": [
+            {
+              "id": "fld_pm_last_service_on",
+              "col": "systemcol8",
+              "order": 1,
+              "component": {
+                "name": "DateView"
+              }
+            },
+            {
+              "id": "fld_pm_next_service_date",
+              "col": "systemcol9",
+              "order": 2,
+              "component": {
+                "name": "DateView"
+              }
+            },
+            {
+              "id": "fld_pm_days_left",
+              "col": "systemcol10",
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": "sec_pm_assets",
+          "name": "Assets & Tags",
+          "order": 4,
+          "detailHidden": true,
+          "fields": [
+            {
+              "id": "fld_pm_vehicle",
+              "col": "systemcol1",
+              "order": 1
+            },
+            {
+              "id": "fld_pm_tags",
+              "col": "tags",
+              "order": 2
+            }
+          ]
+        }
+      ],
+      "rightPanel": {
+        "type": "tab",
+        "tabs": [
+          {
+            "id": "tab_pm_overview",
+            "key": "overview",
+            "title": "Overview",
+            "order": 1,
+            "component": {
+              "name": "OverviewSummary"
+            }
+          },
+          {
+            "id": "tab_pm_details",
+            "key": "details",
+            "title": "Details",
+            "order": 2,
+            "component": {
+              "name": "RecordSectionsGrid",
+              "props": {
+                "editable": true,
+                "groups": [
+                  {
+                    "title": "Rule Details",
+                    "column": "start",
+                    "fields": [
+                      {
+                        "field": "systemcol11",
+                        "label": "Service Type"
+                      },
+                      {
+                        "field": "systemcol6",
+                        "label": "Period of Interval"
+                      },
+                      {
+                        "field": "systemcol1",
+                        "label": "Vehicle",
+                        "readOnly": true
+                      },
+                      {
+                        "field": "status",
+                        "label": "Status",
+                        "render": "statusChip",
+                        "readOnly": true,
+                        "toneMap": {
+                          "scheduled": "warning",
+                          "jobOrderCreated": "info",
+                          "ongoing": "info",
+                          "overdue": "danger",
+                          "completed": "success"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Trigger & Job Order",
+                    "column": "end",
+                    "fields": [
+                      {
+                        "field": "systemcol18",
+                        "label": "Trigger"
+                      },
+                      {
+                        "field": "systemcol19",
+                        "label": "Linked Job Order",
+                        "readOnly": true
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Odometer & Engine Hours",
+                    "column": "start",
+                    "fields": [
+                      {
+                        "field": "systemcol2",
+                        "label": "Current Odometer"
+                      },
+                      {
+                        "field": "systemcol4",
+                        "label": "Next Service Odometer"
+                      },
+                      {
+                        "field": "systemcol7",
+                        "label": "Engine Hours"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Schedule",
+                    "column": "end",
+                    "fields": [
+                      {
+                        "field": "systemcol8",
+                        "label": "Last Service On"
+                      },
+                      {
+                        "field": "systemcol9",
+                        "label": "Next Service Date"
+                      },
+                      {
+                        "field": "systemcol10",
+                        "label": "Days Left",
+                        "readOnly": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "id": "tab_pm_linked",
+            "key": "linked",
+            "title": "Linked",
+            "order": 3,
+            "component": {
+              "name": "LinkedRecords"
+            }
+          }
+        ]
+      }
+    },
+    "filters": [
+      {
+        "id": "flt_pm_status",
+        "col": "status",
+        "order": 1,
+        "kind": "status",
+        "optionsFrom": "statusList",
+        "optionDot": "status",
+        "showCounts": true,
+        "icon": "status"
+      },
+      {
+        "id": "flt_pm_service_type",
+        "col": "systemcol11",
+        "order": 2,
+        "icon": "wrench"
+      }
+    ],
+    "search": {
+      "columns": [
+        "title",
+        "systemcol6"
+      ],
+      "placeholder": "Search Preventive Maintenance"
+    },
+    "listSummary": [
+      {
+        "id": "sum_pm_overdue",
+        "label": "Overdue Job Orders",
+        "icon": "alert-triangle",
+        "iconColor": "#e51f11",
+        "iconBg": "#fef3f2",
+        "filter": {
+          "col": "status",
+          "equals": "overdue"
+        }
+      },
+      {
+        "id": "sum_pm_scheduled",
+        "label": "Scheduled Job Orders",
+        "icon": "clock",
+        "iconColor": "#b54708",
+        "iconBg": "#fffaeb",
+        "filter": {
+          "col": "status",
+          "equals": "scheduled"
+        }
+      },
+      {
+        "id": "sum_pm_ongoing",
+        "label": "Ongoing Job Orders",
+        "icon": "loading",
+        "iconColor": "#1b6df5",
+        "iconBg": "#eff8ff",
+        "filter": {
+          "col": "status",
+          "equals": "ongoing"
+        }
+      },
+      {
+        "id": "sum_pm_completed",
+        "label": "Completed Job Orders",
+        "icon": "check-circle",
+        "iconColor": "#0d864e",
+        "iconBg": "#ecfdf3",
+        "filter": {
+          "col": "status",
+          "equals": "completed"
+        }
+      }
+    ],
+    "groupByOptions": [
+      {
+        "col": "systemcol1",
+        "label": "Vehicle",
+        "icon": "car",
+        "default": true
+      },
+      {
+        "col": "status",
+        "label": "Status"
+      }
+    ],
+    "listGroupedColumns": [
+      "title",
+      "systemcol2",
+      "systemcol3",
+      "systemcol4",
+      "systemcol12",
+      "systemcol14",
+      "systemcol16",
+      "systemcol8",
+      "status",
+      "systemcol9",
+      "systemcol10"
+    ],
+    "rowActions": {
+      "delete": true,
+      "archive": true,
+      "requiredPrivilege": "preventive-maintenance.view",
+      "alwaysVisible": true
+    },
+    "bulkActions": {
+      "delete": true,
+      "export": true
+    },
+    "listSelectable": true,
+    "recordNoun": {
+      "one": "rule",
+      "many": "rules"
+    },
+    "creation": {
+      "layout": "wizard",
+      "fieldChrome": "inset-label",
+      "label": "Create New Preventive Maintenance",
+      "basicCount": 2,
+      "explicit": true,
+      "showSummaryStep": true,
+      "stepperVariant": "numbered",
+      "stepIcons": {
+        "basic": "file-shield-02",
+        "sec_pm_rule": "signal-01",
+        "sec_pm_odometer": "speedometer-04",
+        "sec_pm_schedule": "calendar-plus-01",
+        "sec_pm_assets": "pin-01",
+        "summary": "check-square"
+      }
+    }
+  },
+  "listcolumns": [
+    {
+      "id": "fld_pm_vehicle",
+      "col": "systemcol1",
+      "component": {
+        "name": "LinkView"
+      }
+    },
+    {
+      "id": "fld_pm_title",
+      "col": "title",
+      "name": "Service",
+      "component": {
+        "name": "TextView",
+        "props": {
+          "handleOverflow": true
+        }
+      }
+    },
+    {
+      "id": "fld_pm_current_odometer",
+      "col": "systemcol2",
+      "name": "Current Odometer"
+    },
+    {
+      "id": "fld_pm_creation_date",
+      "col": "systemcol3",
+      "name": "Creation Date",
+      "component": {
+        "name": "DateView"
+      }
+    },
+    {
+      "id": "fld_pm_next_service_odometer",
+      "col": "systemcol4",
+      "name": "Next Service Odometer"
+    },
+    {
+      "id": "fld_pm_odo_elapsed",
+      "col": "systemcol12",
+      "name": "Odometer Reading",
+      "component": {
+        "name": "ProgressMeterView",
+        "props": {
+          "targetCol": "systemcol13",
+          "unit": "km"
+        }
+      }
+    },
+    {
+      "id": "fld_pm_days_elapsed",
+      "col": "systemcol14",
+      "name": "Period of Interval",
+      "component": {
+        "name": "ProgressMeterView",
+        "props": {
+          "targetCol": "systemcol15",
+          "unit": "days"
+        }
+      }
+    },
+    {
+      "id": "fld_pm_hours_elapsed",
+      "col": "systemcol16",
+      "name": "Engine Hours",
+      "component": {
+        "name": "ProgressMeterView",
+        "props": {
+          "targetCol": "systemcol17",
+          "unit": "hrs"
+        }
+      }
+    },
+    {
+      "id": "fld_pm_last_service_on",
+      "col": "systemcol8",
+      "name": "Last Service On",
+      "component": {
+        "name": "DateView"
+      }
+    },
+    {
+      "id": "fld_pm_status",
+      "col": "status",
+      "component": {
+        "name": "StatusList"
+      }
+    },
+    {
+      "id": "fld_pm_next_service_date",
+      "col": "systemcol9",
+      "name": "Next Service Date",
+      "component": {
+        "name": "DateView"
+      }
+    },
+    {
+      "id": "fld_pm_days_left",
+      "col": "systemcol10",
+      "name": "Days Left",
+      "component": {
+        "name": "SignedNumberView",
+        "props": {
+          "unit": "Days",
+          "absolute": true,
+          "negativeSuffix": "Overdue",
+          "negativeTone": "danger",
+          "zeroLabel": "Due Today",
+          "zeroTone": "warning"
+        }
+      }
+    }
+  ]
+}

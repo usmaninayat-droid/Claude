@@ -1,0 +1,26 @@
+{
+  "$schema": "../../../node_modules/@fams/v5-composer/schemas/EntityModuleConfig.schema.json",
+  "kind": "inbox",
+  "code": "inbox/notification",
+  "name": "Inbox",
+  "uidPrefix": "NTF",
+  "views": ["list"],
+  "systemcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "name": "Notification ID", "type": "Auto" },
+    { "id": "fld_nx_title", "col": "title", "name": "Title", "type": "SmallText", "required": true },
+    { "id": "fld_nx_snippet", "col": "snippet", "name": "Message", "type": "BigText" },
+    { "id": "fld_nx_timestamp", "col": "timestamp", "name": "Received At", "type": "DateTime" },
+    { "id": "fld_nx_read", "col": "read", "name": "Read", "type": "SmallText" },
+    { "id": "fld_nx_kind", "col": "kind", "name": "Kind", "type": "SingleSelect", "listValues": ["notification", "approval", "system", "mention"] },
+    { "id": "fld_nx_avatar", "col": "avatarSrc", "name": "Avatar", "type": "SmallText", "creation": { "hidden": true } },
+    { "id": "fld_nx_reference", "col": "reference", "name": "Reference", "type": "SingleReference", "refModule": "Entity", "entityType": "ticketing/ticket" },
+    { "id": "fld_nx_severity", "col": "severity", "name": "Severity", "type": "SingleSelect", "listValues": ["Critical", "Minor"] },
+    { "id": "fld_nx_due", "col": "due", "name": "Due", "type": "SmallText" },
+    { "id": "fld_nx_module", "col": "module", "name": "Module", "type": "SmallText" },
+    { "id": "fld_nx_reminder", "col": "reminder", "name": "Reminder", "type": "SmallText", "creation": { "hidden": true } },
+    { "id": "fld_nx_assigned", "col": "assignedToMe", "name": "Assigned To Me", "type": "SmallText", "creation": { "hidden": true } }
+  ],
+  "uiConfig": {
+    "icon": "inbox"
+  }
+}

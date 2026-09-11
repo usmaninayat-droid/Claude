@@ -1,0 +1,21 @@
+/* Inspector V5 border-radius token spec (user-supplied, 2026-09-01).
+ * Enforced across src/inspector-v5/** by element size class:
+ *   --radius-none  0px    flush edges, table cells
+ *   --radius-xs    2px    elements < 20px height/width (small inputs, mini-buttons)
+ *   --radius-sm    4px    elements 20-48px (default buttons, inputs, small cards)
+ *   --radius-md    6px    elements >= 48px (cards, modals, widgets, large surfaces)
+ *   --radius-full  999px  chips, avatars, toggles (pill shapes)
+ *
+ * The DS (src/ds/tokens/theme.css) already defines --radius-sm/-md/-lg/-xl/--radius
+ * with different pixel values under those names (e.g. --radius-sm: 2px there means
+ * something else than this spec's --radius-sm: 4px). To avoid collisions and
+ * ambiguity, this spec uses its own token names below rather than reusing the DS
+ * names outright. src/ds/** itself is untouched.
+ */
+:root {
+  --ins-radius-none: 0px;
+  --ins-radius-xs: 2px;
+  --ins-radius-sm: 4px;
+  --ins-radius-md: 6px;
+  --ins-radius-full: 999px;
+}

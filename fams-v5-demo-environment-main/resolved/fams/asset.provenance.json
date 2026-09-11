@@ -1,0 +1,137 @@
+{
+  "base": "core",
+  "module": "asset",
+  "nodes": {
+    "fld_brand": {
+      "source": "core"
+    },
+    "fld_capacity": {
+      "source": "core"
+    },
+    "fld_depot": {
+      "source": "core"
+    },
+    "fld_devices": {
+      "source": "core"
+    },
+    "fld_driver": {
+      "source": "core"
+    },
+    "fld_fuel": {
+      "source": "core"
+    },
+    "fld_ins_expiry": {
+      "source": "core"
+    },
+    "fld_model": {
+      "source": "core"
+    },
+    "fld_name": {
+      "source": "core"
+    },
+    "fld_odometer": {
+      "source": "core"
+    },
+    "fld_plate": {
+      "source": "core"
+    },
+    "fld_reg_expiry": {
+      "source": "core"
+    },
+    "fld_status": {
+      "source": "core"
+    },
+    "fld_tags": {
+      "source": "core"
+    },
+    "fld_type": {
+      "source": "core"
+    },
+    "fld_uniqueidentifier": {
+      "source": "core"
+    },
+    "fld_vin": {
+      "source": "core"
+    },
+    "flt_fuel": {
+      "source": "core"
+    },
+    "flt_status": {
+      "source": "core"
+    },
+    "flt_type": {
+      "source": "core"
+    },
+    "sec_assignment": {
+      "source": "core"
+    },
+    "sec_compliance": {
+      "source": "core"
+    },
+    "sec_vehicle_details": {
+      "source": "core"
+    },
+    "sts_active": {
+      "source": "core"
+    },
+    "sts_inservice": {
+      "source": "core"
+    },
+    "sts_maintenance": {
+      "source": "core"
+    },
+    "sts_retired": {
+      "source": "core"
+    },
+    "tab_attendance_log": {
+      "op": "addTab",
+      "opId": "cap_asset_6",
+      "opIndex": 5,
+      "source": "delta"
+    },
+    "tab_details": {
+      "source": "core"
+    },
+    "tab_fuel_monitoring": {
+      "op": "addTab",
+      "opId": "cap_asset_1",
+      "opIndex": 0,
+      "source": "delta"
+    },
+    "tab_inspections": {
+      "op": "addTab",
+      "opId": "cap_asset_4",
+      "opIndex": 3,
+      "source": "delta"
+    },
+    "tab_job_orders": {
+      "op": "addTab",
+      "opId": "cap_asset_2",
+      "opIndex": 1,
+      "source": "delta"
+    },
+    "tab_overview": {
+      "source": "core"
+    },
+    "tab_preventive_maintenance": {
+      "op": "addTab",
+      "opId": "cap_asset_3",
+      "opIndex": 2,
+      "source": "delta"
+    },
+    "tab_timeline": {
+      "op": "addTab",
+      "opId": "cap_asset_7",
+      "opIndex": 6,
+      "source": "delta"
+    },
+    "tab_timesheet": {
+      "op": "addTab",
+      "opId": "cap_asset_5",
+      "opIndex": 4,
+      "source": "delta"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

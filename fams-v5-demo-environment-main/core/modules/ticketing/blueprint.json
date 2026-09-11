@@ -1,0 +1,216 @@
+{
+  "$schema": "../../../node_modules/@fams/v5-composer/schemas/PipelineModuleConfig.schema.json",
+  "kind": "pipeline",
+  "code": "ticketing/ticket",
+  "name": "Tickets",
+  "uidPrefix": "TKT",
+  "views": ["list", "kanban"],
+  "systemcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "name": "Ticket ID", "type": "Auto" },
+    { "id": "fld_tk_title", "col": "title", "name": "Title", "type": "SmallText", "required": true },
+    { "id": "fld_tk_source", "col": "systemcol12", "name": "Ticket Source", "type": "SingleSelect", "listValues": ["TAMM", "HALA", "UIS", "IWMP", "Halo"], "component": { "name": "IconTextView" } },
+    { "id": "fld_tk_ticket_type", "col": "systemcol30", "name": "Ticket Type", "type": "SingleSelect", "listValues": ["Incident", "Complaint", "Service Type"], "component": { "name": "IconTextView" } },
+    { "id": "fld_tk_service_type", "col": "systemcol13", "name": "Service Type", "type": "SingleSelect", "listValues": ["Waste Container Cleaning", "Household Waste Collection", "Dead Animals Removal", "Report Wrong Practices", "Residential Waste Removal", "Green Waste Collection"], "component": { "name": "IconTextView" } },
+    { "id": "fld_tk_kpi", "col": "systemcol14", "name": "KPI", "type": "SingleSelect", "listValues": ["Collection & Transportation of Public Realm Bins", "Street Cleaning & Litter Control", "Bulky Waste Removal"], "component": { "name": "IconTextView", "props": { "icon": "file-shield-02" } } },
+    { "id": "fld_tk_kpi_category", "col": "systemcol25", "name": "KPI Category", "type": "SmallText", "creation": { "hidden": true } },
+    { "id": "fld_tk_non_compliance", "col": "systemcol26", "name": "Non Compliance", "type": "SmallText", "creation": { "hidden": true } },
+    { "id": "fld_tk_kpi_compliance_time", "col": "systemcol27", "name": "Compliance Time", "type": "SmallText" },
+    { "id": "fld_tk_note", "col": "systemcol31", "name": "Note", "type": "BigText" },
+    { "id": "fld_tk_lot", "col": "systemcol9", "name": "Lot", "type": "SingleSelect", "listValues": ["Lot 1", "Lot 2", "Lot 3", "Lot 4", "Lot 5", "Lot 6", "Lot 7", "Lot 8", "Lot 9", "Lot 10", "Lot 11", "Lot 12", "Lot 13", "Lot 14", "Lot 15", "Lot 16", "Lot 17", "Lot 18", "Lot 19", "Lot 20", "Lot 21", "Lot 22", "Lot 23", "Lot 24", "Lot 25", "Lot 26", "Lot 27", "Lot 28", "Lot 29", "Lot 30"], "component": { "name": "IconSelect", "props": { "icon": "pin" } } },
+    { "id": "fld_tk_geo", "col": "systemcol32", "name": "Latitude, Longitude", "type": "SmallText", "component": { "name": "LocationPicker", "props": { "defaultCenter": [54.3705, 24.4667], "defaultZoom": 12 } } },
+    { "id": "fld_tk_upload", "col": "systemcol33", "name": "Upload Before Images", "type": "tags", "component": { "name": "Dropzone" } },
+    { "id": "fld_tk_driver_name", "col": "systemcol28", "name": "Name", "type": "SmallText", "component": { "name": "AddAffordanceView" }, "creation": { "hidden": true } },
+    { "id": "fld_tk_driver_phone", "col": "systemcol29", "name": "Phone Number", "type": "Phone", "component": { "name": "AddAffordanceView" }, "creation": { "hidden": true } },
+    { "id": "fld_tk_customer_name", "col": "systemcol23", "name": "Customer Name", "type": "SmallText" },
+    { "id": "fld_tk_phone", "col": "systemcol11", "name": "Phone Number", "type": "Phone" },
+    { "id": "fld_tk_priority", "col": "systemcol1", "name": "Priority Level", "type": "SingleSelect", "listValues": ["Critical", "High", "Medium", "Minor"], "default": "Medium", "component": { "name": "IconSelect", "props": { "icon": "flag", "optionTone": { "Critical": "error", "High": "warning", "Medium": "warning", "Minor": "success" } } } },
+    { "id": "fld_tk_customer_language", "col": "systemcol15", "name": "Customer Language", "type": "SingleSelect", "listValues": ["English", "Arabic"], "component": { "name": "IconSelect", "props": { "icon": "translate" } } },
+    { "id": "fld_tk_assignee", "col": "systemcol4", "name": "Supervisor", "type": "Assignee", "component": { "name": "PersonView", "props": { "tone": "danger" } } },
+    { "id": "fld_tk_reporter", "col": "systemcol5", "name": "Reporter", "type": "SmallText", "creation": { "hidden": true } },
+    { "id": "fld_tk_due", "col": "systemcol6", "name": "Due Date", "type": "DateTime", "creation": { "hidden": true } },
+    { "id": "fld_tk_tags", "col": "tags", "name": "Tags", "type": "tags", "creation": { "hidden": true } },
+    { "id": "fld_tk_location", "col": "systemcol10", "name": "Location", "type": "SmallText", "component": { "name": "IconTextView", "props": { "icon": "marker-pin-02" } }, "creation": { "hidden": true } },
+    { "id": "fld_tk_location_lot", "col": "systemcol16", "name": "Location", "type": "SmallText", "component": { "name": "IconTextView", "props": { "icon": "skew" } }, "creation": { "hidden": true } },
+    { "id": "fld_tk_area_manager", "col": "systemcol17", "name": "Area Manager", "type": "SmallText", "component": { "name": "PersonView", "props": { "tone": "info" } }, "creation": { "hidden": true } },
+    { "id": "fld_tk_reported_by", "col": "systemcol18", "name": "Reported By", "type": "SmallText", "component": { "name": "PersonView", "props": { "tone": "success" } }, "creation": { "hidden": true } },
+    { "id": "fld_tk_time_remaining", "col": "systemcol19", "name": "Time Remaining", "type": "SmallText", "component": { "name": "TimeRemainingView" }, "creation": { "hidden": true } },
+    { "id": "fld_tk_reported_time", "col": "systemcol20", "name": "Reported time", "type": "SmallText", "creation": { "hidden": true } },
+    { "id": "fld_tk_reopened", "col": "systemcol21", "name": "Reopened Status", "type": "SmallText", "component": { "name": "StatusPill", "props": { "color": "#f79009", "icon": "refresh" } }, "creation": { "hidden": true } },
+    { "id": "fld_tk_highlight", "col": "systemcol22", "name": "Highlight Color", "type": "SmallText", "creation": { "hidden": true } },
+    { "id": "fld_tk_sla_breached", "col": "systemcol24", "name": "SLA Breached", "type": "SingleSelect", "listValues": ["Yes", "No"], "default": "No", "creation": { "hidden": true } },
+    { "id": "fld_tk_status", "col": "status", "name": "Status", "type": "SingleSelect", "listValues": ["new", "triaged", "in-progress", "resolved"], "default": "new", "creation": { "hidden": true } },
+    { "id": "fld_tk_category", "col": "systemcol2", "name": "Category", "type": "SingleSelect", "listValues": ["Mechanical", "Electrical", "Bodywork", "Compliance", "Other"], "creation": { "hidden": true } },
+    { "id": "fld_tk_asset", "col": "systemcol3", "name": "Vehicle", "type": "SingleReference", "refModule": "Entity", "entityType": "asset/vehicle", "creation": { "hidden": true } }
+  ],
+  "uiConfig": {
+    "viewPickerHint": "Instance can be really helpful while comparing the data, you can apply different filters and monitor the data for both with just a switch of a tab.",
+    "statusList": [
+      { "id": "sts_new", "key": "new", "label": "New Requests", "color": "#9e77ed" },
+      { "id": "sts_triaged", "key": "triaged", "label": "Scheduled", "color": "#8b6439" },
+      { "id": "sts_inprogress", "key": "in-progress", "label": "In Progress", "color": "#f79009" },
+      { "id": "sts_resolved", "key": "resolved", "label": "Resolved", "color": "#0072d6" }
+    ],
+    "kanbanCard": {
+      "header": [
+        { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "pos": "left", "order": 1 },
+        { "id": "fld_tk_reopened", "col": "systemcol21", "pos": "left", "order": 2 },
+        { "id": "fld_tk_priority", "col": "systemcol1", "pos": "right", "order": 1 },
+        { "id": "fld_tk_title", "col": "title", "pos": "left", "order": 3 }
+      ],
+      "body": [
+        { "id": "fld_tk_service_type", "col": "systemcol13", "pos": "left", "order": 1, "component": { "name": "IconTextView", "props": { "icon": "wrench" } } },
+        { "id": "fld_tk_source", "col": "systemcol12", "pos": "left", "order": 2, "component": { "name": "IconTextView", "props": { "icon": "inbox" } } },
+        { "id": "fld_tk_ticket_type", "col": "systemcol30", "pos": "left", "order": 2, "component": { "name": "IconTextView", "props": { "icon": "tag" } } },
+        { "id": "fld_tk_location", "col": "systemcol10", "pos": "left", "order": 3 },
+        { "id": "fld_tk_assignee_name", "col": "systemcol4", "pos": "left", "order": 4 }
+      ],
+      "footer": [
+        { "id": "fld_tk_assignee", "col": "systemcol4", "pos": "left", "order": 1, "component": { "name": "AssigneeList", "props": { "avatarOnly": true } } },
+        { "id": "fld_tk_time_remaining", "col": "systemcol19", "pos": "right", "order": 1, "component": { "name": "TimeRemainingView" } }
+      ],
+      "highlight": { "col": "systemcol22" }
+    },
+    "profile": {
+      "title": { "id": "fld_tk_customer_name", "col": "systemcol23", "pos": "left" },
+      "layout": { "labelWidth": "9.0625rem" },
+      "details": [
+        { "id": "fld_tk_phone", "col": "systemcol11", "pos": "left", "order": 1 },
+        { "id": "fld_tk_source", "col": "systemcol12", "pos": "right", "order": 1 },
+        { "id": "fld_tk_priority", "col": "systemcol1", "pos": "left", "order": 2, "component": { "name": "PriorityFlagView" } },
+        { "id": "fld_tk_service_type", "col": "systemcol13", "pos": "right", "order": 2 },
+        { "id": "fld_tk_customer_language", "col": "systemcol15", "pos": "left", "order": 3, "component": { "name": "IconTextView" } },
+        { "id": "fld_tk_location_lot", "col": "systemcol16", "pos": "right", "order": 3 },
+        { "id": "fld_tk_assignee", "col": "systemcol4", "pos": "left", "order": 4, "component": { "name": "PersonView", "props": { "tone": "danger" } } },
+        { "id": "fld_tk_area_manager", "col": "systemcol17", "pos": "right", "order": 4, "component": { "name": "PersonView", "props": { "tone": "info" } } },
+        { "id": "fld_tk_reported_by", "col": "systemcol18", "pos": "left", "order": 5, "component": { "name": "PersonView", "props": { "tone": "success" } } },
+        { "id": "fld_tk_time_remaining", "col": "systemcol19", "pos": "right", "order": 5 },
+        { "id": "fld_tk_reported_time", "col": "systemcol20", "pos": "left", "order": 6 }
+      ],
+      "sections": [
+        {
+          "id": "sec_tk_kpi",
+          "name": "KPI",
+          "order": 1,
+          "layout": { "labelWidth": "8.25rem" },
+          "component": { "name": "FieldColumnsSection", "props": { "columns": 1, "labelWidth": "8.25rem" } },
+          "fields": [
+            { "id": "fld_tk_kpi", "col": "systemcol14", "pos": "left", "order": 1 },
+            { "id": "fld_tk_kpi_category", "col": "systemcol25", "pos": "left", "order": 2 },
+            { "id": "fld_tk_non_compliance", "col": "systemcol26", "pos": "left", "order": 3 },
+            { "id": "fld_tk_kpi_compliance_time", "col": "systemcol27", "pos": "left", "order": 4 }
+          ]
+        },
+        {
+          "id": "sec_tk_customer_contact",
+          "name": "Customer Contact",
+          "order": 10,
+          "detailHidden": true,
+          "fields": [
+            { "id": "fld_tk_customer_name", "col": "systemcol23", "pos": "left", "order": 1 },
+            { "id": "fld_tk_phone", "col": "systemcol11", "pos": "left", "order": 2 }
+          ]
+        },
+        {
+          "id": "sec_tk_priority_language",
+          "name": "Priority & Language",
+          "order": 11,
+          "detailHidden": true,
+          "fields": [
+            { "id": "fld_tk_priority", "col": "systemcol1", "pos": "left", "order": 1 },
+            { "id": "fld_tk_customer_language", "col": "systemcol15", "pos": "right", "order": 1 }
+          ]
+        },
+        {
+          "id": "sec_tk_note",
+          "name": "Note",
+          "order": 6,
+          "fields": [
+            { "id": "fld_tk_note", "col": "systemcol31", "pos": "left", "order": 1 }
+          ]
+        },
+        {
+          "id": "sec_tk_location",
+          "name": "Location Details",
+          "order": 2,
+          "showLabel": true,
+          "fields": [
+            { "id": "fld_tk_lot", "col": "systemcol9", "pos": "left", "order": 1 },
+            { "id": "fld_tk_geo", "col": "systemcol32", "pos": "left", "order": 2 }
+          ],
+          "component": { "name": "LocationMapSection", "props": { "centerField": "locationCenter", "pinsField": "locationPins", "polygonsField": "locationPolygons", "cornerLabelField": "locationCornerLabel", "cornerValueField": "locationCornerValue" } }
+        },
+        {
+          "id": "sec_tk_notes",
+          "name": "Notes",
+          "order": 3,
+          "fields": [],
+          "component": { "name": "NotesSection", "props": { "textField": "notes" } }
+        },
+        {
+          "id": "sec_tk_supervisor",
+          "name": "Supervisor",
+          "order": 12,
+          "detailHidden": true,
+          "fields": [
+            { "id": "fld_tk_assignee", "col": "systemcol4", "pos": "left", "order": 1 }
+          ]
+        },
+        {
+          "id": "sec_tk_photos",
+          "name": "Before Photos",
+          "order": 4,
+          "fields": [
+            { "id": "fld_tk_upload", "col": "systemcol33", "pos": "left", "order": 1 }
+          ],
+          "component": { "name": "BeforePhotosSection", "props": { "imagesField": "beforePhotos" } }
+        },
+        {
+          "id": "sec_tk_driver",
+          "name": "Assigned Driver",
+          "order": 5,
+          "fields": [
+            { "id": "fld_tk_driver_name", "col": "systemcol28", "pos": "left", "order": 1 },
+            { "id": "fld_tk_driver_phone", "col": "systemcol29", "pos": "right", "order": 1 }
+          ]
+        }
+      ],
+      "rightPanel": {
+        "type": "tab",
+        "tabs": [
+          { "id": "tab_tk_timeline", "key": "timeline", "title": "Timeline", "order": 1, "component": { "name": "TicketTimeline" } }
+        ]
+      }
+    },
+    "filters": [
+      { "id": "flt_tk_priority", "col": "systemcol1", "order": 1 },
+      { "id": "flt_tk_category", "col": "systemcol2", "order": 2 },
+      { "id": "flt_tk_status", "col": "status", "order": 3 }
+    ],
+    "search": { "columns": ["title", "systemcol23"], "placeholder": "Search Ticket" },
+    "listSummary": [
+      { "id": "sum_tk_active", "label": "Active Tickets", "icon": "check-done-01", "iconColor": "#0072d6", "iconBg": "#e6f2fc", "filter": { "col": "status", "in": ["new", "triaged", "in-progress"] } },
+      { "id": "sum_tk_pending", "label": "Pending Review", "icon": "hourglass-03", "iconColor": "#f79009", "iconBg": "#fffaeb", "filter": { "col": "status", "equals": "resolved" } },
+      { "id": "sum_tk_closed", "label": "Closed", "icon": "check-circle", "iconColor": "#12b76a", "iconBg": "#ecfdf3", "filter": { "col": "status", "equals": "closed" } },
+      { "id": "sum_tk_critical", "label": "Critical", "icon": "alert-triangle", "iconColor": "#f04438", "iconBg": "#fef3f2", "filter": { "col": "systemcol1", "equals": "Critical" } },
+      { "id": "sum_tk_breached", "label": "Breached 24h SLA", "icon": "clock", "iconColor": "#e27e60", "iconBg": "#fcf2ef", "filter": { "col": "systemcol24", "equals": "Yes" } }
+    ],
+    "listGroupedColumns": ["uniqueidentifier", "systemcol30", "title", "systemcol12", "systemcol13", "systemcol14", "systemcol19", "systemcol23", "systemcol10", "systemcol1", "systemcol4"],
+    "listSelectable": true,
+    "listHeaderAction": true,
+    "creation": { "layout": "flat", "fieldChrome": "inset-label", "label": "Create New Ticket" }
+  },
+  "listcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "name": "ID", "component": { "name": "TextView" } },
+    { "id": "fld_tk_title", "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "id": "fld_tk_source", "col": "systemcol12", "name": "Source", "component": { "name": "TextView" } },
+    { "id": "fld_tk_ticket_type", "col": "systemcol30", "component": { "name": "TextView" } },
+    { "id": "fld_tk_service_type", "col": "systemcol13", "component": { "name": "TextView" } },
+    { "id": "fld_tk_kpi", "col": "systemcol14", "component": { "name": "TextView" } },
+    { "id": "fld_tk_time_remaining", "col": "systemcol19", "name": "Compliance Time", "component": { "name": "TextView" } },
+    { "id": "fld_tk_customer_name", "col": "systemcol23", "component": { "name": "TextView" } },
+    { "id": "fld_tk_location", "col": "systemcol10", "component": { "name": "TextView" } },
+    { "id": "fld_tk_priority", "col": "systemcol1", "name": "Priority", "component": { "name": "TextView" } },
+    { "id": "fld_tk_assignee", "col": "systemcol4", "component": { "name": "PersonView" } },
+    { "id": "fld_tk_status", "col": "status", "component": { "name": "StatusList" } }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "statuses": ["lead", "qualified", "proposal", "won", "lost"],
+  "transitions": {
+    "lead": ["qualified", "lost"],
+    "qualified": ["proposal", "lost"],
+    "proposal": ["won", "lost"],
+    "won": [],
+    "lost": ["lead"]
+  },
+  "transition_rules": {
+    "proposal->won": { "$.user.roles": { "$in": ["SalesManager"] } },
+    "lead->lost": { "$.user.roles": { "$in": ["SalesManager"] } },
+    "qualified->lost": { "$.user.roles": { "$in": ["SalesManager"] } },
+    "proposal->lost": { "$.user.roles": { "$in": ["SalesManager"] } }
+  },
+  "task_rules": {
+    "view": [
+      { "$.user.roles": { "$in": ["SalesManager"] } },
+      {
+        "$and": [
+          { "$.user.roles": { "$in": ["SalesRep"] } },
+          { "$.task.systemcol6": { "$eq": "u_rep" } }
+        ]
+      }
+    ]
+  }
+}

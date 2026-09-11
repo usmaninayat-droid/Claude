@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 792" font-family="'Inter','Segoe UI',system-ui,-apple-system,sans-serif">
+  <!-- connector -->
+  <circle cx="340" cy="26" r="16" fill="#FF3B30" fill-opacity="0.15"/>
+  <circle cx="340" cy="26" r="7" fill="#FF3B30"/>
+  <line x1="340" y1="33" x2="340" y2="452" stroke="#FF3B30" stroke-width="2.5"/>
+
+  <!-- card -->
+  <rect x="32" y="452" width="616" height="310" rx="20" fill="#FFFFFF" stroke="#FF3B30" stroke-width="2"/>
+
+  <!-- heading -->
+  <text x="66" y="528" font-size="36" font-weight="700" fill="#1B2733">Note</text>
+
+  <!-- single crosshair / recenter icon -->
+  <g transform="translate(72,566) scale(1.55)" fill="none" stroke="#1B2733" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+    <circle cx="12" cy="12" r="8"/>
+  </g>
+
+  <!-- body -->
+  <g fill="#2B3648" font-size="21" font-weight="450">
+    <text x="66" y="648">One button, one job — recenter. The map</text>
+    <text x="66" y="678">follows the driver, framed toward where</text>
+    <text x="66" y="708">they're heading. Tap to snap back after</text>
+    <text x="66" y="738">panning the map manually.</text>
+  </g>
+</svg>

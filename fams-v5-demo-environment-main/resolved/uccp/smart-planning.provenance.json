@@ -1,0 +1,110 @@
+{
+  "base": "tenant-native",
+  "module": "smart-planning",
+  "nodes": {
+    "Al Daayen": {
+      "source": "tenant-native"
+    },
+    "Al Rayyan": {
+      "source": "tenant-native"
+    },
+    "Al Wakrah": {
+      "source": "tenant-native"
+    },
+    "Doha": {
+      "source": "tenant-native"
+    },
+    "Umm Salal": {
+      "source": "tenant-native"
+    },
+    "fld_sp_assembly": {
+      "source": "tenant-native"
+    },
+    "fld_sp_blackspot": {
+      "source": "tenant-native"
+    },
+    "fld_sp_discharge": {
+      "source": "tenant-native"
+    },
+    "fld_sp_driver": {
+      "source": "tenant-native"
+    },
+    "fld_sp_inspector": {
+      "source": "tenant-native"
+    },
+    "fld_sp_lat": {
+      "source": "tenant-native"
+    },
+    "fld_sp_lng": {
+      "source": "tenant-native"
+    },
+    "fld_sp_plantype": {
+      "source": "tenant-native"
+    },
+    "fld_sp_shift": {
+      "source": "tenant-native"
+    },
+    "fld_sp_status": {
+      "source": "tenant-native"
+    },
+    "fld_sp_tanker": {
+      "source": "tenant-native"
+    },
+    "fld_sp_title": {
+      "source": "tenant-native"
+    },
+    "fld_sp_uniqueidentifier": {
+      "source": "tenant-native"
+    },
+    "fld_sp_zone": {
+      "source": "tenant-native"
+    },
+    "flt_sp_plantype": {
+      "source": "tenant-native"
+    },
+    "flt_sp_status": {
+      "source": "tenant-native"
+    },
+    "flt_sp_zone": {
+      "source": "tenant-native"
+    },
+    "sec_sp_resources": {
+      "source": "tenant-native"
+    },
+    "sec_sp_staging": {
+      "source": "tenant-native"
+    },
+    "sts_sp_active": {
+      "source": "tenant-native"
+    },
+    "sts_sp_approved": {
+      "source": "tenant-native"
+    },
+    "sts_sp_draft": {
+      "source": "tenant-native"
+    },
+    "sts_sp_pending": {
+      "source": "tenant-native"
+    },
+    "sts_sp_rejected": {
+      "source": "tenant-native"
+    },
+    "sum_sp_active": {
+      "source": "tenant-native"
+    },
+    "sum_sp_approved": {
+      "source": "tenant-native"
+    },
+    "sum_sp_pending": {
+      "source": "tenant-native"
+    },
+    "sum_sp_total": {
+      "source": "tenant-native"
+    },
+    "tab_sp_details": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "uccp"
+}

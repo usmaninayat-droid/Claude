@@ -1,0 +1,122 @@
+{
+  "$schema": "../../../../node_modules/@fams/v5-composer/schemas/PipelineModuleConfig.schema.json",
+  "kind": "pipeline",
+  "code": "crm/deal",
+  "name": "Deals",
+  "uidPrefix": "DEAL",
+  "views": ["kanban", "list"],
+  "systemcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "name": "Deal ID", "type": "Auto" },
+    { "id": "fld_deal_title", "col": "title", "name": "Deal Name", "type": "SmallText", "required": true },
+    { "id": "fld_deal_company", "col": "systemcol1", "name": "Company", "type": "SingleReference", "refModule": "Entity", "entityType": "crm/company", "required": true, "component": { "name": "LinkView" } },
+    { "id": "fld_deal_contact", "col": "systemcol2", "name": "Contact Person", "type": "SingleReference", "refModule": "Entity", "entityType": "crm/contact-person", "component": { "name": "LinkView" } },
+    { "id": "fld_deal_product", "col": "systemcol3", "name": "Product/Service", "type": "SingleReference", "refModule": "Entity", "entityType": "crm/product-service", "component": { "name": "LinkView" } },
+    { "id": "fld_deal_owner", "col": "systemcol4", "name": "Owner", "type": "SingleReference", "refModule": "Entity", "entityType": "workforce/driver", "component": { "name": "LinkView" } },
+    { "id": "fld_deal_priority", "col": "systemcol5", "name": "Priority", "type": "SingleSelect", "listValues": ["CRITICAL", "HIGH", "MEDIUM", "LOW"], "default": "MEDIUM", "component": { "name": "IconSelect", "props": { "icon": "flag", "optionTone": { "CRITICAL": "error", "HIGH": "warning", "MEDIUM": "success", "LOW": "info" } } } },
+    { "id": "fld_deal_amount", "col": "systemcol6", "name": "Amount", "type": "Numeric", "unit": "USD" },
+    { "id": "fld_deal_close_date", "col": "systemcol7", "name": "Expected Close Date", "type": "Date" },
+    { "id": "fld_deal_created", "col": "systemcol8", "name": "Created Date", "type": "Date", "creation": { "hidden": true } },
+    { "id": "fld_deal_lead", "col": "systemcol9", "name": "Source Lead", "type": "SingleReference", "refModule": "Entity", "entityType": "crm/lead", "component": { "name": "LinkView" }, "creation": { "hidden": true } },
+    { "id": "fld_deal_note", "col": "systemcol10", "name": "Note", "type": "BigText" },
+    { "id": "fld_deal_status", "col": "status", "name": "Status", "type": "SingleSelect", "listValues": ["qualification", "proposal", "negotiation", "won", "lost"], "default": "qualification", "creation": { "hidden": true } },
+    { "id": "fld_deal_tags", "col": "tags", "name": "Tags", "type": "tags" }
+  ],
+  "uiConfig": {
+    "icon": "briefcase",
+    "viewPickerHint": "Deals move through the sales stages on the board, or browse the full list.",
+    "statusList": [
+      { "id": "sts_deal_qualification", "key": "qualification", "label": "Qualification", "color": "#0072d6" },
+      { "id": "sts_deal_proposal", "key": "proposal", "label": "Proposal", "color": "#06aed4" },
+      { "id": "sts_deal_negotiation", "key": "negotiation", "label": "Negotiation", "color": "#9e77ed" },
+      { "id": "sts_deal_won", "key": "won", "label": "Won", "color": "#12b76a" },
+      { "id": "sts_deal_lost", "key": "lost", "label": "Lost", "color": "#f04438" }
+    ],
+    "kanbanCard": {
+      "header": [
+        { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "pos": "left", "order": 1 },
+        { "id": "fld_deal_priority", "col": "systemcol5", "pos": "right", "order": 1 },
+        { "id": "fld_deal_title", "col": "title", "pos": "left", "order": 2 }
+      ],
+      "body": [
+        { "id": "fld_deal_company", "col": "systemcol1", "pos": "left", "order": 1 },
+        { "id": "fld_deal_product", "col": "systemcol3", "pos": "left", "order": 2 },
+        { "id": "fld_deal_amount", "col": "systemcol6", "pos": "left", "order": 3 }
+      ],
+      "footer": [
+        { "id": "fld_deal_owner", "col": "systemcol4", "pos": "left", "order": 1, "component": { "name": "AssigneeList", "props": { "avatarOnly": true } } },
+        { "id": "fld_deal_close_date", "col": "systemcol7", "pos": "right", "order": 1 }
+      ]
+    },
+    "profile": {
+      "title": { "id": "fld_deal_title", "col": "title", "pos": "left" },
+      "layout": { "labelWidth": "9.0625rem" },
+      "details": [
+        { "id": "fld_deal_company", "col": "systemcol1", "pos": "left", "order": 1, "component": { "name": "LinkView" } },
+        { "id": "fld_deal_priority", "col": "systemcol5", "pos": "right", "order": 1, "component": { "name": "PriorityFlagView" } },
+        { "id": "fld_deal_contact", "col": "systemcol2", "pos": "left", "order": 2, "component": { "name": "LinkView" } },
+        { "id": "fld_deal_product", "col": "systemcol3", "pos": "right", "order": 2, "component": { "name": "LinkView" } },
+        { "id": "fld_deal_owner", "col": "systemcol4", "pos": "left", "order": 3, "component": { "name": "LinkView" } },
+        { "id": "fld_deal_amount", "col": "systemcol6", "pos": "right", "order": 3 },
+        { "id": "fld_deal_close_date", "col": "systemcol7", "pos": "left", "order": 4, "component": { "name": "DateView" } },
+        { "id": "fld_deal_created", "col": "systemcol8", "pos": "right", "order": 4, "component": { "name": "DateView" } },
+        { "id": "fld_deal_lead", "col": "systemcol9", "pos": "left", "order": 5, "component": { "name": "LinkView" } }
+      ],
+      "sections": [
+        {
+          "id": "sec_deal_note",
+          "name": "Note",
+          "order": 1,
+          "fields": [
+            { "id": "fld_deal_note", "col": "systemcol10", "pos": "left", "order": 1 }
+          ]
+        }
+      ],
+      "rightPanel": {
+        "type": "tab",
+        "tabs": [
+          { "id": "tab_deal_timeline", "key": "timeline", "title": "Timeline", "order": 1, "component": { "name": "TicketTimeline" } },
+          { "id": "tab_deal_activity", "key": "activity", "title": "Activity", "order": 2, "component": { "name": "TicketActivity" } },
+          { "id": "tab_deal_linked", "key": "linked", "title": "Linked", "order": 3, "component": { "name": "LinkedRecords" } },
+          { "id": "tab_deal_attachments", "key": "attachments", "title": "Attachments", "order": 4, "component": { "name": "RecordList", "props": { "field": "attachments", "variant": "file", "emptyTitle": "No attachments", "emptyDescription": "Files attached to this deal will appear here." } } }
+        ]
+      }
+    },
+    "filtersPanel": { "title": "Filters", "clearAll": true, "width": 448 },
+    "filters": [
+      { "id": "flt_deal_priority", "col": "systemcol5", "order": 1, "kind": "checkbox-group", "icon": "flag" },
+      {
+        "id": "flt_deal_status",
+        "col": "status",
+        "order": 2,
+        "kind": "status",
+        "optionsFrom": "statusList",
+        "optionDot": "status",
+        "showCounts": true,
+        "icon": "status"
+      }
+    ],
+    "search": { "columns": ["title", "uniqueidentifier"], "placeholder": "Search Deals" },
+    "groupByOptions": [
+      { "col": "status", "label": "Status" }
+    ],
+    "rowActions": { "delete": true, "archive": true, "requiredPrivilege": "deals.view" },
+    "bulkActions": { "delete": true, "export": true },
+    "listSelectable": true,
+    "recordNoun": { "one": "deal", "many": "deals" },
+    "listGroupedColumns": ["uniqueidentifier", "title", "systemcol1", "systemcol2", "systemcol3", "systemcol6", "systemcol4", "systemcol7", "status"],
+    "hybrid": { "listColumns": ["uniqueidentifier", "title", "systemcol6", "status"] },
+    "creation": { "layout": "flat", "fieldChrome": "inset-label", "label": "Create New Deal" }
+  },
+  "listcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "name": "Deal ID", "component": { "name": "TextView" } },
+    { "id": "fld_deal_title", "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "id": "fld_deal_company", "col": "systemcol1", "component": { "name": "LinkView" } },
+    { "id": "fld_deal_contact", "col": "systemcol2", "component": { "name": "LinkView" } },
+    { "id": "fld_deal_product", "col": "systemcol3", "component": { "name": "LinkView" } },
+    { "id": "fld_deal_amount", "col": "systemcol6", "name": "Amount" },
+    { "id": "fld_deal_owner", "col": "systemcol4", "component": { "name": "LinkView" } },
+    { "id": "fld_deal_close_date", "col": "systemcol7", "name": "Expected Close Date" },
+    { "id": "fld_deal_status", "col": "status", "component": { "name": "StatusList" } },
+    { "id": "fld_deal_tags", "col": "tags", "name": "Tags" }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fams.com/schemas/v5-composer/ReportsModuleConfig.schema.json",
+  "title": "ReportsModuleConfig",
+  "description": "Declarative Reports module config. Renders a report card grid + report runner (table + filters + export). Every node carries a stable `id`.",
+  "type": "object",
+  "required": ["kind", "sections", "reports"],
+  "properties": {
+    "kind": { "const": "reports" },
+    "displayName": { "type": "string" },
+    "searchPlaceholder": { "type": "string" },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "tag": { "type": "string" },
+          "icon": { "type": "string" }
+        }
+      }
+    },
+    "reports": { "type": "array", "items": { "$ref": "#/$defs/Report" } },
+    "rbac": { "$ref": "EntityModuleConfig.schema.json#/$defs/Rbac" }
+  },
+  "$defs": {
+    "Report": {
+      "type": "object",
+      "required": ["id", "label", "sectionId"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "icon": { "type": "string" },
+        "iconColor": { "type": "string" },
+        "description": { "type": "string" },
+        "illustration": { "type": "string" },
+        "sectionId": { "type": "string" },
+        "lastViewed": { "type": "string" },
+        "category": { "type": "string", "enum": ["system", "custom"] },
+        "subTabs": { "type": "array", "items": { "$ref": "#/$defs/SubTab" } },
+        "filters": { "type": "array", "items": { "$ref": "#/$defs/Filter" } },
+        "columns": { "type": "array", "items": { "$ref": "#/$defs/Column" } },
+        "outputModes": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["table", "kpi-grid", "list", "hybrid"] }
+        },
+        "subscription": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "recurrencePresets": { "type": "array", "items": { "type": "string", "enum": ["daily", "weekly", "monthly", "custom"] } },
+            "formats": { "type": "array", "items": { "type": "string", "enum": ["pdf", "excel", "csv"] } }
+          }
+        },
+        "rbac": { "$ref": "EntityModuleConfig.schema.json#/$defs/Rbac" }
+      }
+    },
+    "SubTab": {
+      "type": "object",
+      "required": ["id", "label"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "icon": { "type": "string" },
+        "dataField": { "type": "string" },
+        "columns": { "type": "array", "items": { "$ref": "#/$defs/Column" } }
+      }
+    },
+    "Filter": {
+      "type": "object",
+      "required": ["id", "label", "type"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": [
+            "date-range", "group-by", "time-grain",
+            "multi-select-entity", "multi-select-tag",
+            "threshold-range", "cost-calculation",
+            "single-select", "text-search",
+            "asset-selector", "job-order-selector", "custom"
+          ]
+        },
+        "icon": { "type": "string" },
+        "entityId": { "type": "string" },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["value", "label"],
+            "properties": {
+              "value": { "type": "string" },
+              "label": { "type": "string" }
+            }
+          }
+        },
+        "required": { "type": "boolean" }
+      }
+    },
+    "Column": {
+      "type": "object",
+      "required": ["id", "label"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": [
+            "text", "number", "currency", "percentage",
+            "date", "datetime", "duration",
+            "avatar", "linked-entity", "tag", "status", "sparkline"
+          ]
+        },
+        "sortable": { "type": "boolean" },
+        "drillLevel": { "type": "number", "enum": [0, 1, 2] },
+        "width": { "type": "number" }
+      }
+    }
+  }
+}

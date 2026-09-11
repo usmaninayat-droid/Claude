@@ -1,0 +1,2493 @@
+[
+  {
+    "id": "WTK-01",
+    "uniqueidentifier": "WTK-01",
+    "title": "Waste container needs cleaning",
+    "status": "new",
+    "systemcol1": "Critical",
+    "systemcol4": [
+      "Vikram Singh",
+      "Zayd Al-Farsi"
+    ],
+    "systemcol9": "Lot 2",
+    "systemcol10": "Khalifa City",
+    "systemcol11": "+971 510000137",
+    "systemcol12": "TAMM",
+    "systemcol13": "Waste Container Cleaning",
+    "systemcol14": "Collection & Transportation of Public Realm Bins",
+    "systemcol15": "English",
+    "systemcol16": "Lot 2",
+    "systemcol17": "Muhammad Yasir",
+    "systemcol18": "Ali Ahmad",
+    "systemcol19": "2d 5h left",
+    "systemcol20": "2 March, 2024 09:07",
+    "systemcol23": "Rajesh Patel",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Incident",
+    "tags": [],
+    "locationCenter": [
+      54.5852,
+      24.4245
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-01_pin_1",
+        "position": [
+          54.5852,
+          24.4245
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via TAMM for waste container cleaning at Khalifa City. Assigned to Vikram Singh for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-01_1",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "8:00 am",
+        "dateGroup": "2 March, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      }
+    ]
+  },
+  {
+    "id": "WTK-02",
+    "uniqueidentifier": "WTK-02",
+    "title": "Missed household waste collection",
+    "status": "new",
+    "systemcol1": "Minor",
+    "systemcol4": [
+      "Khalid Al-Mansoori",
+      "Muhammad Yasir"
+    ],
+    "systemcol9": "Lot 3",
+    "systemcol10": "Yas Island",
+    "systemcol11": "+971 510000274",
+    "systemcol12": "HALA",
+    "systemcol13": "Household Waste Collection",
+    "systemcol14": "Street Cleaning & Litter Control",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 3",
+    "systemcol17": "Sultan Al Dhaheri",
+    "systemcol18": "Zayd Al-Farsi",
+    "systemcol19": "3d 1h left",
+    "systemcol20": "3 March, 2024 10:14",
+    "systemcol23": "Arjun Kumar",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Complaint",
+    "tags": [],
+    "locationCenter": [
+      54.5966,
+      24.4632
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-02_pin_1",
+        "position": [
+          54.5966,
+          24.4632
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via HALA for household waste collection at Yas Island. Assigned to Khalid Al-Mansoori for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-02_1",
+        "actor": "Sultan Al Dhaheri",
+        "action": "scheduled the crew for pickup.",
+        "tone": "success",
+        "timestamp": "9:00 am",
+        "dateGroup": "3 March, 2024",
+        "badge": {
+          "label": "SCHEDULED",
+          "tone": "success"
+        }
+      },
+      {
+        "id": "tl_WTK-02_2",
+        "actor": "Elena Petrova",
+        "action": "updated the ticket details.",
+        "timestamp": "10:00 am",
+        "dateGroup": "3 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-03",
+    "uniqueidentifier": "WTK-03",
+    "title": "Dead animal removal reported",
+    "status": "new",
+    "systemcol1": "High",
+    "systemcol4": "Zayd Al-Farsi",
+    "systemcol9": "Lot 4",
+    "systemcol10": "Al Reem Island",
+    "systemcol11": "+971 510000411",
+    "systemcol12": "UIS",
+    "systemcol13": "Dead Animals Removal",
+    "systemcol14": "Bulky Waste Removal",
+    "systemcol15": "English",
+    "systemcol16": "Lot 4",
+    "systemcol17": "Elena Petrova",
+    "systemcol18": "Hana Suleiman",
+    "systemcol19": "1d 12h left",
+    "systemcol20": "4 March, 2024 11:21",
+    "systemcol23": "Kamal Hassan",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Service Type",
+    "tags": [],
+    "locationCenter": [
+      54.4018,
+      24.4996
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-03_pin_1",
+        "position": [
+          54.4018,
+          24.4996
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via UIS for dead animals removal at Al Reem Island. Assigned to Zayd Al-Farsi for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-03_1",
+        "actor": "Elena Petrova",
+        "action": "updated the ticket details.",
+        "timestamp": "10:00 am",
+        "dateGroup": "4 March, 2024"
+      },
+      {
+        "id": "tl_WTK-03_2",
+        "actor": "Muhammad Yasir",
+        "action": "confirmed the reported location.",
+        "timestamp": "11:00 am",
+        "dateGroup": "4 March, 2024"
+      },
+      {
+        "id": "tl_WTK-03_3",
+        "actor": "Rania Costa",
+        "action": "escalated to the field supervisor.",
+        "tone": "warning",
+        "timestamp": "12:00 am",
+        "dateGroup": "4 March, 2024"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_wtk_03_1",
+        "author": "Elena Petrova",
+        "text": "@ZaydAl-Farsi can you confirm the crew has picked up the carcass from Al Reem Island yet?",
+        "timestamp": "10:12 am",
+        "dateGroup": "Today"
+      },
+      {
+        "id": "cm_wtk_03_2",
+        "author": "Zayd Al-Farsi",
+        "text": "@ElenaPetrova confirmed — collected this morning, site sanitized and closed out.",
+        "timestamp": "10:30 am",
+        "dateGroup": "Today"
+      }
+    ]
+  },
+  {
+    "id": "WTK-04",
+    "uniqueidentifier": "WTK-04",
+    "title": "Wrong waste disposal practice reported",
+    "status": "new",
+    "systemcol1": "Minor",
+    "systemcol4": "Muhammad Yasir",
+    "systemcol9": "Lot 5",
+    "systemcol10": "Mussafah",
+    "systemcol11": "+971 510000548",
+    "systemcol12": "IWMP",
+    "systemcol13": "Report Wrong Practices",
+    "systemcol14": "Collection & Transportation of Public Realm Bins",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 5",
+    "systemcol17": "Muhammad Yasir",
+    "systemcol18": "Ali Ahmad",
+    "systemcol19": "4d 8h left",
+    "systemcol20": "5 March, 2024 12:28",
+    "systemcol23": "Fatima Noor",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Incident",
+    "tags": [],
+    "locationCenter": [
+      54.4014,
+      24.3447
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-04_pin_1",
+        "position": [
+          54.4014,
+          24.3447
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via IWMP for report wrong practices at Mussafah. Assigned to Muhammad Yasir for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-04_1",
+        "actor": "Muhammad Yasir",
+        "action": "confirmed the reported location.",
+        "timestamp": "11:00 am",
+        "dateGroup": "5 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-05",
+    "uniqueidentifier": "WTK-05",
+    "title": "Residential waste pile-up",
+    "status": "new",
+    "systemcol1": "High",
+    "systemcol4": "Rania Costa",
+    "systemcol9": "Lot 6",
+    "systemcol10": "Al Ain",
+    "systemcol11": "+971 510000685",
+    "systemcol12": "Halo",
+    "systemcol13": "Residential Waste Removal",
+    "systemcol14": "Street Cleaning & Litter Control",
+    "systemcol15": "English",
+    "systemcol16": "Lot 6",
+    "systemcol17": "Sultan Al Dhaheri",
+    "systemcol18": "Zayd Al-Farsi",
+    "systemcol19": "18h 20m left",
+    "systemcol20": "6 March, 2024 13:35",
+    "systemcol23": "Sara Al Mansoori",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Complaint",
+    "tags": [],
+    "locationCenter": [
+      55.7521,
+      24.2155
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-05_pin_1",
+        "position": [
+          55.7521,
+          24.2155
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via Halo for residential waste removal at Al Ain. Assigned to Rania Costa for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-05_1",
+        "actor": "Rania Costa",
+        "action": "escalated to the field supervisor.",
+        "tone": "warning",
+        "timestamp": "12:00 am",
+        "dateGroup": "6 March, 2024"
+      },
+      {
+        "id": "tl_WTK-05_2",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "13:00 am",
+        "dateGroup": "6 March, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      }
+    ]
+  },
+  {
+    "id": "WTK-06",
+    "uniqueidentifier": "WTK-06",
+    "title": "Green waste collection request",
+    "status": "new",
+    "systemcol1": "Critical",
+    "systemcol4": "Vikram Singh",
+    "systemcol9": "Lot 7",
+    "systemcol10": "Baniyas",
+    "systemcol11": "+971 510000822",
+    "systemcol12": "TAMM",
+    "systemcol13": "Green Waste Collection",
+    "systemcol14": "Bulky Waste Removal",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 7",
+    "systemcol17": "Elena Petrova",
+    "systemcol18": "Hana Suleiman",
+    "systemcol19": "2d 22h left",
+    "systemcol20": "7 March, 2024 14:42",
+    "systemcol23": "Youssef Ibrahim",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Service Type",
+    "tags": [],
+    "locationCenter": [
+      54.6374,
+      24.3232
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-06_pin_1",
+        "position": [
+          54.6374,
+          24.3232
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via TAMM for green waste collection at Baniyas. Assigned to Vikram Singh for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-06_1",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "13:00 am",
+        "dateGroup": "7 March, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      },
+      {
+        "id": "tl_WTK-06_2",
+        "actor": "Sultan Al Dhaheri",
+        "action": "scheduled the crew for pickup.",
+        "tone": "success",
+        "timestamp": "14:00 am",
+        "dateGroup": "7 March, 2024",
+        "badge": {
+          "label": "SCHEDULED",
+          "tone": "success"
+        }
+      },
+      {
+        "id": "tl_WTK-06_3",
+        "actor": "Elena Petrova",
+        "action": "updated the ticket details.",
+        "timestamp": "15:00 am",
+        "dateGroup": "7 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-07",
+    "uniqueidentifier": "WTK-07",
+    "title": "Waste container needs cleaning",
+    "status": "triaged",
+    "systemcol1": "Minor",
+    "systemcol4": [
+      "Khalid Al-Mansoori",
+      "Rania Costa"
+    ],
+    "systemcol9": "Lot 8",
+    "systemcol10": "Al Shamkha",
+    "systemcol11": "+971 510000959",
+    "systemcol12": "HALA",
+    "systemcol13": "Waste Container Cleaning",
+    "systemcol14": "Collection & Transportation of Public Realm Bins",
+    "systemcol15": "English",
+    "systemcol16": "Lot 8",
+    "systemcol17": "Muhammad Yasir",
+    "systemcol18": "Ali Ahmad",
+    "systemcol19": "1d 4h left",
+    "systemcol20": "8 March, 2024 15:49",
+    "systemcol23": "Layla Haddad",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Incident",
+    "tags": [],
+    "systemcol21": "Reopened",
+    "systemcol22": "#f79009",
+    "locationCenter": [
+      54.6632,
+      24.2739
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-07_pin_1",
+        "position": [
+          54.6632,
+          24.2739
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via HALA for waste container cleaning at Al Shamkha. Assigned to Khalid Al-Mansoori for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-07_1",
+        "actor": "Sultan Al Dhaheri",
+        "action": "scheduled the crew for pickup.",
+        "tone": "success",
+        "timestamp": "14:00 am",
+        "dateGroup": "8 March, 2024",
+        "badge": {
+          "label": "SCHEDULED",
+          "tone": "success"
+        }
+      }
+    ]
+  },
+  {
+    "id": "WTK-08",
+    "uniqueidentifier": "WTK-08",
+    "title": "Missed household waste collection",
+    "status": "triaged",
+    "systemcol1": "High",
+    "systemcol4": "Zayd Al-Farsi",
+    "systemcol9": "Lot 9",
+    "systemcol10": "Al Falah",
+    "systemcol11": "+971 510001096",
+    "systemcol12": "UIS",
+    "systemcol13": "Household Waste Collection",
+    "systemcol14": "Street Cleaning & Litter Control",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 9",
+    "systemcol17": "Sultan Al Dhaheri",
+    "systemcol18": "Zayd Al-Farsi",
+    "systemcol19": "16h 40m left",
+    "systemcol20": "9 March, 2024 16:56",
+    "systemcol23": "Vikram Mehta",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Complaint",
+    "tags": [],
+    "locationCenter": [
+      54.6721,
+      24.3574
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-08_pin_1",
+        "position": [
+          54.6721,
+          24.3574
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via UIS for household waste collection at Al Falah. Assigned to Zayd Al-Farsi for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-08_1",
+        "actor": "Elena Petrova",
+        "action": "updated the ticket details.",
+        "timestamp": "15:00 am",
+        "dateGroup": "9 March, 2024"
+      },
+      {
+        "id": "tl_WTK-08_2",
+        "actor": "Muhammad Yasir",
+        "action": "confirmed the reported location.",
+        "timestamp": "16:00 am",
+        "dateGroup": "9 March, 2024"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_wtk_08_1",
+        "author": "Sultan Al Dhaheri",
+        "text": "@ZaydAl-Farsi this household collection was missed again — can you check the route roster?",
+        "timestamp": "9:05 am",
+        "dateGroup": "Today"
+      },
+      {
+        "id": "cm_wtk_08_2",
+        "author": "Zayd Al-Farsi",
+        "text": "@SultanAlDhaheri checked — driver was rerouted for an incident, re-scheduling pickup for this afternoon.",
+        "timestamp": "9:40 am",
+        "dateGroup": "Today"
+      }
+    ]
+  },
+  {
+    "id": "WTK-09",
+    "uniqueidentifier": "WTK-09",
+    "title": "Dead animal removal reported",
+    "status": "triaged",
+    "systemcol1": "Minor",
+    "systemcol4": "Muhammad Yasir",
+    "systemcol9": "Lot 10",
+    "systemcol10": "Khalifa City",
+    "systemcol11": "+971 510001233",
+    "systemcol12": "IWMP",
+    "systemcol13": "Dead Animals Removal",
+    "systemcol14": "Bulky Waste Removal",
+    "systemcol15": "English",
+    "systemcol16": "Lot 10",
+    "systemcol17": "Elena Petrova",
+    "systemcol18": "Hana Suleiman",
+    "systemcol19": "2d 10h left",
+    "systemcol20": "10 March, 2024 17:03",
+    "systemcol23": "Priya Sharma",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Service Type",
+    "tags": [],
+    "locationCenter": [
+      54.5892,
+      24.4365
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-09_pin_1",
+        "position": [
+          54.5892,
+          24.4365
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via IWMP for dead animals removal at Khalifa City. Assigned to Muhammad Yasir for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-09_1",
+        "actor": "Muhammad Yasir",
+        "action": "confirmed the reported location.",
+        "timestamp": "16:00 am",
+        "dateGroup": "10 March, 2024"
+      },
+      {
+        "id": "tl_WTK-09_2",
+        "actor": "Rania Costa",
+        "action": "escalated to the field supervisor.",
+        "tone": "warning",
+        "timestamp": "17:00 am",
+        "dateGroup": "10 March, 2024"
+      },
+      {
+        "id": "tl_WTK-09_3",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "8:00 am",
+        "dateGroup": "10 March, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      }
+    ]
+  },
+  {
+    "id": "WTK-10",
+    "uniqueidentifier": "WTK-10",
+    "title": "Wrong waste disposal practice reported",
+    "status": "triaged",
+    "systemcol1": "High",
+    "systemcol4": "Rania Costa",
+    "systemcol9": "Lot 11",
+    "systemcol10": "Yas Island",
+    "systemcol11": "+971 510001370",
+    "systemcol12": "Halo",
+    "systemcol13": "Report Wrong Practices",
+    "systemcol14": "Collection & Transportation of Public Realm Bins",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 11",
+    "systemcol17": "Muhammad Yasir",
+    "systemcol18": "Ali Ahmad",
+    "systemcol19": "9h 15m left",
+    "systemcol20": "11 March, 2024 08:10",
+    "systemcol23": "Omar Al Farsi",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Incident",
+    "tags": [],
+    "locationCenter": [
+      54.6006,
+      24.4752
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-10_pin_1",
+        "position": [
+          54.6006,
+          24.4752
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via Halo for report wrong practices at Yas Island. Assigned to Rania Costa for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-10_1",
+        "actor": "Rania Costa",
+        "action": "escalated to the field supervisor.",
+        "tone": "warning",
+        "timestamp": "17:00 am",
+        "dateGroup": "11 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-11",
+    "uniqueidentifier": "WTK-11",
+    "title": "Residential waste pile-up",
+    "status": "triaged",
+    "systemcol1": "Minor",
+    "systemcol4": "Vikram Singh",
+    "systemcol9": "Lot 12",
+    "systemcol10": "Al Reem Island",
+    "systemcol11": "+971 510001507",
+    "systemcol12": "TAMM",
+    "systemcol13": "Residential Waste Removal",
+    "systemcol14": "Street Cleaning & Litter Control",
+    "systemcol15": "English",
+    "systemcol16": "Lot 12",
+    "systemcol17": "Sultan Al Dhaheri",
+    "systemcol18": "Zayd Al-Farsi",
+    "systemcol19": "3d 2h left",
+    "systemcol20": "12 March, 2024 09:17",
+    "systemcol23": "Noura Al Suwaidi",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Complaint",
+    "tags": [],
+    "locationCenter": [
+      54.4058,
+      24.4916
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-11_pin_1",
+        "position": [
+          54.4058,
+          24.4916
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via TAMM for residential waste removal at Al Reem Island. Assigned to Vikram Singh for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-11_1",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "8:00 am",
+        "dateGroup": "12 March, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      },
+      {
+        "id": "tl_WTK-11_2",
+        "actor": "Sultan Al Dhaheri",
+        "action": "scheduled the crew for pickup.",
+        "tone": "success",
+        "timestamp": "9:00 am",
+        "dateGroup": "12 March, 2024",
+        "badge": {
+          "label": "SCHEDULED",
+          "tone": "success"
+        }
+      }
+    ]
+  },
+  {
+    "id": "WTK-12",
+    "uniqueidentifier": "WTK-12",
+    "title": "Green waste collection request",
+    "status": "triaged",
+    "systemcol1": "Critical",
+    "systemcol4": "Khalid Al-Mansoori",
+    "systemcol9": "Lot 13",
+    "systemcol10": "Mussafah",
+    "systemcol11": "+971 510001644",
+    "systemcol12": "HALA",
+    "systemcol13": "Green Waste Collection",
+    "systemcol14": "Bulky Waste Removal",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 13",
+    "systemcol17": "Elena Petrova",
+    "systemcol18": "Hana Suleiman",
+    "systemcol19": "22h 5m left",
+    "systemcol20": "13 March, 2024 10:24",
+    "systemcol23": "Rahul Verma",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Service Type",
+    "tags": [],
+    "locationCenter": [
+      54.4054,
+      24.3367
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-12_pin_1",
+        "position": [
+          54.4054,
+          24.3367
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via HALA for green waste collection at Mussafah. Assigned to Khalid Al-Mansoori for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-12_1",
+        "actor": "Sultan Al Dhaheri",
+        "action": "scheduled the crew for pickup.",
+        "tone": "success",
+        "timestamp": "9:00 am",
+        "dateGroup": "13 March, 2024",
+        "badge": {
+          "label": "SCHEDULED",
+          "tone": "success"
+        }
+      },
+      {
+        "id": "tl_WTK-12_2",
+        "actor": "Elena Petrova",
+        "action": "updated the ticket details.",
+        "timestamp": "10:00 am",
+        "dateGroup": "13 March, 2024"
+      },
+      {
+        "id": "tl_WTK-12_3",
+        "actor": "Muhammad Yasir",
+        "action": "confirmed the reported location.",
+        "timestamp": "11:00 am",
+        "dateGroup": "13 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-13",
+    "uniqueidentifier": "WTK-13",
+    "title": "Waste container needs cleaning",
+    "status": "in-progress",
+    "systemcol1": "High",
+    "systemcol4": [
+      "Zayd Al-Farsi",
+      "Rania Costa"
+    ],
+    "systemcol9": "Lot 14",
+    "systemcol10": "Al Ain",
+    "systemcol11": "+971 510001781",
+    "systemcol12": "UIS",
+    "systemcol13": "Waste Container Cleaning",
+    "systemcol14": "Collection & Transportation of Public Realm Bins",
+    "systemcol15": "English",
+    "systemcol16": "Lot 14",
+    "systemcol17": "Muhammad Yasir",
+    "systemcol18": "Ali Ahmad",
+    "systemcol19": "6h 50m left",
+    "systemcol20": "14 March, 2024 11:31",
+    "systemcol23": "Aisha Khalid",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Incident",
+    "tags": [],
+    "locationCenter": [
+      55.7561,
+      24.2075
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-13_pin_1",
+        "position": [
+          55.7561,
+          24.2075
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via UIS for waste container cleaning at Al Ain. Assigned to Zayd Al-Farsi for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-13_1",
+        "actor": "Elena Petrova",
+        "action": "updated the ticket details.",
+        "timestamp": "10:00 am",
+        "dateGroup": "14 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-14",
+    "uniqueidentifier": "WTK-14",
+    "title": "Missed household waste collection",
+    "status": "in-progress",
+    "systemcol1": "Minor",
+    "systemcol4": "Muhammad Yasir",
+    "systemcol9": "Lot 15",
+    "systemcol10": "Baniyas",
+    "systemcol11": "+971 510001918",
+    "systemcol12": "IWMP",
+    "systemcol13": "Household Waste Collection",
+    "systemcol14": "Street Cleaning & Litter Control",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 15",
+    "systemcol17": "Sultan Al Dhaheri",
+    "systemcol18": "Zayd Al-Farsi",
+    "systemcol19": "13h 14m left",
+    "systemcol20": "15 March, 2024 12:38",
+    "systemcol23": "Hassan Al Zaabi",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Complaint",
+    "tags": [],
+    "locationCenter": [
+      54.6414,
+      24.3352
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-14_pin_1",
+        "position": [
+          54.6414,
+          24.3352
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via IWMP for household waste collection at Baniyas. Assigned to Muhammad Yasir for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-14_1",
+        "actor": "Muhammad Yasir",
+        "action": "confirmed the reported location.",
+        "timestamp": "11:00 am",
+        "dateGroup": "15 March, 2024"
+      },
+      {
+        "id": "tl_WTK-14_2",
+        "actor": "Rania Costa",
+        "action": "escalated to the field supervisor.",
+        "tone": "warning",
+        "timestamp": "12:00 am",
+        "dateGroup": "15 March, 2024"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_wtk_14_1",
+        "author": "Sultan Al Dhaheri",
+        "text": "@MuhammadYasir please confirm the resident has been notified about the delayed collection.",
+        "timestamp": "11:20 am",
+        "dateGroup": "Today"
+      },
+      {
+        "id": "cm_wtk_14_2",
+        "author": "Muhammad Yasir",
+        "text": "@SultanAlDhaheri confirmed — resident notified by SMS, crew will collect by end of day.",
+        "timestamp": "11:47 am",
+        "dateGroup": "Today"
+      }
+    ]
+  },
+  {
+    "id": "WTK-15",
+    "uniqueidentifier": "WTK-15",
+    "title": "Dead animal removal reported",
+    "status": "in-progress",
+    "systemcol1": "High",
+    "systemcol4": "Rania Costa",
+    "systemcol9": "Lot 16",
+    "systemcol10": "Al Shamkha",
+    "systemcol11": "+971 510002055",
+    "systemcol12": "Halo",
+    "systemcol13": "Dead Animals Removal",
+    "systemcol14": "Bulky Waste Removal",
+    "systemcol15": "English",
+    "systemcol16": "Lot 16",
+    "systemcol17": "Elena Petrova",
+    "systemcol18": "Hana Suleiman",
+    "systemcol19": "1d 2h left",
+    "systemcol20": "16 March, 2024 13:45",
+    "systemcol23": "Meera Nair",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Service Type",
+    "tags": [],
+    "locationCenter": [
+      54.6392,
+      24.2859
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-15_pin_1",
+        "position": [
+          54.6392,
+          24.2859
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via Halo for dead animals removal at Al Shamkha. Assigned to Rania Costa for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-15_1",
+        "actor": "Rania Costa",
+        "action": "escalated to the field supervisor.",
+        "tone": "warning",
+        "timestamp": "12:00 am",
+        "dateGroup": "16 March, 2024"
+      },
+      {
+        "id": "tl_WTK-15_2",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "13:00 am",
+        "dateGroup": "16 March, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      },
+      {
+        "id": "tl_WTK-15_3",
+        "actor": "Sultan Al Dhaheri",
+        "action": "scheduled the crew for pickup.",
+        "tone": "success",
+        "timestamp": "14:00 am",
+        "dateGroup": "16 March, 2024",
+        "badge": {
+          "label": "SCHEDULED",
+          "tone": "success"
+        }
+      }
+    ]
+  },
+  {
+    "id": "WTK-16",
+    "uniqueidentifier": "WTK-16",
+    "title": "Wrong waste disposal practice reported",
+    "status": "in-progress",
+    "systemcol1": "Minor",
+    "systemcol4": "Vikram Singh",
+    "systemcol9": "Lot 17",
+    "systemcol10": "Al Falah",
+    "systemcol11": "+971 510002192",
+    "systemcol12": "TAMM",
+    "systemcol13": "Report Wrong Practices",
+    "systemcol14": "Collection & Transportation of Public Realm Bins",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 17",
+    "systemcol17": "Muhammad Yasir",
+    "systemcol18": "Ali Ahmad",
+    "systemcol19": "4h 30m left",
+    "systemcol20": "17 March, 2024 14:52",
+    "systemcol23": "Tariq Al Nuaimi",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Incident",
+    "tags": [],
+    "locationCenter": [
+      54.6761,
+      24.3494
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-16_pin_1",
+        "position": [
+          54.6761,
+          24.3494
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via TAMM for report wrong practices at Al Falah. Assigned to Vikram Singh for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-16_1",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "13:00 am",
+        "dateGroup": "17 March, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      }
+    ]
+  },
+  {
+    "id": "WTK-17",
+    "uniqueidentifier": "WTK-17",
+    "title": "Residential waste pile-up",
+    "status": "in-progress",
+    "systemcol1": "High",
+    "systemcol4": "Khalid Al-Mansoori",
+    "systemcol9": "Lot 18",
+    "systemcol10": "Khalifa City",
+    "systemcol11": "+971 510002329",
+    "systemcol12": "HALA",
+    "systemcol13": "Residential Waste Removal",
+    "systemcol14": "Street Cleaning & Litter Control",
+    "systemcol15": "English",
+    "systemcol16": "Lot 18",
+    "systemcol17": "Sultan Al Dhaheri",
+    "systemcol18": "Zayd Al-Farsi",
+    "systemcol19": "20h 0m left",
+    "systemcol20": "18 March, 2024 15:59",
+    "systemcol23": "Dina Rahman",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Complaint",
+    "tags": [],
+    "locationCenter": [
+      54.5932,
+      24.4285
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-17_pin_1",
+        "position": [
+          54.5932,
+          24.4285
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via HALA for residential waste removal at Khalifa City. Assigned to Khalid Al-Mansoori for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-17_1",
+        "actor": "Sultan Al Dhaheri",
+        "action": "scheduled the crew for pickup.",
+        "tone": "success",
+        "timestamp": "14:00 am",
+        "dateGroup": "18 March, 2024",
+        "badge": {
+          "label": "SCHEDULED",
+          "tone": "success"
+        }
+      },
+      {
+        "id": "tl_WTK-17_2",
+        "actor": "Elena Petrova",
+        "action": "updated the ticket details.",
+        "timestamp": "15:00 am",
+        "dateGroup": "18 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-18",
+    "uniqueidentifier": "WTK-18",
+    "title": "Green waste collection request",
+    "status": "in-progress",
+    "systemcol1": "Critical",
+    "systemcol4": "Zayd Al-Farsi",
+    "systemcol9": "Lot 19",
+    "systemcol10": "Yas Island",
+    "systemcol11": "+971 510002466",
+    "systemcol12": "UIS",
+    "systemcol13": "Green Waste Collection",
+    "systemcol14": "Bulky Waste Removal",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 19",
+    "systemcol17": "Elena Petrova",
+    "systemcol18": "Hana Suleiman",
+    "systemcol19": "2d 1h left",
+    "systemcol20": "19 March, 2024 16:06",
+    "systemcol23": "Salim Al Kaabi",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Service Type",
+    "tags": [],
+    "locationCenter": [
+      54.6046,
+      24.4672
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-18_pin_1",
+        "position": [
+          54.6046,
+          24.4672
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via UIS for green waste collection at Yas Island. Assigned to Zayd Al-Farsi for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-18_1",
+        "actor": "Elena Petrova",
+        "action": "updated the ticket details.",
+        "timestamp": "15:00 am",
+        "dateGroup": "19 March, 2024"
+      },
+      {
+        "id": "tl_WTK-18_2",
+        "actor": "Muhammad Yasir",
+        "action": "confirmed the reported location.",
+        "timestamp": "16:00 am",
+        "dateGroup": "19 March, 2024"
+      },
+      {
+        "id": "tl_WTK-18_3",
+        "actor": "Rania Costa",
+        "action": "escalated to the field supervisor.",
+        "tone": "warning",
+        "timestamp": "17:00 am",
+        "dateGroup": "19 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-19",
+    "uniqueidentifier": "WTK-19",
+    "title": "Waste container needs cleaning",
+    "status": "resolved",
+    "systemcol1": "Minor",
+    "systemcol4": "Muhammad Yasir",
+    "systemcol9": "Lot 20",
+    "systemcol10": "Al Reem Island",
+    "systemcol11": "+971 510002603",
+    "systemcol12": "IWMP",
+    "systemcol13": "Waste Container Cleaning",
+    "systemcol14": "Collection & Transportation of Public Realm Bins",
+    "systemcol15": "English",
+    "systemcol16": "Lot 20",
+    "systemcol17": "Muhammad Yasir",
+    "systemcol18": "Ali Ahmad",
+    "systemcol19": "–",
+    "systemcol20": "20 March, 2024 17:13",
+    "systemcol23": "Anjali Desai",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Incident",
+    "tags": [],
+    "locationCenter": [
+      54.4098,
+      24.5036
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-19_pin_1",
+        "position": [
+          54.4098,
+          24.5036
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via IWMP for waste container cleaning at Al Reem Island. Assigned to Muhammad Yasir for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-19_1",
+        "actor": "Muhammad Yasir",
+        "action": "confirmed the reported location.",
+        "timestamp": "16:00 am",
+        "dateGroup": "20 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-20",
+    "uniqueidentifier": "WTK-20",
+    "title": "Missed household waste collection",
+    "status": "resolved",
+    "systemcol1": "High",
+    "systemcol4": "Rania Costa",
+    "systemcol9": "Lot 21",
+    "systemcol10": "Mussafah",
+    "systemcol11": "+971 510002740",
+    "systemcol12": "Halo",
+    "systemcol13": "Household Waste Collection",
+    "systemcol14": "Street Cleaning & Litter Control",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 21",
+    "systemcol17": "Sultan Al Dhaheri",
+    "systemcol18": "Zayd Al-Farsi",
+    "systemcol19": "–",
+    "systemcol20": "21 March, 2024 08:20",
+    "systemcol23": "Khalid Saeed",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Complaint",
+    "tags": [],
+    "locationCenter": [
+      54.4094,
+      24.3487
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-20_pin_1",
+        "position": [
+          54.4094,
+          24.3487
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via Halo for household waste collection at Mussafah. Assigned to Rania Costa for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-20_1",
+        "actor": "Rania Costa",
+        "action": "escalated to the field supervisor.",
+        "tone": "warning",
+        "timestamp": "17:00 am",
+        "dateGroup": "21 March, 2024"
+      },
+      {
+        "id": "tl_WTK-20_2",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "8:00 am",
+        "dateGroup": "21 March, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_wtk_20_1",
+        "author": "Sultan Al Dhaheri",
+        "text": "@RaniaCosta can you verify the compliance window on this one before it breaches?",
+        "timestamp": "2:15 pm",
+        "dateGroup": "Today"
+      },
+      {
+        "id": "cm_wtk_20_2",
+        "author": "Rania Costa",
+        "text": "@SultanAlDhaheri verified — still within window, crew dispatched, ETA 40 minutes.",
+        "timestamp": "2:38 pm",
+        "dateGroup": "Today"
+      }
+    ]
+  },
+  {
+    "id": "WTK-21",
+    "uniqueidentifier": "WTK-21",
+    "title": "Dead animal removal reported",
+    "status": "closed",
+    "systemcol1": "High",
+    "systemcol4": "Vikram Singh",
+    "systemcol9": "Lot 22",
+    "systemcol10": "Al Ain",
+    "systemcol11": "+971 510002877",
+    "systemcol12": "TAMM",
+    "systemcol13": "Dead Animals Removal",
+    "systemcol14": "Bulky Waste Removal",
+    "systemcol15": "English",
+    "systemcol16": "Lot 22",
+    "systemcol17": "Elena Petrova",
+    "systemcol18": "Hana Suleiman",
+    "systemcol19": "–",
+    "systemcol20": "22 March, 2024 09:27",
+    "systemcol23": "Rajesh Patel",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Service Type",
+    "tags": [],
+    "locationCenter": [
+      55.7601,
+      24.1995
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-21_pin_1",
+        "position": [
+          55.7601,
+          24.1995
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via TAMM for dead animals removal at Al Ain. Assigned to Vikram Singh for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-21_1",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "8:00 am",
+        "dateGroup": "22 March, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      },
+      {
+        "id": "tl_WTK-21_2",
+        "actor": "Sultan Al Dhaheri",
+        "action": "scheduled the crew for pickup.",
+        "tone": "success",
+        "timestamp": "9:00 am",
+        "dateGroup": "22 March, 2024",
+        "badge": {
+          "label": "SCHEDULED",
+          "tone": "success"
+        }
+      },
+      {
+        "id": "tl_WTK-21_3",
+        "actor": "Elena Petrova",
+        "action": "updated the ticket details.",
+        "timestamp": "10:00 am",
+        "dateGroup": "22 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-22",
+    "uniqueidentifier": "WTK-22",
+    "title": "Wrong waste disposal practice reported",
+    "status": "closed",
+    "systemcol1": "Minor",
+    "systemcol4": "Khalid Al-Mansoori",
+    "systemcol9": "Lot 23",
+    "systemcol10": "Baniyas",
+    "systemcol11": "+971 510003014",
+    "systemcol12": "HALA",
+    "systemcol13": "Report Wrong Practices",
+    "systemcol14": "Collection & Transportation of Public Realm Bins",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 23",
+    "systemcol17": "Muhammad Yasir",
+    "systemcol18": "Ali Ahmad",
+    "systemcol19": "–",
+    "systemcol20": "23 March, 2024 10:34",
+    "systemcol23": "Arjun Kumar",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Incident",
+    "tags": [],
+    "locationCenter": [
+      54.6174,
+      24.3272
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-22_pin_1",
+        "position": [
+          54.6174,
+          24.3272
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via HALA for report wrong practices at Baniyas. Assigned to Khalid Al-Mansoori for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-22_1",
+        "actor": "Sultan Al Dhaheri",
+        "action": "scheduled the crew for pickup.",
+        "tone": "success",
+        "timestamp": "9:00 am",
+        "dateGroup": "23 March, 2024",
+        "badge": {
+          "label": "SCHEDULED",
+          "tone": "success"
+        }
+      }
+    ]
+  },
+  {
+    "id": "WTK-23",
+    "uniqueidentifier": "WTK-23",
+    "title": "Residential waste pile-up",
+    "status": "closed",
+    "systemcol1": "High",
+    "systemcol4": "Zayd Al-Farsi",
+    "systemcol9": "Lot 24",
+    "systemcol10": "Al Shamkha",
+    "systemcol11": "+971 510003151",
+    "systemcol12": "UIS",
+    "systemcol13": "Residential Waste Removal",
+    "systemcol14": "Street Cleaning & Litter Control",
+    "systemcol15": "English",
+    "systemcol16": "Lot 24",
+    "systemcol17": "Sultan Al Dhaheri",
+    "systemcol18": "Zayd Al-Farsi",
+    "systemcol19": "–",
+    "systemcol20": "24 March, 2024 11:41",
+    "systemcol23": "Kamal Hassan",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Complaint",
+    "tags": [],
+    "locationCenter": [
+      54.6432,
+      24.2779
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-23_pin_1",
+        "position": [
+          54.6432,
+          24.2779
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via UIS for residential waste removal at Al Shamkha. Assigned to Zayd Al-Farsi for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-23_1",
+        "actor": "Elena Petrova",
+        "action": "updated the ticket details.",
+        "timestamp": "10:00 am",
+        "dateGroup": "24 March, 2024"
+      },
+      {
+        "id": "tl_WTK-23_2",
+        "actor": "Muhammad Yasir",
+        "action": "confirmed the reported location.",
+        "timestamp": "11:00 am",
+        "dateGroup": "24 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-24",
+    "uniqueidentifier": "WTK-24",
+    "title": "Green waste collection request",
+    "status": "closed",
+    "systemcol1": "Critical",
+    "systemcol4": "Muhammad Yasir",
+    "systemcol9": "Lot 25",
+    "systemcol10": "Al Falah",
+    "systemcol11": "+971 510003288",
+    "systemcol12": "IWMP",
+    "systemcol13": "Green Waste Collection",
+    "systemcol14": "Bulky Waste Removal",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 25",
+    "systemcol17": "Elena Petrova",
+    "systemcol18": "Hana Suleiman",
+    "systemcol19": "–",
+    "systemcol20": "25 March, 2024 12:48",
+    "systemcol23": "Fatima Noor",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Service Type",
+    "tags": [],
+    "locationCenter": [
+      54.6801,
+      24.3614
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-24_pin_1",
+        "position": [
+          54.6801,
+          24.3614
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via IWMP for green waste collection at Al Falah. Assigned to Muhammad Yasir for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-24_1",
+        "actor": "Muhammad Yasir",
+        "action": "confirmed the reported location.",
+        "timestamp": "11:00 am",
+        "dateGroup": "25 March, 2024"
+      },
+      {
+        "id": "tl_WTK-24_2",
+        "actor": "Rania Costa",
+        "action": "escalated to the field supervisor.",
+        "tone": "warning",
+        "timestamp": "12:00 am",
+        "dateGroup": "25 March, 2024"
+      },
+      {
+        "id": "tl_WTK-24_3",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "13:00 am",
+        "dateGroup": "25 March, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      }
+    ]
+  },
+  {
+    "id": "WTK-25",
+    "uniqueidentifier": "WTK-25",
+    "title": "Waste container needs cleaning",
+    "status": "overdue",
+    "systemcol1": "High",
+    "systemcol4": "Rania Costa",
+    "systemcol9": "Lot 26",
+    "systemcol10": "Khalifa City",
+    "systemcol11": "+971 510003425",
+    "systemcol12": "Halo",
+    "systemcol13": "Waste Container Cleaning",
+    "systemcol14": "Collection & Transportation of Public Realm Bins",
+    "systemcol15": "English",
+    "systemcol16": "Lot 26",
+    "systemcol17": "Muhammad Yasir",
+    "systemcol18": "Ali Ahmad",
+    "systemcol19": "+4h",
+    "systemcol20": "26 March, 2024 13:55",
+    "systemcol23": "Sara Al Mansoori",
+    "systemcol24": "Yes",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Incident",
+    "tags": [],
+    "locationCenter": [
+      54.5972,
+      24.4405
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-25_pin_1",
+        "position": [
+          54.5972,
+          24.4405
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via Halo for waste container cleaning at Khalifa City. Assigned to Rania Costa for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-25_1",
+        "actor": "Rania Costa",
+        "action": "escalated to the field supervisor.",
+        "tone": "warning",
+        "timestamp": "12:00 am",
+        "dateGroup": "26 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-26",
+    "uniqueidentifier": "WTK-26",
+    "title": "Missed household waste collection",
+    "status": "overdue",
+    "systemcol1": "Minor",
+    "systemcol4": "Vikram Singh",
+    "systemcol9": "Lot 27",
+    "systemcol10": "Yas Island",
+    "systemcol11": "+971 510003562",
+    "systemcol12": "TAMM",
+    "systemcol13": "Household Waste Collection",
+    "systemcol14": "Street Cleaning & Litter Control",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 27",
+    "systemcol17": "Sultan Al Dhaheri",
+    "systemcol18": "Zayd Al-Farsi",
+    "systemcol19": "+3h 24m",
+    "systemcol20": "27 March, 2024 14:02",
+    "systemcol23": "Youssef Ibrahim",
+    "systemcol24": "Yes",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Complaint",
+    "tags": [],
+    "locationCenter": [
+      54.6086,
+      24.4592
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-26_pin_1",
+        "position": [
+          54.6086,
+          24.4592
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via TAMM for household waste collection at Yas Island. Assigned to Vikram Singh for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-26_1",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "13:00 am",
+        "dateGroup": "27 March, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      },
+      {
+        "id": "tl_WTK-26_2",
+        "actor": "Sultan Al Dhaheri",
+        "action": "scheduled the crew for pickup.",
+        "tone": "success",
+        "timestamp": "14:00 am",
+        "dateGroup": "27 March, 2024",
+        "badge": {
+          "label": "SCHEDULED",
+          "tone": "success"
+        }
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_wtk_26_1",
+        "author": "Sultan Al Dhaheri",
+        "text": "@VikramSingh can you confirm the crew reschedule for this household pickup?",
+        "timestamp": "8:50 am",
+        "dateGroup": "Today"
+      },
+      {
+        "id": "cm_wtk_26_2",
+        "author": "Vikram Singh",
+        "text": "@SultanAlDhaheri confirmed — crew re-routed, pickup booked for first run tomorrow.",
+        "timestamp": "9:14 am",
+        "dateGroup": "Today"
+      }
+    ]
+  },
+  {
+    "id": "WTK-27",
+    "uniqueidentifier": "WTK-27",
+    "title": "Dead animal removal reported",
+    "status": "overdue",
+    "systemcol1": "High",
+    "systemcol4": "Khalid Al-Mansoori",
+    "systemcol9": "Lot 28",
+    "systemcol10": "Al Reem Island",
+    "systemcol11": "+971 510003699",
+    "systemcol12": "HALA",
+    "systemcol13": "Dead Animals Removal",
+    "systemcol14": "Bulky Waste Removal",
+    "systemcol15": "English",
+    "systemcol16": "Lot 28",
+    "systemcol17": "Elena Petrova",
+    "systemcol18": "Hana Suleiman",
+    "systemcol19": "+45m",
+    "systemcol20": "1 March, 2024 15:09",
+    "systemcol23": "Layla Haddad",
+    "systemcol24": "Yes",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Service Type",
+    "tags": [],
+    "locationCenter": [
+      54.4138,
+      24.4956
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-27_pin_1",
+        "position": [
+          54.4138,
+          24.4956
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via HALA for dead animals removal at Al Reem Island. Assigned to Khalid Al-Mansoori for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-27_1",
+        "actor": "Sultan Al Dhaheri",
+        "action": "scheduled the crew for pickup.",
+        "tone": "success",
+        "timestamp": "14:00 am",
+        "dateGroup": "1 March, 2024",
+        "badge": {
+          "label": "SCHEDULED",
+          "tone": "success"
+        }
+      },
+      {
+        "id": "tl_WTK-27_2",
+        "actor": "Elena Petrova",
+        "action": "updated the ticket details.",
+        "timestamp": "15:00 am",
+        "dateGroup": "1 March, 2024"
+      },
+      {
+        "id": "tl_WTK-27_3",
+        "actor": "Muhammad Yasir",
+        "action": "confirmed the reported location.",
+        "timestamp": "16:00 am",
+        "dateGroup": "1 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-28",
+    "uniqueidentifier": "WTK-28",
+    "title": "Wrong waste disposal practice reported",
+    "status": "overdue",
+    "systemcol1": "Minor",
+    "systemcol4": "Zayd Al-Farsi",
+    "systemcol9": "Lot 29",
+    "systemcol10": "Mussafah",
+    "systemcol11": "+971 510003836",
+    "systemcol12": "UIS",
+    "systemcol13": "Report Wrong Practices",
+    "systemcol14": "Collection & Transportation of Public Realm Bins",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 29",
+    "systemcol17": "Muhammad Yasir",
+    "systemcol18": "Ali Ahmad",
+    "systemcol19": "+1d 2h",
+    "systemcol20": "2 March, 2024 16:16",
+    "systemcol23": "Vikram Mehta",
+    "systemcol24": "Yes",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Incident",
+    "tags": [],
+    "locationCenter": [
+      54.4134,
+      24.3407
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-28_pin_1",
+        "position": [
+          54.4134,
+          24.3407
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via UIS for report wrong practices at Mussafah. Assigned to Zayd Al-Farsi for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-28_1",
+        "actor": "Elena Petrova",
+        "action": "updated the ticket details.",
+        "timestamp": "15:00 am",
+        "dateGroup": "2 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-29",
+    "uniqueidentifier": "WTK-29",
+    "title": "Residential waste pile-up",
+    "status": "overdue",
+    "systemcol1": "High",
+    "systemcol4": "Muhammad Yasir",
+    "systemcol9": "Lot 30",
+    "systemcol10": "Al Ain",
+    "systemcol11": "+971 510003973",
+    "systemcol12": "IWMP",
+    "systemcol13": "Residential Waste Removal",
+    "systemcol14": "Street Cleaning & Litter Control",
+    "systemcol15": "English",
+    "systemcol16": "Lot 30",
+    "systemcol17": "Sultan Al Dhaheri",
+    "systemcol18": "Zayd Al-Farsi",
+    "systemcol19": "+6h 10m",
+    "systemcol20": "3 March, 2024 17:23",
+    "systemcol23": "Priya Sharma",
+    "systemcol24": "Yes",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Complaint",
+    "tags": [],
+    "locationCenter": [
+      55.7361,
+      24.2115
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-29_pin_1",
+        "position": [
+          55.7361,
+          24.2115
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via IWMP for residential waste removal at Al Ain. Assigned to Muhammad Yasir for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-29_1",
+        "actor": "Muhammad Yasir",
+        "action": "confirmed the reported location.",
+        "timestamp": "16:00 am",
+        "dateGroup": "3 March, 2024"
+      },
+      {
+        "id": "tl_WTK-29_2",
+        "actor": "Rania Costa",
+        "action": "escalated to the field supervisor.",
+        "tone": "warning",
+        "timestamp": "17:00 am",
+        "dateGroup": "3 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-30",
+    "uniqueidentifier": "WTK-30",
+    "title": "Green waste collection request",
+    "status": "overdue",
+    "systemcol1": "Minor",
+    "systemcol4": "Rania Costa",
+    "systemcol9": "Lot 1",
+    "systemcol10": "Baniyas",
+    "systemcol11": "+971 510004110",
+    "systemcol12": "Halo",
+    "systemcol13": "Green Waste Collection",
+    "systemcol14": "Bulky Waste Removal",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 1",
+    "systemcol17": "Elena Petrova",
+    "systemcol18": "Hana Suleiman",
+    "systemcol19": "+2h 5m",
+    "systemcol20": "4 March, 2024 08:30",
+    "systemcol23": "Omar Al Farsi",
+    "systemcol24": "Yes",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Service Type",
+    "tags": [],
+    "locationCenter": [
+      54.6214,
+      24.3392
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-30_pin_1",
+        "position": [
+          54.6214,
+          24.3392
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via Halo for green waste collection at Baniyas. Assigned to Rania Costa for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-30_1",
+        "actor": "Rania Costa",
+        "action": "escalated to the field supervisor.",
+        "tone": "warning",
+        "timestamp": "17:00 am",
+        "dateGroup": "4 March, 2024"
+      },
+      {
+        "id": "tl_WTK-30_2",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "8:00 am",
+        "dateGroup": "4 March, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      },
+      {
+        "id": "tl_WTK-30_3",
+        "actor": "Sultan Al Dhaheri",
+        "action": "scheduled the crew for pickup.",
+        "tone": "success",
+        "timestamp": "9:00 am",
+        "dateGroup": "4 March, 2024",
+        "badge": {
+          "label": "SCHEDULED",
+          "tone": "success"
+        }
+      }
+    ]
+  },
+  {
+    "id": "WTK-31",
+    "uniqueidentifier": "WTK-31",
+    "title": "Waste container needs cleaning",
+    "status": "overdue",
+    "systemcol1": "High",
+    "systemcol4": "Vikram Singh",
+    "systemcol9": "Lot 2",
+    "systemcol10": "Al Shamkha",
+    "systemcol11": "+971 510004247",
+    "systemcol12": "TAMM",
+    "systemcol13": "Waste Container Cleaning",
+    "systemcol14": "Collection & Transportation of Public Realm Bins",
+    "systemcol15": "English",
+    "systemcol16": "Lot 2",
+    "systemcol17": "Muhammad Yasir",
+    "systemcol18": "Ali Ahmad",
+    "systemcol19": "+12h 40m",
+    "systemcol20": "5 March, 2024 09:37",
+    "systemcol23": "Noura Al Suwaidi",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Incident",
+    "tags": [],
+    "locationCenter": [
+      54.6472,
+      24.2699
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-31_pin_1",
+        "position": [
+          54.6472,
+          24.2699
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via TAMM for waste container cleaning at Al Shamkha. Assigned to Vikram Singh for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-31_1",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "8:00 am",
+        "dateGroup": "5 March, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      }
+    ]
+  },
+  {
+    "id": "WTK-32",
+    "uniqueidentifier": "WTK-32",
+    "title": "Missed household waste collection",
+    "status": "rejected",
+    "systemcol1": "High",
+    "systemcol4": "Khalid Al-Mansoori",
+    "systemcol9": "Lot 3",
+    "systemcol10": "Al Falah",
+    "systemcol11": "+971 510004384",
+    "systemcol12": "HALA",
+    "systemcol13": "Household Waste Collection",
+    "systemcol14": "Street Cleaning & Litter Control",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 3",
+    "systemcol17": "Sultan Al Dhaheri",
+    "systemcol18": "Zayd Al-Farsi",
+    "systemcol19": "–",
+    "systemcol20": "6 March, 2024 10:44",
+    "systemcol23": "Rahul Verma",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Complaint",
+    "tags": [],
+    "locationCenter": [
+      54.6841,
+      24.3534
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-32_pin_1",
+        "position": [
+          54.6841,
+          24.3534
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via HALA for household waste collection at Al Falah. Assigned to Khalid Al-Mansoori for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-32_1",
+        "actor": "Sultan Al Dhaheri",
+        "action": "scheduled the crew for pickup.",
+        "tone": "success",
+        "timestamp": "9:00 am",
+        "dateGroup": "6 March, 2024",
+        "badge": {
+          "label": "SCHEDULED",
+          "tone": "success"
+        }
+      },
+      {
+        "id": "tl_WTK-32_2",
+        "actor": "Elena Petrova",
+        "action": "updated the ticket details.",
+        "timestamp": "10:00 am",
+        "dateGroup": "6 March, 2024"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_wtk_32_1",
+        "author": "Sultan Al Dhaheri",
+        "text": "@KhalidAl-Mansoori please confirm this ticket is still on track for today's compliance window.",
+        "timestamp": "3:30 pm",
+        "dateGroup": "Today"
+      },
+      {
+        "id": "cm_wtk_32_2",
+        "author": "Khalid Al-Mansoori",
+        "text": "@SultanAlDhaheri confirmed — on track, crew is en route now.",
+        "timestamp": "3:52 pm",
+        "dateGroup": "Today"
+      }
+    ]
+  },
+  {
+    "id": "WTK-33",
+    "uniqueidentifier": "WTK-33",
+    "title": "Dead animal removal reported",
+    "status": "rejected",
+    "systemcol1": "Medium",
+    "systemcol4": "Zayd Al-Farsi",
+    "systemcol9": "Lot 4",
+    "systemcol10": "Khalifa City",
+    "systemcol11": "+971 510004521",
+    "systemcol12": "UIS",
+    "systemcol13": "Dead Animals Removal",
+    "systemcol14": "Bulky Waste Removal",
+    "systemcol15": "English",
+    "systemcol16": "Lot 4",
+    "systemcol17": "Elena Petrova",
+    "systemcol18": "Hana Suleiman",
+    "systemcol19": "–",
+    "systemcol20": "7 March, 2024 11:51",
+    "systemcol23": "Aisha Khalid",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Service Type",
+    "tags": [],
+    "locationCenter": [
+      54.6012,
+      24.4325
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-33_pin_1",
+        "position": [
+          54.6012,
+          24.4325
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via UIS for dead animals removal at Khalifa City. Assigned to Zayd Al-Farsi for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-33_1",
+        "actor": "Elena Petrova",
+        "action": "updated the ticket details.",
+        "timestamp": "10:00 am",
+        "dateGroup": "7 March, 2024"
+      },
+      {
+        "id": "tl_WTK-33_2",
+        "actor": "Muhammad Yasir",
+        "action": "confirmed the reported location.",
+        "timestamp": "11:00 am",
+        "dateGroup": "7 March, 2024"
+      },
+      {
+        "id": "tl_WTK-33_3",
+        "actor": "Rania Costa",
+        "action": "escalated to the field supervisor.",
+        "tone": "warning",
+        "timestamp": "12:00 am",
+        "dateGroup": "7 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-34",
+    "uniqueidentifier": "WTK-34",
+    "title": "Wrong waste disposal practice reported",
+    "status": "rejected",
+    "systemcol1": "High",
+    "systemcol4": "Muhammad Yasir",
+    "systemcol9": "Lot 5",
+    "systemcol10": "Yas Island",
+    "systemcol11": "+971 510004658",
+    "systemcol12": "IWMP",
+    "systemcol13": "Report Wrong Practices",
+    "systemcol14": "Collection & Transportation of Public Realm Bins",
+    "systemcol15": "Arabic",
+    "systemcol16": "Lot 5",
+    "systemcol17": "Muhammad Yasir",
+    "systemcol18": "Ali Ahmad",
+    "systemcol19": "–",
+    "systemcol20": "8 March, 2024 12:58",
+    "systemcol23": "Hassan Al Zaabi",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Incident",
+    "tags": [],
+    "locationCenter": [
+      54.6126,
+      24.4712
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-34_pin_1",
+        "position": [
+          54.6126,
+          24.4712
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via IWMP for report wrong practices at Yas Island. Assigned to Muhammad Yasir for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-34_1",
+        "actor": "Muhammad Yasir",
+        "action": "confirmed the reported location.",
+        "timestamp": "11:00 am",
+        "dateGroup": "8 March, 2024"
+      }
+    ]
+  },
+  {
+    "id": "WTK-35",
+    "uniqueidentifier": "WTK-35",
+    "title": "Residential waste pile-up",
+    "status": "rejected",
+    "systemcol1": "Medium",
+    "systemcol4": "Rania Costa",
+    "systemcol9": "Lot 6",
+    "systemcol10": "Al Reem Island",
+    "systemcol11": "+971 510004795",
+    "systemcol12": "Halo",
+    "systemcol13": "Residential Waste Removal",
+    "systemcol14": "Street Cleaning & Litter Control",
+    "systemcol15": "English",
+    "systemcol16": "Lot 6",
+    "systemcol17": "Sultan Al Dhaheri",
+    "systemcol18": "Zayd Al-Farsi",
+    "systemcol19": "–",
+    "systemcol20": "9 March, 2024 13:05",
+    "systemcol23": "Meera Nair",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Complaint",
+    "tags": [],
+    "locationCenter": [
+      54.4178,
+      24.5076
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-35_pin_1",
+        "position": [
+          54.4178,
+          24.5076
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "notes": [
+      "Reported via Halo for residential waste removal at Al Reem Island. Assigned to Rania Costa for follow-up within the compliance window."
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_WTK-35_1",
+        "actor": "Rania Costa",
+        "action": "escalated to the field supervisor.",
+        "tone": "warning",
+        "timestamp": "12:00 am",
+        "dateGroup": "9 March, 2024"
+      },
+      {
+        "id": "tl_WTK-35_2",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "13:00 am",
+        "dateGroup": "9 March, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      }
+    ]
+  },
+  {
+    "id": "WTK-AA",
+    "uniqueidentifier": "WTK-36",
+    "title": "Waste container needs cleaning",
+    "status": "triaged",
+    "systemcol1": "Critical",
+    "systemcol4": "Vikram Singh",
+    "systemcol9": "Lot 2",
+    "systemcol10": "Mussafah",
+    "systemcol11": "+971 504200000",
+    "systemcol12": "TAMM",
+    "systemcol13": "Waste Container Cleaning",
+    "systemcol14": "Collection & Transportation of Public Realm Bins",
+    "systemcol15": "English",
+    "systemcol16": "Lot 2",
+    "systemcol17": "Muhammad Yasir",
+    "systemcol18": "Ali Ahmad",
+    "systemcol19": "2d 5h 3m left",
+    "systemcol20": "22 March, 2024 14:15",
+    "systemcol23": "Ahmad Ali",
+    "systemcol24": "No",
+    "systemcol25": "2.0 Solid Waste Collection & Transportation",
+    "systemcol26": "Failure to collect within timeframe.",
+    "systemcol27": "12h (normal), 1h (if overflowing).",
+    "systemcol30": "Service Type",
+    "tags": [],
+    "locationCenter": [
+      54.3705,
+      24.3407
+    ],
+    "locationPins": [
+      {
+        "id": "WTK-AA_pin_1",
+        "position": [
+          54.3705,
+          24.3407
+        ],
+        "color": "#f04438"
+      }
+    ],
+    "locationPolygons": [
+      {
+        "id": "zone-a",
+        "color": "#22c882",
+        "points": [
+          [
+            54.367,
+            24.344
+          ],
+          [
+            54.374,
+            24.344
+          ],
+          [
+            54.374,
+            24.3375
+          ],
+          [
+            54.367,
+            24.3375
+          ]
+        ]
+      }
+    ],
+    "locationCornerLabel": "Sector",
+    "locationCornerValue": "Sector A",
+    "notes": [
+      "Customer reported a strong odor and overflow from the communal waste container outside Building 12, Mussafah industrial sector. Container appears to not have been serviced on the last two scheduled collection days.",
+      "Field team notified; a route-check dispatch has been logged for the assigned collection crew to confirm the last service date and reschedule pickup within the compliance window."
+    ],
+    "beforePhotos": [
+      {
+        "src": "https://picsum.photos/seed/wtk-aa-1/640/640",
+        "alt": "Overflowing waste container, Mussafah",
+        "caption": "Container overflow, Building 12"
+      },
+      {
+        "src": "https://picsum.photos/seed/wtk-aa-2/640/640",
+        "alt": "Waste spillage on ground near container",
+        "caption": "Spillage around container base"
+      }
+    ],
+    "timelineEvents": [
+      {
+        "id": "tl_aa_1",
+        "actor": "Khalid Al-Mansoori",
+        "action": "validated the event.",
+        "tone": "warning",
+        "timestamp": "9:49 am",
+        "dateGroup": "28 Dec, 2024",
+        "badge": {
+          "label": "VALIDATED",
+          "tone": "warning"
+        }
+      },
+      {
+        "id": "tl_aa_2",
+        "actor": "Khalid Al-Mansoori",
+        "action": "scheduled the event.",
+        "tone": "success",
+        "timestamp": "11:08 am",
+        "dateGroup": "28 Dec, 2024",
+        "badge": {
+          "label": "SCHEDULED",
+          "tone": "success"
+        }
+      },
+      {
+        "id": "tl_aa_3",
+        "actor": "Khalid Al-Mansoori",
+        "action": "updated info.",
+        "timestamp": "11:16 am",
+        "dateGroup": "28 Dec, 2024"
+      },
+      {
+        "id": "tl_aa_4",
+        "actor": "Khalid Al-Mansoori",
+        "action": "updated info.",
+        "timestamp": "01:07 pm",
+        "dateGroup": "28 Dec, 2024"
+      }
+    ],
+    "comments": [
+      {
+        "id": "cm_aa_1",
+        "author": "Khalid Al-Mansoori",
+        "text": "@ZaydAl-Farsi can you confirm the crew reschedule for tomorrow morning before the compliance window closes?",
+        "timestamp": "1:40 pm",
+        "dateGroup": "Today"
+      },
+      {
+        "id": "cm_aa_2",
+        "author": "Zayd Al-Farsi",
+        "text": "@KhalidAl-Mansoori confirmed — crew re-routed, pickup booked for 7am tomorrow, container will be serviced within window.",
+        "timestamp": "2:05 pm",
+        "dateGroup": "Today"
+      }
+    ]
+  }
+]

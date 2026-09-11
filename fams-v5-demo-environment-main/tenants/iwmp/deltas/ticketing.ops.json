@@ -1,0 +1,59 @@
+{
+  "$schema": "../../../tools/schemas/OpsFile.schema.json",
+  "module": "ticketing",
+  "ops": [
+    {
+      "id": "fld_tk_category",
+      "label": "Waste Stream",
+      "op": "setLabel",
+      "opId": "op_iwmp_label_category"
+    },
+    {
+      "after": "fld_tk_tags",
+      "field": {
+        "col": "systemcol7",
+        "id": "fld_tk_severity",
+        "listValues": [
+          "Low",
+          "Medium",
+          "High"
+        ],
+        "name": "Severity Level",
+        "type": "SingleSelect",
+        "creation": { "hidden": true }
+      },
+      "op": "addField",
+      "opId": "cap_ticketing_1"
+    },
+    {
+      "after": "fld_tk_severity",
+      "field": {
+        "col": "systemcol8",
+        "id": "fld_tk_penalty_due",
+        "name": "Penalty Payment Due Date",
+        "type": "DateTime",
+        "creation": { "hidden": true }
+      },
+      "op": "addField",
+      "opId": "cap_ticketing_2"
+    },
+    {
+      "op": "addStage",
+      "opId": "op_iwmp_stage_overdue",
+      "after": "sts_resolved",
+      "stage": { "id": "sts_overdue", "key": "overdue", "label": "Overdue", "color": "#f63d68" }
+    },
+    {
+      "op": "addStage",
+      "opId": "op_iwmp_stage_closed",
+      "after": "sts_overdue",
+      "stage": { "id": "sts_closed", "key": "closed", "label": "Closed", "color": "#12b76a" }
+    },
+    {
+      "op": "addStage",
+      "opId": "op_iwmp_stage_rejected",
+      "after": "sts_closed",
+      "stage": { "id": "sts_rejected", "key": "rejected", "label": "Rejected", "color": "#ee46bc" }
+    }
+  ]
+}

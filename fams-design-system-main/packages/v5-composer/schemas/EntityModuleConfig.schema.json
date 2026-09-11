@@ -1,0 +1,2922 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fams.com/schemas/v5-composer/EntityModuleConfig.schema.json",
+  "title": "EntityModuleConfig",
+  "description": "Config for one Entity module (a list of things — companies, contacts, vehicles…). Faithful EAV shape merged with v5's real entityconfig: column families (systemcolumns + optional streamcolumns/datacolumns/usercolumns/validation_columns) of field descriptors keyed by `col`, plus uiConfig + listcolumns — what the composer registers and config-render derives views from. Every node carries a stable `id` (tenant-model requirement).",
+  "type": "object",
+  "required": [
+    "code",
+    "name",
+    "systemcolumns",
+    "uiConfig",
+    "listcolumns"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "kind": {
+      "const": "entity"
+    },
+    "code": {
+      "type": "string",
+      "description": "Entity code in the store, e.g. crm/companies."
+    },
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": [
+        "string",
+        "number"
+      ],
+      "description": "Optional definition version — the cache key for compileFieldSet (phase 2 §2). Bump on any field/placement change; absent → content-hash fallback."
+    },
+    "uidPrefix": {
+      "type": "string"
+    },
+    "systemcolumns": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/SystemColumn"
+      }
+    },
+    "streamcolumns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SystemColumn"
+      }
+    },
+    "datacolumns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SystemColumn"
+      }
+    },
+    "usercolumns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SystemColumn"
+      }
+    },
+    "validation_columns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SystemColumn"
+      }
+    },
+    "uiConfig": {
+      "$ref": "#/$defs/UiConfig"
+    },
+    "listcolumns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FieldPlacement"
+      }
+    },
+    "views": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ViewSpec" },
+      "description": "Optional explicit view list for the module's view tabs. An entry is either the bare view KIND (e.g. \"kanban\") — label from the composer's VIEW_LABEL map — or an object { kind, label?, icon? } naming the module's own lens (e.g. { \"kind\": \"dispatcher-cockpit\", \"label\": \"Dispatcher Cockpit\", \"icon\": \"radio\" }). Wins over the module-type's default views when present (see `resolveModuleViews` / `resolveModuleViewSpecs` in `@fams/v5-composer`'s module-registry.ts) — threaded in by the consuming app's blueprint→ModuleBlueprint mapping (e.g. the demo env's `toModuleNode()`)."
+    }
+  },
+  "$defs": {
+    "ViewSpec": {
+      "description": "A view tab entry: the bare view kind, or an object carrying the module's own label/icon for that kind. The engine only ever branches on `kind`; `label`/`icon` are module metadata.",
+      "oneOf": [
+        { "enum": ["list", "kanban", "hybrid", "map", "calendar", "grouped-list", "grid", "dispatcher-cockpit", "triage-console", "fleet-console", "workforce-pulse"] },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind"],
+          "properties": {
+            "kind": { "enum": ["list", "kanban", "hybrid", "map", "calendar", "grouped-list", "grid", "dispatcher-cockpit", "triage-console", "fleet-console", "workforce-pulse"] },
+            "label": { "type": "string", "description": "Tab label override. Omit for the kind's default label." },
+            "icon": { "type": "string", "description": "Tab glyph name, resolved against the icon set at render time." }
+          }
+        }
+      ]
+    },
+    "FieldType": {
+      "enum": [
+        "Auto",
+        "SmallText",
+        "BigText",
+        "LongText",
+        "Email",
+        "Phone",
+        "Numeric",
+        "Number",
+        "Currency",
+        "Boolean",
+        "SingleSelect",
+        "MultiSelect",
+        "SingleReference",
+        "MultiReference",
+        "Date",
+        "DateTime",
+        "tags",
+        "Color",
+        "Assignee"
+      ],
+      "description": "v5 frontend field type set. Aliases: BigText≡LongText, Numeric≡Number. Color/Assignee are optional forward-looking types the blueprint models explicitly — a v5 export maps Assignee → a reference with refModule:'Users', Color → a SmallText slot rendered as a color."
+    },
+    "ReferenceKind": {
+      "enum": [
+        "Entity",
+        "Tag",
+        "Users"
+      ],
+      "description": "The domain a Single/MultiReference points at."
+    },
+    "ComponentRef": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "props": {
+          "type": "object"
+        }
+      }
+    },
+    "SystemColumn": {
+      "type": "object",
+      "required": [
+        "id",
+        "col",
+        "name",
+        "type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable identity. Default convention `fld_<col>`."
+        },
+        "col": {
+          "type": "string",
+          "description": "Storage slot: title | status | uniqueidentifier | tags | systemcol1..N | usercol1..N."
+        },
+        "name": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string",
+          "description": "Catalog section for the columns chooser, e.g. 'Asset – Basic Info' (SPEC v2 §2.6 groups the OFF fields under uppercase category headers). Presentational only — never affects storage or resolution."
+        },
+        "type": {
+          "$ref": "#/$defs/FieldType"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "unique": {
+          "type": "boolean"
+        },
+        "default": {},
+        "listValues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "refModule": {
+          "$ref": "#/$defs/ReferenceKind"
+        },
+        "entityType": {
+          "type": "string",
+          "description": "Referenced entity code when refModule='Entity'."
+        },
+        "append": {
+          "type": "boolean"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Display unit appended after a numeric read value (5,061 km · 2,986 hrs · 1,200 AED). Column-level: it travels onto every descriptor for this column, so every surface reading the field prints the same unit. Lowest precedence — compileFieldSet's `units` option and component.props.unit/suffix both win."
+        },
+        "component": {
+          "$ref": "#/$defs/ComponentRef"
+        },
+        "creation": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Field-level creation-form visibility and behavior (distinct from EntityModuleConfig.uiConfig.creation's form-level layout knobs). 'hidden: true' excludes this field from every create-sheet grouping bucket while leaving every other surface (detail grid, sections, kanban/list) unaffected. 'autofill' preselects this field's value when another field is edited to a matching value (still freely editable afterward) — see FieldDescriptor.creation in v5-composer's fields/types.ts.",
+          "properties": {
+            "hidden": {
+              "type": "boolean"
+            },
+            "autofill": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "whenCol"
+              ],
+              "description": "One of three modes: equals/value (exact-match preselect), map (a whenCol-value -> target-value lookup table), or template (a '{col} · {col}' string built from current form values).",
+              "properties": {
+                "whenCol": {
+                  "type": "string"
+                },
+                "equals": {},
+                "value": {},
+                "map": {
+                  "type": "object"
+                },
+                "template": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "SingleReference",
+                  "MultiReference"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "refModule"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "refModule": {
+                "const": "Entity"
+              }
+            },
+            "required": [
+              "refModule"
+            ]
+          },
+          "then": {
+            "required": [
+              "entityType"
+            ]
+          }
+        }
+      ]
+    },
+    "StatusDef": {
+      "type": "object",
+      "required": [
+        "id",
+        "key",
+        "label",
+        "color"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable identity. Default convention `sts_<key>`."
+        },
+        "key": {
+          "type": "string",
+          "description": "The stored status value."
+        },
+        "label": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "bgColor": {
+          "type": "string"
+        },
+        "chipColor": {
+          "type": "string"
+        },
+        "tone": {
+          "enum": [
+            "neutral",
+            "info",
+            "warning",
+            "success",
+            "danger"
+          ],
+          "description": "Semantic lifecycle tone — DS-token-driven reading of this stage, preferred over `color` by renderers that support it."
+        },
+        "textColor": {
+          "type": "string",
+          "description": "Contrast-safe text override for `color`'s solid fill (e.g. a dark token hex for an amber/warning fill)."
+        }
+      }
+    },
+    "FieldPlacement": {
+      "type": "object",
+      "required": [
+        "id",
+        "col"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable identity. Default convention `fld_<col>`."
+        },
+        "col": {
+          "type": "string"
+        },
+        "pos": {
+          "enum": [
+            "left",
+            "right"
+          ]
+        },
+        "order": {
+          "type": "number"
+        },
+        "showLabel": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "component": {
+          "$ref": "#/$defs/ComponentRef"
+        }
+      }
+    },
+    "FilterDef": {
+      "type": "object",
+      "required": [
+        "id",
+        "col"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable identity. Default convention `flt_<col>`."
+        },
+        "col": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "boolean": {
+          "type": "boolean"
+        },
+        "booleanOptions": {
+          "type": "object",
+          "required": [
+            "trueLabel",
+            "falseLabel"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "trueLabel": {
+              "type": "string"
+            },
+            "falseLabel": {
+              "type": "string"
+            }
+          }
+        },
+        "userTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "orgUsers": {
+          "type": "boolean"
+        },
+        "visibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "excludeRoles": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "includeRoles": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "requirePrivileges": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "kind": {
+          "enum": [
+            "single-select",
+            "multi-select",
+            "status",
+            "tags",
+            "entity",
+            "date",
+            "checkbox-group"
+          ],
+          "description": "How the filter field behaves and renders. Omitted ⇒ derived from the column metadata by deriveFilters()."
+        },
+        "optionsFrom": {
+          "enum": [
+            "listValues",
+            "statusList",
+            "records",
+            "inline"
+          ],
+          "description": "Where the filter field's options come from. Omitted ⇒ derived alongside kind."
+        },
+        "showCounts": {
+          "type": "boolean",
+          "description": "Render the per-option record-count pill."
+        },
+        "optionDot": {
+          "enum": [
+            "status",
+            "tone",
+            false
+          ],
+          "description": "The leading dot on an option row. 'status' reads the option's own resolved color; 'tone' maps component.props.optionTone through the semantic tone tokens; false renders no dot. Defaults to 'status' for kind: 'status', else false."
+        },
+        "icon": {
+          "enum": [
+            "building",
+            "calendar",
+            "car",
+            "filter",
+            "flag",
+            "hash",
+            "layers",
+            "list",
+            "map-pin",
+            "shapes",
+            "status",
+            "tag",
+            "truck",
+            "user",
+            "users",
+            "wrench"
+          ],
+          "description": "Kebab-case icon name for the field's 24px slot, from the shared field-glyph vocabulary (field-icons.tsx, formerly filter-icons.tsx). Falls back to 'filter' when omitted or unrecognized."
+        },
+        "multiple": {
+          "type": "boolean",
+          "description": "Multi vs. single selection. Defaults to true for every kind except date and single-select. false ⇒ radio rows that close on pick."
+        },
+        "options": {
+          "type": "array",
+          "description": "The option list, for optionsFrom: 'inline' only.",
+          "items": {
+            "type": "object",
+            "required": [
+              "value",
+              "label"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              },
+              "count": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "categoryCol": {
+          "type": "string",
+          "description": "For kind: 'tags' — the option field carrying the chip's category. A real systemcolumns key."
+        },
+        "expandable": {
+          "type": "boolean",
+          "description": "true ⇒ the field's dropdown offers the ⧉ trigger that opens the full-table side-sheet selector. Legal only for kind: 'entity'."
+        },
+        "expandView": {
+          "type": "object",
+          "description": "The side-sheet table config — required for a meaningful expandable.",
+          "required": [
+            "columns"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "columns": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "col",
+                  "label"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "col": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "sortable": {
+                    "type": "boolean"
+                  },
+                  "hidden": {
+                    "type": "boolean"
+                  },
+                  "minWidth": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "searchable": {
+              "type": "boolean"
+            },
+            "sortable": {
+              "type": "boolean"
+            },
+            "columnSettings": {
+              "type": "boolean"
+            },
+            "selectedToTop": {
+              "type": "boolean"
+            },
+            "rowTemplate": {
+              "oneOf": [
+                {
+                  "enum": [
+                    "plain",
+                    "avatar-id-status"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "title"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "avatar": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "subtitle": {
+                      "type": "string"
+                    },
+                    "idPill": {
+                      "type": "string"
+                    },
+                    "statusBadge": {
+                      "type": "object",
+                      "required": [
+                        "col"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "col": {
+                          "type": "string"
+                        },
+                        "colors": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "enum": [
+                              "success",
+                              "warning",
+                              "info",
+                              "destructive",
+                              "muted"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "createFromSearch": {
+          "type": "object",
+          "description": "Create-a-record-from-the-search-query affordance inside a filter field.",
+          "required": [
+            "enabled",
+            "entity"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "entity": {
+              "type": "string",
+              "description": "Module code of the entity to create."
+            },
+            "requirePrivilege": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "Rbac": {
+      "type": "object",
+      "description": "RBAC config — which roles can access this module/screen. Free-form per consumer.",
+      "additionalProperties": true
+    },
+    "UiConfig": {
+      "type": "object",
+      "required": [
+        "statusList"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "icon": {
+          "type": "string",
+          "description": "Optional lucide icon name in kebab-case (e.g. \"map-pin\"), resolved dynamically by the consuming app's module rail (e.g. the demo env's `seams.tsx`) instead of its default per-module-id icon."
+        },
+        "statusList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/StatusDef"
+          }
+        },
+        "statusChangeRule": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "kanbanCard": {
+          "type": "object",
+          "required": [
+            "header",
+            "body",
+            "footer"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "header": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/FieldPlacement"
+              }
+            },
+            "body": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/FieldPlacement"
+              }
+            },
+            "footer": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/FieldPlacement"
+              }
+            },
+            "image": {
+              "type": "object",
+              "required": [
+                "col"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "col": {
+                  "type": "string"
+                }
+              }
+            },
+            "highlight": {
+              "type": "object",
+              "required": [
+                "col"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "col": {
+                  "type": "string"
+                }
+              },
+              "description": "Card-level highlight color column — the record's value at `col` is a raw runtime color (e.g. '#f79009') applied to the card's own border; empty/absent renders no highlight. Generic flag slot, never a hardcoded concept."
+            },
+            "boardClassName": {
+              "type": "string",
+              "description": "Raw Tailwind utility classes merged onto the board's own scroll container (e.g. \"gap-5 ps-5 pe-5\") — opt-in escape hatch for a module needing a different column gap/scroll-edge padding than the shared KanbanBoard default. Omit for the default."
+            },
+            "columnClassName": {
+              "type": "string",
+              "description": "Raw Tailwind utility classes merged onto every column (e.g. \"w-96\") — opt-in escape hatch for a module needing wider columns than the shared KanbanColumn default. Omit for the default."
+            }
+          }
+        },
+        "map": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "center": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "latCol": {
+              "type": "string"
+            },
+            "lngCol": {
+              "type": "string"
+            },
+            "zoneCol": {
+              "type": "string"
+            },
+            "zones": {
+              "type": "array",
+              "description": "Map zones for the zones drawer - each { id, points:[[lng,lat],...], color?, label?, parent?, fillOpacity?, tags?[] }. `tags` back the zones drawer's tag-filter buttons (SPEC v2 3.20)."
+            },
+            "records": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Record-geometry map bindings — presence makes the hybrid lens the generic list+record-map view. Geometry is per record (point from latCol/lngCol, polygon from zoneCol), never a mode flag.",
+              "properties": {
+                "colorBy": {
+                  "type": "object",
+                  "required": [
+                    "col"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "col": {
+                      "type": "string"
+                    },
+                    "values": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "color"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": "string"
+                          },
+                          "label": {
+                            "type": "string"
+                          },
+                          "color": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "fallbackColor": {
+                      "type": "string"
+                    },
+                    "legendTitle": {
+                      "type": "string"
+                    },
+                    "filterable": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "fillOpacity": {
+                  "type": "number"
+                },
+                "radius": {
+                  "type": "number"
+                },
+                "toolbar": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "description": "Declarative in-panel toolbar for the record-map hybrid's list pane. Presence turns the toolbar on; controls derive facets/options from the module's own blueprint derivations.",
+                  "properties": {
+                    "search": {
+                      "oneOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "placeholder": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "filters": {
+                      "type": "boolean"
+                    },
+                    "create": {
+                      "oneOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "label": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "groupBy": {
+                      "type": "object",
+                      "required": [
+                        "cols",
+                        "defaultCol"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "cols": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "minItems": 1
+                        },
+                        "defaultCol": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "sort": {
+                      "type": "boolean"
+                    },
+                    "assignee": {
+                      "type": "boolean"
+                    },
+                    "facetCol": {
+                      "type": "string"
+                    },
+                    "download": {
+                      "type": "boolean"
+                    },
+                    "stageTabs": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "card": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "description": "Per-card display options for the hybrid list pane's card (SPEC 29:41877).",
+                  "properties": {
+                    "stageChip": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "pois": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "position"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "position": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                  },
+                  "color": {
+                    "type": "string"
+                  },
+                  "radiusMeters": {
+                    "type": "number"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Free-form tag labels backing the POI drawer's tag-filter buttons (SPEC v2 3.21). Presentational/filtering only."
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": "DS POI category id (@fams/ui-kit's POI_CATEGORIES, e.g. 'port' / 'fuel-station' / 'hospital' / 'mosque' / 'government' — see assets/icons/poi/*.svg). Drives the category-glyphed PoiMarker on the map and PoiCategoryChip in the POI drawer; optional, falls back to the legacy kind-based glyph when absent or unrecognized."
+                  }
+                }
+              },
+              "description": "Points of interest for the map's POI drawer — checked POIs plot pins; position is [lng, lat]."
+            },
+            "expandedColumns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Extra list-panel columns (col keys) revealed at the hybrid list panel's Expanded / Fully Expanded width states."
+            },
+            "tagsCol": {
+              "type": "string",
+              "description": "Tags-like column whose values back the All Filters popover's Tags multiselect (first suggestion group, warning-tinted chips)."
+            },
+            "privateTagsCol": {
+              "type": "string",
+              "description": "Second tags-like column — its values form the Tags multiselect's second suggestion group (grey outlined chips, e.g. a user's private tags). Same value shape as tagsCol."
+            },
+            "columnsShown": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "The Columns popover's default Shown set (systemcolumn ids or col keys). Decoupled from the collapsed table columns (hybrid.listColumns); omitted → the popover seeds from the collapsed columns."
+            },
+            "statusCol": {
+              "type": "string"
+            },
+            "plateCol": {
+              "type": "string"
+            },
+            "makeCol": {
+              "type": "string"
+            },
+            "modelCol": {
+              "type": "string"
+            },
+            "vehicleTypeCol": {
+              "type": "string",
+              "description": "Vehicle-type column (e.g. \"Tanker\") — the mixed Name·ID·Type·Location list's Type column for a vehicle row (2026-08-31 workforce enhancement)."
+            },
+            "speedCol": {
+              "type": "string"
+            },
+            "dwellCol": {
+              "type": "string"
+            },
+            "headingCol": {
+              "type": "string"
+            },
+            "driverCol": {
+              "type": "string"
+            },
+            "photoCol": {
+              "type": "string"
+            },
+            "locationCol": {
+              "type": "string"
+            },
+            "statusSinceCol": {
+              "type": "string"
+            },
+            "activityCol": {
+              "type": "string",
+              "description": "Column whose record value is an array of { icon?, count, tone? } pairs — the compact icon+count Activity Overview cell."
+            },
+            "fillLevelCol": {
+              "type": "string",
+              "description": "Column whose record value is a number 0-100 (or numeric string) rendered as a colored progress bar + percentage in the hybrid list's FILL LEVEL column. Generic — header label comes from the bound systemcolumn's own name."
+            },
+            "vehicleArt": {
+              "type": "string",
+              "enum": [
+                "car",
+                "tanker",
+                "weather-station"
+              ],
+              "description": "Which VehicleIcon3D illustration the map marker, list-row cell, and popup header render for every record in this module. Generic, config-driven; omitted → 'car'."
+            },
+            "workforce": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kindCol"
+              ],
+              "description": "Workforce bindings (2026-08-31 enhancement). Presence of kindCol turns on the Live Monitoring All/Vehicle/Workforce chips and the mixed Name·ID·Type·Location list columns; omitted, the module renders exactly as before.",
+              "properties": {
+                "kindCol": {
+                  "type": "string",
+                  "description": "Discriminator column: a record whose value here reads 'workforce' (case-insensitive) is a workforce member; every other value is a vehicle."
+                },
+                "employeeIdCol": {
+                  "type": "string"
+                },
+                "designationCol": {
+                  "type": "string"
+                },
+                "statusCol": {
+                  "type": "string",
+                  "description": "on-duty | on-break | in-transit, case-insensitive; unbound/unrecognized reads as on-duty."
+                },
+                "locationKindCol": {
+                  "type": "string",
+                  "description": "plain | zone | poi, case-insensitive; unbound/unrecognized reads as plain."
+                },
+                "locationLabelCol": {
+                  "type": "string"
+                },
+                "popup": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "description": "Workforce popup card bindings (2026-08-31 workforce-popup task) — same tabbed contract as uiConfig.map.popup with the Shifts vocabulary.",
+                  "properties": {
+                    "fields": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "label"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "col": {
+                            "type": "string"
+                          },
+                          "label": {
+                            "type": "string"
+                          },
+                          "icon": {
+                            "type": "string"
+                          },
+                          "suffix": {
+                            "type": "string"
+                          },
+                          "format": {
+                            "type": "string",
+                            "enum": [
+                              "number"
+                            ],
+                            "description": "Display formatting for a plain label/value cell. 'number' groups the value's digits with the locale thousands separator (132800 -> 132,800) before any suffix is appended; non-numeric values pass through untouched. Opt-in per field, because a blanket numeric test would also group years and model numbers."
+                          },
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "coordinates",
+                              "progress",
+                              "tags"
+                            ],
+                            "description": "Cell shape. 'coordinates' renders the latCol/lngCol pair with a copy affordance; 'progress' renders col's 0-100 number as the board's bar + percentage; 'tags' renders col's array (or comma-separated string) as a tinted chip row."
+                          },
+                          "thresholds": {
+                            "type": "array",
+                            "description": "kind: 'progress' only — value thresholds mapping the number onto a bar tone, matched highest-first.",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "min",
+                                "tone"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "min": {
+                                  "type": "number"
+                                },
+                                "tone": {
+                                  "type": "string",
+                                  "enum": [
+                                    "success",
+                                    "warning",
+                                    "error",
+                                    "muted"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "tagTones": {
+                            "type": "object",
+                            "description": "kind: 'tags' only — per-tag tone by exact label; unlisted tags render neutral.",
+                            "additionalProperties": {
+                              "type": "string",
+                              "enum": [
+                                "success",
+                                "warning",
+                                "error",
+                                "muted"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "eventsCol": {
+                      "type": "string"
+                    },
+                    "shiftsCol": {
+                      "type": "string"
+                    },
+                    "shiftDatesCol": {
+                      "type": "string"
+                    },
+                    "shiftSummaryCol": {
+                      "type": "string"
+                    },
+                    "visibleTabs": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "maxVisibleTabs": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            },
+            "cluster": {
+              "type": "boolean",
+              "description": "Opt-in marker clustering for the generic record-map hybrid lens, same supercluster pipeline + eye toggle Live Monitoring's fleet map already ships. Omitted/false keeps one circle per record (never aggregated)."
+            },
+            "markerDetailZoom": {
+              "type": "number",
+              "description": "Zoom at or above which map markers render their info capsule (plate + fill level / speed) instead of the plain pin. Omitted → the design's own threshold."
+            },
+            "popup": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Vehicle popup card bindings — the Overview grid's authored field list plus the columns feeding the Critical Events / Trips / Workforce / Devices tab bodies.",
+              "properties": {
+                "fields": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "label"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "col": {
+                        "type": "string"
+                      },
+                      "label": {
+                        "type": "string"
+                      },
+                      "icon": {
+                        "type": "string"
+                      },
+                      "suffix": {
+                        "type": "string"
+                      },
+                      "format": {
+                        "type": "string",
+                        "enum": [
+                          "number"
+                        ],
+                        "description": "Display formatting for a plain label/value cell. 'number' groups the value's digits with the locale thousands separator (132800 -> 132,800) before any suffix is appended; non-numeric values pass through untouched. Opt-in per field, because a blanket numeric test would also group years and model numbers."
+                      },
+                      "kind": {
+                        "type": "string",
+                        "enum": [
+                          "coordinates",
+                          "progress",
+                          "tags"
+                        ],
+                        "description": "Cell shape. 'coordinates' renders the latCol/lngCol pair with a copy affordance; 'progress' renders col's 0-100 number as the board's bar + percentage; 'tags' renders col's array (or comma-separated string) as a tinted chip row."
+                      },
+                      "thresholds": {
+                        "type": "array",
+                        "description": "kind: 'progress' only — value thresholds mapping the number onto a bar tone, matched highest-first.",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "min",
+                            "tone"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "min": {
+                              "type": "number"
+                            },
+                            "tone": {
+                              "type": "string",
+                              "enum": [
+                                "success",
+                                "warning",
+                                "error",
+                                "muted"
+                              ]
+                            }
+                          }
+                        }
+                      },
+                      "tagTones": {
+                        "type": "object",
+                        "description": "kind: 'tags' only — per-tag tone by exact label; unlisted tags render neutral.",
+                        "additionalProperties": {
+                          "type": "string",
+                          "enum": [
+                            "success",
+                            "warning",
+                            "error",
+                            "muted"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "eventsCol": {
+                  "type": "string"
+                },
+                "tripsCol": {
+                  "type": "string"
+                },
+                "tripDatesCol": {
+                  "type": "string"
+                },
+                "tripSummaryCol": {
+                  "type": "string"
+                },
+                "devicesCol": {
+                  "type": "string"
+                },
+                "workforce": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "description": "The popup's Workforce tab (Figma 16:22182) — the assigned crew's info card. An entry whose column is empty is skipped; with nothing bound the tab shows its empty state.",
+                  "properties": {
+                    "photoCol": {
+                      "type": "string",
+                      "description": "Column holding an image URL for the 120x120 photo tile."
+                    },
+                    "entries": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "col",
+                          "label"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "col": {
+                            "type": "string"
+                          },
+                          "label": {
+                            "type": "string"
+                          },
+                          "icon": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "visibleTabs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Ordered ids of the tabs pinned to the popup's visible tab bar; the rest go to its overflow menu. Omitted, the first `maxVisibleTabs` are pinned."
+                },
+                "maxVisibleTabs": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many tab segments the popup's bar shows before its overflow slot. Defaults to 3."
+                }
+              }
+            },
+            "places": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "position"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "position": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "Full \"District, Municipality, Country\" line — the muted subtitle of a gazetteer row in the map search. Authored here, never derived (the design system ships no gazetteer and geocodes nothing)."
+                  }
+                }
+              },
+              "description": "Named places the map's place-search filters and flies to, and can drop a POI pin on (SPEC v2 3.18). The design system ships no gazetteer and performs no geocoding - it takes this list as a generic search source, so every place name is application data supplied here."
+            },
+            "search": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "gazetteer": {
+                  "type": "string",
+                  "enum": [
+                    "qatar"
+                  ],
+                  "description": "Opt-in bundled places/districts/landmarks dataset the map's 'search anything' matches against as extra `place`-kind rows, alongside `places`/`zones`/`pois`/assets. The design system ships no gazetteer by default — this key names a deployment's own bundled dataset (currently only \"qatar\", `qatarGazetteer` from `@fams/v5-templates`); omit for a deployment with no bundled dataset."
+                }
+              },
+              "description": "The map's 'search anything' panel configuration (map-features-video-analysis.md §1)."
+            },
+            "unavailableTools": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "tool",
+                  "message"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "tool": {
+                    "type": "string",
+                    "description": "Map-tool key, e.g. \"traffic\"."
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Message raised as a toast when the tool is activated."
+                  }
+                }
+              },
+              "description": "Map tools that render and stay focusable/clickable but are not wired to a live data source in this deployment: activating one raises `message` as a toast instead of toggling. The design system holds no environment-specific copy - the message text is always supplied here."
+            },
+            "tools": {
+              "type": "array",
+              "description": "Which floating map tools render, by id, AND — for the top-end stack (layers, traffic, weather, incidents, poi, zones) — the ORDER they render in, top to bottom. Omitted, the map renders the reference set (search, cluster, layers, traffic, zones, poi) in that order — no drop-pin, no refresh, no weather, no incidents.",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "search",
+                  "pin",
+                  "refresh",
+                  "markers",
+                  "cluster",
+                  "layers",
+                  "weather",
+                  "incidents",
+                  "traffic",
+                  "zones",
+                  "poi"
+                ]
+              }
+            },
+            "incidentsModule": {
+              "type": "string",
+              "description": "The `code` of another module (e.g. \"incidents/incident\") whose records paint as severity-coloured pins on THIS map and list as cards in the Incidents panel (the `incidents` tool, SPEC 19:23006 #4) — a cross-module overlay, resolved by the app's `resolveModuleRecords` host seam. Omit and the Incidents tool renders with no overlay (a tool cannot render for data the blueprint never declared)."
+            },
+            "weather": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Weather monitoring overlay for the live map (Figma section 22:41486): colour-banded temperature station markers, an overlay checkbox row (Stations / Rain Heat-map / Clouds / Precipitation) and a docked station detail drawer. Every reading, forecast and outlook row is APPLICATION DATA authored here — the design system ships no weather feed and calls no weather service (no OpenWeatherMap tiles, no Open-Meteo requests); the rain/cloud/precipitation washes are generated from a deterministic seeded field, exactly as the traffic overlay is.",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Renders the map's weather tool (default false). The layer itself starts OFF and is the user's own choice; pressing the tool reveals the overlay checkbox row and the station markers."
+                },
+                "stations": {
+                  "type": "array",
+                  "description": "The weather stations to plot. A non-empty array is what makes the layer available at all; position is [lng, lat].",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "id",
+                      "name",
+                      "position"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "position": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        },
+                        "minItems": 2,
+                        "maxItems": 2
+                      },
+                      "area": {
+                        "type": "string",
+                        "description": "Zone/area label shown as the drawer's leading chip, e.g. \"Area 9\"."
+                      },
+                      "active": {
+                        "type": "boolean",
+                        "description": "Whether this station is currently in service. `false` is the generic Inactive-station contract: the drawer still shows identity (name/area/coordinates) but renders a single \"No recent data\" empty state for the readings grid, and forces the trend chart/forecast/daily tables to their own empty states regardless of whatever reading/trend/forecast/daily this station happens to carry. Omit (default true) for every station that reports normally."
+                      },
+                      "reading": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "description": "The current observation. OMIT ENTIRELY for a station that is not reporting — it then renders the grey no-data marker and a dashed detail grid rather than a broken-looking empty one.",
+                        "properties": {
+                          "tempC": {
+                            "type": "number"
+                          },
+                          "humidityPct": {
+                            "type": "number"
+                          },
+                          "windKmh": {
+                            "type": "number"
+                          },
+                          "windDirection": {
+                            "type": "string"
+                          },
+                          "gustKmh": {
+                            "type": "number"
+                          },
+                          "pressureHpa": {
+                            "type": "number"
+                          },
+                          "visibilityKm": {
+                            "type": "number"
+                          },
+                          "rainfallMm": {
+                            "type": "number"
+                          },
+                          "readingAt": {
+                            "type": "string",
+                            "description": "Pre-formatted observation timestamp, e.g. \"25/08/2026, 15:20\". Authored here, never a live clock."
+                          }
+                        }
+                      },
+                      "trend": {
+                        "type": "array",
+                        "description": "The drawer's \"Last 24 hours\" temperature trend. A null tempC marks a gap the line breaks at.",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "time"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "time": {
+                              "type": "string"
+                            },
+                            "tempC": {
+                              "type": [
+                                "number",
+                                "null"
+                              ]
+                            },
+                            "rainfallMm": {
+                              "type": "number"
+                            }
+                          }
+                        }
+                      },
+                      "forecast": {
+                        "type": "array",
+                        "description": "The drawer's hourly forecast table (48 rows in the reference data).",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "time",
+                            "tempC",
+                            "precipitationMm",
+                            "precipitationChance",
+                            "windKmh"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "time": {
+                              "type": "string"
+                            },
+                            "tempC": {
+                              "type": "number"
+                            },
+                            "precipitationMm": {
+                              "type": "number"
+                            },
+                            "precipitationChance": {
+                              "type": "number"
+                            },
+                            "windKmh": {
+                              "type": "number"
+                            }
+                          }
+                        }
+                      },
+                      "daily": {
+                        "type": "array",
+                        "description": "The drawer's 10-day official outlook table.",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "date",
+                            "warning",
+                            "minC",
+                            "maxC"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "date": {
+                              "type": "string"
+                            },
+                            "warning": {
+                              "type": "string"
+                            },
+                            "minC": {
+                              "type": "number"
+                            },
+                            "maxC": {
+                              "type": "number"
+                            },
+                            "rainMm": {
+                              "type": "number",
+                              "description": "QMD's official daily rainfall total, mm (rain-first deployments, 2026-08-31). Optional — omitted, the QMD grid's Rain row falls back to its 'no data' dash."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "forecast": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "description": "The map's bottom forecast panel, shown while the weather layer is on: a collapsed rain-legend + model-tab strip that expands into the Open-Meteo hourly timeline / QMD 10-day outlook grids with an About Location rail. All rows are authored application data.",
+                  "properties": {
+                    "location": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "label"
+                      ],
+                      "description": "The expanded panel's About Location rail. Every string pre-formatted.",
+                      "properties": {
+                        "label": {
+                          "type": "string"
+                        },
+                        "coordinates": {
+                          "type": "string"
+                        },
+                        "sunrise": {
+                          "type": "string"
+                        },
+                        "sunset": {
+                          "type": "string"
+                        },
+                        "elevation": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "openMeteo": {
+                      "type": "array",
+                      "description": "The Open-Meteo tab's day columns: a day header plus its hour cells (time is the short in-day label, e.g. \"08:00\").",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "day",
+                          "hours"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "day": {
+                            "type": "string"
+                          },
+                          "hours": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "time",
+                                "tempC",
+                                "precipitationMm",
+                                "precipitationChance",
+                                "windKmh"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "time": {
+                                  "type": "string"
+                                },
+                                "tempC": {
+                                  "type": "number"
+                                },
+                                "precipitationMm": {
+                                  "type": "number"
+                                },
+                                "precipitationChance": {
+                                  "type": "number"
+                                },
+                                "windKmh": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "qmd": {
+                      "type": "array",
+                      "description": "The QMD tab's 10-day official outlook columns.",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "date",
+                          "warning",
+                          "minC",
+                          "maxC"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "date": {
+                            "type": "string"
+                          },
+                          "warning": {
+                            "type": "string"
+                          },
+                          "minC": {
+                            "type": "number"
+                          },
+                          "maxC": {
+                            "type": "number"
+                          },
+                          "rainMm": {
+                            "type": "number",
+                            "description": "QMD's official daily rainfall total, mm (rain-first deployments, 2026-08-31). Optional — omitted, the QMD grid's Rain row falls back to its 'no data' dash."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "trafficOverlay": {
+              "type": "boolean",
+              "description": "Renders the map's traffic tool (default true). The overlay itself always starts OFF and is the user's own persisted choice; set false to drop the control entirely. The overlay paints deterministic pseudo-traffic along the basemap's major roads - FAMS ships no live traffic feed."
+            },
+            "labelOverrides": {
+              "type": "array",
+              "description": "Basemap label renames. Each rule rewrites the rendered label of the matching feature on the style's water/marine label layers (matched against name, name:en and name_en) and is re-applied after every basemap switch. Labels in other languages are untouched.",
+              "items": {
+                "type": "object",
+                "required": [
+                  "match",
+                  "text"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "match": {
+                    "type": "object",
+                    "required": [
+                      "name"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "attribution": {
+              "type": "string",
+              "enum": [
+                "hidden",
+                "compact",
+                "visible"
+              ],
+              "description": "How the basemap attribution strip renders. 'visible' (default) paints the full, never-truncated OSM/ODbL credit line; 'compact' collapses it behind MapLibre's 'i' affordance; 'hidden' renders no attribution control at all. Whether a deployment may discharge the credit obligation somewhere other than the map is the deployment's decision and responsibility."
+            },
+            "stationDrawer": {
+              "type": "boolean",
+              "description": "true routes the record-map hybrid's record-open to the docked weather-station drawer, matching the record to weather.stations by name/id."
+            },
+            "hideFullscreenControl": {
+              "type": "boolean",
+              "description": "Suppress the detached fullscreen tile under the 'figma' zoom pill (per-module opt-out, 2026-09-01 - Requests & Complaints). The zoom pill and every other tool stay; default false (unchanged)."
+            }
+          }
+        },
+        "profile": {
+          "type": "object",
+          "required": [
+            "title",
+            "details",
+            "sections"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "$ref": "#/$defs/FieldPlacement"
+            },
+            "details": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/FieldPlacement"
+              }
+            },
+            "layout": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "labelWidth": {
+                  "type": "string"
+                },
+                "fieldEmphasis": {
+                  "type": "string",
+                  "enum": [
+                    "regular",
+                    "strong"
+                  ],
+                  "description": "FieldGrid label/value weight for the top-level details grid. 'strong' matches Gilroy:SemiBold Figma sources (e.g. the incident Task Detail sheet); default 'regular' preserves the original Ticket/Lease Detail look. See FieldGrid's emphasis prop in @fams/ui-kit."
+                }
+              }
+            },
+            "sections": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "order",
+                  "fields"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Stable identity. Default convention `sec_<slug>`."
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "order": {
+                    "type": "number"
+                  },
+                  "fields": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/FieldPlacement"
+                    }
+                  },
+                  "component": {
+                    "$ref": "#/$defs/ComponentRef"
+                  },
+                  "layout": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "labelWidth": {
+                        "type": "string"
+                      },
+                      "fieldEmphasis": {
+                        "type": "string",
+                        "enum": [
+                          "regular",
+                          "strong"
+                        ],
+                        "description": "FieldGrid label/value weight override for this section's own FieldGrid (ignored when component is set). See ProfileSection.layout in types.ts."
+                      }
+                    }
+                  },
+                  "showLabel": {
+                    "type": "boolean",
+                    "description": "Show this section's name as a heading in the CREATE sheet's flat layout. Default false — see ProfileSection.showLabel in types.ts."
+                  },
+                  "detailHidden": {
+                    "type": "boolean",
+                    "description": "Exclude this section from the DETAIL page's accordion list while it still fully participates in CREATE grouping. Default false — see ProfileSection.detailHidden in types.ts."
+                  },
+                  "visibleWhen": {
+                    "type": "object",
+                    "description": "Rule-evaluator Condition (same shape as pipeline rules), evaluated with {user, task: record}; when false, TaskDetail hides this section. See ProfileSection.visibleWhen in types.ts."
+                  }
+                }
+              }
+            },
+            "overview": {
+              "type": "array"
+            },
+            "rightPanel": {
+              "type": "object",
+              "required": [
+                "type",
+                "tabs"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "type": {
+                  "const": "tab"
+                },
+                "tabs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "id",
+                      "key",
+                      "title",
+                      "order",
+                      "component"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Stable identity. Default convention `tab_<key>`."
+                      },
+                      "key": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "order": {
+                        "type": "number"
+                      },
+                      "component": {
+                        "$ref": "#/$defs/ComponentRef"
+                      },
+                      "visibleWhen": {
+                        "type": "object",
+                        "description": "Rule-evaluator Condition (same shape as pipeline rules), evaluated with the {user, task} scope where $.task.* is the profiled RECORD."
+                      },
+                      "requiredPrivileges": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Every listed privilege must be in userContext.privileges for the tab to render."
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "infoTitle": {
+              "type": "string",
+              "description": "Section label above the identity-pane detail rows (default 'Details')."
+            },
+            "placeholderIcon": {
+              "type": "string",
+              "description": "Named-icon vocabulary for the identity panel's placeholder graphic when no image/avatar is available (e.g. 'map-pin'). See UiConfig.profile.placeholderIcon in types.ts."
+            },
+            "statusOverlayField": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "description": "Field(s) driving the identity rail's status chip; first non-empty wins. Defaults to the record's own `status`."
+            },
+            "statusOverlayColors": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Solid pill colour per statusOverlayField value, for values outside uiConfig.statusList."
+            },
+            "identityVariants": {
+              "type": "array",
+              "description": "Per-record-shape overrides of the identity rail; the first variant whose whenField value matches wins.",
+              "items": {
+                "type": "object",
+                "required": [
+                  "whenField",
+                  "whenEquals"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "whenField": {
+                    "type": "string"
+                  },
+                  "whenEquals": {
+                    "type": "array",
+                    "items": {
+                      "type": [
+                        "string",
+                        "number",
+                        "boolean"
+                      ]
+                    }
+                  },
+                  "details": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/FieldPlacement"
+                    }
+                  },
+                  "infoTitle": {
+                    "type": "string"
+                  },
+                  "placeholderIcon": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FilterDef"
+          }
+        },
+        "filtersPanel": {
+          "type": "object",
+          "description": "Panel-level chrome for the All Filters panel. All numbers are px and are clamped by the renderer against the viewport. Defaults: title 'All Filters', clearAll true, width 448, height 660, sheetWidth 722.",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "clearAll": {
+              "type": "boolean"
+            },
+            "width": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number"
+            },
+            "sheetWidth": {
+              "type": "number"
+            }
+          }
+        },
+        "search": {
+          "type": "object",
+          "required": [
+            "columns"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "columns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "placeholder": {
+              "type": "string",
+              "description": "The toolbar search box's placeholder text (e.g. 'Search Ticket'). Omit for the generic 'Search {module label}' default."
+            }
+          }
+        },
+        "listSummary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "label"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Stable identity."
+              },
+              "label": {
+                "type": "string"
+              },
+              "icon": {
+                "type": "string"
+              },
+              "tone": {
+                "enum": [
+                  "primary",
+                  "success",
+                  "warning",
+                  "danger",
+                  "info",
+                  "neutral"
+                ]
+              },
+              "iconColor": {
+                "type": "string"
+              },
+              "iconBg": {
+                "type": "string"
+              },
+              "filter": {
+                "type": "object",
+                "required": [
+                  "col"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "col": {
+                    "type": "string"
+                  },
+                  "equals": {},
+                  "in": {
+                    "type": "array"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "listGroupedColumns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recordNoun": {
+          "type": "object",
+          "description": "Singular/plural record noun for generated copy (\"Delete 12 tasks?\", \"Showing 175 of 175 mapped tasks\"). Omit to derive it from the module name; set it when the module name is not a plural of its records (e.g. \"Pipeline Management\").",
+          "required": [
+            "one",
+            "many"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "one": {
+              "type": "string",
+              "minLength": 1
+            },
+            "many": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "listRowHeight": {
+          "enum": [
+            "md",
+            "lg"
+          ],
+          "description": "List view's body-row vertical rhythm (see DataTable.rowHeight). Omit for the template's own default ('lg')."
+        },
+        "listSort": {
+          "type": "boolean",
+          "description": "Hides the toolbar's Sort control when false. Omit/true keeps it shown (default)."
+        },
+        "listSelectable": {
+          "type": "boolean",
+          "description": "Shows a leading checkbox column for multi-row selection. Omit/false keeps today's default (no selection column)."
+        },
+        "kanbanSelectable": {
+          "type": "boolean",
+          "description": "Hides the kanban card's bulk-selection checkbox when false (no bulk actions in kanban). Omit/true keeps it shown (default)."
+        },
+        "kanbanReadOnly": {
+          "type": "boolean",
+          "description": "true disables drag-to-change-status on the kanban board entirely (every lane denies every drop); status changes only via the detail view's own transition control. Omit/false keeps today's default."
+        },
+        "groupByOptions": {
+          "type": "array",
+          "description": "Curated option set for the shared toolbar's Group By control (Figma overlay 33534:31649). Narrows and re-labels the auto-derived groupable columns; omit for all of them. 'None' is rendered by the control itself and is never authored here. An entry's 'default' marks the grouping a grouped-list view opens with (ignored by other view kinds). An entry's 'icon' is the leading glyph its group-header rows carry.",
+          "items": {
+            "type": "object",
+            "required": [
+              "col"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "col": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "icon": {
+                "enum": [
+                  "building",
+                  "calendar",
+                  "car",
+                  "filter",
+                  "flag",
+                  "hash",
+                  "layers",
+                  "list",
+                  "map-pin",
+                  "shapes",
+                  "status",
+                  "tag",
+                  "truck",
+                  "user",
+                  "users",
+                  "wrench"
+                ],
+                "description": "Leading glyph for this grouping's group-header rows, by name from the shared field-glyph vocabulary (field-icons.tsx, formerly filter-icons.tsx). Omit for no glyph."
+              },
+              "default": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "rowActions": {
+          "type": "object",
+          "description": "Per-record hover-revealed row/card options menu (Figma overlay 33534:32262) — exactly Delete (destructive, confirmed) + Archive (a disabled placeholder). Shared across List rows, Hybrid cards and Kanban cards. Omit for no row menu.",
+          "additionalProperties": false,
+          "properties": {
+            "delete": {
+              "type": "boolean"
+            },
+            "archive": {
+              "type": "boolean"
+            },
+            "requiredPrivilege": {
+              "type": "string"
+            },
+            "alwaysVisible": {
+              "type": "boolean",
+              "description": "Paint the `…` control at rest instead of hover-revealing it. Opt-in: omit to keep the shared hover default. Resting look only — the button is mounted, focusable and named in both modes."
+            }
+          }
+        },
+        "bulkActions": {
+          "type": "object",
+          "description": "Bulk action bar shown while at least one record is selected (Figma Dev Note 33534:32267) — exactly Delete + Export. Gated by listSelectable; omit to accept the selection-driven default, pass {} for a selection column with no bar.",
+          "additionalProperties": false,
+          "properties": {
+            "delete": {
+              "type": "boolean"
+            },
+            "export": {
+              "type": "boolean"
+            },
+            "requiredPrivilege": {
+              "type": "string"
+            }
+          }
+        },
+        "listHeaderAction": {
+          "type": "boolean",
+          "description": "Shows the list toolbar's trailing header-only pencil/edit affordance (default Pencil glyph, no click behavior). Omit/false keeps today's default (no trailing column)."
+        },
+        "viewPickerHint": {
+          "type": "string",
+          "description": "Hint line for the module's 'Select Preferred View' new-view picker. Omit to hide the hint row entirely."
+        },
+        "creation": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "layout": {
+              "enum": [
+                "auto",
+                "flat",
+                "wizard"
+              ]
+            },
+            "fieldChrome": {
+              "enum": [
+                "default",
+                "inset-label"
+              ]
+            },
+            "label": {
+              "type": "string",
+              "description": "Create-CTA label (e.g. 'New Collection Point'); falls back to 'Create New'."
+            },
+            "explicit": {
+              "type": "boolean",
+              "description": "Suppresses the create form's trailing catch-all 'Details' group — only the implicit Basic-Info group plus fields explicitly placed in profile.sections appear."
+            },
+            "basicCount": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Size of the implicit first 'Basic Info' group (default 5). Set it when a wizard's first step must contain an exact field count; fields beyond it flow into profile.sections steps."
+            },
+            "showSummaryStep": {
+              "type": "boolean",
+              "description": "Appends a synthesized read-only Summary/review step to the wizard, derived from the OTHER groups' entered values (it needs no profile.sections entry of its own); each section carries an Edit affordance back to its step. Wizard path only; ignored by 'flat'. Default off."
+            },
+            "stepperVariant": {
+              "enum": [
+                "numbered",
+                "tabs"
+              ],
+              "description": "Step-nav treatment for the wizard rail — Stepper's own variant. 'numbered' (default) is the numbered/icon circle rail; 'tabs' is the horizontal text-tab strip. Ignored by the 'flat' path."
+            },
+            "stepIcons": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Per-step rail icon keyed by CreationGroup id ('basic', a profile.sections entry's own id, the trailing 'details' bucket, or 'summary'). Values are icon NAMES from the shared FIELD_ICON_VOCABULARY (the same closed set IconTextView's props.icon resolves through); an unknown name falls back to the default numbered/check marker rather than throwing."
+            }
+          }
+        },
+        "cockpit": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Operations-cockpit lens options for the hybrid view kind (see UiConfig.cockpit in types.ts). Presence of this block on a module that also binds coordinates via uiConfig.map switches the hybrid view body to the CockpitView lens (KPI strip + card queue + live map + status-panel band). A view option on an existing module type, never a new module type.",
+          "properties": {
+            "alert": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "text"
+              ],
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "countdown": {
+                  "type": "string"
+                },
+                "tone": {
+                  "enum": [
+                    "danger",
+                    "warning",
+                    "info"
+                  ]
+                }
+              }
+            },
+            "kpis": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "label"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": [
+                      "string",
+                      "number"
+                    ]
+                  },
+                  "countStatus": {
+                    "type": "string"
+                  },
+                  "accent": {
+                    "enum": [
+                      "primary",
+                      "success",
+                      "warning",
+                      "danger",
+                      "info",
+                      "neutral"
+                    ]
+                  },
+                  "badge": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "label"
+                    ],
+                    "properties": {
+                      "label": {
+                        "type": "string"
+                      },
+                      "tone": {
+                        "enum": [
+                          "up",
+                          "down",
+                          "success",
+                          "warning",
+                          "link",
+                          "neutral"
+                        ]
+                      }
+                    }
+                  },
+                  "detailColumns": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "opens": {
+                    "enum": [
+                      "detail",
+                      "issues"
+                    ]
+                  }
+                }
+              }
+            },
+            "queue": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "titleCol": {
+                  "type": "string"
+                },
+                "subtitleCol": {
+                  "type": "string"
+                },
+                "progressCol": {
+                  "type": "string"
+                },
+                "progressLabelCol": {
+                  "type": "string"
+                },
+                "plannedCol": {
+                  "type": "string"
+                },
+                "actualCol": {
+                  "type": "string"
+                },
+                "metaCols": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "bannerCol": {
+                  "type": "string"
+                },
+                "bannerToneCol": {
+                  "type": "string"
+                },
+                "searchCols": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "avatarCol": {
+                  "type": "string"
+                },
+                "deltaCol": {
+                  "type": "string"
+                }
+              }
+            },
+            "routes": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "plannedCol": {
+                  "type": "string"
+                },
+                "actualCol": {
+                  "type": "string"
+                }
+              }
+            },
+            "filters": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "label"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "col": {
+                    "type": "string"
+                  },
+                  "options": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "placeholder": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "actions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "label"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "enum": [
+                      "broadcast",
+                      "actions",
+                      "export"
+                    ]
+                  },
+                  "primary": {
+                    "type": "boolean"
+                  },
+                  "kind": {
+                    "enum": [
+                      "menu",
+                      "toast"
+                    ]
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "id",
+                        "label"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "label": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "popup": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "maxWidth": {
+                  "type": "string"
+                },
+                "contactCol": {
+                  "type": "string"
+                },
+                "commands": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "id",
+                      "label"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "label": {
+                        "type": "string"
+                      },
+                      "message": {
+                        "type": "string"
+                      },
+                      "tone": {
+                        "enum": [
+                          "default",
+                          "warning",
+                          "danger"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "flows": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "report": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "label",
+                    "typeOptions"
+                  ],
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "typeLabel": {
+                      "type": "string"
+                    },
+                    "typeOptions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "noteLabel": {
+                      "type": "string"
+                    },
+                    "dispatchLabel": {
+                      "type": "string"
+                    },
+                    "targetStatus": {
+                      "type": "string"
+                    },
+                    "successTitle": {
+                      "type": "string"
+                    },
+                    "successDescription": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "issues": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "status"
+                  ],
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "reasonCol": {
+                      "type": "string"
+                    },
+                    "suggestLabel": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "assign": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "assignLabel": {
+                      "type": "string"
+                    },
+                    "replaceLabel": {
+                      "type": "string"
+                    },
+                    "successTitle": {
+                      "type": "string"
+                    },
+                    "successDescription": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "replace": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "label"
+                  ],
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "currentCols": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "standbyCols": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "confirmLabel": {
+                      "type": "string"
+                    },
+                    "resolveStatus": {
+                      "type": "string"
+                    },
+                    "successTitle": {
+                      "type": "string"
+                    },
+                    "successDescription": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "callLabel": {
+                  "type": "string"
+                }
+              }
+            },
+            "panels": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "title"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "enum": [
+                      "group",
+                      "people",
+                      "chart"
+                    ]
+                  },
+                  "filter": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "label"
+                    ],
+                    "properties": {
+                      "label": {
+                        "type": "string"
+                      },
+                      "options": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "stats": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "label",
+                        "value"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "label": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": [
+                            "string",
+                            "number"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "label",
+                        "count"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "label": {
+                          "type": "string"
+                        },
+                        "count": {
+                          "type": "number"
+                        },
+                        "tone": {
+                          "enum": [
+                            "primary",
+                            "success",
+                            "warning",
+                            "danger",
+                            "info",
+                            "neutral"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "countByCol": {
+                    "type": "string"
+                  },
+                  "toneMap": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "enum": [
+                        "primary",
+                        "success",
+                        "warning",
+                        "danger",
+                        "info",
+                        "neutral"
+                      ]
+                    }
+                  },
+                  "emptyLabel": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "hybrid": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Hybrid (split list+profile) view options.",
+          "properties": {
+            "listColumns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "systemcolumn ids shown in the compact left list of the hybrid view."
+            },
+            "stageTabs": {
+              "type": "boolean",
+              "description": "Stage tabs — a CountTabs row above the hybrid's compact left list: 'All' plus one tab per uiConfig.statusList entry, each with a live count. Selecting a stage narrows the list to it and suppresses the per-row STATUS pill (both return on 'All'). Requires a non-empty uiConfig.statusList."
+            }
+          }
+        },
+        "hideResultsCount": {
+          "type": "boolean",
+          "description": "Hides the 'Showing N of M' results-count line across this module's lenses when true."
+        },
+        "viewSwitcher": {
+          "type": "boolean",
+          "description": "false hides the shared toolbar's list/grid display-mode segmented switcher for this module."
+        },
+        "recordAutomation": {
+          "type": "array",
+          "description": "Declarative cross-module side effects — the generic 'when this column reaches this value, create a record in another module and reference it back' vocabulary. Evaluated by the pure evalRecordAutomations() (@fams/v5-composer's automation.ts); the consuming app performs the actual create/patch. Carries no business vocabulary — col/entityType/target column keys are opaque strings the blueprint author supplies.",
+          "items": {
+            "type": "object",
+            "required": ["id", "when", "create"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Stable identity — same convention as every other blueprint node id."
+              },
+              "when": {
+                "type": "object",
+                "required": ["col", "equals"],
+                "additionalProperties": false,
+                "description": "Fires when `col`'s value BECOMES exactly `equals` (an enter transition — does not fire if `col` already equaled `equals` before the patch, so it never refires on a later unrelated patch).",
+                "properties": {
+                  "col": { "type": "string" },
+                  "equals": {}
+                }
+              },
+              "create": {
+                "type": "object",
+                "required": ["entityType", "values"],
+                "additionalProperties": false,
+                "properties": {
+                  "entityType": {
+                    "type": "string",
+                    "description": "Target module's entity code, e.g. \"maintenance/job-order\"."
+                  },
+                  "values": {
+                    "type": "object",
+                    "description": "Target column → value mapping, resolved against the source record (its previous value merged with the incoming patch).",
+                    "additionalProperties": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "fromCol": {
+                          "type": "string",
+                          "description": "Copies a source column's value verbatim."
+                        },
+                        "const": {
+                          "description": "A literal value."
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "patchSource": {
+                "type": "object",
+                "description": "Optional patch applied back onto the source record once the target record exists.",
+                "additionalProperties": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "const": {
+                      "description": "A literal value."
+                    },
+                    "fromCreated": {
+                      "type": "string",
+                      "description": "Names a column on the just-created target record (typically \"id\") for the back-reference."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

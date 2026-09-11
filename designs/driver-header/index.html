@@ -1,0 +1,84 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Driver header options</title>
+<style>
+@font-face{font-family:'Gilroy';src:url('../../v5-design-system-ai-main/Font/Gilroy-Medium.otf');font-weight:500}
+@font-face{font-family:'Gilroy';src:url('../../v5-design-system-ai-main/Font/Gilroy-Semibold.otf');font-weight:600}
+@font-face{font-family:'Gilroy';src:url('../../v5-design-system-ai-main/Font/Gilroy-Bold.otf');font-weight:700}
+:root{--p:#8A1538;--t1:#1D2939;--t2:#475467;--t3:#667085;--b:#EAECF0;--bg:#F9FAFB;--ok:#12B76A;--blue:#1570EF}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Gilroy,-apple-system,sans-serif;background:#E4E7EC;padding:28px;color:var(--t1)}
+.label{font-size:13px;font-weight:600;color:var(--t2);margin:0 0 10px;letter-spacing:.04em;text-transform:uppercase}
+.frame{background:#fff;border:1px solid var(--b);border-radius:12px;width:1180px;margin-bottom:34px;overflow:hidden}
+.hdr{display:flex;align-items:center;gap:16px;padding:18px 28px;border-bottom:1px solid var(--b)}
+.who{display:flex;align-items:center;gap:14px;min-width:0}
+.av{width:48px;height:48px;border-radius:50%;background:var(--p);color:#fff;font-weight:700;font-size:18px;display:grid;place-items:center;position:relative;flex:none}
+.av::after{content:"";position:absolute;right:-1px;bottom:-1px;width:14px;height:14px;border-radius:50%;background:var(--ok);border:2.5px solid #fff}
+.name{font-size:20px;font-weight:700;line-height:1.1}
+.meta{font-size:14px;color:var(--t3);margin-top:4px;display:flex;gap:8px;align-items:center}
+.meta b{color:var(--t2);font-weight:600}
+.dot{width:3px;height:3px;border-radius:50%;background:#D0D5DD}
+.sp{flex:1}
+.stats{display:flex;gap:10px}
+.stat{padding:10px 16px;border:1px solid var(--b);border-radius:10px;background:var(--bg);min-width:112px}
+.stat .k{font-size:12px;color:var(--t3);font-weight:600}
+.stat .v{font-size:20px;font-weight:700;margin-top:2px}
+.stat .v small{font-size:13px;color:var(--t3);font-weight:600;margin-left:4px}
+.btn{height:52px;padding:0 22px;border-radius:10px;border:1.5px solid var(--p);background:#fff;color:var(--p);font:600 16px Gilroy;display:inline-flex;align-items:center;gap:10px;flex:none}
+.btn.pri{background:var(--p);color:#fff}
+.shift{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#ECFDF3;color:#027A48;font-weight:600;font-size:14px}
+.shift i{width:8px;height:8px;border-radius:50%;background:var(--ok);display:inline-block}
+.plate{font-family:ui-monospace,Menlo,monospace;font-size:13px;font-weight:600;background:#fff;border:1px solid #D0D5DD;border-radius:6px;padding:3px 8px;color:var(--t2)}
+.body{padding:20px 28px;color:#98A2B3;font-size:14px;height:70px}
+/* option B */
+.ribbon{display:flex;align-items:center;gap:18px;padding:12px 28px;border-bottom:1px solid var(--b);background:var(--bg);font-size:14px}
+.ribbon .ttl{font-weight:700;font-size:16px;color:var(--t1)}
+.ribbon .seg{display:flex;align-items:center;gap:8px;color:var(--t2)}
+.ribbon .seg b{color:var(--t1);font-weight:600}
+</style></head><body>
+
+<p class="label">Option A - Shift status header (recommended)</p>
+<div class="frame">
+  <div class="hdr">
+    <div class="who">
+      <div class="av">AK</div>
+      <div>
+        <div class="name">Ali Khalid</div>
+        <div class="meta"><b>Vacuum Tanker</b><span class="dot"></span><span class="plate">QA 48 2731</span><span class="dot"></span>Zone 38 · Al Wakrah</div>
+      </div>
+    </div>
+    <div class="sp"></div>
+    <div class="stats">
+      <div class="stat"><div class="k">Shift</div><div class="v">06:00 – 14:00</div></div>
+      <div class="stat"><div class="k">Jobs today</div><div class="v">3<small>1 done</small></div></div>
+    </div>
+    <span class="shift"><i></i>On shift · 4h 12m</span>
+    <button class="btn">Assembly Point</button>
+  </div>
+  <div class="body">… job cards + map as today …</div>
+</div>
+
+<p class="label">Option B - Mission ribbon (minimal, one line)</p>
+<div class="frame">
+  <div class="ribbon">
+    <span class="ttl">Today's Route</span>
+    <span class="seg">Wed 15 Apr</span>
+    <span class="dot"></span>
+    <span class="seg"><b>3 jobs</b> · 2 remaining</span>
+    <span class="dot"></span>
+    <span class="seg">Next: <b>Rain Water Removal</b> · Rasheeda St · 1.8 km</span>
+    <span class="sp"></span>
+    <span class="shift"><i></i>Ali Khalid · QA 48 2731</span>
+    <button class="btn" style="height:40px;font-size:14px">Assembly Point</button>
+  </div>
+  <div class="body">… job cards + map as today …</div>
+</div>
+
+<p class="label">Option C - Current: for comparison</p>
+<div class="frame">
+  <div class="hdr">
+    <div><div class="name" style="font-size:34px">Hey Ali,</div><div class="meta">Wednesday, April 15, 2026</div></div>
+    <div class="sp"></div>
+    <button class="btn" style="border-color:#D0D5DD;color:#98A2B3;height:70px;padding:0 32px;font-size:20px">Go to Assembly Point</button>
+  </div>
+  <div class="body">… job cards + map …</div>
+</div>
+</body></html>

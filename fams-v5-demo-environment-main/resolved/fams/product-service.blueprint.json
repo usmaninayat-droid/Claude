@@ -1,0 +1,268 @@
+{
+  "code": "crm/product-service",
+  "kind": "entity",
+  "listcolumns": [
+    {
+      "col": "uniqueidentifier",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_uniqueidentifier",
+      "name": "Product ID"
+    },
+    {
+      "col": "title",
+      "component": {
+        "name": "TextView",
+        "props": {
+          "handleOverflow": true
+        }
+      },
+      "id": "fld_ps_name"
+    },
+    {
+      "col": "systemcol1",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_ps_kind"
+    },
+    {
+      "col": "systemcol2",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_ps_category"
+    },
+    {
+      "col": "systemcol3",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_ps_price"
+    },
+    {
+      "col": "status",
+      "component": {
+        "name": "StatusList"
+      },
+      "id": "fld_ps_status"
+    },
+    {
+      "col": "tags",
+      "component": {
+        "name": "TagList"
+      },
+      "id": "fld_ps_tags"
+    }
+  ],
+  "name": "Product/Service",
+  "systemcolumns": [
+    {
+      "col": "title",
+      "id": "fld_ps_name",
+      "name": "Name",
+      "required": true,
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol1",
+      "id": "fld_ps_kind",
+      "listValues": [
+        "Product",
+        "Service"
+      ],
+      "name": "Type",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol2",
+      "id": "fld_ps_category",
+      "listValues": [
+        "Fleet Hardware",
+        "Software License",
+        "Maintenance Plan",
+        "Consulting",
+        "Installation",
+        "Support Contract"
+      ],
+      "name": "Category",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol3",
+      "id": "fld_ps_price",
+      "name": "Price",
+      "type": "Numeric",
+      "unit": "USD"
+    },
+    {
+      "col": "status",
+      "id": "fld_ps_status",
+      "listValues": [
+        "Active",
+        "Discontinued"
+      ],
+      "name": "Status",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "tags",
+      "id": "fld_ps_tags",
+      "name": "Tags",
+      "type": "tags"
+    }
+  ],
+  "uiConfig": {
+    "bulkActions": {
+      "delete": true,
+      "export": true
+    },
+    "creation": {
+      "fieldChrome": "inset-label",
+      "label": "Create New Product/Service",
+      "layout": "flat"
+    },
+    "filters": [
+      {
+        "col": "systemcol1",
+        "id": "flt_ps_kind",
+        "order": 1
+      },
+      {
+        "col": "systemcol2",
+        "id": "flt_ps_category",
+        "order": 2
+      },
+      {
+        "col": "status",
+        "id": "flt_ps_status",
+        "order": 3
+      }
+    ],
+    "icon": "package",
+    "listSelectable": true,
+    "profile": {
+      "details": [
+        {
+          "col": "systemcol1",
+          "id": "fld_ps_kind",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "status",
+          "component": {
+            "name": "StatusList"
+          },
+          "id": "fld_ps_status",
+          "order": 1,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol2",
+          "id": "fld_ps_category",
+          "order": 2,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol3",
+          "id": "fld_ps_price",
+          "order": 2,
+          "pos": "right"
+        }
+      ],
+      "rightPanel": {
+        "tabs": [
+          {
+            "component": {
+              "name": "OverviewSummary"
+            },
+            "id": "tab_ps_overview",
+            "key": "overview",
+            "order": 1,
+            "title": "Overview"
+          },
+          {
+            "component": {
+              "name": "sections"
+            },
+            "id": "tab_ps_details",
+            "key": "details",
+            "order": 2,
+            "title": "Details"
+          },
+          {
+            "component": {
+              "name": "LinkedRecords"
+            },
+            "id": "tab_ps_linked",
+            "key": "linked",
+            "order": 3,
+            "title": "Linked"
+          }
+        ],
+        "type": "tab"
+      },
+      "sections": [
+        {
+          "fields": [
+            {
+              "col": "systemcol1",
+              "id": "fld_ps_kind",
+              "order": 1
+            },
+            {
+              "col": "systemcol2",
+              "id": "fld_ps_category",
+              "order": 2
+            },
+            {
+              "col": "systemcol3",
+              "id": "fld_ps_price",
+              "order": 3
+            }
+          ],
+          "id": "sec_ps_details",
+          "name": "Details",
+          "order": 1
+        }
+      ],
+      "title": {
+        "col": "title",
+        "id": "fld_ps_name",
+        "pos": "left"
+      }
+    },
+    "recordNoun": {
+      "many": "items",
+      "one": "item"
+    },
+    "rowActions": {
+      "archive": true,
+      "delete": true,
+      "requiredPrivilege": "product-service.view"
+    },
+    "search": {
+      "columns": [
+        "title",
+        "systemcol2"
+      ]
+    },
+    "statusList": [
+      {
+        "color": "#16a34a",
+        "id": "sts_ps_active",
+        "key": "Active",
+        "label": "Active"
+      },
+      {
+        "color": "#94a3b8",
+        "id": "sts_ps_discontinued",
+        "key": "Discontinued",
+        "label": "Discontinued"
+      }
+    ]
+  },
+  "uidPrefix": "PS"
+}

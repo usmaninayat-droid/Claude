@@ -1,0 +1,56 @@
+{
+  "base": "tenant-native",
+  "module": "product-service",
+  "nodes": {
+    "fld_ps_category": {
+      "source": "tenant-native"
+    },
+    "fld_ps_kind": {
+      "source": "tenant-native"
+    },
+    "fld_ps_name": {
+      "source": "tenant-native"
+    },
+    "fld_ps_price": {
+      "source": "tenant-native"
+    },
+    "fld_ps_status": {
+      "source": "tenant-native"
+    },
+    "fld_ps_tags": {
+      "source": "tenant-native"
+    },
+    "fld_uniqueidentifier": {
+      "source": "tenant-native"
+    },
+    "flt_ps_category": {
+      "source": "tenant-native"
+    },
+    "flt_ps_kind": {
+      "source": "tenant-native"
+    },
+    "flt_ps_status": {
+      "source": "tenant-native"
+    },
+    "sec_ps_details": {
+      "source": "tenant-native"
+    },
+    "sts_ps_active": {
+      "source": "tenant-native"
+    },
+    "sts_ps_discontinued": {
+      "source": "tenant-native"
+    },
+    "tab_ps_details": {
+      "source": "tenant-native"
+    },
+    "tab_ps_linked": {
+      "source": "tenant-native"
+    },
+    "tab_ps_overview": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

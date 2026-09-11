@@ -1,0 +1,122 @@
+[
+  {
+    "id": "PS-01",
+    "uniqueidentifier": "PS-01",
+    "title": "Fleet Tracker Pro",
+    "systemcol1": "Product",
+    "systemcol2": "Fleet Hardware",
+    "systemcol3": 1200,
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "PS-02",
+    "uniqueidentifier": "PS-02",
+    "title": "Telematics Suite License",
+    "systemcol1": "Service",
+    "systemcol2": "Software License",
+    "systemcol3": 5400,
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "PS-03",
+    "uniqueidentifier": "PS-03",
+    "title": "Preventive Maintenance Plan",
+    "systemcol1": "Service",
+    "systemcol2": "Maintenance Plan",
+    "systemcol3": 3200,
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "PS-04",
+    "uniqueidentifier": "PS-04",
+    "title": "Onsite Installation",
+    "systemcol1": "Service",
+    "systemcol2": "Installation",
+    "systemcol3": 800,
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "PS-05",
+    "uniqueidentifier": "PS-05",
+    "title": "Fleet Consulting Package",
+    "systemcol1": "Service",
+    "systemcol2": "Consulting",
+    "systemcol3": 6000,
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "PS-06",
+    "uniqueidentifier": "PS-06",
+    "title": "24/7 Support Contract",
+    "systemcol1": "Service",
+    "systemcol2": "Support Contract",
+    "systemcol3": 2400,
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "PS-07",
+    "uniqueidentifier": "PS-07",
+    "title": "Dashcam Bundle",
+    "systemcol1": "Product",
+    "systemcol2": "Fleet Hardware",
+    "systemcol3": 950,
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "PS-08",
+    "uniqueidentifier": "PS-08",
+    "title": "Fuel Sensor Kit",
+    "systemcol1": "Product",
+    "systemcol2": "Fleet Hardware",
+    "systemcol3": 640,
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "PS-09",
+    "uniqueidentifier": "PS-09",
+    "title": "Route Optimization Add-on",
+    "systemcol1": "Service",
+    "systemcol2": "Software License",
+    "systemcol3": 1800,
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "PS-10",
+    "uniqueidentifier": "PS-10",
+    "title": "Driver Behaviour Module",
+    "systemcol1": "Service",
+    "systemcol2": "Software License",
+    "systemcol3": 2100,
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "PS-11",
+    "uniqueidentifier": "PS-11",
+    "title": "Annual Compliance Audit",
+    "systemcol1": "Service",
+    "systemcol2": "Consulting",
+    "systemcol3": 4500,
+    "status": "Active",
+    "tags": []
+  },
+  {
+    "id": "PS-12",
+    "uniqueidentifier": "PS-12",
+    "title": "Basic Support Contract",
+    "systemcol1": "Service",
+    "systemcol2": "Support Contract",
+    "systemcol3": 1200,
+    "status": "Discontinued",
+    "tags": []
+  }
+]

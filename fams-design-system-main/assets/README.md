@@ -1,0 +1,49 @@
+# FAMS DS — Assets (refactored)
+
+Curated, tiered, deduped asset library. Follows [`../docs/ASSETS.md`](../docs/ASSETS.md).
+**Authoring source**; `@fams/icons` + the resolver manifest build from here. Source `v5-codebase/public/` untouched.
+
+## Structure — two tiers by fidelity (industry standard)
+```
+icons/          FLAT glyphs — low-color, currentColor-themeable → @fams/icons
+  event/ status/ poi/ file/ view/ ui/ workforce/
+illustrations/  DETAILED multicolor renders — keep palette
+  vehicle/ (+ -marker) · bin/ · device/ · poi/ · empty-state/ · <tenant>/
+logos/<tenant>/
+```
+- **345 assets** (from 423: −16 exact-dup aliases, −19 legacy/old dropped, −43 same-concept collisions resolved to the smaller/flatter file).
+- Variant suffixes: `-marker` (map pin), `-solid` (filled), `-white` (on-dark).
+- **21 monochrome glyphs → `fill="currentColor"`** (theme via token); multicolor illustrations keep their palette; `status/` left colored (color = semantic).
+- **Event icon set v3 (2026-08-25):** rebuilt `icons/event/` + `illustrations/event/` from a fresh designer export (`Green Driving Events` / `DMS-ADAS Icons` / `General Event Icons`, each with `Line/`, `Filled/`, `Map/`). Per designer directive, only **Line → icons (`variant:"default"`)** and **Map → illustrations (`variant:"marker"`)** were added; **Filled/Solid was skipped entirely** (deferred — "the formats are not clear according to colors... use the new, remove the old, and only add Line and Map for now"). The entire old event family (all `-solid` variants, all prior default/marker files) was deleted first, so there is **no `event/*-solid` variant left** — re-add it from `Filled/` in a future pass once solid-format colors are clarified. Event icon colors are **semantic per event** (red/orange/yellow/blue/green/purple/dark per the designer's reference sheets) — files are copied **verbatim, no `currentColor` conversion, ever**, unlike the rest of `icons/`. 64 concepts × Line = 73 icon files, 61 concepts × Map = 62 illustration files (one-to-one with prior key names so existing `event/<slug>` references keep resolving). Seven old concepts absent from this export (`bin-collected`, `ibutton-linking`, [+ its `-solid`], ) have no new-export equivalent and were left untouched from the prior set — flagged for the designer, not deleted. `bin-collection` and `bin-no-collection` received v2 art on 2026-08-25 (Waste Collection Events export, Line → icons, Map → illustrations). A stray duplicate export file (`Traffic Sign Recognition-1.svg` in DMS-ADAS `Map/`) was ignored as a known dupe.
+- **V5 asset-type icon set (2026-08):** `illustrations/vehicle/` gained 26 replaced + 5 new vehicle/asset types (List → default, Map → `-marker`) from the V5 designer export; one tenant-specific type (`Passenger`, Tadweer/IWMP) placed under `illustrations/iwmp/vehicle/`, a new tenant+category folder — flagged for confirmation, no prior precedent existed.
+- **EAD asset family (2026-08-25):** designer request for a tenant-scoped "Assets / EAD" group — EAD-branded vehicle icons used under EAD branding. Source: EAD RMS designer export (48 SVGs, List/ + Map/), reconciled to **23 concepts** with full List+Map coverage under `illustrations/ead/vehicle/<kebab>.svg` (+ `-marker.svg`), keyed `asset-ead/<kebab>` with `list`/`marker`/`profile` variants (`profile` aliases the marker path, same convention as `asset-tadweer`). Naming fixes: `Papper Shredder Truck` → `paper-shredder-truck`; `Medical waste Fridge` → `medical-waste-fridge` (case); `Chemical Waste Fridge` (List) / `Chemical Waste Fridge Truck` (Map) reconciled to one concept, `chemical-waste-fridge`. `MapGarbage Chiller Van.svg` (found at the export root, not inside `Map/`) is the marker art for List's `Garbage Chiller Van.svg` — an export-naming artifact, reconciled to `garbage-chiller-van`. Two visually distinct icons shared a near-identical name (`Wast Carrier Crane.svg` vs `Waste Carrier Crane.svg`, both present in List and Map, confirmed different SVGs by content) — kept as separate concepts `waste-carrier-crane` and `waste-carrier-crane-alt` rather than collapsing one into the other. Two concepts lack full List+Map coverage and were **excluded**: `Waste Trans Tank` (List only, no Map/marker art) and `Special Equip` (Map only, no List art) — flagged for the designer, not fabricated. Existing tenant art already under `illustrations/ead/` (`auth-hero.svg`, `not-found.svg`) is untouched.
+- **Assets group re-key (2026-08-25):** the 31 concepts from that V5 export (`air-compressor`, `bike`, `bin`, `boomlift`, `bulldozer`, `bus`, `canter`, `car`, `cement-bulker`, `concrete-pump`, `container`, `crane`, `crawler-crane`, `dumper-truck`, `excavator`, `forklift`, `front-and-backhoe-loader`, `generator`, `heavy-hauler`, `hilux`, `horizontal-directional-drill`, `mixer`, `road-roller`, `rough-terrain-crane`, `scissor-lift`, `screed-pump`, `spider-lift`, `tanker`, `tripper-trailer`, `van`, `wheel-loader`) were re-keyed from `vehicle/<name>` to `asset/<name>` in `icons.json` for the new showcase "Assets" group (List/Map/Profile columns). Variant names: List art `default` → `list`; Map art keeps variant `marker`; a new `profile` variant was added per concept aliasing the same file path as `marker` (profile avatar reuses the map illustration — no file duplication). Files were **not** moved (still physically under `illustrations/vehicle/`) — no code referenced the old `vehicle/<name>` resolver keys directly (checked both this repo and `fams-v5-demo-environment`), so no alias entries were needed for backward compatibility. The remaining ~56 `vehicle/*` entries (non-asset-type concepts, e.g. `man`, `old-bike`, `trip-vehicle`) and the tenant-specific `illustrations/iwmp/vehicle/passenger` pair are untouched and stay keyed under `vehicle/`.
+
+## Raw designer drops (pending curation)
+- **`icons/POI Icons/` (2026-09-04, MME/FRMS)** — 7 SVGs exported straight from the
+  designer's Figma POI/marker frames (`Map icon for tanker`, `POI - Icon Assembly
+  Point`, `POI - Water Discharge Station`, `POI Depot`, `Start POI - Icon`,
+  `Vehicle Map Marker`, `Vehicle icon`). Deliberately kept at the export path and
+  export names rather than folded into `icons/poi/` + `illustrations/vehicle/`:
+  the MME-FRMS flood-planning screen documents this exact path in source
+  (`plan-monitoring-detail.tsx`) and inlines the art, so moving/renaming the files
+  would orphan that reference for no runtime gain. NOT in `icons.json` — nothing
+  resolves them through the manifest yet. **Open item:** reconcile against the
+  existing `poi/*` and `illustrations/vehicle/tanker` concepts (some are likely
+  same-concept collisions), kebab-case them, and add manifest entries; only then
+  should they be treated as part of the curated library.
+
+## Machine artifacts (the migration contract)
+- **`icons.json`** — resolver manifest: `[{key:"event/overspeed", variant:"default|solid|marker", tier:"icons|illustrations", path}]`. Replaces the platform's `@manifest/icons.json`; `resolveAppIcon('event/overspeed')` repoints here. 535 entries (was 503; +32 empty-state v2 entries, 6 same-key replacements — see note below). 518 as of 2026-08-25 (−12 entries across 11 retired legacy `event/*` keys — see event icon v2 follow-up note above). 455 as of 2026-08-25 (event icon v3 rebuild — see note above): net −63 (all `event/*-solid` variants removed, Filled deferred) with Line/Map re-added 1:1 under prior key names.
+- **Empty-state illustration set v2 (2026-08):** designer refresh of `illustrations/empty-state/` — 41 source SVGs (17 page-level "Type=" + 24 widget-level, incl. 3 nested one-per-folder exports) folded into 38 files. Replaced 6 same-key concepts in place (`document-empty-state`, `line-empty-state`, `pie-empty-state`, `map-empty-state`, `compliance-empty-state`, `timeline-empty-state` — old v1 art superseded); added 32 new concepts. Where the page-level and widget-level export of a concept were pixel-identical (`document`, `maintenance`) only one file was kept; where they were the same illustration at two distinct canvas sizes/palettes (`bar-chart`, `log`, `line`, `pie`, `map`, `progress-bar`, `single-bar`) both were kept, the widget-scoped one suffixed `-widget`. `Type19.svg` was dropped as a near-duplicate of `Widgets.svg` (same artwork, different id namespace) — flagged, not aliased.
+- **`asset-provenance.csv`** — every old `public/` source path → new DS path (`primary`/`alias`; `DROPPED-LEGACY` for the 58 sources of dropped art). Use for the one-by-one platform migration.
+- **`_refactor-log.csv`** — every old-DS→new-DS move + action (placed / alias / collision-kept-smaller / collision-dropped-larger).
+- **`_dropped.csv`** — the 19 legacy/old files dropped, with reason.
+- `_raster-review/` — `skip-loader` (was PNG mislabeled svg — needs a real SVG) + `view-roster-view` (0-byte in source).
+
+## Open items (need your input — small)
+- **Non-semantic names (9):** `illustrations/device/device-2,-3`, `icons/poi/pin-2,-3`, `illustrations/vehicle/vehicle-2,-3`, `icons/status/vehicle-start-2`,`vehicle-end-2`, `illustrations/empty-state/error-2`. Rename once meaning known.
+- **Color-variant glyphs (event) — resolved 2026-08-25:** `overspeed-green`/`harsh-*-green`/`overspeed-filled-dash`/`harsh-turning-filled-dash` were pre-v2 leftovers duplicating a v2 concept under a different name/color suffix, not a real state — deleted (see event icon v2 follow-up note above). `poi-green`/`poi-map-yellow` are a different namespace (`poi/`, not `event/`) and out of scope for the event-set cleanup; still open.
+- **Waste-stream bins:** kept `-black`/`-green` (waste type) per your call; rename to stream names if/when confirmed.
+
+Regenerable: `scratchpad/{refactor,finalize}-refactor.sh`. `bronze`/`gold` in `illustrations/` are ranking badges (not colors).

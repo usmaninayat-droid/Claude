@@ -1,0 +1,7 @@
+[
+  { "id": "V-201", "uniqueidentifier": "V-201", "title": "Fleet Truck 201", "status": "Available", "systemcol1": "Toyota", "systemcol2": "Hilux", "systemcol3": "AUH-4021", "systemcol4": "82,400", "systemcol5": "u_mgr" },
+  { "id": "V-202", "uniqueidentifier": "V-202", "title": "Fleet Truck 202", "status": "In Service", "systemcol1": "Isuzu", "systemcol2": "D-Max", "systemcol3": "AUH-4088", "systemcol4": "41,900", "systemcol5": "u_rep" },
+  { "id": "V-203", "uniqueidentifier": "V-203", "title": "Fleet Van 203", "status": "Maintenance", "systemcol1": "Ford", "systemcol2": "Transit", "systemcol3": "DXB-7712", "systemcol4": "119,050", "systemcol5": "u_mgr" },
+  { "id": "V-204", "uniqueidentifier": "V-204", "title": "Fleet Sedan 204", "status": "Available", "systemcol1": "Nissan", "systemcol2": "Altima", "systemcol3": "DXB-9931", "systemcol4": "27,300", "systemcol5": "u_rep" },
+  { "id": "V-205", "uniqueidentifier": "V-205", "title": "Fleet Truck 205", "status": "Retired", "systemcol1": "Toyota", "systemcol2": "Land Cruiser", "systemcol3": "AUH-1002", "systemcol4": "244,700", "systemcol5": "u_mgr" }
+]

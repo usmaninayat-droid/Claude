@@ -1,0 +1,308 @@
+{
+  "code": "crm/company",
+  "kind": "entity",
+  "listcolumns": [
+    {
+      "col": "uniqueidentifier",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_uniqueidentifier",
+      "name": "Company ID"
+    },
+    {
+      "col": "title",
+      "component": {
+        "name": "TextView",
+        "props": {
+          "handleOverflow": true
+        }
+      },
+      "id": "fld_co_name"
+    },
+    {
+      "col": "systemcol1",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_co_industry"
+    },
+    {
+      "col": "status",
+      "component": {
+        "name": "StatusList"
+      },
+      "id": "fld_co_status"
+    },
+    {
+      "col": "systemcol3",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_co_phone"
+    },
+    {
+      "col": "systemcol5",
+      "component": {
+        "name": "LinkView"
+      },
+      "id": "fld_co_owner"
+    },
+    {
+      "col": "tags",
+      "component": {
+        "name": "TagList"
+      },
+      "id": "fld_co_tags"
+    }
+  ],
+  "name": "Company",
+  "systemcolumns": [
+    {
+      "col": "title",
+      "id": "fld_co_name",
+      "name": "Company Name",
+      "required": true,
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol1",
+      "id": "fld_co_industry",
+      "listValues": [
+        "Manufacturing",
+        "Retail",
+        "Logistics",
+        "Construction",
+        "Healthcare",
+        "Technology",
+        "Government"
+      ],
+      "name": "Industry",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol2",
+      "id": "fld_co_website",
+      "name": "Website",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol3",
+      "id": "fld_co_phone",
+      "name": "Phone",
+      "type": "Phone"
+    },
+    {
+      "col": "systemcol4",
+      "id": "fld_co_address",
+      "name": "Address",
+      "type": "SmallText"
+    },
+    {
+      "col": "status",
+      "id": "fld_co_status",
+      "listValues": [
+        "Prospect",
+        "Active",
+        "Churned"
+      ],
+      "name": "Status",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol5",
+      "entityType": "workforce/driver",
+      "id": "fld_co_owner",
+      "name": "Account Owner",
+      "refModule": "Entity",
+      "type": "SingleReference"
+    },
+    {
+      "col": "tags",
+      "id": "fld_co_tags",
+      "name": "Tags",
+      "type": "tags"
+    }
+  ],
+  "uiConfig": {
+    "bulkActions": {
+      "delete": true,
+      "export": true
+    },
+    "creation": {
+      "fieldChrome": "inset-label",
+      "label": "Create New Company",
+      "layout": "flat"
+    },
+    "filters": [
+      {
+        "col": "systemcol1",
+        "id": "flt_co_industry",
+        "order": 1
+      },
+      {
+        "col": "status",
+        "id": "flt_co_status",
+        "order": 2
+      }
+    ],
+    "icon": "building",
+    "listSelectable": true,
+    "profile": {
+      "details": [
+        {
+          "col": "systemcol1",
+          "id": "fld_co_industry",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "status",
+          "component": {
+            "name": "StatusList"
+          },
+          "id": "fld_co_status",
+          "order": 1,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol2",
+          "id": "fld_co_website",
+          "order": 2,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol3",
+          "id": "fld_co_phone",
+          "order": 2,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol4",
+          "id": "fld_co_address",
+          "order": 3,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol5",
+          "component": {
+            "name": "LinkView"
+          },
+          "id": "fld_co_owner",
+          "order": 3,
+          "pos": "right"
+        }
+      ],
+      "rightPanel": {
+        "tabs": [
+          {
+            "component": {
+              "name": "OverviewSummary"
+            },
+            "id": "tab_co_overview",
+            "key": "overview",
+            "order": 1,
+            "title": "Overview"
+          },
+          {
+            "component": {
+              "name": "sections"
+            },
+            "id": "tab_co_details",
+            "key": "details",
+            "order": 2,
+            "title": "Details"
+          },
+          {
+            "component": {
+              "name": "LinkedRecords"
+            },
+            "id": "tab_co_linked",
+            "key": "linked",
+            "order": 3,
+            "title": "Linked"
+          }
+        ],
+        "type": "tab"
+      },
+      "sections": [
+        {
+          "fields": [
+            {
+              "col": "systemcol1",
+              "id": "fld_co_industry",
+              "order": 1
+            },
+            {
+              "col": "systemcol2",
+              "id": "fld_co_website",
+              "order": 2
+            },
+            {
+              "col": "systemcol3",
+              "id": "fld_co_phone",
+              "order": 3
+            },
+            {
+              "col": "systemcol4",
+              "id": "fld_co_address",
+              "order": 4
+            },
+            {
+              "col": "systemcol5",
+              "component": {
+                "name": "LinkView"
+              },
+              "id": "fld_co_owner",
+              "order": 5
+            }
+          ],
+          "id": "sec_co_details",
+          "name": "Company Details",
+          "order": 1
+        }
+      ],
+      "title": {
+        "col": "title",
+        "id": "fld_co_name",
+        "pos": "left"
+      }
+    },
+    "recordNoun": {
+      "many": "companies",
+      "one": "company"
+    },
+    "rowActions": {
+      "archive": true,
+      "delete": true,
+      "requiredPrivilege": "company.view"
+    },
+    "search": {
+      "columns": [
+        "title",
+        "systemcol2"
+      ]
+    },
+    "statusList": [
+      {
+        "color": "#f79009",
+        "id": "sts_co_prospect",
+        "key": "Prospect",
+        "label": "Prospect"
+      },
+      {
+        "color": "#16a34a",
+        "id": "sts_co_active",
+        "key": "Active",
+        "label": "Active"
+      },
+      {
+        "color": "#94a3b8",
+        "id": "sts_co_churned",
+        "key": "Churned",
+        "label": "Churned"
+      }
+    ]
+  },
+  "uidPrefix": "CO"
+}

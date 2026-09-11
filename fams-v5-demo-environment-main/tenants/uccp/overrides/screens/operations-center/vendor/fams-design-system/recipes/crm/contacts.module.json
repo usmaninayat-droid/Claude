@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schemas/EntityModuleConfig.schema.json",
+  "kind": "entity",
+  "code": "crm/contacts",
+  "name": "Contacts",
+  "uidPrefix": "CT",
+  "systemcolumns": [
+    { "col": "title", "name": "Full name", "type": "SmallText", "required": true },
+    { "col": "systemcol1", "name": "Email", "type": "SmallText" },
+    { "col": "systemcol2", "name": "Phone", "type": "SmallText" },
+    { "col": "systemcol3", "name": "Company", "type": "SingleReference", "refModule": "crm/companies" },
+    { "col": "systemcol4", "name": "Role", "type": "SmallText" }
+  ],
+  "uiConfig": {
+    "statusList": [],
+    "profile": {
+      "title": { "col": "title", "pos": "left" },
+      "details": [
+        { "col": "uniqueidentifier", "pos": "left", "order": 1, "component": { "name": "LinkView" } },
+        { "col": "systemcol1", "pos": "right", "order": 1 },
+        { "col": "systemcol2", "pos": "left", "order": 2 },
+        { "col": "systemcol3", "pos": "right", "order": 2 },
+        { "col": "systemcol4", "pos": "left", "order": 3 }
+      ],
+      "sections": []
+    },
+    "filters": [{ "col": "systemcol4", "order": 1, "name": "Role" }],
+    "search": { "columns": ["title", "systemcol1", "systemcol3"] }
+  },
+  "listcolumns": [
+    { "col": "uniqueidentifier", "component": { "name": "TextView" } },
+    { "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "col": "systemcol1", "component": { "name": "TextView" } },
+    { "col": "systemcol2", "component": { "name": "TextView" } },
+    { "col": "systemcol3", "component": { "name": "TextView" } },
+    { "col": "systemcol4", "component": { "name": "TextView" } }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "base": "core",
+  "module": "pipelines",
+  "nodes": {
+    "Z-AF-01": {
+      "source": "core"
+    },
+    "Z-KH-02": {
+      "source": "core"
+    },
+    "Z-MU-03": {
+      "source": "core"
+    },
+    "Z-YS-04": {
+      "source": "core"
+    },
+    "fld_pl_assignee": {
+      "source": "core"
+    },
+    "fld_pl_cover": {
+      "source": "core"
+    },
+    "fld_pl_created_date": {
+      "source": "core"
+    },
+    "fld_pl_due": {
+      "source": "core"
+    },
+    "fld_pl_entity_id": {
+      "source": "core"
+    },
+    "fld_pl_entity_type": {
+      "source": "core"
+    },
+    "fld_pl_lat": {
+      "source": "core"
+    },
+    "fld_pl_lng": {
+      "source": "core"
+    },
+    "fld_pl_location": {
+      "source": "core"
+    },
+    "fld_pl_lot": {
+      "source": "core"
+    },
+    "fld_pl_note": {
+      "source": "core"
+    },
+    "fld_pl_priority": {
+      "source": "core"
+    },
+    "fld_pl_reporter": {
+      "source": "core"
+    },
+    "fld_pl_role": {
+      "source": "core"
+    },
+    "fld_pl_scheduled": {
+      "source": "core"
+    },
+    "fld_pl_service_type": {
+      "source": "core"
+    },
+    "fld_pl_status": {
+      "source": "core"
+    },
+    "fld_pl_tags": {
+      "source": "core"
+    },
+    "fld_pl_title": {
+      "source": "core"
+    },
+    "fld_pl_zone": {
+      "source": "core"
+    },
+    "fld_uniqueidentifier": {
+      "source": "core"
+    },
+    "flt_pl_assignee": {
+      "source": "core"
+    },
+    "flt_pl_lot": {
+      "source": "core"
+    },
+    "flt_pl_priority": {
+      "source": "core"
+    },
+    "flt_pl_service_type": {
+      "source": "core"
+    },
+    "flt_pl_status": {
+      "source": "core"
+    },
+    "flt_pl_tags": {
+      "source": "core"
+    },
+    "sec_pl_location": {
+      "source": "core"
+    },
+    "sec_pl_note": {
+      "source": "core"
+    },
+    "sts_assigned": {
+      "source": "core"
+    },
+    "sts_created_new": {
+      "source": "core"
+    },
+    "sts_delayed": {
+      "source": "core"
+    },
+    "sts_ininspection": {
+      "source": "core"
+    },
+    "sts_inprogress": {
+      "source": "core"
+    },
+    "sts_resolved": {
+      "source": "core"
+    },
+    "tab_pl_activity": {
+      "source": "core"
+    },
+    "tab_pl_attachments": {
+      "source": "core"
+    },
+    "tab_pl_linked": {
+      "source": "core"
+    },
+    "tab_pl_timeline": {
+      "source": "core"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

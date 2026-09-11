@@ -1,0 +1,71 @@
+{
+  "$schema": "../../../../node_modules/@fams/v5-composer/schemas/EntityModuleConfig.schema.json",
+  "kind": "entity",
+  "code": "crm/product-service",
+  "name": "Product/Service",
+  "uidPrefix": "PS",
+  "systemcolumns": [
+    { "id": "fld_ps_name", "col": "title", "name": "Name", "type": "SmallText", "required": true },
+    { "id": "fld_ps_kind", "col": "systemcol1", "name": "Type", "type": "SingleSelect", "listValues": ["Product", "Service"] },
+    { "id": "fld_ps_category", "col": "systemcol2", "name": "Category", "type": "SingleSelect", "listValues": ["Fleet Hardware", "Software License", "Maintenance Plan", "Consulting", "Installation", "Support Contract"] },
+    { "id": "fld_ps_price", "col": "systemcol3", "name": "Price", "type": "Numeric", "unit": "USD" },
+    { "id": "fld_ps_status", "col": "status", "name": "Status", "type": "SingleSelect", "listValues": ["Active", "Discontinued"] },
+    { "id": "fld_ps_tags", "col": "tags", "name": "Tags", "type": "tags" }
+  ],
+  "uiConfig": {
+    "icon": "package",
+    "statusList": [
+      { "id": "sts_ps_active", "key": "Active", "label": "Active", "color": "#16a34a" },
+      { "id": "sts_ps_discontinued", "key": "Discontinued", "label": "Discontinued", "color": "#94a3b8" }
+    ],
+    "profile": {
+      "title": { "id": "fld_ps_name", "col": "title", "pos": "left" },
+      "details": [
+        { "id": "fld_ps_kind", "col": "systemcol1", "pos": "left", "order": 1 },
+        { "id": "fld_ps_status", "col": "status", "pos": "right", "order": 1, "component": { "name": "StatusList" } },
+        { "id": "fld_ps_category", "col": "systemcol2", "pos": "left", "order": 2 },
+        { "id": "fld_ps_price", "col": "systemcol3", "pos": "right", "order": 2 }
+      ],
+      "sections": [
+        {
+          "id": "sec_ps_details",
+          "name": "Details",
+          "order": 1,
+          "fields": [
+            { "id": "fld_ps_kind", "col": "systemcol1", "order": 1 },
+            { "id": "fld_ps_category", "col": "systemcol2", "order": 2 },
+            { "id": "fld_ps_price", "col": "systemcol3", "order": 3 }
+          ]
+        }
+      ],
+      "rightPanel": {
+        "type": "tab",
+        "tabs": [
+          { "id": "tab_ps_overview", "key": "overview", "title": "Overview", "order": 1, "component": { "name": "OverviewSummary" } },
+          { "id": "tab_ps_details", "key": "details", "title": "Details", "order": 2, "component": { "name": "sections" } },
+          { "id": "tab_ps_linked", "key": "linked", "title": "Linked", "order": 3, "component": { "name": "LinkedRecords" } }
+        ]
+      }
+    },
+    "filters": [
+      { "id": "flt_ps_kind", "col": "systemcol1", "order": 1 },
+      { "id": "flt_ps_category", "col": "systemcol2", "order": 2 },
+      { "id": "flt_ps_status", "col": "status", "order": 3 }
+    ],
+    "search": { "columns": ["title", "systemcol2"] },
+    "rowActions": { "delete": true, "archive": true, "requiredPrivilege": "product-service.view" },
+    "bulkActions": { "delete": true, "export": true },
+    "listSelectable": true,
+    "recordNoun": { "one": "item", "many": "items" },
+    "creation": { "layout": "flat", "fieldChrome": "inset-label", "label": "Create New Product/Service" }
+  },
+  "listcolumns": [
+    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "name": "Product ID", "component": { "name": "TextView" } },
+    { "id": "fld_ps_name", "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "id": "fld_ps_kind", "col": "systemcol1", "component": { "name": "TextView" } },
+    { "id": "fld_ps_category", "col": "systemcol2", "component": { "name": "TextView" } },
+    { "id": "fld_ps_price", "col": "systemcol3", "component": { "name": "TextView" } },
+    { "id": "fld_ps_status", "col": "status", "component": { "name": "StatusList" } },
+    { "id": "fld_ps_tags", "col": "tags", "component": { "name": "TagList" } }
+  ]
+}

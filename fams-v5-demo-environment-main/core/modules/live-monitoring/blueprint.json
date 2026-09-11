@@ -1,0 +1,1435 @@
+{
+  "$schema": "../../../node_modules/@fams/v5-composer/schemas/EntityModuleConfig.schema.json",
+  "kind": "entity",
+  "code": "live-monitoring/vehicle",
+  "name": "Live Monitoring",
+  "uidPrefix": "LMV",
+  "views": [
+    "hybrid",
+    "list",
+    "map"
+  ],
+  "systemcolumns": [
+    {
+      "id": "fld_title",
+      "col": "title",
+      "name": "Vehicle",
+      "group": "Asset – Basic Info",
+      "type": "SmallText",
+      "required": true
+    },
+    {
+      "id": "fld_speed",
+      "col": "speed",
+      "name": "Speed",
+      "group": "Asset – Specs & Performance",
+      "type": "Numeric"
+    },
+    {
+      "id": "fld_health",
+      "col": "health",
+      "name": "Health",
+      "group": "Asset – Specs & Performance",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_lastrecord",
+      "col": "lastRecord",
+      "name": "Last Record Received",
+      "group": "Device – Technical",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_plate",
+      "col": "plate",
+      "name": "Plate",
+      "group": "Asset – Basic Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_make",
+      "col": "make",
+      "name": "Make",
+      "group": "Asset – Basic Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_imei",
+      "col": "imei",
+      "name": "IMEI",
+      "group": "Asset – Basic Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_model",
+      "col": "model",
+      "name": "Model",
+      "group": "Asset – Basic Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_vin",
+      "col": "vin",
+      "name": "VIN",
+      "group": "Asset – Basic Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_vtype",
+      "col": "vehicleType",
+      "name": "Vehicle Type",
+      "group": "Asset – Basic Info",
+      "type": "SingleSelect",
+      "listValues": [
+        "Garbage Vehicle",
+        "Water Vehicle",
+        "Coffee Delivery Truck",
+        "Delivery Bike",
+        "Inspection Officer Bike",
+        "Waste Bins",
+        "Delivery Centers",
+        "Chiller Van",
+        "Delivery Manager Bike",
+        "Ambulance"
+      ]
+    },
+    {
+      "id": "fld_astatus",
+      "col": "assetStatus",
+      "name": "Vehicle Status",
+      "group": "Asset – Basic Info",
+      "type": "SingleSelect",
+      "listValues": [
+        "Active",
+        "In-active",
+        "Disabled"
+      ]
+    },
+    {
+      "id": "fld_vcolor",
+      "col": "vehicleColor",
+      "name": "Vehicle Color",
+      "group": "Asset – Basic Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_myear",
+      "col": "manufacturingYear",
+      "name": "Manufacturing Year",
+      "group": "Asset – Registration & Dates",
+      "type": "Numeric"
+    },
+    {
+      "id": "fld_regdate",
+      "col": "registrationDate",
+      "name": "Registration Date",
+      "group": "Asset – Registration & Dates",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_admdate",
+      "col": "admissionDate",
+      "name": "Admission Date",
+      "group": "Asset – Registration & Dates",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_enginepower",
+      "col": "enginePower",
+      "name": "Engine Power",
+      "group": "Asset – Specs & Performance",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_topspeed",
+      "col": "topSpeed",
+      "name": "Top Speed",
+      "group": "Asset – Specs & Performance",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_maxspeed",
+      "col": "maxAllowedSpeed",
+      "name": "Maximum Allowed Speed",
+      "group": "Asset – Specs & Performance",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_odometer",
+      "col": "odometer",
+      "name": "Odometer",
+      "group": "Asset – Specs & Performance",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_fuel",
+      "col": "fuelType",
+      "name": "Fuel Type",
+      "group": "Asset – Fuel & Consumption",
+      "type": "SingleSelect",
+      "listValues": [
+        "Petrol",
+        "Diesel",
+        "Hybrid"
+      ]
+    },
+    {
+      "id": "fld_tankcap",
+      "col": "fuelTankCapacity",
+      "name": "Fuel Tank Capacity",
+      "group": "Asset – Fuel & Consumption",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_avgfuel",
+      "col": "averageFuelConsumption",
+      "name": "Average Fuel Consumption",
+      "group": "Asset – Fuel & Consumption",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_epacity",
+      "col": "epaCity",
+      "name": "EPA City",
+      "group": "Asset – Fuel & Consumption",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_epahwy",
+      "col": "epaHighway",
+      "name": "EPA Highway",
+      "group": "Asset – Fuel & Consumption",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_epacomb",
+      "col": "epaCombined",
+      "name": "EPA Combined",
+      "group": "Asset – Fuel & Consumption",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_length",
+      "col": "length",
+      "name": "Length",
+      "group": "Asset – Dimensions & Capacity",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_width",
+      "col": "width",
+      "name": "Width",
+      "group": "Asset – Dimensions & Capacity",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_height",
+      "col": "height",
+      "name": "Height",
+      "group": "Asset – Dimensions & Capacity",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_intvolume",
+      "col": "interiorVolume",
+      "name": "Interior Volume",
+      "group": "Asset – Dimensions & Capacity",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_grdvolume",
+      "col": "groundVolume",
+      "name": "Ground Volume",
+      "group": "Asset – Dimensions & Capacity",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_cargo",
+      "col": "cargo",
+      "name": "Cargo",
+      "group": "Asset – Dimensions & Capacity",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_cargovolume",
+      "col": "cargoVolume",
+      "name": "Cargo Volume",
+      "group": "Asset – Dimensions & Capacity",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_curbweight",
+      "col": "curbWeight",
+      "name": "Curb Weight",
+      "group": "Asset – Dimensions & Capacity",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_gvw",
+      "col": "grossVehicleWeight",
+      "name": "Gross Vehicle Weight",
+      "group": "Asset – Dimensions & Capacity",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_maxpayload",
+      "col": "maxPayload",
+      "name": "Max Payload",
+      "group": "Asset – Dimensions & Capacity",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_country",
+      "col": "country",
+      "name": "Country",
+      "group": "Asset – Misc",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_timezone",
+      "col": "timezone",
+      "name": "Timezone",
+      "group": "Asset – Misc",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_assetdocs",
+      "col": "attachedDocuments",
+      "name": "Attached Documents",
+      "group": "Asset – Misc",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_devname",
+      "col": "deviceName",
+      "name": "Device Name",
+      "group": "Device – Basic Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_devimei",
+      "col": "deviceImei",
+      "name": "IMEI",
+      "group": "Device – Basic Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_devmake",
+      "col": "deviceMake",
+      "name": "Device Make",
+      "group": "Device – Basic Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_devmodel",
+      "col": "deviceModel",
+      "name": "Device Model",
+      "group": "Device – Basic Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_devstatus",
+      "col": "deviceStatus",
+      "name": "Device Status",
+      "group": "Device – Basic Info",
+      "type": "SingleSelect",
+      "listValues": [
+        "Online",
+        "Offline",
+        "Idle"
+      ]
+    },
+    {
+      "id": "fld_devserial",
+      "col": "deviceSerial",
+      "name": "Device Serial",
+      "group": "Device – Technical",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_firmware",
+      "col": "firmware",
+      "name": "Firmware",
+      "group": "Device – Technical",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_devlife",
+      "col": "deviceLife",
+      "name": "Device Life",
+      "group": "Device – Technical",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_devmobile",
+      "col": "deviceMobileNumber",
+      "name": "Mobile Number",
+      "group": "Device – Contact",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_firstname",
+      "col": "firstName",
+      "name": "First name",
+      "group": "Workforce – Personal Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_lastname",
+      "col": "lastName",
+      "name": "Last name",
+      "group": "Workforce – Personal Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_gender",
+      "col": "gender",
+      "name": "Gender",
+      "group": "Workforce – Personal Info",
+      "type": "SingleSelect",
+      "listValues": [
+        "Male",
+        "Female"
+      ]
+    },
+    {
+      "id": "fld_dob",
+      "col": "dateOfBirth",
+      "name": "Date of Birth",
+      "group": "Workforce – Personal Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_nationality",
+      "col": "nationality",
+      "name": "Nationality",
+      "group": "Workforce – Personal Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_religion",
+      "col": "religion",
+      "name": "Religion",
+      "group": "Workforce – Personal Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_languages",
+      "col": "languages",
+      "name": "Languages",
+      "group": "Workforce – Personal Info",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_email",
+      "col": "email",
+      "name": "Email",
+      "group": "Workforce – Contact",
+      "type": "Email"
+    },
+    {
+      "id": "fld_mobilephone",
+      "col": "mobilePhone",
+      "name": "Mobile Phone",
+      "group": "Workforce – Contact",
+      "type": "Phone"
+    },
+    {
+      "id": "fld_driverref",
+      "col": "driverReference",
+      "name": "Driver Reference",
+      "group": "Workforce – Other Details",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_driverdocs",
+      "col": "driverDocuments",
+      "name": "Attached Documents",
+      "group": "Workforce – Other Details",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_uniqueidentifier",
+      "col": "uniqueidentifier",
+      "name": "Vehicle ID",
+      "group": "Other Fields",
+      "type": "Auto"
+    },
+    {
+      "id": "fld_status",
+      "col": "status",
+      "name": "Mobility Status",
+      "group": "Other Fields",
+      "type": "SingleSelect",
+      "listValues": [
+        "Moving",
+        "Idling",
+        "Stopped",
+        "Non-Reporting"
+      ]
+    },
+    {
+      "id": "fld_driver",
+      "col": "driver",
+      "name": "Driver",
+      "group": "Other Fields",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_contact",
+      "col": "contact",
+      "name": "Contact",
+      "group": "Other Fields",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_activity",
+      "col": "activity",
+      "name": "Activity Overview",
+      "group": "Other Fields",
+      "type": "SmallText",
+      "component": {
+        "name": "ActivityOverviewView"
+      }
+    },
+    {
+      "id": "fld_location",
+      "col": "location",
+      "name": "Location",
+      "group": "Other Fields",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_sos",
+      "col": "sos",
+      "name": "SOS",
+      "group": "Other Fields",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_temp",
+      "col": "temperature",
+      "name": "Temperature",
+      "group": "Other Fields",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_altitude",
+      "col": "altitude",
+      "name": "Altitude",
+      "group": "Other Fields",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_lat",
+      "col": "lat",
+      "name": "Latitude",
+      "group": "Other Fields",
+      "type": "Numeric",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_lng",
+      "col": "lng",
+      "name": "Longitude",
+      "group": "Other Fields",
+      "type": "Numeric",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_heading",
+      "col": "heading",
+      "name": "Heading",
+      "group": "Other Fields",
+      "type": "Numeric",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_dwell",
+      "col": "dwell",
+      "name": "Dwell",
+      "group": "Other Fields",
+      "type": "SmallText",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_since",
+      "col": "statusSince",
+      "name": "Status Since",
+      "group": "Other Fields",
+      "type": "SmallText",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_timestamp",
+      "col": "timestamp",
+      "name": "Timestamp",
+      "group": "Other Fields",
+      "type": "SmallText",
+      "creation": {
+        "hidden": true
+      }
+    },
+    {
+      "id": "fld_shift",
+      "col": "shiftType",
+      "name": "Shift Type",
+      "group": "Other Fields",
+      "type": "SingleSelect",
+      "listValues": [
+        "Stringer 234",
+        "Stringer",
+        "Day Shift",
+        "Night Shift",
+        "Street"
+      ]
+    },
+    {
+      "id": "fld_ptags",
+      "col": "privateTags",
+      "name": "My Private Tags",
+      "group": "Other Fields",
+      "type": "SmallText",
+      "creation": {
+        "hidden": true
+      }
+    }
+  ],
+  "uiConfig": {
+    "icon": "radar",
+    "viewPickerHint": "Instance can be really helpful while comparing the data, you can apply different filters and monitor the data for both with just a switch of a tab.",
+    "statusList": [
+      {
+        "id": "sts_moving",
+        "key": "Moving",
+        "label": "Moving",
+        "color": "#12B76A"
+      },
+      {
+        "id": "sts_idling",
+        "key": "Idling",
+        "label": "Idling",
+        "color": "#DC6803"
+      },
+      {
+        "id": "sts_stopped",
+        "key": "Stopped",
+        "label": "Stopped",
+        "color": "#F04438"
+      },
+      {
+        "id": "sts_nonreporting",
+        "key": "Non-Reporting",
+        "label": "Non-Reporting",
+        "color": "#98A2B3"
+      }
+    ],
+    "map": {
+      "center": [
+        55.2708,
+        25.2048
+      ],
+      "latCol": "lat",
+      "lngCol": "lng",
+      "statusCol": "status",
+      "plateCol": "plate",
+      "speedCol": "speed",
+      "dwellCol": "dwell",
+      "headingCol": "heading",
+      "driverCol": "driver",
+      "locationCol": "location",
+      "statusSinceCol": "statusSince",
+      "tagsCol": "shiftType",
+      "privateTagsCol": "privateTags",
+      "columnsShown": [
+        "fld_title",
+        "fld_speed",
+        "fld_health",
+        "fld_lastrecord"
+      ],
+      "expandedColumns": [
+        "fld_speed",
+        "fld_timestamp"
+      ],
+      "zones": [
+        {
+          "id": "Z-1234",
+          "label": "Z-1234",
+          "parent": "Lot A",
+          "color": "#F79009",
+          "tags": [
+            "depot",
+            "service-area"
+          ],
+          "points": [
+            [
+              55.135,
+              25.065
+            ],
+            [
+              55.15,
+              25.065
+            ],
+            [
+              55.15,
+              25.078000000000003
+            ],
+            [
+              55.135,
+              25.078000000000003
+            ]
+          ]
+        },
+        {
+          "id": "Z-2200",
+          "label": "Z-2200",
+          "parent": "Lot B",
+          "color": "#12B76A",
+          "tags": [
+            "customer-site"
+          ],
+          "points": [
+            [
+              55.262,
+              25.185
+            ],
+            [
+              55.278,
+              25.185
+            ],
+            [
+              55.278,
+              25.198
+            ],
+            [
+              55.262,
+              25.198
+            ]
+          ]
+        },
+        {
+          "id": "Z-3100",
+          "label": "Z-3100",
+          "parent": "Lot A",
+          "color": "#0072D6",
+          "tags": [
+            "depot",
+            "restricted"
+          ],
+          "points": [
+            [
+              55.297,
+              25.253
+            ],
+            [
+              55.315,
+              25.253
+            ],
+            [
+              55.315,
+              25.268
+            ],
+            [
+              55.297,
+              25.268
+            ]
+          ]
+        },
+        {
+          "id": "Z-4050",
+          "label": "Z-4050",
+          "parent": "Lot C",
+          "color": "#12B76A",
+          "tags": [
+            "customer-site",
+            "service-area"
+          ],
+          "points": [
+            [
+              55.222,
+              25.132
+            ],
+            [
+              55.239000000000004,
+              25.132
+            ],
+            [
+              55.239000000000004,
+              25.146
+            ],
+            [
+              55.222,
+              25.146
+            ]
+          ]
+        },
+        {
+          "id": "Z-5120",
+          "label": "Z-5120",
+          "parent": "Lot C",
+          "color": "#F04438",
+          "tags": [
+            "restricted"
+          ],
+          "points": [
+            [
+              55.062,
+              25.002
+            ],
+            [
+              55.082,
+              25.002
+            ],
+            [
+              55.082,
+              25.017999999999997
+            ],
+            [
+              55.062,
+              25.017999999999997
+            ]
+          ]
+        },
+        {
+          "id": "Z-6008",
+          "label": "Z-6008",
+          "parent": "Lot D",
+          "color": "#F79009",
+          "tags": [
+            "service-area"
+          ],
+          "points": [
+            [
+              55.396,
+              25.158
+            ],
+            [
+              55.414,
+              25.158
+            ],
+            [
+              55.414,
+              25.172
+            ],
+            [
+              55.396,
+              25.172
+            ]
+          ]
+        },
+        {
+          "id": "Z-6640",
+          "label": "Z-6640",
+          "parent": "Lot D",
+          "color": "#0072D6",
+          "tags": [
+            "depot",
+            "customer-site"
+          ],
+          "points": [
+            [
+              55.412,
+              25.322
+            ],
+            [
+              55.431,
+              25.322
+            ],
+            [
+              55.431,
+              25.337
+            ],
+            [
+              55.412,
+              25.337
+            ]
+          ]
+        },
+        {
+          "id": "Z-8815",
+          "label": "Z-8815",
+          "parent": "Lot E",
+          "color": "#12B76A",
+          "tags": [
+            "customer-site"
+          ],
+          "points": [
+            [
+              55.292,
+              25.163
+            ],
+            [
+              55.306000000000004,
+              25.163
+            ],
+            [
+              55.306000000000004,
+              25.175
+            ],
+            [
+              55.292,
+              25.175
+            ]
+          ]
+        },
+        {
+          "id": "Z-9302",
+          "label": "Z-9302",
+          "parent": "Lot E",
+          "color": "#F04438",
+          "tags": [
+            "restricted",
+            "depot"
+          ],
+          "points": [
+            [
+              55.341,
+              25.243
+            ],
+            [
+              55.357,
+              25.243
+            ],
+            [
+              55.357,
+              25.256
+            ],
+            [
+              55.341,
+              25.256
+            ]
+          ]
+        }
+      ],
+      "pois": [
+        {
+          "id": "poi-jlt",
+          "name": "Lake View Tower, Cluster M, JLT – Dubai",
+          "position": [
+            55.1421,
+            25.0693
+          ],
+          "radiusMeters": 43,
+          "color": "#0072D6",
+          "tags": [
+            "checkpoint"
+          ]
+        },
+        {
+          "id": "poi-depot",
+          "name": "Central Depot – Al Quoz",
+          "position": [
+            55.2312,
+            25.1418
+          ],
+          "radiusMeters": 120,
+          "color": "#12B76A",
+          "tags": [
+            "workshop",
+            "rest-stop"
+          ]
+        },
+        {
+          "id": "poi-fuel",
+          "name": "Marina Fuel Station",
+          "position": [
+            55.1367,
+            25.0782
+          ],
+          "radiusMeters": 60,
+          "color": "#F79009",
+          "tags": [
+            "fuel"
+          ]
+        },
+        {
+          "id": "poi-service",
+          "name": "Downtown Service Center",
+          "position": [
+            55.2744,
+            25.1912
+          ],
+          "radiusMeters": 80,
+          "tags": [
+            "workshop"
+          ]
+        },
+        {
+          "id": "poi-jafza-fuel",
+          "name": "JAFZA Gate 5 Fuel Point",
+          "position": [
+            55.0806,
+            25.0125
+          ],
+          "radiusMeters": 55,
+          "color": "#F79009",
+          "tags": [
+            "fuel",
+            "checkpoint"
+          ]
+        },
+        {
+          "id": "poi-deira-checkpoint",
+          "name": "Deira Waterfront Checkpoint",
+          "position": [
+            55.3212,
+            25.2697
+          ],
+          "radiusMeters": 35,
+          "color": "#F04438",
+          "tags": [
+            "checkpoint"
+          ]
+        },
+        {
+          "id": "poi-garhoud-workshop",
+          "name": "Al Garhoud Workshop",
+          "position": [
+            55.3468,
+            25.2452
+          ],
+          "radiusMeters": 90,
+          "color": "#12B76A",
+          "tags": [
+            "workshop"
+          ]
+        },
+        {
+          "id": "poi-warsan-rest",
+          "name": "Warsan 3 Driver Rest Stop",
+          "position": [
+            55.4059,
+            25.1655
+          ],
+          "radiusMeters": 45,
+          "color": "#0072D6",
+          "tags": [
+            "rest-stop"
+          ]
+        },
+        {
+          "id": "poi-sharjah-fuel",
+          "name": "Muwaileh Fuel Station – Sharjah",
+          "position": [
+            55.4231,
+            25.3288
+          ],
+          "radiusMeters": 50,
+          "color": "#F79009",
+          "tags": [
+            "fuel",
+            "rest-stop"
+          ]
+        },
+        {
+          "id": "poi-meydan-checkpoint",
+          "name": "Meydan One Checkpoint",
+          "position": [
+            55.3004,
+            25.1704
+          ],
+          "radiusMeters": 40,
+          "color": "#F04438",
+          "tags": [
+            "checkpoint",
+            "fuel"
+          ]
+        },
+        {
+          "id": "poi-jebelali-workshop",
+          "name": "Jebel Ali Heavy Workshop",
+          "position": [
+            55.0272,
+            25.0107
+          ],
+          "radiusMeters": 130,
+          "color": "#12B76A",
+          "tags": [
+            "workshop",
+            "fuel"
+          ]
+        },
+        {
+          "id": "poi-ibn-battuta-rest",
+          "name": "Ibn Battuta Rest Area",
+          "position": [
+            55.1178,
+            25.0442
+          ],
+          "radiusMeters": 65,
+          "color": "#0072D6",
+          "tags": [
+            "rest-stop"
+          ]
+        }
+      ],
+      "activityCol": "activity",
+      "popup": {
+        "fields": [
+          {
+            "col": "driver",
+            "label": "Driver",
+            "icon": "user-03"
+          },
+          {
+            "col": "contact",
+            "label": "Contact",
+            "icon": "phone"
+          },
+          {
+            "col": "speed",
+            "label": "Vehicle Speed",
+            "icon": "speedometer-04",
+            "suffix": " km/h"
+          },
+          {
+            "label": "Coordinates",
+            "icon": "marker-pin-02",
+            "kind": "coordinates"
+          },
+          {
+            "col": "lastRecord",
+            "label": "Last Record Recieved",
+            "icon": "signal-01"
+          },
+          {
+            "col": "odometer",
+            "label": "Odometer",
+            "icon": "speedometer-02"
+          },
+          {
+            "col": "sos",
+            "label": "SOS",
+            "icon": "alert-square"
+          },
+          {
+            "col": "temperature",
+            "label": "Temperature",
+            "icon": "thermometer-03"
+          },
+          {
+            "col": "altitude",
+            "label": "Altitude",
+            "icon": "image-05"
+          },
+          {
+            "col": "vehicleColor",
+            "label": "Vehicle Color",
+            "icon": "colors"
+          }
+        ],
+        "eventsCol": "events",
+        "tripsCol": "trips",
+        "tripDatesCol": "tripDates",
+        "tripSummaryCol": "tripSummary",
+        "devicesCol": "devices"
+      },
+      "unavailableTools": [
+        {
+          "tool": "traffic",
+          "message": "Live traffic is not enabled in the DEMO environment."
+        }
+      ],
+      "places": [
+        {
+          "id": "pl-burj-khalifa",
+          "name": "Burj Khalifa",
+          "position": [
+            55.2744,
+            25.1972
+          ],
+          "category": "Landmark"
+        },
+        {
+          "id": "pl-dubai-mall",
+          "name": "The Dubai Mall",
+          "position": [
+            55.2796,
+            25.1975
+          ],
+          "category": "Shopping"
+        },
+        {
+          "id": "pl-dxb-t3",
+          "name": "DXB Terminal 3",
+          "position": [
+            55.3644,
+            25.2489
+          ],
+          "category": "Airport"
+        },
+        {
+          "id": "pl-jbr",
+          "name": "JBR (Jumeirah Beach Residence)",
+          "position": [
+            55.1355,
+            25.0785
+          ],
+          "category": "Neighbourhood"
+        },
+        {
+          "id": "pl-palm-jumeirah",
+          "name": "Palm Jumeirah",
+          "position": [
+            55.1385,
+            25.1124
+          ],
+          "category": "Landmark"
+        },
+        {
+          "id": "pl-yas-island",
+          "name": "Yas Island",
+          "position": [
+            54.6031,
+            24.4672
+          ],
+          "category": "Leisure"
+        },
+        {
+          "id": "pl-sharjah-corniche",
+          "name": "Sharjah Corniche",
+          "position": [
+            55.3854,
+            25.3573
+          ],
+          "category": "Waterfront"
+        },
+        {
+          "id": "pl-jebel-ali-port",
+          "name": "Jebel Ali Port",
+          "position": [
+            55.0272,
+            25.0107
+          ],
+          "category": "Port"
+        },
+        {
+          "id": "pl-al-ain-oasis",
+          "name": "Al Ain Oasis",
+          "position": [
+            55.7658,
+            24.2153
+          ],
+          "category": "Heritage"
+        },
+        {
+          "id": "pl-ad-corniche",
+          "name": "Abu Dhabi Corniche",
+          "position": [
+            54.3312,
+            24.4764
+          ],
+          "category": "Waterfront"
+        },
+        {
+          "id": "pl-difc",
+          "name": "DIFC Gate Village",
+          "position": [
+            55.2796,
+            25.2118
+          ],
+          "category": "Business District"
+        },
+        {
+          "id": "pl-dubai-marina",
+          "name": "Dubai Marina",
+          "position": [
+            55.1403,
+            25.0805
+          ],
+          "category": "Neighbourhood"
+        },
+        {
+          "id": "pl-al-quoz",
+          "name": "Al Quoz Industrial Area 3",
+          "position": [
+            55.2312,
+            25.1418
+          ],
+          "category": "Industrial"
+        },
+        {
+          "id": "pl-jafza",
+          "name": "Jebel Ali Free Zone (JAFZA)",
+          "position": [
+            55.0806,
+            25.0125
+          ],
+          "category": "Industrial"
+        },
+        {
+          "id": "pl-dragon-mart",
+          "name": "Dragon Mart, International City",
+          "position": [
+            55.4059,
+            25.1712
+          ],
+          "category": "Shopping"
+        },
+        {
+          "id": "pl-deira-waterfront",
+          "name": "Deira Waterfront",
+          "position": [
+            55.3212,
+            25.2697
+          ],
+          "category": "Waterfront"
+        },
+        {
+          "id": "pl-sheikh-zayed-mosque",
+          "name": "Sheikh Zayed Grand Mosque",
+          "position": [
+            54.4748,
+            24.4128
+          ],
+          "category": "Landmark"
+        },
+        {
+          "id": "pl-khalifa-port",
+          "name": "Khalifa Port",
+          "position": [
+            54.6819,
+            24.8025
+          ],
+          "category": "Port"
+        },
+        {
+          "id": "pl-hatta-dam",
+          "name": "Hatta Dam",
+          "position": [
+            56.1247,
+            24.7936
+          ],
+          "category": "Leisure"
+        },
+        {
+          "id": "pl-rak-port",
+          "name": "RAK Port, Ras Al Khaimah",
+          "position": [
+            55.9433,
+            25.7893
+          ],
+          "category": "Port"
+        }
+      ]
+    },
+    "hybrid": {
+      "listColumns": [
+        "fld_title",
+        "fld_activity",
+        "fld_speed"
+      ]
+    },
+    "filters": [
+      {
+        "id": "flt_status",
+        "col": "status",
+        "order": 1
+      },
+      {
+        "id": "flt_astatus",
+        "col": "assetStatus",
+        "order": 2,
+        "name": "Asset Status"
+      },
+      {
+        "id": "flt_fuel",
+        "col": "fuelType",
+        "order": 3
+      },
+      {
+        "id": "flt_vtype",
+        "col": "vehicleType",
+        "order": 4,
+        "name": "Asset Type"
+      }
+    ],
+    "search": {
+      "columns": [
+        "title",
+        "plate",
+        "driver",
+        "uniqueidentifier"
+      ],
+      "placeholder": "Search anything here"
+    }
+  },
+  "listcolumns": [
+    {
+      "id": "fld_title",
+      "col": "title",
+      "component": {
+        "name": "TextView",
+        "props": {
+          "handleOverflow": true
+        }
+      }
+    },
+    {
+      "id": "fld_activity",
+      "col": "activity",
+      "component": {
+        "name": "ActivityOverviewView"
+      }
+    },
+    {
+      "id": "fld_speed",
+      "col": "speed",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_model",
+      "col": "model",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_vin",
+      "col": "vin",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_vtype",
+      "col": "vehicleType",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_fuel",
+      "col": "fuelType",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_vcolor",
+      "col": "vehicleColor",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_imei",
+      "col": "imei",
+      "component": {
+        "name": "TextView"
+      }
+    }
+  ]
+}

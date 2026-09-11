@@ -1,0 +1,538 @@
+[
+  {
+    "id": "WCR-01",
+    "uniqueidentifier": "WCR-01",
+    "title": "Omar Haddad",
+    "systemcol1": "Driver",
+    "systemcol2": "+9714012001",
+    "systemcol3": "omar@iwmp.example",
+    "status": "Active",
+    "systemcol4": "WVH-01",
+    "systemcol5": "2026-10-08",
+    "tags": [
+      "collection-crew"
+    ],
+    "tabletActiveTimeTotal": "80h 42m",
+    "tabletInactiveTimeTotal": "1h 48m",
+    "tabletAppUsagePct": "96%",
+    "tabletInactiveEvents": [
+      {
+        "id": "WCR-01-iae-01",
+        "label": "Signal drop",
+        "severity": "Brief",
+        "date": "Sat, 29 Aug",
+        "startTime": "07:12 AM",
+        "endTime": "07:21 AM",
+        "duration": "9m"
+      },
+      {
+        "id": "WCR-01-iae-02",
+        "label": "Break taken",
+        "severity": "Minor",
+        "date": "Sun, 30 Aug",
+        "startTime": "12:05 PM",
+        "endTime": "12:27 PM",
+        "duration": "22m"
+      },
+      {
+        "id": "WCR-01-iae-03",
+        "label": "Cab idle",
+        "severity": "Major",
+        "date": "Mon, 31 Aug",
+        "startTime": "09:40 AM",
+        "endTime": "10:21 AM",
+        "duration": "41m"
+      },
+      {
+        "id": "WCR-01-iae-04",
+        "label": "Signal drop",
+        "severity": "Brief",
+        "date": "Tue, 01 Sep",
+        "startTime": "03:15 PM",
+        "endTime": "03:22 PM",
+        "duration": "7m"
+      },
+      {
+        "id": "WCR-01-iae-05",
+        "label": "Idle at depot",
+        "severity": "Minor",
+        "date": "Wed, 02 Sep",
+        "startTime": "06:50 AM",
+        "endTime": "07:08 AM",
+        "duration": "18m"
+      },
+      {
+        "id": "WCR-01-iae-06",
+        "label": "Tablet locked",
+        "severity": "Brief",
+        "date": "Thu, 03 Sep",
+        "startTime": "01:30 PM",
+        "endTime": "01:41 PM",
+        "duration": "11m"
+      }
+    ],
+    "tabletDailyActivity": [
+      {
+        "date": "2026-08-29",
+        "weekday": "Saturday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 815,
+        "inactiveMinutes": 9,
+        "usagePct": 97
+      },
+      {
+        "date": "2026-08-30",
+        "weekday": "Sunday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 805,
+        "inactiveMinutes": 22,
+        "usagePct": 96
+      },
+      {
+        "date": "2026-08-31",
+        "weekday": "Monday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 770,
+        "inactiveMinutes": 41,
+        "usagePct": 92
+      },
+      {
+        "date": "2026-09-01",
+        "weekday": "Tuesday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 821,
+        "inactiveMinutes": 7,
+        "usagePct": 98
+      },
+      {
+        "date": "2026-09-02",
+        "weekday": "Wednesday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 809,
+        "inactiveMinutes": 18,
+        "usagePct": 96
+      },
+      {
+        "date": "2026-09-03",
+        "weekday": "Thursday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 822,
+        "inactiveMinutes": 11,
+        "usagePct": 98
+      },
+      {
+        "date": "2026-09-04",
+        "weekday": "Friday",
+        "isOff": true,
+        "plannedMinutes": 0,
+        "activeMinutes": 0,
+        "inactiveMinutes": 0,
+        "usagePct": null
+      }
+    ]
+  },
+  {
+    "id": "WCR-02",
+    "uniqueidentifier": "WCR-02",
+    "title": "Layla Rahman",
+    "systemcol1": "Driver",
+    "systemcol2": "+9714022002",
+    "systemcol3": "layla@iwmp.example",
+    "status": "Active",
+    "systemcol4": "WVH-02",
+    "systemcol5": "2026-08-08",
+    "tags": [
+      "collection-crew"
+    ],
+    "tabletActiveTimeTotal": "80h 43m",
+    "tabletInactiveTimeTotal": "2h 6m",
+    "tabletAppUsagePct": "96%",
+    "tabletInactiveEvents": [
+      {
+        "id": "WCR-02-iae-01",
+        "label": "Idle at depot",
+        "severity": "Minor",
+        "date": "Sat, 29 Aug",
+        "startTime": "08:22 AM",
+        "endTime": "08:41 AM",
+        "duration": "19m"
+      },
+      {
+        "id": "WCR-02-iae-02",
+        "label": "Signal drop",
+        "severity": "Brief",
+        "date": "Sun, 30 Aug",
+        "startTime": "05:55 AM",
+        "endTime": "06:03 AM",
+        "duration": "8m"
+      },
+      {
+        "id": "WCR-02-iae-03",
+        "label": "Break taken",
+        "severity": "Minor",
+        "date": "Mon, 31 Aug",
+        "startTime": "11:10 AM",
+        "endTime": "11:36 AM",
+        "duration": "26m"
+      },
+      {
+        "id": "WCR-02-iae-04",
+        "label": "Screen off",
+        "severity": "Brief",
+        "date": "Mon, 31 Aug",
+        "startTime": "04:48 PM",
+        "endTime": "04:54 PM",
+        "duration": "6m"
+      },
+      {
+        "id": "WCR-02-iae-05",
+        "label": "Tablet offline",
+        "severity": "Major",
+        "date": "Tue, 01 Sep",
+        "startTime": "09:02 AM",
+        "endTime": "09:49 AM",
+        "duration": "47m"
+      },
+      {
+        "id": "WCR-02-iae-06",
+        "label": "Break taken",
+        "severity": "Minor",
+        "date": "Thu, 03 Sep",
+        "startTime": "02:15 PM",
+        "endTime": "02:35 PM",
+        "duration": "20m"
+      }
+    ],
+    "tabletDailyActivity": [
+      {
+        "date": "2026-08-29",
+        "weekday": "Saturday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 810,
+        "inactiveMinutes": 19,
+        "usagePct": 96
+      },
+      {
+        "date": "2026-08-30",
+        "weekday": "Sunday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 825,
+        "inactiveMinutes": 8,
+        "usagePct": 98
+      },
+      {
+        "date": "2026-08-31",
+        "weekday": "Monday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 792,
+        "inactiveMinutes": 32,
+        "usagePct": 94
+      },
+      {
+        "date": "2026-09-01",
+        "weekday": "Tuesday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 771,
+        "inactiveMinutes": 47,
+        "usagePct": 92
+      },
+      {
+        "date": "2026-09-02",
+        "weekday": "Wednesday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 833,
+        "inactiveMinutes": 0,
+        "usagePct": 99
+      },
+      {
+        "date": "2026-09-03",
+        "weekday": "Thursday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 812,
+        "inactiveMinutes": 20,
+        "usagePct": 97
+      },
+      {
+        "date": "2026-09-04",
+        "weekday": "Friday",
+        "isOff": true,
+        "plannedMinutes": 0,
+        "activeMinutes": 0,
+        "inactiveMinutes": 0,
+        "usagePct": null
+      }
+    ]
+  },
+  {
+    "id": "WCR-03",
+    "uniqueidentifier": "WCR-03",
+    "title": "Yusuf Rahman",
+    "systemcol1": "Supervisor",
+    "systemcol2": "+9714032003",
+    "systemcol3": "yusuf@iwmp.example",
+    "status": "Active",
+    "systemcol4": "WVH-03",
+    "systemcol5": "2026-12-06",
+    "tags": [
+      "collection-crew"
+    ]
+  },
+  {
+    "id": "WCR-04",
+    "uniqueidentifier": "WCR-04",
+    "title": "Aisha Darwish",
+    "systemcol1": "Driver",
+    "systemcol2": "+9714042004",
+    "systemcol3": "aisha@iwmp.example",
+    "status": "Active",
+    "systemcol4": "WVH-04",
+    "systemcol5": "2026-03-01",
+    "tags": [
+      "collection-crew"
+    ],
+    "tabletActiveTimeTotal": "81h 12m",
+    "tabletInactiveTimeTotal": "1h 57m",
+    "tabletAppUsagePct": "97%",
+    "tabletInactiveEvents": [
+      {
+        "id": "WCR-04-iae-01",
+        "label": "Cab idle",
+        "severity": "Major",
+        "date": "Sat, 29 Aug",
+        "startTime": "10:05 AM",
+        "endTime": "10:43 AM",
+        "duration": "38m"
+      },
+      {
+        "id": "WCR-04-iae-02",
+        "label": "Signal drop",
+        "severity": "Brief",
+        "date": "Sun, 30 Aug",
+        "startTime": "07:30 AM",
+        "endTime": "07:40 AM",
+        "duration": "10m"
+      },
+      {
+        "id": "WCR-04-iae-03",
+        "label": "Idle at depot",
+        "severity": "Minor",
+        "date": "Mon, 31 Aug",
+        "startTime": "01:18 PM",
+        "endTime": "01:42 PM",
+        "duration": "24m"
+      },
+      {
+        "id": "WCR-04-iae-04",
+        "label": "Break taken",
+        "severity": "Minor",
+        "date": "Tue, 01 Sep",
+        "startTime": "06:40 AM",
+        "endTime": "06:57 AM",
+        "duration": "17m"
+      },
+      {
+        "id": "WCR-04-iae-05",
+        "label": "Screen off",
+        "severity": "Brief",
+        "date": "Tue, 01 Sep",
+        "startTime": "03:05 PM",
+        "endTime": "03:14 PM",
+        "duration": "9m"
+      },
+      {
+        "id": "WCR-04-iae-06",
+        "label": "Tablet locked",
+        "severity": "Brief",
+        "date": "Wed, 02 Sep",
+        "startTime": "11:22 AM",
+        "endTime": "11:35 AM",
+        "duration": "13m"
+      },
+      {
+        "id": "WCR-04-iae-07",
+        "label": "Signal drop",
+        "severity": "Brief",
+        "date": "Thu, 03 Sep",
+        "startTime": "08:05 AM",
+        "endTime": "08:11 AM",
+        "duration": "6m"
+      }
+    ],
+    "tabletDailyActivity": [
+      {
+        "date": "2026-08-29",
+        "weekday": "Saturday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 790,
+        "inactiveMinutes": 38,
+        "usagePct": 94
+      },
+      {
+        "date": "2026-08-30",
+        "weekday": "Sunday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 822,
+        "inactiveMinutes": 10,
+        "usagePct": 98
+      },
+      {
+        "date": "2026-08-31",
+        "weekday": "Monday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 808,
+        "inactiveMinutes": 24,
+        "usagePct": 96
+      },
+      {
+        "date": "2026-09-01",
+        "weekday": "Tuesday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 805,
+        "inactiveMinutes": 26,
+        "usagePct": 96
+      },
+      {
+        "date": "2026-09-02",
+        "weekday": "Wednesday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 819,
+        "inactiveMinutes": 13,
+        "usagePct": 98
+      },
+      {
+        "date": "2026-09-03",
+        "weekday": "Thursday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 828,
+        "inactiveMinutes": 6,
+        "usagePct": 99
+      },
+      {
+        "date": "2026-09-04",
+        "weekday": "Friday",
+        "isOff": true,
+        "plannedMinutes": 0,
+        "activeMinutes": 0,
+        "inactiveMinutes": 0,
+        "usagePct": null
+      }
+    ]
+  },
+  {
+    "id": "WCR-05",
+    "uniqueidentifier": "WCR-05",
+    "title": "Hassan Mansour",
+    "systemcol1": "Driver",
+    "systemcol2": "+9714052005",
+    "systemcol3": "hassan@iwmp.example",
+    "status": "Inactive",
+    "systemcol4": "WVH-05",
+    "systemcol5": "2026-10-12",
+    "tags": [
+      "collection-crew"
+    ]
+  },
+  {
+    "id": "WCR-06",
+    "uniqueidentifier": "WCR-06",
+    "title": "Fatima Mansour",
+    "systemcol1": "Supervisor",
+    "systemcol2": "+9714062006",
+    "systemcol3": "fatima@iwmp.example",
+    "status": "On Leave",
+    "systemcol4": "WVH-06",
+    "systemcol5": "2026-11-20",
+    "tags": [
+      "collection-crew"
+    ]
+  },
+  {
+    "id": "WCR-07",
+    "uniqueidentifier": "WCR-07",
+    "title": "Bilal Saleh",
+    "systemcol1": "Driver",
+    "systemcol2": "+9714072007",
+    "systemcol3": "bilal@iwmp.example",
+    "status": "On Leave",
+    "systemcol4": "WVH-07",
+    "systemcol5": "2026-09-21",
+    "tags": [
+      "collection-crew"
+    ]
+  },
+  {
+    "id": "WCR-08",
+    "uniqueidentifier": "WCR-08",
+    "title": "Noor Qadir",
+    "systemcol1": "Driver",
+    "systemcol2": "+9714082008",
+    "systemcol3": "noor@iwmp.example",
+    "status": "Active",
+    "systemcol4": "WVH-08",
+    "systemcol5": "2026-01-13",
+    "tags": [
+      "collection-crew"
+    ]
+  },
+  {
+    "id": "WCR-09",
+    "uniqueidentifier": "WCR-09",
+    "title": "Karim Farah",
+    "systemcol1": "Supervisor",
+    "systemcol2": "+9714092009",
+    "systemcol3": "karim@iwmp.example",
+    "status": "Active",
+    "systemcol4": null,
+    "systemcol5": "2026-07-07",
+    "tags": [
+      "collection-crew"
+    ]
+  },
+  {
+    "id": "WCR-10",
+    "uniqueidentifier": "WCR-10",
+    "title": "Sana Khan",
+    "systemcol1": "Driver",
+    "systemcol2": "+9714102010",
+    "systemcol3": "sana@iwmp.example",
+    "status": "Inactive",
+    "systemcol4": null,
+    "systemcol5": "2026-04-23",
+    "tags": [
+      "collection-crew"
+    ]
+  },
+  {
+    "id": "WCR-11",
+    "uniqueidentifier": "WCR-11",
+    "title": "Ali Sheikh",
+    "systemcol1": "Supervisor",
+    "systemcol2": "+971504200001",
+    "systemcol3": "ali.sheikh@iwmp.example",
+    "status": "Active",
+    "systemcol4": null,
+    "systemcol5": "2026-11-15",
+    "tags": [
+      "collection-crew",
+      "contractor"
+    ]
+  }
+]

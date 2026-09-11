@@ -1,0 +1,515 @@
+{
+  "code": "asset/collection-point",
+  "kind": "entity",
+  "listcolumns": [
+    {
+      "col": "uniqueidentifier",
+      "component": {
+        "name": "IdChip"
+      },
+      "id": "fld_uniqueidentifier"
+    },
+    {
+      "col": "title",
+      "component": {
+        "name": "TextView",
+        "props": {
+          "handleOverflow": true
+        }
+      },
+      "id": "fld_name",
+      "name": "Name"
+    },
+    {
+      "col": "systemcol1",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_location"
+    },
+    {
+      "col": "systemcol3",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_waste_type_count"
+    }
+  ],
+  "name": "Collection Point Management",
+  "systemcolumns": [
+    {
+      "col": "title",
+      "id": "fld_name",
+      "name": "Collection Point Name",
+      "required": true,
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol1",
+      "id": "fld_location",
+      "name": "Location",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol2",
+      "id": "fld_waste_types",
+      "listValues": [
+        "Residual Waste",
+        "Mixed Waste",
+        "Bulky Waste",
+        "Green Waste",
+        "Recyclable Waste",
+        "Hazardous Waste"
+      ],
+      "name": "Waste Types",
+      "type": "MultiSelect"
+    },
+    {
+      "col": "systemcol3",
+      "id": "fld_waste_type_count",
+      "name": "No. of Waste Types",
+      "type": "Numeric"
+    },
+    {
+      "col": "systemcol4",
+      "component": {
+        "name": "IconTextView",
+        "props": {
+          "icon": "skew"
+        }
+      },
+      "id": "fld_lot",
+      "name": "Lot",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol5",
+      "id": "fld_service_type",
+      "listValues": [
+        "Collection Point",
+        "Transfer Station",
+        "Sorting Facility",
+        "Recycling Center"
+      ],
+      "name": "Service Type",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol6",
+      "id": "fld_operational_timing",
+      "name": "Operational Timing",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol7",
+      "id": "fld_service_frequency",
+      "listValues": [
+        "Daily",
+        "Weekly",
+        "Bi-Weekly",
+        "Monthly"
+      ],
+      "name": "Service Frequency",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol8",
+      "entityType": "workforce/driver",
+      "id": "fld_contractor",
+      "name": "Contractor",
+      "refModule": "Entity",
+      "type": "SingleReference"
+    },
+    {
+      "col": "systemcol9",
+      "id": "fld_email",
+      "name": "Email",
+      "type": "Email"
+    },
+    {
+      "col": "systemcol10",
+      "id": "fld_phone",
+      "name": "Phone Number",
+      "type": "Phone"
+    },
+    {
+      "col": "tags",
+      "id": "fld_tags",
+      "name": "Tags",
+      "type": "tags"
+    },
+    {
+      "col": "status",
+      "id": "fld_status",
+      "listValues": [
+        "Active",
+        "Inactive"
+      ],
+      "name": "Status",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "uniqueidentifier",
+      "id": "fld_uniqueidentifier",
+      "name": "Collection Point ID",
+      "type": "Auto"
+    }
+  ],
+  "uiConfig": {
+    "creation": {
+      "fieldChrome": "inset-label",
+      "label": "New Collection Point",
+      "layout": "flat"
+    },
+    "filters": [
+      {
+        "col": "systemcol5",
+        "id": "flt_cp_service_type",
+        "order": 1
+      },
+      {
+        "col": "status",
+        "id": "flt_cp_status",
+        "order": 2
+      }
+    ],
+    "hybrid": {
+      "listColumns": [
+        "fld_name",
+        "fld_waste_types"
+      ]
+    },
+    "icon": "map-pin",
+    "listRowHeight": "md",
+    "listSort": false,
+    "profile": {
+      "details": [
+        {
+          "col": "systemcol4",
+          "component": {
+            "name": "IconTextView",
+            "props": {
+              "icon": "skew"
+            }
+          },
+          "id": "fld_lot",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol5",
+          "id": "fld_service_type",
+          "order": 2,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol6",
+          "id": "fld_operational_timing",
+          "order": 3,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol7",
+          "id": "fld_service_frequency",
+          "order": 4,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol8",
+          "component": {
+            "name": "PersonView"
+          },
+          "id": "fld_contractor",
+          "order": 5,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol9",
+          "id": "fld_email",
+          "order": 6,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol10",
+          "id": "fld_phone",
+          "order": 7,
+          "pos": "left"
+        }
+      ],
+      "infoTitle": "RMCC Point Details",
+      "placeholderIcon": "map-pin",
+      "rightPanel": {
+        "tabs": [
+          {
+            "component": {
+              "name": "OverviewWidgets",
+              "props": {
+                "widgets": [
+                  {
+                    "icon": "bell",
+                    "metaFields": [
+                      {
+                        "field": "upcomingPlanId",
+                        "icon": "hash"
+                      },
+                      {
+                        "field": "upcomingPlanDatetime",
+                        "icon": "calendar"
+                      }
+                    ],
+                    "title": "Upcoming Plan",
+                    "type": "planBanner"
+                  },
+                  {
+                    "polygonsField": "polygons",
+                    "title": "Collection Point Location",
+                    "type": "locationMap"
+                  },
+                  {
+                    "color": "#279aff",
+                    "seriesField": "complianceSeries",
+                    "title": "Compliance Over Time",
+                    "type": "trendChart",
+                    "yLabel": "Percentage"
+                  }
+                ]
+              }
+            },
+            "id": "tab_cp_overview",
+            "key": "overview",
+            "order": 1,
+            "title": "Overview"
+          },
+          {
+            "component": {
+              "name": "sections"
+            },
+            "id": "tab_cp_details",
+            "key": "details",
+            "order": 2,
+            "title": "Details"
+          },
+          {
+            "component": {
+              "name": "sections"
+            },
+            "id": "tab_cp_security",
+            "key": "security",
+            "order": 3,
+            "title": "Security Guard"
+          },
+          {
+            "component": {
+              "name": "RecordTable",
+              "props": {
+                "columns": [
+                  {
+                    "key": "guardName",
+                    "label": "GUARD NAME",
+                    "type": "avatar"
+                  },
+                  {
+                    "key": "date",
+                    "label": "DATE",
+                    "type": "text"
+                  },
+                  {
+                    "key": "shiftTiming",
+                    "label": "SHIFT TIMING",
+                    "type": "text"
+                  },
+                  {
+                    "key": "clockIn",
+                    "label": "CLOCK IN",
+                    "type": "text"
+                  },
+                  {
+                    "key": "clockOut",
+                    "label": "CLOCK-OUT",
+                    "type": "text"
+                  },
+                  {
+                    "key": "clockInLocation",
+                    "label": "CLOCK-IN LOCATION",
+                    "type": "text"
+                  },
+                  {
+                    "key": "clockOutLocation",
+                    "label": "CLOCK-OUT LOCATION",
+                    "type": "text"
+                  }
+                ],
+                "field": "attendanceLog",
+                "timeframeSelect": true
+              }
+            },
+            "id": "tab_cp_attendance",
+            "key": "attendance",
+            "order": 4,
+            "title": "Attendance Log"
+          },
+          {
+            "component": {
+              "name": "sections"
+            },
+            "id": "tab_cp_plans",
+            "key": "plans",
+            "order": 5,
+            "title": "Plans"
+          },
+          {
+            "component": {
+              "name": "RecordTable",
+              "props": {
+                "columns": [
+                  {
+                    "key": "incidentId",
+                    "label": "INCIDENT ID",
+                    "type": "idChip"
+                  },
+                  {
+                    "key": "date",
+                    "label": "DATE",
+                    "type": "datetime"
+                  },
+                  {
+                    "key": "area",
+                    "label": "AREA",
+                    "type": "text"
+                  },
+                  {
+                    "key": "category",
+                    "label": "INCIDENT CATEGORY",
+                    "type": "text"
+                  },
+                  {
+                    "key": "reportedBy",
+                    "label": "REPORTED BY",
+                    "type": "avatar"
+                  },
+                  {
+                    "key": "reporterRole",
+                    "label": "REPORTER ROLE",
+                    "type": "text"
+                  },
+                  {
+                    "key": "photo",
+                    "label": "PHOTOS",
+                    "type": "photo"
+                  },
+                  {
+                    "key": "rectificationTime",
+                    "label": "RECTIFICATION TIME",
+                    "type": "text"
+                  },
+                  {
+                    "key": "status",
+                    "label": "STATUS",
+                    "type": "statusPill"
+                  }
+                ],
+                "field": "incidents",
+                "search": true,
+                "statusColors": {
+                  "Completed": "#2AAA48",
+                  "Ongoing": "#279AFF",
+                  "Scheduled": "#F17B2B"
+                }
+              }
+            },
+            "id": "tab_cp_incidents",
+            "key": "incidents",
+            "order": 6,
+            "title": "Incidents"
+          },
+          {
+            "component": {
+              "name": "sections"
+            },
+            "id": "tab_cp_inspections",
+            "key": "inspections",
+            "order": 7,
+            "title": "Inspections"
+          }
+        ],
+        "type": "tab"
+      },
+      "sections": [
+        {
+          "fields": [
+            {
+              "col": "systemcol1",
+              "id": "fld_location",
+              "order": 1
+            },
+            {
+              "col": "systemcol2",
+              "id": "fld_waste_types",
+              "order": 2
+            },
+            {
+              "col": "systemcol4",
+              "component": {
+                "name": "IconTextView",
+                "props": {
+                  "icon": "skew"
+                }
+              },
+              "id": "fld_lot",
+              "order": 3
+            },
+            {
+              "col": "systemcol5",
+              "id": "fld_service_type",
+              "order": 4
+            },
+            {
+              "col": "systemcol6",
+              "id": "fld_operational_timing",
+              "order": 5
+            },
+            {
+              "col": "systemcol7",
+              "id": "fld_service_frequency",
+              "order": 6
+            }
+          ],
+          "id": "sec_cp_details",
+          "name": "Collection Point Details",
+          "order": 1
+        }
+      ],
+      "title": {
+        "col": "title",
+        "id": "fld_name",
+        "pos": "left"
+      }
+    },
+    "search": {
+      "columns": [
+        "title",
+        "systemcol1"
+      ],
+      "placeholder": "Search anything here"
+    },
+    "statusList": [
+      {
+        "color": "#15794f",
+        "id": "sts_cp_active",
+        "key": "Active",
+        "label": "Active"
+      },
+      {
+        "color": "#475467",
+        "id": "sts_cp_inactive",
+        "key": "Inactive",
+        "label": "Inactive"
+      }
+    ]
+  },
+  "uidPrefix": "CP",
+  "views": [
+    "list",
+    "hybrid"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "name": "@fams/v5-kit",
+  "version": "0.9.1",
+  "type": "module",
+  "license": "UNLICENSED",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "sideEffects": false,
+  "description": "The v5 boot layer for React: the product-aware bootstrap that sits on @fams/skeleton-kit. Turns a tenant's licensed-module list into the skeleton module contract (licensed-only route registration, decision #23), wires the v5-composer blueprint path, applies per-tenant theming, provides reactive privilege gating (<Privileged>/usePrivilege), and exposes per-tenant query-cache hygiene. All data access is injectable (real API later, demo-kit in phase 3).",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepublishOnly": "node ../../scripts/guard-publish.mjs",
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:axe": "vitest run src/shell.axe.test.tsx",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@fams/skeleton-kit": "workspace:*",
+    "@fams/ui-kit": "workspace:*",
+    "@fams/v5-composer": "workspace:*",
+    "@fams/v5-templates": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19",
+    "@tanstack/react-query": "catalog:",
+    "@tanstack/react-router": "catalog:"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tanstack/react-query": "catalog:",
+    "@tanstack/react-router": "catalog:",
+    "@testing-library/dom": "^10",
+    "@testing-library/jest-dom": "^6",
+    "@testing-library/react": "^16",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^15.15.0",
+    "jsdom": "^25",
+    "react": "^19",
+    "react-dom": "^19",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "typescript-eslint": "^8.62.1",
+    "vite": "^6",
+    "vitest": "catalog:",
+    "vitest-axe": "^0.1.0"
+  }
+}

@@ -1,0 +1,12 @@
+import { chromium } from '@playwright/test';
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
+const msgs = [];
+page.on('console', (m) => msgs.push(`[${m.type()}] ${m.text()}`));
+page.on('pageerror', (e) => msgs.push(`[pageerror] ${e.message}`));
+page.on('requestfailed', (r) => msgs.push(`[requestfailed] ${r.url()} ${r.failure()?.errorText}`));
+page.on('response', (r) => { if (r.status() >= 400) msgs.push(`[http${r.status()}] ${r.url()}`); });
+await page.goto('http://localhost:6300/ticketing', { waitUntil: 'networkidle' });
+await page.waitForTimeout(1500);
+console.log(msgs.join('\n') || '(none)');
+await browser.close();

@@ -1,0 +1,123 @@
+{
+  "$schema": "../../../../node_modules/@fams/v5-composer/schemas/EntityModuleConfig.schema.json",
+  "kind": "entity",
+  "code": "smart-planning/plan",
+  "name": "Smart Planning",
+  "uidPrefix": "FRP",
+  "views": ["hybrid", "list"],
+  "systemcolumns": [
+    { "id": "fld_sp_uniqueidentifier", "col": "uniqueidentifier", "name": "Plan ID", "type": "Auto" },
+    { "id": "fld_sp_title", "col": "title", "name": "Plan Title", "type": "SmallText", "required": true },
+    { "id": "fld_sp_plantype", "col": "systemcol1", "name": "Plan Type", "type": "SingleSelect", "listValues": ["Pre-position", "Rain Response", "Drainage Support"], "default": "Pre-position" },
+    { "id": "fld_sp_blackspot", "col": "systemcol2", "name": "Black Spot Zone", "type": "SingleSelect", "listValues": ["Al Wakrah Tunnel 3", "Al Wakrah Underpass 1", "Hamad Hospital Access Route", "Doha Corniche Underpass", "Al Sadd Tunnel", "Al Rayyan Underpass 2", "Al Rayyan West Tunnel", "Umm Salal Hospital Access Route", "Umm Salal Underpass 4", "Al Daayen Tunnel 2"], "required": true, "component": { "name": "IconTextView", "props": { "icon": "marker-pin-02" } } },
+    { "id": "fld_sp_zone", "col": "systemcol3", "name": "Zone", "type": "SingleSelect", "listValues": ["Doha", "Al Rayyan", "Al Wakrah", "Umm Salal", "Al Daayen"], "required": true },
+    { "id": "fld_sp_tanker", "col": "systemcol4", "name": "Tanker", "type": "SmallText", "required": true, "component": { "name": "IconTextView", "props": { "icon": "truck" } } },
+    { "id": "fld_sp_driver", "col": "systemcol5", "name": "Driver", "type": "SmallText", "component": { "name": "PersonView", "props": { "tone": "info" } } },
+    { "id": "fld_sp_inspector", "col": "systemcol6", "name": "Inspector", "type": "SmallText", "component": { "name": "PersonView" } },
+    { "id": "fld_sp_assembly", "col": "systemcol7", "name": "Assembly Point", "type": "SingleSelect", "listValues": ["Doha Central Staging Yard", "Al Rayyan Depot Assembly", "Al Wakrah Refill Assembly", "Umm Salal Assembly Point"] },
+    { "id": "fld_sp_discharge", "col": "systemcol8", "name": "Discharge Point", "type": "SingleSelect", "listValues": ["Doha South Discharge", "Al Wakrah Drainage Station", "Al Rayyan Discharge Point", "Umm Salal Drainage Basin"] },
+    { "id": "fld_sp_shift", "col": "systemcol9", "name": "Shift", "type": "SingleSelect", "listValues": ["Morning", "Afternoon", "Night"], "default": "Morning", "component": { "name": "IconTextView", "props": { "icon": "clock" } } },
+    { "id": "fld_sp_status", "col": "status", "name": "Status", "type": "SingleSelect", "listValues": ["Draft", "Pending Approval", "Approved", "Rejected", "Active"], "default": "Draft", "component": { "name": "IconSelect", "props": { "icon": "flag", "optionTone": { "Pending Approval": "warning", "Approved": "success", "Rejected": "error" } } } },
+    { "id": "fld_sp_lat", "col": "lat", "name": "Latitude", "type": "Numeric", "group": "Location" },
+    { "id": "fld_sp_lng", "col": "lng", "name": "Longitude", "type": "Numeric", "group": "Location" }
+  ],
+  "uiConfig": {
+    "icon": "route",
+    "statusList": [
+      { "id": "sts_sp_draft", "key": "Draft", "label": "Draft", "color": "#98A2B3" },
+      { "id": "sts_sp_pending", "key": "Pending Approval", "label": "Pending Approval", "color": "#FDB022" },
+      { "id": "sts_sp_approved", "key": "Approved", "label": "Approved", "color": "#12B76A" },
+      { "id": "sts_sp_rejected", "key": "Rejected", "label": "Rejected", "color": "#F04438" },
+      { "id": "sts_sp_active", "key": "Active", "label": "Active", "color": "#0072D6" }
+    ],
+    "profile": {
+      "title": { "id": "fld_sp_title", "col": "title", "pos": "left" },
+      "details": [
+        { "id": "fld_sp_blackspot", "col": "systemcol2", "pos": "left", "order": 1, "component": { "name": "IconTextView", "props": { "icon": "marker-pin-02" } } },
+        { "id": "fld_sp_status", "col": "status", "pos": "right", "order": 1, "component": { "name": "StatusList" } },
+        { "id": "fld_sp_zone", "col": "systemcol3", "pos": "left", "order": 2 },
+        { "id": "fld_sp_plantype", "col": "systemcol1", "pos": "right", "order": 2 }
+      ],
+      "sections": [
+        {
+          "id": "sec_sp_resources",
+          "name": "Resources",
+          "order": 1,
+          "fields": [
+            { "id": "fld_sp_tanker", "col": "systemcol4", "order": 1, "component": { "name": "IconTextView", "props": { "icon": "truck" } } },
+            { "id": "fld_sp_driver", "col": "systemcol5", "order": 2, "component": { "name": "PersonView", "props": { "tone": "info" } } },
+            { "id": "fld_sp_inspector", "col": "systemcol6", "order": 3, "component": { "name": "PersonView" } },
+            { "id": "fld_sp_shift", "col": "systemcol9", "order": 4, "component": { "name": "IconTextView", "props": { "icon": "clock" } } }
+          ]
+        },
+        {
+          "id": "sec_sp_staging",
+          "name": "Staging & Discharge",
+          "order": 2,
+          "fields": [
+            { "id": "fld_sp_assembly", "col": "systemcol7", "order": 1 },
+            { "id": "fld_sp_discharge", "col": "systemcol8", "order": 2 }
+          ]
+        }
+      ],
+      "rightPanel": {
+        "type": "tab",
+        "tabs": [
+          { "id": "tab_sp_details", "key": "details", "title": "Details", "order": 1, "component": { "name": "sections" } }
+        ]
+      }
+    },
+    "filters": [
+      { "id": "flt_sp_status", "col": "status", "order": 1 },
+      { "id": "flt_sp_plantype", "col": "systemcol1", "order": 2 },
+      { "id": "flt_sp_zone", "col": "systemcol3", "order": 3 }
+    ],
+    "search": { "columns": ["title", "systemcol2"], "placeholder": "Search Plans" },
+    "map": {
+      "attribution": "hidden",
+      "center": [51.53, 25.28],
+      "latCol": "lat",
+      "lngCol": "lng",
+      "zoneCol": "systemcol3",
+      "zones": [
+        { "id": "Doha", "label": "Doha", "color": "#0072D6", "points": [[51.49, 25.31], [51.50, 25.36], [51.55, 25.38], [51.58, 25.35], [51.56, 25.29], [51.50, 25.27]] },
+        { "id": "Al Rayyan", "label": "Al Rayyan", "color": "#12B76A", "points": [[51.38, 25.18], [51.40, 25.26], [51.49, 25.27], [51.50, 25.20], [51.44, 25.16]] },
+        { "id": "Al Wakrah", "label": "Al Wakrah", "color": "#F79009", "points": [[51.60, 25.22], [51.62, 25.28], [51.69, 25.29], [51.70, 25.24], [51.64, 25.20]] },
+        { "id": "Umm Salal", "label": "Umm Salal", "color": "#6941C6", "points": [[51.57, 25.33], [51.58, 25.39], [51.64, 25.40], [51.65, 25.34], [51.60, 25.31]] },
+        { "id": "Al Daayen", "label": "Al Daayen", "color": "#667085", "points": [[51.48, 25.46], [51.49, 25.54], [51.57, 25.55], [51.58, 25.48], [51.52, 25.44]] }
+      ],
+      "records": {
+        "colorBy": {
+          "col": "status",
+          "legendTitle": "Plan Status",
+          "values": [
+            { "value": "Draft", "label": "Draft", "color": "#98A2B3" },
+            { "value": "Pending Approval", "label": "Pending Approval", "color": "#FDB022" },
+            { "value": "Approved", "label": "Approved", "color": "#12B76A" },
+            { "value": "Rejected", "label": "Rejected", "color": "#F04438" },
+            { "value": "Active", "label": "Active", "color": "#0072D6" }
+          ],
+          "fallbackColor": "#98A2B3"
+        },
+        "radius": 8
+      }
+    },
+    "listSummary": [
+      { "id": "sum_sp_total", "label": "Total Plans" },
+      { "id": "sum_sp_active", "label": "Active", "icon": "loading", "iconColor": "#0072D6", "iconBg": "#EFF8FF", "filter": { "col": "status", "equals": "Active" } },
+      { "id": "sum_sp_approved", "label": "Approved", "icon": "check-circle", "iconColor": "#12B76A", "iconBg": "#ECFDF3", "filter": { "col": "status", "equals": "Approved" } },
+      { "id": "sum_sp_pending", "label": "Pending Approval", "icon": "hourglass-03", "iconColor": "#DC6803", "iconBg": "#FFFAEB", "filter": { "col": "status", "equals": "Pending Approval" } }
+    ]
+  },
+  "listcolumns": [
+    { "id": "fld_sp_uniqueidentifier", "col": "uniqueidentifier", "name": "ID", "component": { "name": "TextView" } },
+    { "id": "fld_sp_title", "col": "title", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "id": "fld_sp_plantype", "col": "systemcol1", "component": { "name": "TextView" } },
+    { "id": "fld_sp_blackspot", "col": "systemcol2", "component": { "name": "TextView", "props": { "handleOverflow": true } } },
+    { "id": "fld_sp_tanker", "col": "systemcol4", "component": { "name": "TextView" } },
+    { "id": "fld_sp_driver", "col": "systemcol5", "component": { "name": "PersonView", "props": { "tone": "info" } } },
+    { "id": "fld_sp_inspector", "col": "systemcol6", "component": { "name": "PersonView" } },
+    { "id": "fld_sp_shift", "col": "systemcol9", "component": { "name": "TextView" } },
+    { "id": "fld_sp_status", "col": "status", "component": { "name": "StatusList" } }
+  ]
+}

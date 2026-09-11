@@ -1,0 +1,1055 @@
+[
+  {
+    "id": "JO-1001",
+    "uniqueidentifier": "JO-1001",
+    "title": "Check Engine Warning Light",
+    "status": "reported-issues",
+    "systemcol1": "Corrective",
+    "systemcol2": "HIGH",
+    "systemcol3": "2026-09-20",
+    "systemcol4": "VEH-02",
+    "systemcol5": "2026-09-04",
+    "systemcol6": "Engine",
+    "systemcol7": "Driver reported a persistent check-engine light on the dash.",
+    "systemcol8": [
+      "dash-photo.jpg"
+    ],
+    "systemcol12": 45210,
+    "systemcol33": "DXB-C-1014",
+    "systemcol20": [
+      "u_dispatcher"
+    ],
+    "systemcol21": "Layla Haddad",
+    "systemcol22": true,
+    "systemcol23": false,
+    "systemcol24": true,
+    "systemcol25": false,
+    "systemcol26": [],
+    "systemcol27": true,
+    "systemcol28": [
+      "fleet.ops@fams.example"
+    ],
+    "systemcol29": false,
+    "systemcol30": [],
+    "tags": [
+      "routine"
+    ],
+    "timelineEvents": [
+      {
+        "id": "JO-1001-tl-1",
+        "actor": "Layla Haddad",
+        "action": "reported this issue: persistent check-engine light on the dash.",
+        "timestamp": "Sep 4, 8:15 AM",
+        "dateGroup": "Sep 4"
+      }
+    ],
+    "comments": [
+      {
+        "id": "JO-1001-cm-1",
+        "author": "Dana Reyes",
+        "text": "@LaylaHaddad thanks, routing this to diagnostics \u2014 will schedule shortly.",
+        "timestamp": "Sep 4, 9:40 AM",
+        "dateGroup": "Sep 4"
+      }
+    ]
+  },
+  {
+    "id": "JO-1002",
+    "uniqueidentifier": "JO-1002",
+    "title": "Cabin AC Not Cooling",
+    "status": "reported-issues",
+    "systemcol1": "Corrective",
+    "systemcol2": "MEDIUM",
+    "systemcol3": "2026-09-10",
+    "systemcol4": "VEH-05",
+    "systemcol5": "2026-09-03",
+    "systemcol6": "Electrical",
+    "systemcol7": "Cabin air conditioning blows warm air on the highway route.",
+    "systemcol8": [],
+    "systemcol12": 88120,
+    "systemcol33": "DXB-F-1035",
+    "systemcol20": [
+      "u_admin"
+    ],
+    "systemcol21": "Zayd Al-Farsi",
+    "systemcol22": true,
+    "systemcol23": false,
+    "systemcol24": false,
+    "systemcol25": false,
+    "systemcol26": [],
+    "systemcol27": false,
+    "systemcol28": [],
+    "systemcol29": false,
+    "systemcol30": [],
+    "tags": [],
+    "timelineEvents": [
+      {
+        "id": "JO-1002-tl-1",
+        "actor": "Zayd Al-Farsi",
+        "action": "reported this issue: cabin AC blowing warm air on the highway route.",
+        "timestamp": "Sep 3, 2:05 PM",
+        "dateGroup": "Sep 3"
+      },
+      {
+        "id": "JO-1002-tl-2",
+        "actor": "Avery Stone",
+        "action": "acknowledged the report.",
+        "tone": "info",
+        "timestamp": "Sep 3, 4:20 PM",
+        "dateGroup": "Sep 3"
+      }
+    ]
+  },
+  {
+    "id": "JO-1003",
+    "uniqueidentifier": "JO-1003",
+    "title": "Front Brake Pad Replacement",
+    "status": "scheduled",
+    "systemcol1": "Preventive",
+    "systemcol2": "HIGH",
+    "systemcol3": "2026-08-28",
+    "systemcol4": "VEH-01",
+    "systemcol5": "2026-08-20",
+    "systemcol6": "Brakes",
+    "systemcol7": "Scheduled brake service after the PM inspection flagged pad wear.",
+    "systemcol8": [
+      "wear-photo.jpg"
+    ],
+    "systemcol9": "Al Ain Central Garage",
+    "systemcol10": "2026-09-02",
+    "systemcol11": "2026-09-01",
+    "systemcol12": 113452,
+    "systemcol33": "DXB-B-1007",
+    "systemcol20": [
+      "u_dispatcher"
+    ],
+    "systemcol21": "Rania Al Nuaimi",
+    "systemcol22": true,
+    "systemcol23": true,
+    "systemcol24": true,
+    "systemcol25": true,
+    "systemcol26": [
+      "fleet.ops@fams.example"
+    ],
+    "systemcol27": true,
+    "systemcol28": [
+      "fleet.ops@fams.example"
+    ],
+    "systemcol29": false,
+    "systemcol30": [],
+    "systemcol32": "Overdue",
+    "tags": [
+      "needs-service"
+    ],
+    "timelineEvents": [
+      {
+        "id": "JO-1003-tl-1",
+        "actor": "Rania Al Nuaimi",
+        "action": "reported this issue: brake pad wear flagged during the PM inspection.",
+        "timestamp": "Aug 20, 9:00 AM",
+        "dateGroup": "Aug 20"
+      },
+      {
+        "id": "JO-1003-tl-2",
+        "actor": "Dana Reyes",
+        "action": "changed status to Scheduled.",
+        "tone": "info",
+        "timestamp": "Aug 21, 10:00 AM",
+        "dateGroup": "Aug 21"
+      },
+      {
+        "id": "JO-1003-tl-3",
+        "actor": "Dana Reyes",
+        "action": "booked the service at Al Ain Central Garage for 1 Sep, 2026.",
+        "timestamp": "Aug 21, 10:05 AM",
+        "dateGroup": "Aug 21"
+      }
+    ]
+  },
+  {
+    "id": "JO-1004",
+    "uniqueidentifier": "JO-1004",
+    "title": "Tire Rotation and Balance",
+    "status": "scheduled",
+    "systemcol1": "Preventive",
+    "systemcol2": "LOW",
+    "systemcol3": "2026-09-25",
+    "systemcol4": "VEH-03",
+    "systemcol5": "2026-09-01",
+    "systemcol6": "Tires",
+    "systemcol7": "Routine tire rotation scheduled ahead of the long-haul run.",
+    "systemcol8": [],
+    "systemcol9": "Dubai Auto Care",
+    "systemcol10": "2026-09-22",
+    "systemcol11": "2026-09-24",
+    "systemcol12": 67210,
+    "systemcol33": "DXB-D-1021",
+    "systemcol20": [
+      "u_admin"
+    ],
+    "systemcol21": "Sam Okafor",
+    "systemcol22": true,
+    "systemcol23": false,
+    "systemcol24": true,
+    "systemcol25": false,
+    "systemcol26": [],
+    "systemcol27": false,
+    "systemcol28": [],
+    "systemcol29": false,
+    "systemcol30": [],
+    "tags": [],
+    "timelineEvents": [
+      {
+        "id": "JO-1004-tl-1",
+        "actor": "Sam Okafor",
+        "action": "reported this issue: routine tire rotation ahead of the long-haul run.",
+        "timestamp": "Sep 1, 8:30 AM",
+        "dateGroup": "Sep 1"
+      },
+      {
+        "id": "JO-1004-tl-2",
+        "actor": "Avery Stone",
+        "action": "changed status to Scheduled.",
+        "tone": "info",
+        "timestamp": "Sep 1, 1:10 PM",
+        "dateGroup": "Sep 1"
+      },
+      {
+        "id": "JO-1004-tl-3",
+        "actor": "Avery Stone",
+        "action": "booked the service at Dubai Auto Care for 24 Sep, 2026.",
+        "timestamp": "Sep 1, 1:12 PM",
+        "dateGroup": "Sep 1"
+      }
+    ]
+  },
+  {
+    "id": "JO-1005",
+    "uniqueidentifier": "JO-1005",
+    "title": "Alternator Replacement",
+    "status": "ongoing",
+    "systemcol1": "Corrective",
+    "systemcol2": "CRITICAL",
+    "systemcol3": "2026-08-30",
+    "systemcol4": "VEH-04",
+    "systemcol5": "2026-08-25",
+    "systemcol6": "Electrical",
+    "systemcol7": "Vehicle intermittently failing to hold charge; alternator swap in progress.",
+    "systemcol8": [
+      "diagnostic-report.pdf"
+    ],
+    "systemcol9": "Musaffah Service Center",
+    "systemcol10": "2026-08-29",
+    "systemcol11": "2026-08-29",
+    "systemcol12": 152300,
+    "systemcol33": "DXB-E-1028",
+    "systemcol20": [
+      "u_dispatcher"
+    ],
+    "systemcol21": "Layla Haddad",
+    "systemcol22": true,
+    "systemcol23": true,
+    "systemcol24": true,
+    "systemcol25": true,
+    "systemcol26": [
+      "+971501234567"
+    ],
+    "systemcol27": true,
+    "systemcol28": [
+      "fleet.ops@fams.example"
+    ],
+    "systemcol29": true,
+    "systemcol30": [
+      "+971501234567"
+    ],
+    "systemcol32": "Overdue",
+    "tags": [
+      "gps-issue"
+    ],
+    "timelineEvents": [
+      {
+        "id": "JO-1005-tl-1",
+        "actor": "Layla Haddad",
+        "action": "reported this issue: vehicle intermittently failing to hold charge.",
+        "timestamp": "Aug 25, 7:50 AM",
+        "dateGroup": "Aug 25"
+      },
+      {
+        "id": "JO-1005-tl-2",
+        "actor": "Dana Reyes",
+        "action": "changed status to Scheduled.",
+        "tone": "info",
+        "timestamp": "Aug 26, 9:00 AM",
+        "dateGroup": "Aug 26"
+      },
+      {
+        "id": "JO-1005-tl-3",
+        "actor": "Dana Reyes",
+        "action": "booked the service at Musaffah Service Center for 29 Aug, 2026.",
+        "timestamp": "Aug 26, 9:05 AM",
+        "dateGroup": "Aug 26"
+      },
+      {
+        "id": "JO-1005-tl-4",
+        "actor": "Dana Reyes",
+        "action": "changed status to Ongoing \u2014 alternator swap in progress.",
+        "tone": "info",
+        "timestamp": "Aug 29, 8:20 AM",
+        "dateGroup": "Aug 29"
+      }
+    ]
+  },
+  {
+    "id": "JO-1006",
+    "uniqueidentifier": "JO-1006",
+    "title": "Coolant System Flush",
+    "status": "ongoing",
+    "systemcol1": "Preventive",
+    "systemcol2": "MEDIUM",
+    "systemcol3": "2026-09-18",
+    "systemcol4": "VEH-06",
+    "systemcol5": "2026-09-02",
+    "systemcol6": "Cooling System",
+    "systemcol7": "Coolant flush underway ahead of the summer heat advisory.",
+    "systemcol8": [],
+    "systemcol9": "Abu Dhabi Fleet Workshop",
+    "systemcol10": "2026-09-06",
+    "systemcol11": "2026-09-05",
+    "systemcol12": 41870,
+    "systemcol33": "DXB-G-1042",
+    "systemcol20": [
+      "u_admin"
+    ],
+    "systemcol21": "Zayd Al-Farsi",
+    "systemcol22": false,
+    "systemcol23": false,
+    "systemcol24": true,
+    "systemcol25": false,
+    "systemcol26": [],
+    "systemcol27": false,
+    "systemcol28": [],
+    "systemcol29": false,
+    "systemcol30": [],
+    "tags": [],
+    "timelineEvents": [
+      {
+        "id": "JO-1006-tl-1",
+        "actor": "Zayd Al-Farsi",
+        "action": "reported this issue: coolant flush requested ahead of the summer heat advisory.",
+        "timestamp": "Sep 2, 9:15 AM",
+        "dateGroup": "Sep 2"
+      },
+      {
+        "id": "JO-1006-tl-2",
+        "actor": "Avery Stone",
+        "action": "changed status to Scheduled.",
+        "tone": "info",
+        "timestamp": "Sep 2, 3:00 PM",
+        "dateGroup": "Sep 2"
+      },
+      {
+        "id": "JO-1006-tl-3",
+        "actor": "Avery Stone",
+        "action": "booked the service at Abu Dhabi Fleet Workshop for 5 Sep, 2026.",
+        "timestamp": "Sep 2, 3:02 PM",
+        "dateGroup": "Sep 2"
+      },
+      {
+        "id": "JO-1006-tl-4",
+        "actor": "Avery Stone",
+        "action": "changed status to Ongoing.",
+        "tone": "info",
+        "timestamp": "Sep 5, 8:00 AM",
+        "dateGroup": "Sep 5"
+      }
+    ]
+  },
+  {
+    "id": "JO-1007",
+    "uniqueidentifier": "JO-1007",
+    "title": "Suspension Noise Investigation",
+    "status": "under-inspection",
+    "systemcol1": "Corrective",
+    "systemcol2": "HIGH",
+    "systemcol3": "2026-09-01",
+    "systemcol4": "VEH-07",
+    "systemcol5": "2026-08-22",
+    "systemcol6": "Body & Chassis",
+    "systemcol7": "Clunking noise from the front suspension under load; report pending sign-off.",
+    "systemcol8": [
+      "intake-note.pdf"
+    ],
+    "systemcol9": "Sharjah Vehicle Depot",
+    "systemcol10": "2026-08-30",
+    "systemcol11": "2026-08-29",
+    "systemcol12": 98120,
+    "systemcol33": "DXB-H-1049",
+    "systemcol13": "2026-09-04",
+    "systemcol14": "2026-09-04",
+    "systemcol15": "INV-77213",
+    "systemcol16": 1450,
+    "systemcol17": 1,
+    "systemcol18": "Replaced front shock absorbers; test-drove 40km with no noise.",
+    "systemcol19": [
+      "completion-report.pdf"
+    ],
+    "systemcol20": [
+      "u_dispatcher"
+    ],
+    "systemcol21": "Sam Okafor",
+    "systemcol22": true,
+    "systemcol23": false,
+    "systemcol24": true,
+    "systemcol25": false,
+    "systemcol26": [],
+    "systemcol27": true,
+    "systemcol28": [
+      "fleet.ops@fams.example"
+    ],
+    "systemcol29": false,
+    "systemcol30": [],
+    "systemcol32": "Overdue",
+    "tags": [],
+    "timelineEvents": [
+      {
+        "id": "JO-1007-tl-1",
+        "actor": "Sam Okafor",
+        "action": "reported this issue: clunking noise from the front suspension under load.",
+        "timestamp": "Aug 22, 8:00 AM",
+        "dateGroup": "Aug 22"
+      },
+      {
+        "id": "JO-1007-tl-2",
+        "actor": "Dana Reyes",
+        "action": "changed status to Scheduled \u2014 booked at Sharjah Vehicle Depot for 29 Aug, 2026.",
+        "tone": "info",
+        "timestamp": "Aug 23, 9:30 AM",
+        "dateGroup": "Aug 23"
+      },
+      {
+        "id": "JO-1007-tl-3",
+        "actor": "Dana Reyes",
+        "action": "changed status to Ongoing.",
+        "tone": "info",
+        "timestamp": "Aug 29, 8:10 AM",
+        "dateGroup": "Aug 29"
+      },
+      {
+        "id": "JO-1007-tl-4",
+        "actor": "Dana Reyes",
+        "action": "submitted the maintenance report and changed status to Under Inspection.",
+        "tone": "warning",
+        "timestamp": "Sep 4, 9:00 AM",
+        "dateGroup": "Sep 4"
+      }
+    ]
+  },
+  {
+    "id": "JO-1008",
+    "uniqueidentifier": "JO-1008",
+    "title": "Air Filter and Cabin Filter Swap",
+    "status": "under-inspection",
+    "systemcol1": "Preventive",
+    "systemcol2": "LOW",
+    "systemcol3": "2026-09-30",
+    "systemcol4": "VEH-08",
+    "systemcol5": "2026-09-01",
+    "systemcol6": "Engine",
+    "systemcol7": "Routine filter swap completed; awaiting inspection sign-off.",
+    "systemcol8": [],
+    "systemcol9": "Al Ain Central Garage",
+    "systemcol10": "2026-09-03",
+    "systemcol11": "2026-09-03",
+    "systemcol12": 55600,
+    "systemcol33": "DXB-I-1056",
+    "systemcol13": "2026-09-04",
+    "systemcol14": "2026-09-04",
+    "systemcol15": "INV-77300",
+    "systemcol16": 220,
+    "systemcol17": 1,
+    "systemcol18": "Filters replaced, no faults found.",
+    "systemcol19": [
+      "completion-report.pdf"
+    ],
+    "systemcol20": [
+      "u_admin"
+    ],
+    "systemcol21": "Rania Al Nuaimi",
+    "systemcol22": true,
+    "systemcol23": false,
+    "systemcol24": false,
+    "systemcol25": false,
+    "systemcol26": [],
+    "systemcol27": false,
+    "systemcol28": [],
+    "systemcol29": false,
+    "systemcol30": [],
+    "tags": [],
+    "timelineEvents": [
+      {
+        "id": "JO-1008-tl-1",
+        "actor": "Rania Al Nuaimi",
+        "action": "reported this issue: routine air filter and cabin filter swap due.",
+        "timestamp": "Sep 1, 8:00 AM",
+        "dateGroup": "Sep 1"
+      },
+      {
+        "id": "JO-1008-tl-2",
+        "actor": "Avery Stone",
+        "action": "changed status to Scheduled \u2014 booked at Al Ain Central Garage for 3 Sep, 2026.",
+        "tone": "info",
+        "timestamp": "Sep 1, 2:00 PM",
+        "dateGroup": "Sep 1"
+      },
+      {
+        "id": "JO-1008-tl-3",
+        "actor": "Avery Stone",
+        "action": "changed status to Ongoing.",
+        "tone": "info",
+        "timestamp": "Sep 3, 8:00 AM",
+        "dateGroup": "Sep 3"
+      },
+      {
+        "id": "JO-1008-tl-4",
+        "actor": "Avery Stone",
+        "action": "submitted the maintenance report and changed status to Under Inspection.",
+        "tone": "warning",
+        "timestamp": "Sep 4, 9:30 AM",
+        "dateGroup": "Sep 4"
+      }
+    ]
+  },
+  {
+    "id": "JO-1009",
+    "uniqueidentifier": "JO-1009",
+    "title": "Battery Replacement",
+    "status": "completed",
+    "systemcol1": "Corrective",
+    "systemcol2": "MEDIUM",
+    "systemcol3": "2026-08-15",
+    "systemcol4": "VEH-02",
+    "systemcol5": "2026-08-10",
+    "systemcol6": "Electrical",
+    "systemcol7": "Battery failed a cold-crank test; replaced under warranty.",
+    "systemcol8": [],
+    "systemcol9": "Dubai Auto Care",
+    "systemcol10": "2026-08-14",
+    "systemcol11": "2026-08-14",
+    "systemcol12": 46000,
+    "systemcol33": "DXB-C-1014",
+    "systemcol13": "2026-08-16",
+    "systemcol14": "2026-08-16",
+    "systemcol15": "INV-76890",
+    "systemcol16": 620,
+    "systemcol17": 2,
+    "systemcol18": "New battery installed and load-tested.",
+    "systemcol19": [
+      "completion-report.pdf",
+      "invoice.pdf"
+    ],
+    "systemcol20": [
+      "u_dispatcher"
+    ],
+    "systemcol21": "Layla Haddad",
+    "systemcol22": true,
+    "systemcol23": false,
+    "systemcol24": true,
+    "systemcol25": false,
+    "systemcol26": [],
+    "systemcol27": true,
+    "systemcol28": [
+      "fleet.ops@fams.example"
+    ],
+    "systemcol29": false,
+    "systemcol30": [],
+    "tags": [
+      "routine"
+    ],
+    "timelineEvents": [
+      {
+        "id": "JO-1009-tl-1",
+        "actor": "Layla Haddad",
+        "action": "reported this issue: battery failed a cold-crank test.",
+        "timestamp": "Aug 10, 8:00 AM",
+        "dateGroup": "Aug 10"
+      },
+      {
+        "id": "JO-1009-tl-2",
+        "actor": "Dana Reyes",
+        "action": "changed status to Scheduled \u2014 booked at Dubai Auto Care for 14 Aug, 2026.",
+        "tone": "info",
+        "timestamp": "Aug 11, 9:00 AM",
+        "dateGroup": "Aug 11"
+      },
+      {
+        "id": "JO-1009-tl-3",
+        "actor": "Dana Reyes",
+        "action": "changed status to Ongoing.",
+        "tone": "info",
+        "timestamp": "Aug 14, 8:00 AM",
+        "dateGroup": "Aug 14"
+      },
+      {
+        "id": "JO-1009-tl-4",
+        "actor": "Dana Reyes",
+        "action": "submitted the maintenance report and changed status to Under Inspection.",
+        "tone": "warning",
+        "timestamp": "Aug 16, 9:00 AM",
+        "dateGroup": "Aug 16"
+      },
+      {
+        "id": "JO-1009-tl-5",
+        "actor": "Dana Reyes",
+        "action": "verified the report and changed status to Completed.",
+        "tone": "success",
+        "timestamp": "Aug 16, 2:30 PM",
+        "dateGroup": "Aug 16"
+      }
+    ]
+  },
+  {
+    "id": "JO-1010",
+    "uniqueidentifier": "JO-1010",
+    "title": "General Service \u2014 20,000 km",
+    "status": "completed",
+    "systemcol1": "Preventive",
+    "systemcol2": "LOW",
+    "systemcol3": "2026-09-05",
+    "systemcol4": "VEH-05",
+    "systemcol5": "2026-08-28",
+    "systemcol6": "Other",
+    "systemcol7": "Scheduled 20,000km general service, all checks passed.",
+    "systemcol8": [],
+    "systemcol9": "Musaffah Service Center",
+    "systemcol10": "2026-09-01",
+    "systemcol11": "2026-09-01",
+    "systemcol12": 89000,
+    "systemcol33": "DXB-F-1035",
+    "systemcol13": "2026-09-02",
+    "systemcol14": "2026-09-02",
+    "systemcol15": "INV-76955",
+    "systemcol16": 540,
+    "systemcol17": 1,
+    "systemcol18": "All fluids topped up, brakes within spec.",
+    "systemcol19": [
+      "completion-report.pdf"
+    ],
+    "systemcol20": [
+      "u_admin"
+    ],
+    "systemcol21": "Zayd Al-Farsi",
+    "systemcol22": true,
+    "systemcol23": false,
+    "systemcol24": false,
+    "systemcol25": false,
+    "systemcol26": [],
+    "systemcol27": false,
+    "systemcol28": [],
+    "systemcol29": false,
+    "systemcol30": [],
+    "tags": [],
+    "timelineEvents": [
+      {
+        "id": "JO-1010-tl-1",
+        "actor": "Zayd Al-Farsi",
+        "action": "reported this issue: scheduled 20,000km general service.",
+        "timestamp": "Aug 28, 8:00 AM",
+        "dateGroup": "Aug 28"
+      },
+      {
+        "id": "JO-1010-tl-2",
+        "actor": "Avery Stone",
+        "action": "changed status to Scheduled \u2014 booked at Musaffah Service Center for 1 Sep, 2026.",
+        "tone": "info",
+        "timestamp": "Aug 29, 9:00 AM",
+        "dateGroup": "Aug 29"
+      },
+      {
+        "id": "JO-1010-tl-3",
+        "actor": "Avery Stone",
+        "action": "changed status to Ongoing.",
+        "tone": "info",
+        "timestamp": "Sep 1, 8:00 AM",
+        "dateGroup": "Sep 1"
+      },
+      {
+        "id": "JO-1010-tl-4",
+        "actor": "Avery Stone",
+        "action": "submitted the maintenance report and changed status to Under Inspection.",
+        "tone": "warning",
+        "timestamp": "Sep 2, 9:00 AM",
+        "dateGroup": "Sep 2"
+      },
+      {
+        "id": "JO-1010-tl-5",
+        "actor": "Avery Stone",
+        "action": "verified the report and changed status to Completed.",
+        "tone": "success",
+        "timestamp": "Sep 2, 3:00 PM",
+        "dateGroup": "Sep 2"
+      }
+    ]
+  },
+  {
+    "id": "JO-1011",
+    "uniqueidentifier": "JO-1011",
+    "title": "Reported Fuel Leak \u2014 Not Confirmed",
+    "status": "invalid",
+    "systemcol1": "Corrective",
+    "systemcol2": "HIGH",
+    "systemcol3": "2026-08-20",
+    "systemcol4": "VEH-01",
+    "systemcol5": "2026-08-15",
+    "systemcol6": "Other",
+    "systemcol7": "Driver-reported fuel smell; inspection found no leak, task rejected.",
+    "systemcol8": [],
+    "systemcol9": "Sharjah Vehicle Depot",
+    "systemcol10": "2026-08-18",
+    "systemcol11": "2026-08-18",
+    "systemcol12": 113100,
+    "systemcol33": "DXB-B-1007",
+    "systemcol13": "2026-08-19",
+    "systemcol14": "2026-08-19",
+    "systemcol15": "INV-76700",
+    "systemcol16": 0,
+    "systemcol17": 0,
+    "systemcol18": "No leak found on inspection; closed as invalid.",
+    "systemcol19": [],
+    "systemcol20": [
+      "u_dispatcher"
+    ],
+    "systemcol21": "Rania Al Nuaimi",
+    "systemcol22": false,
+    "systemcol23": false,
+    "systemcol24": true,
+    "systemcol25": false,
+    "systemcol26": [],
+    "systemcol27": false,
+    "systemcol28": [],
+    "systemcol29": false,
+    "systemcol30": [],
+    "tags": [],
+    "timelineEvents": [
+      {
+        "id": "JO-1011-tl-1",
+        "actor": "Rania Al Nuaimi",
+        "action": "reported this issue: driver-reported fuel smell.",
+        "timestamp": "Aug 15, 8:00 AM",
+        "dateGroup": "Aug 15"
+      },
+      {
+        "id": "JO-1011-tl-2",
+        "actor": "Dana Reyes",
+        "action": "changed status to Scheduled \u2014 booked at Sharjah Vehicle Depot for 18 Aug, 2026.",
+        "tone": "info",
+        "timestamp": "Aug 16, 9:00 AM",
+        "dateGroup": "Aug 16"
+      },
+      {
+        "id": "JO-1011-tl-3",
+        "actor": "Dana Reyes",
+        "action": "changed status to Ongoing.",
+        "tone": "info",
+        "timestamp": "Aug 18, 8:00 AM",
+        "dateGroup": "Aug 18"
+      },
+      {
+        "id": "JO-1011-tl-4",
+        "actor": "Dana Reyes",
+        "action": "submitted the maintenance report and changed status to Under Inspection.",
+        "tone": "warning",
+        "timestamp": "Aug 19, 9:00 AM",
+        "dateGroup": "Aug 19"
+      },
+      {
+        "id": "JO-1011-tl-5",
+        "actor": "Dana Reyes",
+        "action": "changed status to Invalid \u2014 no fault confirmed on inspection.",
+        "tone": "danger",
+        "timestamp": "Aug 19, 1:00 PM",
+        "dateGroup": "Aug 19"
+      }
+    ]
+  },
+  {
+    "id": "JO-1012",
+    "uniqueidentifier": "JO-1012",
+    "title": "Duplicate Brake Noise Report",
+    "status": "invalid",
+    "systemcol1": "Corrective",
+    "systemcol2": "LOW",
+    "systemcol3": "2026-09-12",
+    "systemcol4": "VEH-03",
+    "systemcol5": "2026-09-01",
+    "systemcol6": "Brakes",
+    "systemcol7": "Duplicate of an already-resolved brake noise ticket; marked invalid.",
+    "systemcol8": [],
+    "systemcol9": "Al Ain Central Garage",
+    "systemcol10": "2026-09-02",
+    "systemcol11": "2026-09-02",
+    "systemcol12": 67300,
+    "systemcol33": "DXB-D-1021",
+    "systemcol13": "2026-09-03",
+    "systemcol14": "2026-09-03",
+    "systemcol15": "INV-76980",
+    "systemcol16": 0,
+    "systemcol17": 0,
+    "systemcol18": "Duplicate entry; JO-1004 already covers this vehicle's tire/brake service.",
+    "systemcol19": [],
+    "systemcol20": [
+      "u_superadmin"
+    ],
+    "systemcol21": "Sam Okafor",
+    "systemcol22": false,
+    "systemcol23": false,
+    "systemcol24": false,
+    "systemcol25": false,
+    "systemcol26": [],
+    "systemcol27": false,
+    "systemcol28": [],
+    "systemcol29": false,
+    "systemcol30": [],
+    "tags": [],
+    "timelineEvents": [
+      {
+        "id": "JO-1012-tl-1",
+        "actor": "Sam Okafor",
+        "action": "reported this issue: duplicate brake noise report.",
+        "timestamp": "Sep 1, 8:00 AM",
+        "dateGroup": "Sep 1"
+      },
+      {
+        "id": "JO-1012-tl-2",
+        "actor": "Sam Okafor",
+        "action": "changed status to Scheduled \u2014 booked at Al Ain Central Garage for 2 Sep, 2026.",
+        "tone": "info",
+        "timestamp": "Sep 1, 12:00 PM",
+        "dateGroup": "Sep 1"
+      },
+      {
+        "id": "JO-1012-tl-3",
+        "actor": "Sam Okafor",
+        "action": "changed status to Ongoing.",
+        "tone": "info",
+        "timestamp": "Sep 2, 8:00 AM",
+        "dateGroup": "Sep 2"
+      },
+      {
+        "id": "JO-1012-tl-4",
+        "actor": "Sam Okafor",
+        "action": "submitted the maintenance report and changed status to Under Inspection.",
+        "tone": "warning",
+        "timestamp": "Sep 3, 9:00 AM",
+        "dateGroup": "Sep 3"
+      },
+      {
+        "id": "JO-1012-tl-5",
+        "actor": "Sam Okafor",
+        "action": "changed status to Invalid \u2014 duplicate of an already-scheduled job order.",
+        "tone": "danger",
+        "timestamp": "Sep 3, 1:00 PM",
+        "dateGroup": "Sep 3"
+      }
+    ]
+  },
+  {
+    "id": "JO-1013",
+    "uniqueidentifier": "JO-1013",
+    "title": "Brake Inspection",
+    "status": "reported-issues",
+    "systemcol1": "Preventive",
+    "systemcol2": "MEDIUM",
+    "systemcol3": "2026-09-25",
+    "systemcol4": "VEH-01",
+    "systemcol5": "2026-09-05",
+    "systemcol6": "Brakes",
+    "systemcol7": "Auto-created from Preventive Maintenance rule PMR-002 \u2014 its trigger fired.",
+    "systemcol8": [],
+    "systemcol12": 113452,
+    "systemcol33": "DXB-B-1007",
+    "systemcol20": [
+      "u_dispatcher"
+    ],
+    "systemcol21": "Fleet Telematics",
+    "systemcol22": false,
+    "systemcol23": false,
+    "systemcol24": false,
+    "systemcol25": false,
+    "systemcol26": [],
+    "systemcol27": false,
+    "systemcol28": [],
+    "systemcol29": false,
+    "systemcol30": [],
+    "systemcol31": "PMR-002",
+    "tags": [
+      "auto-created"
+    ],
+    "timelineEvents": [
+      {
+        "id": "JO-1013-tl-1",
+        "actor": "Fleet Telematics",
+        "action": "created this job order automatically from Preventive Maintenance rule PMR-002.",
+        "tone": "info",
+        "timestamp": "Sep 5, 6:00 AM",
+        "dateGroup": "Sep 5"
+      },
+      {
+        "id": "JO-1013-tl-2",
+        "actor": "Dana Reyes",
+        "action": "acknowledged the auto-created job order.",
+        "timestamp": "Sep 5, 8:30 AM",
+        "dateGroup": "Sep 5"
+      }
+    ]
+  },
+  {
+    "id": "JO-1014",
+    "uniqueidentifier": "JO-1014",
+    "title": "Coolant Flush",
+    "status": "reported-issues",
+    "systemcol1": "Preventive",
+    "systemcol2": "MEDIUM",
+    "systemcol3": "2026-09-26",
+    "systemcol4": "VEH-04",
+    "systemcol5": "2026-09-05",
+    "systemcol6": "Cooling System",
+    "systemcol7": "Auto-created from Preventive Maintenance rule PMR-011 \u2014 its trigger fired.",
+    "systemcol8": [],
+    "systemcol12": 98210,
+    "systemcol33": "DXB-E-1028",
+    "systemcol20": [
+      "u_dispatcher"
+    ],
+    "systemcol21": "Fleet Telematics",
+    "systemcol22": false,
+    "systemcol23": false,
+    "systemcol24": false,
+    "systemcol25": false,
+    "systemcol26": [],
+    "systemcol27": false,
+    "systemcol28": [],
+    "systemcol29": false,
+    "systemcol30": [],
+    "systemcol31": "PMR-011",
+    "tags": [
+      "auto-created"
+    ],
+    "timelineEvents": [
+      {
+        "id": "JO-1014-tl-1",
+        "actor": "Fleet Telematics",
+        "action": "created this job order automatically from Preventive Maintenance rule PMR-011.",
+        "tone": "info",
+        "timestamp": "Sep 5, 6:00 AM",
+        "dateGroup": "Sep 5"
+      },
+      {
+        "id": "JO-1014-tl-2",
+        "actor": "Dana Reyes",
+        "action": "acknowledged the auto-created job order.",
+        "timestamp": "Sep 5, 8:35 AM",
+        "dateGroup": "Sep 5"
+      }
+    ]
+  },
+  {
+    "id": "JO-1015",
+    "uniqueidentifier": "JO-1015",
+    "title": "Tire Rotation",
+    "status": "reported-issues",
+    "systemcol1": "Preventive",
+    "systemcol2": "LOW",
+    "systemcol3": "2026-09-27",
+    "systemcol4": "VEH-06",
+    "systemcol5": "2026-09-05",
+    "systemcol6": "Tires",
+    "systemcol7": "Auto-created from Preventive Maintenance rule PMR-017 \u2014 its trigger fired.",
+    "systemcol8": [],
+    "systemcol12": 71540,
+    "systemcol33": "DXB-G-1042",
+    "systemcol20": [
+      "u_admin"
+    ],
+    "systemcol21": "Fleet Telematics",
+    "systemcol22": false,
+    "systemcol23": false,
+    "systemcol24": false,
+    "systemcol25": false,
+    "systemcol26": [],
+    "systemcol27": false,
+    "systemcol28": [],
+    "systemcol29": false,
+    "systemcol30": [],
+    "systemcol31": "PMR-017",
+    "tags": [
+      "auto-created"
+    ],
+    "timelineEvents": [
+      {
+        "id": "JO-1015-tl-1",
+        "actor": "Fleet Telematics",
+        "action": "created this job order automatically from Preventive Maintenance rule PMR-017.",
+        "tone": "info",
+        "timestamp": "Sep 5, 6:00 AM",
+        "dateGroup": "Sep 5"
+      },
+      {
+        "id": "JO-1015-tl-2",
+        "actor": "Avery Stone",
+        "action": "acknowledged the auto-created job order.",
+        "timestamp": "Sep 5, 8:40 AM",
+        "dateGroup": "Sep 5"
+      }
+    ]
+  },
+  {
+    "id": "JO-1016",
+    "uniqueidentifier": "JO-1016",
+    "title": "Brake Inspection",
+    "status": "reported-issues",
+    "systemcol1": "Preventive",
+    "systemcol2": "MEDIUM",
+    "systemcol3": "2026-09-28",
+    "systemcol4": "VEH-08",
+    "systemcol5": "2026-09-05",
+    "systemcol6": "Brakes",
+    "systemcol7": "Auto-created from Preventive Maintenance rule PMR-022 \u2014 its trigger fired.",
+    "systemcol8": [],
+    "systemcol12": 84670,
+    "systemcol33": "DXB-I-1056",
+    "systemcol20": [
+      "u_admin"
+    ],
+    "systemcol21": "Fleet Telematics",
+    "systemcol22": false,
+    "systemcol23": false,
+    "systemcol24": false,
+    "systemcol25": false,
+    "systemcol26": [],
+    "systemcol27": false,
+    "systemcol28": [],
+    "systemcol29": false,
+    "systemcol30": [],
+    "systemcol31": "PMR-022",
+    "tags": [
+      "auto-created"
+    ],
+    "timelineEvents": [
+      {
+        "id": "JO-1016-tl-1",
+        "actor": "Fleet Telematics",
+        "action": "created this job order automatically from Preventive Maintenance rule PMR-022.",
+        "tone": "info",
+        "timestamp": "Sep 5, 6:00 AM",
+        "dateGroup": "Sep 5"
+      },
+      {
+        "id": "JO-1016-tl-2",
+        "actor": "Avery Stone",
+        "action": "acknowledged the auto-created job order.",
+        "timestamp": "Sep 5, 8:45 AM",
+        "dateGroup": "Sep 5"
+      }
+    ]
+  }
+]

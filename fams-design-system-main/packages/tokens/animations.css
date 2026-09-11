@@ -1,0 +1,42 @@
+/* Enter/exit animation utilities (animate-in/animate-out, fade-*, slide-*,
+   zoom-*) for Radix data-[state] driven primitives (Sheet, Dialog,
+   AlertDialog, Popover, Tooltip, DropdownMenu, Select). Tailwind v4 ships no
+   equivalent utilities itself — this is the actively-maintained v4 successor
+   to the v3-only `tailwindcss-animate` plugin, imported (not a JS plugin) so
+   it works with Tailwind v4's CSS-first config. Consumers import this
+   alongside `@fams/tokens/theme.css` in their root stylesheet. */
+@import "tw-animate-css";
+
+/* WCAG 2.3.3 / UX MUST L.60 — `prefers-reduced-motion: reduce` collapses every
+   animation and transition to an instant swap, platform-wide.
+   WHY A GLOBAL RULE AND NOT `motion-reduce:animate-none` ON EACH PRIMITIVE:
+   a per-component `motion-reduce:animate-none` compiles to the single-class
+   selector `.motion-reduce\:animate-none` (specificity 0-1-0), while the rule
+   it has to beat — `.data-\[state\=open\]\:animate-in[data-state="open"]` —
+   is class + attribute (0-2-0). The data-attribute variant ALWAYS wins, in
+   every source order, inside or outside a media query, so the utility is
+   emitted and silently overridden. Radix drives every enter/exit animation
+   off `data-[state]`, so this affects Sheet / Dialog / Popover / Tooltip /
+   DropdownMenu / Select / Accordion alike. `!important` at the top of the
+   cascade is the only thing that reliably outranks it.
+   Durations are collapsed to a non-zero 0.01ms rather than `animation: none`
+   so Radix's `animationend`-driven unmount still fires (a hard `none` leaves
+   exit-animated content mounted forever).
+   ESSENTIAL-MOTION OPT-OUT: WCAG 2.3.3 governs *interaction* animation; a
+   loading indicator is an essential status indicator and is explicitly out of
+   scope. Freezing a spinner leaves a reduced-motion user with a static glyph
+   and no progress signal at all, so elements carrying `data-motion="essential"`
+   (the `Loader2` spinners behind `loading` states) are excluded from the
+   reset. Use it ONLY for motion that carries status — never for decoration. */
+@media (prefers-reduced-motion: reduce) {
+  *:not([data-motion="essential"]),
+  *:not([data-motion="essential"])::before,
+  *:not([data-motion="essential"])::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,633 @@
+[
+  {
+    "id": "WF-01",
+    "uniqueidentifier": "WF-01",
+    "title": "Omar Darwish",
+    "systemcol1": "Driver",
+    "systemcol2": "+9715011001",
+    "systemcol3": "omar@fams.example",
+    "status": "Active",
+    "systemcol4": "VEH-01",
+    "systemcol5": "2026-08-27",
+    "tags": [],
+    "tabletActiveTimeTotal": "79h 28m",
+    "tabletInactiveTimeTotal": "3h 8m",
+    "tabletAppUsagePct": "95%",
+    "tabletInactiveEvents": [
+      {
+        "id": "WF-01-iae-01",
+        "label": "Tablet offline",
+        "severity": "Major",
+        "date": "Sat, 29 Aug",
+        "startTime": "08:55 AM",
+        "endTime": "09:47 AM",
+        "duration": "52m"
+      },
+      {
+        "id": "WF-01-iae-02",
+        "label": "Break taken",
+        "severity": "Minor",
+        "date": "Sun, 30 Aug",
+        "startTime": "06:29 AM",
+        "endTime": "06:50 AM",
+        "duration": "21m"
+      },
+      {
+        "id": "WF-01-iae-03",
+        "label": "Cab idle",
+        "severity": "Major",
+        "date": "Mon, 31 Aug",
+        "startTime": "11:31 AM",
+        "endTime": "12:26 PM",
+        "duration": "55m"
+      },
+      {
+        "id": "WF-01-iae-04",
+        "label": "Break taken",
+        "severity": "Minor",
+        "date": "Mon, 31 Aug",
+        "startTime": "01:14 PM",
+        "endTime": "01:35 PM",
+        "duration": "21m"
+      },
+      {
+        "id": "WF-01-iae-05",
+        "label": "Break taken",
+        "severity": "Minor",
+        "date": "Wed, 02 Sep",
+        "startTime": "06:38 AM",
+        "endTime": "07:05 AM",
+        "duration": "27m"
+      },
+      {
+        "id": "WF-01-iae-06",
+        "label": "Tablet locked",
+        "severity": "Brief",
+        "date": "Thu, 03 Sep",
+        "startTime": "11:16 AM",
+        "endTime": "11:28 AM",
+        "duration": "12m"
+      }
+    ],
+    "tabletDailyActivity": [
+      {
+        "date": "2026-08-29",
+        "weekday": "Saturday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 771,
+        "inactiveMinutes": 52,
+        "usagePct": 92
+      },
+      {
+        "date": "2026-08-30",
+        "weekday": "Sunday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 803,
+        "inactiveMinutes": 21,
+        "usagePct": 96
+      },
+      {
+        "date": "2026-08-31",
+        "weekday": "Monday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 753,
+        "inactiveMinutes": 76,
+        "usagePct": 90
+      },
+      {
+        "date": "2026-09-01",
+        "weekday": "Tuesday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 831,
+        "inactiveMinutes": 0,
+        "usagePct": 99
+      },
+      {
+        "date": "2026-09-02",
+        "weekday": "Wednesday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 795,
+        "inactiveMinutes": 27,
+        "usagePct": 95
+      },
+      {
+        "date": "2026-09-03",
+        "weekday": "Thursday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 815,
+        "inactiveMinutes": 12,
+        "usagePct": 97
+      },
+      {
+        "date": "2026-09-04",
+        "weekday": "Friday",
+        "isOff": true,
+        "plannedMinutes": 0,
+        "activeMinutes": 0,
+        "inactiveMinutes": 0,
+        "usagePct": null
+      }
+    ]
+  },
+  {
+    "id": "WF-02",
+    "uniqueidentifier": "WF-02",
+    "title": "Layla Darwish",
+    "systemcol1": "Driver",
+    "systemcol2": "+9715021002",
+    "systemcol3": "layla@fams.example",
+    "status": "Inactive",
+    "systemcol4": "VEH-02",
+    "systemcol5": "2026-03-24",
+    "tags": []
+  },
+  {
+    "id": "WF-03",
+    "uniqueidentifier": "WF-03",
+    "title": "Yusuf Rahman",
+    "systemcol1": "Supervisor",
+    "systemcol2": "+9715031003",
+    "systemcol3": "yusuf@fams.example",
+    "status": "On Leave",
+    "systemcol4": "VEH-03",
+    "systemcol5": "2026-09-10",
+    "tags": []
+  },
+  {
+    "id": "WF-04",
+    "uniqueidentifier": "WF-04",
+    "title": "Aisha Rahman",
+    "systemcol1": "Technician",
+    "systemcol2": "+9715041004",
+    "systemcol3": "aisha@fams.example",
+    "status": "Active",
+    "systemcol4": "VEH-04",
+    "systemcol5": "2026-07-07",
+    "tags": [
+      "night-shift"
+    ]
+  },
+  {
+    "id": "WF-05",
+    "uniqueidentifier": "WF-05",
+    "title": "Hassan Aziz",
+    "systemcol1": "Dispatcher",
+    "systemcol2": "+9715051005",
+    "systemcol3": "hassan@fams.example",
+    "status": "Inactive",
+    "systemcol4": "VEH-05",
+    "systemcol5": "2026-11-23",
+    "tags": []
+  },
+  {
+    "id": "WF-06",
+    "uniqueidentifier": "WF-06",
+    "title": "Fatima Khan",
+    "systemcol1": "Driver",
+    "systemcol2": "+9715061006",
+    "systemcol3": "fatima@fams.example",
+    "status": "Active",
+    "systemcol4": "VEH-06",
+    "systemcol5": "2026-09-10",
+    "tags": []
+  },
+  {
+    "id": "WF-07",
+    "uniqueidentifier": "WF-07",
+    "title": "Bilal Aziz",
+    "systemcol1": "Driver",
+    "systemcol2": "+9715071007",
+    "systemcol3": "bilal@fams.example",
+    "status": "Active",
+    "systemcol4": "VEH-07",
+    "systemcol5": "2026-12-24",
+    "tags": [],
+    "tabletActiveTimeTotal": "81h 7m",
+    "tabletInactiveTimeTotal": "1h 23m",
+    "tabletAppUsagePct": "97%",
+    "tabletInactiveEvents": [
+      {
+        "id": "WF-07-iae-01",
+        "label": "Idle at depot",
+        "severity": "Minor",
+        "date": "Sat, 29 Aug",
+        "startTime": "02:34 PM",
+        "endTime": "02:58 PM",
+        "duration": "24m"
+      },
+      {
+        "id": "WF-07-iae-02",
+        "label": "Signal drop",
+        "severity": "Brief",
+        "date": "Sat, 29 Aug",
+        "startTime": "05:22 PM",
+        "endTime": "05:31 PM",
+        "duration": "9m"
+      },
+      {
+        "id": "WF-07-iae-03",
+        "label": "Signal drop",
+        "severity": "Brief",
+        "date": "Sun, 30 Aug",
+        "startTime": "07:54 AM",
+        "endTime": "08:02 AM",
+        "duration": "8m"
+      },
+      {
+        "id": "WF-07-iae-04",
+        "label": "Screen off",
+        "severity": "Brief",
+        "date": "Mon, 31 Aug",
+        "startTime": "06:18 AM",
+        "endTime": "06:28 AM",
+        "duration": "10m"
+      },
+      {
+        "id": "WF-07-iae-05",
+        "label": "Screen off",
+        "severity": "Brief",
+        "date": "Tue, 01 Sep",
+        "startTime": "09:55 AM",
+        "endTime": "10:07 AM",
+        "duration": "12m"
+      },
+      {
+        "id": "WF-07-iae-06",
+        "label": "Signal drop",
+        "severity": "Brief",
+        "date": "Thu, 03 Sep",
+        "startTime": "11:52 AM",
+        "endTime": "12:03 PM",
+        "duration": "11m"
+      },
+      {
+        "id": "WF-07-iae-07",
+        "label": "Tablet locked",
+        "severity": "Brief",
+        "date": "Thu, 03 Sep",
+        "startTime": "02:52 PM",
+        "endTime": "03:01 PM",
+        "duration": "9m"
+      }
+    ],
+    "tabletDailyActivity": [
+      {
+        "date": "2026-08-29",
+        "weekday": "Saturday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 787,
+        "inactiveMinutes": 33,
+        "usagePct": 94
+      },
+      {
+        "date": "2026-08-30",
+        "weekday": "Sunday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 814,
+        "inactiveMinutes": 8,
+        "usagePct": 97
+      },
+      {
+        "date": "2026-08-31",
+        "weekday": "Monday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 819,
+        "inactiveMinutes": 10,
+        "usagePct": 98
+      },
+      {
+        "date": "2026-09-01",
+        "weekday": "Tuesday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 818,
+        "inactiveMinutes": 12,
+        "usagePct": 97
+      },
+      {
+        "date": "2026-09-02",
+        "weekday": "Wednesday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 820,
+        "inactiveMinutes": 0,
+        "usagePct": 98
+      },
+      {
+        "date": "2026-09-03",
+        "weekday": "Thursday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 809,
+        "inactiveMinutes": 20,
+        "usagePct": 96
+      },
+      {
+        "date": "2026-09-04",
+        "weekday": "Friday",
+        "isOff": true,
+        "plannedMinutes": 0,
+        "activeMinutes": 0,
+        "inactiveMinutes": 0,
+        "usagePct": null
+      }
+    ]
+  },
+  {
+    "id": "WF-08",
+    "uniqueidentifier": "WF-08",
+    "title": "Noor Farah",
+    "systemcol1": "Driver",
+    "systemcol2": "+9715081008",
+    "systemcol3": "noor@fams.example",
+    "status": "Active",
+    "systemcol4": "VEH-08",
+    "systemcol5": "2026-10-05",
+    "tags": [
+      "night-shift"
+    ]
+  },
+  {
+    "id": "WF-09",
+    "uniqueidentifier": "WF-09",
+    "title": "Karim Khan",
+    "systemcol1": "Supervisor",
+    "systemcol2": "+9715091009",
+    "systemcol3": "karim@fams.example",
+    "status": "Active",
+    "systemcol4": "VEH-09",
+    "systemcol5": "2026-05-14",
+    "tags": []
+  },
+  {
+    "id": "WF-10",
+    "uniqueidentifier": "WF-10",
+    "title": "Sana Mansour",
+    "systemcol1": "Technician",
+    "systemcol2": "+9715101010",
+    "systemcol3": "sana@fams.example",
+    "status": "Active",
+    "systemcol4": "VEH-10",
+    "systemcol5": "2026-10-07",
+    "tags": []
+  },
+  {
+    "id": "WF-11",
+    "uniqueidentifier": "WF-11",
+    "title": "Tariq Farah",
+    "systemcol1": "Dispatcher",
+    "systemcol2": "+9715111011",
+    "systemcol3": "tariq@fams.example",
+    "status": "On Leave",
+    "systemcol4": "VEH-11",
+    "systemcol5": "2026-10-09",
+    "tags": []
+  },
+  {
+    "id": "WF-12",
+    "uniqueidentifier": "WF-12",
+    "title": "Mariam Saleh",
+    "systemcol1": "Driver",
+    "systemcol2": "+9715121012",
+    "systemcol3": "mariam@fams.example",
+    "status": "On Leave",
+    "systemcol4": "VEH-12",
+    "systemcol5": "2026-09-03",
+    "tags": [
+      "night-shift"
+    ]
+  },
+  {
+    "id": "WF-13",
+    "uniqueidentifier": "WF-13",
+    "title": "Zaid Saleh",
+    "systemcol1": "Driver",
+    "systemcol2": "+9715131013",
+    "systemcol3": "zaid@fams.example",
+    "status": "Active",
+    "systemcol4": null,
+    "systemcol5": "2026-09-11",
+    "tags": [],
+    "tabletActiveTimeTotal": "80h 7m",
+    "tabletInactiveTimeTotal": "2h 20m",
+    "tabletAppUsagePct": "95%",
+    "tabletInactiveEvents": [
+      {
+        "id": "WF-13-iae-01",
+        "label": "Idle at depot",
+        "severity": "Minor",
+        "date": "Sun, 30 Aug",
+        "startTime": "05:41 AM",
+        "endTime": "06:07 AM",
+        "duration": "26m"
+      },
+      {
+        "id": "WF-13-iae-02",
+        "label": "Break taken",
+        "severity": "Minor",
+        "date": "Mon, 31 Aug",
+        "startTime": "10:28 AM",
+        "endTime": "10:52 AM",
+        "duration": "24m"
+      },
+      {
+        "id": "WF-13-iae-04",
+        "label": "Tablet offline",
+        "severity": "Major",
+        "date": "Tue, 01 Sep",
+        "startTime": "09:05 AM",
+        "endTime": "09:41 AM",
+        "duration": "36m"
+      },
+      {
+        "id": "WF-13-iae-03",
+        "label": "Idle at depot",
+        "severity": "Minor",
+        "date": "Tue, 01 Sep",
+        "startTime": "05:48 PM",
+        "endTime": "06:17 PM",
+        "duration": "29m"
+      },
+      {
+        "id": "WF-13-iae-05",
+        "label": "Break taken",
+        "severity": "Minor",
+        "date": "Wed, 02 Sep",
+        "startTime": "04:42 PM",
+        "endTime": "05:02 PM",
+        "duration": "20m"
+      },
+      {
+        "id": "WF-13-iae-06",
+        "label": "Signal drop",
+        "severity": "Brief",
+        "date": "Thu, 03 Sep",
+        "startTime": "05:51 AM",
+        "endTime": "05:56 AM",
+        "duration": "5m"
+      }
+    ],
+    "tabletDailyActivity": [
+      {
+        "date": "2026-08-29",
+        "weekday": "Saturday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 832,
+        "inactiveMinutes": 0,
+        "usagePct": 99
+      },
+      {
+        "date": "2026-08-30",
+        "weekday": "Sunday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 799,
+        "inactiveMinutes": 26,
+        "usagePct": 95
+      },
+      {
+        "date": "2026-08-31",
+        "weekday": "Monday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 803,
+        "inactiveMinutes": 24,
+        "usagePct": 96
+      },
+      {
+        "date": "2026-09-01",
+        "weekday": "Tuesday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 753,
+        "inactiveMinutes": 65,
+        "usagePct": 90
+      },
+      {
+        "date": "2026-09-02",
+        "weekday": "Wednesday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 797,
+        "inactiveMinutes": 20,
+        "usagePct": 95
+      },
+      {
+        "date": "2026-09-03",
+        "weekday": "Thursday",
+        "isOff": false,
+        "plannedMinutes": 840,
+        "activeMinutes": 823,
+        "inactiveMinutes": 5,
+        "usagePct": 98
+      },
+      {
+        "date": "2026-09-04",
+        "weekday": "Friday",
+        "isOff": true,
+        "plannedMinutes": 0,
+        "activeMinutes": 0,
+        "inactiveMinutes": 0,
+        "usagePct": null
+      }
+    ]
+  },
+  {
+    "id": "WF-14",
+    "uniqueidentifier": "WF-14",
+    "title": "Huda Darwish",
+    "systemcol1": "Driver",
+    "systemcol2": "+9715141014",
+    "systemcol3": "huda@fams.example",
+    "status": "Active",
+    "systemcol4": null,
+    "systemcol5": "2026-05-11",
+    "tags": []
+  },
+  {
+    "id": "WF-15",
+    "uniqueidentifier": "WF-15",
+    "title": "Faisal Farah",
+    "systemcol1": "Supervisor",
+    "systemcol2": "+9715151015",
+    "systemcol3": "faisal@fams.example",
+    "status": "On Leave",
+    "systemcol4": null,
+    "systemcol5": "2026-06-01",
+    "tags": []
+  },
+  {
+    "id": "WF-16",
+    "uniqueidentifier": "WF-16",
+    "title": "Rania Aziz",
+    "systemcol1": "Technician",
+    "systemcol2": "+9715161016",
+    "systemcol3": "rania@fams.example",
+    "status": "Active",
+    "systemcol4": null,
+    "systemcol5": "2026-09-01",
+    "tags": [
+      "night-shift"
+    ]
+  },
+  {
+    "id": "WF-17",
+    "uniqueidentifier": "WF-17",
+    "title": "Sami Aziz",
+    "systemcol1": "Dispatcher",
+    "systemcol2": "+9715171017",
+    "systemcol3": "sami@fams.example",
+    "status": "Active",
+    "systemcol4": null,
+    "systemcol5": "2026-06-06",
+    "tags": []
+  },
+  {
+    "id": "WF-18",
+    "uniqueidentifier": "WF-18",
+    "title": "Dina Qadir",
+    "systemcol1": "Driver",
+    "systemcol2": "+9715181018",
+    "systemcol3": "dina@fams.example",
+    "status": "Active",
+    "systemcol4": null,
+    "systemcol5": "2026-07-23",
+    "tags": []
+  },
+  {
+    "id": "WF-19",
+    "uniqueidentifier": "WF-19",
+    "title": "Nabil Darwish",
+    "systemcol1": "Driver",
+    "systemcol2": "+9715191019",
+    "systemcol3": "nabil@fams.example",
+    "status": "Inactive",
+    "systemcol4": null,
+    "systemcol5": "2026-01-15",
+    "tags": []
+  },
+  {
+    "id": "WF-20",
+    "uniqueidentifier": "WF-20",
+    "title": "Lina Farah",
+    "systemcol1": "Driver",
+    "systemcol2": "+9715201020",
+    "systemcol3": "lina@fams.example",
+    "status": "Active",
+    "systemcol4": null,
+    "systemcol5": "2026-08-08",
+    "tags": [
+      "night-shift"
+    ]
+  }
+]

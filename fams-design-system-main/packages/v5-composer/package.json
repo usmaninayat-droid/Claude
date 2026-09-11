@@ -1,0 +1,76 @@
+{
+  "name": "@fams/v5-composer",
+  "version": "0.9.1",
+  "type": "module",
+  "license": "UNLICENSED",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "sideEffects": false,
+  "description": "The v5 low-code composer: reads blueprints (a tenant's module configuration) and composes modules from templates + config. Ships the React-free runtime core (blueprint \u2192 runtime, config \u2192 view-model, RBAC + rule-enforced moves, in-memory data store), the blueprint JSON schemas + typed validator, the module-type registry, and the discriminated-union composer entry. Data-adapter and template components are injected at the app level.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./schemas/*": "./schemas/*",
+    "./blueprints/*": "./blueprints/*",
+    "./utilities.css": "./dist/fams-v5-composer.css"
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "blueprints"
+  ],
+  "scripts": {
+    "prepublishOnly": "node ../../scripts/guard-publish.mjs",
+    "build": "tsup && node ../../scripts/copy-utilities.mjs v5-composer fams-v5-composer",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@fams/tokens": "workspace:*",
+    "@fams/ui-kit": "workspace:*",
+    "@hookform/resolvers": "catalog:",
+    "react-hook-form": "catalog:",
+    "zod": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@testing-library/dom": "^10",
+    "@testing-library/jest-dom": "^6",
+    "@testing-library/react": "^16",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9.39.4",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^15.15.0",
+    "jsdom": "^25",
+    "react": "^19",
+    "react-dom": "^19",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "typescript-eslint": "^8.62.1",
+    "vitest": "catalog:",
+    "vitest-axe": "^0.1.0"
+  }
+}

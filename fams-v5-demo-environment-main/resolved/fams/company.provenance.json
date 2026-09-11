@@ -1,0 +1,62 @@
+{
+  "base": "tenant-native",
+  "module": "company",
+  "nodes": {
+    "fld_co_address": {
+      "source": "tenant-native"
+    },
+    "fld_co_industry": {
+      "source": "tenant-native"
+    },
+    "fld_co_name": {
+      "source": "tenant-native"
+    },
+    "fld_co_owner": {
+      "source": "tenant-native"
+    },
+    "fld_co_phone": {
+      "source": "tenant-native"
+    },
+    "fld_co_status": {
+      "source": "tenant-native"
+    },
+    "fld_co_tags": {
+      "source": "tenant-native"
+    },
+    "fld_co_website": {
+      "source": "tenant-native"
+    },
+    "fld_uniqueidentifier": {
+      "source": "tenant-native"
+    },
+    "flt_co_industry": {
+      "source": "tenant-native"
+    },
+    "flt_co_status": {
+      "source": "tenant-native"
+    },
+    "sec_co_details": {
+      "source": "tenant-native"
+    },
+    "sts_co_active": {
+      "source": "tenant-native"
+    },
+    "sts_co_churned": {
+      "source": "tenant-native"
+    },
+    "sts_co_prospect": {
+      "source": "tenant-native"
+    },
+    "tab_co_details": {
+      "source": "tenant-native"
+    },
+    "tab_co_linked": {
+      "source": "tenant-native"
+    },
+    "tab_co_overview": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

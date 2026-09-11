@@ -1,0 +1,14 @@
+{
+  "statuses": ["created-new", "assigned", "in-progress", "delayed", "in-inspection", "resolved"],
+  "transitions": {
+    "created-new": ["assigned"],
+    "assigned": ["in-progress", "created-new"],
+    "in-progress": ["delayed", "in-inspection", "assigned"],
+    "delayed": ["in-progress"],
+    "in-inspection": ["resolved", "in-progress"],
+    "resolved": ["in-inspection"]
+  },
+  "transition_rules": {
+    "in-inspection->resolved": { "$.user.roles": { "$in": ["admin"] } }
+  }
+}

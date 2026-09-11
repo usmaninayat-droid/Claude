@@ -1,0 +1,64 @@
+{
+  "$schema": "../../node_modules/@fams/v5-composer/schemas/TenantConfig.schema.json",
+  "id": "uccp",
+  "name": "Qatar MME – UCCP",
+  "demoBounds": {
+    "label": "the Qatar demo bounding box",
+    "minLat": 24.5,
+    "maxLat": 26.2,
+    "minLng": 50.7,
+    "maxLng": 51.7
+  },
+  "fontFamily": "Gilroy",
+  "modules": [
+    "live-monitoring",
+    "incidents",
+    "smart-planning",
+    "plan-monitoring",
+    "inbox"
+  ],
+  "railStart": [
+    {
+      "id": "inbox",
+      "module": "inbox"
+    }
+  ],
+  "applications": [
+    {
+      "id": "uccp",
+      "name": "UCCP",
+      "icon": "telematics",
+      "modules": [
+        "live-monitoring",
+        "incidents",
+        "smart-planning",
+        "plan-monitoring",
+        "command-center",
+        "operations-center",
+        "inspector-shifts"
+      ]
+    },
+    {
+      "id": "inspector",
+      "name": "Inspector",
+      "modules": ["inspector-app"],
+      "hideSwitcher": true
+    }
+  ],
+  "landingModule": "first",
+  "branding": {
+    "logo": "qatar-mme",
+    "hideName": false,
+    "poweredBy": true
+  },
+  "login": {
+    "background": "linear-gradient(to bottom, #6E112D, #4B091D)",
+    "supportingText": "Log in to UCCP for real-time visibility and operational control.",
+    "logo": "/branding/qatar-mme-login-logo.svg",
+    "illustration": "none",
+    "footer": {
+      "kind": "powered-by",
+      "logoSrc": "/branding/fams-logo-horizontal.svg"
+    }
+  }
+}

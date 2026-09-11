@@ -1,0 +1,56 @@
+{
+  "base": "tenant-native",
+  "module": "contact-person",
+  "nodes": {
+    "fld_cp_company": {
+      "source": "tenant-native"
+    },
+    "fld_cp_email": {
+      "source": "tenant-native"
+    },
+    "fld_cp_job_title": {
+      "source": "tenant-native"
+    },
+    "fld_cp_name": {
+      "source": "tenant-native"
+    },
+    "fld_cp_phone": {
+      "source": "tenant-native"
+    },
+    "fld_cp_status": {
+      "source": "tenant-native"
+    },
+    "fld_cp_tags": {
+      "source": "tenant-native"
+    },
+    "fld_uniqueidentifier": {
+      "source": "tenant-native"
+    },
+    "flt_cp_company": {
+      "source": "tenant-native"
+    },
+    "flt_cp_status": {
+      "source": "tenant-native"
+    },
+    "sec_cp_details": {
+      "source": "tenant-native"
+    },
+    "sts_cp_active": {
+      "source": "tenant-native"
+    },
+    "sts_cp_inactive": {
+      "source": "tenant-native"
+    },
+    "tab_cp_details": {
+      "source": "tenant-native"
+    },
+    "tab_cp_linked": {
+      "source": "tenant-native"
+    },
+    "tab_cp_overview": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "fams"
+}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" data-tenant="iwmp">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      Resolve the theme BEFORE the stylesheet can match. The tokens carry
+        @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { …dark… } }
+      and App.tsx only reads the stored choice in useState, i.e. after the
+      first paint — so on an OS in dark mode the showcase painted dark and
+      then flipped. This mirrors readStoredTheme() EXACTLY (stored value, else
+      light — it deliberately does not consult the OS); keep the two in step.
+    -->
+    <script>
+      try {
+        var t = localStorage.getItem('fams-ds-theme')
+        document.documentElement.setAttribute('data-theme', t === 'dark' || t === 'light' ? t : 'light')
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light')
+      }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="mask-icon" href="/favicon.svg" color="#000000" />
+    <meta name="theme-color" content="#000000" />
+    <title>FAMS Design System</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
