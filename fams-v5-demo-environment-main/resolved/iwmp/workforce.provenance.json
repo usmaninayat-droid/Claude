@@ -52,6 +52,12 @@
     },
     "tab_wf_tablet_activity": {
       "source": "core"
+    },
+    "tab_wf_trainings": {
+      "op": "addTab",
+      "opId": "op_iwmp_workforce_trainings_tab",
+      "opIndex": 0,
+      "source": "delta"
     }
   },
   "overrides": [],

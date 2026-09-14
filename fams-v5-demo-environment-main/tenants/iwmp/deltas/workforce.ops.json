@@ -1,0 +1,41 @@
+{
+  "$schema": "../../../tools/schemas/OpsFile.schema.json",
+  "module": "workforce",
+  "ops": [
+    {
+      "op": "addTab",
+      "opId": "op_iwmp_workforce_trainings_tab",
+      "after": "tab_wf_tablet_activity",
+      "tab": {
+        "id": "tab_wf_trainings",
+        "key": "trainings",
+        "title": "Trainings",
+        "order": 3,
+        "component": {
+          "name": "RecordTable",
+          "props": {
+            "field": "trainings",
+            "search": true,
+            "emptyText": "No trainings recorded for this workforce member.",
+            "columns": [
+              { "key": "trainingCode", "label": "CODE", "type": "text" },
+              { "key": "trainingName", "label": "TRAINING", "type": "text" },
+              { "key": "vehicleCategory", "label": "ELIGIBLE FOR", "type": "text" },
+              { "key": "completedOn", "label": "ATTENDANCE DATE", "type": "text" },
+              { "key": "expiresOn", "label": "EXPIRES ON", "type": "text" },
+              { "key": "trainer", "label": "TRAINER", "type": "text" },
+              { "key": "certificateRef", "label": "CERTIFICATE REF", "type": "text" },
+              { "key": "status", "label": "STATUS", "type": "statusPill" }
+            ],
+            "statusColors": {
+              "Valid": "#2AAA48",
+              "Expiring": "#F5A623",
+              "Expired": "#F17B2B",
+              "Blocked": "#F04438"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

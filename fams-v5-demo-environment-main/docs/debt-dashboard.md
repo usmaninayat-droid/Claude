@@ -27,7 +27,7 @@
 | iwmp | shift-rostering | 0 | — | override-flagged |
 | iwmp | ticketing | 6 | — | — |
 | iwmp | training | 0 | — | — |
-| iwmp | workforce | 0 | — | — |
+| iwmp | workforce | 1 | override (flagged debt) | — |
 | uccp | inbox | 0 | — | — |
 | uccp | incidents | 0 | — | — |
 | uccp | live-monitoring | 0 | — | — |
@@ -36,7 +36,9 @@
 
 ## Outstanding capture proposals
 
-None. Every locked-in edit has been canonicalized to typed deltas.
+| Tenant | Module | Kind | File |
+| --- | --- | --- | --- |
+| iwmp | workforce | override (merged as flagged debt) | `tenants/iwmp/deltas/workforce.override.json` |
 
 ## Override-flagged modules
 

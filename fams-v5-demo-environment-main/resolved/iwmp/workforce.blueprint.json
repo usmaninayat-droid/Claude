@@ -115,6 +115,14 @@
     }
   ],
   "uiConfig": {
+    "listSummary": [
+      { "id": "kpi_wf_total", "label": "Total Manpower", "tone": "primary" },
+      { "id": "kpi_wf_drivers", "label": "Drivers", "tone": "info", "filter": { "col": "systemcol1", "equals": "Driver" } },
+      { "id": "kpi_wf_supervisors", "label": "Supervisors", "tone": "neutral", "filter": { "col": "systemcol1", "equals": "Supervisor" } },
+      { "id": "kpi_wf_active", "label": "Active", "icon": "check-circle", "tone": "success", "filter": { "col": "status", "equals": "Active" } },
+      { "id": "kpi_wf_leave", "label": "On Leave", "icon": "clock", "tone": "warning", "filter": { "col": "status", "equals": "On Leave" } },
+      { "id": "kpi_wf_inactive", "label": "Inactive", "icon": "alert-triangle", "tone": "danger", "filter": { "col": "status", "equals": "Inactive" } }
+    ],
     "filters": [
       {
         "col": "systemcol1",
@@ -391,6 +399,68 @@
             "key": "tablet_activity",
             "order": 2,
             "title": "Tablet Activity"
+          },
+          {
+            "component": {
+              "name": "RecordTable",
+              "props": {
+                "columns": [
+                  {
+                    "key": "trainingCode",
+                    "label": "CODE",
+                    "type": "text"
+                  },
+                  {
+                    "key": "trainingName",
+                    "label": "TRAINING",
+                    "type": "text"
+                  },
+                  {
+                    "key": "vehicleCategory",
+                    "label": "ELIGIBLE FOR",
+                    "type": "text"
+                  },
+                  {
+                    "key": "completedOn",
+                    "label": "ATTENDANCE DATE",
+                    "type": "text"
+                  },
+                  {
+                    "key": "expiresOn",
+                    "label": "EXPIRES ON",
+                    "type": "text"
+                  },
+                  {
+                    "key": "trainer",
+                    "label": "TRAINER",
+                    "type": "text"
+                  },
+                  {
+                    "key": "certificateRef",
+                    "label": "CERTIFICATE REF",
+                    "type": "text"
+                  },
+                  {
+                    "key": "status",
+                    "label": "STATUS",
+                    "type": "statusPill"
+                  }
+                ],
+                "emptyText": "No trainings recorded for this workforce member.",
+                "field": "trainings",
+                "search": true,
+                "statusColors": {
+                  "Blocked": "#F04438",
+                  "Expired": "#F17B2B",
+                  "Expiring": "#F5A623",
+                  "Valid": "#2AAA48"
+                }
+              }
+            },
+            "id": "tab_wf_trainings",
+            "key": "trainings",
+            "order": 3,
+            "title": "Trainings"
           }
         ],
         "type": "tab"

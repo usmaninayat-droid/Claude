@@ -50,9 +50,35 @@ LIC_LABEL = {'HDD': 'HDD — Heavy Duty Driver', 'LDD': 'LDD — Light Duty Driv
              'ANY': 'Any valid licence'}
 HDD_POOL, LDD_POOL = ['RL', 'SL', 'HLC', 'CCV'], ['BWC', 'TW']
 TRAIN_TODAY = dt.date(2026, 1, 8)
-GRACE_DAYS = 90
+GRACE_DAYS = 90       # BR-04/05: expired within grace = warning; beyond = block
+EXPIRING_DAYS = 30    # TRN-04: within 30 days of expiry = "Expiring"
 # The supervisor who owns the training register (a workforce.seed.json id).
 OWNER = 'WCR-02'
+# HSE trainers who deliver/certify the courses (TRN-01: trainer / certificate ref).
+TRAINERS = ['Layla Rahman (HSE)', 'Kareem Odeh (HSE)', 'Mariam Fadel (HSE)']
+
+
+def cert_status(left_days: int) -> str:
+    """The scope's 4-tier record status (TRN-04), computed from days-to-expiry.
+    Valid >30d · Expiring 0..30d · Expired 1..90d past · Blocked >90d past."""
+    if left_days > EXPIRING_DAYS:
+        return 'Valid'
+    if left_days >= 0:
+        return 'Expiring'
+    if -left_days <= GRACE_DAYS:
+        return 'Expired'
+    return 'Blocked'
+
+
+# Eligible vehicle category a training qualifies the holder for (TRN-06).
+def eligible_category(code: str) -> str:
+    if code in CATS:
+        return CATS[code][0]
+    if code == 'DEF':
+        return 'All driving duties'
+    if code == 'WCS':
+        return 'Route helper'
+    return '—'
 
 
 def read_workforce():
@@ -119,12 +145,14 @@ def employee_status(e):
 def build():
     wf = seed_training(read_workforce())
     fmt = lambda d: d.strftime('%-d %b, %Y')
-    rank = {'Expired': 0, 'Not Completed': 1, 'Re-training Due': 2, 'Valid': 3}
+    # Register sort: worst compliance first (TRN-07 register surfaces risk).
+    rank = {'Blocked': 0, 'Expired': 1, 'Expiring': 2, 'Valid': 3}
     rows = []
     for n, (code, (name, months)) in enumerate(TRAININGS.items(), 1):
         uid = f'TRN-{1000 + n}'
         is_eqp = code in CATS
         lic = CATS[code][1] if is_eqp else 'ANY'
+        category = eligible_category(code)
         # Who the training governs — exactly the prototype's gating: every
         # driver needs Defensive Driving, every route helper needs Waste
         # Collection Safety, and equipment training applies to the drivers
@@ -136,29 +164,76 @@ def build():
         else:
             holders = [e for e in wf if e['isDriver'] and code in e['pool']]
 
-        register, cert, grace, expired, missing = [], 0, 0, 0, 0
-        for e in holders:
+        register, valid, expiring, expired, blocked = [], 0, 0, 0, 0
+        for idx, e in enumerate(holders):
             base = {'employee': e['name'], 'role': e['role'],
-                    'licence': e['lic'] or '—', 'employeeStatus': employee_status(e)}
+                    'licence': e['lic'] or '—', 'employeeStatus': employee_status(e),
+                    'vehicleCategory': category,
+                    'trainer': TRAINERS[idx % len(TRAINERS)]}
             age = e['training'].get(code)
             if age is None:
-                missing += 1
+                # Never completed → Blocked for this category (BR-05).
+                blocked += 1
                 register.append({**base, 'completedOn': '—', 'expiresOn': '—',
-                                 'status': 'Not Completed'})
+                                 'certificateRef': '—', 'status': 'Blocked'})
                 continue
             done = TRAIN_TODAY - dt.timedelta(days=age)
             expires = done + dt.timedelta(days=months * 30)
-            left = (expires - TRAIN_TODAY).days
-            if left > 0:
-                status = 'Valid'; cert += 1
-            elif -left <= GRACE_DAYS:
-                status = 'Re-training Due'; grace += 1      # BR-04/05: inside grace
+            status = cert_status((expires - TRAIN_TODAY).days)
+            if status == 'Valid':
+                valid += 1
+            elif status == 'Expiring':
+                expiring += 1
+            elif status == 'Expired':
+                expired += 1
             else:
-                status = 'Expired'; expired += 1
+                blocked += 1
             register.append({**base, 'completedOn': fmt(done),
-                             'expiresOn': fmt(expires), 'status': status})
+                             'expiresOn': fmt(expires),
+                             'certificateRef': f'CRT-{code}-{1000 + idx}',
+                             'status': status})
         register.sort(key=lambda r: (rank[r['status']], r['employee']))
         total = len(register) or 1
+
+        # Derived widgets data (grounded in `register`, not invented).
+        # Grouped by role, for the "Assignable by Role" bar chart — everyone
+        # not Blocked can be rostered (Valid/Expiring/Expired-within-grace).
+        by_role = {}
+        for r in register:
+            if r['status'] != 'Blocked':
+                by_role[r['role']] = by_role.get(r['role'], 0) + 1
+        completions_by_role = [{'label': role, 'value': v}
+                               for role, v in sorted(by_role.items())]
+
+        # Last-12-months completions from real `completedOn` dates in the
+        # register, so the trend line matches what the Register tab shows.
+        month_labels = []
+        cursor = dt.date(TRAIN_TODAY.year, TRAIN_TODAY.month, 1)
+        for _ in range(12):
+            month_labels.append(cursor)
+            cursor = (cursor.replace(day=1) - dt.timedelta(days=1)).replace(day=1)
+        month_labels.reverse()
+        buckets = {(m.year, m.month): 0 for m in month_labels}
+        for r in register:
+            if r['completedOn'] == '—':
+                continue
+            done = dt.datetime.strptime(r['completedOn'], '%d %b, %Y').date()
+            key = (done.year, done.month)
+            if key in buckets:
+                buckets[key] += 1
+        completions_by_month = [
+            {'month': m.strftime('%b %Y'), 'value': buckets[(m.year, m.month)]}
+            for m in month_labels
+        ]
+
+        # Status distribution — the scope's 4-tier competency vocabulary (TRN-04).
+        status_distribution = [
+            {'label': 'Valid', 'value': valid},
+            {'label': 'Expiring', 'value': expiring},
+            {'label': 'Expired', 'value': expired},
+            {'label': 'Blocked', 'value': blocked},
+        ]
+
         rows.append({
             'id': uid, 'uniqueidentifier': uid, 'title': name, 'systemcol1': code,
             'systemcol2': 'Equipment' if is_eqp else 'Safety',
@@ -169,10 +244,15 @@ def build():
             'tags': (['Equipment'] if is_eqp else ['Safety'])
                     + (['Roster Eligibility'] if is_eqp else []),
             'status': 'Active',
-            'kpiCertified': str(cert), 'kpiRetraining': str(grace),
-            'kpiExpired': str(expired), 'kpiNotCompleted': str(missing),
-            'kpiCompliance': f'{round(100 * (cert + grace) / total)}%',
+            # KPI cards per TRN-07: Valid / Expiring / Expired / Blocked.
+            'kpiValid': str(valid), 'kpiExpiring': str(expiring),
+            'kpiExpired': str(expired), 'kpiBlocked': str(blocked),
+            # Compliance = assignable share (everyone not Blocked), BR-02/05.
+            'kpiCompliance': f'{round(100 * (total - blocked) / total)}%',
             'trainedEmployees': register,
+            'completionsByRole': completions_by_role,
+            'completionsByMonth': completions_by_month,
+            'statusDistribution': status_distribution,
         })
     return rows
 
@@ -181,8 +261,8 @@ if __name__ == '__main__':
     rows = build()
     OUT.write_text(json.dumps(rows, indent=2, ensure_ascii=False) + '\n')
     print(f'wrote {OUT.relative_to(ROOT)} — {len(rows)} trainings')
-    print(f"{'code':5}{'ppl':>5}{'valid':>7}{'grace':>7}{'expd':>6}{'none':>6}  compliance")
+    print(f"{'code':5}{'ppl':>5}{'valid':>7}{'expng':>7}{'expd':>6}{'blkd':>6}  compliance")
     for r in rows:
-        print(f"{r['systemcol1']:5}{len(r['trainedEmployees']):>5}{r['kpiCertified']:>7}"
-              f"{r['kpiRetraining']:>7}{r['kpiExpired']:>6}{r['kpiNotCompleted']:>6}"
+        print(f"{r['systemcol1']:5}{len(r['trainedEmployees']):>5}{r['kpiValid']:>7}"
+              f"{r['kpiExpiring']:>7}{r['kpiExpired']:>6}{r['kpiBlocked']:>6}"
               f"  {r['kpiCompliance']}")

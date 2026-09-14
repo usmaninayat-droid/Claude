@@ -246,30 +246,53 @@
                     "tiles": [
                       {
                         "icon": "shield-tick",
-                        "label": "Certified",
+                        "label": "Valid",
                         "tone": "success",
-                        "valueField": "kpiCertified"
+                        "valueField": "kpiValid"
                       },
                       {
                         "icon": "clock",
-                        "label": "Re-training Due",
+                        "label": "Expiring",
                         "tone": "warning",
-                        "valueField": "kpiRetraining"
+                        "valueField": "kpiExpiring"
                       },
                       {
                         "icon": "alert-triangle",
                         "label": "Expired",
-                        "tone": "danger",
+                        "tone": "warning",
                         "valueField": "kpiExpired"
                       },
                       {
-                        "icon": "users",
-                        "label": "Not Completed",
-                        "tone": "neutral",
-                        "valueField": "kpiNotCompleted"
+                        "icon": "x-circle",
+                        "label": "Blocked",
+                        "tone": "danger",
+                        "valueField": "kpiBlocked"
                       }
                     ],
                     "type": "kpiTiles"
+                  },
+                  {
+                    "color": "#22C882",
+                    "seriesField": "completionsByMonth",
+                    "title": "Completions Over Time",
+                    "type": "trendChart",
+                    "yLabel": "Completions"
+                  },
+                  {
+                    "column": "start",
+                    "icon": "users",
+                    "seriesField": "completionsByRole",
+                    "title": "Assignable by Role",
+                    "type": "barChart",
+                    "yAxisTitle": "Employees"
+                  },
+                  {
+                    "column": "end",
+                    "icon": "activity",
+                    "seriesField": "statusDistribution",
+                    "title": "Competency Status",
+                    "type": "barChart",
+                    "yAxisTitle": "Employees"
                   }
                 ]
               }
@@ -309,13 +332,13 @@
                     "type": "text"
                   },
                   {
-                    "key": "employeeStatus",
-                    "label": "EMPLOYEE STATUS",
+                    "key": "vehicleCategory",
+                    "label": "ELIGIBLE FOR",
                     "type": "text"
                   },
                   {
                     "key": "completedOn",
-                    "label": "COMPLETED ON",
+                    "label": "ATTENDANCE DATE",
                     "type": "text"
                   },
                   {
@@ -324,17 +347,27 @@
                     "type": "text"
                   },
                   {
+                    "key": "trainer",
+                    "label": "TRAINER",
+                    "type": "text"
+                  },
+                  {
+                    "key": "certificateRef",
+                    "label": "CERTIFICATE REF",
+                    "type": "text"
+                  },
+                  {
                     "key": "status",
-                    "label": "CERTIFICATE",
+                    "label": "STATUS",
                     "type": "statusPill"
                   }
                 ],
                 "field": "trainedEmployees",
                 "search": true,
                 "statusColors": {
-                  "Expired": "#F04438",
-                  "Not Completed": "#475467",
-                  "Re-training Due": "#F17B2B",
+                  "Blocked": "#F04438",
+                  "Expired": "#F17B2B",
+                  "Expiring": "#F5A623",
                   "Valid": "#2AAA48"
                 }
               }

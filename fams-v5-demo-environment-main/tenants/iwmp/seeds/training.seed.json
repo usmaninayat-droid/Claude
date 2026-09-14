@@ -18,10 +18,10 @@
       "Safety"
     ],
     "status": "Active",
-    "kpiCertified": "19",
-    "kpiRetraining": "1",
-    "kpiExpired": "0",
-    "kpiNotCompleted": "0",
+    "kpiValid": "19",
+    "kpiExpiring": "0",
+    "kpiExpired": "1",
+    "kpiBlocked": "0",
     "kpiCompliance": "100%",
     "trainedEmployees": [
       {
@@ -29,17 +29,23 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "10 Dec, 2023",
         "expiresOn": "29 Nov, 2025",
-        "status": "Re-training Due"
+        "certificateRef": "CRT-DEF-1009",
+        "status": "Expired"
       },
       {
         "employee": "Ahmed Al Sayed",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "28 May, 2025",
         "expiresOn": "18 May, 2027",
+        "certificateRef": "CRT-DEF-1005",
         "status": "Valid"
       },
       {
@@ -47,8 +53,11 @@
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "8 Jan, 2025",
         "expiresOn": "29 Dec, 2026",
+        "certificateRef": "CRT-DEF-1018",
         "status": "Valid"
       },
       {
@@ -56,8 +65,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Annual Leave",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "12 Mar, 2025",
         "expiresOn": "2 Mar, 2027",
+        "certificateRef": "CRT-DEF-1010",
         "status": "Valid"
       },
       {
@@ -65,8 +77,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "22 Jan, 2025",
         "expiresOn": "12 Jan, 2027",
+        "certificateRef": "CRT-DEF-1016",
         "status": "Valid"
       },
       {
@@ -74,8 +89,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "2 Jul, 2025",
         "expiresOn": "22 Jun, 2027",
+        "certificateRef": "CRT-DEF-1003",
         "status": "Valid"
       },
       {
@@ -83,8 +101,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "29 Jan, 2025",
         "expiresOn": "19 Jan, 2027",
+        "certificateRef": "CRT-DEF-1015",
         "status": "Valid"
       },
       {
@@ -92,8 +113,11 @@
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "21 May, 2025",
         "expiresOn": "11 May, 2027",
+        "certificateRef": "CRT-DEF-1006",
         "status": "Valid"
       },
       {
@@ -101,8 +125,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "6 Aug, 2025",
         "expiresOn": "27 Jul, 2027",
+        "certificateRef": "CRT-DEF-1001",
         "status": "Valid"
       },
       {
@@ -110,8 +137,11 @@
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "19 Feb, 2025",
         "expiresOn": "9 Feb, 2027",
+        "certificateRef": "CRT-DEF-1012",
         "status": "Valid"
       },
       {
@@ -119,8 +149,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "5 Feb, 2025",
         "expiresOn": "26 Jan, 2027",
+        "certificateRef": "CRT-DEF-1014",
         "status": "Valid"
       },
       {
@@ -128,8 +161,11 @@
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "25 Jun, 2025",
         "expiresOn": "15 Jun, 2027",
+        "certificateRef": "CRT-DEF-1004",
         "status": "Valid"
       },
       {
@@ -137,8 +173,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Licence Expired",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "20 Aug, 2025",
         "expiresOn": "10 Aug, 2027",
+        "certificateRef": "CRT-DEF-1000",
         "status": "Valid"
       },
       {
@@ -146,8 +185,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "HSE Expired",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "9 Jul, 2025",
         "expiresOn": "29 Jun, 2027",
+        "certificateRef": "CRT-DEF-1002",
         "status": "Valid"
       },
       {
@@ -155,8 +197,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "26 Feb, 2025",
         "expiresOn": "16 Feb, 2027",
+        "certificateRef": "CRT-DEF-1011",
         "status": "Valid"
       },
       {
@@ -164,8 +209,11 @@
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "15 Jan, 2025",
         "expiresOn": "5 Jan, 2027",
+        "certificateRef": "CRT-DEF-1017",
         "status": "Valid"
       },
       {
@@ -173,8 +221,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "23 Apr, 2025",
         "expiresOn": "13 Apr, 2027",
+        "certificateRef": "CRT-DEF-1007",
         "status": "Valid"
       },
       {
@@ -182,8 +233,11 @@
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "1 Jan, 2025",
         "expiresOn": "22 Dec, 2026",
+        "certificateRef": "CRT-DEF-1019",
         "status": "Valid"
       },
       {
@@ -191,8 +245,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "12 Feb, 2025",
         "expiresOn": "2 Feb, 2027",
+        "certificateRef": "CRT-DEF-1013",
         "status": "Valid"
       },
       {
@@ -200,9 +257,90 @@
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "HSE Expired",
+        "vehicleCategory": "All driving duties",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "9 Apr, 2025",
         "expiresOn": "30 Mar, 2027",
+        "certificateRef": "CRT-DEF-1008",
         "status": "Valid"
+      }
+    ],
+    "completionsByRole": [
+      {
+        "label": "HD Driver",
+        "value": 13
+      },
+      {
+        "label": "LD Driver",
+        "value": 7
+      }
+    ],
+    "completionsByMonth": [
+      {
+        "month": "Feb 2025",
+        "value": 4
+      },
+      {
+        "month": "Mar 2025",
+        "value": 1
+      },
+      {
+        "month": "Apr 2025",
+        "value": 2
+      },
+      {
+        "month": "May 2025",
+        "value": 2
+      },
+      {
+        "month": "Jun 2025",
+        "value": 1
+      },
+      {
+        "month": "Jul 2025",
+        "value": 2
+      },
+      {
+        "month": "Aug 2025",
+        "value": 2
+      },
+      {
+        "month": "Sep 2025",
+        "value": 0
+      },
+      {
+        "month": "Oct 2025",
+        "value": 0
+      },
+      {
+        "month": "Nov 2025",
+        "value": 0
+      },
+      {
+        "month": "Dec 2025",
+        "value": 0
+      },
+      {
+        "month": "Jan 2026",
+        "value": 0
+      }
+    ],
+    "statusDistribution": [
+      {
+        "label": "Valid",
+        "value": 19
+      },
+      {
+        "label": "Expiring",
+        "value": 0
+      },
+      {
+        "label": "Expired",
+        "value": 1
+      },
+      {
+        "label": "Blocked",
+        "value": 0
       }
     ]
   },
@@ -224,10 +362,10 @@
       "Safety"
     ],
     "status": "Active",
-    "kpiCertified": "20",
-    "kpiRetraining": "0",
+    "kpiValid": "20",
+    "kpiExpiring": "0",
     "kpiExpired": "0",
-    "kpiNotCompleted": "0",
+    "kpiBlocked": "0",
     "kpiCompliance": "100%",
     "trainedEmployees": [
       {
@@ -235,8 +373,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "16 Oct, 2025",
         "expiresOn": "14 Apr, 2026",
+        "certificateRef": "CRT-WCS-1003",
         "status": "Valid"
       },
       {
@@ -244,8 +385,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "30 Nov, 2025",
         "expiresOn": "29 May, 2026",
+        "certificateRef": "CRT-WCS-1000",
         "status": "Valid"
       },
       {
@@ -253,8 +397,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "14 Aug, 2025",
         "expiresOn": "10 Feb, 2026",
+        "certificateRef": "CRT-WCS-1007",
         "status": "Valid"
       },
       {
@@ -262,8 +409,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "9 Dec, 2025",
         "expiresOn": "7 Jun, 2026",
+        "certificateRef": "CRT-WCS-1017",
         "status": "Valid"
       },
       {
@@ -271,8 +421,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "7 Oct, 2025",
         "expiresOn": "5 Apr, 2026",
+        "certificateRef": "CRT-WCS-1004",
         "status": "Valid"
       },
       {
@@ -280,8 +433,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "6 Nov, 2025",
         "expiresOn": "5 May, 2026",
+        "certificateRef": "CRT-WCS-1009",
         "status": "Valid"
       },
       {
@@ -289,8 +445,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Resigned",
+        "vehicleCategory": "Route helper",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "28 Sep, 2025",
         "expiresOn": "27 Mar, 2026",
+        "certificateRef": "CRT-WCS-1005",
         "status": "Valid"
       },
       {
@@ -298,8 +457,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "3 Nov, 2025",
         "expiresOn": "2 May, 2026",
+        "certificateRef": "CRT-WCS-1002",
         "status": "Valid"
       },
       {
@@ -307,8 +469,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "13 Sep, 2025",
         "expiresOn": "12 Mar, 2026",
+        "certificateRef": "CRT-WCS-1012",
         "status": "Valid"
       },
       {
@@ -316,8 +481,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "30 Nov, 2025",
         "expiresOn": "29 May, 2026",
+        "certificateRef": "CRT-WCS-1018",
         "status": "Valid"
       },
       {
@@ -325,8 +493,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "21 Nov, 2025",
         "expiresOn": "20 May, 2026",
+        "certificateRef": "CRT-WCS-1019",
         "status": "Valid"
       },
       {
@@ -334,8 +505,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "29 Aug, 2025",
         "expiresOn": "25 Feb, 2026",
+        "certificateRef": "CRT-WCS-1015",
         "status": "Valid"
       },
       {
@@ -343,8 +517,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "21 Nov, 2025",
         "expiresOn": "20 May, 2026",
+        "certificateRef": "CRT-WCS-1001",
         "status": "Valid"
       },
       {
@@ -352,8 +529,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "1 Oct, 2025",
         "expiresOn": "30 Mar, 2026",
+        "certificateRef": "CRT-WCS-1011",
         "status": "Valid"
       },
       {
@@ -361,8 +541,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Terminated",
+        "vehicleCategory": "Route helper",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "3 Dec, 2025",
         "expiresOn": "1 Jun, 2026",
+        "certificateRef": "CRT-WCS-1008",
         "status": "Valid"
       },
       {
@@ -370,8 +553,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "20 Aug, 2025",
         "expiresOn": "16 Feb, 2026",
+        "certificateRef": "CRT-WCS-1016",
         "status": "Valid"
       },
       {
@@ -379,8 +565,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Sick Leave",
+        "vehicleCategory": "Route helper",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "6 Dec, 2025",
         "expiresOn": "4 Jun, 2026",
+        "certificateRef": "CRT-WCS-1013",
         "status": "Valid"
       },
       {
@@ -388,8 +577,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Medical Expired",
+        "vehicleCategory": "Route helper",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "28 Oct, 2025",
         "expiresOn": "26 Apr, 2026",
+        "certificateRef": "CRT-WCS-1010",
         "status": "Valid"
       },
       {
@@ -397,8 +589,11 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "23 Aug, 2025",
         "expiresOn": "19 Feb, 2026",
+        "certificateRef": "CRT-WCS-1006",
         "status": "Valid"
       },
       {
@@ -406,9 +601,86 @@
         "role": "Helper",
         "licence": "—",
         "employeeStatus": "Active",
+        "vehicleCategory": "Route helper",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "7 Sep, 2025",
         "expiresOn": "6 Mar, 2026",
+        "certificateRef": "CRT-WCS-1014",
         "status": "Valid"
+      }
+    ],
+    "completionsByRole": [
+      {
+        "label": "Helper",
+        "value": 20
+      }
+    ],
+    "completionsByMonth": [
+      {
+        "month": "Feb 2025",
+        "value": 0
+      },
+      {
+        "month": "Mar 2025",
+        "value": 0
+      },
+      {
+        "month": "Apr 2025",
+        "value": 0
+      },
+      {
+        "month": "May 2025",
+        "value": 0
+      },
+      {
+        "month": "Jun 2025",
+        "value": 0
+      },
+      {
+        "month": "Jul 2025",
+        "value": 0
+      },
+      {
+        "month": "Aug 2025",
+        "value": 4
+      },
+      {
+        "month": "Sep 2025",
+        "value": 3
+      },
+      {
+        "month": "Oct 2025",
+        "value": 4
+      },
+      {
+        "month": "Nov 2025",
+        "value": 6
+      },
+      {
+        "month": "Dec 2025",
+        "value": 3
+      },
+      {
+        "month": "Jan 2026",
+        "value": 0
+      }
+    ],
+    "statusDistribution": [
+      {
+        "label": "Valid",
+        "value": 20
+      },
+      {
+        "label": "Expiring",
+        "value": 0
+      },
+      {
+        "label": "Expired",
+        "value": 0
+      },
+      {
+        "label": "Blocked",
+        "value": 0
       }
     ]
   },
@@ -433,55 +705,82 @@
       "Roster Eligibility"
     ],
     "status": "Active",
-    "kpiCertified": "9",
-    "kpiRetraining": "0",
-    "kpiExpired": "1",
-    "kpiNotCompleted": "3",
+    "kpiValid": "8",
+    "kpiExpiring": "1",
+    "kpiExpired": "0",
+    "kpiBlocked": "4",
     "kpiCompliance": "69%",
     "trainedEmployees": [
-      {
-        "employee": "Salim Haddad",
-        "role": "HD Driver",
-        "licence": "HDD",
-        "employeeStatus": "Active",
-        "completedOn": "5 Sep, 2024",
-        "expiresOn": "31 Aug, 2025",
-        "status": "Expired"
-      },
       {
         "employee": "Ahmed Al Sayed",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Rear End Loader",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Noor Ahmed",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Rear End Loader",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Ramesh Yadav",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Licence Expired",
+        "vehicleCategory": "Rear End Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
+      },
+      {
+        "employee": "Salim Haddad",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "vehicleCategory": "Rear End Loader",
+        "trainer": "Mariam Fadel (HSE)",
+        "completedOn": "5 Sep, 2024",
+        "expiresOn": "31 Aug, 2025",
+        "certificateRef": "CRT-RL-1008",
+        "status": "Blocked"
+      },
+      {
+        "employee": "Vikram Chauhan",
+        "role": "HD Driver",
+        "licence": "HDD",
+        "employeeStatus": "Active",
+        "vehicleCategory": "Rear End Loader",
+        "trainer": "Mariam Fadel (HSE)",
+        "completedOn": "6 Feb, 2025",
+        "expiresOn": "1 Feb, 2026",
+        "certificateRef": "CRT-RL-1005",
+        "status": "Expiring"
       },
       {
         "employee": "Bilal Ahmed",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Annual Leave",
+        "vehicleCategory": "Rear End Loader",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "9 Aug, 2025",
         "expiresOn": "4 Aug, 2026",
+        "certificateRef": "CRT-RL-1007",
         "status": "Valid"
       },
       {
@@ -489,8 +788,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Rear End Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "24 May, 2025",
         "expiresOn": "19 May, 2026",
+        "certificateRef": "CRT-RL-1012",
         "status": "Valid"
       },
       {
@@ -498,8 +800,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Rear End Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "27 May, 2025",
         "expiresOn": "22 May, 2026",
+        "certificateRef": "CRT-RL-1003",
         "status": "Valid"
       },
       {
@@ -507,8 +812,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Rear End Loader",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "4 Jun, 2025",
         "expiresOn": "30 May, 2026",
+        "certificateRef": "CRT-RL-1011",
         "status": "Valid"
       },
       {
@@ -516,8 +824,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Rear End Loader",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "21 Jul, 2025",
         "expiresOn": "16 Jul, 2026",
+        "certificateRef": "CRT-RL-1001",
         "status": "Valid"
       },
       {
@@ -525,8 +836,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "HSE Expired",
+        "vehicleCategory": "Rear End Loader",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "7 Jun, 2025",
         "expiresOn": "2 Jun, 2026",
+        "certificateRef": "CRT-RL-1002",
         "status": "Valid"
       },
       {
@@ -534,17 +848,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Rear End Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "31 Aug, 2025",
         "expiresOn": "26 Aug, 2026",
-        "status": "Valid"
-      },
-      {
-        "employee": "Vikram Chauhan",
-        "role": "HD Driver",
-        "licence": "HDD",
-        "employeeStatus": "Active",
-        "completedOn": "6 Feb, 2025",
-        "expiresOn": "1 Feb, 2026",
+        "certificateRef": "CRT-RL-1006",
         "status": "Valid"
       },
       {
@@ -552,9 +860,86 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Rear End Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "26 Jun, 2025",
         "expiresOn": "21 Jun, 2026",
+        "certificateRef": "CRT-RL-1009",
         "status": "Valid"
+      }
+    ],
+    "completionsByRole": [
+      {
+        "label": "HD Driver",
+        "value": 9
+      }
+    ],
+    "completionsByMonth": [
+      {
+        "month": "Feb 2025",
+        "value": 1
+      },
+      {
+        "month": "Mar 2025",
+        "value": 0
+      },
+      {
+        "month": "Apr 2025",
+        "value": 0
+      },
+      {
+        "month": "May 2025",
+        "value": 2
+      },
+      {
+        "month": "Jun 2025",
+        "value": 3
+      },
+      {
+        "month": "Jul 2025",
+        "value": 1
+      },
+      {
+        "month": "Aug 2025",
+        "value": 2
+      },
+      {
+        "month": "Sep 2025",
+        "value": 0
+      },
+      {
+        "month": "Oct 2025",
+        "value": 0
+      },
+      {
+        "month": "Nov 2025",
+        "value": 0
+      },
+      {
+        "month": "Dec 2025",
+        "value": 0
+      },
+      {
+        "month": "Jan 2026",
+        "value": 0
+      }
+    ],
+    "statusDistribution": [
+      {
+        "label": "Valid",
+        "value": 8
+      },
+      {
+        "label": "Expiring",
+        "value": 1
+      },
+      {
+        "label": "Expired",
+        "value": 0
+      },
+      {
+        "label": "Blocked",
+        "value": 4
       }
     ]
   },
@@ -579,10 +964,10 @@
       "Roster Eligibility"
     ],
     "status": "Active",
-    "kpiCertified": "9",
-    "kpiRetraining": "0",
+    "kpiValid": "9",
+    "kpiExpiring": "0",
     "kpiExpired": "0",
-    "kpiNotCompleted": "4",
+    "kpiBlocked": "4",
     "kpiCompliance": "69%",
     "trainedEmployees": [
       {
@@ -590,44 +975,59 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Side Loader",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Salim Haddad",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Side Loader",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Tariq Mehmood",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Side Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Vikram Chauhan",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Side Loader",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Ahmed Al Sayed",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Side Loader",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "2 Apr, 2025",
         "expiresOn": "28 Mar, 2026",
+        "certificateRef": "CRT-SL-1004",
         "status": "Valid"
       },
       {
@@ -635,8 +1035,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Annual Leave",
+        "vehicleCategory": "Side Loader",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "9 Aug, 2025",
         "expiresOn": "4 Aug, 2026",
+        "certificateRef": "CRT-SL-1007",
         "status": "Valid"
       },
       {
@@ -644,8 +1047,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Side Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "24 May, 2025",
         "expiresOn": "19 May, 2026",
+        "certificateRef": "CRT-SL-1012",
         "status": "Valid"
       },
       {
@@ -653,8 +1059,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Side Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "27 May, 2025",
         "expiresOn": "22 May, 2026",
+        "certificateRef": "CRT-SL-1003",
         "status": "Valid"
       },
       {
@@ -662,8 +1071,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Side Loader",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "21 Jul, 2025",
         "expiresOn": "16 Jul, 2026",
+        "certificateRef": "CRT-SL-1001",
         "status": "Valid"
       },
       {
@@ -671,8 +1083,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Side Loader",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "15 Jun, 2025",
         "expiresOn": "10 Jun, 2026",
+        "certificateRef": "CRT-SL-1010",
         "status": "Valid"
       },
       {
@@ -680,8 +1095,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Licence Expired",
+        "vehicleCategory": "Side Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "12 Aug, 2025",
         "expiresOn": "7 Aug, 2026",
+        "certificateRef": "CRT-SL-1000",
         "status": "Valid"
       },
       {
@@ -689,8 +1107,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "HSE Expired",
+        "vehicleCategory": "Side Loader",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "7 Jun, 2025",
         "expiresOn": "2 Jun, 2026",
+        "certificateRef": "CRT-SL-1002",
         "status": "Valid"
       },
       {
@@ -698,9 +1119,86 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Side Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "26 Jun, 2025",
         "expiresOn": "21 Jun, 2026",
+        "certificateRef": "CRT-SL-1009",
         "status": "Valid"
+      }
+    ],
+    "completionsByRole": [
+      {
+        "label": "HD Driver",
+        "value": 9
+      }
+    ],
+    "completionsByMonth": [
+      {
+        "month": "Feb 2025",
+        "value": 0
+      },
+      {
+        "month": "Mar 2025",
+        "value": 0
+      },
+      {
+        "month": "Apr 2025",
+        "value": 1
+      },
+      {
+        "month": "May 2025",
+        "value": 2
+      },
+      {
+        "month": "Jun 2025",
+        "value": 3
+      },
+      {
+        "month": "Jul 2025",
+        "value": 1
+      },
+      {
+        "month": "Aug 2025",
+        "value": 2
+      },
+      {
+        "month": "Sep 2025",
+        "value": 0
+      },
+      {
+        "month": "Oct 2025",
+        "value": 0
+      },
+      {
+        "month": "Nov 2025",
+        "value": 0
+      },
+      {
+        "month": "Dec 2025",
+        "value": 0
+      },
+      {
+        "month": "Jan 2026",
+        "value": 0
+      }
+    ],
+    "statusDistribution": [
+      {
+        "label": "Valid",
+        "value": 9
+      },
+      {
+        "label": "Expiring",
+        "value": 0
+      },
+      {
+        "label": "Expired",
+        "value": 0
+      },
+      {
+        "label": "Blocked",
+        "value": 4
       }
     ]
   },
@@ -725,10 +1223,10 @@
       "Roster Eligibility"
     ],
     "status": "Active",
-    "kpiCertified": "10",
-    "kpiRetraining": "0",
+    "kpiValid": "10",
+    "kpiExpiring": "0",
     "kpiExpired": "0",
-    "kpiNotCompleted": "3",
+    "kpiBlocked": "3",
     "kpiCompliance": "77%",
     "trainedEmployees": [
       {
@@ -736,35 +1234,47 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Hook Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Mahesh Singh",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Hook Loader",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Rashid Khan",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "HSE Expired",
+        "vehicleCategory": "Hook Loader",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Ahmed Al Sayed",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Hook Loader",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "20 Mar, 2025",
         "expiresOn": "15 Mar, 2026",
+        "certificateRef": "CRT-HLC-1004",
         "status": "Valid"
       },
       {
@@ -772,8 +1282,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Annual Leave",
+        "vehicleCategory": "Hook Loader",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "27 Jul, 2025",
         "expiresOn": "22 Jul, 2026",
+        "certificateRef": "CRT-HLC-1007",
         "status": "Valid"
       },
       {
@@ -781,8 +1294,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Hook Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "14 May, 2025",
         "expiresOn": "9 May, 2026",
+        "certificateRef": "CRT-HLC-1003",
         "status": "Valid"
       },
       {
@@ -790,8 +1306,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Hook Loader",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "22 May, 2025",
         "expiresOn": "17 May, 2026",
+        "certificateRef": "CRT-HLC-1011",
         "status": "Valid"
       },
       {
@@ -799,8 +1318,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Hook Loader",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "2 Jun, 2025",
         "expiresOn": "28 May, 2026",
+        "certificateRef": "CRT-HLC-1010",
         "status": "Valid"
       },
       {
@@ -808,8 +1330,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Licence Expired",
+        "vehicleCategory": "Hook Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "30 Jul, 2025",
         "expiresOn": "25 Jul, 2026",
+        "certificateRef": "CRT-HLC-1000",
         "status": "Valid"
       },
       {
@@ -817,8 +1342,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Hook Loader",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "5 Jul, 2025",
         "expiresOn": "30 Jun, 2026",
+        "certificateRef": "CRT-HLC-1008",
         "status": "Valid"
       },
       {
@@ -826,8 +1354,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Hook Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "18 Aug, 2025",
         "expiresOn": "13 Aug, 2026",
+        "certificateRef": "CRT-HLC-1006",
         "status": "Valid"
       },
       {
@@ -835,8 +1366,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Hook Loader",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "1 Oct, 2025",
         "expiresOn": "26 Sep, 2026",
+        "certificateRef": "CRT-HLC-1005",
         "status": "Valid"
       },
       {
@@ -844,9 +1378,86 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Hook Loader",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "13 Jun, 2025",
         "expiresOn": "8 Jun, 2026",
+        "certificateRef": "CRT-HLC-1009",
         "status": "Valid"
+      }
+    ],
+    "completionsByRole": [
+      {
+        "label": "HD Driver",
+        "value": 10
+      }
+    ],
+    "completionsByMonth": [
+      {
+        "month": "Feb 2025",
+        "value": 0
+      },
+      {
+        "month": "Mar 2025",
+        "value": 1
+      },
+      {
+        "month": "Apr 2025",
+        "value": 0
+      },
+      {
+        "month": "May 2025",
+        "value": 2
+      },
+      {
+        "month": "Jun 2025",
+        "value": 2
+      },
+      {
+        "month": "Jul 2025",
+        "value": 3
+      },
+      {
+        "month": "Aug 2025",
+        "value": 1
+      },
+      {
+        "month": "Sep 2025",
+        "value": 0
+      },
+      {
+        "month": "Oct 2025",
+        "value": 1
+      },
+      {
+        "month": "Nov 2025",
+        "value": 0
+      },
+      {
+        "month": "Dec 2025",
+        "value": 0
+      },
+      {
+        "month": "Jan 2026",
+        "value": 0
+      }
+    ],
+    "statusDistribution": [
+      {
+        "label": "Valid",
+        "value": 10
+      },
+      {
+        "label": "Expiring",
+        "value": 0
+      },
+      {
+        "label": "Expired",
+        "value": 0
+      },
+      {
+        "label": "Blocked",
+        "value": 3
       }
     ]
   },
@@ -871,10 +1482,10 @@
       "Roster Eligibility"
     ],
     "status": "Active",
-    "kpiCertified": "10",
-    "kpiRetraining": "0",
+    "kpiValid": "10",
+    "kpiExpiring": "0",
     "kpiExpired": "0",
-    "kpiNotCompleted": "3",
+    "kpiBlocked": "3",
     "kpiCompliance": "77%",
     "trainedEmployees": [
       {
@@ -882,35 +1493,47 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Annual Leave",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Hassan Mahmood",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Yaser Al Balushi",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Ahmed Al Sayed",
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "20 Mar, 2025",
         "expiresOn": "15 Mar, 2026",
+        "certificateRef": "CRT-CCV-1004",
         "status": "Valid"
       },
       {
@@ -918,8 +1541,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "11 May, 2025",
         "expiresOn": "6 May, 2026",
+        "certificateRef": "CRT-CCV-1012",
         "status": "Valid"
       },
       {
@@ -927,8 +1553,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "22 May, 2025",
         "expiresOn": "17 May, 2026",
+        "certificateRef": "CRT-CCV-1011",
         "status": "Valid"
       },
       {
@@ -936,8 +1565,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "8 Jul, 2025",
         "expiresOn": "3 Jul, 2026",
+        "certificateRef": "CRT-CCV-1001",
         "status": "Valid"
       },
       {
@@ -945,8 +1577,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "2 Jun, 2025",
         "expiresOn": "28 May, 2026",
+        "certificateRef": "CRT-CCV-1010",
         "status": "Valid"
       },
       {
@@ -954,8 +1589,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Licence Expired",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "30 Jul, 2025",
         "expiresOn": "25 Jul, 2026",
+        "certificateRef": "CRT-CCV-1000",
         "status": "Valid"
       },
       {
@@ -963,8 +1601,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "HSE Expired",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "25 May, 2025",
         "expiresOn": "20 May, 2026",
+        "certificateRef": "CRT-CCV-1002",
         "status": "Valid"
       },
       {
@@ -972,8 +1613,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "5 Jul, 2025",
         "expiresOn": "30 Jun, 2026",
+        "certificateRef": "CRT-CCV-1008",
         "status": "Valid"
       },
       {
@@ -981,8 +1625,11 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "18 Aug, 2025",
         "expiresOn": "13 Aug, 2026",
+        "certificateRef": "CRT-CCV-1006",
         "status": "Valid"
       },
       {
@@ -990,9 +1637,86 @@
         "role": "HD Driver",
         "licence": "HDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "1 Oct, 2025",
         "expiresOn": "26 Sep, 2026",
+        "certificateRef": "CRT-CCV-1005",
         "status": "Valid"
+      }
+    ],
+    "completionsByRole": [
+      {
+        "label": "HD Driver",
+        "value": 10
+      }
+    ],
+    "completionsByMonth": [
+      {
+        "month": "Feb 2025",
+        "value": 0
+      },
+      {
+        "month": "Mar 2025",
+        "value": 1
+      },
+      {
+        "month": "Apr 2025",
+        "value": 0
+      },
+      {
+        "month": "May 2025",
+        "value": 3
+      },
+      {
+        "month": "Jun 2025",
+        "value": 1
+      },
+      {
+        "month": "Jul 2025",
+        "value": 3
+      },
+      {
+        "month": "Aug 2025",
+        "value": 1
+      },
+      {
+        "month": "Sep 2025",
+        "value": 0
+      },
+      {
+        "month": "Oct 2025",
+        "value": 1
+      },
+      {
+        "month": "Nov 2025",
+        "value": 0
+      },
+      {
+        "month": "Dec 2025",
+        "value": 0
+      },
+      {
+        "month": "Jan 2026",
+        "value": 0
+      }
+    ],
+    "statusDistribution": [
+      {
+        "label": "Valid",
+        "value": 10
+      },
+      {
+        "label": "Expiring",
+        "value": 0
+      },
+      {
+        "label": "Expired",
+        "value": 0
+      },
+      {
+        "label": "Blocked",
+        "value": 3
       }
     ]
   },
@@ -1017,10 +1741,10 @@
       "Roster Eligibility"
     ],
     "status": "Active",
-    "kpiCertified": "4",
-    "kpiRetraining": "0",
+    "kpiValid": "4",
+    "kpiExpiring": "0",
     "kpiExpired": "0",
-    "kpiNotCompleted": "3",
+    "kpiBlocked": "3",
     "kpiCompliance": "57%",
     "trainedEmployees": [
       {
@@ -1028,35 +1752,47 @@
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Bin Washer",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Naveen Kumar",
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Bin Washer",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Omar Farouk",
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Bin Washer",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Iqbal Hussain",
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Bin Washer",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "9 Mar, 2025",
         "expiresOn": "4 Mar, 2026",
+        "certificateRef": "CRT-BWC-1001",
         "status": "Valid"
       },
       {
@@ -1064,8 +1800,11 @@
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Bin Washer",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "30 Apr, 2025",
         "expiresOn": "25 Apr, 2026",
+        "certificateRef": "CRT-BWC-1004",
         "status": "Valid"
       },
       {
@@ -1073,8 +1812,11 @@
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Bin Washer",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "8 Apr, 2025",
         "expiresOn": "3 Apr, 2026",
+        "certificateRef": "CRT-BWC-1006",
         "status": "Valid"
       },
       {
@@ -1082,9 +1824,86 @@
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "HSE Expired",
+        "vehicleCategory": "Bin Washer",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "9 Sep, 2025",
         "expiresOn": "4 Sep, 2026",
+        "certificateRef": "CRT-BWC-1002",
         "status": "Valid"
+      }
+    ],
+    "completionsByRole": [
+      {
+        "label": "LD Driver",
+        "value": 4
+      }
+    ],
+    "completionsByMonth": [
+      {
+        "month": "Feb 2025",
+        "value": 0
+      },
+      {
+        "month": "Mar 2025",
+        "value": 1
+      },
+      {
+        "month": "Apr 2025",
+        "value": 2
+      },
+      {
+        "month": "May 2025",
+        "value": 0
+      },
+      {
+        "month": "Jun 2025",
+        "value": 0
+      },
+      {
+        "month": "Jul 2025",
+        "value": 0
+      },
+      {
+        "month": "Aug 2025",
+        "value": 0
+      },
+      {
+        "month": "Sep 2025",
+        "value": 1
+      },
+      {
+        "month": "Oct 2025",
+        "value": 0
+      },
+      {
+        "month": "Nov 2025",
+        "value": 0
+      },
+      {
+        "month": "Dec 2025",
+        "value": 0
+      },
+      {
+        "month": "Jan 2026",
+        "value": 0
+      }
+    ],
+    "statusDistribution": [
+      {
+        "label": "Valid",
+        "value": 4
+      },
+      {
+        "label": "Expiring",
+        "value": 0
+      },
+      {
+        "label": "Expired",
+        "value": 0
+      },
+      {
+        "label": "Blocked",
+        "value": 3
       }
     ]
   },
@@ -1109,10 +1928,10 @@
       "Roster Eligibility"
     ],
     "status": "Active",
-    "kpiCertified": "3",
-    "kpiRetraining": "0",
+    "kpiValid": "3",
+    "kpiExpiring": "0",
     "kpiExpired": "0",
-    "kpiNotCompleted": "4",
+    "kpiBlocked": "4",
     "kpiCompliance": "43%",
     "trainedEmployees": [
       {
@@ -1120,44 +1939,59 @@
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Truck Wash Bay",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Sami Kollannur",
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Truck Wash Bay",
+        "trainer": "Kareem Odeh (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Vinod Nambiar",
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Truck Wash Bay",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Yusuf Rahman",
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "HSE Expired",
+        "vehicleCategory": "Truck Wash Bay",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "—",
         "expiresOn": "—",
-        "status": "Not Completed"
+        "certificateRef": "—",
+        "status": "Blocked"
       },
       {
         "employee": "Arun Pillai",
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Truck Wash Bay",
+        "trainer": "Mariam Fadel (HSE)",
         "completedOn": "2 May, 2025",
         "expiresOn": "27 Apr, 2026",
+        "certificateRef": "CRT-TW-1005",
         "status": "Valid"
       },
       {
@@ -1165,8 +1999,11 @@
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Truck Wash Bay",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "7 Jul, 2025",
         "expiresOn": "2 Jul, 2026",
+        "certificateRef": "CRT-TW-1003",
         "status": "Valid"
       },
       {
@@ -1174,9 +2011,86 @@
         "role": "LD Driver",
         "licence": "LDD",
         "employeeStatus": "Active",
+        "vehicleCategory": "Truck Wash Bay",
+        "trainer": "Layla Rahman (HSE)",
         "completedOn": "16 May, 2025",
         "expiresOn": "11 May, 2026",
+        "certificateRef": "CRT-TW-1000",
         "status": "Valid"
+      }
+    ],
+    "completionsByRole": [
+      {
+        "label": "LD Driver",
+        "value": 3
+      }
+    ],
+    "completionsByMonth": [
+      {
+        "month": "Feb 2025",
+        "value": 0
+      },
+      {
+        "month": "Mar 2025",
+        "value": 0
+      },
+      {
+        "month": "Apr 2025",
+        "value": 0
+      },
+      {
+        "month": "May 2025",
+        "value": 2
+      },
+      {
+        "month": "Jun 2025",
+        "value": 0
+      },
+      {
+        "month": "Jul 2025",
+        "value": 1
+      },
+      {
+        "month": "Aug 2025",
+        "value": 0
+      },
+      {
+        "month": "Sep 2025",
+        "value": 0
+      },
+      {
+        "month": "Oct 2025",
+        "value": 0
+      },
+      {
+        "month": "Nov 2025",
+        "value": 0
+      },
+      {
+        "month": "Dec 2025",
+        "value": 0
+      },
+      {
+        "month": "Jan 2026",
+        "value": 0
+      }
+    ],
+    "statusDistribution": [
+      {
+        "label": "Valid",
+        "value": 3
+      },
+      {
+        "label": "Expiring",
+        "value": 0
+      },
+      {
+        "label": "Expired",
+        "value": 0
+      },
+      {
+        "label": "Blocked",
+        "value": 4
       }
     ]
   }

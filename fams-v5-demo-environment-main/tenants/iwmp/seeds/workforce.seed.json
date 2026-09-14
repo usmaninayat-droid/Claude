@@ -135,6 +135,38 @@
         "inactiveMinutes": 0,
         "usagePct": null
       }
+    ],
+    "trainings": [
+      {
+        "trainingCode": "DEF",
+        "trainingName": "Defensive Driving",
+        "vehicleCategory": "All driving duties",
+        "completedOn": "29 Nov, 2025",
+        "expiresOn": "19 Nov, 2027",
+        "trainer": "Layla Rahman (HSE)",
+        "certificateRef": "CRT-DEF-2000",
+        "status": "Valid"
+      },
+      {
+        "trainingCode": "RL",
+        "trainingName": "Rear End Loader Operation",
+        "vehicleCategory": "Rear End Loader",
+        "completedOn": "30 Oct, 2025",
+        "expiresOn": "25 Oct, 2026",
+        "trainer": "Mariam Fadel (HSE)",
+        "certificateRef": "CRT-RL-2000",
+        "status": "Valid"
+      },
+      {
+        "trainingCode": "WCS",
+        "trainingName": "Waste Collection Safety",
+        "vehicleCategory": "Route helper",
+        "completedOn": "31 Aug, 2025",
+        "expiresOn": "27 Feb, 2026",
+        "trainer": "Layla Rahman (HSE)",
+        "certificateRef": "CRT-WCS-2000",
+        "status": "Valid"
+      }
     ]
   },
   {
@@ -273,6 +305,38 @@
         "inactiveMinutes": 0,
         "usagePct": null
       }
+    ],
+    "trainings": [
+      {
+        "trainingCode": "WCS",
+        "trainingName": "Waste Collection Safety",
+        "vehicleCategory": "Route helper",
+        "completedOn": "21 Jun, 2025",
+        "expiresOn": "18 Dec, 2025",
+        "trainer": "Kareem Odeh (HSE)",
+        "certificateRef": "CRT-WCS-2001",
+        "status": "Expired"
+      },
+      {
+        "trainingCode": "DEF",
+        "trainingName": "Defensive Driving",
+        "vehicleCategory": "All driving duties",
+        "completedOn": "19 Sep, 2025",
+        "expiresOn": "9 Sep, 2027",
+        "trainer": "Kareem Odeh (HSE)",
+        "certificateRef": "CRT-DEF-2001",
+        "status": "Valid"
+      },
+      {
+        "trainingCode": "SL",
+        "trainingName": "Side Loader Operation",
+        "vehicleCategory": "Side Loader",
+        "completedOn": "20 Aug, 2025",
+        "expiresOn": "15 Aug, 2026",
+        "trainer": "Layla Rahman (HSE)",
+        "certificateRef": "CRT-SL-2001",
+        "status": "Valid"
+      }
     ]
   },
   {
@@ -287,6 +351,28 @@
     "systemcol5": "2026-12-06",
     "tags": [
       "collection-crew"
+    ],
+    "trainings": [
+      {
+        "trainingCode": "WCS",
+        "trainingName": "Waste Collection Safety",
+        "vehicleCategory": "Route helper",
+        "completedOn": "20 Jun, 2025",
+        "expiresOn": "17 Dec, 2025",
+        "trainer": "Mariam Fadel (HSE)",
+        "certificateRef": "CRT-WCS-2002",
+        "status": "Expired"
+      },
+      {
+        "trainingCode": "DEF",
+        "trainingName": "Defensive Driving",
+        "vehicleCategory": "All driving duties",
+        "completedOn": "11 May, 2025",
+        "expiresOn": "1 May, 2027",
+        "trainer": "Mariam Fadel (HSE)",
+        "certificateRef": "CRT-DEF-2002",
+        "status": "Valid"
+      }
     ]
   },
   {
@@ -434,6 +520,38 @@
         "inactiveMinutes": 0,
         "usagePct": null
       }
+    ],
+    "trainings": [
+      {
+        "trainingCode": "WCS",
+        "trainingName": "Waste Collection Safety",
+        "vehicleCategory": "Route helper",
+        "completedOn": "30 Jan, 2025",
+        "expiresOn": "29 Jul, 2025",
+        "trainer": "Layla Rahman (HSE)",
+        "certificateRef": "CRT-WCS-2003",
+        "status": "Blocked"
+      },
+      {
+        "trainingCode": "CCV",
+        "trainingName": "Compactor Container Operation",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "completedOn": "31 Mar, 2025",
+        "expiresOn": "26 Mar, 2026",
+        "trainer": "Layla Rahman (HSE)",
+        "certificateRef": "CRT-CCV-2003",
+        "status": "Valid"
+      },
+      {
+        "trainingCode": "DEF",
+        "trainingName": "Defensive Driving",
+        "vehicleCategory": "All driving duties",
+        "completedOn": "30 Apr, 2025",
+        "expiresOn": "20 Apr, 2027",
+        "trainer": "Layla Rahman (HSE)",
+        "certificateRef": "CRT-DEF-2003",
+        "status": "Valid"
+      }
     ]
   },
   {
@@ -448,6 +566,38 @@
     "systemcol5": "2026-10-12",
     "tags": [
       "collection-crew"
+    ],
+    "trainings": [
+      {
+        "trainingCode": "WCS",
+        "trainingName": "Waste Collection Safety",
+        "vehicleCategory": "Route helper",
+        "completedOn": "7 Aug, 2025",
+        "expiresOn": "3 Feb, 2026",
+        "trainer": "Kareem Odeh (HSE)",
+        "certificateRef": "CRT-WCS-2004",
+        "status": "Expiring"
+      },
+      {
+        "trainingCode": "BWC",
+        "trainingName": "Bin Washer Operation",
+        "vehicleCategory": "Bin Washer",
+        "completedOn": "6 Oct, 2025",
+        "expiresOn": "1 Oct, 2026",
+        "trainer": "Kareem Odeh (HSE)",
+        "certificateRef": "CRT-BWC-2004",
+        "status": "Valid"
+      },
+      {
+        "trainingCode": "DEF",
+        "trainingName": "Defensive Driving",
+        "vehicleCategory": "All driving duties",
+        "completedOn": "5 Nov, 2025",
+        "expiresOn": "26 Oct, 2027",
+        "trainer": "Kareem Odeh (HSE)",
+        "certificateRef": "CRT-DEF-2004",
+        "status": "Valid"
+      }
     ]
   },
   {
@@ -462,6 +612,28 @@
     "systemcol5": "2026-11-20",
     "tags": [
       "collection-crew"
+    ],
+    "trainings": [
+      {
+        "trainingCode": "WCS",
+        "trainingName": "Waste Collection Safety",
+        "vehicleCategory": "Route helper",
+        "completedOn": "6 Aug, 2025",
+        "expiresOn": "2 Feb, 2026",
+        "trainer": "Mariam Fadel (HSE)",
+        "certificateRef": "CRT-WCS-2005",
+        "status": "Expiring"
+      },
+      {
+        "trainingCode": "DEF",
+        "trainingName": "Defensive Driving",
+        "vehicleCategory": "All driving duties",
+        "completedOn": "27 Jun, 2025",
+        "expiresOn": "17 Jun, 2027",
+        "trainer": "Mariam Fadel (HSE)",
+        "certificateRef": "CRT-DEF-2005",
+        "status": "Valid"
+      }
     ]
   },
   {
@@ -476,6 +648,38 @@
     "systemcol5": "2026-09-21",
     "tags": [
       "collection-crew"
+    ],
+    "trainings": [
+      {
+        "trainingCode": "WCS",
+        "trainingName": "Waste Collection Safety",
+        "vehicleCategory": "Route helper",
+        "completedOn": "18 Mar, 2025",
+        "expiresOn": "14 Sep, 2025",
+        "trainer": "Layla Rahman (HSE)",
+        "certificateRef": "CRT-WCS-2006",
+        "status": "Blocked"
+      },
+      {
+        "trainingCode": "DEF",
+        "trainingName": "Defensive Driving",
+        "vehicleCategory": "All driving duties",
+        "completedOn": "16 Jun, 2025",
+        "expiresOn": "6 Jun, 2027",
+        "trainer": "Layla Rahman (HSE)",
+        "certificateRef": "CRT-DEF-2006",
+        "status": "Valid"
+      },
+      {
+        "trainingCode": "RL",
+        "trainingName": "Rear End Loader Operation",
+        "vehicleCategory": "Rear End Loader",
+        "completedOn": "17 May, 2025",
+        "expiresOn": "12 May, 2026",
+        "trainer": "Mariam Fadel (HSE)",
+        "certificateRef": "CRT-RL-2006",
+        "status": "Valid"
+      }
     ]
   },
   {
@@ -490,6 +694,38 @@
     "systemcol5": "2026-01-13",
     "tags": [
       "collection-crew"
+    ],
+    "trainings": [
+      {
+        "trainingCode": "WCS",
+        "trainingName": "Waste Collection Safety",
+        "vehicleCategory": "Route helper",
+        "completedOn": "6 Jan, 2025",
+        "expiresOn": "5 Jul, 2025",
+        "trainer": "Kareem Odeh (HSE)",
+        "certificateRef": "CRT-WCS-2007",
+        "status": "Blocked"
+      },
+      {
+        "trainingCode": "DEF",
+        "trainingName": "Defensive Driving",
+        "vehicleCategory": "All driving duties",
+        "completedOn": "6 Apr, 2025",
+        "expiresOn": "27 Mar, 2027",
+        "trainer": "Kareem Odeh (HSE)",
+        "certificateRef": "CRT-DEF-2007",
+        "status": "Valid"
+      },
+      {
+        "trainingCode": "SL",
+        "trainingName": "Side Loader Operation",
+        "vehicleCategory": "Side Loader",
+        "completedOn": "7 Mar, 2025",
+        "expiresOn": "2 Mar, 2026",
+        "trainer": "Layla Rahman (HSE)",
+        "certificateRef": "CRT-SL-2007",
+        "status": "Valid"
+      }
     ]
   },
   {
@@ -504,6 +740,28 @@
     "systemcol5": "2026-07-07",
     "tags": [
       "collection-crew"
+    ],
+    "trainings": [
+      {
+        "trainingCode": "DEF",
+        "trainingName": "Defensive Driving",
+        "vehicleCategory": "All driving duties",
+        "completedOn": "13 Aug, 2025",
+        "expiresOn": "3 Aug, 2027",
+        "trainer": "Mariam Fadel (HSE)",
+        "certificateRef": "CRT-DEF-2008",
+        "status": "Valid"
+      },
+      {
+        "trainingCode": "WCS",
+        "trainingName": "Waste Collection Safety",
+        "vehicleCategory": "Route helper",
+        "completedOn": "22 Sep, 2025",
+        "expiresOn": "21 Mar, 2026",
+        "trainer": "Mariam Fadel (HSE)",
+        "certificateRef": "CRT-WCS-2008",
+        "status": "Valid"
+      }
     ]
   },
   {
@@ -518,6 +776,38 @@
     "systemcol5": "2026-04-23",
     "tags": [
       "collection-crew"
+    ],
+    "trainings": [
+      {
+        "trainingCode": "WCS",
+        "trainingName": "Waste Collection Safety",
+        "vehicleCategory": "Route helper",
+        "completedOn": "4 May, 2025",
+        "expiresOn": "31 Oct, 2025",
+        "trainer": "Layla Rahman (HSE)",
+        "certificateRef": "CRT-WCS-2009",
+        "status": "Expired"
+      },
+      {
+        "trainingCode": "CCV",
+        "trainingName": "Compactor Container Operation",
+        "vehicleCategory": "Compactor Container Vehicle",
+        "completedOn": "3 Jul, 2025",
+        "expiresOn": "28 Jun, 2026",
+        "trainer": "Layla Rahman (HSE)",
+        "certificateRef": "CRT-CCV-2009",
+        "status": "Valid"
+      },
+      {
+        "trainingCode": "DEF",
+        "trainingName": "Defensive Driving",
+        "vehicleCategory": "All driving duties",
+        "completedOn": "2 Aug, 2025",
+        "expiresOn": "23 Jul, 2027",
+        "trainer": "Layla Rahman (HSE)",
+        "certificateRef": "CRT-DEF-2009",
+        "status": "Valid"
+      }
     ]
   },
   {
@@ -533,6 +823,28 @@
     "tags": [
       "collection-crew",
       "contractor"
+    ],
+    "trainings": [
+      {
+        "trainingCode": "WCS",
+        "trainingName": "Waste Collection Safety",
+        "vehicleCategory": "Route helper",
+        "completedOn": "3 May, 2025",
+        "expiresOn": "30 Oct, 2025",
+        "trainer": "Kareem Odeh (HSE)",
+        "certificateRef": "CRT-WCS-2010",
+        "status": "Expired"
+      },
+      {
+        "trainingCode": "DEF",
+        "trainingName": "Defensive Driving",
+        "vehicleCategory": "All driving duties",
+        "completedOn": "24 Mar, 2025",
+        "expiresOn": "14 Mar, 2027",
+        "trainer": "Kareem Odeh (HSE)",
+        "certificateRef": "CRT-DEF-2010",
+        "status": "Valid"
+      }
     ]
   }
 ]

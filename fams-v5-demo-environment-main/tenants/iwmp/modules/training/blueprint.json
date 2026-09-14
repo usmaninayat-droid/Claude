@@ -254,14 +254,14 @@
                     "columns": 2,
                     "tiles": [
                       {
-                        "label": "Certified",
-                        "valueField": "kpiCertified",
+                        "label": "Valid",
+                        "valueField": "kpiValid",
                         "icon": "shield-tick",
                         "tone": "success"
                       },
                       {
-                        "label": "Re-training Due",
-                        "valueField": "kpiRetraining",
+                        "label": "Expiring",
+                        "valueField": "kpiExpiring",
                         "icon": "clock",
                         "tone": "warning"
                       },
@@ -269,15 +269,38 @@
                         "label": "Expired",
                         "valueField": "kpiExpired",
                         "icon": "alert-triangle",
-                        "tone": "danger"
+                        "tone": "warning"
                       },
                       {
-                        "label": "Not Completed",
-                        "valueField": "kpiNotCompleted",
-                        "icon": "users",
-                        "tone": "neutral"
+                        "label": "Blocked",
+                        "valueField": "kpiBlocked",
+                        "icon": "x-circle",
+                        "tone": "danger"
                       }
                     ]
+                  },
+                  {
+                    "type": "trendChart",
+                    "title": "Completions Over Time",
+                    "seriesField": "completionsByMonth",
+                    "yLabel": "Completions",
+                    "color": "#22C882"
+                  },
+                  {
+                    "type": "barChart",
+                    "title": "Assignable by Role",
+                    "icon": "users",
+                    "seriesField": "completionsByRole",
+                    "yAxisTitle": "Employees",
+                    "column": "start"
+                  },
+                  {
+                    "type": "barChart",
+                    "title": "Competency Status",
+                    "icon": "activity",
+                    "seriesField": "statusDistribution",
+                    "yAxisTitle": "Employees",
+                    "column": "end"
                   }
                 ]
               }
@@ -319,13 +342,13 @@
                     "type": "text"
                   },
                   {
-                    "key": "employeeStatus",
-                    "label": "EMPLOYEE STATUS",
+                    "key": "vehicleCategory",
+                    "label": "ELIGIBLE FOR",
                     "type": "text"
                   },
                   {
                     "key": "completedOn",
-                    "label": "COMPLETED ON",
+                    "label": "ATTENDANCE DATE",
                     "type": "text"
                   },
                   {
@@ -334,16 +357,26 @@
                     "type": "text"
                   },
                   {
+                    "key": "trainer",
+                    "label": "TRAINER",
+                    "type": "text"
+                  },
+                  {
+                    "key": "certificateRef",
+                    "label": "CERTIFICATE REF",
+                    "type": "text"
+                  },
+                  {
                     "key": "status",
-                    "label": "CERTIFICATE",
+                    "label": "STATUS",
                     "type": "statusPill"
                   }
                 ],
                 "statusColors": {
                   "Valid": "#2AAA48",
-                  "Re-training Due": "#F17B2B",
-                  "Expired": "#F04438",
-                  "Not Completed": "#475467"
+                  "Expiring": "#F5A623",
+                  "Expired": "#F17B2B",
+                  "Blocked": "#F04438"
                 }
               }
             }
