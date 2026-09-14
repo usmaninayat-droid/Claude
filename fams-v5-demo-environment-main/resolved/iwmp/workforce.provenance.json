@@ -47,6 +47,12 @@
     "sts_wf_leave": {
       "source": "core"
     },
+    "tab_wf_attendance": {
+      "op": "addTab",
+      "opId": "op_iwmp_workforce_attendance_tab",
+      "opIndex": 1,
+      "source": "delta"
+    },
     "tab_wf_overview": {
       "source": "core"
     },

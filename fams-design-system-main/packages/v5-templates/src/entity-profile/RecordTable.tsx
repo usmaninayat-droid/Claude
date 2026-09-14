@@ -6,12 +6,15 @@ import {
   DataTable,
   IdChip,
   Input,
+  KpiTile,
+  Stack,
   StatusPill,
   TableCell,
   type DataTableColumn,
   type StatBarTone,
 } from '@fams/ui-kit'
 import type { EntityRecord } from '@fams/v5-composer'
+import type { ListViewSummaryTile } from '../views/list/ListView.types'
 import { cn } from '../lib/cn'
 
 /**
@@ -91,6 +94,16 @@ export interface RecordTableProps {
   timeframeSelect?: boolean
   /** Shows a decorative primary action button (e.g. "Report Issue") end-aligned in the toolbar. */
   action?: RecordTableAction
+  /**
+   * Optional KPI/summary stat cards rendered ABOVE the table — the same
+   * `KpiTile` row `ListView.summaryTiles` renders, brought to the profile
+   * RecordTable so a detail tab can show a competency/status summary over its
+   * own record list without a second tab. Omit for none (the default, table
+   * only). Icons here are already resolved `LucideIcon`s — a JSON blueprint
+   * tab authors string names and the tab adapter maps them (same contract as
+   * `ListView`'s `useSummaryTiles`).
+   */
+  summaryTiles?: ListViewSummaryTile[]
   /** `statusPill` column color lookup, keyed by the raw cell value — the same blueprint-driven hex escape hatch `StatusPill.color` documents. */
   statusColors?: Record<string, string>
   /**
@@ -245,6 +258,7 @@ export function RecordTable({
   searchPlaceholder = 'Search anything here',
   timeframeSelect = false,
   action,
+  summaryTiles,
   statusColors,
   statusLabels,
   responsiveHide = false,
@@ -275,6 +289,23 @@ export function RecordTable({
 
   return (
     <div data-slot="record-table" className={cn('flex flex-col gap-3', className)}>
+      {summaryTiles?.length ? (
+        <Stack data-slot="record-table-summary" direction="row" wrap gap="field">
+          {summaryTiles.map((tile) => (
+            <KpiTile
+              key={tile.id}
+              layout="stat"
+              label={tile.label}
+              value={tile.value}
+              icon={tile.icon}
+              tone={tile.tone}
+              iconColor={tile.iconColor}
+              iconBg={tile.iconBg}
+              className="min-w-[13rem] flex-1"
+            />
+          ))}
+        </Stack>
+      ) : null}
       {search || timeframeSelect || action ? (
         <div data-slot="record-table-toolbar" className="flex items-center gap-3">
           {search ? (

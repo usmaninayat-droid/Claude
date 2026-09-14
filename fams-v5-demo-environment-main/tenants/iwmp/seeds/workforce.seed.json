@@ -145,7 +145,8 @@
         "expiresOn": "19 Nov, 2027",
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-DEF-2000",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-01-DEF"
       },
       {
         "trainingCode": "RL",
@@ -155,7 +156,8 @@
         "expiresOn": "25 Oct, 2026",
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-RL-2000",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-01-RL"
       },
       {
         "trainingCode": "WCS",
@@ -165,7 +167,156 @@
         "expiresOn": "27 Feb, 2026",
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-WCS-2000",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-01-WCS"
+      }
+    ],
+    "trnValid": "3",
+    "trnExpiring": "0",
+    "trnExpired": "0",
+    "trnBlocked": "0",
+    "attendanceLog": [
+      {
+        "id": "WCR-01-att-2025-09-09",
+        "date": "9 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-01-att-2025-09-08",
+        "date": "8 Sep, 2025",
+        "clockIn": "07:45 AM",
+        "clockOut": "04:45 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "duration": "09:00 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-01-att-2025-09-07",
+        "date": "7 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Emirates Palace, Abu Dhabi",
+        "clockOutLocation": "Emirates Palace, Abu Dhabi",
+        "duration": "09:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-01-att-2025-09-06",
+        "date": "6 Sep, 2025",
+        "clockIn": "08:15 AM",
+        "clockOut": "04:30 PM",
+        "clockInLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "clockOutLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "duration": "08:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-01-att-2025-09-05",
+        "date": "5 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "clockOutLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-01-att-2025-09-04",
+        "date": "4 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Qasr Al Watan, Abu Dhabi",
+        "clockOutLocation": "Qasr Al Watan, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-01-att-2025-09-03",
+        "date": "3 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-01-att-2025-09-02",
+        "date": "2 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:10 PM",
+        "clockInLocation": "Ferrari World, Abu Dhabi",
+        "clockOutLocation": "Ferrari World, Abu Dhabi",
+        "duration": "09:10 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-01-att-2025-09-01",
+        "date": "1 Sep, 2025",
+        "clockIn": "07:50 AM",
+        "clockOut": "04:55 PM",
+        "clockInLocation": "Al Ain Zoo, Abu Dhabi",
+        "clockOutLocation": "Al Ain Zoo, Abu Dhabi",
+        "duration": "09:05 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-01-att-2025-08-31",
+        "date": "31 Aug, 2025",
+        "clockIn": "08:20 AM",
+        "clockOut": "05:05 PM",
+        "clockInLocation": "Marina Mall, Abu Dhabi",
+        "clockOutLocation": "Marina Mall, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      }
+    ],
+    "workingHours": [
+      {
+        "label": "31 Aug",
+        "value": 8.8
+      },
+      {
+        "label": "1 Sep",
+        "value": 9.1
+      },
+      {
+        "label": "2 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "3 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "4 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "5 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "6 Sep",
+        "value": 8.2
+      },
+      {
+        "label": "7 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "8 Sep",
+        "value": 9.0
+      },
+      {
+        "label": "9 Sep",
+        "value": 8.8
       }
     ]
   },
@@ -315,7 +466,8 @@
         "expiresOn": "18 Dec, 2025",
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-WCS-2001",
-        "status": "Expired"
+        "status": "Expired",
+        "id": "WCR-02-WCS"
       },
       {
         "trainingCode": "DEF",
@@ -325,7 +477,8 @@
         "expiresOn": "9 Sep, 2027",
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-DEF-2001",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-02-DEF"
       },
       {
         "trainingCode": "SL",
@@ -335,7 +488,156 @@
         "expiresOn": "15 Aug, 2026",
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-SL-2001",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-02-SL"
+      }
+    ],
+    "trnValid": "2",
+    "trnExpiring": "0",
+    "trnExpired": "1",
+    "trnBlocked": "0",
+    "attendanceLog": [
+      {
+        "id": "WCR-02-att-2025-09-09",
+        "date": "9 Sep, 2025",
+        "clockIn": "07:45 AM",
+        "clockOut": "04:45 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "duration": "09:00 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-02-att-2025-09-08",
+        "date": "8 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Emirates Palace, Abu Dhabi",
+        "clockOutLocation": "Emirates Palace, Abu Dhabi",
+        "duration": "09:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-02-att-2025-09-07",
+        "date": "7 Sep, 2025",
+        "clockIn": "08:15 AM",
+        "clockOut": "04:30 PM",
+        "clockInLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "clockOutLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "duration": "08:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-02-att-2025-09-06",
+        "date": "6 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "clockOutLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-02-att-2025-09-05",
+        "date": "5 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Qasr Al Watan, Abu Dhabi",
+        "clockOutLocation": "Qasr Al Watan, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-02-att-2025-09-04",
+        "date": "4 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-02-att-2025-09-03",
+        "date": "3 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:10 PM",
+        "clockInLocation": "Ferrari World, Abu Dhabi",
+        "clockOutLocation": "Ferrari World, Abu Dhabi",
+        "duration": "09:10 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-02-att-2025-09-02",
+        "date": "2 Sep, 2025",
+        "clockIn": "07:50 AM",
+        "clockOut": "04:55 PM",
+        "clockInLocation": "Al Ain Zoo, Abu Dhabi",
+        "clockOutLocation": "Al Ain Zoo, Abu Dhabi",
+        "duration": "09:05 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-02-att-2025-09-01",
+        "date": "1 Sep, 2025",
+        "clockIn": "08:20 AM",
+        "clockOut": "05:05 PM",
+        "clockInLocation": "Marina Mall, Abu Dhabi",
+        "clockOutLocation": "Marina Mall, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-02-att-2025-08-31",
+        "date": "31 Aug, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      }
+    ],
+    "workingHours": [
+      {
+        "label": "31 Aug",
+        "value": 8.8
+      },
+      {
+        "label": "1 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "2 Sep",
+        "value": 9.1
+      },
+      {
+        "label": "3 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "4 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "5 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "6 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "7 Sep",
+        "value": 8.2
+      },
+      {
+        "label": "8 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "9 Sep",
+        "value": 9.0
       }
     ]
   },
@@ -361,7 +663,8 @@
         "expiresOn": "17 Dec, 2025",
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-WCS-2002",
-        "status": "Expired"
+        "status": "Expired",
+        "id": "WCR-03-WCS"
       },
       {
         "trainingCode": "DEF",
@@ -371,7 +674,156 @@
         "expiresOn": "1 May, 2027",
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-DEF-2002",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-03-DEF"
+      }
+    ],
+    "trnValid": "1",
+    "trnExpiring": "0",
+    "trnExpired": "1",
+    "trnBlocked": "0",
+    "attendanceLog": [
+      {
+        "id": "WCR-03-att-2025-09-09",
+        "date": "9 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Emirates Palace, Abu Dhabi",
+        "clockOutLocation": "Emirates Palace, Abu Dhabi",
+        "duration": "09:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-03-att-2025-09-08",
+        "date": "8 Sep, 2025",
+        "clockIn": "08:15 AM",
+        "clockOut": "04:30 PM",
+        "clockInLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "clockOutLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "duration": "08:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-03-att-2025-09-07",
+        "date": "7 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "clockOutLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-03-att-2025-09-06",
+        "date": "6 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Qasr Al Watan, Abu Dhabi",
+        "clockOutLocation": "Qasr Al Watan, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-03-att-2025-09-05",
+        "date": "5 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-03-att-2025-09-04",
+        "date": "4 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:10 PM",
+        "clockInLocation": "Ferrari World, Abu Dhabi",
+        "clockOutLocation": "Ferrari World, Abu Dhabi",
+        "duration": "09:10 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-03-att-2025-09-03",
+        "date": "3 Sep, 2025",
+        "clockIn": "07:50 AM",
+        "clockOut": "04:55 PM",
+        "clockInLocation": "Al Ain Zoo, Abu Dhabi",
+        "clockOutLocation": "Al Ain Zoo, Abu Dhabi",
+        "duration": "09:05 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-03-att-2025-09-02",
+        "date": "2 Sep, 2025",
+        "clockIn": "08:20 AM",
+        "clockOut": "05:05 PM",
+        "clockInLocation": "Marina Mall, Abu Dhabi",
+        "clockOutLocation": "Marina Mall, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-03-att-2025-09-01",
+        "date": "1 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-03-att-2025-08-31",
+        "date": "31 Aug, 2025",
+        "clockIn": "07:45 AM",
+        "clockOut": "04:45 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "duration": "09:00 hours",
+        "source": "Bio Time"
+      }
+    ],
+    "workingHours": [
+      {
+        "label": "31 Aug",
+        "value": 9.0
+      },
+      {
+        "label": "1 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "2 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "3 Sep",
+        "value": 9.1
+      },
+      {
+        "label": "4 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "5 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "6 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "7 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "8 Sep",
+        "value": 8.2
+      },
+      {
+        "label": "9 Sep",
+        "value": 9.2
       }
     ]
   },
@@ -530,7 +982,8 @@
         "expiresOn": "29 Jul, 2025",
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-WCS-2003",
-        "status": "Blocked"
+        "status": "Blocked",
+        "id": "WCR-04-WCS"
       },
       {
         "trainingCode": "CCV",
@@ -540,7 +993,8 @@
         "expiresOn": "26 Mar, 2026",
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-CCV-2003",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-04-CCV"
       },
       {
         "trainingCode": "DEF",
@@ -550,7 +1004,156 @@
         "expiresOn": "20 Apr, 2027",
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-DEF-2003",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-04-DEF"
+      }
+    ],
+    "trnValid": "2",
+    "trnExpiring": "0",
+    "trnExpired": "0",
+    "trnBlocked": "1",
+    "attendanceLog": [
+      {
+        "id": "WCR-04-att-2025-09-09",
+        "date": "9 Sep, 2025",
+        "clockIn": "08:15 AM",
+        "clockOut": "04:30 PM",
+        "clockInLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "clockOutLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "duration": "08:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-04-att-2025-09-08",
+        "date": "8 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "clockOutLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-04-att-2025-09-07",
+        "date": "7 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Qasr Al Watan, Abu Dhabi",
+        "clockOutLocation": "Qasr Al Watan, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-04-att-2025-09-06",
+        "date": "6 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-04-att-2025-09-05",
+        "date": "5 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:10 PM",
+        "clockInLocation": "Ferrari World, Abu Dhabi",
+        "clockOutLocation": "Ferrari World, Abu Dhabi",
+        "duration": "09:10 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-04-att-2025-09-04",
+        "date": "4 Sep, 2025",
+        "clockIn": "07:50 AM",
+        "clockOut": "04:55 PM",
+        "clockInLocation": "Al Ain Zoo, Abu Dhabi",
+        "clockOutLocation": "Al Ain Zoo, Abu Dhabi",
+        "duration": "09:05 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-04-att-2025-09-03",
+        "date": "3 Sep, 2025",
+        "clockIn": "08:20 AM",
+        "clockOut": "05:05 PM",
+        "clockInLocation": "Marina Mall, Abu Dhabi",
+        "clockOutLocation": "Marina Mall, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-04-att-2025-09-02",
+        "date": "2 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-04-att-2025-09-01",
+        "date": "1 Sep, 2025",
+        "clockIn": "07:45 AM",
+        "clockOut": "04:45 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "duration": "09:00 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-04-att-2025-08-31",
+        "date": "31 Aug, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Emirates Palace, Abu Dhabi",
+        "clockOutLocation": "Emirates Palace, Abu Dhabi",
+        "duration": "09:15 hours",
+        "source": "Bio Time"
+      }
+    ],
+    "workingHours": [
+      {
+        "label": "31 Aug",
+        "value": 9.2
+      },
+      {
+        "label": "1 Sep",
+        "value": 9.0
+      },
+      {
+        "label": "2 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "3 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "4 Sep",
+        "value": 9.1
+      },
+      {
+        "label": "5 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "6 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "7 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "8 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "9 Sep",
+        "value": 8.2
       }
     ]
   },
@@ -576,7 +1179,8 @@
         "expiresOn": "3 Feb, 2026",
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-WCS-2004",
-        "status": "Expiring"
+        "status": "Expiring",
+        "id": "WCR-05-WCS"
       },
       {
         "trainingCode": "BWC",
@@ -586,7 +1190,8 @@
         "expiresOn": "1 Oct, 2026",
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-BWC-2004",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-05-BWC"
       },
       {
         "trainingCode": "DEF",
@@ -596,7 +1201,156 @@
         "expiresOn": "26 Oct, 2027",
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-DEF-2004",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-05-DEF"
+      }
+    ],
+    "trnValid": "2",
+    "trnExpiring": "1",
+    "trnExpired": "0",
+    "trnBlocked": "0",
+    "attendanceLog": [
+      {
+        "id": "WCR-05-att-2025-09-09",
+        "date": "9 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "clockOutLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-05-att-2025-09-08",
+        "date": "8 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Qasr Al Watan, Abu Dhabi",
+        "clockOutLocation": "Qasr Al Watan, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-05-att-2025-09-07",
+        "date": "7 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-05-att-2025-09-06",
+        "date": "6 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:10 PM",
+        "clockInLocation": "Ferrari World, Abu Dhabi",
+        "clockOutLocation": "Ferrari World, Abu Dhabi",
+        "duration": "09:10 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-05-att-2025-09-05",
+        "date": "5 Sep, 2025",
+        "clockIn": "07:50 AM",
+        "clockOut": "04:55 PM",
+        "clockInLocation": "Al Ain Zoo, Abu Dhabi",
+        "clockOutLocation": "Al Ain Zoo, Abu Dhabi",
+        "duration": "09:05 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-05-att-2025-09-04",
+        "date": "4 Sep, 2025",
+        "clockIn": "08:20 AM",
+        "clockOut": "05:05 PM",
+        "clockInLocation": "Marina Mall, Abu Dhabi",
+        "clockOutLocation": "Marina Mall, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-05-att-2025-09-03",
+        "date": "3 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-05-att-2025-09-02",
+        "date": "2 Sep, 2025",
+        "clockIn": "07:45 AM",
+        "clockOut": "04:45 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "duration": "09:00 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-05-att-2025-09-01",
+        "date": "1 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Emirates Palace, Abu Dhabi",
+        "clockOutLocation": "Emirates Palace, Abu Dhabi",
+        "duration": "09:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-05-att-2025-08-31",
+        "date": "31 Aug, 2025",
+        "clockIn": "08:15 AM",
+        "clockOut": "04:30 PM",
+        "clockInLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "clockOutLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "duration": "08:15 hours",
+        "source": "Bio Time"
+      }
+    ],
+    "workingHours": [
+      {
+        "label": "31 Aug",
+        "value": 8.2
+      },
+      {
+        "label": "1 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "2 Sep",
+        "value": 9.0
+      },
+      {
+        "label": "3 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "4 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "5 Sep",
+        "value": 9.1
+      },
+      {
+        "label": "6 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "7 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "8 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "9 Sep",
+        "value": 5.5
       }
     ]
   },
@@ -622,7 +1376,8 @@
         "expiresOn": "2 Feb, 2026",
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-WCS-2005",
-        "status": "Expiring"
+        "status": "Expiring",
+        "id": "WCR-06-WCS"
       },
       {
         "trainingCode": "DEF",
@@ -632,7 +1387,156 @@
         "expiresOn": "17 Jun, 2027",
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-DEF-2005",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-06-DEF"
+      }
+    ],
+    "trnValid": "1",
+    "trnExpiring": "1",
+    "trnExpired": "0",
+    "trnBlocked": "0",
+    "attendanceLog": [
+      {
+        "id": "WCR-06-att-2025-09-09",
+        "date": "9 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Qasr Al Watan, Abu Dhabi",
+        "clockOutLocation": "Qasr Al Watan, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-06-att-2025-09-08",
+        "date": "8 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-06-att-2025-09-07",
+        "date": "7 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:10 PM",
+        "clockInLocation": "Ferrari World, Abu Dhabi",
+        "clockOutLocation": "Ferrari World, Abu Dhabi",
+        "duration": "09:10 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-06-att-2025-09-06",
+        "date": "6 Sep, 2025",
+        "clockIn": "07:50 AM",
+        "clockOut": "04:55 PM",
+        "clockInLocation": "Al Ain Zoo, Abu Dhabi",
+        "clockOutLocation": "Al Ain Zoo, Abu Dhabi",
+        "duration": "09:05 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-06-att-2025-09-05",
+        "date": "5 Sep, 2025",
+        "clockIn": "08:20 AM",
+        "clockOut": "05:05 PM",
+        "clockInLocation": "Marina Mall, Abu Dhabi",
+        "clockOutLocation": "Marina Mall, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-06-att-2025-09-04",
+        "date": "4 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-06-att-2025-09-03",
+        "date": "3 Sep, 2025",
+        "clockIn": "07:45 AM",
+        "clockOut": "04:45 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "duration": "09:00 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-06-att-2025-09-02",
+        "date": "2 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Emirates Palace, Abu Dhabi",
+        "clockOutLocation": "Emirates Palace, Abu Dhabi",
+        "duration": "09:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-06-att-2025-09-01",
+        "date": "1 Sep, 2025",
+        "clockIn": "08:15 AM",
+        "clockOut": "04:30 PM",
+        "clockInLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "clockOutLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "duration": "08:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-06-att-2025-08-31",
+        "date": "31 Aug, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "clockOutLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      }
+    ],
+    "workingHours": [
+      {
+        "label": "31 Aug",
+        "value": 5.5
+      },
+      {
+        "label": "1 Sep",
+        "value": 8.2
+      },
+      {
+        "label": "2 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "3 Sep",
+        "value": 9.0
+      },
+      {
+        "label": "4 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "5 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "6 Sep",
+        "value": 9.1
+      },
+      {
+        "label": "7 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "8 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "9 Sep",
+        "value": 5.5
       }
     ]
   },
@@ -658,7 +1562,8 @@
         "expiresOn": "14 Sep, 2025",
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-WCS-2006",
-        "status": "Blocked"
+        "status": "Blocked",
+        "id": "WCR-07-WCS"
       },
       {
         "trainingCode": "DEF",
@@ -668,7 +1573,8 @@
         "expiresOn": "6 Jun, 2027",
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-DEF-2006",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-07-DEF"
       },
       {
         "trainingCode": "RL",
@@ -678,7 +1584,156 @@
         "expiresOn": "12 May, 2026",
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-RL-2006",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-07-RL"
+      }
+    ],
+    "trnValid": "2",
+    "trnExpiring": "0",
+    "trnExpired": "0",
+    "trnBlocked": "1",
+    "attendanceLog": [
+      {
+        "id": "WCR-07-att-2025-09-09",
+        "date": "9 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-07-att-2025-09-08",
+        "date": "8 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:10 PM",
+        "clockInLocation": "Ferrari World, Abu Dhabi",
+        "clockOutLocation": "Ferrari World, Abu Dhabi",
+        "duration": "09:10 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-07-att-2025-09-07",
+        "date": "7 Sep, 2025",
+        "clockIn": "07:50 AM",
+        "clockOut": "04:55 PM",
+        "clockInLocation": "Al Ain Zoo, Abu Dhabi",
+        "clockOutLocation": "Al Ain Zoo, Abu Dhabi",
+        "duration": "09:05 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-07-att-2025-09-06",
+        "date": "6 Sep, 2025",
+        "clockIn": "08:20 AM",
+        "clockOut": "05:05 PM",
+        "clockInLocation": "Marina Mall, Abu Dhabi",
+        "clockOutLocation": "Marina Mall, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-07-att-2025-09-05",
+        "date": "5 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-07-att-2025-09-04",
+        "date": "4 Sep, 2025",
+        "clockIn": "07:45 AM",
+        "clockOut": "04:45 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "duration": "09:00 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-07-att-2025-09-03",
+        "date": "3 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Emirates Palace, Abu Dhabi",
+        "clockOutLocation": "Emirates Palace, Abu Dhabi",
+        "duration": "09:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-07-att-2025-09-02",
+        "date": "2 Sep, 2025",
+        "clockIn": "08:15 AM",
+        "clockOut": "04:30 PM",
+        "clockInLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "clockOutLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "duration": "08:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-07-att-2025-09-01",
+        "date": "1 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "clockOutLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-07-att-2025-08-31",
+        "date": "31 Aug, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Qasr Al Watan, Abu Dhabi",
+        "clockOutLocation": "Qasr Al Watan, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      }
+    ],
+    "workingHours": [
+      {
+        "label": "31 Aug",
+        "value": 5.5
+      },
+      {
+        "label": "1 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "2 Sep",
+        "value": 8.2
+      },
+      {
+        "label": "3 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "4 Sep",
+        "value": 9.0
+      },
+      {
+        "label": "5 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "6 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "7 Sep",
+        "value": 9.1
+      },
+      {
+        "label": "8 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "9 Sep",
+        "value": 5.5
       }
     ]
   },
@@ -704,7 +1759,8 @@
         "expiresOn": "5 Jul, 2025",
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-WCS-2007",
-        "status": "Blocked"
+        "status": "Blocked",
+        "id": "WCR-08-WCS"
       },
       {
         "trainingCode": "DEF",
@@ -714,7 +1770,8 @@
         "expiresOn": "27 Mar, 2027",
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-DEF-2007",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-08-DEF"
       },
       {
         "trainingCode": "SL",
@@ -724,7 +1781,156 @@
         "expiresOn": "2 Mar, 2026",
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-SL-2007",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-08-SL"
+      }
+    ],
+    "trnValid": "2",
+    "trnExpiring": "0",
+    "trnExpired": "0",
+    "trnBlocked": "1",
+    "attendanceLog": [
+      {
+        "id": "WCR-08-att-2025-09-09",
+        "date": "9 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:10 PM",
+        "clockInLocation": "Ferrari World, Abu Dhabi",
+        "clockOutLocation": "Ferrari World, Abu Dhabi",
+        "duration": "09:10 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-08-att-2025-09-08",
+        "date": "8 Sep, 2025",
+        "clockIn": "07:50 AM",
+        "clockOut": "04:55 PM",
+        "clockInLocation": "Al Ain Zoo, Abu Dhabi",
+        "clockOutLocation": "Al Ain Zoo, Abu Dhabi",
+        "duration": "09:05 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-08-att-2025-09-07",
+        "date": "7 Sep, 2025",
+        "clockIn": "08:20 AM",
+        "clockOut": "05:05 PM",
+        "clockInLocation": "Marina Mall, Abu Dhabi",
+        "clockOutLocation": "Marina Mall, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-08-att-2025-09-06",
+        "date": "6 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-08-att-2025-09-05",
+        "date": "5 Sep, 2025",
+        "clockIn": "07:45 AM",
+        "clockOut": "04:45 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "duration": "09:00 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-08-att-2025-09-04",
+        "date": "4 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Emirates Palace, Abu Dhabi",
+        "clockOutLocation": "Emirates Palace, Abu Dhabi",
+        "duration": "09:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-08-att-2025-09-03",
+        "date": "3 Sep, 2025",
+        "clockIn": "08:15 AM",
+        "clockOut": "04:30 PM",
+        "clockInLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "clockOutLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "duration": "08:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-08-att-2025-09-02",
+        "date": "2 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "clockOutLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-08-att-2025-09-01",
+        "date": "1 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Qasr Al Watan, Abu Dhabi",
+        "clockOutLocation": "Qasr Al Watan, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-08-att-2025-08-31",
+        "date": "31 Aug, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      }
+    ],
+    "workingHours": [
+      {
+        "label": "31 Aug",
+        "value": 5.5
+      },
+      {
+        "label": "1 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "2 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "3 Sep",
+        "value": 8.2
+      },
+      {
+        "label": "4 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "5 Sep",
+        "value": 9.0
+      },
+      {
+        "label": "6 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "7 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "8 Sep",
+        "value": 9.1
+      },
+      {
+        "label": "9 Sep",
+        "value": 9.2
       }
     ]
   },
@@ -750,7 +1956,8 @@
         "expiresOn": "3 Aug, 2027",
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-DEF-2008",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-09-DEF"
       },
       {
         "trainingCode": "WCS",
@@ -760,7 +1967,156 @@
         "expiresOn": "21 Mar, 2026",
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-WCS-2008",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-09-WCS"
+      }
+    ],
+    "trnValid": "2",
+    "trnExpiring": "0",
+    "trnExpired": "0",
+    "trnBlocked": "0",
+    "attendanceLog": [
+      {
+        "id": "WCR-09-att-2025-09-09",
+        "date": "9 Sep, 2025",
+        "clockIn": "07:50 AM",
+        "clockOut": "04:55 PM",
+        "clockInLocation": "Al Ain Zoo, Abu Dhabi",
+        "clockOutLocation": "Al Ain Zoo, Abu Dhabi",
+        "duration": "09:05 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-09-att-2025-09-08",
+        "date": "8 Sep, 2025",
+        "clockIn": "08:20 AM",
+        "clockOut": "05:05 PM",
+        "clockInLocation": "Marina Mall, Abu Dhabi",
+        "clockOutLocation": "Marina Mall, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-09-att-2025-09-07",
+        "date": "7 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-09-att-2025-09-06",
+        "date": "6 Sep, 2025",
+        "clockIn": "07:45 AM",
+        "clockOut": "04:45 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "duration": "09:00 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-09-att-2025-09-05",
+        "date": "5 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Emirates Palace, Abu Dhabi",
+        "clockOutLocation": "Emirates Palace, Abu Dhabi",
+        "duration": "09:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-09-att-2025-09-04",
+        "date": "4 Sep, 2025",
+        "clockIn": "08:15 AM",
+        "clockOut": "04:30 PM",
+        "clockInLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "clockOutLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "duration": "08:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-09-att-2025-09-03",
+        "date": "3 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "clockOutLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-09-att-2025-09-02",
+        "date": "2 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Qasr Al Watan, Abu Dhabi",
+        "clockOutLocation": "Qasr Al Watan, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-09-att-2025-09-01",
+        "date": "1 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-09-att-2025-08-31",
+        "date": "31 Aug, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:10 PM",
+        "clockInLocation": "Ferrari World, Abu Dhabi",
+        "clockOutLocation": "Ferrari World, Abu Dhabi",
+        "duration": "09:10 hours",
+        "source": "Bio Time"
+      }
+    ],
+    "workingHours": [
+      {
+        "label": "31 Aug",
+        "value": 9.2
+      },
+      {
+        "label": "1 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "2 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "3 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "4 Sep",
+        "value": 8.2
+      },
+      {
+        "label": "5 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "6 Sep",
+        "value": 9.0
+      },
+      {
+        "label": "7 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "8 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "9 Sep",
+        "value": 9.1
       }
     ]
   },
@@ -786,7 +2142,8 @@
         "expiresOn": "31 Oct, 2025",
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-WCS-2009",
-        "status": "Expired"
+        "status": "Expired",
+        "id": "WCR-10-WCS"
       },
       {
         "trainingCode": "CCV",
@@ -796,7 +2153,8 @@
         "expiresOn": "28 Jun, 2026",
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-CCV-2009",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-10-CCV"
       },
       {
         "trainingCode": "DEF",
@@ -806,7 +2164,156 @@
         "expiresOn": "23 Jul, 2027",
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-DEF-2009",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-10-DEF"
+      }
+    ],
+    "trnValid": "2",
+    "trnExpiring": "0",
+    "trnExpired": "1",
+    "trnBlocked": "0",
+    "attendanceLog": [
+      {
+        "id": "WCR-10-att-2025-09-09",
+        "date": "9 Sep, 2025",
+        "clockIn": "08:20 AM",
+        "clockOut": "05:05 PM",
+        "clockInLocation": "Marina Mall, Abu Dhabi",
+        "clockOutLocation": "Marina Mall, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-10-att-2025-09-08",
+        "date": "8 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-10-att-2025-09-07",
+        "date": "7 Sep, 2025",
+        "clockIn": "07:45 AM",
+        "clockOut": "04:45 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "duration": "09:00 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-10-att-2025-09-06",
+        "date": "6 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Emirates Palace, Abu Dhabi",
+        "clockOutLocation": "Emirates Palace, Abu Dhabi",
+        "duration": "09:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-10-att-2025-09-05",
+        "date": "5 Sep, 2025",
+        "clockIn": "08:15 AM",
+        "clockOut": "04:30 PM",
+        "clockInLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "clockOutLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "duration": "08:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-10-att-2025-09-04",
+        "date": "4 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "clockOutLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-10-att-2025-09-03",
+        "date": "3 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Qasr Al Watan, Abu Dhabi",
+        "clockOutLocation": "Qasr Al Watan, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-10-att-2025-09-02",
+        "date": "2 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-10-att-2025-09-01",
+        "date": "1 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:10 PM",
+        "clockInLocation": "Ferrari World, Abu Dhabi",
+        "clockOutLocation": "Ferrari World, Abu Dhabi",
+        "duration": "09:10 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-10-att-2025-08-31",
+        "date": "31 Aug, 2025",
+        "clockIn": "07:50 AM",
+        "clockOut": "04:55 PM",
+        "clockInLocation": "Al Ain Zoo, Abu Dhabi",
+        "clockOutLocation": "Al Ain Zoo, Abu Dhabi",
+        "duration": "09:05 hours",
+        "source": "Bio Time"
+      }
+    ],
+    "workingHours": [
+      {
+        "label": "31 Aug",
+        "value": 9.1
+      },
+      {
+        "label": "1 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "2 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "3 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "4 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "5 Sep",
+        "value": 8.2
+      },
+      {
+        "label": "6 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "7 Sep",
+        "value": 9.0
+      },
+      {
+        "label": "8 Sep",
+        "value": 8.8
+      },
+      {
+        "label": "9 Sep",
+        "value": 8.8
       }
     ]
   },
@@ -833,7 +2340,8 @@
         "expiresOn": "30 Oct, 2025",
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-WCS-2010",
-        "status": "Expired"
+        "status": "Expired",
+        "id": "WCR-11-WCS"
       },
       {
         "trainingCode": "DEF",
@@ -843,7 +2351,156 @@
         "expiresOn": "14 Mar, 2027",
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-DEF-2010",
-        "status": "Valid"
+        "status": "Valid",
+        "id": "WCR-11-DEF"
+      }
+    ],
+    "trnValid": "1",
+    "trnExpiring": "0",
+    "trnExpired": "1",
+    "trnBlocked": "0",
+    "attendanceLog": [
+      {
+        "id": "WCR-11-att-2025-09-09",
+        "date": "9 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Corniche Road, Abu Dhabi",
+        "clockOutLocation": "Corniche Road, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-11-att-2025-09-08",
+        "date": "8 Sep, 2025",
+        "clockIn": "07:45 AM",
+        "clockOut": "04:45 PM",
+        "clockInLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "clockOutLocation": "Sheikh Zayed Bridge, Abu Dhabi",
+        "duration": "09:00 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-11-att-2025-09-07",
+        "date": "7 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:15 PM",
+        "clockInLocation": "Emirates Palace, Abu Dhabi",
+        "clockOutLocation": "Emirates Palace, Abu Dhabi",
+        "duration": "09:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-11-att-2025-09-06",
+        "date": "6 Sep, 2025",
+        "clockIn": "08:15 AM",
+        "clockOut": "04:30 PM",
+        "clockInLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "clockOutLocation": "Abu Dhabi Mall, Abu Dhabi",
+        "duration": "08:15 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-11-att-2025-09-05",
+        "date": "5 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "clockOutLocation": "Louvre Abu Dhabi, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-11-att-2025-09-04",
+        "date": "4 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Qasr Al Watan, Abu Dhabi",
+        "clockOutLocation": "Qasr Al Watan, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-11-att-2025-09-03",
+        "date": "3 Sep, 2025",
+        "clockIn": "08:30 AM",
+        "clockOut": "02:00 PM",
+        "clockInLocation": "Yas Island, Abu Dhabi",
+        "clockOutLocation": "Yas Island, Abu Dhabi",
+        "duration": "05:30 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-11-att-2025-09-02",
+        "date": "2 Sep, 2025",
+        "clockIn": "08:00 AM",
+        "clockOut": "05:10 PM",
+        "clockInLocation": "Ferrari World, Abu Dhabi",
+        "clockOutLocation": "Ferrari World, Abu Dhabi",
+        "duration": "09:10 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-11-att-2025-09-01",
+        "date": "1 Sep, 2025",
+        "clockIn": "07:50 AM",
+        "clockOut": "04:55 PM",
+        "clockInLocation": "Al Ain Zoo, Abu Dhabi",
+        "clockOutLocation": "Al Ain Zoo, Abu Dhabi",
+        "duration": "09:05 hours",
+        "source": "Bio Time"
+      },
+      {
+        "id": "WCR-11-att-2025-08-31",
+        "date": "31 Aug, 2025",
+        "clockIn": "08:20 AM",
+        "clockOut": "05:05 PM",
+        "clockInLocation": "Marina Mall, Abu Dhabi",
+        "clockOutLocation": "Marina Mall, Abu Dhabi",
+        "duration": "08:45 hours",
+        "source": "Bio Time"
+      }
+    ],
+    "workingHours": [
+      {
+        "label": "31 Aug",
+        "value": 8.8
+      },
+      {
+        "label": "1 Sep",
+        "value": 9.1
+      },
+      {
+        "label": "2 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "3 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "4 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "5 Sep",
+        "value": 5.5
+      },
+      {
+        "label": "6 Sep",
+        "value": 8.2
+      },
+      {
+        "label": "7 Sep",
+        "value": 9.2
+      },
+      {
+        "label": "8 Sep",
+        "value": 9.0
+      },
+      {
+        "label": "9 Sep",
+        "value": 8.8
       }
     ]
   }

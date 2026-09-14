@@ -84,6 +84,7 @@ function Harness({
         search={search}
         onSearchChange={setSearch}
         session={session}
+        filtersPanel={{ title: 'All Filters' }}
         resolveExpandRows={resolveExpandRows}
         onCreateFromSearch={onCreateFromSearch}
       />

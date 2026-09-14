@@ -204,17 +204,20 @@ img{display:block}
 .alert .chev img{width:16px;height:16px}
 
 /* KPI row — gap28, card p16 gap12 rounded5 border #d0d5dd */
-.kpis{display:flex;gap:16px;align-items:flex-start}
-.kpi{flex:1 0 0;min-width:1px;background:#fff;border:1px solid #d0d5dd;border-radius:5px;padding:16px;display:flex;gap:12px;align-items:center;overflow:hidden}
-.kpi .ava{padding:14px;border-radius:30px;display:flex;align-items:center;flex-shrink:0}
+/* KPI cards — matched to the design system's `KpiTile` (stat layout): a
+   48px rounded-md tinted icon badge, small gray label ABOVE a large value,
+   not the old fully-round icon circle. Tints use the DS semantic tones. */
+.kpis{display:flex;gap:16px;align-items:stretch}
+.kpi{flex:1 0 0;min-width:1px;background:var(--card,#fff);border:1px solid var(--border,#eaecf0);border-radius:8px;padding:16px;display:flex;gap:12px;align-items:flex-start;overflow:hidden}
+.kpi .ava{width:48px;height:48px;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .kpi .ava img{width:20px;height:20px}
 .kpi.k1 .ava{background:#f4edf7}
 .kpi.k2 .ava{background:#e6f1fb}
 .kpi.k3 .ava{background:#eaecf0}
 .kpi.k4 .ava{background:#fef3f2}
-.kpi .txt{flex:1 0 0;min-width:1px;display:flex;flex-direction:column;align-items:flex-start}
-.kpi .lbl{font-size:14px;font-weight:500;color:#475467;line-height:20px;width:100%}
-.kpi .val{font-size:26px;font-weight:600;color:#000;line-height:28px;width:100%}
+.kpi .txt{flex:1 0 0;min-width:1px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.kpi .lbl{font-size:14px;font-weight:500;color:var(--muted-foreground,#475467);line-height:20px;width:100%}
+.kpi .val{font-size:30px;font-weight:700;color:var(--foreground,#101828);line-height:36px;width:100%}
 
 /* ══════════ BOARD ══════════
    Outer stroke of the board frame (node 6839:11151): 1px #d0d5dd, 4px radius.

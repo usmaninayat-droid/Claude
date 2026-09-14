@@ -17,6 +17,12 @@
             "field": "trainings",
             "search": true,
             "emptyText": "No trainings recorded for this workforce member.",
+            "summaryTiles": [
+              { "id": "kpi_trn_valid", "label": "Valid", "valueField": "trnValid", "icon": "shield-tick", "tone": "success" },
+              { "id": "kpi_trn_expiring", "label": "Expiring", "valueField": "trnExpiring", "icon": "clock", "tone": "warning" },
+              { "id": "kpi_trn_expired", "label": "Expired", "valueField": "trnExpired", "icon": "alert-triangle", "tone": "warning" },
+              { "id": "kpi_trn_blocked", "label": "Blocked", "valueField": "trnBlocked", "icon": "x-circle", "tone": "danger" }
+            ],
             "columns": [
               { "key": "trainingCode", "label": "CODE", "type": "text" },
               { "key": "trainingName", "label": "TRAINING", "type": "text" },
@@ -33,6 +39,52 @@
               "Expired": "#F17B2B",
               "Blocked": "#F04438"
             }
+          }
+        }
+      }
+    },
+    {
+      "op": "addTab",
+      "opId": "op_iwmp_workforce_attendance_tab",
+      "after": "tab_wf_trainings",
+      "tab": {
+        "id": "tab_wf_attendance",
+        "key": "attendance_log",
+        "title": "Attendance Log",
+        "order": 4,
+        "component": {
+          "name": "OverviewWidgets",
+          "props": {
+            "widgets": [
+              {
+                "type": "filterBar",
+                "filters": [
+                  { "kind": "dateRange", "icon": "calendar", "label": "Date Range", "value": "Last 30 Days" },
+                  { "kind": "select", "icon": "filter-lines", "label": "Source", "value": "All" }
+                ]
+              },
+              {
+                "type": "barChart",
+                "title": "Working Hours",
+                "icon": "bar-chart-01",
+                "seriesField": "workingHours",
+                "yAxisTitle": "Hours",
+                "color": "#93C5FD"
+              },
+              {
+                "type": "recordTable",
+                "field": "attendanceLog",
+                "columns": [
+                  { "key": "date", "label": "DATE", "type": "text" },
+                  { "key": "clockIn", "label": "CLOCK IN", "type": "text" },
+                  { "key": "clockOut", "label": "CLOCK-OUT", "type": "text" },
+                  { "key": "clockInLocation", "label": "CLOCK-IN LOCATION", "type": "text" },
+                  { "key": "clockOutLocation", "label": "CLOCK-OUT LOCATION", "type": "text" },
+                  { "key": "duration", "label": "DURATION", "type": "text" },
+                  { "key": "source", "label": "SOURCE", "type": "text" }
+                ]
+              }
+            ]
           }
         }
       }

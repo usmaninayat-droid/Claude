@@ -4,6 +4,7 @@ import { ChevronDown, getIcon, TrendingUp } from '@fams/ui-kit/icons'
 import type { EntityRecord } from '@fams/v5-composer'
 import { cn } from '../lib/cn'
 import { DailyTimelineWidget } from './DailyTimelineWidget'
+import { RecordTable } from './RecordTable'
 import type { LocationMapPin, LocationMapPolygon } from '../map/LocationMap'
 import {
   BarChartWidget,
@@ -443,6 +444,24 @@ function renderWidget(
       return <TrendChartWidget widget={widget} record={record} />
     case 'locationMap':
       return <LocationMapWidget widget={widget} record={record} handlers={props} />
+    case 'recordTable': {
+      const table = (
+        <RecordTable
+          field={widget.field}
+          columns={widget.columns}
+          record={record}
+          search={widget.search}
+          statusColors={widget.statusColors}
+        />
+      )
+      return widget.title ? (
+        <ChartCard title={widget.title} icon={resolveOptionalIcon(widget.icon)} bodyPadding="md">
+          {table}
+        </ChartCard>
+      ) : (
+        table
+      )
+    }
     default:
       return null
   }

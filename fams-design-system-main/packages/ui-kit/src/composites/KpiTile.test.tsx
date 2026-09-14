@@ -124,10 +124,17 @@ describe('KpiTile', () => {
     expect(label).not.toHaveClass('uppercase')
   })
 
-  it('renders a square, larger icon chip in the "stat" layout', () => {
+  it('renders a fully-rounded, larger icon chip in the "stat" layout', () => {
     const { container } = render(<KpiTile label="Active Tickets" value="18" icon={Truck} layout="stat" />)
     const badge = container.querySelector('[data-slot="icon-badge"]')
-    expect(badge).toHaveClass('rounded-md', 'size-12')
+    expect(badge).toHaveClass('rounded-full', 'size-12')
+  })
+
+  it('honors an explicit iconShape override', () => {
+    const { container } = render(
+      <KpiTile label="Active Tickets" value="18" icon={Truck} layout="stat" iconShape="square" />,
+    )
+    expect(container.querySelector('[data-slot="icon-badge"]')).toHaveClass('rounded-md')
   })
 
   it('applies a raw iconColor/iconBg escape hatch over the tone classes', () => {
@@ -186,23 +193,15 @@ describe('KpiTile', () => {
     expect(container.querySelector('[data-slot="kpi-tile-target"]')).toBeNull()
   })
 
-  describe('tone tints the value ink, not only the icon badge', () => {
-    it('inks the value from the tone using the dark ramp step', () => {
-      render(<KpiTile label="Fuel theft events" value="22" tone="danger" icon={Truck} />)
-      expect(screen.getByText('22').className).toContain('text-error-700')
-    })
-
-    it.each([
-      ['primary', 'text-primary'],
-      ['success', 'text-success-scale-700'],
-      ['warning', 'text-warning-scale-700'],
-      ['info', 'text-info-scale-700'],
-      ['neutral', 'text-foreground'],
-    ] as const)('tone %s inks the value %s', (tone, expected) => {
-      const { unmount } = render(<KpiTile label="L" value="9" tone={tone} />)
-      expect(screen.getByText('9').className).toContain(expected)
-      unmount()
-    })
+  describe('tone tints the icon badge only — the value is always dark', () => {
+    it.each(['primary', 'success', 'warning', 'danger', 'info', 'neutral'] as const)(
+      'tone %s leaves the value in dark foreground',
+      (tone) => {
+        const { unmount } = render(<KpiTile label="L" value="9" tone={tone} icon={Truck} />)
+        expect(screen.getByText('9').className).toContain('text-foreground')
+        unmount()
+      },
+    )
 
     it('leaves an untinted tile neutral — an icon alone must not acquire a hue', () => {
       render(<KpiTile label="Total assets" value="156" icon={Truck} />)

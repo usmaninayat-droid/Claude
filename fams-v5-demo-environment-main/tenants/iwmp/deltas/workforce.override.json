@@ -1,9 +1,0 @@
-{
-  "module": "workforce",
-  "notes": [
-    "emitted ops do not reproduce the edited resolved file exactly — the change is not expressible with the supported op set."
-  ],
-  "proposedOps": [],
-  "reason": "Capture could not express the edit to resolved/iwmp/workforce.blueprint.json as minimal typed ops, so it was merged as flagged debt (capture failure ladder ②, decision #17). Resolve it by deleting this record and canonicalizing the edit into typed deltas, then re-resolving.",
-  "resolvedHash": "sha256:4d0d374a8f8df5a67c8257e3d9dbdb2b9cb148424050caa37b1b4fd74cf5eb39"
-}

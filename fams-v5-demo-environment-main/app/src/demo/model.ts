@@ -105,6 +105,16 @@ const ADMIN_PRIVILEGES = [
   // register the roster's eligibility rules read from). Same gotcha again —
   // licensed in tenant.json but dropped from bootstrap without `.view` here.
   'training.view', 'training.create', 'training.update', 'training.delete',
+  // Attendance (iwmp tenant-native entity module: the biometric attendance
+  // reconciliation register, RST-ATT). Same gotcha as the notes above —
+  // licensed in tenant.json but dropped from bootstrap without `.view` here.
+  'attendance.view', 'attendance.create', 'attendance.update', 'attendance.delete',
+  // Deployment Dashboard (iwmp tenant-native `kind: 'dashboard'` module — the
+  // manpower deployment-insight board, RST-DSH). Same gotcha as the notes
+  // above: a dashboard is licensed in tenant.json but still privilege-gated,
+  // so without `.view` here `buildBootstrapModules` drops it from the
+  // bootstrap payload (no launchpad tile, no route registers).
+  'deployment-dashboard.view',
   'settings.view',
   // CRM app (showcase wave 2): pipelines Leads/Deals + entities Contact
   // Person/Company/Product-Service, composed alongside the reused Workforce
@@ -139,6 +149,9 @@ export const ROLE_PRIVILEGES: RoleMap = {
     'shift-rostering.view', 'shift-rostering.update',
     // Reads the training register (roster eligibility) but does not author it.
     'training.view',
+    // Reads the attendance reconciliation register + can act on it (reliever
+    // dispatch on absentees, ATT-03), but does not administer the module.
+    'attendance.view', 'attendance.update',
   ],
   // Field Inspector (2026-09-03 merge): scoped to the dedicated "Inspector"
   // application only — it holds no privilege for any other uccp module, so

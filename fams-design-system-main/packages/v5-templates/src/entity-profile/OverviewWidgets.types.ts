@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import type { IconBadgeTone } from '@fams/ui-kit'
+import type { RecordTableColumn } from './RecordTable'
 
 /**
  * The `OverviewWidgets` CONFIG CONTRACT. [tier-2]
@@ -441,6 +442,31 @@ export interface OverviewDailyTimelineWidget extends OverviewWidgetBase {
   strings?: Partial<OverviewDailyTimelineStrings>
 }
 
+/**
+ * A titled card wrapping a full `RecordTable` over one of the record's own
+ * array fields — the composing escape hatch for a tab that needs a chart (or
+ * KPIs) AND a clean data table together, which no single other widget covers.
+ * The `columns` shape is `RecordTable`'s own column contract; `field` indirects
+ * into `record[field]` exactly like every other widget here.
+ */
+export interface OverviewRecordTableWidget extends OverviewWidgetBase {
+  type: 'recordTable'
+  /** Card header title. Omit for a bare table with no card chrome. */
+  title?: ReactNode
+  /** Named glyph for the card header. */
+  icon?: string
+  /** `record[field]` — the row array the table renders. */
+  field: string
+  /** `RecordTable` column definitions (same contract as the `RecordTable` tab component). */
+  columns: RecordTableColumn[]
+  /** Shows the table's client-side search box. Default `false`. */
+  search?: boolean
+  /** `statusPill` column color lookup, keyed by the raw cell value. */
+  statusColors?: Record<string, string>
+  /** Shown instead of the table when the field is empty/absent. */
+  emptyText?: ReactNode
+}
+
 export type OverviewWidget =
   | OverviewFilterBarWidget
   | OverviewAlertBannerWidget
@@ -454,6 +480,7 @@ export type OverviewWidget =
   | OverviewLevelSummaryWidget
   | OverviewLineChartWidget
   | OverviewDailyTimelineWidget
+  | OverviewRecordTableWidget
 
 /**
  * `planBanner`'s original standalone type name, kept as an alias so existing

@@ -39,6 +39,7 @@ import {
   ReadStatusPill,
   ReadSignedNumber,
   ReadProgressMeter,
+  ReadDispatchAction,
   ReadFallback,
   resolveFieldIcon,
 } from './renderers'
@@ -415,6 +416,8 @@ const componentRegistry = new Map<string, ReadRenderer>([
   ['StatusPill', ReadStatusPill],
   /** The `status` column's own authored placement name — see `ReadStatusList`'s doc above. */
   ['StatusList', ReadStatusList],
+  /** Conditional per-row action button (attendance's "Dispatch Reliever" on Absent rows, ATT-03) — see `ReadDispatchAction`. */
+  ['DispatchAction', ReadDispatchAction],
   /** Compact icon+count event pairs (live-monitoring's "Activity Overview" column) — see `ReadActivityOverview`. */
   ['ActivityOverviewView', ReadActivityOverview],
   /** Number presented by its own SIGN — per-band unit word, suffix and semantic tone (a bare `-10` vs `172` is otherwise typographically identical) — see `ReadSignedNumber`. */

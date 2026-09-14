@@ -53,22 +53,6 @@ export type KpiTileTrend = Pick<TrendIndicatorProps, 'direction' | 'value' | 'no
  */
 export type KpiTileLayout = 'default' | 'stat'
 
-/**
- * Tone → VALUE ink. The dark ramp step per family, so a tinted number clears
- * 4.5:1 on the card surface: `--color-primary` 4.6:1, `--color-success-scale-700`
- * 4.99:1, `--color-warning-scale-700` 5.9:1, `--color-error-700` 6.64:1,
- * `--color-info-scale-700` 9.0:1. Static lookup (not a template literal) so
- * Tailwind's compiler sees every class name at build time.
- */
-const VALUE_INK_CLASSES: Record<IconBadgeTone, string> = {
-  primary: 'text-primary',
-  success: 'text-success-scale-700',
-  warning: 'text-warning-scale-700',
-  danger: 'text-error-700',
-  info: 'text-info-scale-700',
-  neutral: 'text-foreground',
-}
-
 export interface KpiTileProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {
   /** Label above the value (`'default'` layout) or below it (`'stat'` layout). */
   label: ReactNode
@@ -100,18 +84,13 @@ export interface KpiTileProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onCl
   /** Leading icon, rendered in an `IconBadge`. Omit for a tile with no icon. */
   icon?: LucideIcon
   /**
-   * Semantic tint of the tile. Drives BOTH the `IconBadge` and the VALUE ink.
+   * Semantic tint of the tile. Drives the `IconBadge` ONLY — the value number
+   * always renders in the default dark `text-foreground`, so a KPI reads the
+   * same everywhere and the tone shows through the icon chip.
    *
-   * Tinting the value is the point: a tile whose tone says "this number is the
-   * bad one" while the number itself renders in the same near-black as every
-   * other tile has moved the meaning into a 20px chip the eye never reaches.
-   * The value inks use the DARK step of each ramp (`*-scale-700`/`error-700`,
-   * ≥4.5:1 on the card surface) — the same contrast fix `TrendIndicator`
-   * carries — never the mid step, which fails on white at this size.
-   *
-   * OMIT IT and the value stays neutral `text-foreground` and the icon badge
-   * falls back to `'primary'`: an untinted tile must not acquire a hue just by
-   * having an icon. Set `'neutral'` to state neutrality explicitly.
+   * OMIT IT and the icon badge falls back to `'primary'`: an untinted tile must
+   * not acquire a hue just by having an icon. Set `'neutral'` to state
+   * neutrality explicitly.
    */
   tone?: IconBadgeTone
   /**
@@ -180,8 +159,11 @@ export const KpiTile = forwardRef<HTMLDivElement, KpiTileProps>(
     }
 
     const isStat = layout === 'stat'
-    // Absent tone → neutral value ink + the historical `'primary'` badge.
-    const valueInk = tone ? VALUE_INK_CLASSES[tone] : 'text-foreground'
+    // The value ALWAYS reads in the default dark foreground — `tone` tints the
+    // icon badge only, never the number. (Previously the value used the tone's
+    // dark ramp step via `VALUE_INK_CLASSES`; standardized to dark ink so a
+    // KPI number reads the same everywhere regardless of tone.)
+    const valueInk = 'text-foreground'
     // An inline `style` color/background always wins over the tone class's
     // `bg-*`/`text-*` utilities regardless of specificity (same "color always
     // wins" precedent as `StatusPill`) — so overriding only needs the style,
@@ -293,7 +275,7 @@ export const KpiTile = forwardRef<HTMLDivElement, KpiTileProps>(
           <IconBadge
             icon={Icon}
             tone={tone ?? 'primary'}
-            shape={iconShape ?? (isStat ? 'square' : undefined)}
+            shape={iconShape ?? 'circle'}
             size={isStat ? 'lg' : 'md'}
             style={iconStyle}
           />

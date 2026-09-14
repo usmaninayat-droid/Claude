@@ -21,14 +21,18 @@ export interface ShiftRosteringDeps {
   actor?: string
 }
 
-const DEV_ORIGIN = 'http://localhost:6395'
 const SCREEN_PATH = '/screens/shift-rostering/shift-rostering.html'
 
+// Same-origin in BOTH dev and prod: the host app serves this static screen at
+// `/screens/shift-rostering/...` — in dev via the `serve-roster-screen` Vite
+// middleware (see app/vite.config.ts), in prod from the built assets. This
+// removes the old dependency on a SECOND dev server (:6395), which was the
+// cause of the roster "failing to load" whenever that server wasn't running.
 function iframeSrc(): string {
   const q = new URLSearchParams({ embed: '1', tenant: 'iwmp' })
   const theme = document.documentElement.getAttribute('data-theme')
   if (theme) q.set('theme', theme)
-  return import.meta.env.DEV ? `${DEV_ORIGIN}${SCREEN_PATH}?${q}` : `${SCREEN_PATH}?${q}`
+  return `${SCREEN_PATH}?${q}`
 }
 
 function ShiftRosteringPage(_deps: ShiftRosteringDeps) {

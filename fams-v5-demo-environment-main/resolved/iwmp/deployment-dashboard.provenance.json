@@ -1,0 +1,104 @@
+{
+  "base": "tenant-native",
+  "module": "deployment-dashboard",
+  "nodes": {
+    "3TPU_04_BKW_014": {
+      "source": "tenant-native"
+    },
+    "BWC_04_COM_002": {
+      "source": "tenant-native"
+    },
+    "CCV_04_COM_006": {
+      "source": "tenant-native"
+    },
+    "HLC_04_MSW_003": {
+      "source": "tenant-native"
+    },
+    "RL_04_MSW_017": {
+      "source": "tenant-native"
+    },
+    "SL_04_MSW_009": {
+      "source": "tenant-native"
+    },
+    "TC15_04_BKW_021": {
+      "source": "tenant-native"
+    },
+    "TW_04_08": {
+      "source": "tenant-native"
+    },
+    "deployed": {
+      "source": "tenant-native"
+    },
+    "deployment-dashboard": {
+      "source": "tenant-native"
+    },
+    "kpi-drivers": {
+      "source": "tenant-native"
+    },
+    "kpi-helpers": {
+      "source": "tenant-native"
+    },
+    "kpi-operational": {
+      "source": "tenant-native"
+    },
+    "kpi-pending-rostering": {
+      "source": "tenant-native"
+    },
+    "kpi-total-manpower": {
+      "source": "tenant-native"
+    },
+    "kpi-training-risk": {
+      "source": "tenant-native"
+    },
+    "onboard": {
+      "source": "tenant-native"
+    },
+    "pill-project": {
+      "source": "tenant-native"
+    },
+    "pill-shift": {
+      "source": "tenant-native"
+    },
+    "pill-timeframe": {
+      "source": "tenant-native"
+    },
+    "planned": {
+      "source": "tenant-native"
+    },
+    "reported": {
+      "source": "tenant-native"
+    },
+    "requirement": {
+      "source": "tenant-native"
+    },
+    "training": {
+      "source": "tenant-native"
+    },
+    "view-deployment": {
+      "source": "tenant-native"
+    },
+    "w-by-lot": {
+      "source": "tenant-native"
+    },
+    "w-by-project": {
+      "source": "tenant-native"
+    },
+    "w-by-service-line": {
+      "source": "tenant-native"
+    },
+    "w-daily-deployment": {
+      "source": "tenant-native"
+    },
+    "w-duty-mix": {
+      "source": "tenant-native"
+    },
+    "w-headcount": {
+      "source": "tenant-native"
+    },
+    "w-requirement-vs-deployment": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "iwmp"
+}

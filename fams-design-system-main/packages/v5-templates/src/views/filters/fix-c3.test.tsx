@@ -158,6 +158,7 @@ function Harness({ facet }: { facet: FilterFacet }) {
         search=""
         onSearchChange={() => {}}
         session={session}
+        filtersPanel={{ title: 'All Filters' }}
         resolveExpandRows={() => tasks}
         resolveEntityLabel={resolveEntityLabel}
       />

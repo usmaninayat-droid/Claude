@@ -1,0 +1,74 @@
+{
+  "base": "tenant-native",
+  "module": "attendance",
+  "nodes": {
+    "fld_att_action": {
+      "source": "tenant-native"
+    },
+    "fld_att_clockin": {
+      "source": "tenant-native"
+    },
+    "fld_att_clockout": {
+      "source": "tenant-native"
+    },
+    "fld_att_date": {
+      "source": "tenant-native"
+    },
+    "fld_att_duty": {
+      "source": "tenant-native"
+    },
+    "fld_att_employee": {
+      "source": "tenant-native"
+    },
+    "fld_att_lot": {
+      "source": "tenant-native"
+    },
+    "fld_att_shift": {
+      "source": "tenant-native"
+    },
+    "fld_att_source": {
+      "source": "tenant-native"
+    },
+    "fld_att_status": {
+      "source": "tenant-native"
+    },
+    "flt_att_lot": {
+      "source": "tenant-native"
+    },
+    "flt_att_shift": {
+      "source": "tenant-native"
+    },
+    "flt_att_status": {
+      "source": "tenant-native"
+    },
+    "kpi_att_absent": {
+      "source": "tenant-native"
+    },
+    "kpi_att_late": {
+      "source": "tenant-native"
+    },
+    "kpi_att_present": {
+      "source": "tenant-native"
+    },
+    "kpi_att_reported": {
+      "source": "tenant-native"
+    },
+    "sec_att_punch": {
+      "source": "tenant-native"
+    },
+    "sec_att_reconciliation": {
+      "source": "tenant-native"
+    },
+    "sts_att_absent": {
+      "source": "tenant-native"
+    },
+    "sts_att_late": {
+      "source": "tenant-native"
+    },
+    "sts_att_present": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "iwmp"
+}

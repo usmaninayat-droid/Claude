@@ -24,10 +24,12 @@
 | fams | vehicle-behaviour | 0 | — | — |
 | fams | workforce | 0 | — | — |
 | iwmp | asset | 0 | — | — |
+| iwmp | attendance | 0 | — | — |
+| iwmp | deployment-dashboard | 0 | — | — |
 | iwmp | shift-rostering | 0 | — | override-flagged |
 | iwmp | ticketing | 6 | — | — |
 | iwmp | training | 0 | — | — |
-| iwmp | workforce | 1 | override (flagged debt) | — |
+| iwmp | workforce | 2 | — | — |
 | uccp | inbox | 0 | — | — |
 | uccp | incidents | 0 | — | — |
 | uccp | live-monitoring | 0 | — | — |
@@ -36,9 +38,7 @@
 
 ## Outstanding capture proposals
 
-| Tenant | Module | Kind | File |
-| --- | --- | --- | --- |
-| iwmp | workforce | override (merged as flagged debt) | `tenants/iwmp/deltas/workforce.override.json` |
+None. Every locked-in edit has been canonicalized to typed deltas.
 
 ## Override-flagged modules
 

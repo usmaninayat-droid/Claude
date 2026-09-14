@@ -1,0 +1,652 @@
+{
+  "description": "Manpower deployment insight — headcount, duty mix, deployment against requirement and the daily deployment sheet (RST-DSH).",
+  "displayName": {
+    "plural": "Deployment Dashboard",
+    "singular": "Deployment Dashboard"
+  },
+  "filterPills": [
+    {
+      "defaultValue": "today",
+      "dimension": "timeframe",
+      "id": "pill-timeframe",
+      "label": "Date",
+      "options": [
+        {
+          "label": "Today",
+          "value": "today"
+        },
+        {
+          "label": "Last 7 days",
+          "value": "last-7-days"
+        },
+        {
+          "label": "Last 30 days",
+          "value": "last-30-days"
+        }
+      ],
+      "type": "time-range"
+    },
+    {
+      "dimension": "project",
+      "id": "pill-project",
+      "label": "Project",
+      "options": [
+        {
+          "label": "MSW",
+          "value": "msw"
+        },
+        {
+          "label": "Commercial",
+          "value": "commercial"
+        }
+      ],
+      "type": "single-select"
+    },
+    {
+      "dimension": "shift",
+      "id": "pill-shift",
+      "label": "Shift",
+      "options": [
+        {
+          "label": "Day",
+          "value": "day"
+        },
+        {
+          "label": "Night",
+          "value": "night"
+        },
+        {
+          "label": "Afternoon",
+          "value": "afn"
+        },
+        {
+          "label": "Evening",
+          "value": "evening"
+        },
+        {
+          "label": "Mid",
+          "value": "mid"
+        }
+      ],
+      "type": "single-select"
+    }
+  ],
+  "icon": "gauge",
+  "id": "deployment-dashboard",
+  "kind": "dashboard",
+  "kpiStrip": [
+    {
+      "dataSource": {
+        "kind": "static",
+        "value": 632
+      },
+      "format": "integer",
+      "icon": "users",
+      "id": "kpi-total-manpower",
+      "label": "Total Manpower",
+      "tone": "primary",
+      "type": "stat"
+    },
+    {
+      "dataSource": {
+        "kind": "static",
+        "value": 232
+      },
+      "format": "integer",
+      "icon": "truck",
+      "id": "kpi-drivers",
+      "label": "Drivers",
+      "tone": "info",
+      "type": "stat",
+      "valueSuffix": "HDD 168 · LDD 64"
+    },
+    {
+      "dataSource": {
+        "kind": "static",
+        "value": 400
+      },
+      "format": "integer",
+      "icon": "user",
+      "id": "kpi-helpers",
+      "label": "Helpers",
+      "tone": "info",
+      "type": "stat"
+    },
+    {
+      "dataSource": {
+        "kind": "static",
+        "value": 618
+      },
+      "format": "integer",
+      "icon": "hard-hat",
+      "id": "kpi-operational",
+      "label": "Operational Staff",
+      "tone": "primary",
+      "type": "stat"
+    },
+    {
+      "dataSource": {
+        "kind": "static",
+        "value": 12,
+        "variants": [
+          {
+            "value": 34,
+            "when": {
+              "timeframe": "last-7-days"
+            }
+          },
+          {
+            "value": 61,
+            "when": {
+              "timeframe": "last-30-days"
+            }
+          }
+        ]
+      },
+      "format": "integer",
+      "icon": "calendar",
+      "id": "kpi-pending-rostering",
+      "label": "Pending Rostering",
+      "tone": "warning",
+      "type": "stat"
+    },
+    {
+      "dataSource": {
+        "kind": "static",
+        "value": 27
+      },
+      "format": "integer",
+      "icon": "alert-triangle",
+      "id": "kpi-training-risk",
+      "label": "Training Pending & Expired",
+      "tone": "danger",
+      "type": "stat",
+      "valueSuffix": "8 blocked"
+    }
+  ],
+  "views": [
+    {
+      "id": "view-deployment",
+      "isDefault": true,
+      "label": "Deployment"
+    }
+  ],
+  "widgetGrid": [
+    {
+      "dataSource": {
+        "ariaLabel": "Headcount breakdown — total, planned, reported, absenteeism, weekly off, vacation and available head counts for the selected date.",
+        "axis": {
+          "x": {
+            "min": 0,
+            "title": "Employees"
+          }
+        },
+        "categories": [
+          "Total",
+          "Planned",
+          "Reported",
+          "Absenteeism",
+          "Weekly Off",
+          "Vacation",
+          "Available"
+        ],
+        "orientation": "horizontal",
+        "series": [
+          {
+            "colorToken": "var(--color-primary)",
+            "data": [
+              618,
+              512,
+              486,
+              26,
+              74,
+              32,
+              26
+            ],
+            "label": "Head Count",
+            "unit": "staff"
+          }
+        ],
+        "showValues": true,
+        "subtitle": "Attendance-machine truth for the selected date"
+      },
+      "id": "w-headcount",
+      "span": 6,
+      "title": "Headcount Breakdown",
+      "type": "bar"
+    },
+    {
+      "dataSource": {
+        "ariaLabel": "Duty mix for today across route, reliever, weekly off, vacation, emergency leave, on-call, standby and extra assignment duties.",
+        "centerLabel": {
+          "caption": "Duties",
+          "value": "671"
+        },
+        "legendOrientation": "vertical",
+        "slices": [
+          {
+            "colorIndex": 1,
+            "label": "Route (RT)",
+            "value": 486
+          },
+          {
+            "colorIndex": 2,
+            "label": "Reliever (RL)",
+            "value": 29
+          },
+          {
+            "colorIndex": 3,
+            "label": "Weekly Off (WO)",
+            "value": 74
+          },
+          {
+            "colorIndex": 4,
+            "label": "Annual Vacation (AV)",
+            "value": 22
+          },
+          {
+            "colorIndex": 5,
+            "label": "Emergency Leave (EL)",
+            "value": 10
+          },
+          {
+            "colorIndex": 1,
+            "label": "On Call (OC)",
+            "value": 18
+          },
+          {
+            "colorIndex": 2,
+            "label": "Standby / OJT (SB)",
+            "value": 12
+          },
+          {
+            "colorIndex": 3,
+            "label": "Extra Assignment (EX)",
+            "value": 20
+          }
+        ]
+      },
+      "id": "w-duty-mix",
+      "span": 6,
+      "title": "Duty Mix (Today)",
+      "type": "donut"
+    },
+    {
+      "dataSource": {
+        "ariaLabel": "Deployment by service line — planned versus reported head count per service line.",
+        "axis": {
+          "y": {
+            "min": 0,
+            "title": "Employees"
+          }
+        },
+        "categories": [
+          "MSW",
+          "Bulky",
+          "Reliever",
+          "WCP",
+          "Truck Washing",
+          "DSL",
+          "Bin Washer"
+        ],
+        "legendPlacement": "bottom",
+        "series": [
+          {
+            "colorIndex": 1,
+            "data": [
+              312,
+              44,
+              29,
+              26,
+              22,
+              18,
+              14
+            ],
+            "id": "planned",
+            "label": "Planned"
+          },
+          {
+            "colorIndex": 2,
+            "data": [
+              298,
+              41,
+              27,
+              24,
+              21,
+              17,
+              13
+            ],
+            "id": "reported",
+            "label": "Reported"
+          }
+        ],
+        "subtitle": "Planned vs reported (attendance machine)"
+      },
+      "id": "w-by-service-line",
+      "span": 6,
+      "title": "Deployment by Service Line",
+      "type": "bar"
+    },
+    {
+      "dataSource": {
+        "ariaLabel": "Deployment by project — planned versus reported head count for the MSW and Commercial projects.",
+        "axis": {
+          "y": {
+            "min": 0,
+            "title": "Employees"
+          }
+        },
+        "categories": [
+          "MSW",
+          "Commercial"
+        ],
+        "legendPlacement": "bottom",
+        "series": [
+          {
+            "colorIndex": 1,
+            "data": [
+              401,
+              111
+            ],
+            "id": "planned",
+            "label": "Planned"
+          },
+          {
+            "colorIndex": 2,
+            "data": [
+              383,
+              103
+            ],
+            "id": "reported",
+            "label": "Reported"
+          }
+        ],
+        "subtitle": "Planned vs reported (attendance machine)"
+      },
+      "id": "w-by-project",
+      "span": 6,
+      "title": "Deployment by Project",
+      "type": "bar"
+    },
+    {
+      "dataSource": {
+        "ariaLabel": "Deployment by LOT — planned versus reported head count per LOT.",
+        "axis": {
+          "y": {
+            "min": 0,
+            "title": "Employees"
+          }
+        },
+        "categories": [
+          "LOT 1",
+          "LOT 2",
+          "LOT 3",
+          "LOT 4"
+        ],
+        "legendPlacement": "bottom",
+        "series": [
+          {
+            "colorIndex": 1,
+            "data": [
+              96,
+              142,
+              188,
+              86
+            ],
+            "id": "planned",
+            "label": "Planned"
+          },
+          {
+            "colorIndex": 2,
+            "data": [
+              92,
+              136,
+              180,
+              78
+            ],
+            "id": "reported",
+            "label": "Reported"
+          }
+        ],
+        "subtitle": "Planned vs reported (attendance machine)"
+      },
+      "id": "w-by-lot",
+      "span": 6,
+      "title": "Deployment by LOT",
+      "type": "bar"
+    },
+    {
+      "dataSource": {
+        "ariaLabel": "Requirement versus onboard, deployed and under-training counts per designation.",
+        "axis": {
+          "y": {
+            "min": 0,
+            "title": "Employees"
+          }
+        },
+        "categories": [
+          "HDD Driver",
+          "LDD Driver",
+          "Helper"
+        ],
+        "legendPlacement": "bottom",
+        "series": [
+          {
+            "colorIndex": 1,
+            "data": [
+              180,
+              70,
+              420
+            ],
+            "id": "requirement",
+            "label": "Requirement"
+          },
+          {
+            "colorIndex": 2,
+            "data": [
+              168,
+              64,
+              400
+            ],
+            "id": "onboard",
+            "label": "Onboard"
+          },
+          {
+            "colorIndex": 3,
+            "data": [
+              152,
+              58,
+              372
+            ],
+            "id": "deployed",
+            "label": "Deployed"
+          },
+          {
+            "colorIndex": 4,
+            "data": [
+              9,
+              4,
+              14
+            ],
+            "id": "training",
+            "label": "Under Training"
+          }
+        ],
+        "subtitle": "By designation, with under-training count"
+      },
+      "id": "w-requirement-vs-deployment",
+      "span": 6,
+      "title": "Requirement vs Onboard vs Deployed",
+      "type": "bar"
+    },
+    {
+      "dataSource": {
+        "ariaLabel": "Daily deployment sheet — route, vehicle category, shift, district, driver, helper crew and punch status.",
+        "columns": [
+          {
+            "key": "vehicle",
+            "label": "Vehicle"
+          },
+          {
+            "key": "shift",
+            "label": "Shift"
+          },
+          {
+            "key": "district",
+            "label": "District"
+          },
+          {
+            "key": "driver",
+            "label": "Driver"
+          },
+          {
+            "key": "helpers",
+            "label": "Helpers"
+          },
+          {
+            "key": "status",
+            "label": "Punch Status"
+          }
+        ],
+        "entityLabel": "Route",
+        "rows": [
+          {
+            "cells": {
+              "district": "Al Khalidiyah",
+              "driver": "Tariq Mehmood",
+              "helpers": "2 / 2",
+              "shift": "Day",
+              "status": "Present",
+              "vehicle": "Rear End Loader"
+            },
+            "dimensions": {
+              "project": "msw",
+              "shift": "day"
+            },
+            "id": "RL_04_MSW_017",
+            "primary": "RL_04_MSW_017"
+          },
+          {
+            "cells": {
+              "district": "Al Bateen",
+              "driver": "Ahmed Al Sayed",
+              "helpers": "1 / 1",
+              "shift": "Day",
+              "status": "Present",
+              "vehicle": "Side Loader"
+            },
+            "dimensions": {
+              "project": "msw",
+              "shift": "day"
+            },
+            "id": "SL_04_MSW_009",
+            "primary": "SL_04_MSW_009"
+          },
+          {
+            "cells": {
+              "district": "Mussafah",
+              "driver": "Arun Pillai",
+              "helpers": "1 / 1",
+              "shift": "Night",
+              "status": "Late",
+              "vehicle": "Hook Loader"
+            },
+            "dimensions": {
+              "project": "msw",
+              "shift": "night"
+            },
+            "id": "HLC_04_MSW_003",
+            "primary": "HLC_04_MSW_003"
+          },
+          {
+            "cells": {
+              "district": "Al Mushrif",
+              "driver": "Bilal Ahmed",
+              "helpers": "2 / 2",
+              "shift": "Day",
+              "status": "Present",
+              "vehicle": "TC15"
+            },
+            "dimensions": {
+              "project": "msw",
+              "shift": "day"
+            },
+            "id": "TC15_04_BKW_021",
+            "primary": "TC15_04_BKW_021"
+          },
+          {
+            "cells": {
+              "district": "Corniche",
+              "driver": "Salim Haddad",
+              "helpers": "0 / 1",
+              "shift": "Evening",
+              "status": "Absent",
+              "vehicle": "Compactor Container"
+            },
+            "dimensions": {
+              "project": "commercial",
+              "shift": "evening"
+            },
+            "id": "CCV_04_COM_006",
+            "primary": "CCV_04_COM_006"
+          },
+          {
+            "cells": {
+              "district": "Khalifa City",
+              "driver": "Deepak Sharma",
+              "helpers": "1 / 1",
+              "shift": "Day",
+              "status": "Present",
+              "vehicle": "Bin Washer"
+            },
+            "dimensions": {
+              "project": "commercial",
+              "shift": "day"
+            },
+            "id": "BWC_04_COM_002",
+            "primary": "BWC_04_COM_002"
+          },
+          {
+            "cells": {
+              "district": "ICAD",
+              "driver": "Ganesh Poudel",
+              "helpers": "0 / 0",
+              "shift": "Mid",
+              "status": "Present",
+              "vehicle": "Truck Wash Bay"
+            },
+            "dimensions": {
+              "project": "commercial",
+              "shift": "mid"
+            },
+            "id": "TW_04_08",
+            "primary": "TW_04_08"
+          },
+          {
+            "cells": {
+              "district": "Al Wathba",
+              "driver": "Imran Sheikh",
+              "helpers": "2 / 2",
+              "shift": "Afternoon",
+              "status": "Present",
+              "vehicle": "3 Ton Pickup"
+            },
+            "dimensions": {
+              "project": "msw",
+              "shift": "afn"
+            },
+            "id": "3TPU_04_BKW_014",
+            "primary": "3TPU_04_BKW_014"
+          }
+        ],
+        "searchPlaceholder": "Search route, driver or district",
+        "searchable": true,
+        "subtitle": "Route, vehicle, crew and punch status for the selected date"
+      },
+      "id": "w-daily-deployment",
+      "span": 12,
+      "title": "Daily Deployment Sheet",
+      "type": "sparkline-table"
+    }
+  ]
+}

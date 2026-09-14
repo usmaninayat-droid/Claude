@@ -59,11 +59,13 @@ import type { FieldType } from '../types'
 import {
   Avatar,
   Badge,
+  Button,
   CountChip,
   IdChip,
   PriorityChip,
   StatusPill,
   TableCell,
+  toast,
   TimeRemainingChip,
   TagChipList,
   VehicleIcon3D,
@@ -562,6 +564,42 @@ export const ReadReference: ReadRenderer = ({ value, record }) => {
         </span>
       ))}
     </span>
+  )
+}
+
+/**
+ * `DispatchAction` — a conditional per-row action button (attendance's
+ * "Dispatch Reliever" on Absent rows, scope RST-ATT ATT-03). Renders the
+ * button ONLY when a gate column on the SAME record equals a value
+ * (`props.gateCol` / `props.gateValue`); otherwise an em dash. Click fires a
+ * confirmation toast — the demo stand-in for the real dispatch write + notify
+ * (a JSON blueprint cannot express the write itself). Generic: the label,
+ * gate and toast copy are all `component.props`, no attendance vocabulary.
+ */
+export const ReadDispatchAction: ReadRenderer = ({ descriptor, record }) => {
+  const p = (descriptor.component?.props ?? {}) as {
+    label?: string
+    gateCol?: string
+    gateValue?: string
+    icon?: string
+    toastTitle?: string
+    toastDescription?: string
+  }
+  const gated = p.gateCol ? record?.[p.gateCol] === p.gateValue : true
+  if (!gated) return <span className="text-body-sm text-muted-foreground">{EMPTY}</span>
+  return (
+    <Button
+      variant="tertiary"
+      size="sm"
+      onClick={(e) => {
+        e.stopPropagation()
+        toast(p.toastTitle ?? p.label ?? 'Done', {
+          description: p.toastDescription,
+        })
+      }}
+    >
+      {p.label ?? 'Action'}
+    </Button>
   )
 }
 

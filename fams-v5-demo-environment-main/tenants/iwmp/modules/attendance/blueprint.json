@@ -1,0 +1,200 @@
+{
+  "$schema": "../../../../node_modules/@fams/v5-composer/schemas/EntityModuleConfig.schema.json",
+  "kind": "entity",
+  "code": "attendance/record",
+  "name": "Attendance",
+  "uidPrefix": "ATT",
+  "views": [
+    "list"
+  ],
+  "systemcolumns": [
+    {
+      "id": "fld_att_employee",
+      "col": "title",
+      "name": "Employee",
+      "type": "SmallText",
+      "required": true
+    },
+    {
+      "id": "fld_att_date",
+      "col": "systemcol1",
+      "name": "Date",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_att_duty",
+      "col": "systemcol2",
+      "name": "Assigned Route",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_att_shift",
+      "col": "systemcol3",
+      "name": "Shift",
+      "type": "SingleSelect",
+      "listValues": ["Day", "Night", "Afternoon", "Evening", "Mid"]
+    },
+    {
+      "id": "fld_att_lot",
+      "col": "systemcol4",
+      "name": "LOT",
+      "type": "SingleSelect",
+      "listValues": ["LOT 1", "LOT 2", "LOT 3", "LOT 4"]
+    },
+    {
+      "id": "fld_att_clockin",
+      "col": "systemcol5",
+      "name": "Clock In",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_att_clockout",
+      "col": "systemcol6",
+      "name": "Clock Out",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_att_source",
+      "col": "systemcol7",
+      "name": "Source",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_att_action",
+      "col": "systemcol8",
+      "name": "Action",
+      "type": "SmallText"
+    }
+  ],
+  "uiConfig": {
+    "icon": "calendar-check-01",
+    "statusList": [
+      { "id": "sts_att_present", "key": "Present", "label": "Present", "color": "#15794f" },
+      { "id": "sts_att_late", "key": "Late", "label": "Late", "color": "#b54708" },
+      { "id": "sts_att_absent", "key": "Absent", "label": "Absent", "color": "#b42318" }
+    ],
+    "listSummary": [
+      { "id": "kpi_att_reported", "label": "Reported", "icon": "check-circle", "tone": "success", "filter": { "col": "status", "in": ["Present", "Late"] } },
+      { "id": "kpi_att_present", "label": "Present", "icon": "check-done-01", "tone": "success", "filter": { "col": "status", "equals": "Present" } },
+      { "id": "kpi_att_late", "label": "Late", "icon": "clock", "tone": "warning", "filter": { "col": "status", "equals": "Late" } },
+      { "id": "kpi_att_absent", "label": "Absent", "icon": "alert-triangle", "tone": "danger", "filter": { "col": "status", "equals": "Absent" } }
+    ],
+    "profile": {
+      "title": {
+        "id": "fld_att_employee",
+        "col": "title",
+        "pos": "left"
+      },
+      "infoTitle": "Attendance Record",
+      "placeholderIcon": "user",
+      "details": [
+        { "id": "fld_att_date", "col": "systemcol1", "pos": "left", "order": 1 },
+        { "id": "fld_att_duty", "col": "systemcol2", "pos": "right", "order": 1 },
+        { "id": "fld_att_shift", "col": "systemcol3", "pos": "left", "order": 2 },
+        { "id": "fld_att_lot", "col": "systemcol4", "pos": "right", "order": 2 },
+        { "id": "fld_att_clockin", "col": "systemcol5", "pos": "left", "order": 3 },
+        { "id": "fld_att_clockout", "col": "systemcol6", "pos": "right", "order": 3 },
+        { "id": "fld_att_source", "col": "systemcol7", "pos": "left", "order": 4 },
+        { "id": "fld_att_status", "col": "status", "pos": "right", "order": 4, "component": { "name": "StatusList" } }
+      ],
+      "sections": [
+        {
+          "id": "sec_att_reconciliation",
+          "name": "Reconciliation",
+          "order": 1,
+          "fields": [
+            { "id": "fld_att_date", "col": "systemcol1", "order": 1 },
+            { "id": "fld_att_duty", "col": "systemcol2", "order": 2 },
+            { "id": "fld_att_shift", "col": "systemcol3", "order": 3 },
+            { "id": "fld_att_lot", "col": "systemcol4", "order": 4 }
+          ]
+        },
+        {
+          "id": "sec_att_punch",
+          "name": "Biometric Punch",
+          "order": 2,
+          "fields": [
+            { "id": "fld_att_clockin", "col": "systemcol5", "order": 1 },
+            { "id": "fld_att_clockout", "col": "systemcol6", "order": 2 },
+            { "id": "fld_att_source", "col": "systemcol7", "order": 3 }
+          ]
+        }
+      ]
+    },
+    "filters": [
+      { "id": "flt_att_status", "col": "status", "name": "Status", "order": 1 },
+      { "id": "flt_att_shift", "col": "systemcol3", "order": 2 },
+      { "id": "flt_att_lot", "col": "systemcol4", "order": 3 }
+    ],
+    "search": {
+      "columns": ["title", "systemcol2"],
+      "placeholder": "Search attendance"
+    },
+    "creation": {
+      "label": "New Record",
+      "layout": "flat",
+      "fieldChrome": "inset-label"
+    },
+    "listRowHeight": "md",
+    "listSort": false
+  },
+  "listcolumns": [
+    {
+      "id": "fld_att_employee",
+      "col": "title",
+      "name": "Employee",
+      "component": { "name": "TextView", "props": { "handleOverflow": true } }
+    },
+    {
+      "id": "fld_att_date",
+      "col": "systemcol1",
+      "component": { "name": "TextView" }
+    },
+    {
+      "id": "fld_att_duty",
+      "col": "systemcol2",
+      "component": { "name": "TextView" }
+    },
+    {
+      "id": "fld_att_shift",
+      "col": "systemcol3",
+      "component": { "name": "TextView" }
+    },
+    {
+      "id": "fld_att_clockin",
+      "col": "systemcol5",
+      "component": { "name": "TextView" }
+    },
+    {
+      "id": "fld_att_clockout",
+      "col": "systemcol6",
+      "component": { "name": "TextView" }
+    },
+    {
+      "id": "fld_att_source",
+      "col": "systemcol7",
+      "component": { "name": "TextView" }
+    },
+    {
+      "id": "fld_att_status",
+      "col": "status",
+      "component": { "name": "StatusList" }
+    },
+    {
+      "id": "fld_att_action",
+      "col": "systemcol8",
+      "name": "Action",
+      "component": {
+        "name": "DispatchAction",
+        "props": {
+          "label": "Dispatch Reliever",
+          "icon": "user-plus-01",
+          "gateCol": "status",
+          "gateValue": "Absent",
+          "toastTitle": "Reliever dispatched",
+          "toastDescription": "A reliever has been assigned to the route and the supervisor has been notified."
+        }
+      }
+    }
+  ]
+}

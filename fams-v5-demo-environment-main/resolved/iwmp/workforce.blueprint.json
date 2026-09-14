@@ -115,14 +115,6 @@
     }
   ],
   "uiConfig": {
-    "listSummary": [
-      { "id": "kpi_wf_total", "label": "Total Manpower", "tone": "primary" },
-      { "id": "kpi_wf_drivers", "label": "Drivers", "tone": "info", "filter": { "col": "systemcol1", "equals": "Driver" } },
-      { "id": "kpi_wf_supervisors", "label": "Supervisors", "tone": "neutral", "filter": { "col": "systemcol1", "equals": "Supervisor" } },
-      { "id": "kpi_wf_active", "label": "Active", "icon": "check-circle", "tone": "success", "filter": { "col": "status", "equals": "Active" } },
-      { "id": "kpi_wf_leave", "label": "On Leave", "icon": "clock", "tone": "warning", "filter": { "col": "status", "equals": "On Leave" } },
-      { "id": "kpi_wf_inactive", "label": "Inactive", "icon": "alert-triangle", "tone": "danger", "filter": { "col": "status", "equals": "Inactive" } }
-    ],
     "filters": [
       {
         "col": "systemcol1",
@@ -454,13 +446,122 @@
                   "Expired": "#F17B2B",
                   "Expiring": "#F5A623",
                   "Valid": "#2AAA48"
-                }
+                },
+                "summaryTiles": [
+                  {
+                    "icon": "shield-tick",
+                    "id": "kpi_trn_valid",
+                    "label": "Valid",
+                    "tone": "success",
+                    "valueField": "trnValid"
+                  },
+                  {
+                    "icon": "clock",
+                    "id": "kpi_trn_expiring",
+                    "label": "Expiring",
+                    "tone": "warning",
+                    "valueField": "trnExpiring"
+                  },
+                  {
+                    "icon": "alert-triangle",
+                    "id": "kpi_trn_expired",
+                    "label": "Expired",
+                    "tone": "warning",
+                    "valueField": "trnExpired"
+                  },
+                  {
+                    "icon": "x-circle",
+                    "id": "kpi_trn_blocked",
+                    "label": "Blocked",
+                    "tone": "danger",
+                    "valueField": "trnBlocked"
+                  }
+                ]
               }
             },
             "id": "tab_wf_trainings",
             "key": "trainings",
             "order": 3,
             "title": "Trainings"
+          },
+          {
+            "component": {
+              "name": "OverviewWidgets",
+              "props": {
+                "widgets": [
+                  {
+                    "filters": [
+                      {
+                        "icon": "calendar",
+                        "kind": "dateRange",
+                        "label": "Date Range",
+                        "value": "Last 30 Days"
+                      },
+                      {
+                        "icon": "filter-lines",
+                        "kind": "select",
+                        "label": "Source",
+                        "value": "All"
+                      }
+                    ],
+                    "type": "filterBar"
+                  },
+                  {
+                    "color": "#93C5FD",
+                    "icon": "bar-chart-01",
+                    "seriesField": "workingHours",
+                    "title": "Working Hours",
+                    "type": "barChart",
+                    "yAxisTitle": "Hours"
+                  },
+                  {
+                    "columns": [
+                      {
+                        "key": "date",
+                        "label": "DATE",
+                        "type": "text"
+                      },
+                      {
+                        "key": "clockIn",
+                        "label": "CLOCK IN",
+                        "type": "text"
+                      },
+                      {
+                        "key": "clockOut",
+                        "label": "CLOCK-OUT",
+                        "type": "text"
+                      },
+                      {
+                        "key": "clockInLocation",
+                        "label": "CLOCK-IN LOCATION",
+                        "type": "text"
+                      },
+                      {
+                        "key": "clockOutLocation",
+                        "label": "CLOCK-OUT LOCATION",
+                        "type": "text"
+                      },
+                      {
+                        "key": "duration",
+                        "label": "DURATION",
+                        "type": "text"
+                      },
+                      {
+                        "key": "source",
+                        "label": "SOURCE",
+                        "type": "text"
+                      }
+                    ],
+                    "field": "attendanceLog",
+                    "type": "recordTable"
+                  }
+                ]
+              }
+            },
+            "id": "tab_wf_attendance",
+            "key": "attendance_log",
+            "order": 4,
+            "title": "Attendance Log"
           }
         ],
         "type": "tab"

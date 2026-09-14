@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, useTransition, type ReactNode } from 'react'
-import { MapPin, Wrench, type LucideIcon } from '@fams/ui-kit/icons'
-import { StatusPill, Tabs, TabsList, TabsTrigger, TabsContent, Toolbar, Skeleton } from '@fams/ui-kit'
+import { MapPin, Wrench, getIcon, type LucideIcon } from '@fams/ui-kit/icons'
+import { StatusPill, Tabs, TabsList, TabsTrigger, TabsContent, Toolbar, Skeleton, type IconBadgeTone } from '@fams/ui-kit'
 import { compileFieldSet, deriveDetail, type Cell } from '@fams/v5-composer'
 import { cn } from '../lib/cn'
 // TYPE-ONLY-adjacent: `MapGuardScopeProvider` itself is a tiny context
@@ -54,8 +54,34 @@ registerTabComponent('OverviewWidgets', ({ record, props }) => {
   return <OverviewWidgets widgets={widgets as OverviewWidget[]} record={record} />
 })
 registerTabComponent('RecordTable', ({ record, props }) => {
-  const cfg = (props ?? {}) as Partial<RecordTableProps>
+  const cfg = (props ?? {}) as Omit<Partial<RecordTableProps>, 'summaryTiles'> & {
+    summaryTiles?: {
+      id: string
+      label: string
+      value?: string | number
+      /** Reads `record[valueField]` when `value` is omitted — e.g. a per-record count. */
+      valueField?: string
+      /** String glyph name resolved through `getIcon` (a JSON tab cannot carry a component). */
+      icon?: string
+      tone?: IconBadgeTone
+      iconColor?: string
+      iconBg?: string
+    }[]
+  }
   if (!cfg.field || !Array.isArray(cfg.columns)) return null
+  // Resolve the JSON-authored summary tiles into the DS `KpiTile` shape:
+  // string icon name → LucideIcon, `valueField` → the record's own value.
+  const summaryTiles = Array.isArray(cfg.summaryTiles)
+    ? cfg.summaryTiles.map((t) => ({
+        id: t.id,
+        label: t.label,
+        value: t.value ?? (t.valueField ? String(record?.[t.valueField] ?? '') : ''),
+        icon: t.icon ? getIcon(t.icon) : undefined,
+        tone: t.tone,
+        iconColor: t.iconColor,
+        iconBg: t.iconBg,
+      }))
+    : undefined
   return (
     <RecordTable
       field={cfg.field}
@@ -64,6 +90,7 @@ registerTabComponent('RecordTable', ({ record, props }) => {
       search={cfg.search}
       timeframeSelect={cfg.timeframeSelect}
       action={cfg.action}
+      summaryTiles={summaryTiles}
       statusColors={cfg.statusColors}
     />
   )

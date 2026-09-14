@@ -189,12 +189,14 @@ describe('ModuleView — blueprint-driven container (crm golden)', () => {
         context={{ userId: 'u1', moduleId: 'companies' }}
       />,
     )
-    // Every blueprint filter facet lives behind the single toolbar Filter button
-    // (figma-spec-kanban.md §4.1) — open it, then check the "status" facet's
-    // option. The DropdownMenuTrigger is a Radix trigger, which opens on
-    // pointerdown, not the synthetic click alone — same `keyDown Enter`
-    // workaround as `ModuleViewShell.test.tsx`'s "Delete view" trigger.
-    fireEvent.keyDown(screen.getByRole('button', { name: 'Filter' }), { key: 'Enter' })
+    // Each blueprint filter facet is its own inline dropdown — open the
+    // "status" facet's trigger, then pick its option. The DropdownMenuTrigger
+    // is a Radix trigger, which opens on pointerdown, not the synthetic click
+    // alone — same `keyDown Enter` workaround as elsewhere.
+    const statusTrigger = document.querySelector(
+      '[data-slot="inline-filter-trigger"][data-filter-col="status"]',
+    ) as HTMLElement
+    fireEvent.keyDown(statusTrigger, { key: 'Enter' })
     fireEvent.click(screen.getByRole('menuitemcheckbox', { name: 'Prospect' }))
     // Only Prospect companies remain (Globex, Soylent); a Customer drops out.
     expect(screen.getByText('Globex Corp')).toBeInTheDocument()

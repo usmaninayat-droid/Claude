@@ -67,6 +67,18 @@ export interface BuildRuntimeOptions {
   persistence?: Persistence
 }
 
+/**
+ * A short, stable fingerprint of a tenant's seeded data — a djb2 hash over the
+ * canonical JSON of the seed set. Folded into the store's persistence namespace
+ * so a seed change reseeds the session store instead of serving a stale cache.
+ */
+function fingerprintSeeds(seedSet: unknown): string {
+  const json = JSON.stringify(seedSet)
+  let hash = 5381
+  for (let i = 0; i < json.length; i++) hash = ((hash << 5) + hash + json.charCodeAt(i)) | 0
+  return (hash >>> 0).toString(36)
+}
+
 export function buildDemoRuntime(opts: BuildRuntimeOptions): DemoRuntime {
   const tenant = opts.tenant
   const baseUrl = opts.baseUrl ?? ''
@@ -82,11 +94,6 @@ export function buildDemoRuntime(opts: BuildRuntimeOptions): DemoRuntime {
   const entityConfigs = configs.filter(isEntityConfig)
   const users = getUsers(tenant)
 
-  const store = new RelationalStore({
-    persistence: opts.persistence ?? new SessionStoragePersistence({ namespace: `famsdemo:${tenant}` }),
-  })
-  for (const schema of buildEntitySchemas(configs)) store.register(schema)
-
   // code → its module id, so seed rows resolve tenant-override-then-core.
   const moduleForCode = (code: string): string =>
     moduleIds.find((id) => {
@@ -94,6 +101,19 @@ export function buildDemoRuntime(opts: BuildRuntimeOptions): DemoRuntime {
       return isEntityConfig(cfg) && cfg.code === code
     }) ?? code
   const seedSet = buildSeedSet(configs, (code) => getModuleSeed(tenant, moduleForCode(code)), users)
+
+  // The persisted store is keyed by a fingerprint of the seed content, so ANY
+  // change to a tenant's seeds (a new field, extra rows, a whole new tab's data)
+  // invalidates the old cached store and forces a reseed. Without this the
+  // session-scoped store held the FIRST seed it ever saw and silently showed
+  // stale/empty data after a seed edit (e.g. a freshly added Attendance Log tab
+  // rendering "no data" against a pre-attendance cached store).
+  const store = new RelationalStore({
+    persistence:
+      opts.persistence ??
+      new SessionStoragePersistence({ namespace: `famsdemo:${tenant}:${fingerprintSeeds(seedSet)}` }),
+  })
+  for (const schema of buildEntitySchemas(configs)) store.register(schema)
   loadSeeds(store, seedSet)
   // Related-by-area pins for the incident profile's Location map overlay —
   // only runs when the tenant licenses the incidents module (no-op otherwise).

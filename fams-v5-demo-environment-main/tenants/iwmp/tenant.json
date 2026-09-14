@@ -8,7 +8,9 @@
     "workforce",
     "ticketing",
     "shift-rostering",
-    "training"
+    "training",
+    "attendance",
+    "deployment-dashboard"
   ],
   "applications": [
     {
@@ -16,11 +18,13 @@
       "name": "IWMP",
       "icon": "iwmp",
       "modules": [
+        "deployment-dashboard",
         "asset",
         "workforce",
         "ticketing",
         "shift-rostering",
-        "training"
+        "training",
+        "attendance"
       ]
     }
   ],

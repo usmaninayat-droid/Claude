@@ -117,9 +117,12 @@ function isSearchablePill(pill: DashboardFilterPill): boolean {
   return pill.type !== 'time-range' && pill.type !== 'multi-select'
 }
 
-/** Pill chrome shared by both shapes, so the two never drift on hit area. */
+/** Pill chrome shared by both shapes, so the two never drift on hit area.
+ *  Bordered `bg-card` (the `tertiary` Button look) so the dashboard filter
+ *  pills read as the same control the list-view filter bars use, not a
+ *  separate dark chip. */
 const PILL_TRIGGER =
-  'h-11 w-auto min-w-40 max-w-72 gap-2 rounded-sm border-border bg-secondary px-4 text-body-sm font-medium text-secondary-foreground'
+  'h-11 w-auto min-w-40 max-w-72 gap-2 rounded-sm border border-border bg-card px-4 text-body-sm font-medium text-foreground hover:bg-muted'
 
 function FilterPill({
   pill,
@@ -168,7 +171,7 @@ function FilterPill({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="secondary"
+          variant="tertiary"
           data-slot="dashboard-filter-pill"
           data-pill-id={pill.id}
           className="h-11 gap-2"

@@ -48,7 +48,7 @@ describe('ModuleViewFilters', () => {
     expect(onSearchChange).toHaveBeenCalledWith('brake')
   })
 
-  it('houses every blueprint facet behind a single Filter button', () => {
+  it('renders each blueprint facet as its own inline dropdown', () => {
     const onFilterChange = vi.fn()
     render(
       <ModuleViewFilters
@@ -59,18 +59,20 @@ describe('ModuleViewFilters', () => {
         onSearchChange={() => {}}
       />,
     )
-    open(screen.getByRole('button', { name: 'Filter' }))
-    expect(screen.getByText('Priority')).toBeInTheDocument()
-    expect(screen.getByText('Category')).toBeInTheDocument()
+    // Each facet is its own trigger, not folded behind one "Filter" button.
+    const priority = screen.getByRole('button', { name: 'Priority' })
+    expect(screen.getByRole('button', { name: 'Category' })).toBeInTheDocument()
+    open(priority)
     fireEvent.click(screen.getByRole('menuitemcheckbox', { name: 'High' }))
     expect(onFilterChange).toHaveBeenCalledWith('priority', ['High'])
   })
 
-  it('omits the Filter control when no facet has options', () => {
+  it('omits the inline filters when no facet has options', () => {
     render(
       <ModuleViewFilters facets={[]} filters={{}} onFilterChange={() => {}} search="" onSearchChange={() => {}} />,
     )
     expect(screen.queryByRole('button', { name: 'Filter' })).not.toBeInTheDocument()
+    expect(document.querySelector('[data-slot="inline-filter-trigger"]')).toBeNull()
   })
 
   // Figma "Sorting" `33534:45591` Dev Notes `33534:45592`/`33534:45620`: the
@@ -527,6 +529,7 @@ function V2Harness({
         onSearchChange={setSearch}
         assigneeFacet={assigneeFacet}
         session={session}
+        filtersPanel={{ title: 'All Filters' }}
         onClearAllFilters={
           noSharedClearAll
             ? undefined
@@ -547,14 +550,15 @@ describe('isFilterPanelV2Active / panelOwnedFilterCols — the C6 gate', () => {
     expect(panelOwnedFilterCols(facets).size).toBe(0)
   })
 
-  it('turns ON when any facet carries a `kind`', () => {
-    expect(isFilterPanelV2Active(v2Facets)).toBe(true)
-    expect([...panelOwnedFilterCols(v2Facets)]).toEqual(['group', 'state'])
+  it('stays OFF for facets carrying a `kind` when no filtersPanel is authored (inline is the default)', () => {
+    expect(isFilterPanelV2Active(v2Facets)).toBe(false)
+    expect(panelOwnedFilterCols(v2Facets).size).toBe(0)
   })
 
-  it('turns ON from `uiConfig.filtersPanel` alone, even with legacy facets', () => {
+  it('turns ON only from an explicit `uiConfig.filtersPanel`', () => {
     expect(isFilterPanelV2Active(facets, { title: 'All Filters' })).toBe(true)
     expect(panelOwnedFilterCols(facets, { title: 'All Filters' }).size).toBe(2)
+    expect(isFilterPanelV2Active(v2Facets, { title: 'All Filters' })).toBe(true)
   })
 })
 
@@ -587,8 +591,8 @@ describe('ModuleViewFilters — legacy modules are untouched (C6 backward compat
     before.unmount()
     const after = render(<Legacy withSession />)
     expect(stable(after.container.innerHTML)).toBe(beforeHtml)
-    // …and it is still the LEGACY control, not the v2 trigger.
-    expect(screen.getByRole('button', { name: 'Filter (1 active)' })).toBeInTheDocument()
+    // …and it is the inline per-facet control, not the v2 panel trigger.
+    expect(screen.getByRole('button', { name: 'Priority (1 active)' })).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: /^Filters/ })).toBeNull()
   })
 })

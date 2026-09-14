@@ -318,7 +318,12 @@ describe('A5.3 — row multi-select and the bulk action bar', () => {
     renderList()
     fireEvent.click(screen.getByRole('checkbox', { name: 'Select all rows' }))
     expect(screen.getByRole('status')).toHaveTextContent('4 selected')
-    openMenuOf(screen.getByRole('button', { name: 'Filter' }))
+    // The inline filter trigger (not the same-named sortable column header).
+    openMenuOf(
+      document.querySelector(
+        '[data-slot="inline-filter-trigger"][data-filter-col="systemcol1"]',
+      ) as HTMLElement,
+    )
     fireEvent.click(screen.getByRole('menuitemcheckbox', { name: 'Cleaning' }))
     expect(document.querySelector('[data-slot="bulk-action-bar"]')).toBeNull()
   })
@@ -591,9 +596,11 @@ describe('I.54 — deferred collapse-order items 1 and 3', () => {
 /* ─────────────────────── K.67 — icon-only tooltips ─────────────────────── */
 
 describe('K.67 — every icon-only toolbar control has a name and a tooltip', () => {
-  it('names Filter, Sort, Group by and Export, each with a tooltip trigger', () => {
+  it('names Sort, Group by and Export, each with a tooltip trigger', () => {
     renderList()
-    for (const name of ['Filter', 'Sort', 'Group by', 'Export']) {
+    // Filters are now separate inline dropdowns (labeled, not icon-only), so
+    // they are not part of this icon-only-control contract.
+    for (const name of ['Sort', 'Group by', 'Export']) {
       const button = screen.getByRole('button', { name })
       expect(button).toBeInTheDocument()
       // Radix marks a tooltip trigger describable — and opens it on FOCUS as

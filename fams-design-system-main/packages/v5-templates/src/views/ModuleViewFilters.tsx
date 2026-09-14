@@ -6,9 +6,9 @@ import {
   Button,
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuTrigger,
   DropdownMenuLabel,
   DropdownMenuCheckboxItem,
-  DropdownMenuSeparator,
   IconControl,
   Popover,
   PopoverContent,
@@ -204,15 +204,19 @@ export interface ModuleViewFiltersProps {
 }
 
 /**
- * The v2 GATE (WAVE C6). The "All Filters" panel replaces the flat facet
- * dropdown when the module opted in — either by authoring
- * `uiConfig.filtersPanel` or by any facet carrying a v2 `kind`. A module
- * whose facets carry no v2 field at all renders EXACTLY the legacy UI, DOM
- * for DOM: that is what keeps every shipped blueprint (and this file's
- * pre-existing tests) unchanged until C7 opts the first module in.
+ * The v2 GATE. Filters render as SEPARATE INLINE controls by default (one
+ * dropdown per facet) — the standard across every list view. The consolidated
+ * "All Filters" panel is now opt-IN, only for a module that explicitly authors
+ * `uiConfig.filtersPanel` (the entity-reference facets whose options the host
+ * resolves from records need that panel; inline mode cannot fill them).
+ *
+ * Previously ANY facet carrying a derived `kind` activated the panel — and
+ * `deriveFilters` stamps a kind on every facet, so the panel had effectively
+ * become the default everywhere. This reverts that: inline is the default,
+ * the panel is explicit.
  */
-export function isFilterPanelV2Active(facets: FilterFacet[], filtersPanel?: FiltersPanelConfig): boolean {
-  return Boolean(filtersPanel) || facets.some((facet) => facet.kind != null)
+export function isFilterPanelV2Active(_facets: FilterFacet[], filtersPanel?: FiltersPanelConfig): boolean {
+  return Boolean(filtersPanel)
 }
 
 /**
@@ -296,10 +300,6 @@ export function ModuleViewFilters({
     onDisplayModeChange?.(mode)
   }
   const filterableFacets = facets.filter((facet) => facet.options?.length)
-  const activeFilterCount = filterableFacets.reduce((sum, facet) => {
-    const v = filters[facet.col]
-    return sum + (Array.isArray(v) ? v.length : v != null && v !== '' ? 1 : 0)
-  }, 0)
 
   /* ── FAMILY C / WAVE C6 — the v2 "All Filters" panel ────────────────── */
   const panelActive = isFilterPanelV2Active(facets, filtersPanel) && session != null
@@ -649,29 +649,29 @@ export function ModuleViewFilters({
           ) : null}
         </div>
       ) : filterableFacets.length ? (
-        <DropdownMenu>
-          {/* UX note K.67: every icon-only control carries a specific
-              accessible name AND a tooltip on hover AND keyboard focus.
-              `IconControl` is the ONE place that pairing is applied — and it
-              nests `DropdownMenuTrigger` OUTSIDE the tooltip trigger, which
-              this call site previously got backwards (see its docblock: the
-              inverted order hands `data-state` and the Escape/focus-restore
-              path to the tooltip layer instead of the menu). */}
-          <IconControl
-            tip="Filter"
-            name={activeFilterCount ? `Filter (${activeFilterCount} active)` : 'Filter'}
-            menuTrigger
-          >
-            <Button variant="tertiary" size="icon" className="relative size-10">
-              <ListFilter className="size-5" aria-hidden="true" />
-            </Button>
-          </IconControl>
-          <DropdownMenuContent align="start" className="w-56">
-            {filterableFacets.map((facet, i) => {
-              const { active, toggle } = facetToggleState(facet.col, filters, onFilterChange)
-              return (
-                <div key={facet.col}>
-                  {i > 0 ? <DropdownMenuSeparator /> : null}
+        // Each facet is its OWN inline dropdown pill (label + active count +
+        // chevron), so every filter is visible at a glance — the standard
+        // filter layout across list views. (Previously all facets were folded
+        // behind a single "Filter" funnel dropdown.)
+        <div data-slot="inline-filters" className="flex flex-wrap items-center gap-2">
+          {filterableFacets.map((facet) => {
+            const { active, toggle } = facetToggleState(facet.col, filters, onFilterChange)
+            const label = active.length ? `${facet.label} (${active.length})` : facet.label
+            return (
+              <DropdownMenu key={facet.col}>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="tertiary"
+                    data-slot="inline-filter-trigger"
+                    data-filter-col={facet.col}
+                    className="h-10 gap-2"
+                    aria-label={active.length ? `${facet.label} (${active.length} active)` : facet.label}
+                  >
+                    {label}
+                    <ChevronDown className="size-4 shrink-0 opacity-60" aria-hidden="true" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-56">
                   <DropdownMenuLabel>{facet.label}</DropdownMenuLabel>
                   {facet.options!.map((option) => (
                     <DropdownMenuCheckboxItem
@@ -683,11 +683,11 @@ export function ModuleViewFilters({
                       {option}
                     </DropdownMenuCheckboxItem>
                   ))}
-                </div>
-              )
-            })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )
+          })}
+        </div>
       ) : null}
 
       {sortOptions.length ? (

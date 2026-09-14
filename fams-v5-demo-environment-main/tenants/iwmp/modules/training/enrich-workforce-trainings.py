@@ -100,7 +100,19 @@ def build():
     for i, w in enumerate(workforce):
         rows = trainings_for(w, i)
         rows.sort(key=lambda r: (RANK.get(r['status'], 9), r['trainingCode']))
+        # Stable row id for the profile Trainings tab's eventList.
+        for r in rows:
+            r['id'] = f"{w['id']}-{r['trainingCode']}"
         w['trainings'] = rows
+        # Per-person competency counts — the KPI cards on the Trainings tab
+        # read these straight off the record (TRN-06 competency card).
+        counts = {'Valid': 0, 'Expiring': 0, 'Expired': 0, 'Blocked': 0}
+        for r in rows:
+            counts[r['status']] = counts.get(r['status'], 0) + 1
+        w['trnValid'] = str(counts['Valid'])
+        w['trnExpiring'] = str(counts['Expiring'])
+        w['trnExpired'] = str(counts['Expired'])
+        w['trnBlocked'] = str(counts['Blocked'])
     WORKFORCE_SEED.write_text(json.dumps(workforce, indent=2, ensure_ascii=False) + '\n')
     print(f'wrote {WORKFORCE_SEED.relative_to(ROOT)} — enriched {len(workforce)} workforce row(s)')
     for w in workforce:
