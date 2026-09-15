@@ -204,12 +204,18 @@
         },
         {
           "col": "systemcol2",
+          "component": {
+            "name": "TextView"
+          },
           "id": "fld_trn_category",
           "order": 2,
           "pos": "left"
         },
         {
           "col": "systemcol5",
+          "component": {
+            "name": "TextView"
+          },
           "id": "fld_trn_licence",
           "order": 3,
           "pos": "left"
@@ -394,6 +400,9 @@
             },
             {
               "col": "systemcol2",
+              "component": {
+                "name": "TextView"
+              },
               "id": "fld_trn_category",
               "order": 2
             }
@@ -416,6 +425,9 @@
             },
             {
               "col": "systemcol5",
+              "component": {
+                "name": "TextView"
+              },
               "id": "fld_trn_licence",
               "order": 3
             },
