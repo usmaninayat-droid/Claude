@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { ArrowDown, ExternalLink, MoreVertical } from '@fams/ui-kit/icons'
+import { ArrowDown, ExternalLink, MoreVertical, X } from '@fams/ui-kit/icons'
 import {
   Avatar,
   Button,
@@ -290,8 +290,22 @@ export function DispatchActionMenu({
       >
         <SheetContent
           side="right"
-          className="flex w-full flex-col gap-0 p-0 sm:max-w-[44rem]"
+          hideClose
+          className="flex w-full flex-col gap-0 overflow-visible p-0 sm:max-w-[44rem]"
         >
+          {/* External close: a 48px circle floating outside the sheet's start
+              edge, matching the shift-rostering "Reassign Route" panel's own
+              floating close affordance. Uses logical `-start-14` so RTL flips
+              it to the sheet's other edge; the built-in top-end X is
+              suppressed via `hideClose`. */}
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Close"
+            className="absolute -start-14 top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-card text-muted-foreground shadow-elevation outline-none transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <X className="size-5" />
+          </button>
           <div className="flex flex-col gap-1 border-b border-border p-6">
             <SheetTitle className="text-h3 font-semibold text-foreground">{sheetTitle}</SheetTitle>
             <SheetDescription className="text-body-sm text-muted-foreground">
@@ -311,7 +325,7 @@ export function DispatchActionMenu({
                     ) : null}
                     <span className="text-foreground">{outboundContext || 'Attendance record'}</span>
                   </div>
-                  <span className="inline-flex items-center rounded-sm border border-danger/30 bg-danger/5 px-2 py-1 text-caption font-semibold uppercase tracking-wide text-danger">
+                  <span className="inline-flex items-center rounded-full bg-danger/10 px-2.5 py-0.5 text-caption font-semibold uppercase tracking-wide text-danger">
                     {headerTag}
                   </span>
                 </div>
