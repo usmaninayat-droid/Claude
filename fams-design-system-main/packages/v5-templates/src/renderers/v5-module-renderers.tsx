@@ -319,7 +319,16 @@ function useSummaryTiles(config: EntityConfig, records: EntityRecord[]): ListVie
         id: t.id,
         label: t.label,
         value: t.value,
-        icon: t.icon ? SUMMARY_TILE_ICON[t.icon] : undefined,
+        // Small curated map wins for the historical vocabulary (kept so a
+        // typo still hits a known glyph if it happens to match), otherwise
+        // fall back to the full DS icon registry — same recipe the
+        // dashboard-widget shell uses. `getIcon(t.icon)` returns `undefined`
+        // for an unknown name, and the trailing `undefined` keeps the
+        // previous silent-degrade behaviour that shipped a blank tile
+        // (rather than a crash) on a miss.
+        icon: t.icon
+          ? SUMMARY_TILE_ICON[t.icon] ?? (getIcon(t.icon) as LucideIcon | undefined)
+          : undefined,
         tone: t.tone as IconBadgeTone | undefined,
         iconColor: t.iconColor,
         iconBg: t.iconBg,

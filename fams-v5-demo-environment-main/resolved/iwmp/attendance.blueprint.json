@@ -222,7 +222,7 @@
             "Late"
           ]
         },
-        "icon": "check-circle",
+        "icon": "clipboard-check",
         "id": "kpi_att_reported",
         "label": "Reported",
         "tone": "success"

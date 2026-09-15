@@ -97,7 +97,7 @@
       }
     },
     "listSummary": [
-      { "id": "kpi_att_reported", "label": "Reported", "icon": "check-circle", "tone": "success", "filter": { "col": "status", "in": ["Present", "Late"] } },
+      { "id": "kpi_att_reported", "label": "Reported", "icon": "clipboard-check", "tone": "success", "filter": { "col": "status", "in": ["Present", "Late"] } },
       { "id": "kpi_att_present", "label": "Present", "icon": "check-done-01", "tone": "success", "filter": { "col": "status", "equals": "Present" } },
       { "id": "kpi_att_late", "label": "Late", "icon": "clock", "tone": "warning", "filter": { "col": "status", "equals": "Late" } },
       { "id": "kpi_att_absent", "label": "Absent", "icon": "alert-triangle", "tone": "danger", "filter": { "col": "status", "equals": "Absent" } }
