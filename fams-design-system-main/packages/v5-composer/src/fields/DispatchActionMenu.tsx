@@ -64,6 +64,12 @@ export interface DispatchActionMenuProps {
   viewPlanLabel?: string
   toastTitle?: string
   toastDescription?: string
+  /** Label for the always-visible "View Profile" menu item. Defaults to "View Profile". */
+  viewProfileLabel?: string
+  /** Toast title fired when the "View Profile" item is selected. Defaults to "View profile". */
+  viewProfileToastTitle?: string
+  /** Toast description for View Profile; `{name}` is replaced with the row's display name. */
+  viewProfileToastDescription?: string
   suggestions?: DispatchCandidate[]
   manual?: DispatchCandidate[]
 }
@@ -251,7 +257,14 @@ export function DispatchActionMenu({
 
   const selectedManualCandidate = manual.find((c) => c.id === selectedManualId)
 
-  if (!gated) return null
+  const openProfile = () => {
+    toast(props.viewProfileToastTitle ?? 'View profile', {
+      description:
+        props.viewProfileToastDescription
+          ? props.viewProfileToastDescription.replace('{name}', outboundName)
+          : `Opening ${outboundName}'s profile…`,
+    })
+  }
 
   return (
     <span
@@ -267,14 +280,27 @@ export function DispatchActionMenu({
           <MoreVertical className="size-4" aria-hidden="true" />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-48">
+          {/* View Profile is always available (Present/Late rows show ONLY
+              this item; Absent rows show it plus the gated Dispatch item
+              below). */}
           <DropdownMenuItem
             onSelect={(e) => {
               e.preventDefault()
-              setOpen(true)
+              openProfile()
             }}
           >
-            {props.label ?? 'Dispatch Reliever'}
+            {props.viewProfileLabel ?? 'View Profile'}
           </DropdownMenuItem>
+          {gated ? (
+            <DropdownMenuItem
+              onSelect={(e) => {
+                e.preventDefault()
+                setOpen(true)
+              }}
+            >
+              {props.label ?? 'Dispatch Reliever'}
+            </DropdownMenuItem>
+          ) : null}
         </DropdownMenuContent>
       </DropdownMenu>
       <Sheet
