@@ -299,7 +299,7 @@ export function ComplianceTable({
               >
                 <CheckCircle />
               </span>
-              <h3 className="whitespace-nowrap text-h6 font-semibold text-foreground">{summaryTitle}</h3>
+              <h3 className="whitespace-nowrap text-body-lg font-semibold text-foreground">{summaryTitle}</h3>
             </div>
             {categoryKey && categories.length > 0 ? (
               <DropdownMenu>

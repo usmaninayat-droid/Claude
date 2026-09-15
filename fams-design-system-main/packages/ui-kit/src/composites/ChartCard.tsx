@@ -122,7 +122,7 @@ export const ChartCard = forwardRef<HTMLDivElement, ChartCardProps>(
             <div className="min-w-0 flex-1">
               <h3
                 data-slot="chart-card-title"
-                className="truncate text-h6 font-semibold text-foreground"
+                className="truncate text-body-lg font-semibold text-foreground"
               >
                 {title}
               </h3>
