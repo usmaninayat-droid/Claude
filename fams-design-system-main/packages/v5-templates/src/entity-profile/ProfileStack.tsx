@@ -110,7 +110,7 @@ const WIDTH_CLASS = {
   // 8-column RecordTable was wrapping cell text at 74.5% on ≤1440px screens.
   // `sm:max-w-none` drops `Sheet`'s own `sm:max-w-sm` cap so the percentage
   // width actually takes effect instead of being clamped by it.
-  xl: 'sm:w-[82%] sm:max-w-none',
+  xl: 'sm:w-[90%] sm:max-w-none',
 } as const
 
 /**
@@ -349,7 +349,7 @@ export function ProfileStack({
                   className="flex min-w-0 flex-1 items-center gap-2 ps-3 pe-1 text-start outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
                 >
                   {item.icon ? (
-                    <span aria-hidden className="flex size-5 shrink-0 items-center justify-center text-muted-foreground">
+                    <span aria-hidden className="flex size-5 shrink-0 items-center justify-center text-primary">
                       {item.icon}
                     </span>
                   ) : (

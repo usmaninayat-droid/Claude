@@ -763,10 +763,17 @@ export function EntityProfile(props: EntityProfileProps) {
             <div data-slot="entity-profile-tabstrip" className="relative shrink-0">
               <TabsList
                 ref={tabStripOverflow.ref}
-                className="flex-nowrap overflow-x-auto bg-card px-section"
+                className="flex-nowrap gap-10 overflow-x-auto bg-card px-section"
               >
                 {visibleTabs.map((tab) => (
-                  <TabsTrigger key={tab.id} value={tab.id} className="shrink-0 whitespace-nowrap">
+                  // Figma "Tadweer" profile tabs (node 6557:19918): 40px gaps,
+                  // no horizontal padding (the active underline hugs the label),
+                  // grey-700 inactive, primary + semibold active.
+                  <TabsTrigger
+                    key={tab.id}
+                    value={tab.id}
+                    className="shrink-0 whitespace-nowrap px-0 text-gray-700 data-[state=active]:font-semibold"
+                  >
                     {tab.label}
                   </TabsTrigger>
                 ))}
