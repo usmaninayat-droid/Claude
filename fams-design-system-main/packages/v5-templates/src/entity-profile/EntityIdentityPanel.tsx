@@ -5,12 +5,21 @@ import { cn } from '../lib/cn'
 import type { EntityProfileTag } from './EntityProfile.types'
 
 /**
- * Tag-chip color rotation (figma-spec-profile.md's "Tags row": a green then
- * an orange solid-pastel pill) — cycles deterministically by index over
- * `Badge`'s existing STATUS variants rather than adding a per-tag color
- * field to `EntityProfileTag`, which keeps the API unchanged.
+ * Tag-chip color rotation (Figma "Tadweer — Launch Pad", node 7112:8289 —
+ * borderless soft-pastel chips) — a per-tone class stack cycled
+ * deterministically by index. Bypasses `Badge` (which owns a shared,
+ * status-first bordered pill used across the DS) so a tag-list restyle
+ * doesn't ripple into every other Badge caller. Each tone pairs a Figma-
+ * drawn soft background with the SAME tone's accessibility-safe TEXT
+ * token (`--color-success-text` / `--color-warning-text` / info-scale-700)
+ * — Figma's drawn -500 tones fail WCAG 4.5:1 at body-text size, and the
+ * tokens' own docblock names -700 as the accessible replacement.
  */
-const TAG_VARIANT_ROTATION: BadgeVariant[] = ['success', 'warning', 'info']
+const TAG_TONE_CLASSES = [
+  'bg-success-scale-100 text-success-text',
+  'bg-warning-scale-50 text-warning-text',
+  'bg-info-scale-50 text-info-scale-700',
+] as const
 
 /**
  * The "+" add-tag control's own popover (tanker-detail frames: a `+` square
@@ -232,13 +241,18 @@ export function EntityIdentityPanel({
               </Badge>
             ) : null}
             {(tags ?? []).map((tag, index) => (
-              <Badge
+              <span
                 key={tag.id}
-                variant={TAG_VARIANT_ROTATION[index % TAG_VARIANT_ROTATION.length]}
-                // Default size, not `size="lg"`: the tanker-detail frames' tag
-                // chips are ~24px tall beside a 24px `+` control, and `lg`'s 40px
-                // made the tag row taller than the ID line above it.
-                className="gap-1.5"
+                data-slot="entity-profile-tag"
+                className={cn(
+                  // Figma "Tadweer — Launch Pad", node 7112:8289 — soft
+                  // pastel, borderless, `rounded-sm` (2px), semibold.
+                  // Height stays modest so the tag row does not exceed the
+                  // ID line beside it (rail is only ~256px wide); Figma's
+                  // full 40px was drawn for a wider canvas.
+                  'inline-flex items-center gap-1.5 rounded-sm px-2.5 py-1 text-body-sm font-semibold',
+                  TAG_TONE_CLASSES[index % TAG_TONE_CLASSES.length],
+                )}
               >
                 {tag.label}
                 {onRemoveTag ? (
@@ -253,7 +267,7 @@ export function EntityIdentityPanel({
                     </span>
                   </button>
                 ) : null}
-              </Badge>
+              </span>
             ))}
             {onAddTag ? <AddTagPopover onAddTag={onAddTag} addTagLabel={addTagLabel} /> : null}
           </div>

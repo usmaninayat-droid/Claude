@@ -175,6 +175,7 @@
       }
     ],
     "icon": "calendar-check-01",
+    "listGroupBy": false,
     "listRowHeight": "md",
     "listSort": false,
     "listSummary": [

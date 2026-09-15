@@ -136,7 +136,8 @@
       "fieldChrome": "inset-label"
     },
     "listRowHeight": "md",
-    "listSort": false
+    "listSort": false,
+    "listGroupBy": false
   },
   "listcolumns": [
     {
