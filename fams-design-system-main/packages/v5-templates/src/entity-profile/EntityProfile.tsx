@@ -795,14 +795,14 @@ export function EntityProfile(props: EntityProfileProps) {
               </div>
             ) : null}
             {visibleTabs.map((tab) => (
-              // The tab BODY sits on `Surface/Minimal` (#f9fafb = `bg-muted`) so
-              // the frame's white cards read as raised against it; the strip
-              // above stays white. This is the pane that scrolls (the rail has
-              // its own scrollport, and `ProfileStack`'s body no longer scrolls).
+              // The tab BODY is white (`bg-card`) — the grey `Surface/Minimal`
+              // ground was dropped globally so only the top strip carries a
+              // tint. This is the pane that scrolls (the rail has its own
+              // scrollport, and `ProfileStack`'s body no longer scrolls).
               <TabsContent
                 key={tab.id}
                 value={tab.id}
-                className="fams-scroll-region min-h-0 flex-1 overflow-y-auto bg-muted p-section"
+                className="fams-scroll-region min-h-0 flex-1 overflow-y-auto bg-card p-section"
               >
                 {renderTabBody(tab)}
               </TabsContent>
