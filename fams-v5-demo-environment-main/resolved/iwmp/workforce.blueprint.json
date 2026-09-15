@@ -483,7 +483,7 @@
                     "toast": "Opening certificate {code}…"
                   }
                 ],
-                "scoreLabel": "Compliance Score",
+                "scoreLabel": "Competency Score",
                 "sectionLabel": "Required for Role – {role}",
                 "statusColors": {
                   "Blocked": "#f04438",
@@ -498,7 +498,7 @@
                   "Expiring": "Expiring",
                   "Valid": "Valid"
                 },
-                "summaryTitle": "Compliance Summary"
+                "summaryTitle": "Competency Summary"
               }
             },
             "id": "tab_wf_trainings",

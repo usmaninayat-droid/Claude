@@ -19,8 +19,8 @@
             "codeKey": "trainingCode",
             "roleField": "systemcol1",
             "sectionLabel": "Required for Role – {role}",
-            "scoreLabel": "Compliance Score",
-            "summaryTitle": "Compliance Summary",
+            "scoreLabel": "Competency Score",
+            "summaryTitle": "Competency Summary",
             "headerEdit": false,
             "emptyText": "No trainings recorded for this workforce member.",
             "buckets": {
