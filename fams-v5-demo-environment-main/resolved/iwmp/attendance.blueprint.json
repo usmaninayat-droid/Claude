@@ -191,17 +191,20 @@
     "filters": [
       {
         "col": "status",
+        "icon": "status",
         "id": "flt_att_status",
         "name": "Status",
         "order": 1
       },
       {
         "col": "systemcol3",
+        "icon": "calendar",
         "id": "flt_att_shift",
         "order": 2
       },
       {
         "col": "systemcol4",
+        "icon": "map-pin",
         "id": "flt_att_lot",
         "order": 3
       }

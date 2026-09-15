@@ -145,9 +145,9 @@
       ]
     },
     "filters": [
-      { "id": "flt_att_status", "col": "status", "name": "Status", "order": 1 },
-      { "id": "flt_att_shift", "col": "systemcol3", "order": 2 },
-      { "id": "flt_att_lot", "col": "systemcol4", "order": 3 }
+      { "id": "flt_att_status", "col": "status", "name": "Status", "order": 1, "icon": "status" },
+      { "id": "flt_att_shift", "col": "systemcol3", "order": 2, "icon": "calendar" },
+      { "id": "flt_att_lot", "col": "systemcol4", "order": 3, "icon": "map-pin" }
     ],
     "search": {
       "columns": ["title", "systemcol2"],
