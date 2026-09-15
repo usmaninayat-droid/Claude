@@ -402,7 +402,14 @@ describe('ListView — totalCount summary line (A4 / C5)', () => {
     expect(onClearFilters).toHaveBeenCalledTimes(1)
   })
 
-  it('reserves the row height identically whether narrowed or not (no layout shift)', () => {
+  it('collapses to zero height at rest and expands when narrowed', () => {
+    // Prior contract reserved 20px permanently via `min-h-5`; the current
+    // shell no longer does — an empty count row would otherwise plant a
+    // permanent dead band between the filters row and the first content
+    // (the user complaint that drove this change). The `<p>` still mounts
+    // (aria-live needs a stable host for narrowing announcements) but its
+    // height comes from its own text, and it hides via `empty:hidden` when
+    // the ternary renders `null`.
     const { container: atRest } = render(
       <ListView config={companiesConfig} records={companyRecords} totalCount={companyRecords.length} />,
     )
@@ -411,8 +418,8 @@ describe('ListView — totalCount summary line (A4 / C5)', () => {
     )
     const restRow = atRest.querySelector('[data-slot="list-count-row"]')!
     const narrowedRow = narrowed.querySelector('[data-slot="list-count-row"]')!
-    expect(restRow.className).toBe(narrowedRow.className)
-    expect(restRow.className).toContain('min-h-5')
+    expect(restRow.className).toContain('empty:hidden')
+    expect(narrowedRow.textContent).toContain('Showing')
   })
 
   it('omits the row entirely when totalCount is not provided (unchanged default)', () => {

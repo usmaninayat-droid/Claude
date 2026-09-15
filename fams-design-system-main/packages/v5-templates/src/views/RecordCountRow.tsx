@@ -42,9 +42,13 @@ export interface RecordCountRowProps {
  * lens with zero active narrowing): the sentence renders ONLY while `shown <
  * total`; at rest (nothing narrowed) this paragraph is empty, matching
  * Figma exactly. The `<p>` itself still always mounts when the CALLER
- * renders this component at all, so its own line height is reserved
- * PERMANENTLY (`min-h-5`) — the row must never appear/disappear as a user
- * types into search, only its text may.
+ * renders this component at all so `aria-live` has a stable host for
+ * narrowing announcements — but its height is NO LONGER reserved: an empty
+ * row collapses via `empty:hidden` so the space between the filters row
+ * and the first content stays tight (the alternative — a permanent 20px
+ * dead band on every list module — read as broken layout to reviewers).
+ * A small vertical shift when a search term is typed is accepted as the
+ * lesser evil vs. that permanent dead band.
  *
  * `polite`, not `assertive`: the number changing is the consequence of the
  * user's own search/filter keystroke, so it must not interrupt them.
@@ -55,7 +59,13 @@ export function RecordCountRow({ shown, total, noun, children, slot, onClearFilt
     <p
       data-slot={slot}
       aria-live="polite"
-      className="flex min-h-5 shrink-0 items-center gap-2 px-1 text-body-sm text-muted-foreground"
+      // The row still mounts (aria-live needs a stable host so a filter
+      // narrowing announcement fires when the count changes) but its height
+      // is no longer reserved — an empty row collapses to zero so the space
+      // between the toolbar/filters and the first content stays tight. The
+      // small layout jump when a search term is typed is preferred over a
+      // permanent 20px dead band above the KPIs on every module.
+      className="flex shrink-0 items-center gap-2 px-1 text-body-sm text-muted-foreground empty:hidden"
     >
       {isNarrowed ? (
         <>
