@@ -247,7 +247,7 @@ export function ComplianceTable({
   }
 
   return (
-    <div data-slot="compliance-table" className={cn('flex flex-col gap-4', className)}>
+    <div data-slot="compliance-table" className={cn('flex flex-col gap-2.5', className)}>
       {alert && critical.length > 0 ? (
         <button
           type="button"
@@ -274,8 +274,8 @@ export function ComplianceTable({
         </button>
       ) : null}
 
-      <div className="grid gap-6 md:grid-cols-[16.5rem_1fr]">
-        <div className="flex items-center justify-center rounded-md border border-border bg-card px-5 py-3.5">
+      <div className="grid gap-3 md:grid-cols-[16.5rem_1fr]">
+        <div className="flex items-center justify-center rounded-md border border-border bg-card px-5 py-3">
           {/* Figma 6557:19933 cuts the ring at 2/3 and 5/6, not at the dashboard's 50/80 defaults. */}
           <ComplianceGauge
             value={score}
@@ -349,7 +349,7 @@ export function ComplianceTable({
       </div>
 
       {sectionLabel ? (
-        <p className="text-body-sm font-medium text-secondary-foreground-strong">
+        <p className="mt-1 text-body-sm font-medium text-secondary-foreground-strong">
           {fill(sectionLabel, { role: role || '—' })}
         </p>
       ) : null}
