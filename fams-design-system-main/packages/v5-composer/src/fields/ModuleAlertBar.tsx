@@ -27,38 +27,22 @@ import type { EntityRecord, UiConfig } from '../types'
 
 type AlertBarConfig = NonNullable<UiConfig['alertBar']>
 
-// The DS's error/warning/success/info scales are the class-name prefixes;
-// the `tone` prop name `danger` maps to the `error-*` classes by convention
-// (same convention `Badge`/`StatusPill`/`KpiTile` use — the semantic tone
-// name is `danger`, the CSS ramp name is `error`).
+// Matches the shift-rostering `.alert` band exactly: soft-tinted bar with a
+// WHITE-fill icon circle (the icon inside is tone-colored, not the circle
+// itself), a dark-foreground message (Gray-900, not the error red — the tint
+// is the bar itself, the copy stays legible in the platform's normal reading
+// voice), and a muted-gray "Click to resolve" trailing label. Only the bar
+// background/border + icon-in-circle color vary by `tone`; the message and
+// CTA text tokens are shared across every tone (`.msg` = `#1d2939`,
+// `.resolve span` = `#667085` in the shift-rostering CSS).
 const TONE_CLASSES: Record<
   NonNullable<AlertBarConfig['tone']>,
-  { bar: string; text: string; circle: string; cta: string }
+  { bar: string; iconColor: string }
 > = {
-  danger: {
-    bar: 'border-error-200 bg-error-50',
-    text: 'text-error-700',
-    circle: 'bg-error-100 text-error-600',
-    cta: 'text-error-700',
-  },
-  warning: {
-    bar: 'border-warning-scale-200 bg-warning-scale-50',
-    text: 'text-warning-text',
-    circle: 'bg-warning-scale-100 text-warning',
-    cta: 'text-warning-text',
-  },
-  info: {
-    bar: 'border-info-scale-200 bg-info-scale-50',
-    text: 'text-info-scale-700',
-    circle: 'bg-info-scale-100 text-info',
-    cta: 'text-info-scale-700',
-  },
-  success: {
-    bar: 'border-success-scale-200 bg-success-scale-50',
-    text: 'text-success-text',
-    circle: 'bg-success-scale-100 text-success',
-    cta: 'text-success-text',
-  },
+  danger: { bar: 'border-error-100 bg-error-50', iconColor: 'text-error-600' },
+  warning: { bar: 'border-warning-scale-100 bg-warning-scale-50', iconColor: 'text-warning' },
+  info: { bar: 'border-info-scale-100 bg-info-scale-50', iconColor: 'text-info' },
+  success: { bar: 'border-success-scale-100 bg-success-scale-50', iconColor: 'text-success' },
 }
 
 function matches(record: EntityRecord, filter?: AlertBarConfig['filter']): boolean {
@@ -106,20 +90,26 @@ export function ModuleAlertBar({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`flex w-full items-center justify-between gap-3 rounded-sm border ${classes.bar} px-3 py-2 text-start outline-none transition-colors hover:brightness-95 focus-visible:ring-2 focus-visible:ring-ring`}
+        // Padding is intentionally asymmetric (`ps-3 pe-2 py-2`) — matches
+        // the shift-rostering `.alert`'s `8px 8px 8px 12px`.
+        className={`flex w-full items-center justify-between gap-3 rounded-sm border ${classes.bar} py-2 ps-3 pe-2 text-start outline-none transition-colors hover:brightness-95 focus-visible:ring-2 focus-visible:ring-ring`}
       >
-        <div className="flex flex-1 items-center gap-3">
+        <div className="flex flex-1 items-center gap-2.5">
           <span
             aria-hidden="true"
-            className={`grid size-8 shrink-0 place-items-center rounded-full ${classes.circle}`}
+            className={`grid size-6 shrink-0 place-items-center rounded-full bg-card ${classes.iconColor}`}
           >
-            {IconGlyph ? <Icon name={iconName} className="size-4" /> : <Siren className="size-4" />}
+            {IconGlyph ? (
+              <Icon name={iconName} className="size-3.5" />
+            ) : (
+              <Siren className="size-3.5" />
+            )}
           </span>
-          <span className={`text-body-sm font-medium ${classes.text}`}>{message}</span>
+          <span className="text-body-sm font-semibold text-foreground">{message}</span>
         </div>
-        <div className="flex items-center gap-2">
-          <span className={`text-body-sm font-semibold ${classes.cta}`}>{ctaLabel}</span>
-          <ChevronRight className={`size-4 ${classes.cta}`} aria-hidden="true" />
+        <div className="flex items-center gap-1 rounded-xs px-2 py-1">
+          <span className="text-caption font-semibold text-muted-foreground">{ctaLabel}</span>
+          <ChevronRight className="size-4 text-muted-foreground" aria-hidden="true" />
         </div>
       </button>
 
@@ -173,7 +163,7 @@ export function ModuleAlertBar({
                         </p>
                       </div>
                       <span
-                        className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-caption font-semibold uppercase tracking-wide ${classes.circle} ${classes.cta}`}
+                        className={`inline-flex items-center rounded-full bg-error-100 px-2.5 py-0.5 text-caption font-semibold uppercase tracking-wide text-error-700`}
                       >
                         Needs dispatch
                       </span>
