@@ -389,7 +389,16 @@ const PLACEHOLDER_ICON_MAP: Record<string, LucideIcon> = {
 
 function resolvePlaceholderIcon(name: string | undefined): LucideIcon | undefined {
   if (!name) return undefined
-  return PLACEHOLDER_ICON_MAP[name] ?? MapPin
+  const mapped = PLACEHOLDER_ICON_MAP[name]
+  if (mapped) return mapped
+  // Any name the small vocabulary above doesn't cover falls through to the
+  // full DS icon registry — so a blueprint can point `placeholderIcon` (or
+  // the module's own `uiConfig.icon`, which this file falls back to next) at
+  // any DS glyph without expanding this map. `getIcon` returns `undefined`
+  // for an unknown name, in which case we fall through to `MapPin` for the
+  // same "always resolves to something" guarantee documented above.
+  const glyph = getIcon(name)
+  return glyph ?? MapPin
 }
 
 /**
@@ -696,7 +705,19 @@ export function EntityProfile(props: EntityProfileProps) {
           image={image}
           art={art}
           avatarFallback={avatarFallback}
-          placeholderIcon={placeholderIcon ?? resolvePlaceholderIcon(detail?.placeholderIcon ?? config?.uiConfig.profile?.placeholderIcon)}
+          // A blueprint may set `uiConfig.profile.placeholderIcon` explicitly;
+          // when it doesn't, we fall back to the module's own `uiConfig.icon`
+          // — the same glyph the nav rail already renders for the module —
+          // so a record with no artwork gets an identity mark that matches
+          // its module, rather than the generic `map-pin`/wrench fallback.
+          placeholderIcon={
+            placeholderIcon ??
+            resolvePlaceholderIcon(
+              detail?.placeholderIcon ??
+                config?.uiConfig.profile?.placeholderIcon ??
+                config?.uiConfig.icon,
+            )
+          }
           statusOverlay={statusOverlay ?? defaultStatusOverlay}
           name={resolvedTitle}
           entityId={entityId}

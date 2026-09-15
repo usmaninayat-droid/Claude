@@ -185,7 +185,7 @@ export function EntityIdentityPanel({
           how tall the rest of the rail's content is; the rail's own
           `overflow-y-auto` is what should (and now does) absorb any excess,
           exactly like every other non-shrinking rail child. */}
-      <div className="relative h-[12.5rem] w-full shrink-0 overflow-hidden rounded-sm bg-gray-100">
+      <div className="relative aspect-square w-full shrink-0 overflow-hidden rounded-sm bg-gray-100">
         {statusOverlay ? (
           <div data-slot="entity-profile-status" className="absolute start-2 top-2 z-10 flex items-center gap-1.5">
             {statusOverlay}

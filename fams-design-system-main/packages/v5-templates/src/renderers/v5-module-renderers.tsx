@@ -7,9 +7,11 @@ import {
   FileText,
   Flag,
   Hourglass,
+  Icon,
   LoaderCircle,
   RotateCw,
   Ticket,
+  getIcon,
   type LucideIcon,
 } from '@fams/ui-kit/icons'
 import { toast, initialsFrom } from '@fams/ui-kit'
@@ -659,9 +661,19 @@ export function V5ModuleSurface({
         category,
         // A generic module glyph, not a person avatar (finding: tab strip
         // showed an avatar circle + broken icon for a non-person record) —
-        // varies only by module TYPE (pipeline vs entity), never business
-        // vocabulary.
-        icon: isPipeline ? <Ticket aria-hidden className="size-4" /> : <FileText aria-hidden className="size-4" />,
+        // pipelines keep the ticket mark; every other module renders its
+        // own `uiConfig.icon` (the SAME glyph the nav rail shows for that
+        // module) so the record-tab chrome identifies the module a record
+        // belongs to instead of a generic file page. Falls back to the
+        // generic `FileText` when a module names no icon or names one the
+        // DS registry doesn't recognize.
+        icon: isPipeline ? (
+          <Ticket aria-hidden className="size-4" />
+        ) : config?.uiConfig.icon && getIcon(config.uiConfig.icon) ? (
+          <Icon name={config.uiConfig.icon} aria-hidden className="size-4" />
+        ) : (
+          <FileText aria-hidden className="size-4" />
+        ),
       })
     },
     [stack, isPipeline, config, module.label],

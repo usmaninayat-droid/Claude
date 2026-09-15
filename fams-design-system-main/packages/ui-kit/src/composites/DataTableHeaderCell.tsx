@@ -1,6 +1,6 @@
 import { ArrowUp, ArrowDown, ArrowUpDown } from '../icons'
 import { cn } from '../lib/cn'
-import { ExpandColumnToggle, ColumnResizeHandle } from './DataTableColumnControls'
+import { ColumnResizeHandle } from './DataTableColumnControls'
 import { STICKY_CELL_BASE, ALIGN_CLASS, HEADER_JUSTIFY_CLASS } from './dataTableLayoutClasses'
 import { COLUMN_RESIZE_MIN_PX } from './useDataTableColumnResize'
 import type { DataTableColumn, SortState } from './DataTable.types'
@@ -155,11 +155,12 @@ export function DataTableHeaderCell<T>({
         ) : (
           col.label
         )}
-        <ExpandColumnToggle
-          isExpanded={isExpandedCol}
-          onToggle={() => toggleExpanded(col.key)}
-          label={isExpandedCol ? `Collapse ${columnLabelText} column` : `Expand ${columnLabelText} column`}
-        />
+        {/* The per-column hover "Expand" toggle (icon-only Maximize/Minimize
+            button) was removed globally: it added visual noise on every column
+            header and duplicated an affordance the drag/keyboard resize handle
+            below already provides. The double-tap-to-expand pointer gesture
+            (touch) still works via `toggleExpanded` in the caller; the button
+            was the only visible entry point on desktop. */}
       </div>
       {expandedKey === null ? (
         <ColumnResizeHandle

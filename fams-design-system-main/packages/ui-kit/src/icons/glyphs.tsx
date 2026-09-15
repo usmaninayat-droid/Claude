@@ -3028,6 +3028,36 @@ export function SvgSquare({ children, size = 24, ...props }: IconSvgProps) {
   )
 }
 
+/** `stand` — projector/monitor on a stand. Added by hand (source: Figma
+ *  Tadweer Launch Pad node 7168:8430, "stand" glyph); the icon library the
+ *  generator reads is not vendored into this local checkout, and this glyph
+ *  is not part of the shipped Untitled-UI set. Stroke-based like the rest of
+ *  the FAMS/Untitled family — 24×24 viewBox, scaled up from the source 17×17
+ *  so it lines up with the neighbouring registry entries; stroke follows
+ *  `currentColor` for token-driven colour. */
+export function SvgStand({ children, size = 24, ...props }: IconSvgProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      data-icon="stand"
+      {...props}
+    >
+      <path
+        d="M9 17L5 21M15 17L19 21M12 3V5M12 21V17M5.2 17H18.8C19.9201 17 20.4802 17 20.908 16.782C21.2843 16.5903 21.5903 16.2843 21.782 15.908C22 15.4802 22 14.9201 22 13.8V8.2C22 7.07989 22 6.51984 21.782 6.09202C21.5903 5.71569 21.2843 5.40973 20.908 5.21799C20.4802 5 19.9201 5 18.8 5H5.2C4.07989 5 3.51984 5 3.09202 5.21799C2.71569 5.40973 2.40973 5.71569 2.21799 6.09202C2 6.51984 2 7.07989 2 8.2V13.8C2 14.9201 2 15.4802 2.21799 15.908C2.40973 16.2843 2.71569 16.5903 3.09202 16.782C3.51984 17 4.07989 17 5.2 17Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {children}
+    </svg>
+  )
+}
+
 /** `star-01` */
 export function SvgStar_01({ children, size = 24, ...props }: IconSvgProps) {
   return (

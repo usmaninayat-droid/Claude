@@ -44,8 +44,11 @@ function collapseFloorWidth<T>(col: DataTableColumn<T>): string {
  *    'touch'` is ever acted on; a mouse double-click on an arbitrary cell
  *    must NOT expand anything (§7 web interaction is a dedicated control,
  *    not double-click-anywhere) — see `DataTable.tsx`'s pointerup wiring.
- *  - Web — `toggleExpanded(key)` directly, wired to the small header-edge
- *    expand button (`DataTableColumnControls.ExpandColumnToggle`).
+ *  - Web — `toggleExpanded(key)` directly. Historically wired to the small
+ *    header-edge expand button (`DataTableColumnControls.ExpandColumnToggle`,
+ *    since removed); the callback remains so a caller can trigger expansion
+ *    from a keyboard shortcut or bespoke UI, but the DS no longer surfaces a
+ *    visible affordance for it.
  *
  * A resolved tap (expand, collapse-same-column, or collapse-via-tapping-
  * elsewhere) also needs to swallow the SAME tap's resulting `click` — which
