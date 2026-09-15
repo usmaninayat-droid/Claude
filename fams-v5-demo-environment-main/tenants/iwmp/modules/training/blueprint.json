@@ -116,7 +116,7 @@
     }
   ],
   "uiConfig": {
-    "icon": "shield-tick",
+    "icon": "stand",
     "statusList": [
       {
         "id": "sts_trn_active",
@@ -138,7 +138,7 @@
         "pos": "left"
       },
       "infoTitle": "Training Details",
-      "placeholderIcon": "wrench",
+      "placeholderIcon": "stand",
       "details": [
         {
           "id": "fld_trn_code",

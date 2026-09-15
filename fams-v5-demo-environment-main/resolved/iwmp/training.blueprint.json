@@ -184,7 +184,7 @@
         "order": 3
       }
     ],
-    "icon": "shield-tick",
+    "icon": "stand",
     "listGroupBy": false,
     "listRowHeight": "md",
     "listSort": false,
@@ -237,7 +237,7 @@
         }
       ],
       "infoTitle": "Training Details",
-      "placeholderIcon": "wrench",
+      "placeholderIcon": "stand",
       "rightPanel": {
         "tabs": [
           {
