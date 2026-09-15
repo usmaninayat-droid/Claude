@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { getIcon } from '@fams/ui-kit/icons'
 import {
   AlertTriangle,
   Activity,
@@ -150,10 +151,17 @@ export function resolveWidgetIcon(name: string | undefined): LucideIcon | undefi
   if (!name) return undefined
   const icon = WIDGET_ICONS[name]
   if (icon) return icon
+  // Fall back to the full canonical DS icon registry so any DS glyph name a
+  // blueprint chooses (e.g. `user`, `calendar`, `briefcase`) still renders —
+  // a KPI/widget icon should never come up empty just because the name isn't
+  // in the small curated `WIDGET_ICONS` set above. `getIcon` returns the DS
+  // `IconGlyph`, which satisfies the same `LucideIcon` prop signature.
+  const fromRegistry = getIcon(name) as LucideIcon | undefined
+  if (fromRegistry) return fromRegistry
   if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production' && !warnedIconNames.has(name)) {
     warnedIconNames.add(name)
     console.warn(
-      `[dashboard] unknown icon name "${name}" — no icon rendered. Add it to WIDGET_ICONS in dashboard-widget-shell.tsx, or use one of: ${Object.keys(WIDGET_ICONS).join(', ')}.`,
+      `[dashboard] unknown icon name "${name}" — not in WIDGET_ICONS or the DS icon registry, so no icon rendered. Use a valid DS icon name.`,
     )
   }
   return undefined

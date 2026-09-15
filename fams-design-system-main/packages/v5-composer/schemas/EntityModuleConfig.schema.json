@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://fams.com/schemas/v5-composer/EntityModuleConfig.schema.json",
   "title": "EntityModuleConfig",
-  "description": "Config for one Entity module (a list of things — companies, contacts, vehicles…). Faithful EAV shape merged with v5's real entityconfig: column families (systemcolumns + optional streamcolumns/datacolumns/usercolumns/validation_columns) of field descriptors keyed by `col`, plus uiConfig + listcolumns — what the composer registers and config-render derives views from. Every node carries a stable `id` (tenant-model requirement).",
+  "description": "Config for one Entity module (a list of things \u2014 companies, contacts, vehicles\u2026). Faithful EAV shape merged with v5's real entityconfig: column families (systemcolumns + optional streamcolumns/datacolumns/usercolumns/validation_columns) of field descriptors keyed by `col`, plus uiConfig + listcolumns \u2014 what the composer registers and config-render derives views from. Every node carries a stable `id` (tenant-model requirement).",
   "type": "object",
   "required": [
     "code",
@@ -31,7 +31,7 @@
         "string",
         "number"
       ],
-      "description": "Optional definition version — the cache key for compileFieldSet (phase 2 §2). Bump on any field/placement change; absent → content-hash fallback."
+      "description": "Optional definition version \u2014 the cache key for compileFieldSet (phase 2 \u00a72). Bump on any field/placement change; absent \u2192 content-hash fallback."
     },
     "uidPrefix": {
       "type": "string"
@@ -78,23 +78,61 @@
     },
     "views": {
       "type": "array",
-      "items": { "$ref": "#/$defs/ViewSpec" },
-      "description": "Optional explicit view list for the module's view tabs. An entry is either the bare view KIND (e.g. \"kanban\") — label from the composer's VIEW_LABEL map — or an object { kind, label?, icon? } naming the module's own lens (e.g. { \"kind\": \"dispatcher-cockpit\", \"label\": \"Dispatcher Cockpit\", \"icon\": \"radio\" }). Wins over the module-type's default views when present (see `resolveModuleViews` / `resolveModuleViewSpecs` in `@fams/v5-composer`'s module-registry.ts) — threaded in by the consuming app's blueprint→ModuleBlueprint mapping (e.g. the demo env's `toModuleNode()`)."
+      "items": {
+        "$ref": "#/$defs/ViewSpec"
+      },
+      "description": "Optional explicit view list for the module's view tabs. An entry is either the bare view KIND (e.g. \"kanban\") \u2014 label from the composer's VIEW_LABEL map \u2014 or an object { kind, label?, icon? } naming the module's own lens (e.g. { \"kind\": \"dispatcher-cockpit\", \"label\": \"Dispatcher Cockpit\", \"icon\": \"radio\" }). Wins over the module-type's default views when present (see `resolveModuleViews` / `resolveModuleViewSpecs` in `@fams/v5-composer`'s module-registry.ts) \u2014 threaded in by the consuming app's blueprint\u2192ModuleBlueprint mapping (e.g. the demo env's `toModuleNode()`)."
     }
   },
   "$defs": {
     "ViewSpec": {
       "description": "A view tab entry: the bare view kind, or an object carrying the module's own label/icon for that kind. The engine only ever branches on `kind`; `label`/`icon` are module metadata.",
       "oneOf": [
-        { "enum": ["list", "kanban", "hybrid", "map", "calendar", "grouped-list", "grid", "dispatcher-cockpit", "triage-console", "fleet-console", "workforce-pulse"] },
+        {
+          "enum": [
+            "list",
+            "kanban",
+            "hybrid",
+            "map",
+            "calendar",
+            "grouped-list",
+            "grid",
+            "dispatcher-cockpit",
+            "triage-console",
+            "fleet-console",
+            "workforce-pulse"
+          ]
+        },
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["kind"],
+          "required": [
+            "kind"
+          ],
           "properties": {
-            "kind": { "enum": ["list", "kanban", "hybrid", "map", "calendar", "grouped-list", "grid", "dispatcher-cockpit", "triage-console", "fleet-console", "workforce-pulse"] },
-            "label": { "type": "string", "description": "Tab label override. Omit for the kind's default label." },
-            "icon": { "type": "string", "description": "Tab glyph name, resolved against the icon set at render time." }
+            "kind": {
+              "enum": [
+                "list",
+                "kanban",
+                "hybrid",
+                "map",
+                "calendar",
+                "grouped-list",
+                "grid",
+                "dispatcher-cockpit",
+                "triage-console",
+                "fleet-console",
+                "workforce-pulse"
+              ]
+            },
+            "label": {
+              "type": "string",
+              "description": "Tab label override. Omit for the kind's default label."
+            },
+            "icon": {
+              "type": "string",
+              "description": "Tab glyph name, resolved against the icon set at render time."
+            }
           }
         }
       ]
@@ -121,7 +159,7 @@
         "Color",
         "Assignee"
       ],
-      "description": "v5 frontend field type set. Aliases: BigText≡LongText, Numeric≡Number. Color/Assignee are optional forward-looking types the blueprint models explicitly — a v5 export maps Assignee → a reference with refModule:'Users', Color → a SmallText slot rendered as a color."
+      "description": "v5 frontend field type set. Aliases: BigText\u2261LongText, Numeric\u2261Number. Color/Assignee are optional forward-looking types the blueprint models explicitly \u2014 a v5 export maps Assignee \u2192 a reference with refModule:'Users', Color \u2192 a SmallText slot rendered as a color."
     },
     "ReferenceKind": {
       "enum": [
@@ -169,7 +207,7 @@
         },
         "group": {
           "type": "string",
-          "description": "Catalog section for the columns chooser, e.g. 'Asset – Basic Info' (SPEC v2 §2.6 groups the OFF fields under uppercase category headers). Presentational only — never affects storage or resolution."
+          "description": "Catalog section for the columns chooser, e.g. 'Asset \u2013 Basic Info' (SPEC v2 \u00a72.6 groups the OFF fields under uppercase category headers). Presentational only \u2014 never affects storage or resolution."
         },
         "type": {
           "$ref": "#/$defs/FieldType"
@@ -205,7 +243,7 @@
         },
         "unit": {
           "type": "string",
-          "description": "Display unit appended after a numeric read value (5,061 km · 2,986 hrs · 1,200 AED). Column-level: it travels onto every descriptor for this column, so every surface reading the field prints the same unit. Lowest precedence — compileFieldSet's `units` option and component.props.unit/suffix both win."
+          "description": "Display unit appended after a numeric read value (5,061 km \u00b7 2,986 hrs \u00b7 1,200 AED). Column-level: it travels onto every descriptor for this column, so every surface reading the field prints the same unit. Lowest precedence \u2014 compileFieldSet's `units` option and component.props.unit/suffix both win."
         },
         "component": {
           "$ref": "#/$defs/ComponentRef"
@@ -213,7 +251,7 @@
         "creation": {
           "type": "object",
           "additionalProperties": false,
-          "description": "Field-level creation-form visibility and behavior (distinct from EntityModuleConfig.uiConfig.creation's form-level layout knobs). 'hidden: true' excludes this field from every create-sheet grouping bucket while leaving every other surface (detail grid, sections, kanban/list) unaffected. 'autofill' preselects this field's value when another field is edited to a matching value (still freely editable afterward) — see FieldDescriptor.creation in v5-composer's fields/types.ts.",
+          "description": "Field-level creation-form visibility and behavior (distinct from EntityModuleConfig.uiConfig.creation's form-level layout knobs). 'hidden: true' excludes this field from every create-sheet grouping bucket while leaving every other surface (detail grid, sections, kanban/list) unaffected. 'autofill' preselects this field's value when another field is edited to a matching value (still freely editable afterward) \u2014 see FieldDescriptor.creation in v5-composer's fields/types.ts.",
           "properties": {
             "hidden": {
               "type": "boolean"
@@ -224,7 +262,7 @@
               "required": [
                 "whenCol"
               ],
-              "description": "One of three modes: equals/value (exact-match preselect), map (a whenCol-value -> target-value lookup table), or template (a '{col} · {col}' string built from current form values).",
+              "description": "One of three modes: equals/value (exact-match preselect), map (a whenCol-value -> target-value lookup table), or template (a '{col} \u00b7 {col}' string built from current form values).",
               "properties": {
                 "whenCol": {
                   "type": "string"
@@ -317,7 +355,7 @@
             "success",
             "danger"
           ],
-          "description": "Semantic lifecycle tone — DS-token-driven reading of this stage, preferred over `color` by renderers that support it."
+          "description": "Semantic lifecycle tone \u2014 DS-token-driven reading of this stage, preferred over `color` by renderers that support it."
         },
         "textColor": {
           "type": "string",
@@ -443,7 +481,7 @@
             "date",
             "checkbox-group"
           ],
-          "description": "How the filter field behaves and renders. Omitted ⇒ derived from the column metadata by deriveFilters()."
+          "description": "How the filter field behaves and renders. Omitted \u21d2 derived from the column metadata by deriveFilters()."
         },
         "optionsFrom": {
           "enum": [
@@ -452,7 +490,7 @@
             "records",
             "inline"
           ],
-          "description": "Where the filter field's options come from. Omitted ⇒ derived alongside kind."
+          "description": "Where the filter field's options come from. Omitted \u21d2 derived alongside kind."
         },
         "showCounts": {
           "type": "boolean",
@@ -489,7 +527,7 @@
         },
         "multiple": {
           "type": "boolean",
-          "description": "Multi vs. single selection. Defaults to true for every kind except date and single-select. false ⇒ radio rows that close on pick."
+          "description": "Multi vs. single selection. Defaults to true for every kind except date and single-select. false \u21d2 radio rows that close on pick."
         },
         "options": {
           "type": "array",
@@ -522,15 +560,15 @@
         },
         "categoryCol": {
           "type": "string",
-          "description": "For kind: 'tags' — the option field carrying the chip's category. A real systemcolumns key."
+          "description": "For kind: 'tags' \u2014 the option field carrying the chip's category. A real systemcolumns key."
         },
         "expandable": {
           "type": "boolean",
-          "description": "true ⇒ the field's dropdown offers the ⧉ trigger that opens the full-table side-sheet selector. Legal only for kind: 'entity'."
+          "description": "true \u21d2 the field's dropdown offers the \u29c9 trigger that opens the full-table side-sheet selector. Legal only for kind: 'entity'."
         },
         "expandView": {
           "type": "object",
-          "description": "The side-sheet table config — required for a meaningful expandable.",
+          "description": "The side-sheet table config \u2014 required for a meaningful expandable.",
           "required": [
             "columns"
           ],
@@ -658,7 +696,7 @@
     },
     "Rbac": {
       "type": "object",
-      "description": "RBAC config — which roles can access this module/screen. Free-form per consumer.",
+      "description": "RBAC config \u2014 which roles can access this module/screen. Free-form per consumer.",
       "additionalProperties": true
     },
     "UiConfig": {
@@ -737,15 +775,15 @@
                   "type": "string"
                 }
               },
-              "description": "Card-level highlight color column — the record's value at `col` is a raw runtime color (e.g. '#f79009') applied to the card's own border; empty/absent renders no highlight. Generic flag slot, never a hardcoded concept."
+              "description": "Card-level highlight color column \u2014 the record's value at `col` is a raw runtime color (e.g. '#f79009') applied to the card's own border; empty/absent renders no highlight. Generic flag slot, never a hardcoded concept."
             },
             "boardClassName": {
               "type": "string",
-              "description": "Raw Tailwind utility classes merged onto the board's own scroll container (e.g. \"gap-5 ps-5 pe-5\") — opt-in escape hatch for a module needing a different column gap/scroll-edge padding than the shared KanbanBoard default. Omit for the default."
+              "description": "Raw Tailwind utility classes merged onto the board's own scroll container (e.g. \"gap-5 ps-5 pe-5\") \u2014 opt-in escape hatch for a module needing a different column gap/scroll-edge padding than the shared KanbanBoard default. Omit for the default."
             },
             "columnClassName": {
               "type": "string",
-              "description": "Raw Tailwind utility classes merged onto every column (e.g. \"w-96\") — opt-in escape hatch for a module needing wider columns than the shared KanbanColumn default. Omit for the default."
+              "description": "Raw Tailwind utility classes merged onto every column (e.g. \"w-96\") \u2014 opt-in escape hatch for a module needing wider columns than the shared KanbanColumn default. Omit for the default."
             }
           }
         },
@@ -777,7 +815,7 @@
             "records": {
               "type": "object",
               "additionalProperties": false,
-              "description": "Record-geometry map bindings — presence makes the hybrid lens the generic list+record-map view. Geometry is per record (point from latCol/lngCol, polygon from zoneCol), never a mode flag.",
+              "description": "Record-geometry map bindings \u2014 presence makes the hybrid lens the generic list+record-map view. Geometry is per record (point from latCol/lngCol, polygon from zoneCol), never a mode flag.",
               "properties": {
                 "colorBy": {
                   "type": "object",
@@ -957,11 +995,11 @@
                   },
                   "category": {
                     "type": "string",
-                    "description": "DS POI category id (@fams/ui-kit's POI_CATEGORIES, e.g. 'port' / 'fuel-station' / 'hospital' / 'mosque' / 'government' — see assets/icons/poi/*.svg). Drives the category-glyphed PoiMarker on the map and PoiCategoryChip in the POI drawer; optional, falls back to the legacy kind-based glyph when absent or unrecognized."
+                    "description": "DS POI category id (@fams/ui-kit's POI_CATEGORIES, e.g. 'port' / 'fuel-station' / 'hospital' / 'mosque' / 'government' \u2014 see assets/icons/poi/*.svg). Drives the category-glyphed PoiMarker on the map and PoiCategoryChip in the POI drawer; optional, falls back to the legacy kind-based glyph when absent or unrecognized."
                   }
                 }
               },
-              "description": "Points of interest for the map's POI drawer — checked POIs plot pins; position is [lng, lat]."
+              "description": "Points of interest for the map's POI drawer \u2014 checked POIs plot pins; position is [lng, lat]."
             },
             "expandedColumns": {
               "type": "array",
@@ -976,14 +1014,14 @@
             },
             "privateTagsCol": {
               "type": "string",
-              "description": "Second tags-like column — its values form the Tags multiselect's second suggestion group (grey outlined chips, e.g. a user's private tags). Same value shape as tagsCol."
+              "description": "Second tags-like column \u2014 its values form the Tags multiselect's second suggestion group (grey outlined chips, e.g. a user's private tags). Same value shape as tagsCol."
             },
             "columnsShown": {
               "type": "array",
               "items": {
                 "type": "string"
               },
-              "description": "The Columns popover's default Shown set (systemcolumn ids or col keys). Decoupled from the collapsed table columns (hybrid.listColumns); omitted → the popover seeds from the collapsed columns."
+              "description": "The Columns popover's default Shown set (systemcolumn ids or col keys). Decoupled from the collapsed table columns (hybrid.listColumns); omitted \u2192 the popover seeds from the collapsed columns."
             },
             "statusCol": {
               "type": "string"
@@ -999,7 +1037,7 @@
             },
             "vehicleTypeCol": {
               "type": "string",
-              "description": "Vehicle-type column (e.g. \"Tanker\") — the mixed Name·ID·Type·Location list's Type column for a vehicle row (2026-08-31 workforce enhancement)."
+              "description": "Vehicle-type column (e.g. \"Tanker\") \u2014 the mixed Name\u00b7ID\u00b7Type\u00b7Location list's Type column for a vehicle row (2026-08-31 workforce enhancement)."
             },
             "speedCol": {
               "type": "string"
@@ -1024,11 +1062,11 @@
             },
             "activityCol": {
               "type": "string",
-              "description": "Column whose record value is an array of { icon?, count, tone? } pairs — the compact icon+count Activity Overview cell."
+              "description": "Column whose record value is an array of { icon?, count, tone? } pairs \u2014 the compact icon+count Activity Overview cell."
             },
             "fillLevelCol": {
               "type": "string",
-              "description": "Column whose record value is a number 0-100 (or numeric string) rendered as a colored progress bar + percentage in the hybrid list's FILL LEVEL column. Generic — header label comes from the bound systemcolumn's own name."
+              "description": "Column whose record value is a number 0-100 (or numeric string) rendered as a colored progress bar + percentage in the hybrid list's FILL LEVEL column. Generic \u2014 header label comes from the bound systemcolumn's own name."
             },
             "vehicleArt": {
               "type": "string",
@@ -1037,7 +1075,7 @@
                 "tanker",
                 "weather-station"
               ],
-              "description": "Which VehicleIcon3D illustration the map marker, list-row cell, and popup header render for every record in this module. Generic, config-driven; omitted → 'car'."
+              "description": "Which VehicleIcon3D illustration the map marker, list-row cell, and popup header render for every record in this module. Generic, config-driven; omitted \u2192 'car'."
             },
             "workforce": {
               "type": "object",
@@ -1045,7 +1083,7 @@
               "required": [
                 "kindCol"
               ],
-              "description": "Workforce bindings (2026-08-31 enhancement). Presence of kindCol turns on the Live Monitoring All/Vehicle/Workforce chips and the mixed Name·ID·Type·Location list columns; omitted, the module renders exactly as before.",
+              "description": "Workforce bindings (2026-08-31 enhancement). Presence of kindCol turns on the Live Monitoring All/Vehicle/Workforce chips and the mixed Name\u00b7ID\u00b7Type\u00b7Location list columns; omitted, the module renders exactly as before.",
               "properties": {
                 "kindCol": {
                   "type": "string",
@@ -1071,7 +1109,7 @@
                 "popup": {
                   "type": "object",
                   "additionalProperties": false,
-                  "description": "Workforce popup card bindings (2026-08-31 workforce-popup task) — same tabbed contract as uiConfig.map.popup with the Shifts vocabulary.",
+                  "description": "Workforce popup card bindings (2026-08-31 workforce-popup task) \u2014 same tabbed contract as uiConfig.map.popup with the Shifts vocabulary.",
                   "properties": {
                     "fields": {
                       "type": "array",
@@ -1112,7 +1150,7 @@
                           },
                           "thresholds": {
                             "type": "array",
-                            "description": "kind: 'progress' only — value thresholds mapping the number onto a bar tone, matched highest-first.",
+                            "description": "kind: 'progress' only \u2014 value thresholds mapping the number onto a bar tone, matched highest-first.",
                             "items": {
                               "type": "object",
                               "required": [
@@ -1138,7 +1176,7 @@
                           },
                           "tagTones": {
                             "type": "object",
-                            "description": "kind: 'tags' only — per-tag tone by exact label; unlisted tags render neutral.",
+                            "description": "kind: 'tags' only \u2014 per-tag tone by exact label; unlisted tags render neutral.",
                             "additionalProperties": {
                               "type": "string",
                               "enum": [
@@ -1183,12 +1221,12 @@
             },
             "markerDetailZoom": {
               "type": "number",
-              "description": "Zoom at or above which map markers render their info capsule (plate + fill level / speed) instead of the plain pin. Omitted → the design's own threshold."
+              "description": "Zoom at or above which map markers render their info capsule (plate + fill level / speed) instead of the plain pin. Omitted \u2192 the design's own threshold."
             },
             "popup": {
               "type": "object",
               "additionalProperties": false,
-              "description": "Vehicle popup card bindings — the Overview grid's authored field list plus the columns feeding the Critical Events / Trips / Workforce / Devices tab bodies.",
+              "description": "Vehicle popup card bindings \u2014 the Overview grid's authored field list plus the columns feeding the Critical Events / Trips / Workforce / Devices tab bodies.",
               "properties": {
                 "fields": {
                   "type": "array",
@@ -1229,7 +1267,7 @@
                       },
                       "thresholds": {
                         "type": "array",
-                        "description": "kind: 'progress' only — value thresholds mapping the number onto a bar tone, matched highest-first.",
+                        "description": "kind: 'progress' only \u2014 value thresholds mapping the number onto a bar tone, matched highest-first.",
                         "items": {
                           "type": "object",
                           "required": [
@@ -1255,7 +1293,7 @@
                       },
                       "tagTones": {
                         "type": "object",
-                        "description": "kind: 'tags' only — per-tag tone by exact label; unlisted tags render neutral.",
+                        "description": "kind: 'tags' only \u2014 per-tag tone by exact label; unlisted tags render neutral.",
                         "additionalProperties": {
                           "type": "string",
                           "enum": [
@@ -1287,7 +1325,7 @@
                 "workforce": {
                   "type": "object",
                   "additionalProperties": false,
-                  "description": "The popup's Workforce tab (Figma 16:22182) — the assigned crew's info card. An entry whose column is empty is skipped; with nothing bound the tab shows its empty state.",
+                  "description": "The popup's Workforce tab (Figma 16:22182) \u2014 the assigned crew's info card. An entry whose column is empty is skipped; with nothing bound the tab shows its empty state.",
                   "properties": {
                     "photoCol": {
                       "type": "string",
@@ -1361,7 +1399,7 @@
                   },
                   "address": {
                     "type": "string",
-                    "description": "Full \"District, Municipality, Country\" line — the muted subtitle of a gazetteer row in the map search. Authored here, never derived (the design system ships no gazetteer and geocodes nothing)."
+                    "description": "Full \"District, Municipality, Country\" line \u2014 the muted subtitle of a gazetteer row in the map search. Authored here, never derived (the design system ships no gazetteer and geocodes nothing)."
                   }
                 }
               },
@@ -1376,10 +1414,10 @@
                   "enum": [
                     "qatar"
                   ],
-                  "description": "Opt-in bundled places/districts/landmarks dataset the map's 'search anything' matches against as extra `place`-kind rows, alongside `places`/`zones`/`pois`/assets. The design system ships no gazetteer by default — this key names a deployment's own bundled dataset (currently only \"qatar\", `qatarGazetteer` from `@fams/v5-templates`); omit for a deployment with no bundled dataset."
+                  "description": "Opt-in bundled places/districts/landmarks dataset the map's 'search anything' matches against as extra `place`-kind rows, alongside `places`/`zones`/`pois`/assets. The design system ships no gazetteer by default \u2014 this key names a deployment's own bundled dataset (currently only \"qatar\", `qatarGazetteer` from `@fams/v5-templates`); omit for a deployment with no bundled dataset."
                 }
               },
-              "description": "The map's 'search anything' panel configuration (map-features-video-analysis.md §1)."
+              "description": "The map's 'search anything' panel configuration (map-features-video-analysis.md \u00a71)."
             },
             "unavailableTools": {
               "type": "array",
@@ -1405,7 +1443,7 @@
             },
             "tools": {
               "type": "array",
-              "description": "Which floating map tools render, by id, AND — for the top-end stack (layers, traffic, weather, incidents, poi, zones) — the ORDER they render in, top to bottom. Omitted, the map renders the reference set (search, cluster, layers, traffic, zones, poi) in that order — no drop-pin, no refresh, no weather, no incidents.",
+              "description": "Which floating map tools render, by id, AND \u2014 for the top-end stack (layers, traffic, weather, incidents, poi, zones) \u2014 the ORDER they render in, top to bottom. Omitted, the map renders the reference set (search, cluster, layers, traffic, zones, poi) in that order \u2014 no drop-pin, no refresh, no weather, no incidents.",
               "items": {
                 "type": "string",
                 "enum": [
@@ -1425,12 +1463,12 @@
             },
             "incidentsModule": {
               "type": "string",
-              "description": "The `code` of another module (e.g. \"incidents/incident\") whose records paint as severity-coloured pins on THIS map and list as cards in the Incidents panel (the `incidents` tool, SPEC 19:23006 #4) — a cross-module overlay, resolved by the app's `resolveModuleRecords` host seam. Omit and the Incidents tool renders with no overlay (a tool cannot render for data the blueprint never declared)."
+              "description": "The `code` of another module (e.g. \"incidents/incident\") whose records paint as severity-coloured pins on THIS map and list as cards in the Incidents panel (the `incidents` tool, SPEC 19:23006 #4) \u2014 a cross-module overlay, resolved by the app's `resolveModuleRecords` host seam. Omit and the Incidents tool renders with no overlay (a tool cannot render for data the blueprint never declared)."
             },
             "weather": {
               "type": "object",
               "additionalProperties": false,
-              "description": "Weather monitoring overlay for the live map (Figma section 22:41486): colour-banded temperature station markers, an overlay checkbox row (Stations / Rain Heat-map / Clouds / Precipitation) and a docked station detail drawer. Every reading, forecast and outlook row is APPLICATION DATA authored here — the design system ships no weather feed and calls no weather service (no OpenWeatherMap tiles, no Open-Meteo requests); the rain/cloud/precipitation washes are generated from a deterministic seeded field, exactly as the traffic overlay is.",
+              "description": "Weather monitoring overlay for the live map (Figma section 22:41486): colour-banded temperature station markers, an overlay checkbox row (Stations / Rain Heat-map / Clouds / Precipitation) and a docked station detail drawer. Every reading, forecast and outlook row is APPLICATION DATA authored here \u2014 the design system ships no weather feed and calls no weather service (no OpenWeatherMap tiles, no Open-Meteo requests); the rain/cloud/precipitation washes are generated from a deterministic seeded field, exactly as the traffic overlay is.",
               "properties": {
                 "enabled": {
                   "type": "boolean",
@@ -1473,7 +1511,7 @@
                       "reading": {
                         "type": "object",
                         "additionalProperties": false,
-                        "description": "The current observation. OMIT ENTIRELY for a station that is not reporting — it then renders the grey no-data marker and a dashed detail grid rather than a broken-looking empty one.",
+                        "description": "The current observation. OMIT ENTIRELY for a station that is not reporting \u2014 it then renders the grey no-data marker and a dashed detail grid rather than a broken-looking empty one.",
                         "properties": {
                           "tempC": {
                             "type": "number"
@@ -1589,7 +1627,7 @@
                             },
                             "rainMm": {
                               "type": "number",
-                              "description": "QMD's official daily rainfall total, mm (rain-first deployments, 2026-08-31). Optional — omitted, the QMD grid's Rain row falls back to its 'no data' dash."
+                              "description": "QMD's official daily rainfall total, mm (rain-first deployments, 2026-08-31). Optional \u2014 omitted, the QMD grid's Rain row falls back to its 'no data' dash."
                             }
                           }
                         }
@@ -1702,7 +1740,7 @@
                           },
                           "rainMm": {
                             "type": "number",
-                            "description": "QMD's official daily rainfall total, mm (rain-first deployments, 2026-08-31). Optional — omitted, the QMD grid's Rain row falls back to its 'no data' dash."
+                            "description": "QMD's official daily rainfall total, mm (rain-first deployments, 2026-08-31). Optional \u2014 omitted, the QMD grid's Rain row falls back to its 'no data' dash."
                           }
                         }
                       }
@@ -1848,11 +1886,11 @@
                   },
                   "showLabel": {
                     "type": "boolean",
-                    "description": "Show this section's name as a heading in the CREATE sheet's flat layout. Default false — see ProfileSection.showLabel in types.ts."
+                    "description": "Show this section's name as a heading in the CREATE sheet's flat layout. Default false \u2014 see ProfileSection.showLabel in types.ts."
                   },
                   "detailHidden": {
                     "type": "boolean",
-                    "description": "Exclude this section from the DETAIL page's accordion list while it still fully participates in CREATE grouping. Default false — see ProfileSection.detailHidden in types.ts."
+                    "description": "Exclude this section from the DETAIL page's accordion list while it still fully participates in CREATE grouping. Default false \u2014 see ProfileSection.detailHidden in types.ts."
                   },
                   "visibleWhen": {
                     "type": "object",
@@ -2185,7 +2223,7 @@
         },
         "rowActions": {
           "type": "object",
-          "description": "Per-record hover-revealed row/card options menu (Figma overlay 33534:32262) — exactly Delete (destructive, confirmed) + Archive (a disabled placeholder). Shared across List rows, Hybrid cards and Kanban cards. Omit for no row menu.",
+          "description": "Per-record hover-revealed row/card options menu (Figma overlay 33534:32262) \u2014 exactly Delete (destructive, confirmed) + Archive (a disabled placeholder). Shared across List rows, Hybrid cards and Kanban cards. Omit for no row menu.",
           "additionalProperties": false,
           "properties": {
             "delete": {
@@ -2199,13 +2237,13 @@
             },
             "alwaysVisible": {
               "type": "boolean",
-              "description": "Paint the `…` control at rest instead of hover-revealing it. Opt-in: omit to keep the shared hover default. Resting look only — the button is mounted, focusable and named in both modes."
+              "description": "Paint the `\u2026` control at rest instead of hover-revealing it. Opt-in: omit to keep the shared hover default. Resting look only \u2014 the button is mounted, focusable and named in both modes."
             }
           }
         },
         "bulkActions": {
           "type": "object",
-          "description": "Bulk action bar shown while at least one record is selected (Figma Dev Note 33534:32267) — exactly Delete + Export. Gated by listSelectable; omit to accept the selection-driven default, pass {} for a selection column with no bar.",
+          "description": "Bulk action bar shown while at least one record is selected (Figma Dev Note 33534:32267) \u2014 exactly Delete + Export. Gated by listSelectable; omit to accept the selection-driven default, pass {} for a selection column with no bar.",
           "additionalProperties": false,
           "properties": {
             "delete": {
@@ -2250,7 +2288,7 @@
             },
             "explicit": {
               "type": "boolean",
-              "description": "Suppresses the create form's trailing catch-all 'Details' group — only the implicit Basic-Info group plus fields explicitly placed in profile.sections appear."
+              "description": "Suppresses the create form's trailing catch-all 'Details' group \u2014 only the implicit Basic-Info group plus fields explicitly placed in profile.sections appear."
             },
             "basicCount": {
               "type": "integer",
@@ -2266,7 +2304,7 @@
                 "numbered",
                 "tabs"
               ],
-              "description": "Step-nav treatment for the wizard rail — Stepper's own variant. 'numbered' (default) is the numbered/icon circle rail; 'tabs' is the horizontal text-tab strip. Ignored by the 'flat' path."
+              "description": "Step-nav treatment for the wizard rail \u2014 Stepper's own variant. 'numbered' (default) is the numbered/icon circle rail; 'tabs' is the horizontal text-tab strip. Ignored by the 'flat' path."
             },
             "stepIcons": {
               "type": "object",
@@ -2834,7 +2872,7 @@
             },
             "stageTabs": {
               "type": "boolean",
-              "description": "Stage tabs — a CountTabs row above the hybrid's compact left list: 'All' plus one tab per uiConfig.statusList entry, each with a live count. Selecting a stage narrows the list to it and suppresses the per-row STATUS pill (both return on 'All'). Requires a non-empty uiConfig.statusList."
+              "description": "Stage tabs \u2014 a CountTabs row above the hybrid's compact left list: 'All' plus one tab per uiConfig.statusList entry, each with a live count. Selecting a stage narrows the list to it and suppresses the per-row STATUS pill (both return on 'All'). Requires a non-empty uiConfig.statusList."
             }
           }
         },
@@ -2848,29 +2886,41 @@
         },
         "recordAutomation": {
           "type": "array",
-          "description": "Declarative cross-module side effects — the generic 'when this column reaches this value, create a record in another module and reference it back' vocabulary. Evaluated by the pure evalRecordAutomations() (@fams/v5-composer's automation.ts); the consuming app performs the actual create/patch. Carries no business vocabulary — col/entityType/target column keys are opaque strings the blueprint author supplies.",
+          "description": "Declarative cross-module side effects \u2014 the generic 'when this column reaches this value, create a record in another module and reference it back' vocabulary. Evaluated by the pure evalRecordAutomations() (@fams/v5-composer's automation.ts); the consuming app performs the actual create/patch. Carries no business vocabulary \u2014 col/entityType/target column keys are opaque strings the blueprint author supplies.",
           "items": {
             "type": "object",
-            "required": ["id", "when", "create"],
+            "required": [
+              "id",
+              "when",
+              "create"
+            ],
             "additionalProperties": false,
             "properties": {
               "id": {
                 "type": "string",
-                "description": "Stable identity — same convention as every other blueprint node id."
+                "description": "Stable identity \u2014 same convention as every other blueprint node id."
               },
               "when": {
                 "type": "object",
-                "required": ["col", "equals"],
+                "required": [
+                  "col",
+                  "equals"
+                ],
                 "additionalProperties": false,
-                "description": "Fires when `col`'s value BECOMES exactly `equals` (an enter transition — does not fire if `col` already equaled `equals` before the patch, so it never refires on a later unrelated patch).",
+                "description": "Fires when `col`'s value BECOMES exactly `equals` (an enter transition \u2014 does not fire if `col` already equaled `equals` before the patch, so it never refires on a later unrelated patch).",
                 "properties": {
-                  "col": { "type": "string" },
+                  "col": {
+                    "type": "string"
+                  },
                   "equals": {}
                 }
               },
               "create": {
                 "type": "object",
-                "required": ["entityType", "values"],
+                "required": [
+                  "entityType",
+                  "values"
+                ],
                 "additionalProperties": false,
                 "properties": {
                   "entityType": {
@@ -2879,7 +2929,7 @@
                   },
                   "values": {
                     "type": "object",
-                    "description": "Target column → value mapping, resolved against the source record (its previous value merged with the incoming patch).",
+                    "description": "Target column \u2192 value mapping, resolved against the source record (its previous value merged with the incoming patch).",
                     "additionalProperties": {
                       "type": "object",
                       "additionalProperties": false,
@@ -2915,6 +2965,10 @@
               }
             }
           }
+        },
+        "listGroupBy": {
+          "type": "boolean",
+          "description": "Hides the toolbar's Group By control when false."
         }
       }
     }

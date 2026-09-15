@@ -210,6 +210,8 @@ export interface AuthoredUiConfig {
   listRowHeight?: 'md' | 'lg'
   /** Hides the toolbar's Sort control when `false` — see `UiConfig.listSort` in `types.ts`. */
   listSort?: boolean
+  /** Hides the toolbar's Group By control when `false` — see `UiConfig.listGroupBy` in `types.ts`. */
+  listGroupBy?: boolean
   /** Leading checkbox selection column — see `UiConfig.listSelectable` in `types.ts`. */
   listSelectable?: boolean
   /** Curated Group By option set — see `UiConfig.groupByOptions` in `types.ts`. */

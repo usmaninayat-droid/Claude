@@ -1223,6 +1223,8 @@ export interface UiConfig {
    * only) opts out explicitly rather than the template guessing.
    */
   listSort?: boolean
+  /** Hides the toolbar's Group By control when `false`. Mirrors `listSort`. */
+  listGroupBy?: boolean
   /**
    * Hides the "Showing N of M …" results-count line across this module's
    * lenses (list, kanban, record-map hybrid) when `true` (SPEC

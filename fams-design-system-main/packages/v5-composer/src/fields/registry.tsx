@@ -397,6 +397,13 @@ const ReadStatusList: ReadRenderer = (props) => {
 }
 
 const componentRegistry = new Map<string, ReadRenderer>([
+  /** Force PLAIN TEXT for a column whose field type would otherwise render a
+   *  richer default (e.g. a `SingleSelect` that renders `ReadEnum`'s Badge) —
+   *  a blueprint places `component: { name: "TextView" }` to opt an enum/other
+   *  column out of its chip and show the bare value. Until this entry existed,
+   *  `getComponentRenderer('TextView')` returned undefined and the placement
+   *  silently fell back to the type default (the enum Badge). */
+  ['TextView', ReadText],
   ['IconTextView', ReadIconText],
   /** Icon + NUMBER row that keeps the number's own locale/unit formatting (e.g. a speedometer icon + "45,210 km") — see `ReadIconNumber`. */
   ['IconNumberView', ReadIconNumber],

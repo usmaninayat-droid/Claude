@@ -586,8 +586,11 @@ export function ModuleView({
   const groupedState: ViewStateBody =
     seededGroupBy === activeState.groupBy ? activeState : { ...activeState, groupBy: seededGroupBy }
 
+  // `uiConfig.listGroupBy: false` hides the toolbar's Group By control — a
+  // generic per-module knob mirroring `listSort`, for simple lists that don't
+  // want the grouping affordance.
   const groupByFacet: ModuleViewGroupByFacet | undefined =
-    kindHasGroupBy(activeView?.kind) && groupByOptions.length
+    config.uiConfig.listGroupBy !== false && kindHasGroupBy(activeView?.kind) && groupByOptions.length
       ? {
           value: groupedState.groupBy ?? null,
           options: groupByOptions,

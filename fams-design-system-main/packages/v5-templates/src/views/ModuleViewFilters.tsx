@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { ArrowDown, ArrowUp, ArrowUpDown, ChevronDown, LayoutGrid, Layers, ListFilter, Rows3, Search, X } from '@fams/ui-kit/icons'
+import { ArrowDown, ArrowUp, ArrowUpDown, ChevronDown, Icon, LayoutGrid, Layers, ListFilter, Rows3, Search, X } from '@fams/ui-kit/icons'
 import {
   Avatar,
   Input,
@@ -667,6 +667,9 @@ export function ModuleViewFilters({
                     className="h-10 gap-2"
                     aria-label={active.length ? `${facet.label} (${active.length} active)` : facet.label}
                   >
+                    {facet.icon ? (
+                      <Icon name={facet.icon} className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+                    ) : null}
                     {label}
                     <ChevronDown className="size-4 shrink-0 opacity-60" aria-hidden="true" />
                   </Button>
