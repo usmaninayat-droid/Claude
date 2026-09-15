@@ -21,7 +21,7 @@
             "sectionLabel": "Required for Role – {role}",
             "scoreLabel": "Compliance Score",
             "summaryTitle": "Compliance Summary",
-            "headerEdit": true,
+            "headerEdit": false,
             "emptyText": "No trainings recorded for this workforce member.",
             "buckets": {
               "valid": [

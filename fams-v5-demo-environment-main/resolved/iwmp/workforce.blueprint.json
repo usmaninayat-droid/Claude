@@ -470,7 +470,7 @@
                 ],
                 "emptyText": "No trainings recorded for this workforce member.",
                 "field": "trainings",
-                "headerEdit": true,
+                "headerEdit": false,
                 "nameKey": "trainingName",
                 "roleField": "systemcol1",
                 "rowActions": [
