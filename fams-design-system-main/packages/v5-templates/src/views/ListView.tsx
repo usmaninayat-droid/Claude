@@ -282,7 +282,13 @@ export function ListView({
         // background is state-driven (matches the row's own hover/selected
         // tint) instead of the fixed `bg-card` this used to hand-roll here,
         // which defeated the row highlight and left a visible seam.
-        className="min-h-0 flex-1"
+        //
+        // No `flex-1` (was `min-h-0 flex-1`): the table hugs its rows now,
+        // so the list ends at the last row instead of stretching a white
+        // band down to the viewport bottom (design direction, matches
+        // shift-rostering). Overflow with many rows is absorbed by the
+        // shell body's own `overflow-auto` above, so nothing clips.
+        className="min-h-0"
       />
 
       {hasMore ? (
