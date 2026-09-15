@@ -484,7 +484,6 @@
                   }
                 ],
                 "scoreLabel": "Competency Score",
-                "sectionLabel": "Required for Role – {role}",
                 "statusColors": {
                   "Blocked": "#f04438",
                   "Expired": "#d92d20",

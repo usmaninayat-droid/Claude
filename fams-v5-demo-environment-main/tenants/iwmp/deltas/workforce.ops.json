@@ -18,7 +18,6 @@
             "statusKey": "status",
             "codeKey": "trainingCode",
             "roleField": "systemcol1",
-            "sectionLabel": "Required for Role – {role}",
             "scoreLabel": "Competency Score",
             "summaryTitle": "Competency Summary",
             "headerEdit": false,
