@@ -399,7 +399,7 @@
                 "alert": {
                   "ctaLabel": "Renew",
                   "ctaToast": "Renewal requested for {names}.",
-                  "message": "{count} required training{s} for this {role} {are} expired beyond the grace period. Renew {names} to restore route assignment."
+                  "message": "{count} required training{s} expired beyond grace — renew {names} to restore assignment."
                 },
                 "bucketLabels": {
                   "blocked": "Blocked",
