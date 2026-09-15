@@ -1,1 +1,4 @@
 .DS_Store
+
+# figma-parity run captures (regenerable)
+plan/**/qa/

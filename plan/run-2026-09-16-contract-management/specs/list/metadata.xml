@@ -1,0 +1,876 @@
+<frame id="2111:10733" name="Contract Management" x="80" y="342" width="1920" height="1080">
+  <frame id="2111:10734" name="Top Nav" x="118" y="0" width="1802" height="48">
+    <text id="2111:10735" name="Contract Management" x="32" y="14.5" width="171" height="19" />
+    <frame id="2111:10736" name="Frame 1261154849" x="235" y="0" width="116" height="48">
+      <frame id="2111:10737" name="Frame 1261154751" x="0" y="0" width="92" height="48">
+        <frame id="2111:10738" name="Tab" x="0" y="0" width="92" height="48">
+          <instance id="2111:10739" name="menu-01" x="12" y="18" width="12" height="12" />
+          <frame id="2111:10740" name="Frame 1000002737" x="32" y="17" width="48" height="14">
+            <text id="2111:10741" name="List View" x="0" y="0" width="48" height="14" />
+          </frame>
+        </frame>
+      </frame>
+      <instance id="2111:10742" name="plus" x="100" y="16" width="16" height="16" />
+    </frame>
+  </frame>
+  <frame id="2111:10743" name="Side Nav" x="0" y="0" width="118" height="1080">
+    <frame id="2111:10744" name="Primary Nav" x="0" y="0" width="52" height="1080">
+      <frame id="2111:10745" name="Frame 1261154727" x="12" y="16" width="28" height="134">
+        <frame id="2111:10746" name="Tajmee&#39;e Logo updated-01 1" x="0" y="0" width="28" height="34" />
+        <frame id="2111:10779" name="Frame 1261154773" x="0" y="62" width="28" height="72">
+          <frame id="2111:10780" name="Frame 1000002912" x="0" y="0" width="28" height="28">
+            <rounded-rectangle id="2111:10781" name="Rectangle 9470" x="0" y="0" width="28" height="28" />
+            <instance id="2111:10782" name="clapperboard" x="5" y="5" width="18" height="18" />
+          </frame>
+          <frame id="2111:10783" name="Nav_item 1" x="0" y="44" width="28" height="28">
+            <rounded-rectangle id="2111:10784" name="Rectangle 9471" x="0" y="0" width="28" height="28" />
+            <instance id="2111:10785" name="sales-crm" x="5" y="5" width="18" height="18" />
+          </frame>
+        </frame>
+      </frame>
+      <frame id="2111:10786" name="Frame 1261154728" x="12" y="996" width="4" height="68">
+        <frame id="2111:10787" name="Frame 1000002915" x="0" y="0" width="28" height="28">
+          <rounded-rectangle id="2111:10788" name="Rectangle 9470" x="0" y="0" width="28" height="28" />
+          <instance id="2111:10789" name="settings-02" x="5" y="5" width="18" height="18" />
+        </frame>
+        <frame id="2111:10790" name="Frame 1000002914" x="0" y="40" width="28" height="28">
+          <rounded-rectangle id="2111:10791" name="Rectangle 9470" x="0" y="0" width="28" height="28" />
+          <instance id="2111:10792" name="user-02" x="5" y="5" width="18" height="18" />
+        </frame>
+      </frame>
+    </frame>
+    <frame id="2111:10793" name="Secomdary Tab" x="52" y="0" width="66" height="1080">
+      <instance id="2111:10794" name="Nav_item" x="16" y="16" width="34" height="34" />
+      <instance id="2111:10795" name="Nav_item" x="16" y="66" width="34" height="34" />
+      <instance id="2111:10796" name="Nav_item" x="16" y="116" width="34" height="34" />
+      <instance id="2111:10797" name="Nav_item" x="16" y="166" width="34" height="34" />
+      <instance id="2111:10798" name="Nav_item" x="16" y="216" width="34" height="34" />
+      <instance id="2111:10799" name="Nav_item" x="16" y="266" width="34" height="34" />
+      <instance id="2111:10800" name="Nav_item" x="16" y="316" width="34" height="34" />
+      <instance id="2111:10801" name="Nav_item" x="16" y="366" width="34" height="34" />
+      <instance id="2111:10802" name="Nav_item" x="16" y="416" width="34" height="34" />
+      <instance id="2111:10803" name="Nav_item" x="16" y="466" width="34" height="34" />
+      <instance id="2111:10804" name="Nav_item" x="16" y="516" width="34" height="34" />
+      <instance id="2111:10805" name="Nav_item" x="16" y="516" width="34" height="34" hidden="true" />
+      <instance id="2111:10806" name="Nav_item" x="16" y="516" width="34" height="34" hidden="true" />
+      <instance id="2111:10807" name="Nav_item" x="16" y="516" width="34" height="34" hidden="true" />
+      <instance id="2111:10808" name="Nav_item" x="16" y="516" width="34" height="34" hidden="true" />
+      <instance id="2111:10809" name="Nav_item" x="16" y="516" width="34" height="34" hidden="true" />
+      <frame id="2111:10810" name="Frame 1261154774" x="23" y="516" width="20" height="20" hidden="true">
+        <instance id="2111:10811" name="plus" x="2" y="2" width="16" height="16" />
+      </frame>
+    </frame>
+  </frame>
+  <frame id="2111:10812" name="Frame 1261154740" x="142" y="72" width="1754" height="40">
+    <frame id="2111:10813" name="Frame 48095831" x="0" y="0" width="419" height="40">
+      <frame id="2111:10814" name="Frame 48095829" x="0" y="0" width="367" height="40">
+        <rounded-rectangle id="2111:10815" name="Rectangle 9480" x="0" y="0" width="367" height="40" />
+        <frame id="2111:10816" name="Frame 48095828" x="8" y="12" width="142" height="16">
+          <instance id="2111:10817" name="search-refraction" x="0" y="0" width="16" height="16" />
+          <text id="2111:10818" name="Search anything here" x="24" y="1" width="118" height="14" />
+        </frame>
+      </frame>
+      <frame id="2111:10819" name="Frame 1261154841" x="379" y="0" width="40" height="40">
+        <frame id="2111:10820" name="Frame 48095830" x="0" y="0" width="40" height="40">
+          <instance id="2111:10821" name="filter-funnel-01" x="12" y="12" width="16" height="16" />
+        </frame>
+        <frame id="2111:10822" name="Frame 1261154569" x="48" y="0" width="90" height="40" hidden="true">
+          <text id="2111:10823" name="Group By" x="8" y="12.5" width="52" height="14" />
+          <instance id="2111:10824" name="chevron-down" x="68" y="13" width="14.000000953674316" height="14.000000953674316" />
+        </frame>
+      </frame>
+    </frame>
+    <frame id="2111:10825" name="Frame 1000002788" x="1550" y="0" width="204" height="40">
+      <instance id="2111:10826" name="plus" x="24" y="14" width="12" height="12" />
+      <text id="2111:10827" name="Create New Contract" x="42" y="11" width="138" height="18" />
+    </frame>
+  </frame>
+  <frame id="2111:10828" name="Frame 1984079520" x="142" y="72" width="1754" height="40">
+    <frame id="2111:10829" name="Frame 48095831" x="0" y="0" width="419" height="40">
+      <frame id="2111:10830" name="Frame 48095829" x="0" y="0" width="367" height="40">
+        <rounded-rectangle id="2111:10831" name="Rectangle 9480" x="0" y="0" width="367" height="40" />
+        <frame id="2111:10832" name="Frame 48095828" x="8" y="12" width="142" height="16">
+          <instance id="2111:10833" name="search-refraction" x="0" y="0" width="16" height="16" />
+          <text id="2111:10834" name="Search anything here" x="24" y="1" width="118" height="14" />
+        </frame>
+      </frame>
+      <frame id="2111:10835" name="Frame 1261154841" x="379" y="0" width="40" height="40">
+        <frame id="2111:10836" name="Frame 48095830" x="0" y="0" width="40" height="40">
+          <instance id="2111:10837" name="filter-funnel-01" x="12" y="12" width="16" height="16" />
+        </frame>
+        <frame id="2111:10838" name="Frame 1261154569" x="48" y="0" width="90" height="40" hidden="true">
+          <text id="2111:10839" name="Group By" x="8" y="12.5" width="52" height="14" />
+          <instance id="2111:10840" name="chevron-down" x="68" y="13" width="14.000000953674316" height="14.000000953674316" />
+        </frame>
+      </frame>
+    </frame>
+    <frame id="2111:10841" name="Frame 1000002788" x="1550" y="0" width="204" height="40">
+      <instance id="2111:10842" name="plus" x="24" y="14" width="12" height="12" />
+      <text id="2111:10843" name="Create New Contract" x="42" y="11" width="138" height="18" />
+    </frame>
+  </frame>
+  <frame id="2111:10844" name="Frame 1984079214" x="142" y="136" width="1754" height="80">
+    <frame id="2111:10845" name="Frame 1984079042" x="0" y="0" width="1754" height="80">
+      <frame id="2111:10846" name="Card" x="0" y="0" width="334.79998779296875" height="80">
+        <frame id="2111:10847" name="Avatar" x="14" y="16" width="48" height="48">
+          <instance id="2111:10848" name="file-06" x="13" y="13" width="22" height="22" />
+        </frame>
+        <frame id="2111:10849" name="Frame 1261154904" x="74" y="16" width="246.79998779296875" height="48">
+          <frame id="2111:10850" name="Frame 1618873517" x="0" y="0" width="246.79998779296875" height="20">
+            <text id="2111:10851" name="54" x="0" y="0" width="93" height="20" />
+          </frame>
+          <frame id="2111:10852" name="Frame 1261154907" x="0" y="33" width="246.79998779296875" height="15">
+            <text id="2111:10853" name="Text" x="0" y="0" width="23" height="15" />
+          </frame>
+        </frame>
+      </frame>
+      <frame id="2111:10854" name="Card" x="354.79998779296875" y="0" width="334.79998779296875" height="80">
+        <frame id="2111:10855" name="Avatar" x="14" y="16" width="48" height="48">
+          <instance id="2111:10856" name="file-06" x="13" y="13" width="22" height="22" />
+        </frame>
+        <frame id="2111:10857" name="Frame 1261154904" x="74" y="16" width="246.79998779296875" height="48">
+          <frame id="2111:10858" name="Frame 1618873517" x="0" y="0" width="246.79998779296875" height="20">
+            <text id="2111:10859" name="54" x="0" y="0" width="40" height="20" />
+          </frame>
+          <frame id="2111:10860" name="Frame 1261154907" x="0" y="33" width="246.79998779296875" height="15">
+            <text id="2111:10861" name="Text" x="0" y="0" width="13" height="15" />
+          </frame>
+        </frame>
+      </frame>
+      <frame id="2111:10862" name="Card" x="709.5999755859375" y="0" width="334.79998779296875" height="80">
+        <frame id="2111:10863" name="Avatar" x="14" y="16" width="48" height="48">
+          <instance id="2111:10864" name="file-06" x="13" y="13" width="22" height="22" />
+        </frame>
+        <frame id="2111:10865" name="Frame 1261154904" x="74" y="16" width="246.79998779296875" height="48">
+          <frame id="2111:10866" name="Frame 1618873517" x="0" y="0" width="246.79998779296875" height="20">
+            <text id="2111:10867" name="54" x="0" y="0" width="122" height="20" />
+          </frame>
+          <frame id="2111:10868" name="Frame 1261154907" x="0" y="33" width="246.79998779296875" height="15">
+            <text id="2111:10869" name="Text" x="0" y="0" width="12" height="15" />
+          </frame>
+        </frame>
+      </frame>
+      <frame id="2111:10870" name="Card" x="1064.39990234375" y="0" width="334.79998779296875" height="80">
+        <frame id="2111:10871" name="Avatar" x="14" y="16" width="48" height="48">
+          <instance id="2111:10872" name="file-06" x="13" y="13" width="22" height="22" />
+        </frame>
+        <frame id="2111:10873" name="Frame 1261154904" x="74" y="16" width="246.79998779296875" height="48">
+          <frame id="2111:10874" name="Frame 1618873517" x="0" y="0" width="246.79998779296875" height="20">
+            <text id="2111:10875" name="54" x="0" y="0" width="40" height="20" />
+          </frame>
+          <frame id="2111:10876" name="Frame 1261154907" x="0" y="33" width="246.79998779296875" height="15">
+            <text id="2111:10877" name="Text" x="0" y="0" width="9" height="15" />
+          </frame>
+        </frame>
+      </frame>
+      <frame id="2111:10878" name="Card" x="1419.199951171875" y="0" width="334.79998779296875" height="80">
+        <frame id="2111:10879" name="Avatar" x="14" y="16" width="48" height="48">
+          <instance id="2111:10880" name="file-06" x="13" y="13" width="22" height="22" />
+        </frame>
+        <frame id="2111:10881" name="Frame 1261154904" x="74" y="16" width="246.79998779296875" height="48">
+          <frame id="2111:10882" name="Frame 1618873517" x="0" y="0" width="246.79998779296875" height="20">
+            <text id="2111:10883" name="54" x="0" y="0" width="48" height="20" />
+          </frame>
+          <frame id="2111:10884" name="Frame 1261154907" x="0" y="33" width="246.79998779296875" height="15">
+            <text id="2111:10885" name="Text" x="0" y="0" width="9" height="15" />
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+  </frame>
+  <frame id="2111:10886" name="Frame 1984079519" x="142" y="236" width="1754" height="624">
+    <frame id="2111:10887" name="Frame 1984079516" x="0" y="0" width="1754" height="192">
+      <frame id="2111:10888" name="Contract Card · CRT769012" x="0" y="0" width="569" height="192">
+        <frame id="2111:10889" name="Frame 1984079525" x="18" y="16" width="533" height="60">
+          <frame id="2111:10890" name="Frame" x="0" y="0" width="533" height="26">
+            <text id="2111:10891" name="Lot 1 — Abu Dhabi" x="0" y="1" width="164" height="24" />
+            <frame id="2115:2057" name="Frame 1984079533" x="259.5" y="0" width="273.5" height="26">
+              <text id="2115:2055" name="Expires in 45 days" x="83.5" y="6.5" width="89" height="13" />
+              <frame id="2111:10892" name="Frame 1000001942" x="184.5" y="0" width="89" height="26">
+                <text id="2111:10893" name="Ongoing" x="8" y="8" width="73" height="10" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:10894" name="Frame" x="0" y="34" width="257" height="26">
+            <frame id="2111:10895" name="Frame 1984079505" x="0" y="0" width="257" height="26">
+              <frame id="2111:10896" name="Frame 1984078596" x="0" y="0" width="95" height="26">
+                <frame id="2111:10897" name="Frame 1984079040" x="10" y="7" width="75" height="12">
+                  <instance id="2111:10898" name="hash-02" x="12" y="12" width="12" height="12" />
+                  <text id="2111:10899" name="CRT769012" x="16" y="2" width="59" height="8" />
+                </frame>
+              </frame>
+              <frame id="2111:10900" name="Frame 1984078605" x="99" y="0" width="85" height="26">
+                <frame id="2111:10901" name="Frame 1261154906" x="10" y="3" width="20" height="20">
+                  <text id="2111:10902" name="B" x="7" y="4.5" width="7" height="12" />
+                </frame>
+                <text id="2111:10903" name="BEEAH" x="36" y="9" width="37" height="8" />
+              </frame>
+              <frame id="2111:10904" name="Frame 1984078603" x="188" y="0" width="69" height="26">
+                <instance id="2111:10905" name="skew" x="10" y="5" width="16" height="16" />
+                <text id="2111:10906" name="Lot 1" x="32" y="9" width="25" height="8" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+        <frame id="2111:10908" name="Frame" x="18" y="92" width="533" height="84">
+          <frame id="2111:10909" name="Frame" x="0" y="2" width="533" height="34">
+            <frame id="2111:10910" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:10911" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:10912" name="Frame 1618873429" x="0" y="0" width="91" height="21">
+                  <instance id="2111:10913" name="users-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:10914" name="Paypal" x="24" y="0" width="67" height="21" />
+                </frame>
+                <text id="2111:10915" name="110/120" x="210.5" y="2.5" width="45" height="16" />
+              </frame>
+              <frame id="2111:10916" name="bar:92" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:10917" name="Frame" x="0" y="0" width="235" height="6" />
+              </frame>
+            </frame>
+            <frame id="2111:10918" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:10919" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:10920" name="Frame 1984079219" x="0" y="0" width="77" height="21">
+                  <instance id="2111:10921" name="car-01" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:10922" name="Paypal" x="24" y="0" width="53" height="21" />
+                </frame>
+                <text id="2111:10923" name="95/120" x="214.5" y="2.5" width="41" height="16" />
+              </frame>
+              <frame id="2111:10924" name="bar:79" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:10925" name="Frame" x="0" y="0" width="202" height="6" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:10926" name="Frame" x="0" y="50" width="533" height="34">
+            <frame id="2111:10927" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:10928" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:10929" name="Frame 1984079218" x="0" y="0" width="94" height="21">
+                  <instance id="2111:10930" name="tool-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:10931" name="Paypal" x="24" y="0" width="70" height="21" />
+                </frame>
+                <text id="2111:10932" name="60/120" x="213.5" y="2.5" width="42" height="16" />
+              </frame>
+              <frame id="2111:10933" name="bar:50" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:10934" name="Frame" x="0" y="0" width="128" height="6" />
+              </frame>
+            </frame>
+            <frame id="2111:10935" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:10936" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:10937" name="Frame 1984079220" x="0" y="0" width="51" height="21">
+                  <instance id="2111:10938" name="trash-03" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:10939" name="Paypal" x="24" y="0" width="27" height="21" />
+                </frame>
+                <text id="2111:10940" name="118/120" x="211.5" y="2.5" width="44" height="16" />
+              </frame>
+              <frame id="2111:10941" name="bar:98" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:10942" name="Frame" x="0" y="0" width="250" height="6" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+      <frame id="2111:10943" name="Contract Card · CRT769045" x="593" y="0" width="569" height="192">
+        <frame id="2111:10944" name="Frame 1984079526" x="18" y="16" width="533" height="60">
+          <frame id="2111:10945" name="Frame" x="0" y="0" width="533" height="26">
+            <text id="2111:10946" name="Lot 2 — Al Ain" x="0" y="1" width="122" height="24" />
+            <frame id="2115:2060" name="Frame 1984079534" x="239.5" y="0" width="293.5" height="26">
+              <text id="2115:2058" name="Expires in 12 days" x="105.5" y="6.5" width="87" height="13" />
+              <frame id="2111:10947" name="Frame 1000001942" x="204.5" y="0" width="89" height="26">
+                <text id="2111:10948" name="Ongoing" x="8" y="8" width="73" height="10" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:10949" name="Frame" x="0" y="34" width="257" height="26">
+            <frame id="2111:10950" name="Frame 1984079505" x="0" y="0" width="257" height="26">
+              <frame id="2111:10951" name="Frame 1984078596" x="0" y="0" width="95" height="26">
+                <frame id="2111:10952" name="Frame 1984079040" x="10" y="7" width="75" height="12">
+                  <instance id="2111:10953" name="hash-02" x="12" y="12" width="12" height="12" />
+                  <text id="2111:10954" name="CRT769012" x="16" y="2" width="59" height="8" />
+                </frame>
+              </frame>
+              <frame id="2111:10955" name="Frame 1984078605" x="99" y="0" width="85" height="26">
+                <frame id="2111:10956" name="Frame 1261154906" x="10" y="3" width="20" height="20">
+                  <text id="2111:10957" name="B" x="7" y="4.5" width="7" height="12" />
+                </frame>
+                <text id="2111:10958" name="BEEAH" x="36" y="9" width="37" height="8" />
+              </frame>
+              <frame id="2111:10959" name="Frame 1984078603" x="188" y="0" width="69" height="26">
+                <instance id="2111:10960" name="skew" x="10" y="5" width="16" height="16" />
+                <text id="2111:10961" name="Lot 1" x="32" y="9" width="25" height="8" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+        <frame id="2111:10963" name="Frame" x="18" y="92" width="533" height="84">
+          <frame id="2111:10964" name="Frame" x="0" y="2" width="533" height="34">
+            <frame id="2111:10965" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:10966" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:10967" name="Frame 1618873429" x="0" y="0" width="91" height="21">
+                  <instance id="2111:10968" name="users-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:10969" name="Paypal" x="24" y="0" width="67" height="21" />
+                </frame>
+                <text id="2111:10970" name="80/120" x="212.5" y="2.5" width="43" height="16" />
+              </frame>
+              <frame id="2111:10971" name="bar:67" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:10972" name="Frame" x="0" y="0" width="171" height="6" />
+              </frame>
+            </frame>
+            <frame id="2111:10973" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:10974" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:10975" name="Frame 1984079219" x="0" y="0" width="77" height="21">
+                  <instance id="2111:10976" name="car-01" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:10977" name="Paypal" x="24" y="0" width="53" height="21" />
+                </frame>
+                <text id="2111:10978" name="40/120" x="212.5" y="2.5" width="43" height="16" />
+              </frame>
+              <frame id="2111:10979" name="bar:33" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:10980" name="Frame" x="0" y="0" width="84" height="6" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:10981" name="Frame" x="0" y="50" width="533" height="34">
+            <frame id="2111:10982" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:10983" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:10984" name="Frame 1984079218" x="0" y="0" width="94" height="21">
+                  <instance id="2111:10985" name="tool-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:10986" name="Paypal" x="24" y="0" width="70" height="21" />
+                </frame>
+                <text id="2111:10987" name="100/120" x="207.5" y="2.5" width="48" height="16" />
+              </frame>
+              <frame id="2111:10988" name="bar:83" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:10989" name="Frame" x="0" y="0" width="212" height="6" />
+              </frame>
+            </frame>
+            <frame id="2111:10990" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:10991" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:10992" name="Frame 1984079220" x="0" y="0" width="51" height="21">
+                  <instance id="2111:10993" name="trash-03" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:10994" name="Paypal" x="24" y="0" width="27" height="21" />
+                </frame>
+                <text id="2111:10995" name="120/120" x="208.5" y="2.5" width="47" height="16" />
+              </frame>
+              <frame id="2111:10996" name="bar:100" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:10997" name="Frame" x="0" y="0" width="256" height="6" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+      <frame id="2111:10998" name="Contract Card · CRT769088" x="1186" y="0" width="569" height="192">
+        <frame id="2111:10999" name="Frame 1984079527" x="18" y="16" width="533" height="60">
+          <frame id="2111:11000" name="Frame" x="0" y="0" width="533" height="26">
+            <text id="2111:11001" name="Lot 3 — Al Dhafra" x="0" y="1" width="157" height="24" />
+            <frame id="2115:2063" name="Frame 1984079535" x="253.5" y="0" width="279.5" height="26">
+              <text id="2115:2061" name="Expires in 210 days" x="84.5" y="6.5" width="94" height="13" />
+              <frame id="2111:11002" name="Frame 1000001942" x="190.5" y="0" width="89" height="26">
+                <text id="2111:11003" name="Ongoing" x="8" y="8" width="73" height="10" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:11004" name="Frame" x="0" y="34" width="359" height="26">
+            <frame id="2111:11005" name="Frame 1984079505" x="0" y="0" width="257" height="26">
+              <frame id="2111:11006" name="Frame 1984078596" x="0" y="0" width="95" height="26">
+                <frame id="2111:11007" name="Frame 1984079040" x="10" y="7" width="75" height="12">
+                  <instance id="2111:11008" name="hash-02" x="12" y="12" width="12" height="12" />
+                  <text id="2111:11009" name="CRT769012" x="16" y="2" width="59" height="8" />
+                </frame>
+              </frame>
+              <frame id="2111:11010" name="Frame 1984078605" x="99" y="0" width="85" height="26">
+                <frame id="2111:11011" name="Frame 1261154906" x="10" y="3" width="20" height="20">
+                  <text id="2111:11012" name="B" x="7" y="4.5" width="7" height="12" />
+                </frame>
+                <text id="2111:11013" name="BEEAH" x="36" y="9" width="37" height="8" />
+              </frame>
+              <frame id="2111:11014" name="Frame 1984078603" x="188" y="0" width="69" height="26">
+                <instance id="2111:11015" name="skew" x="10" y="5" width="16" height="16" />
+                <text id="2111:11016" name="Lot 1" x="32" y="9" width="25" height="8" />
+              </frame>
+            </frame>
+            <text id="2111:11017" name="Expires in 210 days" x="265" y="6.5" width="94" height="13" />
+          </frame>
+        </frame>
+        <frame id="2111:11018" name="Frame" x="18" y="92" width="533" height="84">
+          <frame id="2111:11019" name="Frame" x="0" y="2" width="533" height="34">
+            <frame id="2111:11020" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:11021" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11022" name="Frame 1618873429" x="0" y="0" width="91" height="21">
+                  <instance id="2111:11023" name="users-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11024" name="Paypal" x="24" y="0" width="67" height="21" />
+                </frame>
+                <text id="2111:11025" name="120/120" x="208.5" y="2.5" width="47" height="16" />
+              </frame>
+              <frame id="2111:11026" name="bar:100" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11027" name="Frame" x="0" y="0" width="256" height="6" />
+              </frame>
+            </frame>
+            <frame id="2111:11028" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:11029" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11030" name="Frame 1984079219" x="0" y="0" width="77" height="21">
+                  <instance id="2111:11031" name="car-01" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11032" name="Paypal" x="24" y="0" width="53" height="21" />
+                </frame>
+                <text id="2111:11033" name="115/120" x="211.5" y="2.5" width="44" height="16" />
+              </frame>
+              <frame id="2111:11034" name="bar:96" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11035" name="Frame" x="0" y="0" width="245" height="6" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:11036" name="Frame" x="0" y="50" width="533" height="34">
+            <frame id="2111:11037" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:11038" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11039" name="Frame 1984079218" x="0" y="0" width="94" height="21">
+                  <instance id="2111:11040" name="tool-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11041" name="Paypal" x="24" y="0" width="70" height="21" />
+                </frame>
+                <text id="2111:11042" name="110/120" x="210.5" y="2.5" width="45" height="16" />
+              </frame>
+              <frame id="2111:11043" name="bar:92" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11044" name="Frame" x="0" y="0" width="235" height="6" />
+              </frame>
+            </frame>
+            <frame id="2111:11045" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:11046" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11047" name="Frame 1984079220" x="0" y="0" width="51" height="21">
+                  <instance id="2111:11048" name="trash-03" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11049" name="Paypal" x="24" y="0" width="27" height="21" />
+                </frame>
+                <text id="2111:11050" name="119/120" x="211.5" y="2.5" width="44" height="16" />
+              </frame>
+              <frame id="2111:11051" name="bar:99" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11052" name="Frame" x="0" y="0" width="253" height="6" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+    <frame id="2111:11053" name="Frame 1984079518" x="0" y="216" width="1754" height="192">
+      <frame id="2111:11054" name="Contract Card · CRT769271" x="0" y="0" width="569" height="192">
+        <frame id="2111:11055" name="Frame 1984079530" x="18" y="16" width="533" height="60">
+          <frame id="2111:11056" name="Frame" x="0" y="0" width="533" height="26">
+            <text id="2111:11057" name="Lot 7 — Mussafah" x="0" y="1" width="157" height="24" />
+            <frame id="2115:2069" name="Frame 1984079537" x="255.5" y="0" width="277.5" height="26">
+              <text id="2115:2067" name="Expires in 30 days" x="86.5" y="6.5" width="90" height="13" />
+              <frame id="2111:11058" name="Frame 1000001942" x="188.5" y="0" width="89" height="26">
+                <text id="2111:11059" name="Ongoing" x="8" y="8" width="73" height="10" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:11060" name="Frame" x="0" y="34" width="257" height="26">
+            <frame id="2111:11061" name="Frame 1984079505" x="0" y="0" width="257" height="26">
+              <frame id="2111:11062" name="Frame 1984078596" x="0" y="0" width="95" height="26">
+                <frame id="2111:11063" name="Frame 1984079040" x="10" y="7" width="75" height="12">
+                  <instance id="2111:11064" name="hash-02" x="12" y="12" width="12" height="12" />
+                  <text id="2111:11065" name="CRT769012" x="16" y="2" width="59" height="8" />
+                </frame>
+              </frame>
+              <frame id="2111:11066" name="Frame 1984078605" x="99" y="0" width="85" height="26">
+                <frame id="2111:11067" name="Frame 1261154906" x="10" y="3" width="20" height="20">
+                  <text id="2111:11068" name="B" x="7" y="4.5" width="7" height="12" />
+                </frame>
+                <text id="2111:11069" name="BEEAH" x="36" y="9" width="37" height="8" />
+              </frame>
+              <frame id="2111:11070" name="Frame 1984078603" x="188" y="0" width="69" height="26">
+                <instance id="2111:11071" name="skew" x="10" y="5" width="16" height="16" />
+                <text id="2111:11072" name="Lot 1" x="32" y="9" width="25" height="8" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+        <frame id="2111:11074" name="Frame" x="18" y="92" width="533" height="84">
+          <frame id="2111:11075" name="Frame" x="0" y="2" width="533" height="34">
+            <frame id="2111:11076" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:11077" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11078" name="Frame 1618873429" x="0" y="0" width="91" height="21">
+                  <instance id="2111:11079" name="users-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11080" name="Paypal" x="24" y="0" width="67" height="21" />
+                </frame>
+                <text id="2111:11081" name="88/120" x="213.5" y="2.5" width="42" height="16" />
+              </frame>
+              <frame id="2111:11082" name="bar:73" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11083" name="Frame" x="0" y="0" width="187" height="6" />
+              </frame>
+            </frame>
+            <frame id="2111:11084" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:11085" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11086" name="Frame 1984079219" x="0" y="0" width="77" height="21">
+                  <instance id="2111:11087" name="car-01" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11088" name="Paypal" x="24" y="0" width="53" height="21" />
+                </frame>
+                <text id="2111:11089" name="72/120" x="215.5" y="2.5" width="40" height="16" />
+              </frame>
+              <frame id="2111:11090" name="bar:60" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11091" name="Frame" x="0" y="0" width="153" height="6" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:11092" name="Frame" x="0" y="50" width="533" height="34">
+            <frame id="2111:11093" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:11094" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11095" name="Frame 1984079218" x="0" y="0" width="94" height="21">
+                  <instance id="2111:11096" name="tool-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11097" name="Paypal" x="24" y="0" width="70" height="21" />
+                </frame>
+                <text id="2111:11098" name="65/120" x="214.5" y="2.5" width="41" height="16" />
+              </frame>
+              <frame id="2111:11099" name="bar:54" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11100" name="Frame" x="0" y="0" width="138" height="6" />
+              </frame>
+            </frame>
+            <frame id="2111:11101" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:11102" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11103" name="Frame 1984079220" x="0" y="0" width="51" height="21">
+                  <instance id="2111:11104" name="trash-03" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11105" name="Paypal" x="24" y="0" width="27" height="21" />
+                </frame>
+                <text id="2111:11106" name="100/120" x="207.5" y="2.5" width="48" height="16" />
+              </frame>
+              <frame id="2111:11107" name="bar:83" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11108" name="Frame" x="0" y="0" width="212" height="6" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+      <frame id="2111:11109" name="Contract Card · CRT769299" x="593" y="0" width="569" height="192">
+        <frame id="2111:11110" name="Frame 1984079529" x="18" y="16" width="533" height="60">
+          <frame id="2111:11111" name="Frame" x="0" y="0" width="533" height="26">
+            <text id="2111:11112" name="Lot 8 — Yas Island" x="0" y="1" width="163" height="24" />
+            <frame id="2115:2075" name="Frame 1984079539" x="262.5" y="0" width="270.5" height="26">
+              <text id="2115:2073" name="Expires in 18 days" x="87.5" y="6.5" width="87" height="13" />
+              <frame id="2111:11113" name="Frame 1000001942" x="186.5" y="0" width="84" height="26">
+                <text id="2111:11114" name="Expiring" x="8" y="8" width="68" height="10" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:11115" name="Frame" x="0" y="34" width="257" height="26">
+            <frame id="2111:11116" name="Frame 1984079505" x="0" y="0" width="257" height="26">
+              <frame id="2111:11117" name="Frame 1984078596" x="0" y="0" width="95" height="26">
+                <frame id="2111:11118" name="Frame 1984079040" x="10" y="7" width="75" height="12">
+                  <instance id="2111:11119" name="hash-02" x="12" y="12" width="12" height="12" />
+                  <text id="2111:11120" name="CRT769012" x="16" y="2" width="59" height="8" />
+                </frame>
+              </frame>
+              <frame id="2111:11121" name="Frame 1984078605" x="99" y="0" width="85" height="26">
+                <frame id="2111:11122" name="Frame 1261154906" x="10" y="3" width="20" height="20">
+                  <text id="2111:11123" name="B" x="7" y="4.5" width="7" height="12" />
+                </frame>
+                <text id="2111:11124" name="BEEAH" x="36" y="9" width="37" height="8" />
+              </frame>
+              <frame id="2111:11125" name="Frame 1984078603" x="188" y="0" width="69" height="26">
+                <instance id="2111:11126" name="skew" x="10" y="5" width="16" height="16" />
+                <text id="2111:11127" name="Lot 1" x="32" y="9" width="25" height="8" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+        <frame id="2111:11129" name="Frame" x="18" y="92" width="533" height="84">
+          <frame id="2111:11130" name="Frame" x="0" y="2" width="533" height="34">
+            <frame id="2111:11131" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:11132" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11133" name="Frame 1618873429" x="0" y="0" width="91" height="21">
+                  <instance id="2111:11134" name="users-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11135" name="Paypal" x="24" y="0" width="67" height="21" />
+                </frame>
+                <text id="2111:11136" name="60/120" x="213.5" y="2.5" width="42" height="16" />
+              </frame>
+              <frame id="2111:11137" name="bar:50" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11138" name="Frame" x="0" y="0" width="128" height="6" />
+              </frame>
+            </frame>
+            <frame id="2111:11139" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:11140" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11141" name="Frame 1984079219" x="0" y="0" width="77" height="21">
+                  <instance id="2111:11142" name="car-01" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11143" name="Paypal" x="24" y="0" width="53" height="21" />
+                </frame>
+                <text id="2111:11144" name="50/120" x="213.5" y="2.5" width="42" height="16" />
+              </frame>
+              <frame id="2111:11145" name="bar:42" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11146" name="Frame" x="0" y="0" width="107" height="6" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:11147" name="Frame" x="0" y="50" width="533" height="34">
+            <frame id="2111:11148" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:11149" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11150" name="Frame 1984079218" x="0" y="0" width="94" height="21">
+                  <instance id="2111:11151" name="tool-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11152" name="Paypal" x="24" y="0" width="70" height="21" />
+                </frame>
+                <text id="2111:11153" name="40/120" x="212.5" y="2.5" width="43" height="16" />
+              </frame>
+              <frame id="2111:11154" name="bar:33" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11155" name="Frame" x="0" y="0" width="84" height="6" />
+              </frame>
+            </frame>
+            <frame id="2111:11156" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:11157" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11158" name="Frame 1984079220" x="0" y="0" width="51" height="21">
+                  <instance id="2111:11159" name="trash-03" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11160" name="Paypal" x="24" y="0" width="27" height="21" />
+                </frame>
+                <text id="2111:11161" name="80/120" x="212.5" y="2.5" width="43" height="16" />
+              </frame>
+              <frame id="2111:11162" name="bar:67" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11163" name="Frame" x="0" y="0" width="171" height="6" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+      <frame id="2111:11164" name="Contract Card · CRT769312" x="1186" y="0" width="569" height="192">
+        <frame id="2111:11165" name="Frame 1984079528" x="18" y="16" width="533" height="60">
+          <frame id="2111:11166" name="Frame" x="0" y="0" width="533" height="26">
+            <text id="2111:11167" name="Lot 9 — Saadiyat" x="0" y="1" width="155" height="24" />
+            <frame id="2115:2066" name="Frame 1984079536" x="252.5" y="0" width="280.5" height="26">
+              <text id="2115:2064" name="Expires in 150 days" x="85.5" y="6.5" width="94" height="13" />
+              <frame id="2111:11168" name="Frame 1000001942" x="191.5" y="0" width="89" height="26">
+                <text id="2111:11169" name="Ongoing" x="8" y="8" width="73" height="10" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:11170" name="Frame" x="0" y="34" width="257" height="26">
+            <frame id="2111:11171" name="Frame 1984079505" x="0" y="0" width="257" height="26">
+              <frame id="2111:11172" name="Frame 1984078596" x="0" y="0" width="95" height="26">
+                <frame id="2111:11173" name="Frame 1984079040" x="10" y="7" width="75" height="12">
+                  <instance id="2111:11174" name="hash-02" x="12" y="12" width="12" height="12" />
+                  <text id="2111:11175" name="CRT769012" x="16" y="2" width="59" height="8" />
+                </frame>
+              </frame>
+              <frame id="2111:11176" name="Frame 1984078605" x="99" y="0" width="85" height="26">
+                <frame id="2111:11177" name="Frame 1261154906" x="10" y="3" width="20" height="20">
+                  <text id="2111:11178" name="B" x="7" y="4.5" width="7" height="12" />
+                </frame>
+                <text id="2111:11179" name="BEEAH" x="36" y="9" width="37" height="8" />
+              </frame>
+              <frame id="2111:11180" name="Frame 1984078603" x="188" y="0" width="69" height="26">
+                <instance id="2111:11181" name="skew" x="10" y="5" width="16" height="16" />
+                <text id="2111:11182" name="Lot 1" x="32" y="9" width="25" height="8" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+        <frame id="2111:11184" name="Frame" x="18" y="92" width="533" height="84">
+          <frame id="2111:11185" name="Frame" x="0" y="2" width="533" height="34">
+            <frame id="2111:11186" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:11187" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11188" name="Frame 1618873429" x="0" y="0" width="91" height="21">
+                  <instance id="2111:11189" name="users-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11190" name="Paypal" x="24" y="0" width="67" height="21" />
+                </frame>
+                <text id="2111:11191" name="118/120" x="211.5" y="2.5" width="44" height="16" />
+              </frame>
+              <frame id="2111:11192" name="bar:98" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11193" name="Frame" x="0" y="0" width="250" height="6" />
+              </frame>
+            </frame>
+            <frame id="2111:11194" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:11195" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11196" name="Frame 1984079219" x="0" y="0" width="77" height="21">
+                  <instance id="2111:11197" name="car-01" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11198" name="Paypal" x="24" y="0" width="53" height="21" />
+                </frame>
+                <text id="2111:11199" name="120/120" x="208.5" y="2.5" width="47" height="16" />
+              </frame>
+              <frame id="2111:11200" name="bar:100" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11201" name="Frame" x="0" y="0" width="256" height="6" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:11202" name="Frame" x="0" y="50" width="533" height="34">
+            <frame id="2111:11203" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:11204" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11205" name="Frame 1984079218" x="0" y="0" width="94" height="21">
+                  <instance id="2111:11206" name="tool-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11207" name="Paypal" x="24" y="0" width="70" height="21" />
+                </frame>
+                <text id="2111:11208" name="112/120" x="211.5" y="2.5" width="44" height="16" />
+              </frame>
+              <frame id="2111:11209" name="bar:93" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11210" name="Frame" x="0" y="0" width="238" height="6" />
+              </frame>
+            </frame>
+            <frame id="2111:11211" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:11212" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11213" name="Frame 1984079220" x="0" y="0" width="51" height="21">
+                  <instance id="2111:11214" name="trash-03" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11215" name="Paypal" x="24" y="0" width="27" height="21" />
+                </frame>
+                <text id="2111:11216" name="120/120" x="208.5" y="2.5" width="47" height="16" />
+              </frame>
+              <frame id="2111:11217" name="bar:100" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11218" name="Frame" x="0" y="0" width="256" height="6" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+    <frame id="2111:11219" name="Frame 1984079517" x="0" y="432" width="1754" height="192">
+      <frame id="2111:11220" name="Contract Card · CRT769103" x="0" y="0" width="569" height="192">
+        <frame id="2111:11221" name="Frame 1984079531" x="18" y="16" width="533" height="60">
+          <frame id="2111:11222" name="Frame" x="0" y="0" width="533" height="26">
+            <text id="2111:11223" name="Lot 4 — Abu Dhabi City" x="0" y="1" width="211" height="24" />
+            <frame id="2115:2072" name="Frame 1984079538" x="288.5" y="0" width="244.5" height="26">
+              <text id="2115:2070" name="Expires in 8 days" x="65.5" y="6.5" width="83" height="13" />
+              <frame id="2111:11224" name="Frame 1000001942" x="160.5" y="0" width="84" height="26">
+                <text id="2111:11225" name="Expiring" x="8" y="8" width="68" height="10" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:11226" name="Frame" x="0" y="34" width="257" height="26">
+            <frame id="2111:11227" name="Frame 1984079505" x="0" y="0" width="257" height="26">
+              <frame id="2111:11228" name="Frame 1984078596" x="0" y="0" width="95" height="26">
+                <frame id="2111:11229" name="Frame 1984079040" x="10" y="7" width="75" height="12">
+                  <instance id="2111:11230" name="hash-02" x="12" y="12" width="12" height="12" />
+                  <text id="2111:11231" name="CRT769012" x="16" y="2" width="59" height="8" />
+                </frame>
+              </frame>
+              <frame id="2111:11232" name="Frame 1984078605" x="99" y="0" width="85" height="26">
+                <frame id="2111:11233" name="Frame 1261154906" x="10" y="3" width="20" height="20">
+                  <text id="2111:11234" name="B" x="7" y="4.5" width="7" height="12" />
+                </frame>
+                <text id="2111:11235" name="BEEAH" x="36" y="9" width="37" height="8" />
+              </frame>
+              <frame id="2111:11236" name="Frame 1984078603" x="188" y="0" width="69" height="26">
+                <instance id="2111:11237" name="skew" x="10" y="5" width="16" height="16" />
+                <text id="2111:11238" name="Lot 1" x="32" y="9" width="25" height="8" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+        <frame id="2111:11240" name="Frame" x="18" y="92" width="533" height="84">
+          <frame id="2111:11241" name="Frame" x="0" y="2" width="533" height="34">
+            <frame id="2111:11242" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:11243" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11244" name="Frame 1618873429" x="0" y="0" width="91" height="21">
+                  <instance id="2111:11245" name="users-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11246" name="Paypal" x="24" y="0" width="67" height="21" />
+                </frame>
+                <text id="2111:11247" name="70/120" x="214.5" y="2.5" width="41" height="16" />
+              </frame>
+              <frame id="2111:11248" name="bar:58" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11249" name="Frame" x="0" y="0" width="148" height="6" />
+              </frame>
+            </frame>
+            <frame id="2111:11250" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:11251" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11252" name="Frame 1984079219" x="0" y="0" width="77" height="21">
+                  <instance id="2111:11253" name="car-01" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11254" name="Paypal" x="24" y="0" width="53" height="21" />
+                </frame>
+                <text id="2111:11255" name="55/120" x="214.5" y="2.5" width="41" height="16" />
+              </frame>
+              <frame id="2111:11256" name="bar:46" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11257" name="Frame" x="0" y="0" width="118" height="6" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:11258" name="Frame" x="0" y="50" width="533" height="34">
+            <frame id="2111:11259" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:11260" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11261" name="Frame 1984079218" x="0" y="0" width="94" height="21">
+                  <instance id="2111:11262" name="tool-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11263" name="Paypal" x="24" y="0" width="70" height="21" />
+                </frame>
+                <text id="2111:11264" name="45/120" x="213.5" y="2.5" width="42" height="16" />
+              </frame>
+              <frame id="2111:11265" name="bar:38" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11266" name="Frame" x="0" y="0" width="97" height="6" />
+              </frame>
+            </frame>
+            <frame id="2111:11267" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:11268" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11269" name="Frame 1984079220" x="0" y="0" width="51" height="21">
+                  <instance id="2111:11270" name="trash-03" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11271" name="Paypal" x="24" y="0" width="27" height="21" />
+                </frame>
+                <text id="2111:11272" name="90/120" x="213.5" y="2.5" width="42" height="16" />
+              </frame>
+              <frame id="2111:11273" name="bar:75" x="0" y="28" width="255.5" height="6">
+                <frame id="2111:11274" name="Frame" x="0" y="0" width="192" height="6" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+      <frame id="2111:11275" name="Contract Card · CRT769210" x="593" y="0" width="569" height="192">
+        <frame id="2111:11276" name="Frame 1984079532" x="18" y="16" width="533" height="60">
+          <frame id="2111:11277" name="Frame" x="0" y="0" width="533" height="26">
+            <text id="2111:11278" name="Lot 5 — Western Region" x="0" y="1" width="215" height="24" />
+            <frame id="2111:11279" name="Frame 1000001942" x="470" y="0" width="63" height="26">
+              <text id="2111:11280" name="Draft" x="8" y="8" width="47" height="10" />
+            </frame>
+          </frame>
+          <frame id="2111:11281" name="Frame" x="0" y="34" width="257" height="26">
+            <frame id="2111:11282" name="Frame 1984079505" x="0" y="0" width="257" height="26">
+              <frame id="2111:11283" name="Frame 1984078596" x="0" y="0" width="95" height="26">
+                <frame id="2111:11284" name="Frame 1984079040" x="10" y="7" width="75" height="12">
+                  <instance id="2111:11285" name="hash-02" x="12" y="12" width="12" height="12" />
+                  <text id="2111:11286" name="CRT769012" x="16" y="2" width="59" height="8" />
+                </frame>
+              </frame>
+              <frame id="2111:11287" name="Frame 1984078605" x="99" y="0" width="85" height="26">
+                <frame id="2111:11288" name="Frame 1261154906" x="10" y="3" width="20" height="20">
+                  <text id="2111:11289" name="B" x="7" y="4.5" width="7" height="12" />
+                </frame>
+                <text id="2111:11290" name="BEEAH" x="36" y="9" width="37" height="8" />
+              </frame>
+              <frame id="2111:11291" name="Frame 1984078603" x="188" y="0" width="69" height="26">
+                <instance id="2111:11292" name="skew" x="10" y="5" width="16" height="16" />
+                <text id="2111:11293" name="Lot 1" x="32" y="9" width="25" height="8" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+        <frame id="2111:11294" name="Frame" x="18" y="92" width="533" height="84">
+          <frame id="2111:11295" name="Frame" x="0" y="2" width="533" height="34">
+            <frame id="2111:11296" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:11297" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11298" name="Frame 1618873429" x="0" y="0" width="91" height="21">
+                  <instance id="2111:11299" name="users-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11300" name="Paypal" x="24" y="0" width="67" height="21" />
+                </frame>
+                <text id="2111:11301" name="0/120" x="220.5" y="2.5" width="35" height="16" />
+              </frame>
+              <frame id="2111:11302" name="bar:0" x="0" y="28" width="255.5" height="6" />
+            </frame>
+            <frame id="2111:11303" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:11304" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11305" name="Frame 1984079219" x="0" y="0" width="77" height="21">
+                  <instance id="2111:11306" name="car-01" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11307" name="Paypal" x="24" y="0" width="53" height="21" />
+                </frame>
+                <text id="2111:11308" name="0/120" x="220.5" y="2.5" width="35" height="16" />
+              </frame>
+              <frame id="2111:11309" name="bar:0" x="0" y="28" width="255.5" height="6" />
+            </frame>
+          </frame>
+          <frame id="2111:11310" name="Frame" x="0" y="50" width="533" height="34">
+            <frame id="2111:11311" name="Frame" x="0" y="0" width="255.5" height="34">
+              <frame id="2111:11312" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11313" name="Frame 1984079218" x="0" y="0" width="94" height="21">
+                  <instance id="2111:11314" name="tool-02" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11315" name="Paypal" x="24" y="0" width="70" height="21" />
+                </frame>
+                <text id="2111:11316" name="0/120" x="220.5" y="2.5" width="35" height="16" />
+              </frame>
+              <frame id="2111:11317" name="bar:0" x="0" y="28" width="255.5" height="6" />
+            </frame>
+            <frame id="2111:11318" name="Frame" x="277.5" y="0" width="255.5" height="34">
+              <frame id="2111:11319" name="Frame" x="0" y="0" width="255.5" height="21">
+                <frame id="2111:11320" name="Frame 1984079220" x="0" y="0" width="51" height="21">
+                  <instance id="2111:11321" name="trash-03" x="0" y="0.5" width="20" height="20" />
+                  <text id="2111:11322" name="Paypal" x="24" y="0" width="27" height="21" />
+                </frame>
+                <text id="2111:11323" name="0/120" x="220.5" y="2.5" width="35" height="16" />
+              </frame>
+              <frame id="2111:11324" name="bar:0" x="0" y="28" width="255.5" height="6" />
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+  </frame>
+</frame>
+IMPORTANT: The design was too large to fit into context with get_design_context. Instead you have received a sparse metadata response, you MUST call get_design_context on the IDs of the sublayers to get the full code. Split up the calls to ensure the sublayers do not also exceed the context limit.
