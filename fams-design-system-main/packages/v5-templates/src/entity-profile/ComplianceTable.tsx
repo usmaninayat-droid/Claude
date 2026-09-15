@@ -289,15 +289,17 @@ export function ComplianceTable({
         </div>
 
         <section className="flex flex-col rounded-md border border-border bg-card">
-          <header className="flex items-center justify-between gap-3 border-b border-border px-4 py-3">
+          <header className="flex items-center justify-between gap-3 border-b border-border px-5 py-4">
             <div className="flex items-center gap-3">
+              {/* Matches the shared ChartCard widget header (Figma 6545:15224): 28px
+                  grey chip + contrast ring + tone-coloured glyph, text-h6 title. */}
               <span
                 aria-hidden="true"
-                className="grid size-8 place-items-center rounded-full bg-success-scale-50 text-success"
+                className="grid size-7 shrink-0 place-items-center rounded-full bg-gray-100 text-success ring-1 ring-inset ring-black/[0.08] [&_svg]:size-4"
               >
-                <CheckCircle className="size-4" />
+                <CheckCircle />
               </span>
-              <h3 className="whitespace-nowrap text-body-md font-semibold text-foreground">{summaryTitle}</h3>
+              <h3 className="whitespace-nowrap text-h6 font-semibold text-foreground">{summaryTitle}</h3>
             </div>
             {categoryKey && categories.length > 0 ? (
               <DropdownMenu>
