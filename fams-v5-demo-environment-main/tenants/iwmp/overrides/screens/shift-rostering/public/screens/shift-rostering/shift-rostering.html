@@ -208,16 +208,22 @@ img{display:block}
    48px rounded-md tinted icon badge, small gray label ABOVE a large value,
    not the old fully-round icon circle. Tints use the DS semantic tones. */
 .kpis{display:flex;gap:16px;align-items:stretch}
-.kpi{flex:1 0 0;min-width:1px;background:var(--card,#fff);border:1px solid var(--border,#eaecf0);border-radius:8px;padding:16px;display:flex;gap:12px;align-items:flex-start;overflow:hidden}
-.kpi .ava{width:48px;height:48px;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+/* DS KpiTile spec (@fams/ui-kit KpiTile + IconBadge): rounded-md card, border,
+   bg-card, p-4, gap-3, items-start; a size-10 circular IconBadge tinted
+   bg-{tone}/10 + text-{tone}; text-caption muted-foreground label ON TOP of a
+   text-h4 bold foreground value. */
+.kpi{flex:1 0 0;min-width:1px;background:var(--card,#fff);border:1px solid var(--border,#eaecf0);border-radius:6px;padding:16px;display:flex;gap:12px;align-items:flex-start;overflow:hidden}
+.kpi .ava{width:40px;height:40px;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .kpi .ava img{width:20px;height:20px}
-.kpi.k1 .ava{background:#f4edf7}
-.kpi.k2 .ava{background:#e6f1fb}
-.kpi.k3 .ava{background:#eaecf0}
-.kpi.k4 .ava{background:#fef3f2}
+/* IconBadge tones at /10 opacity — info (blue), neutral (muted), danger (red);
+   k1's utilization keeps a lavender escape-hatch tint (IconBadge `iconColor`). */
+.kpi.k1 .ava{background:rgba(149,75,175,.10)}
+.kpi.k2 .ava{background:rgba(0,114,214,.10)}
+.kpi.k3 .ava{background:var(--muted,#f2f4f7)}
+.kpi.k4 .ava{background:rgba(240,68,56,.10)}
 .kpi .txt{flex:1 0 0;min-width:1px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
-.kpi .lbl{font-size:14px;font-weight:500;color:var(--muted-foreground,#475467);line-height:20px;width:100%}
-.kpi .val{font-size:30px;font-weight:700;color:var(--foreground,#101828);line-height:36px;width:100%}
+.kpi .lbl{font-size:12px;font-weight:500;color:var(--muted-foreground,#667085);line-height:18px;width:100%}
+.kpi .val{font-size:28px;font-weight:700;color:var(--foreground,#101828);line-height:34px;width:100%}
 
 /* ══════════ BOARD ══════════
    Outer stroke of the board frame (node 6839:11151): 1px #d0d5dd, 4px radius.
@@ -328,6 +334,9 @@ img{display:block}
 .grid.hl .cell.err .shiftcard{border-color:var(--destructive,#f04438)}
 .shiftcard .rt-row{display:flex;align-items:center;justify-content:space-between;width:100%;gap:6px}
 .shiftcard .rt{font-size:16px;font-weight:600;color:#1d2939;line-height:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Supervisor / inspector area line (sector, lot) — Figma node 6824:11666.
+   Slightly smaller than the route number so the two tokens fit on one line. */
+.shiftcard .rt.sc-area{font-size:14px}
 /* Conflict marker: icon only (no text pill), and only while Highlight
    Conflicts is on. The alert-triangle svg (Figma 7076:7052) is already
    tenant-red (#F04438), so no recolouring is needed. */
@@ -401,6 +410,10 @@ img{display:block}
 .pop-shift{height:20px;display:flex;gap:2px;align-items:center;overflow:hidden;max-width:100%}
 .pop-shift img{width:16px;height:16px;flex-shrink:0;object-fit:contain}
 .pop-shift span{font-size:14px;font-weight:600;line-height:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pop-actions{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.pop-edit{width:16px;height:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:none;border:0;padding:0;color:#667085;cursor:pointer}
+.pop-edit:hover{color:#344054}
+.pop-edit img{width:16px;height:16px}
 .pop-close{width:16px;height:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .pop-close img{width:16px;height:16px}
 /* Body — pt16 pb24 px16, gap 24 */
@@ -477,7 +490,7 @@ img{display:block}
 
 .drawer-catch{position:fixed;inset:0;z-index:50;background:rgba(16,24,40,.25)}
 .drawer-catch[hidden],.drawer[hidden],.drawer-close[hidden]{display:none}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:700px;max-width:calc(100vw - 72px);
+.drawer{position:fixed;top:0;right:0;bottom:0;width:880px;max-width:calc(100vw - 72px);
   z-index:51;background:#fff;border-left:1px solid #eaecf0;
   box-shadow:-6px 0 24px rgba(16,24,40,.10);overflow-y:auto}
 @keyframes scrim-in{from{opacity:0}to{opacity:1}}
@@ -727,6 +740,44 @@ body.dragging-active .cell{transition:background .08s}
   font-size:16px;font-weight:600;color:#f9fafb;line-height:24px;white-space:nowrap}
 .btn-assign:hover{filter:brightness(.96)}
 .btn-assign[disabled]{opacity:.4;cursor:not-allowed}
+
+/* Attribute-hidden helpers that carry a class `display` (so `[hidden]` alone
+   would lose to the class) — make the hidden attribute win. */
+.tag-outline[hidden],.pill-leave[hidden],.mp-dot[hidden]{display:none!important}
+
+/* ── Edit Assignment side sheet ─────────────────────────────────────────── */
+.es-catch{position:fixed;inset:0;z-index:96;background:rgba(16,24,40,.4)}
+.es-catch[hidden],.esheet[hidden],.es-close[hidden]{display:none}
+.esheet{position:fixed;top:0;right:0;bottom:0;width:520px;max-width:calc(100vw - 72px);
+  z-index:97;background:#fff;display:flex;flex-direction:column;gap:16px;padding:24px;
+  box-shadow:-6px 0 24px rgba(16,24,40,.14)}
+.es-close{position:fixed;top:50%;transform:translateY(-50%);right:536px;z-index:98;
+  width:58px;height:58px;border-radius:58px;background:#fff;box-shadow:0 4px 12px rgba(16,24,40,.16);
+  display:flex;align-items:center;justify-content:center;color:#1d2939}
+.es-close img{width:24px;height:24px}
+@media (max-width:1200px){ .es-close{right:auto;left:8px} }
+.es-title{margin:0;font-size:24px;font-weight:600;color:#1d2939;line-height:32px}
+.es-sub{margin:0;font-size:14px;font-weight:500;color:#667085;line-height:20px}
+.es-rule{height:1px;background:#eaecf0;border-radius:1px;flex-shrink:0}
+.es-body{display:flex;flex-direction:column;gap:12px;overflow:auto;flex:1;min-height:0}
+/* Field = a single DS-style select control (icon inside on the left, value,
+   chevron on the right) — no separate label above; the icon + value carry it,
+   matching the roster's own `.qf` filter controls. */
+.es-select{position:relative;display:flex;align-items:center;gap:8px;
+  background:#fff;border:1px solid #d0d5dd;border-radius:4px;padding:0 12px}
+.es-select:focus-within{border-color:var(--primary,#22c882);box-shadow:0 0 0 3px rgba(34,200,130,.18)}
+.es-fico{width:20px;height:20px;flex-shrink:0;opacity:.7}
+.es-select select{flex:1 0 0;min-width:0;height:44px;appearance:none;-webkit-appearance:none;
+  border:0;background:transparent;padding:0 20px 0 0;font:inherit;font-size:14px;font-weight:500;
+  color:#1d2939;outline:none;cursor:pointer;text-overflow:ellipsis}
+.es-select::after{content:"";position:absolute;right:14px;top:50%;width:9px;height:9px;
+  transform:translateY(-65%) rotate(45deg);border-right:1.6px solid #667085;border-bottom:1.6px solid #667085;pointer-events:none}
+.es-select.locked{background:#f2f4f7;border-color:#eaecf0}
+.es-select.locked .es-fico{opacity:.5}
+.es-select.locked select{color:#667085;cursor:not-allowed}
+.es-select.locked::after{display:none}
+.es-locktag{flex-shrink:0;font-size:11px;font-weight:600;color:#98a2b3;text-transform:uppercase;letter-spacing:.4px}
+.es-foot{display:flex;align-items:center;justify-content:flex-end;gap:16px;flex-shrink:0;padding-top:8px}
 </style>
 
 
@@ -999,13 +1050,13 @@ body.dragging-active .cell{transition:background .08s}
       <div class="who">
         <span id="mpRoute"></span><span class="mp-dot"></span><span id="mpPlan"></span>
       </div>
-      <div class="tag-outline">Driver Unavailable</div>
+      <div class="tag-outline" id="mpTag">Driver Unavailable</div>
     </div>
     <div class="r2">
       <div class="mp-out">
         <span class="ava s28" id="mpOutAva"></span>
-        <span class="did" id="mpOutId"></span><span class="mp-dot"></span>
-        <span class="dnm" id="mpOutName"></span><span class="mp-dot"></span>
+        <span class="did" id="mpOutId"></span><span class="mp-dot" id="mpOutDot"></span>
+        <span class="dnm" id="mpOutName"></span><span class="mp-dot" id="mpOutReasonDot"></span>
         <span class="pill-leave" id="mpOutReason"></span>
       </div>
       <div class="mp-orig"><span class="b"></span>Originally Assigned</div>
@@ -1021,6 +1072,22 @@ body.dragging-active .cell{transition:background .08s}
   <div class="mp-foot">
     <button class="btn-outline">View Plan <img src="./fig/share-04.svg" alt=""></button>
     <button class="btn-assign" id="mpAssign" disabled>Assign Replacement</button>
+  </div>
+</aside>
+
+<!-- Edit Assignment panel — opened from the popover's Edit icon. Shows every
+     field the popover shows as a dropdown; fields the planner can't change on
+     this screen (the sector/lot, which follow the route) are disabled. -->
+<div class="es-catch" id="esCatch" hidden></div>
+<button class="es-close" id="esClose" hidden aria-label="Close"><img src="./fig/x-24.svg" alt=""></button>
+<aside class="esheet" id="esheet" hidden role="dialog" aria-labelledby="esTitle">
+  <h2 class="es-title" id="esTitle">Edit Assignment</h2>
+  <p class="es-sub" id="esSub"></p>
+  <div class="es-rule"></div>
+  <div class="es-body" id="esBody"></div>
+  <div class="es-foot">
+    <button class="btn-text" id="esCancel">Cancel</button>
+    <button class="btn-green" id="esSave">Save Changes</button>
   </div>
 </aside>
 
@@ -1136,6 +1203,11 @@ const WORKFORCE = [
   {name:'Ravi Menon',       role:'Helper',     status:'leave',      reason:'Sick Leave'},
   {name:'Salim Haddad',     role:'HD Driver',  status:'active'},
   {name:'Naveen Kumar',     role:'LD Driver',  status:'active'},
+  {name:'Khalid Al Nuaimi', role:'Inspector',  status:'active'},
+  {name:'Sultan Al Amiri',  role:'Inspector',  status:'active'},
+  {name:'Mariam Hassan',    role:'Inspector',  status:'leave',      reason:'Annual Leave'},
+  {name:'Fatima Darwish',   role:'Inspector',  status:'active'},
+  {name:'Layla Al Zaabi',   role:'Supervisor', status:'active'},
   /* Relief pool — held unassigned so a replacement is always available. Sized
      against the conflict load per day and per role, not picked arbitrarily. */
   {name:'Yaser Al Balushi', role:'HD Driver',  status:'active',     standby:true},
@@ -1172,6 +1244,8 @@ function avatar(name, size){
   return `<span class="ava s${size}" style="--a:var(${accent})">${(name[0] || '?').toUpperCase()}</span>`;
 }
 const PLAN        = 'Dubai Mall Bin Collection Plan';
+/* Collection plans a route can belong to (Edit sheet Plan dropdown). */
+const PLANS       = ['Dubai Mall Bin Collection Plan','Corniche Residential Plan','Al Bateen Commercial Plan','Mussafah Industrial Plan','Khalifa City Household Plan'];
 const SECTORS     = ['F3, Al Ain','M12, Musaffah','S4, ICAD','B7, Baniyas','Z9, Shabiya'];
 const OFF = 'off';
 const CAPACITY = 6;          /* fixed weekly shift capacity per person */
@@ -1430,6 +1504,25 @@ const dateOf = (d) => {
   return dow.charAt(0) + dow.slice(1).toLowerCase() + ', ' + fmtDate(dt).replace(',', '');
 };
 
+/* Supervisor / inspector area assignment (Figma node 6824:11666): sector
+   letter from the sector's position in SECTORS (A–E); lot number stripped from
+   the worker's LOT label. `areaParts` exposes each token for the popover's
+   separate Sector / Lot rows; `areaLabel` is the "Sector X, Lot N" card line. */
+function areaParts(cell, emp){
+  const secIdx = Math.max(0, SECTORS.indexOf(cell.sec));
+  return {
+    sector: `Sector ${String.fromCharCode(65 + secIdx)}`,
+    lot: `Lot ${String(emp.lot).replace(/\D+/g, '')}`,
+  };
+}
+function areaLabel(cell, emp){
+  const { sector, lot } = areaParts(cell, emp);
+  return `${sector}, ${lot}`;
+}
+function isFieldRoleEmp(emp){
+  return !!emp && (emp.role === 'Supervisor' || emp.role === 'Inspector');
+}
+
 function shiftCardHTML(cell, i, d, mini){
   const sh = SHIFTS[cell.s];
   /* ACTION REQ appears only where a real conflict exists; the reason itself is
@@ -1440,6 +1533,32 @@ function shiftCardHTML(cell, i, d, mini){
     : why.length
       ? '<div class="badge-action warn" title="Needs review — policy warning"><img src="./fig/alert-triangle-warn.svg" alt="Needs review"></div>'
       : (cell.ot ? '<div class="ot-chip" title="Assigned on a weekly off — overtime approved">Overtime</div>' : '');
+  /* Supervisors and inspectors are not on a route, have no vehicle, and no
+     collection plan — they cover an AREA. Drop R#/vehicle/plan and replace
+     with the zone and a role-tagged duty label; the shift + conflict flag
+     stay on top exactly like the driver card. */
+  const emp = WORKFORCE[i];
+  const isFieldRole = isFieldRoleEmp(emp);
+  if (isFieldRole) {
+    /* Figma node 6824:11666 — the area assignment leads (sector, lot) with the
+       shift on the line below; no route/vehicle/plan for these roles. */
+    const area = areaLabel(cell, emp);
+    if (mini) {
+      return `<div class="shiftcard mini" data-i="${i}" data-d="${d}">
+        <div class="rt-row">
+          <div class="rt sc-area" title="${area}">${area}</div>
+          <div class="mini-right">
+            <span class="shift-chip ${sh.cls}"><img src="${sh.icon}" alt="${sh.label}"></span>
+            ${flag}
+          </div>
+        </div>
+      </div>`;
+    }
+    return `<div class="shiftcard" data-i="${i}" data-d="${d}">
+      <div class="rt-row"><div class="rt sc-area" title="${area}">${area}</div>${flag}</div>
+      <div class="sc-line"><img src="${sh.icon}" alt=""><span class="t ${sh.cls}">${sh.label}</span></div>
+    </div>`;
+  }
   if (mini) {
     /* Compact variant: the shift reduces to a tinted icon chip, and vehicle and
        plan share one row, so two assignments fit in a single day cell. */
@@ -1453,7 +1572,7 @@ function shiftCardHTML(cell, i, d, mini){
       </div>
       <div class="mini-cols">
         <div class="sc-line"><img src="${IC_TRUCK}" alt=""><span class="t plain">${cell.cat.code} · ${cell.veh}</span></div>
-        <div class="sc-line"><img src="${IC_DATAFLOW}" alt=""><span class="t plain">${PLAN}</span></div>
+        <div class="sc-line"><img src="${IC_DATAFLOW}" alt=""><span class="t plain">${cell.plan || PLAN}</span></div>
       </div>
     </div>`;
   }
@@ -1461,7 +1580,7 @@ function shiftCardHTML(cell, i, d, mini){
     <div class="rt-row"><div class="rt">${cell.rt}</div>${flag}</div>
     <div class="sc-line"><img src="${sh.icon}" alt=""><span class="t ${sh.cls}">${sh.label}</span></div>
     <div class="sc-line"><img src="${IC_TRUCK}" alt=""><span class="t plain" title="${cell.cat.name} · ${cell.veh}">${cell.cat.name} · ${cell.veh}</span></div>
-    <div class="sc-line"><img src="${IC_DATAFLOW}" alt=""><span class="t plain">${PLAN}</span></div>
+    <div class="sc-line"><img src="${IC_DATAFLOW}" alt=""><span class="t plain">${cell.plan || PLAN}</span></div>
   </div>`;
 }
 
@@ -1560,8 +1679,13 @@ function conflictsFor(i, d){
   if (emp.elDay === d && weekOffset === 0)
     out.push({ type:'leave', severity:'block', pill:'On Emergency Leave',
       text:`${emp.name} is on approved Emergency Leave for ${dateOf(d)} — this work duty overrides the leave and must be reassigned.` });
+  /* Supervisors and inspectors cover an area, not a route or vehicle: skip the
+     route- and vehicle-based conflicts (retired route, vehicle double-booking).
+     Licence/training already don't apply — they are not `gated`. The
+     person-level conflicts below (rest, leave, status, shift) still apply. */
+  const fieldRole = isFieldRoleEmp(emp);
   /* Route not in the currently approved Smart Plan version. */
-  if (c.retired)
+  if (c.retired && !fieldRole)
     out.push({ type:'retired', severity:'block', pill:'Retired route',
       text:`${c.rt} is not in the approved Smart Plan version — it has been retired. Choose a route from the current plan.` });
   /* One driver per route per shift per day (BR-06) — route-level double assignment. */
@@ -1577,10 +1701,13 @@ function conflictsFor(i, d){
       text:`${c.rt} and ${c.dbl.rt} are both assigned to ${emp.name} on ${dateOf(d)}.` });
   const clash = restConflict(i, d, c.s, null);
   if (clash) out.push({ type:'fatigue', severity:'block', text:restMessage(clash, c.s) });
-  const dup = WORKFORCE.findIndex((_, j) => j !== i
-                && !isBlank(WEEKS[j][d]) && WEEKS[j][d] !== OFF && WEEKS[j][d].veh === c.veh);
-  if (dup >= 0)
-    out.push({ type:'vehicle', severity:'block', text:`Vehicle ${c.veh} is also assigned to ${WORKFORCE[dup].name} on this day.` });
+  if (!fieldRole) {
+    const dup = WORKFORCE.findIndex((_, j) => j !== i
+                  && !isFieldRoleEmp(WORKFORCE[j])
+                  && !isBlank(WEEKS[j][d]) && WEEKS[j][d] !== OFF && WEEKS[j][d].veh === c.veh);
+    if (dup >= 0)
+      out.push({ type:'vehicle', severity:'block', text:`Vehicle ${c.veh} is also assigned to ${WORKFORCE[dup].name} on this day.` });
+  }
   /* Shift mismatch (ELG-03) — allowed, but the planner should know. */
   if (emp.shift && c.s !== emp.shift)
     out.push({ type:'shift', severity:'warn', pill:'Shift mismatch',
@@ -1720,26 +1847,31 @@ function popoverHTML(emp, cell, i, d){
   const other = [...why.filter(r => r.type !== 'licence' && r.type !== 'training'), ...rows];
   const pillAttrs = (why.length || rows.length) ? `class="soft ${tipTone}"` : `class="soft ${st.soft}"`;
   const issueLine = (r) => `<div role="listitem" class="callout${isBlock(r) ? '' : ' warn'}"><img src="${isBlock(r) ? './fig/alert-triangle.svg' : './fig/alert-triangle-warn.svg'}" alt=""><span>${esc(r.text)}</span></div>`;
-  return `<div class="pop-head">
-    <div class="l">
-      <div class="pop-title-row">
-        <div class="pop-title" id="popTitle">${cell.rt}</div>
-        ${flag}
+  /* Supervisors and inspectors are not on a route: the popover title is the
+     area they cover (Sector, Lot), and the body drops the Vehicle and Plan
+     rows, replacing them with the duty and the area. */
+  const fieldRole = isFieldRoleEmp(emp);
+  const title = fieldRole ? areaLabel(cell, emp) : cell.rt;
+  const bodyRows = fieldRole
+    ? `<div class="pop-row">
+        <img src="${IC_USER}" alt="">
+        <div class="pop-field">
+          <div class="pop-k">Workforce</div>
+          <div class="pop-vrow">
+            <div class="pop-v">${emp.name} · ${emp.role}</div>
+            <div ${pillAttrs}><span>${pillText}</span></div>
+          </div>
+        </div>
       </div>
-      <div class="pop-shift">
-        <img src="${sh.icon}" alt="">
-        <span class="t ${sh.cls}">${sh.long} • ${dateOf(d)})</span>
-      </div>
-    </div>
-    <button class="pop-close" id="popClose" aria-label="Close"><img src="./fig/x-close.svg" alt=""></button>
-  </div>
-  <div class="pop-body">
-    ${(other.length || elig.length) ? `<div class="pop-issues" role="list" aria-label="Issues to review">
-      ${other.map(issueLine).join('')}
-      ${elig.map(r => `<div role="listitem" class="callout${isBlock(r) ? '' : ' warn'}"><img src="${isBlock(r) ? './fig/alert-triangle.svg' : './fig/alert-triangle-warn.svg'}" alt=""><span>Requires <b>${esc(r.req)}</b> <span class="have">— ${esc(r.have)}</span></span></div>`).join('')}
-    </div>` : ''}
-    <div class="pop-list">
       <div class="pop-row">
+        <img src="${IC_MAP}" alt="">
+        <div class="pop-field"><div class="pop-k">Sector</div><div class="pop-v">${areaParts(cell, emp).sector}</div></div>
+      </div>
+      <div class="pop-row">
+        <img src="${IC_MAP}" alt="">
+        <div class="pop-field"><div class="pop-k">Lot</div><div class="pop-v">${areaParts(cell, emp).lot}</div></div>
+      </div>`
+    : `<div class="pop-row">
         <img src="${IC_USER}" alt="">
         <div class="pop-field">
           <div class="pop-k">Workforce</div>
@@ -1758,14 +1890,37 @@ function popoverHTML(emp, cell, i, d){
       </div>
       <div class="pop-row">
         <img src="${IC_DATAFLOW}" alt="">
-        <div class="pop-field"><div class="pop-k">Plan</div><div class="pop-v">${PLAN}</div></div>
+        <div class="pop-field"><div class="pop-k">Plan</div><div class="pop-v">${cell.plan || PLAN}</div></div>
       </div>
       <div class="pop-row">
         <img src="${IC_MAP}" alt="">
         <div class="pop-field"><div class="pop-k">Sectors</div><div class="pop-v">${cell.sec}</div></div>
+      </div>`;
+  return `<div class="pop-head">
+    <div class="l">
+      <div class="pop-title-row">
+        <div class="pop-title" id="popTitle">${title}</div>
+        ${flag}
+      </div>
+      <div class="pop-shift">
+        <img src="${sh.icon}" alt="">
+        <span class="t ${sh.cls}">${sh.long} • ${dateOf(d)})</span>
       </div>
     </div>
-    ${(isPastDay(d) || publishedWeeks.has(weekOffset)) ? '' : `<button class="pop-btn">
+    <div class="pop-actions">
+      <button class="pop-edit" id="popEdit" type="button" aria-label="Edit"><img src="./fig/edit-02.svg" alt=""></button>
+      <button class="pop-close" id="popClose" aria-label="Close"><img src="./fig/x-close.svg" alt=""></button>
+    </div>
+  </div>
+  <div class="pop-body">
+    ${(other.length || elig.length) ? `<div class="pop-issues" role="list" aria-label="Issues to review">
+      ${other.map(issueLine).join('')}
+      ${elig.map(r => `<div role="listitem" class="callout${isBlock(r) ? '' : ' warn'}"><img src="${isBlock(r) ? './fig/alert-triangle.svg' : './fig/alert-triangle-warn.svg'}" alt=""><span>Requires <b>${esc(r.req)}</b> <span class="have">— ${esc(r.have)}</span></span></div>`).join('')}
+    </div>` : ''}
+    <div class="pop-list">
+      ${bodyRows}
+    </div>
+    ${(isPastDay(d) || publishedWeeks.has(weekOffset) || !(why.length || rows.length)) ? '' : `<button class="pop-btn">
       <img src="./fig/stars-01.svg" alt="">
       <span>Suggest Replacement</span>
     </button>`}
@@ -1805,7 +1960,13 @@ document.getElementById('grid').addEventListener('keydown', e => {
   const cellEl = e.target.closest('.cell.clickable');
   if (cellEl) { e.preventDefault(); openPopover(cellEl); }
 });
-pop.addEventListener('click', e => { if (e.target.closest('#popClose')) closePopover(); });
+pop.addEventListener('click', e => {
+  if (e.target.closest('#popClose')) { closePopover(); return; }
+  /* Edit opens the assignment's fields as an editable form (workforce, vehicle,
+     plan editable; sector/lot locked) rather than jumping straight to a
+     workforce-only replacement. */
+  if (e.target.closest('#popEdit') && popCtx) { const ctx = popCtx; closePopover(); openEdit(ctx); }
+});
 popCatch.addEventListener('click', closePopover);
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !pop.hidden) closePopover(); });
 document.querySelector('.board').addEventListener('scroll', () => { if (!pop.hidden) closePopover(); });
@@ -1821,6 +1982,16 @@ const drawerClose = document.getElementById('drawerClose');
 
 const driverId = (i) => 'D-' + (1200 + i * 7);
 const DRIVER_ROLES = ['HD Driver','LD Driver'];
+
+/* Role-aware labels so the reassignment UI never calls a supervisor or
+   inspector a "driver". `roleWord` is the noun shown in copy; `workerId`
+   prefixes the id badge by role (D/H/S/I); `compatibleRoles` is the set a
+   replacement may come from — a driver swaps with a driver, an inspector with
+   an inspector, etc. */
+const roleWord = (emp) => emp && emp.isDriver ? 'Driver' : (emp ? emp.role : 'Worker');
+const ROLE_ID_PREFIX = { 'HD Driver':'D', 'LD Driver':'D', 'Helper':'H', 'Supervisor':'S', 'Inspector':'I' };
+const workerId = (i) => (ROLE_ID_PREFIX[WORKFORCE[i].role] || 'W') + '-' + (1200 + i * 7);
+const compatibleRoles = (role) => DRIVER_ROLES.includes(role) ? DRIVER_ROLES : [role];
 
 /* A route can only pass to someone who can legally take it: active, role
    compatible, and not already working that day. Someone on their weekly off
@@ -2111,11 +2282,11 @@ function evaluateDrop(from, to){
 function applyMoveQuiet(from, to, ot){
   const src = WEEKS[from.i][from.d];
   WEEKS[to.i][to.d] = { s: src.s, ot: !!ot,
-                        rt: src.rt, veh: src.veh, sec: src.sec };
+                        rt: src.rt, veh: src.veh, sec: src.sec, cat: src.cat, plan: src.plan };
   /* A double-assignment cell holds two routes — moving one must leave the
      other behind, not blank the cell. */
   WEEKS[from.i][from.d] = src.dbl
-    ? { s: src.dbl.s, rt: src.dbl.rt, veh: src.dbl.veh, sec: src.dbl.sec }
+    ? { s: src.dbl.s, rt: src.dbl.rt, veh: src.dbl.veh, sec: src.dbl.sec, cat: src.dbl.cat }
     : EMPTY;
 }
 function applyMove(from, to, ot){
@@ -2363,14 +2534,14 @@ const mpClose = document.getElementById('mpClose');
 let mpCtx = null;          /* {from:{i,d}, candidates:[], pick:index|null, q:'' } */
 
 function mpCandidates(day, origRole){
-  const needsDriver = DRIVER_ROLES.includes(origRole);
+  const pool = compatibleRoles(origRole);
   return WORKFORCE
     .map((e, i) => ({ e, i }))
     .filter(({ e, i }) =>
       e.status === 'active' &&
-      (needsDriver ? DRIVER_ROLES.includes(e.role) : !DRIVER_ROLES.includes(e.role)) &&
+      pool.includes(e.role) &&
       (isBlank(WEEKS[i][day]) || WEEKS[i][day] === OFF))
-    .map(({ e, i }) => ({ i, name: e.name, role: e.role, id: driverId(i),
+    .map(({ e, i }) => ({ i, name: e.name, role: e.role, id: workerId(i),
                           ot: WEEKS[i][day] === OFF }))
     /* Genuinely free first — those need no overtime. */
     .sort((a, b) => (a.ot === b.ot) ? 0 : a.ot ? 1 : -1);
@@ -2378,12 +2549,13 @@ function mpCandidates(day, origRole){
 
 function mpRender(){
   const q = mpCtx.q.trim().toLowerCase();
+  const word = mpCtx.roleWord || 'Worker';
   const rows = mpCtx.candidates
     .map((c, k) => ({ ...c, k }))
     .filter(c => !q || c.name.toLowerCase().includes(q) || c.id.toLowerCase().includes(q));
-  let html = '<div class="mp-th"></div><div class="mp-th">Driver</div><div class="mp-th">Status</div>';
+  let html = `<div class="mp-th"></div><div class="mp-th">${word}</div><div class="mp-th">Status</div>`;
   if (!rows.length){
-    html += `<div class="mp-td" style="grid-column:1/-1"><div class="mp-empty">No eligible driver matches “${mpCtx.q}”.</div></div>`;
+    html += `<div class="mp-td" style="grid-column:1/-1"><div class="mp-empty">No eligible ${word.toLowerCase()} matches “${mpCtx.q}”.</div></div>`;
   }
   rows.forEach(c => {
     const sel = mpCtx.pick === c.k ? ' sel' : '';
@@ -2411,17 +2583,40 @@ function mpRender(){
 function openManual(from){
   const emp = WORKFORCE[from.i];
   const cell = WEEKS[from.i][from.d];
-  mpCtx = { from, candidates: mpCandidates(from.d, emp.role), pick: null, q: '' };
-  document.getElementById('mpRoute').textContent   = cell.rt;
-  document.getElementById('mpPlan').textContent    = PLAN;
+  const fieldRole = isFieldRoleEmp(emp);
+  const word = roleWord(emp);
+  mpCtx = { from, candidates: mpCandidates(from.d, emp.role), pick: null, q: '', roleWord: word };
+  /* Header identifies WHAT is being reassigned: a route + plan for a driver/
+     helper, the area (Sector, Lot) for a supervisor/inspector who has neither. */
+  const dot = mpanel.querySelector('.who .mp-dot');
+  if (fieldRole) {
+    document.getElementById('mpRoute').textContent = areaLabel(cell, emp);
+    document.getElementById('mpPlan').textContent  = '';
+    if (dot) dot.hidden = true;
+  } else {
+    document.getElementById('mpRoute').textContent = cell.rt;
+    document.getElementById('mpPlan').textContent  = PLAN;
+    if (dot) dot.hidden = false;
+  }
   const ava = document.getElementById('mpOutAva');
   ava.textContent = (emp.name[0] || '?').toUpperCase();
   ava.style.setProperty('--a', `var(${AVA_ACCENTS[nameHash(emp.name) % AVA_ACCENTS.length]})`);
-  document.getElementById('mpOutId').textContent   = driverId(from.i);
+  document.getElementById('mpOutId').textContent   = workerId(from.i);
   document.getElementById('mpOutName').textContent = emp.name;
+  /* When the assignment has no conflict (the planner opened Edit just to swap
+     someone who is perfectly fine), there is no reason to reassign — so drop
+     the "<role> Unavailable" tag and the status/leave reason pill. They only
+     make sense when a real conflict is what forces the replacement. */
+  const hasConflict = conflictsFor(from.i, from.d).length > 0;
   const reasonEl = document.getElementById('mpOutReason');
   reasonEl.textContent = emp.reason || STATUS[emp.status].label;
   reasonEl.classList.toggle('exit', emp.status === 'resigned' || emp.status === 'terminated');
+  reasonEl.hidden = !hasConflict;
+  document.getElementById('mpOutReasonDot').hidden = !hasConflict;
+  const tag = document.getElementById('mpTag');
+  tag.textContent = `${word} Unavailable`;
+  tag.hidden = !hasConflict;
+  document.getElementById('mpSearch').placeholder = `Search ${word.toLowerCase()}`;
   document.getElementById('mpSearch').value = '';
   mpRender();
   mpanel.hidden = false; mpCatch.hidden = false; mpClose.hidden = false;
@@ -2431,6 +2626,98 @@ function closeManual(){
   mpanel.hidden = true; mpCatch.hidden = true; mpClose.hidden = true;
   mpCtx = null;
 }
+
+/* ── Edit Assignment sheet ──
+   Opened from the popover's Edit icon. Renders EVERY field the popover shows
+   as a dropdown. Fields the planner can change on this screen are editable;
+   fields that are derived from the route (the sector/lot) are shown but
+   disabled — visible for context, not editable here. */
+const esheet = document.getElementById('esheet');
+const esCatch = document.getElementById('esCatch');
+const esClose = document.getElementById('esClose');
+let esCtx = null;
+
+/* Vehicle number options for a category — the current vehicle plus a few
+   plausible siblings from the same fleet band, so the dropdown is never empty. */
+function vehicleOptions(cell){
+  const set = new Set([cell.veh]);
+  for (let k = 0; set.size < 5; k++) set.add('N ' + (1200 + ((cell.veh.replace(/\D+/g,'') * 1 + 37 * (k + 1)) % 800)));
+  return [...set];
+}
+function optionsHTML(list, current){
+  return list.map(v => `<option value="${v}"${v === current ? ' selected' : ''}>${v}</option>`).join('');
+}
+
+/* One field = a DS-style select with the field icon inside on the left; no
+   label above (the icon + value are self-describing). Locked fields are
+   disabled and carry a small LOCKED tag instead of a chevron. */
+function esField(id, icon, optionsHtml, { locked = false, label = '' } = {}){
+  return `<div class="es-select${locked ? ' locked' : ''}">
+    <img class="es-fico" src="${icon}" alt="">
+    <select id="${id}"${locked ? ' disabled' : ''} aria-label="${label}">${optionsHtml}</select>
+    ${locked ? '<span class="es-locktag">Locked</span>' : ''}
+  </div>`;
+}
+
+function openEdit(from){
+  const emp = WORKFORCE[from.i];
+  const cell = WEEKS[from.i][from.d];
+  const fieldRole = isFieldRoleEmp(emp);
+  const word = roleWord(emp);
+  esCtx = { from, fieldRole };
+  document.getElementById('esSub').textContent =
+    `${fieldRole ? areaLabel(cell, emp) : cell.rt} • ${SHIFTS[cell.s].label} • ${dateOf(from.d)}`;
+  /* Workforce options: the current person plus every compatible active worker
+     free that day. Current is always selectable so "no change" is valid. */
+  const cands = mpCandidates(from.d, emp.role).filter(c => c.i !== from.i);
+  const wfList = [{ i: from.i, name: emp.name }, ...cands];
+  const wfOpts = wfList.map(c => `<option value="${c.i}"${c.i === from.i ? ' selected' : ''}>${c.name} · ${workerId(c.i)}</option>`).join('');
+  let body = esField('esWorkforce', IC_USER, wfOpts, { label: word });
+  if (fieldRole) {
+    const { sector, lot } = areaParts(cell, emp);
+    body += esField('esSector', IC_MAP, `<option>${sector}</option>`, { locked: true, label: 'Sector' });
+    body += esField('esLot', IC_MAP, `<option>${lot}</option>`, { locked: true, label: 'Lot' });
+  } else {
+    body += esField('esVehicle', IC_TRUCK, optionsHTML(vehicleOptions(cell), cell.veh), { label: 'Vehicle' });
+    body += esField('esPlan', IC_DATAFLOW, optionsHTML(PLANS, cell.plan || PLAN), { label: 'Plan' });
+    body += esField('esSector', IC_MAP, `<option>${cell.sec}</option>`, { locked: true, label: 'Sectors' });
+  }
+  document.getElementById('esBody').innerHTML = body;
+  esheet.hidden = false; esCatch.hidden = false; esClose.hidden = false;
+}
+function closeEdit(){
+  esheet.hidden = true; esCatch.hidden = true; esClose.hidden = true;
+  esCtx = null;
+}
+function saveEdit(){
+  if (!esCtx) return;
+  const { from, fieldRole } = esCtx;
+  const cell = WEEKS[from.i][from.d];
+  const newI = +document.getElementById('esWorkforce').value;
+  /* Apply the editable fields to the assignment first (they travel with it if
+     the worker also changes). */
+  if (!fieldRole) {
+    cell.veh  = document.getElementById('esVehicle').value;
+    cell.plan = document.getElementById('esPlan').value;
+  }
+  const who = WORKFORCE[newI].name;
+  const label = fieldRole ? areaLabel(cell, WORKFORCE[from.i]) : cell.rt;
+  closeEdit();
+  if (newI !== from.i) {
+    const ot = WEEKS[newI][from.d] === OFF;
+    applyMove(from, { i: newI, d: from.d }, ot);
+    showToast({ kind:'success', title:'Assignment updated',
+      message: `${label} reassigned to ${who}` + (ot ? ' with overtime approved.' : '.') });
+  } else {
+    render(); renderDrawer(); bumpUnpublished();
+    showToast({ kind:'success', title:'Assignment updated', message: `${label} updated.` });
+  }
+}
+esClose.addEventListener('click', closeEdit);
+esCatch.addEventListener('click', closeEdit);
+document.getElementById('esCancel').addEventListener('click', closeEdit);
+document.getElementById('esSave').addEventListener('click', saveEdit);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !esheet.hidden) closeEdit(); });
 
 document.getElementById('mpGrid').addEventListener('click', e => {
   const row = e.target.closest('.mp-row');

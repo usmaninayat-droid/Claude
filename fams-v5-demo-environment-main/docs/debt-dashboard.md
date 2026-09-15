@@ -25,7 +25,9 @@
 | fams | workforce | 0 | — | — |
 | iwmp | asset | 0 | — | — |
 | iwmp | attendance | 0 | — | — |
+| iwmp | contract-management | 0 | — | — |
 | iwmp | deployment-dashboard | 0 | — | — |
+| iwmp | project-management | 0 | — | — |
 | iwmp | shift-rostering | 0 | — | override-flagged |
 | iwmp | ticketing | 6 | — | — |
 | iwmp | training | 0 | — | — |

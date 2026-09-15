@@ -21,6 +21,7 @@ import { makeSmartPlanningV2Route, makePlanMonitoringV2Route } from './planning-
 import { makeInspectorShiftsRoute } from './inspector-shifts-module'
 import { makeInspectorAppRoute } from './inspector-app-module'
 import { makeShiftRosteringRoute, type ShiftRosteringDeps } from './shift-rostering-module'
+import { makeContractManagementRoute } from './contract-management-module'
 import { makeCommandCenterRoute } from './command-center-module'
 import type { CommandCenterDeps } from './command-center-view'
 
@@ -46,6 +47,8 @@ const MODULE_ICONS: Record<string, ReactNode> = {
   // rebuild (dashboard, requests & complaints, plan monitoring). Distinct
   // from `inspector-shifts`'s glyph above (an unrelated, older screen).
   'inspector-app': <Icon name="clipboard-check" />,
+  // Contract Management (Figma: Tadweer June Release) — a document/contract mark.
+  'contract-management': <Icon name="file-05" />,
 }
 
 /** Last-resort rail glyph for a module that names no icon and has no entry
@@ -363,6 +366,14 @@ export function makeImplementations(
   if (tenant === 'iwmp' && map['shift-rostering']) {
     const { composerModule: _drop, ...rest } = map['shift-rostering']
     map['shift-rostering'] = { ...rest, routes: makeShiftRosteringRoute('/shift-rostering', shiftRosteringDeps ?? {}) }
+  }
+  // IWMP Contract Management (Figma: Tadweer June Release) — bespoke card-grid
+  // list + full-screen creation wizard, iframe-isolated from
+  // app/public/screens/contract-management. Same swap as shift-rostering:
+  // module id, route path, nav entry and privileges unchanged, only the body.
+  if (tenant === 'iwmp' && map['contract-management']) {
+    const { composerModule: _drop, ...rest } = map['contract-management']
+    map['contract-management'] = { ...rest, routes: makeContractManagementRoute('/contract-management', {}) }
   }
   return map
 }

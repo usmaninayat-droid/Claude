@@ -1,0 +1,588 @@
+{
+  "code": "project-management/project",
+  "kind": "entity",
+  "listcolumns": [
+    {
+      "col": "uniqueidentifier",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_uniqueidentifier",
+      "name": "Project ID"
+    },
+    {
+      "col": "title",
+      "component": {
+        "name": "TextView",
+        "props": {
+          "handleOverflow": true
+        }
+      },
+      "id": "fld_pmm_name"
+    },
+    {
+      "col": "systemcol1",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_pmm_type"
+    },
+    {
+      "col": "systemcol2",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_pmm_client"
+    },
+    {
+      "col": "systemcol3",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_pmm_category"
+    },
+    {
+      "col": "systemcol8",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_pmm_lot"
+    },
+    {
+      "col": "systemcol4",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_pmm_contract_ref"
+    },
+    {
+      "col": "systemcol15",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_pmm_route_count"
+    },
+    {
+      "col": "systemcol12",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_pmm_pm"
+    },
+    {
+      "col": "status",
+      "component": {
+        "name": "StatusList"
+      },
+      "id": "fld_pmm_status"
+    }
+  ],
+  "name": "Project Management",
+  "systemcolumns": [
+    {
+      "col": "title",
+      "id": "fld_pmm_name",
+      "name": "Project Name",
+      "required": true,
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol1",
+      "id": "fld_pmm_type",
+      "listValues": [
+        "Municipal",
+        "Commercial",
+        "One-Off Job"
+      ],
+      "name": "Project Type",
+      "required": true,
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol2",
+      "id": "fld_pmm_client",
+      "name": "Client",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol3",
+      "id": "fld_pmm_category",
+      "listValues": [
+        "Cat 1 · Mega Scale (≥ AED 5M)",
+        "Cat 2 · Large Scale (AED 3–5M)",
+        "Cat 3 · Medium Scale (AED 1–3M)",
+        "Cat 4 · Small Scale (AED 250K–1M)",
+        "Cat 5 · Micro Scale (< AED 250K)",
+        "Cat 6 · One-Off Job"
+      ],
+      "name": "Client Category",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol4",
+      "id": "fld_pmm_contract_ref",
+      "name": "Contract Number",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol5",
+      "id": "fld_pmm_contract_value",
+      "name": "Contract Value (AED)",
+      "type": "Number"
+    },
+    {
+      "col": "systemcol6",
+      "id": "fld_pmm_start_date",
+      "name": "Contract Start",
+      "type": "Date"
+    },
+    {
+      "col": "systemcol7",
+      "id": "fld_pmm_end_date",
+      "name": "Contract End",
+      "type": "Date"
+    },
+    {
+      "col": "systemcol8",
+      "id": "fld_pmm_lot",
+      "name": "LOT",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol9",
+      "id": "fld_pmm_zone",
+      "name": "Zone",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol10",
+      "id": "fld_pmm_district",
+      "name": "District",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol11",
+      "id": "fld_pmm_service_type",
+      "name": "Service Type",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol12",
+      "id": "fld_pmm_pm",
+      "name": "Project Manager",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol13",
+      "id": "fld_pmm_area_mgr",
+      "name": "Area Manager",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol14",
+      "id": "fld_pmm_supervisor",
+      "name": "Supervisor",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol15",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_pmm_route_count",
+      "name": "Routes",
+      "type": "Number"
+    },
+    {
+      "col": "systemcol16",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_pmm_fleet",
+      "name": "Fleet Allocated",
+      "type": "Number"
+    },
+    {
+      "col": "systemcol17",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_pmm_workforce",
+      "name": "Workforce Allocated",
+      "type": "Number"
+    },
+    {
+      "col": "systemcol18",
+      "id": "fld_pmm_billing",
+      "listValues": [
+        "Contract Lump Sum",
+        "Site Lump Sum",
+        "Quantity-Based",
+        "Advance Payment"
+      ],
+      "name": "Billing Method",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "systemcol19",
+      "id": "fld_pmm_sla",
+      "name": "SLA",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol20",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_pmm_commercial_status",
+      "name": "Oracle Commercial Status",
+      "type": "SmallText"
+    },
+    {
+      "col": "status",
+      "creation": {
+        "hidden": true
+      },
+      "default": "Draft",
+      "id": "fld_pmm_status",
+      "listValues": [
+        "Draft",
+        "Pending Approval",
+        "Active",
+        "On Hold",
+        "Amended",
+        "Closed",
+        "Renewed"
+      ],
+      "name": "Status",
+      "type": "SingleSelect"
+    },
+    {
+      "col": "tags",
+      "creation": {
+        "hidden": true
+      },
+      "id": "fld_pmm_tags",
+      "name": "Tags",
+      "type": "tags"
+    }
+  ],
+  "uiConfig": {
+    "creation": {
+      "basicCount": 8,
+      "explicit": true,
+      "fieldChrome": "inset-label",
+      "label": "New Project",
+      "layout": "wizard",
+      "showSummaryStep": true,
+      "stepIcons": {
+        "basic": "layers",
+        "sec_pmm_hierarchy": "map-pin",
+        "sec_pmm_mapping": "users",
+        "summary": "check-square"
+      },
+      "stepperVariant": "numbered"
+    },
+    "filters": [
+      {
+        "col": "status",
+        "icon": "status",
+        "id": "flt_pmm_status",
+        "kind": "status",
+        "optionDot": "status",
+        "optionsFrom": "statusList",
+        "order": 1,
+        "showCounts": true
+      },
+      {
+        "col": "systemcol1",
+        "icon": "layers",
+        "id": "flt_pmm_type",
+        "kind": "checkbox-group",
+        "order": 2
+      },
+      {
+        "col": "systemcol3",
+        "icon": "tag",
+        "id": "flt_pmm_category",
+        "kind": "checkbox-group",
+        "order": 3
+      },
+      {
+        "col": "systemcol8",
+        "icon": "map-pin",
+        "id": "flt_pmm_lot",
+        "kind": "checkbox-group",
+        "order": 4
+      }
+    ],
+    "filtersPanel": {
+      "clearAll": true,
+      "title": "Filters",
+      "width": 448
+    },
+    "icon": "briefcase-01",
+    "profile": {
+      "details": [
+        {
+          "col": "systemcol1",
+          "id": "fld_pmm_type",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "status",
+          "component": {
+            "name": "StatusList"
+          },
+          "id": "fld_pmm_status",
+          "order": 1,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol2",
+          "id": "fld_pmm_client",
+          "order": 2,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol3",
+          "id": "fld_pmm_category",
+          "order": 2,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol4",
+          "id": "fld_pmm_contract_ref",
+          "order": 3,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol5",
+          "id": "fld_pmm_contract_value",
+          "order": 3,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol6",
+          "component": {
+            "name": "DateView"
+          },
+          "id": "fld_pmm_start_date",
+          "order": 4,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol7",
+          "component": {
+            "name": "DateView"
+          },
+          "id": "fld_pmm_end_date",
+          "order": 4,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol8",
+          "id": "fld_pmm_lot",
+          "order": 5,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol9",
+          "id": "fld_pmm_zone",
+          "order": 5,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol10",
+          "id": "fld_pmm_district",
+          "order": 6,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol11",
+          "id": "fld_pmm_service_type",
+          "order": 6,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol12",
+          "id": "fld_pmm_pm",
+          "order": 7,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol13",
+          "id": "fld_pmm_area_mgr",
+          "order": 7,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol14",
+          "id": "fld_pmm_supervisor",
+          "order": 8,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol18",
+          "id": "fld_pmm_billing",
+          "order": 8,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol15",
+          "id": "fld_pmm_route_count",
+          "order": 9,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol16",
+          "id": "fld_pmm_fleet",
+          "order": 9,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol17",
+          "id": "fld_pmm_workforce",
+          "order": 10,
+          "pos": "left"
+        },
+        {
+          "col": "systemcol19",
+          "id": "fld_pmm_sla",
+          "order": 10,
+          "pos": "right"
+        },
+        {
+          "col": "systemcol20",
+          "id": "fld_pmm_commercial_status",
+          "order": 11,
+          "pos": "left"
+        }
+      ],
+      "sections": [
+        {
+          "fields": [
+            {
+              "col": "systemcol8",
+              "id": "fld_pmm_lot",
+              "order": 1
+            },
+            {
+              "col": "systemcol9",
+              "id": "fld_pmm_zone",
+              "order": 2
+            },
+            {
+              "col": "systemcol10",
+              "id": "fld_pmm_district",
+              "order": 3
+            },
+            {
+              "col": "systemcol11",
+              "id": "fld_pmm_service_type",
+              "order": 4
+            }
+          ],
+          "id": "sec_pmm_hierarchy",
+          "name": "Hierarchy",
+          "order": 1
+        },
+        {
+          "fields": [
+            {
+              "col": "systemcol12",
+              "id": "fld_pmm_pm",
+              "order": 1
+            },
+            {
+              "col": "systemcol13",
+              "id": "fld_pmm_area_mgr",
+              "order": 2
+            },
+            {
+              "col": "systemcol14",
+              "id": "fld_pmm_supervisor",
+              "order": 3
+            },
+            {
+              "col": "systemcol18",
+              "id": "fld_pmm_billing",
+              "order": 4
+            },
+            {
+              "col": "systemcol19",
+              "id": "fld_pmm_sla",
+              "order": 5
+            }
+          ],
+          "id": "sec_pmm_mapping",
+          "name": "Mapping & Governance",
+          "order": 2
+        }
+      ],
+      "title": {
+        "col": "title",
+        "id": "fld_pmm_name",
+        "pos": "left"
+      }
+    },
+    "search": {
+      "columns": [
+        "title",
+        "systemcol2",
+        "systemcol4",
+        "systemcol8"
+      ]
+    },
+    "statusList": [
+      {
+        "color": "#6b7280",
+        "id": "sts_pmm_draft",
+        "key": "Draft",
+        "label": "Draft"
+      },
+      {
+        "color": "#f79009",
+        "id": "sts_pmm_pend",
+        "key": "Pending Approval",
+        "label": "Pending Approval"
+      },
+      {
+        "color": "#16a34a",
+        "id": "sts_pmm_active",
+        "key": "Active",
+        "label": "Active"
+      },
+      {
+        "color": "#f59e0b",
+        "id": "sts_pmm_hold",
+        "key": "On Hold",
+        "label": "On Hold"
+      },
+      {
+        "color": "#0284c7",
+        "id": "sts_pmm_amend",
+        "key": "Amended",
+        "label": "Amended"
+      },
+      {
+        "color": "#475467",
+        "id": "sts_pmm_closed",
+        "key": "Closed",
+        "label": "Closed"
+      },
+      {
+        "color": "#7c3aed",
+        "id": "sts_pmm_renewed",
+        "key": "Renewed",
+        "label": "Renewed"
+      }
+    ]
+  },
+  "uidPrefix": "PMM",
+  "views": [
+    "list",
+    "kanban"
+  ]
+}

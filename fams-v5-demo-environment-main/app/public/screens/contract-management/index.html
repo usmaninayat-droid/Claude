@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="en" data-tenant="iwmp" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#22C882">
+<title>Tadweer — Contract Management</title>
+
+<link rel="stylesheet" href="/fams-design-system/packages/tokens/fonts.css">
+<link rel="stylesheet" href="/fams-design-system/packages/tokens/dist/tokens.css">
+<link rel="stylesheet" href="/fams-design-system/packages/tokens/dist/tenants.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>try{if(new URLSearchParams(location.search).has('embed'))document.documentElement.classList.add('embed')}catch(e){}</script>
+<style>
+/* ══════════════════════════════════════════════════════════════════════════
+   IWMP · Contract Management  (Figma: Tadweer June Release, node 3215:4609)
+   Bespoke static screen — DS tokens (tokens.css + tenants.css, tenant=iwmp).
+   ══════════════════════════════════════════════════════════════════════════ */
+:root{
+  --primary:var(--color-primary,#22c882);
+  --primary-600:var(--color-primary-600,#1DAA6F);
+  --primary-50:var(--color-primary-50,#E9FAF3);
+  --ink:#1d2939; --ink-2:#344054; --ink-3:#667085; --ink-4:#98a2b3;
+  --line:#eaecf0; --line-2:#d0d5dd; --bg:#f9fafb; --surface:#fff;
+  --green:#12b76a; --green-50:#ecfdf3; --green-600:#16a34a;
+  --amber:#f79009; --amber-50:#fffaeb; --amber-700:#b54708;
+  --red:#f04438; --red-50:#fef3f2;
+  --blue:#0072d6; --blue-50:#e6f1fb;
+  /* DS radius scale: xs=2 (badges), sm=4 (buttons/inputs), md=6 (cards/surfaces), full=999 (pills/avatars) */
+  --radius:var(--fams-radius-md,6px); --radius-sm:var(--fams-radius-sm,4px); --radius-xs:var(--fams-radius-xs,2px); --radius-full:var(--fams-radius-full,999px);
+  --font:var(--fams-font-sans,'Gilroy','Inter',system-ui,-apple-system,sans-serif);
+  /* DS elevation tokens (Figma Shadows) */
+  --shadow-sm:var(--fams-shadow-sm,0px 1px 2px 0px rgba(16,24,40,.06),0px 1px 3px 0px rgba(16,24,40,.10));
+  --shadow-md:var(--fams-shadow-md,0px 2px 4px -2px rgba(16,24,40,.06),0px 4px 8px -2px rgba(16,24,40,.10));
+  --shadow-lg:var(--fams-shadow-lg,0px 4px 6px -2px rgba(16,24,40,.03),0px 12px 16px -4px rgba(16,24,40,.08));
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:14px;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+img{display:block}
+input,select{font-family:inherit}
+.cm-app{min-height:100vh;display:flex;flex-direction:column;background:var(--bg)}
+
+/* ── Toolbar (search · filter · create) ─────────────────────────────────── */
+.cm-toolbar{display:flex;align-items:center;gap:12px;padding:20px 28px 4px}
+.cm-search{position:relative;flex:0 1 420px;min-width:220px}
+.cm-search i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-4);font-size:14px}
+.cm-search input{width:100%;height:44px;border:1px solid var(--line-2);border-radius:var(--radius-sm);
+  background:var(--surface);padding:0 14px 0 40px;font-size:14px;color:var(--ink);outline:none}
+.cm-search input::placeholder{color:var(--ink-4)}
+.cm-search input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(34,200,130,.16)}
+.cm-iconbtn{width:44px;height:44px;flex-shrink:0;border:1px solid var(--line-2);border-radius:var(--radius-sm);
+  background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--ink-3)}
+.cm-iconbtn:hover{background:var(--bg)}
+.cm-spacer{flex:1}
+.cm-create{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:var(--radius-sm);
+  background:var(--primary);color:#fff;font-size:14px;font-weight:600}
+.cm-create:hover{background:var(--primary-600)}
+.cm-create i{font-size:13px}
+
+/* ── KPI tiles ──────────────────────────────────────────────────────────── */
+.cm-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding:16px 28px 4px}
+.cm-kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px;display:flex;align-items:center;gap:12px;min-width:0}
+.cm-kpi .ic{width:40px;height:40px;border-radius:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px}
+.cm-kpi.total .ic{background:var(--blue-50);color:var(--blue)}
+.cm-kpi.active .ic{background:var(--green-50);color:var(--green)}
+.cm-kpi.expiring .ic{background:var(--amber-50);color:var(--amber)}
+.cm-kpi.drafts .ic{background:#f2f4f7;color:var(--ink-3)}
+.cm-kpi.expired .ic{background:var(--red-50);color:var(--red)}
+.cm-kpi .txt{min-width:0}
+.cm-kpi .lbl{font-size:13px;font-weight:500;color:var(--ink-3);line-height:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cm-kpi .val{font-size:22px;font-weight:700;color:var(--ink);line-height:28px}
+
+/* ── Contract card grid ─────────────────────────────────────────────────── */
+.cm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:16px 28px 32px;align-content:start}
+.cm-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 18px 16px;cursor:pointer;transition:box-shadow .15s,border-color .15s;display:flex;flex-direction:column;gap:12px}
+.cm-card:hover{box-shadow:var(--shadow-md);border-color:var(--line-2)}
+.cm-card .top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.cm-card .ttl{font-size:16px;font-weight:700;color:var(--ink);line-height:22px}
+.cm-card .right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.cm-card .exp{font-size:11px;font-weight:500;color:var(--ink-3);white-space:nowrap}
+.cm-card .exp.warn{color:var(--red)}
+/* DS StatusPill spec: rounded-xs (2px), px-2 py-1, caption text, font-semibold, uppercase, tracking-wide, white */
+.cm-badge{border-radius:var(--radius-xs);padding:4px 8px;font-size:11px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;white-space:nowrap}
+.cm-badge.ongoing{background:var(--green);color:#fff}
+.cm-badge.expiring{background:var(--amber);color:#fff}
+.cm-badge.draft{background:#98a2b3;color:#fff}
+.cm-badge.expired{background:var(--red);color:#fff}
+.cm-chips{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+/* DS IdChip: rounded-xs, bg gray-200 (#eaecf0), px-2 py-0.5, caption, font-medium, gray-600, svg 14px */
+.cm-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:var(--radius-xs);
+  background:#eaecf0;font-size:12px;font-weight:500;color:#475467}
+.cm-chip i{font-size:12px;color:#475467}
+.cm-chip .b{width:16px;height:16px;border-radius:8px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}
+.cm-chip.lot i{color:var(--amber)}
+.cm-meters{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;margin-top:2px}
+.cm-meter .m-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.cm-meter .m-name{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--ink-2)}
+.cm-meter .m-name i{font-size:12px;color:var(--ink-3);width:14px;text-align:center}
+.cm-meter .m-val{font-size:12px;font-weight:600;color:var(--ink)}
+.cm-meter .m-val .max{color:var(--ink-4);font-weight:500}
+.cm-meter .track{height:6px;border-radius:6px;background:#f2f4f7;overflow:hidden}
+.cm-meter .fill{height:100%;border-radius:6px}
+.cm-meter .fill.ok{background:var(--green)}
+.cm-meter .fill.warn{background:var(--amber)}
+.cm-meter .fill.bad{background:var(--red)}
+
+.cm-empty{padding:60px;text-align:center;color:var(--ink-3);grid-column:1/-1}
+
+@media(max-width:1200px){.cm-kpis{grid-template-columns:repeat(3,1fr)}.cm-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:820px){.cm-kpis{grid-template-columns:repeat(2,1fr)}.cm-grid{grid-template-columns:1fr}}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CREATE NEW CONTRACT — full-screen wizard overlay
+   ══════════════════════════════════════════════════════════════════════════ */
+.cm-wizard{position:fixed;inset:0;z-index:60;background:var(--surface);display:flex;overflow:hidden}
+.cm-wizard[hidden]{display:none}
+.wz-close{position:absolute;left:290px;top:50%;transform:translate(-50%,-50%);z-index:5;
+  width:58px;height:58px;border-radius:58px;background:#fff;box-shadow:var(--shadow-md);
+  display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:20px}
+.wz-close:hover{background:var(--bg)}
+@media(max-width:900px){.wz-close{left:auto;right:12px;top:12px;transform:none}}
+
+/* Left rail — title + vertical stepper */
+.wz-rail{width:320px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--line);
+  padding:28px;display:flex;flex-direction:column;overflow-y:auto}
+.wz-title{font-size:24px;font-weight:700;color:var(--ink);margin:0 0 24px}
+.wz-steps{display:flex;flex-direction:column}
+.wz-step{display:flex;gap:12px;align-items:flex-start;position:relative;padding-bottom:8px}
+.wz-step .rail-line{position:absolute;left:15px;top:36px;bottom:-4px;width:1px;background:var(--line-2)}
+.wz-step:last-child .rail-line{display:none}
+.wz-step.done .rail-line{background:var(--primary)}
+.wz-marker{width:32px;height:32px;border-radius:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--line-2);background:#fff;color:var(--ink-4);font-size:13px;font-weight:700;z-index:1}
+.wz-step.done .wz-marker{background:var(--primary-50);border-color:var(--primary);color:var(--primary)}
+.wz-step.active .wz-marker{background:var(--primary);border-color:var(--primary);color:#fff}
+.wz-marker i{font-size:14px}
+.wz-step .meta{padding-top:1px}
+.wz-step .s-n{font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--ink-4);text-transform:uppercase}
+.wz-step .s-l{font-size:14px;font-weight:600;color:var(--ink-4);line-height:20px;margin-top:2px}
+.wz-step.active .s-l,.wz-step.done .s-l{color:var(--ink)}
+.wz-step.active .s-n{color:var(--primary)}
+
+/* Right — step content */
+.wz-main{flex:1;display:flex;flex-direction:column;min-width:0}
+.wz-head{padding:24px 40px 0;flex-shrink:0}
+.wz-h-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.wz-h-ttl{font-size:18px;font-weight:700;color:var(--ink);line-height:24px}
+.wz-h-sub{font-size:13px;font-weight:500;color:var(--ink-3);margin-top:4px}
+.wz-body{flex:1;overflow-y:auto;padding:24px 40px 24px}
+.wz-foot{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;
+  border-top:1px solid var(--line);flex-shrink:0}
+.wz-back{font-size:15px;font-weight:700;color:var(--ink);padding:10px 4px}
+.wz-back[hidden]{visibility:hidden}
+.wz-next{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 22px;border-radius:var(--radius-sm);
+  background:var(--primary);color:#fff;font-size:15px;font-weight:600}
+.wz-next:hover{background:var(--primary-600)}
+
+/* Form fields (Basic Info) */
+.wz-form{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;max-width:1560px}
+.wz-field{position:relative;border:1px solid var(--line-2);border-radius:var(--radius-sm);background:#fff;padding:10px 14px;min-height:64px;display:flex;flex-direction:column;justify-content:center}
+.wz-field.span2{grid-column:1/-1}
+.wz-field:focus-within{border-color:var(--primary)}
+.wz-field .fl{font-size:12px;font-weight:500;color:var(--ink-3);margin-bottom:2px}
+.wz-field .fl .req{color:var(--red);margin-left:2px}
+.wz-field .fl .opt{color:var(--ink-4);font-weight:500}
+.wz-field input,.wz-field select{border:0;outline:none;background:transparent;font-size:15px;font-weight:600;color:var(--ink);width:100%;padding:0;appearance:none;-webkit-appearance:none}
+.wz-field.sel::after{content:"";position:absolute;right:16px;top:50%;width:9px;height:9px;transform:translateY(-65%) rotate(45deg);border-right:1.6px solid var(--ink-3);border-bottom:1.6px solid var(--ink-3);pointer-events:none}
+.wz-field .fi{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-3);font-size:14px}
+.wz-field.hasicon{padding-left:40px}
+.wz-field .fclear{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--red);font-size:12px;cursor:pointer}
+
+/* Empty state (picker steps) */
+.wz-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  min-height:420px;text-align:center}
+.wz-empty .ill{width:180px;height:180px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--ink-4);font-size:64px;margin-bottom:12px}
+.wz-empty .et{font-size:16px;font-weight:700;color:var(--ink)}
+.wz-empty .es{font-size:13px;font-weight:500;color:var(--ink-3)}
+.wz-addnew{position:absolute;right:40px;top:26px;display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:14px;font-weight:600}
+.wz-addnew i{font-size:11px}
+
+/* Asset picker dropdown */
+.wz-picker{position:absolute;right:40px;top:60px;width:340px;background:#fff;border:1px solid var(--line);
+  border-radius:var(--radius);box-shadow:var(--shadow-lg);z-index:8;padding:16px}
+.wz-picker[hidden]{display:none}
+.wz-picker .pk-t{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:12px}
+.wz-picker .pk-search{position:relative;margin-bottom:12px}
+.wz-picker .pk-search i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink-4);font-size:13px}
+.wz-picker .pk-search input{width:100%;height:40px;border:1px solid var(--line-2);border-radius:var(--radius-sm);padding:0 12px 0 34px;font-size:13px;outline:none}
+.wz-picker .pk-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.wz-picker .pk-h .pk-sel{font-size:12px;font-weight:600;color:var(--ink-4)}
+.wz-picker .pk-h .pk-all{font-size:13px;font-weight:600;color:var(--primary);cursor:pointer}
+.wz-picker .pk-list{max-height:240px;overflow-y:auto;margin:0 -4px}
+.wz-opt{display:flex;align-items:center;gap:10px;padding:8px 4px;cursor:pointer;border-radius:var(--radius-sm)}
+.wz-opt:hover{background:var(--bg)}
+.wz-opt .ck{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--line-2);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px}
+.wz-opt.on .ck{background:var(--primary);border-color:var(--primary)}
+.wz-opt .oi{width:28px;text-align:center;color:var(--ink-3);font-size:14px}
+.wz-opt .on-name,.wz-opt .oname{font-size:13px;font-weight:500;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wz-picker .pk-foot{display:flex;align-items:center;justify-content:flex-end;gap:14px;margin-top:14px}
+.wz-picker .pk-cancel{font-size:14px;font-weight:600;color:var(--ink-3)}
+.wz-picker .pk-add{height:36px;padding:0 18px;border-radius:var(--radius-sm);background:var(--primary);color:#fff;font-size:14px;font-weight:600}
+
+/* Config card (added asset) */
+.wz-cfg{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:16px;overflow:hidden}
+.wz-cfg .c-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
+.wz-cfg .c-head .c-name{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;color:var(--ink)}
+.wz-cfg .c-head .c-name i{color:var(--ink-3);font-size:16px;width:22px;text-align:center}
+.wz-cfg .c-head .c-actions{display:flex;align-items:center;gap:16px}
+.wz-cfg .c-addfield{color:var(--primary);font-size:13px;font-weight:600;cursor:pointer}
+.wz-cfg .c-remove{color:var(--red);font-size:14px;cursor:pointer}
+.wz-cfg .c-fields{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.wz-cfg .c-fields .wz-field{border:0;border-right:1px solid var(--line);border-radius:0;min-height:70px}
+.wz-cfg .c-fields .wz-field:last-child{border-right:0}
+
+.wz-hint{display:flex;align-items:center;gap:8px;background:var(--primary-50);border-radius:var(--radius-sm);
+  padding:10px 14px;font-size:13px;font-weight:500;color:var(--primary-600);margin-bottom:20px}
+.wz-hint i{color:var(--primary)}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CONTRACT DETAIL DASHBOARD  (Figma Version 5, node 2303:2988)
+   ══════════════════════════════════════════════════════════════════════════ */
+.cm-detail{background:var(--bg);min-height:100vh;padding-bottom:32px}
+.cm-detail[hidden]{display:none}
+.dt-bar{display:flex;align-items:center;gap:12px;padding:16px 28px;background:var(--surface);border-bottom:1px solid var(--line)}
+.dt-crumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-3)}
+.dt-crumb b{color:var(--ink)}
+.dt-back{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border:1px solid var(--line-2);border-radius:var(--radius-sm);font-size:13px;font-weight:600;color:var(--ink-2)}
+.dt-back:hover{background:var(--bg)}
+.dt-edit{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border:1px solid var(--line-2);border-radius:var(--radius-sm);font-size:13px;font-weight:600;color:var(--ink-2)}
+.dt-active{background:var(--green);color:#fff;border-radius:var(--radius-xs);padding:4px 10px;font-size:12px;font-weight:600;letter-spacing:.4px;text-transform:uppercase}
+.dt-wrap{padding:20px 28px;display:flex;flex-direction:column;gap:16px}
+.dt-topgrid{display:grid;grid-template-columns:220px repeat(3,1fr);gap:16px}
+.dt-gauge{grid-row:span 2;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.dt-gauge .g-val{font-size:30px;font-weight:800;color:var(--ink)}
+.dt-gauge .g-lbl{font-size:12px;font-weight:500;color:var(--ink-3);text-align:center}
+.dt-tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:12px}
+.dt-tile .ti{width:38px;height:38px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.dt-tile .tl{font-size:12px;font-weight:500;color:var(--ink-3)}
+.dt-tile .tv{font-size:18px;font-weight:700;color:var(--ink);margin-top:2px}
+.dt-tile .tv .max{color:var(--ink-4);font-size:13px;font-weight:500}
+.dt-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.dt-strip .s-tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:12px}
+.dt-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.dt-card .dc-h{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:14px}
+.dt-card .dc-h i{color:var(--primary)}
+.dt-2col{display:grid;grid-template-columns:340px 1fr;gap:16px}
+.dt-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.dt-kv{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+.dt-kv:last-child{border-bottom:0}
+.dt-kv .k{color:var(--ink-3)}
+.dt-kv .v{font-weight:600;color:var(--ink);display:flex;align-items:center;gap:6px}
+.dt-chart{position:relative;height:240px}
+.dt-chart.tall{height:280px}
+.dt-donut{position:relative;height:190px}
+.dt-doclist{display:flex;gap:14px;flex-wrap:wrap}
+.dt-doc{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;min-width:280px}
+.dt-doc .pdf{width:34px;height:42px;border-radius:4px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}
+@media(max-width:1100px){.dt-topgrid{grid-template-columns:1fr 1fr}.dt-2col{grid-template-columns:1fr}.dt-3col{grid-template-columns:1fr}.dt-gauge{grid-row:auto}}
+</style>
+</head>
+<body>
+<div class="cm-app" id="cmApp">
+  <div class="cm-toolbar">
+    <div class="cm-search"><i class="fa-solid fa-magnifying-glass"></i>
+      <input id="cmSearch" placeholder="Search anything here" autocomplete="off"></div>
+    <button class="cm-iconbtn" id="cmFilter" aria-label="Filter"><i class="fa-solid fa-filter"></i></button>
+    <div class="cm-spacer"></div>
+    <button class="cm-create" id="cmCreate"><i class="fa-solid fa-plus"></i>Create New Contract</button>
+  </div>
+  <div class="cm-kpis" id="cmKpis"></div>
+  <div class="cm-grid" id="cmGrid"></div>
+</div>
+
+<!-- ══ Contract detail dashboard ══ -->
+<div class="cm-detail" id="cmDetail" hidden>
+  <div class="dt-bar">
+    <button class="dt-back" id="dtBack"><i class="fa-solid fa-arrow-left"></i>Back</button>
+    <div class="dt-crumb" id="dtCrumb"></div>
+    <div class="cm-spacer"></div>
+    <button class="dt-edit"><i class="fa-solid fa-pen"></i>Edit</button>
+    <span class="cm-chip lot"><i class="fa-solid fa-vector-square"></i>Lot 1</span>
+    <span class="dt-active">ACTIVE</span>
+  </div>
+  <div class="dt-wrap" id="dtWrap"></div>
+</div>
+
+<!-- ══ Create New Contract wizard ══ -->
+<div class="cm-wizard" id="cmWizard" hidden>
+  <button class="wz-close" id="wzClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+  <div class="wz-rail">
+    <h2 class="wz-title">Create New Contract</h2>
+    <div class="wz-steps" id="wzSteps"></div>
+  </div>
+  <div class="wz-main">
+    <div class="wz-head" id="wzHead"></div>
+    <div class="wz-body" id="wzBody"></div>
+    <div class="wz-foot">
+      <button class="wz-back" id="wzBack">Back</button>
+      <button class="wz-next" id="wzNext">Save and Continue</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── Seed: 10 contracts (Figma card set + KPI totals) ───────────────────── */
+const CONTRACTS = [
+  { id:'CRT769012', name:'Lot 1 — Abu Dhabi',      lot:'Lot 1', contractor:'BEEAH', expiresDays:45,  status:'ongoing',
+    m:{ workforce:110, vehicles:95,  equipment:60,  bins:118 } },
+  { id:'CRT769013', name:'Lot 2 — Al Ain',         lot:'Lot 1', contractor:'BEEAH', expiresDays:12,  status:'ongoing',
+    m:{ workforce:80,  vehicles:40,  equipment:100, bins:120 } },
+  { id:'CRT769014', name:'Lot 3 — Al Dhafra',      lot:'Lot 1', contractor:'BEEAH', expiresDays:210, status:'ongoing',
+    m:{ workforce:120, vehicles:115, equipment:110, bins:119 } },
+  { id:'CRT769015', name:'Lot 7 — Mussafah',       lot:'Lot 1', contractor:'BEEAH', expiresDays:30,  status:'ongoing',
+    m:{ workforce:88,  vehicles:72,  equipment:65,  bins:100 } },
+  { id:'CRT769016', name:'Lot 8 — Yas Island',     lot:'Lot 1', contractor:'BEEAH', expiresDays:18,  status:'expiring',
+    m:{ workforce:60,  vehicles:50,  equipment:40,  bins:80 } },
+  { id:'CRT769017', name:'Lot 9 — Saadiyat',       lot:'Lot 1', contractor:'BEEAH', expiresDays:150, status:'ongoing',
+    m:{ workforce:118, vehicles:120, equipment:112, bins:120 } },
+  { id:'CRT769018', name:'Lot 4 — Abu Dhabi City', lot:'Lot 1', contractor:'BEEAH', expiresDays:8,   status:'expiring',
+    m:{ workforce:70,  vehicles:55,  equipment:45,  bins:90 } },
+  { id:'CRT769019', name:'Lot 6 — Khalifa City',   lot:'Lot 1', contractor:'BEEAH', expiresDays:95,  status:'ongoing',
+    m:{ workforce:102, vehicles:98,  equipment:90,  bins:110 } },
+  { id:'CRT769020', name:'Lot 5 — Western Region', lot:'Lot 1', contractor:'BEEAH', expiresDays:null, status:'draft',
+    m:{ workforce:0,   vehicles:0,   equipment:0,   bins:0 } },
+  { id:'CRT769021', name:'Lot 10 — Al Shamkha',    lot:'Lot 1', contractor:'BEEAH', expiresDays:-3,  status:'expired',
+    m:{ workforce:40,  vehicles:35,  equipment:20,  bins:50 } },
+];
+const CAP = 120;
+const METER_ICONS = { workforce:'fa-user-group', vehicles:'fa-car', equipment:'fa-screwdriver-wrench', bins:'fa-trash-can' };
+const METER_LABELS = { workforce:'Workforce', vehicles:'Vehicles', equipment:'Equipment', bins:'Bins' };
+
+const fillClass = (v) => v === 0 ? 'bad' : v/CAP < .55 ? 'bad' : v/CAP < .85 ? 'warn' : 'ok';
+
+function meterHTML(key, v){
+  return `<div class="cm-meter">
+    <div class="m-top">
+      <span class="m-name"><i class="fa-solid ${METER_ICONS[key]}"></i>${METER_LABELS[key]}</span>
+      <span class="m-val">${v}<span class="max">/${CAP}</span></span>
+    </div>
+    <div class="track"><div class="fill ${fillClass(v)}" style="width:${Math.round(v/CAP*100)}%"></div></div>
+  </div>`;
+}
+function expiryHTML(c){
+  if (c.status === 'draft') return '';
+  if (c.expiresDays < 0) return `<span class="exp warn">Expired ${Math.abs(c.expiresDays)} days ago</span>`;
+  const warn = c.expiresDays <= 15 ? ' warn' : '';
+  return `<span class="exp${warn}">Expires in ${c.expiresDays} days</span>`;
+}
+function cardHTML(c){
+  return `<div class="cm-card" data-id="${c.id}">
+    <div class="top">
+      <div class="ttl">${c.name}</div>
+      <div class="right">
+        ${expiryHTML(c)}
+        <span class="cm-badge ${c.status}">${c.status.toUpperCase()}</span>
+      </div>
+    </div>
+    <div class="cm-chips">
+      <span class="cm-chip"><i class="fa-solid fa-hashtag"></i>${c.id}</span>
+      <span class="cm-chip"><span class="b">B</span>${c.contractor}</span>
+      <span class="cm-chip lot"><i class="fa-solid fa-vector-square"></i>${c.lot}</span>
+    </div>
+    <div class="cm-meters">
+      ${meterHTML('workforce', c.m.workforce)}${meterHTML('vehicles', c.m.vehicles)}
+      ${meterHTML('equipment', c.m.equipment)}${meterHTML('bins', c.m.bins)}
+    </div>
+  </div>`;
+}
+
+const KPIS = [
+  { key:'total',    cls:'total',    icon:'fa-file-lines',        label:'Total Contract',      calc:cs => cs.length },
+  { key:'active',   cls:'active',   icon:'fa-file-circle-check', label:'Active',              calc:cs => cs.filter(c => c.status==='ongoing'||c.status==='expiring').length },
+  { key:'expiring', cls:'expiring', icon:'fa-file-circle-exclamation', label:'Expiring ≤ 120 Days', calc:cs => cs.filter(c => c.status!=='draft'&&c.expiresDays!=null&&c.expiresDays>=0&&c.expiresDays<=120&&c.status==='expiring').length },
+  { key:'drafts',   cls:'drafts',   icon:'fa-file-pen',          label:'Drafts',              calc:cs => cs.filter(c => c.status==='draft').length },
+  { key:'expired',  cls:'expired',  icon:'fa-file-circle-xmark', label:'Expired',             calc:cs => cs.filter(c => c.status==='expired').length },
+];
+function renderKpis(){
+  document.getElementById('cmKpis').innerHTML = KPIS.map(k =>
+    `<div class="cm-kpi ${k.cls}"><div class="ic"><i class="fa-solid ${k.icon}"></i></div>
+      <div class="txt"><div class="lbl">${k.label}</div><div class="val">${k.calc(CONTRACTS)}</div></div></div>`).join('');
+}
+let query = '';
+function renderGrid(){
+  const q = query.trim().toLowerCase();
+  const rows = CONTRACTS.filter(c => !q || c.name.toLowerCase().includes(q) || c.id.toLowerCase().includes(q) || c.contractor.toLowerCase().includes(q));
+  const grid = document.getElementById('cmGrid');
+  grid.innerHTML = rows.length ? rows.map(cardHTML).join('')
+    : '<div class="cm-empty">No contracts match your search.</div>';
+}
+document.getElementById('cmSearch').addEventListener('input', e => { query = e.target.value; renderGrid(); });
+document.getElementById('cmCreate').addEventListener('click', () => { if (window.openWizard) window.openWizard(); });
+document.getElementById('cmGrid').addEventListener('click', e => {
+  const card = e.target.closest('.cm-card'); if (!card) return;
+  const c = CONTRACTS.find(x => x.id === card.dataset.id);
+  if (c) openDetail(c);
+});
+
+renderKpis();
+renderGrid();
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CREATE NEW CONTRACT WIZARD
+   ══════════════════════════════════════════════════════════════════════════ */
+const STEP_DEFS = [
+  { key:'basic',       n:'STEP 1',     label:'Basic Info',                    icon:'fa-circle-user' },
+  { key:'zone',        n:'STEP 2',     label:'Zone Selection',                icon:'fa-location-dot' },
+  { key:'vehicles',    n:'STEP 3',     label:'Add Vehicles',                  icon:'fa-truck' },
+  { key:'equipment',   n:'STEP 5',     label:'Add Equipment',                 icon:'fa-screwdriver-wrench' },
+  { key:'workforce',   n:'STEP 6',     label:'Add Workforce',                 icon:'fa-users' },
+  { key:'bins',        n:'STEP 7',     label:'Add Bins',                      icon:'fa-trash-can' },
+  { key:'service',     n:'STEP 8',     label:'Service & Frequency Selection', icon:'fa-calendar-days' },
+  { key:'kpi',         n:'STEP 9',     label:'KPI Targets',                   icon:'fa-bullseye' },
+  { key:'attachments', n:'STEP 10',    label:'Attachments',                   icon:'fa-paperclip' },
+  { key:'summary',     n:'FINAL STEP', label:'Summary',                       icon:'fa-list-check' },
+];
+
+/* Asset catalogs (Figma pickers) */
+const CAT = {
+  vehicles: [
+    { id:'compactor',  name:'Compactor',   icon:'fa-truck',          capacity:'(7–10 cbm) RCV',       make:'Mercedes' },
+    { id:'skip1',      name:'Skip Loader', icon:'fa-truck-ramp-box', capacity:'(20–25 cbm) – Side Loaders (SL)', make:'UD' },
+    { id:'hook1',      name:'Hook Loader', icon:'fa-truck-front',    capacity:'(20–25 cbm) RCV',      make:'Mercedes' },
+    { id:'loader',     name:'Loader',      icon:'fa-tractor',        capacity:'—',                    make:'UD' },
+    { id:'skip2',      name:'Skip Loader', icon:'fa-truck-ramp-box', capacity:'(20–25 cbm) – Side Loaders (SL)', make:'UD' },
+    { id:'hook2',      name:'Hook Loader', icon:'fa-truck-front',    capacity:'—',                    make:'UD' },
+  ],
+  equipment: [
+    { id:'rideon',  name:'Ride-On Precinct Vacuum Sweeping Machine', icon:'fa-broom',               make:'TBA' },
+    { id:'towed',   name:'Towed Mechanical Broom Sweeper',           icon:'fa-broom',               make:'TBA' },
+    { id:'litter',  name:'Litter Picker',                            icon:'fa-hand',                make:'TBA' },
+    { id:'tools',   name:'Cleaner Tools',                            icon:'fa-screwdriver-wrench',  make:'TBA' },
+    { id:'machine', name:'Cleaner Machine',                          icon:'fa-gears',               make:'TBA' },
+    { id:'suck',    name:'Cleaner Sucking Machine',                  icon:'fa-wind',                make:'TBA' },
+  ],
+  workforce: [
+    { id:'supervisor', name:'Supervisor',      icon:'fa-user-tie' },
+    { id:'sweepers',   name:'Sweepers',        icon:'fa-user-group' },
+    { id:'litterp',    name:'Litter Pickers',  icon:'fa-user-group' },
+    { id:'window',     name:'Window Washers',  icon:'fa-user-group' },
+    { id:'street',     name:'Street Sweepers', icon:'fa-user-group' },
+    { id:'drivers',    name:'Drivers',         icon:'fa-user-group' },
+  ],
+  bins: [
+    { id:'b3',   name:'3 CBM Bins',  icon:'fa-dumpster' },
+    { id:'b5',   name:'5 CBM Bins',  icon:'fa-dumpster' },
+    { id:'b7',   name:'7 CBM Bins',  icon:'fa-dumpster' },
+    { id:'l240', name:'240 L Bins',  icon:'fa-trash-can' },
+    { id:'l660', name:'660 L Bins',  icon:'fa-trash-can' },
+    { id:'l1100',name:'1100 L Bins', icon:'fa-trash-can' },
+  ],
+  service: [
+    'Full Bin Collection','Bin Washing','Under Bin Washing','Bulky Waste Collection','Dead Animals Collection',
+    'Stuff Complaint','Green Waste Collection','Lost Items in Bins','Recyclable Waste Collection','C&D Waste Removal',
+    'Between Buildings Cleaning','Litter Picking Service','Lost Items','Oil Spill','Sweeping Sand Service',
+    'Open Areas Cleaning','Pedestrian Underpasses Cleaning','Pedestrian Bridge Cleaning','Walkways Cleaning',
+    'Mechanical Sweeping','Bushes Removal','Manpower Allocation','Vehicle / Equipment Allocation',
+    'Collection & Transportation Services to Palaces','Safety Related','Negative Media Coverage',
+  ].map((n,i)=>({ id:'svc'+i, name:n })),
+};
+
+/* Per-type config fields for the "added" cards (label, key, type, default) */
+const CFG_FIELDS = {
+  vehicles:  [ {k:'qty', l:'Required Quantity', t:'number', d:''}, {k:'year', l:'Minimum Manufacture Year', t:'number', d:''} ],
+  equipment: [ {k:'qty', l:'Required Quantity', t:'number', d:''}, {k:'make', l:'Make', t:'text', d:'TBA'} ],
+  workforce: [ {k:'qty', l:'Required Quantity', t:'number', d:''}, {k:'exp', l:'Experience', t:'text', d:''} ],
+  bins:      [ {k:'qty', l:'Required Quantity', t:'number', d:''} ],
+};
+const EMPTY_ILL = { vehicles:'fa-car', equipment:'fa-gears', workforce:'fa-people-group', bins:'fa-dumpster', service:'fa-calendar-days' };
+const EMPTY_TXT = {
+  vehicles:{ t:'Add Required Vehicles', s:'Add the required types & number of vehicles' },
+  equipment:{ t:'Add Equipment', s:'Add the required types & number of equipment' },
+  workforce:{ t:'Add Workforce', s:'Add the required types & number of workforce' },
+  bins:{ t:'Add Bin', s:'Add the required types & number of bins' },
+  service:{ t:'Add Services & Frequencies', s:'Add the services and there frequencies included in this plan.' },
+};
+
+/* Contract-in-progress */
+let draft = null;
+function freshDraft(){
+  return {
+    basic:{ title:'', ref:'', type:'MSW Commercials', contractor:'BEEAH', start:'', end:'', manager:'Syed Abdul', pm:'Syed Abul' },
+    zones:['LOT-01'],
+    vehicles:[], equipment:[], workforce:[], bins:[], services:[], kpis:[],
+    attachments:[
+      { name:'ESP Physical Contract', meta:'Expiry Date: 24th Oct, 2028' },
+      { name:'ESP Company Info', meta:'' },
+    ],
+  };
+}
+let wzIndex = 0;
+
+const wizard = document.getElementById('cmWizard');
+window.openWizard = function(){ draft = freshDraft(); wzIndex = 0; wizard.hidden = false; renderWizard(); };
+function closeWizard(){ wizard.hidden = true; }
+document.getElementById('wzClose').addEventListener('click', closeWizard);
+
+function renderSteps(){
+  document.getElementById('wzSteps').innerHTML = STEP_DEFS.map((s,i) => {
+    const cls = i < wzIndex ? 'done' : i === wzIndex ? 'active' : '';
+    const marker = i < wzIndex ? '<i class="fa-solid fa-check"></i>' : `<i class="fa-solid ${s.icon}"></i>`;
+    return `<div class="wz-step ${cls}" data-i="${i}">
+      <div class="rail-line"></div>
+      <div class="wz-marker">${marker}</div>
+      <div class="meta"><div class="s-n">${s.n}</div><div class="s-l">${s.label}</div></div>
+    </div>`;
+  }).join('');
+}
+
+function renderWizard(){
+  renderSteps();
+  const step = STEP_DEFS[wzIndex];
+  const R = STEP_RENDER[step.key]();
+  document.getElementById('wzHead').innerHTML = `<div class="wz-h-row"><div><div class="wz-h-ttl">${R.title}</div>${R.sub ? `<div class="wz-h-sub">${R.sub}</div>` : ''}</div>${R.headRight || ''}</div>`;
+  document.getElementById('wzBody').innerHTML = R.body;
+  const back = document.getElementById('wzBack');
+  back.hidden = wzIndex === 0;
+  const next = document.getElementById('wzNext');
+  next.innerHTML = wzIndex === STEP_DEFS.length - 1 ? 'Create' : 'Save and Continue';
+  if (R.after) R.after();
+}
+
+document.getElementById('wzBack').addEventListener('click', () => { if (wzIndex > 0){ wzIndex--; renderWizard(); } });
+document.getElementById('wzNext').addEventListener('click', () => {
+  if (wzIndex === STEP_DEFS.length - 1){ closeWizard(); toast('Contract created'); return; }
+  wzIndex++; renderWizard();
+});
+document.getElementById('wzSteps').addEventListener('click', e => {
+  const el = e.target.closest('.wz-step'); if (!el) return;
+  const i = +el.dataset.i; if (i <= wzIndex){ wzIndex = i; renderWizard(); }
+});
+
+/* ── Step renderers ─────────────────────────────────────────────────────── */
+const STEP_RENDER = {};
+const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+
+/* STEP 1 — Basic Info */
+STEP_RENDER.basic = () => {
+  const b = draft.basic;
+  const field = (k, label, {req, opt, type='text', icon, clear, options} = {}) => {
+    const val = b[k];
+    const inner = options
+      ? `<select data-bk="${k}">${options.map(o => `<option${o===val?' selected':''}>${esc(o)}</option>`).join('')}</select>`
+      : `<input data-bk="${k}" type="${type}" value="${esc(val)}" placeholder="">`;
+    return `<div class="wz-field ${options?'sel':''} ${icon?'hasicon':''}">
+      ${icon?`<i class="fa-solid ${icon} fi"></i>`:''}
+      <div class="fl">${label}${req?'<span class="req">*</span>':''}${opt?' <span class="opt">(optional)</span>':''}</div>
+      ${inner}${clear?'<i class="fa-solid fa-xmark fclear"></i>':''}
+    </div>`;
+  };
+  return {
+    title:'Basic Info',
+    body:`<div class="wz-form">
+      ${field('title','Contract Title',{req:true})}
+      ${field('ref','Reference Number',{req:true})}
+      ${field('type','Contract Type',{req:true,options:['MSW Commercials','MSW Residential','C&D Waste','Green Waste','Bulk Collection']})}
+      ${field('contractor','Contractor',{req:true,options:['BEEAH','Tadweer','Dulsco','Averda']})}
+      ${field('start','Start Date',{req:true,icon:'fa-calendar',clear:true})}
+      ${field('end','End Date',{req:true,icon:'fa-calendar'})}
+      <div style="grid-column:1/-1">${field('pm','Project Manager',{opt:true,options:['Syed Abul','Ali Hassan','Reem Al Zaabi','Faisal Al Mansoori']})}</div>
+    </div>`,
+    after(){
+      document.querySelectorAll('#wzBody [data-bk]').forEach(el => {
+        el.addEventListener('input', e => { draft.basic[e.target.dataset.bk] = e.target.value; });
+        el.addEventListener('change', e => { draft.basic[e.target.dataset.bk] = e.target.value; });
+      });
+    }
+  };
+};
+
+/* STEP 2 — Zone Selection (static map bg + zone chips) */
+STEP_RENDER.zone = () => ({
+  title:'Zone Selection',
+  body:`<div style="border:1px solid var(--line);border-radius:var(--radius);overflow:hidden">
+    <div style="padding:16px 16px 0"><div class="wz-field sel" style="max-width:520px">
+      <div class="fl">Zone <span class="req">*</span></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;padding-top:2px">
+        ${draft.zones.map(z=>`<span class="cm-chip" style="background:var(--primary-50);color:var(--primary-600)">${z} <i class="fa-solid fa-xmark" style="color:var(--primary-600);cursor:pointer"></i></span>`).join('')}
+      </div></div></div>
+    <div style="position:relative;height:520px;margin:16px;border-radius:var(--radius);overflow:hidden;background:#dbe7ec">
+      <img src="https://tile.openstreetmap.org/11/1288/846.png" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5">
+      <svg viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%">
+        <polygon points="150,110 210,80 300,95 360,80 440,120 500,170 520,240 470,300 400,340 320,360 250,330 200,290 165,230 140,175"
+          fill="rgba(34,200,130,.26)" stroke="#16a34a" stroke-width="2.5"/>
+        <g stroke="#16a34a" stroke-width="1" opacity=".5">
+          <line x1="200" y1="110" x2="240" y2="330"/><line x1="280" y1="90" x2="310" y2="355"/>
+          <line x1="360" y1="90" x2="380" y2="345"/><line x1="440" y1="125" x2="430" y2="315"/>
+          <line x1="150" y1="180" x2="520" y2="210"/><line x1="160" y1="250" x2="490" y2="285"/>
+        </g>
+        <text x="330" y="230" text-anchor="middle" fill="#475467" font-size="22" font-weight="700" opacity=".7">Abu Dhabi</text>
+      </svg>
+      <!-- Layers toggle (top-right) -->
+      <div style="position:absolute;top:12px;right:12px;width:36px;height:36px;background:#fff;border-radius:6px;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:center;color:var(--ink-3)"><i class="fa-solid fa-layer-group"></i></div>
+      <!-- Zoom + fullscreen (bottom-right) -->
+      <div style="position:absolute;bottom:12px;right:12px;display:flex;flex-direction:column;gap:8px">
+        <div style="background:#fff;border-radius:6px;box-shadow:var(--shadow-sm);overflow:hidden">
+          <div style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--ink-2);border-bottom:1px solid var(--line)"><i class="fa-solid fa-plus"></i></div>
+          <div style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--ink-2)"><i class="fa-solid fa-minus"></i></div>
+        </div>
+        <div style="width:36px;height:36px;background:#fff;border-radius:6px;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:center;color:var(--ink-2)"><i class="fa-solid fa-expand"></i></div>
+      </div>
+    </div>
+  </div>`,
+});
+
+/* Generic picker step (vehicles / equipment / workforce / bins) */
+function pickerStep(key){
+  const items = draft[key];
+  const et = EMPTY_TXT[key];
+  const headRight = `<button class="wz-addnew" data-pkopen="${key}"><i class="fa-solid fa-chevron-${items.length?'down':'up'}"></i>Add New</button>`;
+  let body;
+  if (!items.length){
+    body = `<div class="wz-empty"><div class="ill"><i class="fa-solid ${EMPTY_ILL[key]}"></i></div>
+      <div class="et">${et.t}</div><div class="es">${et.s}</div></div>`;
+  } else {
+    body = items.map((it,idx) => {
+      const cfg = CAT[key].find(c => c.id === it.id) || it;
+      const fields = CFG_FIELDS[key].map(f =>
+        `<div class="wz-field"><div class="fl">${f.l}</div><input data-ci="${idx}" data-ck="${f.k}" type="${f.t}" value="${esc(it[f.k] ?? '')}"></div>`).join('');
+      return `<div class="wz-cfg">
+        <div class="c-head"><div class="c-name"><i class="fa-solid ${cfg.icon||'fa-cube'}"></i>${esc(cfg.name)}</div>
+          <div class="c-actions"><span class="c-addfield">Add New Field <i class="fa-solid fa-chevron-down" style="font-size:10px"></i></span>
+          <span class="c-remove" data-crm="${idx}"><i class="fa-solid fa-trash-can"></i></span></div></div>
+        <div class="c-fields">${fields}</div>
+      </div>`;
+    }).join('');
+  }
+  return {
+    title: key==='vehicles'?'Required Vehicles':key==='equipment'?'Required Equipment':key==='workforce'?'Required Workforce':'Required Bins',
+    sub: (key==='workforce'||key==='bins') ? "Let's get started by filling in your program's core information." : '',
+    headRight,
+    body,
+    after(){ wirePicker(key); }
+  };
+}
+STEP_RENDER.vehicles  = () => pickerStep('vehicles');
+STEP_RENDER.equipment = () => pickerStep('equipment');
+STEP_RENDER.workforce = () => pickerStep('workforce');
+STEP_RENDER.bins      = () => pickerStep('bins');
+
+let pickerState = null; /* {key, sel:Set, q} */
+function wirePicker(key){
+  document.querySelectorAll(`[data-pkopen="${key}"]`).forEach(b => b.addEventListener('click', () => openPicker(key)));
+  document.querySelectorAll('#wzBody [data-ci]').forEach(el => el.addEventListener('input', e => {
+    draft[key][+e.target.dataset.ci][e.target.dataset.ck] = e.target.value;
+  }));
+  document.querySelectorAll('#wzBody [data-crm]').forEach(el => el.addEventListener('click', e => {
+    draft[key].splice(+e.currentTarget.dataset.crm, 1); renderWizard();
+  }));
+}
+function openPicker(key){
+  const catalog = CAT[key];
+  pickerState = { key, sel:new Set(draft[key].map(i=>i.id)), q:'' };
+  const label = key==='service' ? 'Select Services' : 'Select Assets';
+  const wrap = document.createElement('div');
+  wrap.className = 'wz-picker'; wrap.id = 'wzPicker';
+  document.querySelector('.wz-main').appendChild(wrap);
+  drawPicker(catalog, label);
+}
+const PICKER_UI = {
+  vehicles:  { title:true,  search:true,  icon:true },
+  equipment: { title:true,  search:true,  icon:true },
+  workforce: { title:true,  search:false, icon:true },
+  bins:      { title:false, search:false, icon:false },
+  service:   { title:true,  search:true,  icon:false },
+};
+function drawPicker(catalog, label){
+  const wrap = document.getElementById('wzPicker'); if (!wrap) return;
+  const ui = PICKER_UI[pickerState.key] || { title:true, search:true, icon:true };
+  const q = pickerState.q.toLowerCase();
+  const rows = catalog.filter(o => !q || o.name.toLowerCase().includes(q));
+  wrap.innerHTML = `${ui.title ? `<div class="pk-t">${label}</div>` : ''}
+    ${ui.search ? `<div class="pk-search"><i class="fa-solid fa-magnifying-glass"></i><input id="pkSearch" placeholder="Search anything here" value="${esc(pickerState.q)}"></div>` : ''}
+    <div class="pk-h"><span class="pk-sel">Selected ${label.split(' ')[1]}</span><span class="pk-all" id="pkAll">Select All</span></div>
+    <div class="pk-list">${rows.map(o => `<div class="wz-opt ${pickerState.sel.has(o.id)?'on':''}" data-oid="${o.id}">
+      <span class="ck"><i class="fa-solid fa-check"></i></span>
+      ${ui.icon && o.icon?`<span class="oi"><i class="fa-solid ${o.icon}"></i></span>`:''}
+      <span class="oname">${esc(o.name)}</span></div>`).join('')}</div>
+    <div class="pk-foot"><span class="pk-cancel" id="pkCancel">Cancel</span><button class="pk-add" id="pkAdd">Add</button></div>`;
+  const srch = wrap.querySelector('#pkSearch');
+  if (srch){ srch.addEventListener('input', e => { pickerState.q = e.target.value; drawPicker(catalog, label); }); srch.focus(); }
+  wrap.querySelectorAll('[data-oid]').forEach(el => el.addEventListener('click', () => {
+    const id = el.dataset.oid; pickerState.sel.has(id) ? pickerState.sel.delete(id) : pickerState.sel.add(id); drawPicker(catalog, label);
+  }));
+  wrap.querySelector('#pkAll').addEventListener('click', () => { catalog.forEach(o => pickerState.sel.add(o.id)); drawPicker(catalog, label); });
+  wrap.querySelector('#pkCancel').addEventListener('click', closePicker);
+  wrap.querySelector('#pkAdd').addEventListener('click', () => commitPicker(catalog));
+}
+function closePicker(){ const p = document.getElementById('wzPicker'); if (p) p.remove(); pickerState = null; }
+function commitPicker(catalog){
+  const key = pickerState.key;
+  const chosen = catalog.filter(o => pickerState.sel.has(o.id));
+  if (key === 'service'){
+    draft.services = chosen.map(o => ({ id:o.id, name:o.name }));
+  } else {
+    const existing = new Map(draft[key].map(i => [i.id, i]));
+    draft[key] = chosen.map(o => existing.get(o.id) || { id:o.id, ...Object.fromEntries(CFG_FIELDS[key].map(f => [f.k, f.d])) });
+  }
+  closePicker(); renderWizard();
+}
+
+/* STEP 8 — Service & Frequency (picker of services; simple list once chosen) */
+STEP_RENDER.service = () => {
+  const items = draft.services;
+  const headRight = `<button class="wz-addnew" data-pkopen="service"><i class="fa-solid fa-chevron-${items.length?'down':'up'}"></i>Add New</button>`;
+  let body;
+  if (!items.length){
+    body = `<div class="wz-empty"><div class="ill"><i class="fa-solid fa-calendar-days"></i></div>
+      <div class="et">${EMPTY_TXT.service.t}</div><div class="es">${EMPTY_TXT.service.s}</div></div>`;
+  } else {
+    body = `<div style="border:1px solid var(--line);border-radius:var(--radius);overflow:hidden">
+      <div style="display:grid;grid-template-columns:50px 1fr 320px;background:#fff;border-bottom:1px solid var(--line);padding:12px 16px;font-size:12px;font-weight:600;color:var(--ink-3);text-transform:uppercase">
+        <span>#</span><span>Service</span><span>Frequency</span></div>
+      ${items.map((s,i) => `<div style="display:grid;grid-template-columns:50px 1fr 320px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line)">
+        <span style="font-weight:600;color:var(--ink-2)">${i+1}</span>
+        <span style="font-weight:600;color:var(--ink)">${esc(s.name)}</span>
+        <div class="wz-field sel" style="min-height:44px;padding:6px 12px">
+          <select data-si="${i}"><option>Daily</option><option>3x Weekly</option><option>Weekly</option><option>Monthly</option><option>On Demand / Adhoc</option></select>
+        </div></div>`).join('')}</div>`;
+  }
+  return { title:'Services and Frequencies', sub:"Let's get started by filling in your program's core information.", headRight, body,
+    after(){ wirePicker('service'); document.querySelectorAll('#wzBody [data-si]').forEach(el => el.addEventListener('change', e => { draft.services[+e.target.dataset.si].freq = e.target.value; })); } };
+};
+
+/* STEP 9 — KPI Targets */
+const KPI_SEED = [
+  { code:'2.1', tag:'SOLID WASTE COLLECTION & TRANSPORTATION SERVICES', name:'MSW Collection',
+    rectifiable:'Yes', unit:'Every Second Day', indicator:'Percentage of bins emptied as scheduled for all services, as detailed in Schedule 5 Volume 2; a) Household waste, b) Recyclable waste.', mode:'fixed', target:90 },
+  { code:'2.2', tag:'SOLID WASTE COLLECTION & TRANSPORTATION SERVICES', name:'Bulky Waste Collection',
+    rectifiable:'Yes', unit:'Daily within 20m of container for residential / commercial / Industrial area', indicator:'Percentage of bulky waste found within 20m of Container removed within specified timeframe.', mode:'yearly', target:90, inc:5 },
+  { code:'2.4', tag:'SOLID WASTE COLLECTION & TRANSPORTATION SERVICES', name:'C & D Waste Collection',
+    rectifiable:'Yes', unit:'Daily', indicator:'Percentage of Service areas collected within specified timeframe.', mode:'manual', years:[90,92,94,97,100] },
+];
+function kpiPreview(k){
+  let vals;
+  if (k.mode==='fixed') vals = [0,1,2,3,4].map(()=>k.target);
+  else if (k.mode==='yearly') vals = [0,1,2,3,4].map(i=>Math.min(100, k.target + k.inc*i));
+  else vals = (k.years||[90,90,90,90,90]).map(v=>Math.min(100,v));
+  return `<div style="margin-top:16px"><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3);margin-bottom:8px"><span style="font-weight:600">5-year preview</span><span>Capped at 100%</span></div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:end;height:120px">
+    ${vals.map((v,i)=>{const cap=v>=100;return `<div style="display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end">
+      <span style="font-size:12px;font-weight:600;color:${cap?'var(--primary-600)':'var(--ink-2)'}">${v}%</span>
+      <div style="width:100%;height:${Math.max(8,v)}%;border-radius:6px;background:${cap?'var(--primary)':'rgba(34,200,130,.35)'}"></div>
+      <span style="font-size:11px;color:var(--ink-3)">Year ${i+1}</span></div>`;}).join('')}</div></div>`;
+}
+function kpiCard(k, idx){
+  const seg = (m,label) => `<button class="kpi-seg${k.mode===m?' on':''}" data-ki="${idx}" data-km="${m}">${label}</button>`;
+  let controls;
+  const ud = `<span class="kpi-ud"><i class="fa-solid fa-chevron-up" data-ud="up"></i><i class="fa-solid fa-chevron-down" data-ud="down"></i></span>`;
+  if (k.mode==='fixed') controls = `<div class="wz-field kpi-num" style="min-height:56px"><div class="fl">KPI Target</div><input type="number" value="${k.target}" data-ki="${idx}" data-kf="target">${ud}</div>`;
+  else if (k.mode==='yearly') controls = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="wz-field kpi-num" style="min-height:56px"><div class="fl">Baseline yield (Year 1)</div><input type="number" value="${k.target}" data-ki="${idx}" data-kf="target">${ud}</div>
+      <div class="wz-field sel" style="min-height:56px"><div class="fl"><i class="fa-solid fa-arrow-trend-up" style="margin-right:6px;color:var(--primary)"></i>Yearly Increase</div><input type="text" value="+${k.inc}%/year" data-ki="${idx}" data-kf="inc"></div></div>`;
+  else controls = `<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">${(k.years||[]).map((v,y)=>`<div class="wz-field kpi-num" style="min-height:56px"><div class="fl">Year ${y+1}</div><input type="number" value="${v}" data-ki="${idx}" data-ky="${y}">${ud}</div>`).join('')}</div>`;
+  return `<div style="border:1px solid var(--line);border-radius:var(--radius);padding:18px">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <span class="cm-chip"><i class="fa-solid fa-hashtag"></i>${k.code}</span>
+      <span style="font-size:11px;font-weight:600;color:var(--ink-3);text-transform:uppercase"><i class="fa-solid fa-tag" style="margin-right:5px"></i>${k.tag}</span></div>
+    <div style="font-size:16px;font-weight:700;color:var(--ink);margin-bottom:12px">${k.name}</div>
+    <div style="background:var(--bg);border-radius:var(--radius-sm);padding:12px 14px;font-size:12px;color:var(--ink-2);line-height:20px;margin-bottom:14px">
+      <div><b>Rectifiable:</b> ${k.rectifiable}</div><div><b>Reporting Unit:</b> ${k.unit}</div><div><b>Performance Indicator:</b> ${esc(k.indicator)}</div></div>
+    <div class="kpi-segs">${seg('fixed','Fixed')}${seg('yearly','Yearly Increase')}${seg('manual','Manual')}</div>
+    <div style="margin-top:14px">${controls}</div>
+    ${kpiPreview(k)}
+  </div>`;
+}
+STEP_RENDER.kpi = () => {
+  if (!draft.kpis.length) draft.kpis = JSON.parse(JSON.stringify(KPI_SEED));
+  return {
+    title:'KPI Targets',
+    sub:'Define and configure KPI targets that align with your required standards. These targets help measure performance against benchmarks, ensure compliance.',
+    headRight:`<button class="wz-addnew"><i class="fa-solid fa-chevron-down"></i>Add New</button>`,
+    body:`<div class="wz-hint"><i class="fa-solid fa-wand-magic-sparkles"></i>KPIs have been smartly added based on your previous selections. Review and adjust them as per your preferences.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">${draft.kpis.map(kpiCard).join('')}</div>`,
+    after(){
+      document.querySelectorAll('#wzBody [data-km]').forEach(el => el.addEventListener('click', e => { draft.kpis[+e.currentTarget.dataset.ki].mode = e.currentTarget.dataset.km; renderWizard(); }));
+      document.querySelectorAll('#wzBody [data-kf]').forEach(el => el.addEventListener('input', e => { const k=draft.kpis[+e.target.dataset.ki]; k[e.target.dataset.kf]= e.target.dataset.kf==='inc'?e.target.value:+e.target.value||0; if(e.target.dataset.kf!=='inc') renderWizard(); }));
+      document.querySelectorAll('#wzBody [data-ky]').forEach(el => el.addEventListener('input', e => { draft.kpis[+e.target.dataset.ki].years[+e.target.dataset.ky]=+e.target.value||0; renderWizard(); }));
+      document.querySelectorAll('#wzBody .kpi-ud i').forEach(el => el.addEventListener('click', e => {
+        const inp = e.currentTarget.closest('.kpi-num').querySelector('input');
+        const step = e.currentTarget.dataset.ud === 'up' ? 1 : -1;
+        inp.value = Math.max(0, Math.min(100, (+inp.value||0) + step));
+        inp.dispatchEvent(new Event('input', { bubbles:true }));
+      }));
+    }
+  };
+};
+
+/* STEP 10 — Attachments */
+STEP_RENDER.attachments = () => ({
+  title:'Upload Attachments', sub:'Upload any supporting documents for the contract here',
+  body:`<div style="border:1.5px dashed var(--line-2);border-radius:var(--radius);padding:22px;text-align:center;color:var(--ink-3);font-size:14px;font-weight:500;margin-bottom:16px">
+    <i class="fa-solid fa-cloud-arrow-up" style="color:var(--primary);margin-right:8px"></i>Drop files to attach or <b style="color:var(--primary)">browse</b></div>
+    ${draft.attachments.map((a,i)=>`<div style="display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:12px">
+      <span style="width:36px;height:44px;border-radius:4px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">PDF</span>
+      <div style="flex:1"><div style="font-size:14px;font-weight:600;color:var(--ink)">${esc(a.name)}</div>${a.meta?`<div style="font-size:12px;color:var(--ink-3)">${esc(a.meta)}</div>`:''}</div>
+      <a style="color:var(--blue);font-size:13px;font-weight:600;cursor:pointer">Re-upload</a>
+      <a style="color:var(--red);font-size:13px;font-weight:600;cursor:pointer" data-arm="${i}">Remove</a></div>`).join('')}`,
+  after(){ document.querySelectorAll('#wzBody [data-arm]').forEach(el=>el.addEventListener('click',e=>{ draft.attachments.splice(+e.currentTarget.dataset.arm,1); renderWizard(); })); }
+});
+
+/* FINAL — Summary */
+function sumTable(head, rows){
+  return `<div style="border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:8px">
+    <div style="display:grid;grid-template-columns:${head.map(()=>'1fr').join(' ')};padding:12px 16px;background:#fff;border-bottom:1px solid var(--line);font-size:11px;font-weight:600;color:var(--ink-3);text-transform:uppercase">${head.map(h=>`<span>${h}</span>`).join('')}</div>
+    ${rows.map(r=>`<div style="display:grid;grid-template-columns:${head.map(()=>'1fr').join(' ')};padding:12px 16px;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink-2)">${r.map(c=>`<span>${esc(c)}</span>`).join('')}</div>`).join('')}</div>`;
+}
+function sumSection(t, inner){ return `<div style="margin-bottom:28px"><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:12px">${t}</div>${inner}</div>`; }
+const SVC_TAGS = ['Residential MSW Collection','Non-Residential MSW Collection','Non-Residential MSW Collection','Residential MSW Collection','Non-Residential MSW Collection','Non-Residential MSW Collection'];
+STEP_RENDER.summary = () => {
+  const b = draft.basic;
+  const bi = [
+    ['Contract Title',b.title||'—'],['Reference Number',b.ref||'—'],
+    ['Contract Type',b.type],['ESP',b.contractor],
+    ['Start Date',b.start||'—'],['End Date',b.end||'—'],
+    ['Contract Manager',b.manager||'—'],['Project Manager',b.pm||'—'],
+  ];
+  const basicGrid = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;margin-bottom:8px">
+    ${bi.map(([k,v])=>`<div style="display:grid;grid-template-columns:180px 1fr;font-size:13px"><span style="color:var(--ink-3)">${k}</span><span style="font-weight:600;color:var(--ink)">${esc(v)}</span></div>`).join('')}</div>`;
+  const vehRows = draft.vehicles.map((it,i)=>{ const c=CAT.vehicles.find(x=>x.id===it.id)||it; return [String(i+1), c.name, c.capacity||'—', c.make||'—', it.qty||'—']; });
+  const eqpRows = draft.equipment.map((it,i)=>{ const c=CAT.equipment.find(x=>x.id===it.id)||it; return [String(i+1), c.name, it.make||c.make||'TBA', it.qty||'—']; });
+  const wfRows  = draft.workforce.map((it,i)=>{ const c=CAT.workforce.find(x=>x.id===it.id)||it; return [String(i+1), c.name, it.exp||'—', it.qty||'—']; });
+  const binRows = draft.bins.map((it,i)=>{ const c=CAT.bins.find(x=>x.id===it.id)||it; return [String(i+1), c.name, it.qty||'—']; });
+  /* Lot / Zone Selection — the same static map used in step 2. */
+  const zoneMap = `<div style="border:1px solid var(--line);border-radius:var(--radius);overflow:hidden">
+    <div style="padding:12px 16px;font-size:13px"><span style="color:var(--ink-3)">Contract Title</span> &nbsp; <b>${esc(b.title||'Lot 1, Abu Dhabi')}</b></div>
+    <div style="position:relative;height:280px;background:#dbe7ec">
+      <svg viewBox="0 0 800 280" style="position:absolute;inset:0;width:100%;height:100%">
+        <polygon points="180,70 340,50 470,90 520,150 430,210 300,230 200,190 150,130" fill="rgba(34,200,130,.28)" stroke="#16a34a" stroke-width="2"/>
+        <text x="330" y="150" text-anchor="middle" fill="#475467" font-size="20" font-weight="700" opacity=".7">Abu Dhabi</text>
+      </svg></div></div>`;
+  /* Services (with tag chips) */
+  const svcTagRows = draft.services.length
+    ? `<div style="border:1px solid var(--line);border-radius:var(--radius);overflow:hidden">
+        <div style="display:grid;grid-template-columns:50px 1fr 260px;padding:12px 16px;background:#fff;border-bottom:1px solid var(--line);font-size:11px;font-weight:600;color:var(--ink-3);text-transform:uppercase"><span>#</span><span>Service</span><span>Tags</span></div>
+        ${draft.services.map((s,i)=>`<div style="display:grid;grid-template-columns:50px 1fr 260px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink-2)">
+          <span>${i+1}</span><span style="font-weight:600;color:var(--ink)">${esc(s.name)}</span>
+          <span><span class="cm-chip" style="background:var(--amber-50);color:var(--amber-700)">${esc(SVC_TAGS[i%SVC_TAGS.length])}</span></span></div>`).join('')}</div>`
+    : sumTable(['#','Service','Tags'], [['—','No services added','—']]);
+  const svcFreqRows = draft.services.length
+    ? sumTable(['#','Service','Specified Operation','Action','Frequency'], draft.services.map((s,i)=>[String(i+1), s.name, i%2?'Residential Recyclable MSW Collection':'Residential Non-Recyclable MSW Collection','Scheduled', s.freq||'Daily']))
+    : sumTable(['#','Service','Specified Operation','Action','Frequency'], [['—','No services','—','—','—']]);
+  return {
+    title:'Contract Summary', sub:'Review all the core requirements for this contract.',
+    body:`${sumSection('Basic Info', basicGrid)}
+      ${sumSection('Lot Selection', zoneMap)}
+      ${sumSection('Required Vehicles', sumTable(['#','Type','Capacity','Make','Required Quantity'], vehRows.length?vehRows:[['—','No vehicles added','—','—','—']]))}
+      ${sumSection('Required Equipment', sumTable(['#','Type','Make','Required Quantity'], eqpRows.length?eqpRows:[['—','No equipment added','—','—']]))}
+      ${sumSection('Required Workforce', sumTable(['#','Type','Experience','Required Quantity'], wfRows.length?wfRows:[['—','No workforce added','—','—']]))}
+      ${sumSection('Required Bins', sumTable(['#','Type','Required Quantity'], binRows.length?binRows:[['—','No bins added','—']]))}
+      ${sumSection('Services', svcTagRows)}
+      ${sumSection('Services & Frequencies', svcFreqRows)}
+      ${sumSection('KPI Target', sumTable(['#','Performance Indicator','Reporting Unit','Rectifiable','KPI Target'], draft.kpis.map(k=>[k.code, k.name, k.unit && k.unit.length>28?k.unit.slice(0,28)+'…':(k.unit||'Daily'), k.rectifiable, k.mode==='yearly'?`${k.target}% → 100% (+${k.inc}%/yr)`:(k.mode==='manual'?(k.years?k.years[0]:0)+'%':k.target+'%')])))}
+      ${sumSection('Attachments', draft.attachments.map(a=>`<div style="display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:var(--radius);padding:12px 16px;margin:0 12px 8px 0"><span style="width:30px;height:38px;border-radius:4px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700">PDF</span><div><div style="font-size:13px;font-weight:600">${esc(a.name)}</div>${a.meta?`<div style="font-size:11px;color:var(--ink-3)">${esc(a.meta)}</div>`:''}</div></div>`).join(''))}`,
+  };
+};
+
+/* KPI segmented + toast styles injected once */
+const _st = document.createElement('style');
+_st.textContent = `.kpi-segs{display:flex;background:#f2f4f7;border-radius:6px;padding:3px}
+.kpi-seg{flex:1;height:34px;border-radius:4px;font-size:13px;font-weight:600;color:var(--ink-3);background:transparent}
+.kpi-seg.on{background:#fff;color:var(--ink);box-shadow:var(--shadow-sm)}
+.kpi-num input{padding-right:26px}
+.kpi-ud{position:absolute;right:12px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1px;color:#98a2b3}
+.kpi-ud i{font-size:9px;cursor:pointer;line-height:1}
+.kpi-ud i:hover{color:#1d2939}
+.cm-toast{position:fixed;right:20px;bottom:20px;z-index:99;background:var(--ink);color:#fff;padding:12px 18px;border-radius:8px;font-size:14px;font-weight:600;box-shadow:var(--shadow-lg)}`;
+document.head.appendChild(_st);
+function toast(msg){ const t=document.createElement('div'); t.className='cm-toast'; t.textContent=msg; document.body.appendChild(t); setTimeout(()=>t.remove(),2600); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CONTRACT DETAIL DASHBOARD
+   ══════════════════════════════════════════════════════════════════════════ */
+const COLORS = { green:'#22c882', greenD:'#16a34a', amber:'#f79009', red:'#f04438', blue:'#0072d6',
+  teal:'#12b5b0', purple:'#9e77ed', cyan:'#22ccdd', line:'#eaecf0', ink3:'#667085' };
+let dtCharts = [];
+function killCharts(){ dtCharts.forEach(c => { try{ c.destroy(); }catch(e){} }); dtCharts = []; }
+const detail = document.getElementById('cmDetail');
+document.getElementById('dtBack').addEventListener('click', () => { killCharts(); detail.hidden = true; document.getElementById('cmApp').style.display=''; });
+
+function tileHTML(icon, tint, label, value){
+  return `<div class="dt-tile"><div class="ti" style="background:${tint}22;color:${tint}"><i class="fa-solid ${icon}"></i></div>
+    <div><div class="tl">${label}</div><div class="tv">${value}</div></div></div>`;
+}
+function gaugeSVG(pct){
+  const r=54, c=Math.PI*r, off=c*(1-pct/100);
+  const col = pct>=80?COLORS.green:pct>=60?COLORS.amber:COLORS.red;
+  return `<svg width="150" height="90" viewBox="0 0 150 90">
+    <path d="M15 82 A60 60 0 0 1 135 82" fill="none" stroke="#f2f4f7" stroke-width="14" stroke-linecap="round"/>
+    <path d="M15 82 A60 60 0 0 1 135 82" fill="none" stroke="${col}" stroke-width="14" stroke-linecap="round"
+      stroke-dasharray="${c}" stroke-dashoffset="${off}"/></svg>`;
+}
+function openDetail(c){
+  killCharts();
+  document.getElementById('cmApp').style.display='none';
+  detail.hidden = false;
+  document.getElementById('dtCrumb').innerHTML = `01 · <b>${c.id}</b> · <b>${c.name} Contract</b>`;
+  const compliance = 81;
+  const w = document.getElementById('dtWrap');
+  w.innerHTML = `
+    <div class="dt-topgrid">
+      <div class="dt-gauge">${gaugeSVG(compliance)}<div class="g-val">${compliance}%</div><div class="g-lbl">Overall Compliance</div></div>
+      ${tileHTML('fa-car', COLORS.blue, 'Number Of Vehicle', `${c.m.vehicles}<span class="max">/120</span>`)}
+      ${tileHTML('fa-user-group', COLORS.green, 'Number Of Workforce', `${c.m.workforce}<span class="max">/120</span>`)}
+      ${tileHTML('fa-screwdriver-wrench', COLORS.amber, 'Number Of Equipment', `${c.m.equipment}<span class="max">/120</span>`)}
+      ${tileHTML('fa-diagram-project', COLORS.purple, 'Number Of Plans', `100<span class="max">/120</span>`)}
+      ${tileHTML('fa-list-check', COLORS.teal, 'Number Of Services', '05')}
+      ${tileHTML('fa-bullseye', COLORS.red, 'Number Of KPIs', '05')}
+    </div>
+    <div class="dt-strip">
+      ${tileHTML('fa-calendar-day', COLORS.blue, 'Days Remaining', c.expiresDays>0?`${c.expiresDays} Days`:'—')}
+      ${tileHTML('fa-gauge-high', COLORS.purple, 'Service Compliance', '62%')}
+      ${tileHTML('fa-calendar-range', COLORS.green, 'Start & End Date', '24 Nov 2024 – 10 Nov 2028')}
+    </div>
+    <div class="dt-2col">
+      <div class="dt-card"><div class="dc-h"><i class="fa-solid fa-building"></i>Contractor Details</div>
+        <div class="dt-kv"><span class="k">Contractor</span><span class="v"><span class="b" style="width:16px;height:16px;border-radius:8px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700">B</span>${c.contractor}</span></div>
+        <div class="dt-kv"><span class="k">Contact Person</span><span class="v">Saad Bin Usman</span></div>
+        <div class="dt-kv"><span class="k">Email</span><span class="v">saad.beih@gmail.com</span></div>
+        <div class="dt-kv"><span class="k">Contact Phone</span><span class="v">+971 50 123 4567</span></div>
+        <div class="dt-kv"><span class="k">Project Manager</span><span class="v"><i class="fa-solid fa-circle-user" style="color:var(--blue)"></i>Syed Abul</span></div>
+      </div>
+      <div class="dt-card"><div class="dc-h"><i class="fa-solid fa-chart-line"></i>Daily Plans Compliance vs Required Baseline</div>
+        <div class="dt-chart"><canvas id="dtDaily"></canvas></div></div>
+    </div>
+    <div class="dt-card"><div class="dc-h"><i class="fa-solid fa-bullseye"></i>KPI Targets — Target vs Achieved</div>
+      <div class="dt-chart"><canvas id="dtKpi"></canvas></div></div>
+    <div class="dt-card"><div class="dc-h"><i class="fa-solid fa-chart-simple"></i>Service Coverage &amp; Frequencies Compliance</div>
+      <div class="dt-chart tall"><canvas id="dtService"></canvas></div></div>
+    <div class="dt-card"><div class="dc-h"><i class="fa-solid fa-chart-line"></i>5-Years Plan Compliance</div>
+      <div class="dt-chart tall"><canvas id="dt5yr"></canvas></div></div>
+    <div class="dt-3col">
+      ${['Vehicle','Workforce','Equipment'].map((t,i)=>`<div class="dt-card"><div class="dc-h"><i class="fa-solid fa-chart-pie"></i>${t} Type Breakdown</div><div class="dt-donut"><canvas id="dtDonut${i}"></canvas></div></div>`).join('')}
+    </div>
+    <div class="dt-3col" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="dt-card"><div class="dc-h"><i class="fa-solid fa-chart-pie"></i>Bin Type Breakdown</div><div class="dt-donut"><canvas id="dtDonut3"></canvas></div></div>
+      <div class="dt-card" style="grid-column:2/-1"><div class="dc-h"><i class="fa-solid fa-paperclip"></i>Attached Documents</div>
+        <div class="dt-doclist">
+          <div class="dt-doc"><span class="pdf">PDF</span><div><div style="font-weight:600">ESP Physical Contract</div><div style="font-size:12px;color:var(--ink-3)">Expiry Date: 24 Oct, 2028</div></div></div>
+          <div class="dt-doc"><span class="pdf">PDF</span><div><div style="font-weight:600">ESP Company Info</div><div style="font-size:12px;color:var(--ink-3)">Uploaded 12 Oct, 2024</div></div></div>
+        </div></div>
+    </div>`;
+  buildDetailCharts();
+  detail.scrollTop = 0;
+}
+
+function buildDetailCharts(){
+  const grid = { color:COLORS.line }, noGrid = { display:false };
+  const days = Array.from({length:30}, (_,i)=>`${i+1}`);
+  const baseline = days.map((_,i)=>92 - i*0.3 + (Math.sin(i)*2));
+  dtCharts.push(new Chart(document.getElementById('dtDaily'), { type:'line',
+    data:{ labels:days, datasets:[
+      { label:'Compliance', data:baseline, borderColor:COLORS.amber, backgroundColor:'rgba(247,144,9,.10)', fill:true, tension:.4, pointRadius:0, borderWidth:2 },
+      { label:'Baseline', data:days.map(()=>95), borderColor:COLORS.ink3, borderDash:[6,6], pointRadius:0, borderWidth:1.5 } ] },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ y:{grid,min:0,max:100,ticks:{stepSize:25}}, x:{grid:noGrid,ticks:{maxTicksLimit:8}} } } }));
+
+  dtCharts.push(new Chart(document.getElementById('dtKpi'), { type:'bar',
+    data:{ labels:['MSW Collection','Bulky Waste Collection','C & D Waste Collection'],
+      datasets:[
+        { label:'Target',   data:[100,90,90], backgroundColor:'rgba(34,200,130,.20)', borderRadius:4, barThickness:14 },
+        { label:'Achieved', data:[92,78,60],  backgroundColor:COLORS.amber,           borderRadius:4, barThickness:14 } ] },
+    options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{boxWidth:10,usePointStyle:true,pointStyle:'circle'}}},
+      scales:{ x:{grid,min:0,max:100,ticks:{callback:v=>v+'%'}}, y:{grid:noGrid} } } }));
+
+  const svcLabels=['Solid Waste Collection','On-Time','Green & Bulky Waste','Bin Washing','Recyclable','Dead Animals'];
+  const on=[85,90,72,95,88,80], late=[10,7,18,3,8,12], miss=[5,3,10,2,4,8];
+  dtCharts.push(new Chart(document.getElementById('dtService'), { type:'bar',
+    data:{ labels:svcLabels, datasets:[
+      {label:'On-Time',data:on,backgroundColor:COLORS.green,borderRadius:{topLeft:4,bottomLeft:4},barThickness:16,stack:'s'},
+      {label:'Late',data:late,backgroundColor:COLORS.amber,barThickness:16,stack:'s'},
+      {label:'Missed',data:miss,backgroundColor:COLORS.red,borderRadius:{topRight:4,bottomRight:4},barThickness:16,stack:'s'} ] },
+    options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom',labels:{boxWidth:10,usePointStyle:true,pointStyle:'circle'}}}, scales:{ x:{grid,max:100,stacked:true}, y:{grid:noGrid,stacked:true} } } }));
+
+  const months=Array.from({length:24},(_,i)=>`M${i+1}`);
+  const series=[COLORS.blue,COLORS.green,COLORS.amber,COLORS.purple,COLORS.red].map((col,s)=>({
+    label:`Series ${s+1}`, borderColor:col, backgroundColor:col, pointRadius:0, borderWidth:2, tension:.4,
+    data:months.map((_,i)=>60+s*8+Math.sin(i/3+s)*5+i*0.4) }));
+  dtCharts.push(new Chart(document.getElementById('dt5yr'), { type:'line',
+    data:{ labels:months, datasets:series },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'top',align:'end',labels:{boxWidth:10,usePointStyle:true,pointStyle:'circle'}}}, scales:{ y:{grid,min:40,max:110}, x:{grid:noGrid,ticks:{maxTicksLimit:8}} } } }));
+
+  const donutSets=[
+    { labels:['Compactor','Skip Loader','Tipper Truck'], data:[60,40,21], cols:[COLORS.green,COLORS.blue,COLORS.amber] },
+    { labels:['Drivers','Helpers','Supervisors'], data:[70,35,16], cols:[COLORS.blue,COLORS.green,COLORS.amber] },
+    { labels:['Sweeper','Broom','Loader'], data:[55,40,26], cols:[COLORS.purple,COLORS.green,COLORS.blue] },
+    { labels:['3 CBM','5 CBM','7 CBM'], data:[60,41,20], cols:[COLORS.blue,COLORS.green,COLORS.amber] } ];
+  donutSets.forEach((d,i)=>{
+    dtCharts.push(new Chart(document.getElementById('dtDonut'+i), { type:'doughnut',
+      data:{ labels:d.labels, datasets:[{ data:d.data, backgroundColor:d.cols, borderWidth:0 }] },
+      options:{ responsive:true, maintainAspectRatio:false, cutout:'68%', plugins:{legend:{position:'bottom',labels:{boxWidth:8,usePointStyle:true,pointStyle:'circle',font:{size:10}}}} },
+      plugins:[{ id:'ctr'+i, afterDraw(ch){ const {ctx,chartArea}=ch; const x=(chartArea.left+chartArea.right)/2, y=(chartArea.top+chartArea.bottom)/2;
+        ctx.save(); ctx.textAlign='center'; ctx.fillStyle='#1d2939'; ctx.font='700 22px Gilroy,Inter,sans-serif'; ctx.fillText('121',x,y-2);
+        ctx.fillStyle='#667085'; ctx.font='500 10px Gilroy,Inter,sans-serif'; ctx.fillText('Total',x,y+14); ctx.restore(); } }] }));
+  });
+}
+</script>
+</body>
+</html>

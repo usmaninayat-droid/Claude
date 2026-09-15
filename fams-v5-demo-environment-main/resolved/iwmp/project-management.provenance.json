@@ -1,128 +1,116 @@
 {
   "base": "tenant-native",
-  "module": "deployment-dashboard",
+  "module": "project-management",
   "nodes": {
-    "3TPU_04_BKW_014": {
+    "fld_pmm_area_mgr": {
       "source": "tenant-native"
     },
-    "BWC_04_COM_002": {
+    "fld_pmm_billing": {
       "source": "tenant-native"
     },
-    "CCV_04_COM_006": {
+    "fld_pmm_category": {
       "source": "tenant-native"
     },
-    "HLC_04_MSW_003": {
+    "fld_pmm_client": {
       "source": "tenant-native"
     },
-    "RL_04_MSW_017": {
+    "fld_pmm_commercial_status": {
       "source": "tenant-native"
     },
-    "SL_04_MSW_009": {
+    "fld_pmm_contract_ref": {
       "source": "tenant-native"
     },
-    "TC15_04_BKW_021": {
+    "fld_pmm_contract_value": {
       "source": "tenant-native"
     },
-    "TW_04_08": {
+    "fld_pmm_district": {
       "source": "tenant-native"
     },
-    "commercial": {
+    "fld_pmm_end_date": {
       "source": "tenant-native"
     },
-    "deployed": {
+    "fld_pmm_fleet": {
       "source": "tenant-native"
     },
-    "deployment-dashboard": {
+    "fld_pmm_lot": {
       "source": "tenant-native"
     },
-    "kpi-drivers": {
+    "fld_pmm_name": {
       "source": "tenant-native"
     },
-    "kpi-helpers": {
+    "fld_pmm_pm": {
       "source": "tenant-native"
     },
-    "kpi-operational": {
+    "fld_pmm_route_count": {
       "source": "tenant-native"
     },
-    "kpi-pending-rostering": {
+    "fld_pmm_service_type": {
       "source": "tenant-native"
     },
-    "kpi-total-manpower": {
+    "fld_pmm_sla": {
       "source": "tenant-native"
     },
-    "kpi-training-risk": {
+    "fld_pmm_start_date": {
       "source": "tenant-native"
     },
-    "late": {
+    "fld_pmm_status": {
       "source": "tenant-native"
     },
-    "msw": {
+    "fld_pmm_supervisor": {
       "source": "tenant-native"
     },
-    "next-shift": {
+    "fld_pmm_tags": {
       "source": "tenant-native"
     },
-    "on-duty": {
+    "fld_pmm_type": {
       "source": "tenant-native"
     },
-    "on-leave": {
+    "fld_pmm_workforce": {
       "source": "tenant-native"
     },
-    "onboard": {
+    "fld_pmm_zone": {
       "source": "tenant-native"
     },
-    "pill-project": {
+    "fld_uniqueidentifier": {
       "source": "tenant-native"
     },
-    "pill-shift": {
+    "flt_pmm_category": {
       "source": "tenant-native"
     },
-    "pill-timeframe": {
+    "flt_pmm_lot": {
       "source": "tenant-native"
     },
-    "planned": {
+    "flt_pmm_status": {
       "source": "tenant-native"
     },
-    "reported": {
+    "flt_pmm_type": {
       "source": "tenant-native"
     },
-    "requirement": {
+    "sec_pmm_hierarchy": {
       "source": "tenant-native"
     },
-    "standby": {
+    "sec_pmm_mapping": {
       "source": "tenant-native"
     },
-    "training": {
+    "sts_pmm_active": {
       "source": "tenant-native"
     },
-    "view-deployment": {
+    "sts_pmm_amend": {
       "source": "tenant-native"
     },
-    "w-by-project": {
+    "sts_pmm_closed": {
       "source": "tenant-native"
     },
-    "w-by-service-line": {
+    "sts_pmm_draft": {
       "source": "tenant-native"
     },
-    "w-daily-deployment": {
+    "sts_pmm_hold": {
       "source": "tenant-native"
     },
-    "w-daily-trend": {
+    "sts_pmm_pend": {
       "source": "tenant-native"
     },
-    "w-deployment-compliance": {
-      "source": "tenant-native"
-    },
-    "w-duty-mix": {
-      "source": "tenant-native"
-    },
-    "w-headcount": {
-      "source": "tenant-native"
-    },
-    "w-requirement-vs-deployment": {
-      "source": "tenant-native"
-    },
-    "w-workforce-readiness": {
+    "sts_pmm_renewed": {
       "source": "tenant-native"
     }
   },

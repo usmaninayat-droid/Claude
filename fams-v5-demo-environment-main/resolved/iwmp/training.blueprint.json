@@ -167,21 +167,25 @@
     "filters": [
       {
         "col": "systemcol2",
+        "icon": "tag",
         "id": "flt_trn_category",
         "order": 1
       },
       {
         "col": "systemcol5",
+        "icon": "car",
         "id": "flt_trn_licence",
         "order": 2
       },
       {
         "col": "status",
+        "icon": "status",
         "id": "flt_trn_status",
         "order": 3
       }
     ],
     "icon": "shield-tick",
+    "listGroupBy": false,
     "listRowHeight": "md",
     "listSort": false,
     "profile": {

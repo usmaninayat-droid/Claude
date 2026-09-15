@@ -1,0 +1,128 @@
+{
+  "code": "contract-management/contract",
+  "kind": "entity",
+  "listcolumns": [
+    {
+      "col": "uniqueidentifier",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_uniqueidentifier",
+      "name": "ID"
+    },
+    {
+      "col": "title",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_crt_name"
+    },
+    {
+      "col": "systemcol1",
+      "component": {
+        "name": "TextView"
+      },
+      "id": "fld_crt_lot"
+    },
+    {
+      "col": "status",
+      "component": {
+        "name": "StatusList"
+      },
+      "id": "fld_crt_status"
+    }
+  ],
+  "name": "Contract Management",
+  "systemcolumns": [
+    {
+      "col": "title",
+      "id": "fld_crt_name",
+      "name": "Contract",
+      "required": true,
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol1",
+      "id": "fld_crt_lot",
+      "name": "Lot",
+      "type": "SmallText"
+    },
+    {
+      "col": "systemcol2",
+      "id": "fld_crt_contractor",
+      "name": "Contractor",
+      "type": "SmallText"
+    },
+    {
+      "col": "status",
+      "default": "Ongoing",
+      "id": "fld_crt_status",
+      "listValues": [
+        "Ongoing",
+        "Expiring",
+        "Draft",
+        "Expired"
+      ],
+      "name": "Status",
+      "type": "SingleSelect"
+    }
+  ],
+  "uiConfig": {
+    "icon": "file-05",
+    "profile": {
+      "details": [
+        {
+          "col": "systemcol1",
+          "id": "fld_crt_lot",
+          "order": 1,
+          "pos": "left"
+        },
+        {
+          "col": "status",
+          "component": {
+            "name": "StatusList"
+          },
+          "id": "fld_crt_status",
+          "order": 1,
+          "pos": "right"
+        }
+      ],
+      "sections": [],
+      "title": {
+        "col": "title",
+        "id": "fld_crt_name",
+        "pos": "left"
+      }
+    },
+    "statusList": [
+      {
+        "color": "#12b76a",
+        "id": "sts_crt_ongoing",
+        "key": "Ongoing",
+        "label": "Ongoing"
+      },
+      {
+        "color": "#f79009",
+        "id": "sts_crt_expiring",
+        "key": "Expiring",
+        "label": "Expiring"
+      },
+      {
+        "color": "#98a2b3",
+        "id": "sts_crt_draft",
+        "key": "Draft",
+        "label": "Draft"
+      },
+      {
+        "color": "#f04438",
+        "id": "sts_crt_expired",
+        "key": "Expired",
+        "label": "Expired"
+      }
+    ]
+  },
+  "uidPrefix": "CRT",
+  "views": [
+    "list"
+  ]
+}

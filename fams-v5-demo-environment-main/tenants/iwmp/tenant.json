@@ -4,6 +4,8 @@
   "name": "IWMP Waste",
   "fontFamily": "Gilroy",
   "modules": [
+    "contract-management",
+    "project-management",
     "asset",
     "workforce",
     "ticketing",
@@ -18,6 +20,8 @@
       "name": "IWMP",
       "icon": "iwmp",
       "modules": [
+        "contract-management",
+        "project-management",
         "deployment-dashboard",
         "asset",
         "workforce",

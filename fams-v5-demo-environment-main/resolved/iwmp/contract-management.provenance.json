@@ -1,0 +1,35 @@
+{
+  "base": "tenant-native",
+  "module": "contract-management",
+  "nodes": {
+    "fld_crt_contractor": {
+      "source": "tenant-native"
+    },
+    "fld_crt_lot": {
+      "source": "tenant-native"
+    },
+    "fld_crt_name": {
+      "source": "tenant-native"
+    },
+    "fld_crt_status": {
+      "source": "tenant-native"
+    },
+    "fld_uniqueidentifier": {
+      "source": "tenant-native"
+    },
+    "sts_crt_draft": {
+      "source": "tenant-native"
+    },
+    "sts_crt_expired": {
+      "source": "tenant-native"
+    },
+    "sts_crt_expiring": {
+      "source": "tenant-native"
+    },
+    "sts_crt_ongoing": {
+      "source": "tenant-native"
+    }
+  },
+  "overrides": [],
+  "tenant": "iwmp"
+}

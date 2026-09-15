@@ -115,6 +115,15 @@ const ADMIN_PRIVILEGES = [
   // so without `.view` here `buildBootstrapModules` drops it from the
   // bootstrap payload (no launchpad tile, no route registers).
   'deployment-dashboard.view',
+  // Project Management (iwmp tenant-native entity module, IWMP-BRD-PMM-V02) —
+  // the governed operational project master (municipal LOTs, commercial
+  // contracts, one-off jobs). Same gotcha as the notes above: licensed in
+  // tenant.json but dropped from bootstrap without `.view` here.
+  'project-management.view', 'project-management.create', 'project-management.update', 'project-management.delete',
+  // Contract Management (iwmp tenant-native, Figma: Tadweer June Release) — the
+  // bespoke card-grid list + creation wizard. Same `.view` gotcha as above:
+  // licensed in tenant.json but dropped from bootstrap without `.view` here.
+  'contract-management.view', 'contract-management.create', 'contract-management.update', 'contract-management.delete',
   'settings.view',
   // CRM app (showcase wave 2): pipelines Leads/Deals + entities Contact
   // Person/Company/Product-Service, composed alongside the reused Workforce
@@ -152,6 +161,11 @@ export const ROLE_PRIVILEGES: RoleMap = {
     // Reads the attendance reconciliation register + can act on it (reliever
     // dispatch on absentees, ATT-03), but does not administer the module.
     'attendance.view', 'attendance.update',
+    // Reads the project master to understand ownership boundaries for
+    // route/asset/workforce allocation (PMM Section 21 RBAC), but does not
+    // create or amend the project structure itself.
+    'project-management.view',
+    'contract-management.view',
   ],
   // Field Inspector (2026-09-03 merge): scoped to the dedicated "Inspector"
   // application only — it holds no privilege for any other uccp module, so

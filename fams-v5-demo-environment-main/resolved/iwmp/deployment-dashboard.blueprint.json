@@ -118,7 +118,7 @@
         "value": 618
       },
       "format": "integer",
-      "icon": "hard-hat",
+      "icon": "briefcase",
       "id": "kpi-operational",
       "label": "Operational Staff",
       "tone": "primary",
@@ -174,46 +174,20 @@
   "widgetGrid": [
     {
       "dataSource": {
-        "ariaLabel": "Headcount breakdown — total, planned, reported, absenteeism, weekly off, vacation and available head counts for the selected date.",
-        "axis": {
-          "x": {
-            "min": 0,
-            "title": "Employees"
-          }
+        "ariaLabel": "Deployment compliance — reported head count as a percentage of planned head count for the selected date.",
+        "centerLabel": {
+          "caption": "Reported vs Planned",
+          "value": "95%"
         },
-        "categories": [
-          "Total",
-          "Planned",
-          "Reported",
-          "Absenteeism",
-          "Weekly Off",
-          "Vacation",
-          "Available"
-        ],
-        "orientation": "horizontal",
-        "series": [
-          {
-            "colorToken": "var(--color-primary)",
-            "data": [
-              618,
-              512,
-              486,
-              26,
-              74,
-              32,
-              26
-            ],
-            "label": "Head Count",
-            "unit": "staff"
-          }
-        ],
-        "showValues": true,
-        "subtitle": "Attendance-machine truth for the selected date"
+        "max": 100,
+        "min": 0,
+        "subtitle": "Reported head count vs planned",
+        "value": 95
       },
-      "id": "w-headcount",
-      "span": 6,
-      "title": "Headcount Breakdown",
-      "type": "bar"
+      "id": "w-deployment-compliance",
+      "span": 4,
+      "title": "Deployment Compliance",
+      "type": "compliance-gauge"
     },
     {
       "dataSource": {
@@ -267,9 +241,209 @@
         ]
       },
       "id": "w-duty-mix",
-      "span": 6,
+      "span": 4,
       "title": "Duty Mix (Today)",
       "type": "donut"
+    },
+    {
+      "dataSource": {
+        "ariaLabel": "Deployment by project — reported head count split between the MSW and Commercial projects.",
+        "centerLabel": {
+          "caption": "Deployed",
+          "value": "486"
+        },
+        "legendOrientation": "vertical",
+        "slices": [
+          {
+            "colorIndex": 1,
+            "dimensions": {
+              "project": "msw"
+            },
+            "id": "msw",
+            "label": "MSW",
+            "value": 383
+          },
+          {
+            "colorIndex": 2,
+            "dimensions": {
+              "project": "commercial"
+            },
+            "id": "commercial",
+            "label": "Commercial",
+            "value": 103
+          }
+        ],
+        "subtitle": "Reported head count by project"
+      },
+      "id": "w-by-project",
+      "span": 4,
+      "title": "Deployment by Project",
+      "type": "donut"
+    },
+    {
+      "dataSource": {
+        "ariaLabel": "Workforce readiness — operational staff distributed across on-duty, late, standby, next-shift and on-leave states for the selected date.",
+        "axis": {
+          "x": {
+            "min": 0,
+            "title": "Employees"
+          }
+        },
+        "categories": [
+          "Readiness"
+        ],
+        "legendPlacement": "bottom",
+        "orientation": "horizontal",
+        "series": [
+          {
+            "colorIndex": 1,
+            "data": [
+              486
+            ],
+            "id": "on-duty",
+            "label": "On Duty"
+          },
+          {
+            "colorIndex": 3,
+            "data": [
+              18
+            ],
+            "id": "late",
+            "label": "Late"
+          },
+          {
+            "colorIndex": 2,
+            "data": [
+              24
+            ],
+            "id": "standby",
+            "label": "Standby"
+          },
+          {
+            "colorIndex": 4,
+            "data": [
+              58
+            ],
+            "id": "next-shift",
+            "label": "Next Shift"
+          },
+          {
+            "colorIndex": 5,
+            "data": [
+              32
+            ],
+            "id": "on-leave",
+            "label": "On Leave"
+          }
+        ],
+        "subtitle": "Operational staff by deployment state (selected date)"
+      },
+      "id": "w-workforce-readiness",
+      "span": 12,
+      "title": "Workforce Readiness",
+      "type": "stacked-bar"
+    },
+    {
+      "dataSource": {
+        "ariaLabel": "Headcount breakdown — total, planned, reported, absenteeism, weekly off, vacation and available head counts for the selected date.",
+        "axis": {
+          "x": {
+            "min": 0,
+            "title": "Employees"
+          }
+        },
+        "categories": [
+          "Total",
+          "Planned",
+          "Reported",
+          "Absenteeism",
+          "Weekly Off",
+          "Vacation",
+          "Available"
+        ],
+        "orientation": "horizontal",
+        "series": [
+          {
+            "colorToken": "var(--color-primary)",
+            "data": [
+              618,
+              512,
+              486,
+              26,
+              74,
+              32,
+              26
+            ],
+            "label": "Head Count",
+            "unit": "staff"
+          }
+        ],
+        "showValues": true,
+        "subtitle": "Attendance-machine truth for the selected date"
+      },
+      "id": "w-headcount",
+      "span": 6,
+      "title": "Headcount Breakdown",
+      "type": "bar"
+    },
+    {
+      "dataSource": {
+        "ariaLabel": "Daily deployment trend — reported head count over the last 14 days.",
+        "axis": {
+          "x": {
+            "title": "Day"
+          },
+          "y": {
+            "min": 0,
+            "title": "Employees"
+          }
+        },
+        "categories": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14"
+        ],
+        "series": [
+          {
+            "colorIndex": 1,
+            "data": [
+              471,
+              478,
+              469,
+              484,
+              486,
+              462,
+              455,
+              488,
+              490,
+              486,
+              479,
+              492,
+              486,
+              494
+            ],
+            "id": "reported",
+            "label": "Reported",
+            "unit": "staff"
+          }
+        ],
+        "subtitle": "Reported head count — last 14 days"
+      },
+      "id": "w-daily-trend",
+      "span": 6,
+      "title": "Daily Deployment Trend",
+      "type": "area"
     },
     {
       "dataSource": {
@@ -325,94 +499,6 @@
       "id": "w-by-service-line",
       "span": 6,
       "title": "Deployment by Service Line",
-      "type": "bar"
-    },
-    {
-      "dataSource": {
-        "ariaLabel": "Deployment by project — planned versus reported head count for the MSW and Commercial projects.",
-        "axis": {
-          "y": {
-            "min": 0,
-            "title": "Employees"
-          }
-        },
-        "categories": [
-          "MSW",
-          "Commercial"
-        ],
-        "legendPlacement": "bottom",
-        "series": [
-          {
-            "colorIndex": 1,
-            "data": [
-              401,
-              111
-            ],
-            "id": "planned",
-            "label": "Planned"
-          },
-          {
-            "colorIndex": 2,
-            "data": [
-              383,
-              103
-            ],
-            "id": "reported",
-            "label": "Reported"
-          }
-        ],
-        "subtitle": "Planned vs reported (attendance machine)"
-      },
-      "id": "w-by-project",
-      "span": 6,
-      "title": "Deployment by Project",
-      "type": "bar"
-    },
-    {
-      "dataSource": {
-        "ariaLabel": "Deployment by LOT — planned versus reported head count per LOT.",
-        "axis": {
-          "y": {
-            "min": 0,
-            "title": "Employees"
-          }
-        },
-        "categories": [
-          "LOT 1",
-          "LOT 2",
-          "LOT 3",
-          "LOT 4"
-        ],
-        "legendPlacement": "bottom",
-        "series": [
-          {
-            "colorIndex": 1,
-            "data": [
-              96,
-              142,
-              188,
-              86
-            ],
-            "id": "planned",
-            "label": "Planned"
-          },
-          {
-            "colorIndex": 2,
-            "data": [
-              92,
-              136,
-              180,
-              78
-            ],
-            "id": "reported",
-            "label": "Reported"
-          }
-        ],
-        "subtitle": "Planned vs reported (attendance machine)"
-      },
-      "id": "w-by-lot",
-      "span": 6,
-      "title": "Deployment by LOT",
       "type": "bar"
     },
     {
