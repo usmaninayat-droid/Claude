@@ -106,11 +106,11 @@ const WIDTH_CLASS = {
   // frames (`plan/tanker-detail/figma-tab-overview.png`): the sheet's start edge
   // lands on x=491 and the app window spans x=8…1912, so the sheet is
   // 1421/1904 ≈ 74.5% of the viewport, leaving ~483px of the page visible.
-  // (The prose spec said "~1772px, leaves 148px" — the frames themselves do not
-  // agree with that number; the pixel measurement wins. See the WP1 report.)
+  // Bumped to 82% 2026-09-15 on IWMP feedback — the workforce Training tab's
+  // 8-column RecordTable was wrapping cell text at 74.5% on ≤1440px screens.
   // `sm:max-w-none` drops `Sheet`'s own `sm:max-w-sm` cap so the percentage
   // width actually takes effect instead of being clamped by it.
-  xl: 'sm:w-[74.5%] sm:max-w-none',
+  xl: 'sm:w-[82%] sm:max-w-none',
 } as const
 
 /**
