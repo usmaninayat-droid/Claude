@@ -772,7 +772,7 @@ export function EntityProfile(props: EntityProfileProps) {
                   <TabsTrigger
                     key={tab.id}
                     value={tab.id}
-                    className="shrink-0 whitespace-nowrap px-0 text-gray-700 data-[state=active]:font-semibold"
+                    className="shrink-0 whitespace-nowrap px-0 py-3 text-gray-700 data-[state=active]:font-semibold"
                   >
                     {tab.label}
                   </TabsTrigger>
