@@ -529,6 +529,41 @@
                     "type": "filterBar"
                   },
                   {
+                    "dateKey": "date",
+                    "rowsField": "attendanceLog",
+                    "statusKey": "status",
+                    "statuses": [
+                      {
+                        "color": "#22C882",
+                        "key": "Present",
+                        "label": "Present"
+                      },
+                      {
+                        "color": "#F79009",
+                        "key": "Late",
+                        "label": "Late"
+                      },
+                      {
+                        "color": "#2E90FA",
+                        "key": "Overtime",
+                        "label": "Overtime"
+                      },
+                      {
+                        "color": "#F04438",
+                        "key": "Absent",
+                        "label": "Absent"
+                      },
+                      {
+                        "color": "#D0D5DD",
+                        "key": "Leave",
+                        "label": "Leave"
+                      }
+                    ],
+                    "title": "Attendance",
+                    "type": "attendanceHeatmap",
+                    "windowDays": 30
+                  },
+                  {
                     "color": "#93C5FD",
                     "icon": "bar-chart-01",
                     "seriesField": "workingHours",

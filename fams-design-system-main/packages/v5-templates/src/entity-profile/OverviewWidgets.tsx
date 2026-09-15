@@ -3,6 +3,7 @@ import { AreaChart, ChartCard, InfoBanner, type InfoBannerMetaItem } from '@fams
 import { ChevronDown, getIcon, TrendingUp } from '@fams/ui-kit/icons'
 import type { EntityRecord } from '@fams/v5-composer'
 import { cn } from '../lib/cn'
+import { AttendanceHeatmapWidget } from './AttendanceHeatmapWidget'
 import { DailyTimelineWidget } from './DailyTimelineWidget'
 import { RecordTable } from './RecordTable'
 import type { LocationMapPin, LocationMapPolygon } from '../map/LocationMap'
@@ -444,6 +445,8 @@ function renderWidget(
       return <TrendChartWidget widget={widget} record={record} />
     case 'locationMap':
       return <LocationMapWidget widget={widget} record={record} handlers={props} />
+    case 'attendanceHeatmap':
+      return <AttendanceHeatmapWidget widget={widget} record={record} />
     case 'recordTable': {
       const table = (
         <RecordTable

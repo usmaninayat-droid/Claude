@@ -467,6 +467,23 @@ export interface OverviewRecordTableWidget extends OverviewWidgetBase {
   emptyText?: ReactNode
 }
 
+/**
+ * A weekly-grid attendance heatmap over one of the record's own array
+ * fields. Full widget contract lives in `AttendanceHeatmapWidget.tsx`.
+ */
+export interface OverviewAttendanceHeatmapWidget extends OverviewWidgetBase {
+  type: 'attendanceHeatmap'
+  title?: ReactNode
+  icon?: string
+  rowsField: string
+  dateKey?: string
+  statusKey?: string
+  statuses: { key: string; label: string; color: string }[]
+  windowDays?: number
+  totalOverride?: number
+  paginationTemplate?: string
+}
+
 export type OverviewWidget =
   | OverviewFilterBarWidget
   | OverviewAlertBannerWidget
@@ -481,6 +498,7 @@ export type OverviewWidget =
   | OverviewLineChartWidget
   | OverviewDailyTimelineWidget
   | OverviewRecordTableWidget
+  | OverviewAttendanceHeatmapWidget
 
 /**
  * `planBanner`'s original standalone type name, kept as an alias so existing
