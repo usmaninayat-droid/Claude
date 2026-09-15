@@ -176,28 +176,28 @@ export function AttendanceHeatmapWidget({
       iconTone="success"
       bodyPadding="md"
       actions={
-        <div className="flex items-center gap-1 text-body-sm text-muted-foreground">
+        <div className="flex items-center gap-2 text-body-sm text-muted-foreground">
           <button
             type="button"
             aria-label="Previous page"
             disabled={page === 0}
             onClick={() => setPage((p) => Math.max(0, p - 1))}
-            className="grid size-6 place-items-center rounded-xs text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-default disabled:opacity-40"
+            className="grid size-5 place-items-center rounded-xs text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-default disabled:opacity-40"
           >
-            <ChevronLeft className="size-4" />
+            <ChevronLeft className="size-5" />
           </button>
-          <span>
-            Showing <span className="font-semibold text-foreground">{pageStart + 1}-{pageEnd}</span> out of{' '}
-            <span className="font-semibold text-foreground">{total}</span>
+          <span className="whitespace-nowrap">
+            Showing <span className="font-bold text-foreground">{pageStart + 1}-{pageEnd}</span> out of{' '}
+            <span className="font-bold text-foreground">{total}</span>
           </span>
           <button
             type="button"
             aria-label="Next page"
             disabled={page >= pageCount - 1}
             onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))}
-            className="grid size-6 place-items-center rounded-xs text-muted-foreground outline-none hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-default disabled:opacity-40"
+            className="grid size-5 place-items-center rounded-xs text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-default disabled:opacity-40"
           >
-            <ChevronRight className="size-4" />
+            <ChevronRight className="size-5" />
           </button>
           <span className="sr-only">{paginationCopy}</span>
         </div>

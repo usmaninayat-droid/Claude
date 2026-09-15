@@ -2,7 +2,23 @@ import { forwardRef, type HTMLAttributes, type ReactNode } from 'react'
 import { Maximize2, type LucideIcon } from '../icons'
 import { cn } from '../lib/cn'
 import { Card, CardHeader, CardContent } from './Card'
-import { IconBadge, type IconBadgeTone } from '../primitives/IconBadge'
+import { type IconBadgeTone } from '../primitives/IconBadge'
+
+/**
+ * Header avatar tone → icon colour. The disc itself is always the neutral
+ * `gray-100` surface from Figma "Tadweer — Launch Pad" (node 6545:15224); only
+ * the glyph carries the tone. (Distinct from `IconBadge`, whose disc is a
+ * tinted wash of the tone — the widget header wants a grey chip with a
+ * coloured mark, not a coloured wash.)
+ */
+const HEADER_ICON_TONE: Record<IconBadgeTone, string> = {
+  primary: 'text-primary',
+  success: 'text-success',
+  warning: 'text-warning',
+  danger: 'text-destructive',
+  info: 'text-info',
+  neutral: 'text-muted-foreground',
+}
 
 /**
  * ChartCard — chart-agnostic chrome for any chart/graphic widget. [L3 composite]
@@ -89,13 +105,24 @@ export const ChartCard = forwardRef<HTMLDivElement, ChartCardProps>(
         className={cn('overflow-hidden', className)}
         {...props}
       >
-        <CardHeader className="flex-row items-start justify-between gap-3 border-b border-border">
-          <div className="flex min-w-0 flex-1 items-center gap-2.5">
-            {Icon ? <IconBadge icon={Icon} tone={iconTone} size="md" /> : null}
+        <CardHeader className="flex-row items-center justify-between gap-3 border-b border-border px-5 py-4">
+          <div className="flex min-w-0 flex-1 items-center gap-3">
+            {Icon ? (
+              <span
+                data-slot="chart-card-icon"
+                aria-hidden="true"
+                className={cn(
+                  'grid size-7 shrink-0 place-items-center rounded-full bg-gray-100 ring-1 ring-inset ring-black/[0.08] [&_svg]:size-4',
+                  HEADER_ICON_TONE[iconTone],
+                )}
+              >
+                <Icon />
+              </span>
+            ) : null}
             <div className="min-w-0 flex-1">
               <h3
                 data-slot="chart-card-title"
-                className="truncate text-sm font-semibold text-foreground"
+                className="truncate text-h6 font-semibold text-foreground"
               >
                 {title}
               </h3>

@@ -20,20 +20,21 @@ describe('ChartCard', () => {
     expect(screen.getByText('Last 30 days')).toBeInTheDocument()
   })
 
-  it('renders no icon badge when icon is omitted', () => {
+  it('renders no icon chip when icon is omitted', () => {
     const { container } = render(<ChartCard title="Trips">body</ChartCard>)
-    expect(container.querySelector('[data-slot="icon-badge"]')).not.toBeInTheDocument()
+    expect(container.querySelector('[data-slot="chart-card-icon"]')).not.toBeInTheDocument()
   })
 
-  it('renders the leading IconBadge when icon is provided', () => {
+  it('renders the leading grey icon chip tinting only the glyph by tone', () => {
     const { container } = render(
       <ChartCard title="Trips" icon={Activity} iconTone="success">
         body
       </ChartCard>,
     )
-    const badge = container.querySelector('[data-slot="icon-badge"]')
+    const badge = container.querySelector('[data-slot="chart-card-icon"]')
     expect(badge).toBeInTheDocument()
-    expect(badge).toHaveClass('bg-success/10', 'text-success')
+    // Figma 6545:15224 — neutral grey disc, tone lives on the glyph only.
+    expect(badge).toHaveClass('bg-gray-100', 'text-success')
   })
 
   it('renders actions content in the header', () => {
