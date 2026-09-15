@@ -9,36 +9,105 @@
       "tab": {
         "id": "tab_wf_trainings",
         "key": "trainings",
-        "title": "Trainings",
+        "title": "Training",
         "order": 3,
         "component": {
-          "name": "RecordTable",
+          "name": "ComplianceTable",
           "props": {
             "field": "trainings",
-            "search": true,
+            "statusKey": "status",
+            "codeKey": "trainingCode",
+            "roleField": "systemcol1",
+            "sectionLabel": "Required for Role – {role}",
+            "scoreLabel": "Compliance Score",
+            "summaryTitle": "Compliance Summary",
+            "categoryKey": "vehicleCategory",
+            "categoryAllLabel": "All Course",
+            "headerEdit": true,
             "emptyText": "No trainings recorded for this workforce member.",
-            "summaryTiles": [
-              { "id": "kpi_trn_valid", "label": "Valid", "valueField": "trnValid", "icon": "shield-tick", "tone": "success" },
-              { "id": "kpi_trn_expiring", "label": "Expiring", "valueField": "trnExpiring", "icon": "clock", "tone": "warning" },
-              { "id": "kpi_trn_expired", "label": "Expired", "valueField": "trnExpired", "icon": "alert-triangle", "tone": "warning" },
-              { "id": "kpi_trn_blocked", "label": "Blocked", "valueField": "trnBlocked", "icon": "x-circle", "tone": "danger" }
+            "buckets": {
+              "valid": [
+                "Valid"
+              ],
+              "expiring": [
+                "Expiring"
+              ],
+              "expired": [
+                "Expired"
+              ],
+              "blocked": [
+                "Blocked"
+              ]
+            },
+            "bucketLabels": {
+              "valid": "Valid",
+              "expiring": "Expiring",
+              "expired": "Expired",
+              "blocked": "Missing"
+            },
+            "criticalBuckets": [
+              "expired",
+              "blocked"
             ],
-            "columns": [
-              { "key": "trainingCode", "label": "CODE", "type": "text" },
-              { "key": "trainingName", "label": "TRAINING", "type": "text" },
-              { "key": "vehicleCategory", "label": "ELIGIBLE FOR", "type": "text" },
-              { "key": "completedOn", "label": "ATTENDANCE DATE", "type": "text" },
-              { "key": "expiresOn", "label": "EXPIRES ON", "type": "text" },
-              { "key": "trainer", "label": "TRAINER", "type": "text" },
-              { "key": "certificateRef", "label": "CERTIFICATE REF", "type": "text" },
-              { "key": "status", "label": "STATUS", "type": "statusPill" }
-            ],
+            "alert": {
+              "message": "{count} safety-critical certificate{s} {are} expired or missing. Roster hides this {role} from assignment until {codes} {are} renewed.",
+              "ctaLabel": "Renew",
+              "ctaToast": "Renewal requested for {codes}."
+            },
             "statusColors": {
-              "Valid": "#2AAA48",
-              "Expiring": "#F5A623",
-              "Expired": "#F17B2B",
-              "Blocked": "#F04438"
-            }
+              "Valid": "#12b76a",
+              "Expiring": "#f79009",
+              "Expired": "#d92d20",
+              "Blocked": "#f04438"
+            },
+            "statusLabels": {
+              "Valid": "Valid",
+              "Expiring": "Expiring",
+              "Expired": "Expired",
+              "Blocked": "Blocks Dispatch"
+            },
+            "columns": [
+              {
+                "key": "trainingName",
+                "label": "TRAINING NAME",
+                "type": "text"
+              },
+              {
+                "key": "trainingCode",
+                "label": "ID",
+                "type": "text"
+              },
+              {
+                "key": "vehicleCategory",
+                "label": "CLASSIFICATION",
+                "type": "text"
+              },
+              {
+                "key": "completedOn",
+                "label": "COMPLETED",
+                "type": "text"
+              },
+              {
+                "key": "expiresOn",
+                "label": "EXPIRES",
+                "type": "text"
+              },
+              {
+                "key": "status",
+                "label": "STATUS",
+                "type": "statusPill"
+              }
+            ],
+            "rowActions": [
+              {
+                "label": "Renew certificate",
+                "toast": "Renewal requested for {code}."
+              },
+              {
+                "label": "View certificate",
+                "toast": "Opening certificate {code}…"
+              }
+            ]
           }
         }
       }
@@ -59,8 +128,18 @@
               {
                 "type": "filterBar",
                 "filters": [
-                  { "kind": "dateRange", "icon": "calendar", "label": "Date Range", "value": "Last 30 Days" },
-                  { "kind": "select", "icon": "filter-lines", "label": "Source", "value": "All" }
+                  {
+                    "kind": "dateRange",
+                    "icon": "calendar",
+                    "label": "Date Range",
+                    "value": "Last 30 Days"
+                  },
+                  {
+                    "kind": "select",
+                    "icon": "filter-lines",
+                    "label": "Source",
+                    "value": "All"
+                  }
                 ]
               },
               {
@@ -75,13 +154,41 @@
                 "type": "recordTable",
                 "field": "attendanceLog",
                 "columns": [
-                  { "key": "date", "label": "DATE", "type": "text" },
-                  { "key": "clockIn", "label": "CLOCK IN", "type": "text" },
-                  { "key": "clockOut", "label": "CLOCK-OUT", "type": "text" },
-                  { "key": "clockInLocation", "label": "CLOCK-IN LOCATION", "type": "text" },
-                  { "key": "clockOutLocation", "label": "CLOCK-OUT LOCATION", "type": "text" },
-                  { "key": "duration", "label": "DURATION", "type": "text" },
-                  { "key": "source", "label": "SOURCE", "type": "text" }
+                  {
+                    "key": "date",
+                    "label": "DATE",
+                    "type": "text"
+                  },
+                  {
+                    "key": "clockIn",
+                    "label": "CLOCK IN",
+                    "type": "text"
+                  },
+                  {
+                    "key": "clockOut",
+                    "label": "CLOCK-OUT",
+                    "type": "text"
+                  },
+                  {
+                    "key": "clockInLocation",
+                    "label": "CLOCK-IN LOCATION",
+                    "type": "text"
+                  },
+                  {
+                    "key": "clockOutLocation",
+                    "label": "CLOCK-OUT LOCATION",
+                    "type": "text"
+                  },
+                  {
+                    "key": "duration",
+                    "label": "DURATION",
+                    "type": "text"
+                  },
+                  {
+                    "key": "source",
+                    "label": "SOURCE",
+                    "type": "text"
+                  }
                 ]
               }
             ]

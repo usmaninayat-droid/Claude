@@ -394,42 +394,60 @@
           },
           {
             "component": {
-              "name": "RecordTable",
+              "name": "ComplianceTable",
               "props": {
+                "alert": {
+                  "ctaLabel": "Renew",
+                  "ctaToast": "Renewal requested for {codes}.",
+                  "message": "{count} safety-critical certificate{s} {are} expired or missing. Roster hides this {role} from assignment until {codes} {are} renewed."
+                },
+                "bucketLabels": {
+                  "blocked": "Missing",
+                  "expired": "Expired",
+                  "expiring": "Expiring",
+                  "valid": "Valid"
+                },
+                "buckets": {
+                  "blocked": [
+                    "Blocked"
+                  ],
+                  "expired": [
+                    "Expired"
+                  ],
+                  "expiring": [
+                    "Expiring"
+                  ],
+                  "valid": [
+                    "Valid"
+                  ]
+                },
+                "categoryAllLabel": "All Course",
+                "categoryKey": "vehicleCategory",
+                "codeKey": "trainingCode",
                 "columns": [
                   {
-                    "key": "trainingCode",
-                    "label": "CODE",
+                    "key": "trainingName",
+                    "label": "TRAINING NAME",
                     "type": "text"
                   },
                   {
-                    "key": "trainingName",
-                    "label": "TRAINING",
+                    "key": "trainingCode",
+                    "label": "ID",
                     "type": "text"
                   },
                   {
                     "key": "vehicleCategory",
-                    "label": "ELIGIBLE FOR",
+                    "label": "CLASSIFICATION",
                     "type": "text"
                   },
                   {
                     "key": "completedOn",
-                    "label": "ATTENDANCE DATE",
+                    "label": "COMPLETED",
                     "type": "text"
                   },
                   {
                     "key": "expiresOn",
-                    "label": "EXPIRES ON",
-                    "type": "text"
-                  },
-                  {
-                    "key": "trainer",
-                    "label": "TRAINER",
-                    "type": "text"
-                  },
-                  {
-                    "key": "certificateRef",
-                    "label": "CERTIFICATE REF",
+                    "label": "EXPIRES",
                     "type": "text"
                   },
                   {
@@ -438,51 +456,46 @@
                     "type": "statusPill"
                   }
                 ],
+                "criticalBuckets": [
+                  "expired",
+                  "blocked"
+                ],
                 "emptyText": "No trainings recorded for this workforce member.",
                 "field": "trainings",
-                "search": true,
-                "statusColors": {
-                  "Blocked": "#F04438",
-                  "Expired": "#F17B2B",
-                  "Expiring": "#F5A623",
-                  "Valid": "#2AAA48"
-                },
-                "summaryTiles": [
+                "headerEdit": true,
+                "roleField": "systemcol1",
+                "rowActions": [
                   {
-                    "icon": "shield-tick",
-                    "id": "kpi_trn_valid",
-                    "label": "Valid",
-                    "tone": "success",
-                    "valueField": "trnValid"
+                    "label": "Renew certificate",
+                    "toast": "Renewal requested for {code}."
                   },
                   {
-                    "icon": "clock",
-                    "id": "kpi_trn_expiring",
-                    "label": "Expiring",
-                    "tone": "warning",
-                    "valueField": "trnExpiring"
-                  },
-                  {
-                    "icon": "alert-triangle",
-                    "id": "kpi_trn_expired",
-                    "label": "Expired",
-                    "tone": "warning",
-                    "valueField": "trnExpired"
-                  },
-                  {
-                    "icon": "x-circle",
-                    "id": "kpi_trn_blocked",
-                    "label": "Blocked",
-                    "tone": "danger",
-                    "valueField": "trnBlocked"
+                    "label": "View certificate",
+                    "toast": "Opening certificate {code}…"
                   }
-                ]
+                ],
+                "scoreLabel": "Compliance Score",
+                "sectionLabel": "Required for Role – {role}",
+                "statusColors": {
+                  "Blocked": "#f04438",
+                  "Expired": "#d92d20",
+                  "Expiring": "#f79009",
+                  "Valid": "#12b76a"
+                },
+                "statusKey": "status",
+                "statusLabels": {
+                  "Blocked": "Blocks Dispatch",
+                  "Expired": "Expired",
+                  "Expiring": "Expiring",
+                  "Valid": "Valid"
+                },
+                "summaryTitle": "Compliance Summary"
               }
             },
             "id": "tab_wf_trainings",
             "key": "trainings",
             "order": 3,
-            "title": "Trainings"
+            "title": "Training"
           },
           {
             "component": {

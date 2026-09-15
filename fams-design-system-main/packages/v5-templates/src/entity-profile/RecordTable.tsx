@@ -139,6 +139,19 @@ export interface RecordTableProps {
    * keep every row inert, exactly as before this prop existed.
    */
   onRowClick?: (row: Record<string, unknown>, index: number) => void
+  /**
+   * Unlabeled trailing header-only column (a pencil/edit glyph, figma-spec-
+   * list.md §3) — threaded straight through to `DataTable.trailingAction`.
+   * Omit for no trailing column (default, unaffected).
+   */
+  trailingAction?: { icon: ReactNode; onClick?: () => void; ariaLabel?: string }
+  /**
+   * Per-row trailing affordance (the `…` row-options control) rendered in the
+   * same trailing column as `trailingAction` — threaded straight through to
+   * `DataTable.rowActions`. The returned node owns its own reveal styling.
+   * Omit for no per-row actions (default, unaffected).
+   */
+  rowActions?: (row: Record<string, unknown>, index: number) => ReactNode
   className?: string
 }
 
@@ -263,6 +276,8 @@ export function RecordTable({
   statusLabels,
   responsiveHide = false,
   onRowClick,
+  trailingAction,
+  rowActions,
   className,
 }: RecordTableProps) {
   const [query, setQuery] = useState('')
@@ -383,6 +398,8 @@ export function RecordTable({
           disableResponsiveHide={!responsiveHide}
           onRowClick={onRowClick}
           hasFocusableRows={Boolean(onRowClick)}
+          trailingAction={trailingAction}
+          rowActions={rowActions}
         />
       </div>
     </div>

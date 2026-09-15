@@ -107,6 +107,8 @@ export type {
 } from './entity-profile/RecordSectionsGrid'
 export { RecordTable } from './entity-profile/RecordTable'
 export type { RecordTableProps, RecordTableColumn, RecordTableColumnType } from './entity-profile/RecordTable'
+export { ComplianceTable } from './entity-profile/ComplianceTable'
+export type { ComplianceTableProps, ComplianceBucketKey } from './entity-profile/ComplianceTable'
 export { ScopedLinkedRecords } from './entity-profile/ScopedLinkedRecords'
 export type { ScopedLinkedRecordsProps } from './entity-profile/ScopedLinkedRecords.types'
 export { LinkedRecordDetailSection } from './entity-profile/LinkedRecordDetailSection'

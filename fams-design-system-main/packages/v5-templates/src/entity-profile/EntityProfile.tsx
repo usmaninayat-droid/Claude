@@ -10,6 +10,7 @@ import { cn } from '../lib/cn'
 // imports `mount-guard`'s siblings, only React's `createContext`.
 import { MapGuardScopeProvider } from '../map/mount-guard'
 import { EntityIdentityPanel } from './EntityIdentityPanel'
+import { ComplianceTable, type ComplianceTableProps } from './ComplianceTable'
 import { EventsOverview } from './EventsOverview'
 import type { EventsOverviewProps } from './EventsOverview.types'
 import { InteractiveReplay } from './InteractiveReplay'
@@ -94,6 +95,19 @@ registerTabComponent('RecordTable', ({ record, props }) => {
       statusColors={cfg.statusColors}
     />
   )
+})
+/**
+ * Certification/compliance tab (`ComplianceTable`) — a `RecordTable` over an
+ * embedded array with a compliance header above it (alert band, score gauge,
+ * per-bucket summary + stacked bar, section label). Every module-specific
+ * name is field-key indirection on `props` (`field`, `statusKey`, `buckets`,
+ * …) — see `ComplianceTable.tsx`. A tab naming it without `field`/`columns`/
+ * `buckets` renders nothing rather than throwing, same contract as above.
+ */
+registerTabComponent('ComplianceTable', ({ record, props }) => {
+  const cfg = (props ?? {}) as Partial<ComplianceTableProps>
+  if (!cfg.field || !Array.isArray(cfg.columns) || !cfg.buckets) return null
+  return <ComplianceTable {...(cfg as ComplianceTableProps)} record={record} />
 })
 
 /**
