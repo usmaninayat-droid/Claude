@@ -133,7 +133,8 @@
     "creation": {
       "label": "New Record",
       "layout": "flat",
-      "fieldChrome": "inset-label"
+      "fieldChrome": "inset-label",
+      "disabled": true
     },
     "listRowHeight": "md",
     "listSort": false,

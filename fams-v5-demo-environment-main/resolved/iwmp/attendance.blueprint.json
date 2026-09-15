@@ -157,6 +157,7 @@
   ],
   "uiConfig": {
     "creation": {
+      "disabled": true,
       "fieldChrome": "inset-label",
       "label": "New Record",
       "layout": "flat"
