@@ -193,7 +193,15 @@ export function ListView({
         // read as an inconsistent tile size.
         <div
           data-slot="list-view-summary"
-          className="grid gap-field"
+          // `mb-3` complements the SECTION's tight `gap-1` (which exists so
+          // the reserved-but-usually-empty count row above doesn't drop a
+          // big band of dead space between the toolbar and the first real
+          // content). When summary tiles ARE present, they need real
+          // breathing room before the table — a 4px gap read as "the KPI
+          // row is glued to the table". Only the tiles→table transition
+          // needs the extra margin; the count-row→tiles transition stays
+          // tight.
+          className="mb-3 grid gap-field"
           style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(13rem, 1fr))' }}
         >
           {summaryTiles.map((tile) => (
