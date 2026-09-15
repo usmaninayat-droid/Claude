@@ -296,13 +296,11 @@ export function DispatchActionMenu({
         <DropdownMenuContent align="end" className="w-48">
           {/* View Profile is always available (Present/Late rows show ONLY
               this item; Absent rows show it plus the gated Dispatch item
-              below). */}
-          <DropdownMenuItem
-            onSelect={(e) => {
-              e.preventDefault()
-              openProfile()
-            }}
-          >
+              below). No `e.preventDefault()` here — Radix's default is to
+              close the menu on select, which is what we want (the earlier
+              wiring left the menu open on top of the just-opened profile
+              drawer). */}
+          <DropdownMenuItem onSelect={() => openProfile()}>
             {props.viewProfileLabel ?? 'View Profile'}
           </DropdownMenuItem>
           {gated ? (
