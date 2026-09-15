@@ -421,8 +421,6 @@
                     "Valid"
                   ]
                 },
-                "categoryAllLabel": "All Course",
-                "categoryKey": "vehicleCategory",
                 "codeKey": "trainingCode",
                 "columns": [
                   {

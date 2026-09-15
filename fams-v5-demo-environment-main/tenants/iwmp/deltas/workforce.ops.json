@@ -21,8 +21,6 @@
             "sectionLabel": "Required for Role – {role}",
             "scoreLabel": "Compliance Score",
             "summaryTitle": "Compliance Summary",
-            "categoryKey": "vehicleCategory",
-            "categoryAllLabel": "All Course",
             "headerEdit": true,
             "emptyText": "No trainings recorded for this workforce member.",
             "buckets": {
