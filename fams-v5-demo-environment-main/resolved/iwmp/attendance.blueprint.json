@@ -69,8 +69,13 @@
         "props": {
           "gateCol": "status",
           "gateValue": "Absent",
+          "headerTag": "Employee Absent",
           "icon": "user-plus-01",
           "label": "Dispatch Reliever",
+          "outboundContextField": "systemcol2",
+          "outboundNameField": "title",
+          "outboundReason": "Absent",
+          "recordUidField": "uniqueidentifier",
           "toastDescription": "A reliever has been assigned to the route and the supervisor has been notified.",
           "toastTitle": "Reliever dispatched"
         }

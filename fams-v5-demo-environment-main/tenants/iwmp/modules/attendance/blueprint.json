@@ -192,6 +192,11 @@
           "icon": "user-plus-01",
           "gateCol": "status",
           "gateValue": "Absent",
+          "outboundNameField": "title",
+          "outboundContextField": "systemcol2",
+          "recordUidField": "uniqueidentifier",
+          "outboundReason": "Absent",
+          "headerTag": "Employee Absent",
           "toastTitle": "Reliever dispatched",
           "toastDescription": "A reliever has been assigned to the route and the supervisor has been notified."
         }

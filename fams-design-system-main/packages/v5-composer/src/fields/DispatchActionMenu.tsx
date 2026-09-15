@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { MoreVertical } from '@fams/ui-kit/icons'
+import { ArrowDown, ExternalLink, MoreVertical } from '@fams/ui-kit/icons'
 import {
   Avatar,
   Button,
@@ -11,36 +11,31 @@ import {
   Sheet,
   SheetContent,
   SheetDescription,
-  SheetHeader,
   SheetTitle,
   toast,
 } from '@fams/ui-kit'
 import type { EntityRecord } from '../types'
+import { useDisplayName } from './display-names'
 
 /**
- * DispatchActionMenu — the composer's "row-actions kebab" for entity list
- * rows, currently home to the ONE action `ReadDispatchAction` already
- * owned ("Dispatch Reliever" on Absent attendance rows).
+ * DispatchActionMenu — the composer's row-actions kebab, home to the ONE
+ * action `ReadDispatchAction` already owns ("Dispatch Reliever" on Absent
+ * attendance rows). Renders on EVERY row so the ACTION column has a
+ * consistent affordance; the dispatch item inside the menu is gated by
+ * `props.gateCol === props.gateValue` (Absent), matching the previous
+ * renderer's behaviour.
  *
- * The kebab renders on EVERY row (not just gated ones) so the action
- * column has a consistent affordance in every cell — the empty em-dash
- * the old renderer showed on non-gated rows read as a broken button. The
- * dispatch menu-item itself is still gated: enabled only when the record's
- * `props.gateCol` equals `props.gateValue` (Absent), matching the previous
- * renderer's behaviour. This keeps the DS-tier renderer generic (rule 10):
- * label, gate and copy remain `component.props`, no attendance vocabulary
- * baked in.
+ * Selecting the item opens a side sheet built after the shift-rostering
+ * "Reassign Route" panel — a swap card that pairs the OUT (absent) row with
+ * a suggested reliever row, plus a footer whose primary "Dispatch Reliever"
+ * approves the suggestion and whose "Replace Manually" text button flips the
+ * body into a searchable candidate list. Candidates default to a small
+ * built-in demo set so the flow is always demonstrable; a blueprint can
+ * override via `component.props.suggestions[]` / `manual[]`.
  *
- * Selecting the item opens a side-sheet with two sections — Suggested
- * Replacement (a curated candidate list) and Replace Manually (search
- * over the wider workforce) — mirroring the shift-rostering "Suggest
- * Replacement"/"Replace Manually" pattern. The candidate lists are
- * demo-scope data authored on `component.props` (`suggestions[]` /
- * `manual[]`); a blueprint that ships no lists falls back to a small
- * default set so the flow is always demonstrable. Dispatching any
- * candidate fires the same confirmation toast the old renderer emitted —
- * the demo stand-in for the real write + notify (a JSON blueprint cannot
- * express the store write itself).
+ * State-agnostic (Rule 8): the sheet owns UI state (mode/query/selected)
+ * but never the dispatch write — that surfaces as a confirmation toast,
+ * the demo stand-in for the real store write + notify.
  */
 
 export interface DispatchActionMenuProps {
@@ -48,10 +43,25 @@ export interface DispatchActionMenuProps {
   gateCol?: string
   gateValue?: string
   sheetTitle?: string
+  /** Description under the sheet title; `{name}` is replaced with the resolved outbound name, `{reason}` with `outboundReason`. */
   sheetDescription?: string
+  /** Column key for the outbound record's name (default `employee`); read via `useDisplayName` for id→name resolution. */
+  outboundNameField?: string
+  /** Column key for the outbound person's short id (default `employeeId`); shown as e.g. `D-1221` in the swap card. */
+  outboundIdField?: string
+  /** Column key for the context line under the record id (default `assignedRoute`). */
+  outboundContextField?: string
+  /** Column key for the record's own uid (default `uniqueidentifier`). */
+  recordUidField?: string
+  /** Reason label shown on the outbound row's pill (default "Absent"). */
+  outboundReason?: string
+  /** Chip in the top-right of the swap card header (default "Employee Absent"). */
+  headerTag?: string
   suggestedTitle?: string
   manualTitle?: string
   searchPlaceholder?: string
+  /** Ghost link at the footer start; hidden when omitted. */
+  viewPlanLabel?: string
   toastTitle?: string
   toastDescription?: string
   suggestions?: DispatchCandidate[]
@@ -63,52 +73,116 @@ export interface DispatchCandidate {
   name: string
   role?: string
   meta?: string
-  /** 0-100 fit score, optional; rendered as a small tag beside the row. */
-  fit?: number
+  /** Short id shown as a `D-####`-style chip in the swap card row. */
+  shortId?: string
 }
 
 const DEFAULT_SUGGESTIONS: DispatchCandidate[] = [
-  { id: 's1', name: 'Anwar Farooq', role: 'HD Driver', meta: 'Cluster · MSW', fit: 96 },
-  { id: 's2', name: 'Yousuf Iqbal', role: 'HD Driver', meta: 'Cluster · MSW', fit: 91 },
-  { id: 's3', name: 'Mohammed Adnan', role: 'HD Driver', meta: 'Cluster · Commercial', fit: 84 },
+  { id: 's1', shortId: 'D-1277', name: 'Omar Farouk', role: 'HD Driver', meta: 'Standby pool' },
+  { id: 's2', shortId: 'D-1341', name: 'Anwar Farooq', role: 'HD Driver', meta: 'Cluster · MSW' },
+  { id: 's3', shortId: 'D-1408', name: 'Yousuf Iqbal', role: 'HD Driver', meta: 'Cluster · MSW' },
 ]
 
 const DEFAULT_MANUAL: DispatchCandidate[] = [
-  { id: 'm1', name: 'Ali Naseem', role: 'HD Driver', meta: 'Standby pool' },
-  { id: 'm2', name: 'Sami Rashid', role: 'HD Driver', meta: 'Standby pool' },
-  { id: 'm3', name: 'Bilal Khan', role: 'HD Driver', meta: 'Standby pool' },
-  { id: 'm4', name: 'Faisal Ahmed', role: 'HD Driver', meta: 'Reliever queue' },
-  { id: 'm5', name: 'Junaid Malik', role: 'HD Driver', meta: 'Reliever queue' },
-  { id: 'm6', name: 'Hamza Nazir', role: 'HD Driver', meta: 'Reliever queue' },
+  { id: 'm1', shortId: 'D-1502', name: 'Ali Naseem', role: 'HD Driver', meta: 'Standby pool' },
+  { id: 'm2', shortId: 'D-1517', name: 'Sami Rashid', role: 'HD Driver', meta: 'Standby pool' },
+  { id: 'm3', shortId: 'D-1621', name: 'Bilal Khan', role: 'HD Driver', meta: 'Standby pool' },
+  { id: 'm4', shortId: 'D-1707', name: 'Faisal Ahmed', role: 'HD Driver', meta: 'Reliever queue' },
+  { id: 'm5', shortId: 'D-1802', name: 'Junaid Malik', role: 'HD Driver', meta: 'Reliever queue' },
+  { id: 'm6', shortId: 'D-1904', name: 'Hamza Nazir', role: 'HD Driver', meta: 'Reliever queue' },
 ]
 
-function CandidateRow({
+function fill(template: string, vars: Record<string, string>): string {
+  return template.replace(/\{(\w+)\}/g, (_, key) => vars[key] ?? '')
+}
+
+/** One row in the swap card — avatar + short-id + name + tone pill, right side "Originally Assigned"/"Suggested Replacement". */
+function SwapRow({
   candidate,
-  onDispatch,
-  showFit,
+  pillLabel,
+  pillTone,
+  side,
+  dimmed,
+}: {
+  candidate: { name: string; shortId?: string; role?: string }
+  pillLabel: string
+  pillTone: 'warning' | 'success'
+  side: 'origin' | 'replacement'
+  dimmed?: boolean
+}) {
+  const pillClasses =
+    pillTone === 'warning'
+      ? 'bg-warning-scale-50 text-warning-text'
+      : 'bg-success-scale-100 text-success-text'
+  return (
+    <div className={dimmed ? 'flex items-center gap-3 opacity-70' : 'flex items-center gap-3'}>
+      <Avatar name={candidate.name} size="sm" />
+      <div className="flex flex-1 items-center gap-2">
+        {candidate.shortId ? (
+          <span className={dimmed ? 'text-body-sm font-medium text-muted-foreground line-through' : 'text-body-sm font-medium text-foreground'}>
+            {candidate.shortId}
+          </span>
+        ) : null}
+        {candidate.shortId ? <span className="text-muted-foreground">·</span> : null}
+        <span className={dimmed ? 'text-body-sm text-muted-foreground line-through' : 'text-body-sm text-foreground'}>
+          {candidate.name}
+        </span>
+        <span className={`inline-flex items-center rounded-sm px-2 py-0.5 text-caption font-semibold ${pillClasses}`}>
+          {pillLabel}
+        </span>
+      </div>
+      <div className="flex items-center gap-2 text-caption text-muted-foreground">
+        <span
+          aria-hidden="true"
+          className={`size-1.5 rounded-full ${side === 'origin' ? 'bg-danger' : 'bg-primary'}`}
+        />
+        {side === 'origin' ? 'Originally Assigned' : 'Suggested Replacement'}
+      </div>
+    </div>
+  )
+}
+
+/** One row in the Replace-Manually list — a selectable card. */
+function ManualRow({
+  candidate,
+  selected,
+  onSelect,
 }: {
   candidate: DispatchCandidate
-  onDispatch: (candidate: DispatchCandidate) => void
-  showFit?: boolean
+  selected: boolean
+  onSelect: () => void
 }) {
   return (
-    <div className="flex items-center gap-3 rounded-sm border border-border bg-card p-3">
+    <button
+      type="button"
+      onClick={onSelect}
+      className={
+        selected
+          ? 'flex w-full items-center gap-3 rounded-sm border border-primary bg-primary/5 p-3 text-start'
+          : 'flex w-full items-center gap-3 rounded-sm border border-border bg-card p-3 text-start hover:bg-muted/50'
+      }
+    >
       <Avatar name={candidate.name} size="sm" />
       <div className="min-w-0 flex-1">
-        <p className="truncate text-body-sm font-semibold text-foreground">{candidate.name}</p>
+        <p className="truncate text-body-sm font-semibold text-foreground">
+          {candidate.shortId ? `${candidate.shortId} · ` : ''}
+          {candidate.name}
+        </p>
         <p className="truncate text-caption text-muted-foreground">
           {[candidate.role, candidate.meta].filter(Boolean).join(' · ')}
         </p>
       </div>
-      {showFit && typeof candidate.fit === 'number' ? (
-        <span className="rounded-sm bg-success-scale-100 px-2 py-0.5 text-caption font-semibold text-success-text">
-          {candidate.fit}% fit
-        </span>
-      ) : null}
-      <Button size="sm" onClick={() => onDispatch(candidate)}>
-        Dispatch
-      </Button>
-    </div>
+      <span
+        aria-hidden="true"
+        className={
+          selected
+            ? 'grid size-4 place-items-center rounded-full border-2 border-primary'
+            : 'grid size-4 place-items-center rounded-full border-2 border-border'
+        }
+      >
+        {selected ? <span className="size-2 rounded-full bg-primary" /> : null}
+      </span>
+    </button>
   )
 }
 
@@ -120,31 +194,61 @@ export function DispatchActionMenu({
   record?: EntityRecord
 }) {
   const [open, setOpen] = useState(false)
+  const [mode, setMode] = useState<'suggested' | 'manual'>('suggested')
   const [query, setQuery] = useState('')
+  const [selectedManualId, setSelectedManualId] = useState<string | null>(null)
+  const displayName = useDisplayName()
 
   const gated = props.gateCol ? record?.[props.gateCol] === props.gateValue : true
   const suggestions = props.suggestions ?? DEFAULT_SUGGESTIONS
   const manual = props.manual ?? DEFAULT_MANUAL
+  const primarySuggestion = suggestions[0]
+
+  const outboundName = useMemo(() => {
+    const raw = record?.[props.outboundNameField ?? 'employee']
+    if (typeof raw !== 'string' || !raw) return 'Employee'
+    // `raw` may be an id (SingleReference) — `useDisplayName` gracefully falls
+    // back to the raw text when there's no directory entry.
+    return displayName(raw) ?? raw
+  }, [record, props.outboundNameField, displayName])
+  const outboundShortId = String(record?.[props.outboundIdField ?? 'employeeId'] ?? '') || undefined
+  const outboundContext = String(record?.[props.outboundContextField ?? 'assignedRoute'] ?? '')
+  const recordUid = String(
+    record?.[props.recordUidField ?? 'uniqueidentifier'] ?? record?.id ?? '',
+  )
+  const outboundReason = props.outboundReason ?? 'Absent'
+  const headerTag = props.headerTag ?? 'Employee Absent'
+  const sheetTitle = props.sheetTitle ?? props.label ?? 'Dispatch Reliever'
+  const sheetDescription = fill(
+    props.sheetDescription ?? '{name} is {reason} — dispatch a reliever.',
+    { name: outboundName, reason: outboundReason.toLowerCase() },
+  )
+
   const filteredManual = useMemo(() => {
     const needle = query.trim().toLowerCase()
     if (!needle) return manual
     return manual.filter((c) =>
-      [c.name, c.role, c.meta].some((s) => (s ?? '').toLowerCase().includes(needle)),
+      [c.name, c.role, c.meta, c.shortId].some((s) => (s ?? '').toLowerCase().includes(needle)),
     )
   }, [manual, query])
 
-  const dispatchCandidate = (candidate: DispatchCandidate) => {
+  const doDispatch = (candidate: DispatchCandidate | undefined) => {
+    if (!candidate) return
     setOpen(false)
-    toast(props.toastTitle ?? `${props.label ?? 'Dispatched'}`, {
-      description: props.toastDescription ?? `${candidate.name} has been dispatched.`,
+    // Reset the sheet to its default view for the next open.
+    setMode('suggested')
+    setSelectedManualId(null)
+    setQuery('')
+    toast(props.toastTitle ?? sheetTitle, {
+      description:
+        props.toastDescription ??
+        `${candidate.name} has been dispatched to replace ${outboundName}.`,
     })
   }
 
+  const selectedManualCandidate = manual.find((c) => c.id === selectedManualId)
+
   return (
-    // Wrap in a click-swallowing span so nothing inside the ACTION cell
-    // (kebab trigger, dropdown item, sheet button) ever reaches the
-    // surrounding row's `onRowClick` — the row would otherwise open its
-    // profile drawer alongside the menu action.
     <span
       onClick={(e) => e.stopPropagation()}
       onPointerDown={(e) => e.stopPropagation()}
@@ -154,11 +258,6 @@ export function DispatchActionMenu({
         <DropdownMenuTrigger
           aria-label="Row actions"
           className="grid size-8 place-items-center rounded-xs text-muted-foreground outline-none transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:bg-muted data-[state=open]:text-foreground"
-          // Stop propagation on BOTH pointerdown and click — the surrounding
-          // `DataTable` row activates via a pointerdown+click sequence; a
-          // single `onClick` stop lets the row's own drawer open first.
-          onPointerDown={(e) => e.stopPropagation()}
-          onClick={(e) => e.stopPropagation()}
         >
           <MoreVertical className="size-4" aria-hidden="true" />
         </DropdownMenuTrigger>
@@ -174,44 +273,131 @@ export function DispatchActionMenu({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <Sheet open={open} onOpenChange={setOpen}>
-        <SheetContent side="right" className="flex w-full flex-col gap-0 p-0 sm:max-w-md">
-          <SheetHeader className="border-b border-border p-4">
-            <SheetTitle>{props.sheetTitle ?? props.label ?? 'Dispatch Reliever'}</SheetTitle>
-            <SheetDescription>
-              {props.sheetDescription ??
-                'Choose a suggested reliever or search the wider workforce manually.'}
+      <Sheet
+        open={open}
+        onOpenChange={(next) => {
+          setOpen(next)
+          if (!next) {
+            setMode('suggested')
+            setSelectedManualId(null)
+            setQuery('')
+          }
+        }}
+      >
+        <SheetContent
+          side="right"
+          className="flex w-full flex-col gap-0 p-0 sm:max-w-[44rem]"
+        >
+          <div className="flex flex-col gap-1 border-b border-border p-6">
+            <SheetTitle className="text-h3 font-semibold text-foreground">{sheetTitle}</SheetTitle>
+            <SheetDescription className="text-body-sm text-muted-foreground">
+              {sheetDescription}
             </SheetDescription>
-          </SheetHeader>
-          <div className="flex-1 overflow-y-auto p-4">
-            <section className="flex flex-col gap-2">
-              <h3 className="text-caption font-semibold uppercase tracking-wide text-muted-foreground">
-                {props.suggestedTitle ?? 'Suggested Replacement'}
-              </h3>
-              {suggestions.map((c) => (
-                <CandidateRow key={c.id} candidate={c} onDispatch={dispatchCandidate} showFit />
-              ))}
-            </section>
-            <section className="mt-6 flex flex-col gap-2">
-              <h3 className="text-caption font-semibold uppercase tracking-wide text-muted-foreground">
-                {props.manualTitle ?? 'Replace Manually'}
-              </h3>
-              <Input
-                type="search"
-                placeholder={props.searchPlaceholder ?? 'Search workforce'}
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-              <div className="flex flex-col gap-2">
-                {filteredManual.length === 0 ? (
-                  <p className="p-3 text-body-sm text-muted-foreground">No matching workers.</p>
-                ) : (
-                  filteredManual.map((c) => (
-                    <CandidateRow key={c.id} candidate={c} onDispatch={dispatchCandidate} />
-                  ))
-                )}
-              </div>
-            </section>
+          </div>
+          <div className="flex-1 overflow-y-auto p-6">
+            {mode === 'suggested' ? (
+              <section className="flex flex-col gap-0 rounded-md border border-border bg-card">
+                <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-3">
+                  <div className="flex items-center gap-2 text-body-sm">
+                    {recordUid ? (
+                      <>
+                        <span className="font-semibold text-foreground">{recordUid}</span>
+                        <span className="text-muted-foreground">·</span>
+                      </>
+                    ) : null}
+                    <span className="text-foreground">{outboundContext || 'Attendance record'}</span>
+                  </div>
+                  <span className="inline-flex items-center rounded-sm border border-danger/30 bg-danger/5 px-2 py-1 text-caption font-semibold uppercase tracking-wide text-danger">
+                    {headerTag}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-2 p-4">
+                  <SwapRow
+                    candidate={{ name: outboundName, shortId: outboundShortId }}
+                    pillLabel={outboundReason}
+                    pillTone="warning"
+                    side="origin"
+                    dimmed
+                  />
+                  <div className="flex justify-center">
+                    <span className="grid size-8 place-items-center rounded-full border border-border bg-card text-muted-foreground">
+                      <ArrowDown className="size-4" aria-hidden="true" />
+                    </span>
+                  </div>
+                  <SwapRow
+                    candidate={{
+                      name: primarySuggestion?.name ?? '—',
+                      shortId: primarySuggestion?.shortId,
+                    }}
+                    pillLabel="Available for Shift"
+                    pillTone="success"
+                    side="replacement"
+                  />
+                </div>
+              </section>
+            ) : (
+              <section className="flex flex-col gap-3">
+                <Input
+                  type="search"
+                  placeholder={props.searchPlaceholder ?? 'Search workforce'}
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+                <div className="flex flex-col gap-2">
+                  {filteredManual.length === 0 ? (
+                    <p className="p-3 text-body-sm text-muted-foreground">No matching workers.</p>
+                  ) : (
+                    filteredManual.map((c) => (
+                      <ManualRow
+                        key={c.id}
+                        candidate={c}
+                        selected={selectedManualId === c.id}
+                        onSelect={() => setSelectedManualId(c.id)}
+                      />
+                    ))
+                  )}
+                </div>
+              </section>
+            )}
+          </div>
+          <div className="flex items-center gap-3 border-t border-border p-4">
+            {props.viewPlanLabel ? (
+              <Button variant="tertiary" size="md">
+                {props.viewPlanLabel}
+                <ExternalLink className="ms-1 size-4" aria-hidden="true" />
+              </Button>
+            ) : null}
+            <div className="flex-1" />
+            {mode === 'suggested' ? (
+              <>
+                <button
+                  type="button"
+                  onClick={() => setMode('manual')}
+                  className="rounded-xs px-3 py-2 text-body-sm font-semibold text-foreground outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  Replace Manually
+                </button>
+                <Button onClick={() => doDispatch(primarySuggestion)} disabled={!primarySuggestion}>
+                  {props.label ?? 'Dispatch Reliever'}
+                </Button>
+              </>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  onClick={() => setMode('suggested')}
+                  className="rounded-xs px-3 py-2 text-body-sm font-semibold text-foreground outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  Back to Suggested
+                </button>
+                <Button
+                  onClick={() => doDispatch(selectedManualCandidate)}
+                  disabled={!selectedManualCandidate}
+                >
+                  {props.label ?? 'Dispatch Reliever'}
+                </Button>
+              </>
+            )}
           </div>
         </SheetContent>
       </Sheet>
