@@ -494,7 +494,7 @@ const SVC_OPS = ['Residential Non-Recyclable MSW Collection', 'Residential Recyc
 STEP_RENDER.summary = () => {
   const b = draft.basic;
   const basicGrid = `<div class="sum-grid"><div>${kv('Contract Title', b.title)}${kv('Contract Type', b.type)}${kv('Start Date', b.start)}${kv('Contract Manager', b.manager)}</div>
-    <div>${kv('Reference Number', b.ref)}${kv('ESP', b.contractor)}${kv('End Date', b.end)}${kv('Project Manager', b.pm)}</div></div>`;
+    <div>${kv('Reference Number', b.ref)}${kv('ESP', b.contractor)}${kv('End Date', b.end)}${kvr('Project Manager', b.pm)}</div></div>`;
   const typeCell = (key, name) => `${ic(SUM_ICON[key], 16)}${esc(name)}`;
   const rowsOf = (key, map) => draft[key].map((it, i) => { const c = CAT[key].find(x => x.id === it.id) || it; return map(i + 1, c, it); });
   const none = (n, msg) => [[ '—', msg, ...Array(n - 2).fill('—') ]];
@@ -539,88 +539,295 @@ STEP_RENDER.summary = () => {
 function toast(msg) { const t = document.createElement('div'); t.className = 'cm-toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2600); }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   CONTRACT DETAIL (Wave 7 re-skin pending — Chart.js carry-forward)
+   CONTRACT DETAILS (2303:2988) · Timeline drawer (2303:3679) · Raw Data (2303:4514)
+   Charts are hand-drawn SVG so every stroke, tick and gap matches the Figma
+   frames; sizes are measured from the live container after render.
    ══════════════════════════════════════════════════════════════════════════ */
-const COLORS = { green:'#22c882', amber:'#f79009', red:'#f04438', blue:'#0072d6', teal:'#12b5b0', purple:'#9e77ed', line:'#eaecf0', ink3:'#667085' };
-let dtCharts = [];
-function killCharts() { dtCharts.forEach(c => { try { c.destroy(); } catch (e) {} }); dtCharts = []; }
+const C = { green:'#22c882', success:'#12b76a', amber:'#f79009', yellow:'#ffd762', red:'#f04438', blue:'#0072d6', azure:'#3b82f6', teal:'#12b5b0', indigo:'#1d4ed8', magenta:'#d946ef', orange:'#f97316', ink:'#1d2939', g200:'#eaecf0', g300:'#d0d5dd', g500:'#667085' };
 const detail = document.getElementById('cmDetail');
-document.getElementById('dtBack').addEventListener('click', () => { killCharts(); detail.hidden = true; document.getElementById('cmApp').hidden = false; });
-const tileHTML = (icon, tint, label, value) => `<div class="dt-tile"><div class="ti" style="background:${tint}22;color:${tint}">${ic(icon, 16)}</div><div><div class="tl">${label}</div><div class="tv">${value}</div></div></div>`;
+const dtWrap = document.getElementById('dtWrap');
+const dtDrawer = document.getElementById('dtDrawer'), dtPanel = document.getElementById('dtPanel');
+let currentContract = null;
+
+document.getElementById('dtBack').addEventListener('click', () => { closeDrawer(); detail.hidden = true; document.getElementById('cmApp').hidden = false; });
+document.getElementById('dtTimeline').addEventListener('click', () => openDrawer('timeline'));
+document.getElementById('dtScrim').addEventListener('click', closeDrawer);
+window.addEventListener('keydown', e => { if (e.key === 'Escape' && !dtDrawer.hidden) closeDrawer(); });
+window.addEventListener('resize', () => { if (!detail.hidden && currentContract) drawCharts(); });
+
+/* ── Deterministic demo series ──────────────────────────────────────────── */
+const wob = (i, a, b) => Math.sin(i * a) * b + Math.cos(i * a * 1.7) * b * .5;
+const DAILY = Array.from({ length: 42 }, (_, i) => Math.round((81 - i * .52 + wob(i, .9, 2.2)) * 10) / 10);
+const FIVE = [
+  { c:C.green,   d:Array.from({ length: 48 }, (_, i) => 45 + i * .36 + wob(i, .7, 1.4)) },
+  { c:C.magenta, d:Array.from({ length: 48 }, (_, i) => 32 + i * .24 + wob(i, .8, 1.2)) },
+  { c:C.orange,  d:Array.from({ length: 48 }, (_, i) => 10 + i * .6 + wob(i, .75, 2.4)) },
+  { c:C.indigo,  d:Array.from({ length: 48 }, (_, i) => 65 + i * .6 + wob(i, .55, 2.6)) },
+  { c:C.ink,     d:Array.from({ length: 48 }, (_, i) => 88 + i * .22 + wob(i, .6, .5)) },
+];
+const KPI_BARS = [ { l:'MSW Collection', a:76, t:88 }, { l:'Bulky Waste Collection', a:70, t:95 }, { l:'C & D Waste Collection', a:79, t:87 } ];
+const SVC_ROWS = [
+  { n:'Solid Waste Collection & Transportation Services', f:'Daily',       pc:'96%', s:81.1, w:92.0, on:648, late:120, miss:110 },
+  { n:'Green & Bulky Waste Collection',                   f:'Daily',       pc:'97%', s:77.6, w:92.0, on:648, late:120, miss:110 },
+  { n:'Bin Washing',                                      f:'Weekly . 3X', pc:'88%', s:81.1, w:96.3, on:648, late:120, miss:110 },
+  { n:'Dead Animals Collection',                          f:'Ad-hoc 24h',  pc:'96%', s:81.1, w:93.6, on:648, late:120, miss:110 },
+  { n:'Bin Maintenance',                                  f:'Ad-hoc 24h',  pc:'92%', s:77.5, w:89.8, on:648, late:120, miss:110 },
+];
+const DONUTS = [
+  { t:'Vehicle Type Breakdown',   n:121, u:'Vehicles',  vis:[.5,.36,.14], seg:[ ['Compactor', 73, C.azure], ['Bin Washer', 43, C.teal], ['Tipper Trucks', 5, C.amber] ] },
+  { t:'Workforce Type Breakdown', n:121, u:'Workforce', vis:[.5,.36,.14], seg:[ ['Drivers', 73, C.azure], ['Helpers', 43, C.teal], ['Supervisors', 5, C.amber] ] },
+  { t:'Equipment Type Breakdown', n:121, u:'Approved',  vis:[.5,.36,.14], seg:[ ['Equip1', 12, C.azure], ['Equip2', 43, C.teal], ['Equip3', 5, C.amber] ] },
+  { t:'Bin Type Breakdown',       n:121, u:'Approved',  vis:[.62,.38], seg:[ ['240L', 73, C.azure], ['1100L', 43, C.teal] ] },
+];
+const TIMELINE = [
+  { day:'22 JUN , 2026', items:[
+    { av:{ icon:'plus' }, who:'ZAYD FARSI', act:'Created Contract.', tm:'11:20 pm' },
+    { av:{ icon:'edit-02' }, who:'Tadweer Amin', act:'Update Description', tm:'11:20 pm' },
+    { av:{ img:'assets/art/avatar-khalid.png' }, who:'KHALID AL-MANSOORI', act:'Update Status', from:['Draft', '#4e5ba6'], to:['Scheduled', C.amber], tm:'01:24 am' } ] },
+  { day:'23 JUN , 2026', items:[
+    { av:{ img:'assets/art/avatar-ali.png' }, who:'Muhammad Ali', act:'Update Status', from:['Scheduled', C.amber], to:['Ongoing', C.azure], tm:'01:24 am' },
+    { av:{ img:'assets/art/avatar-ali.png' }, who:'Muhammad Ali', act:'Update Status', from:['Ongoing', C.azure], to:['Shift Ended', C.magenta], tm:'01:24 am' },
+    { av:{ img:'assets/art/avatar-khalid.png' }, who:'KHALID AL-MANSOORI', act:'Resolved Uncollected Bins', tm:'04:24 am', msg:'These 160 Bins are collected but not marked as collected in the system. I confirm it with driver. Vehicle RFID reader was break down during the collection. Driver already reported the issue.' },
+    { av:{ img:'assets/art/avatar-khalid.png' }, who:'KHALID AL-MANSOORI', act:'Update Status', from:['Shift Ended', C.magenta], to:['Completed', C.success], tm:'04:25 am' } ] },
+];
+const DRIVERS = ['Ali Raza','Bina Khan','Cyrus Patel','Danish Alli','Ehsan Malik','Farah Noor','Gulzar Ahmed','Hasseb Asad','Ibrahim Khan','Jasmine Tariq','Kareem Shah','Laila Hussain','M. Farooq','Nadeem Saeed','Omar Yasin','Parvez Iqbal'];
+const PLANS = ['Bin Collection Golden Mall','Bin Collection Central Park','Bin Collection Riverfront Plaza','Bin Collection Eastside Market','Bin Collection West End Theatre','Oakwood Community Center','Bin Collection Pine Hill Park','Bin Collection Sunset Boulevard','Bin Collection Maple Avenue','Bin Collection Lakeside Resort','Bin Collection City Square','Downtown Arts District','Bin Collection Heritage Museum','Bin Collection Tech Hub','Bin Collection Sports Complex','Bin Collection Harbour View'];
+const DOCS = [ { name:'ESP Physical Contract', meta:'Expiry Date: 24th Oct, 2028' }, { name:'ESP Company Info', meta:'Expiry Date: 12 Apr, 2026' } ];
+const AV_STYLE = i => i % 3 === 1 ? 'img' : i % 3 === 2 ? 'c' : 'l';   /* photo · coloured initial · plain initial */
+
+/* ── Small builders ─────────────────────────────────────────────────────── */
+const card = (icon, title, body, cls = '', right = '') => `<section class="dcard ${cls}"><div class="dc-h"><div class="dc-t"><span class="dc-av">${ic(icon, 16)}</span><h3>${title}</h3></div>${right}</div>${body}</section>`;
+const tile = (icon, tint, col, label, value, extra = '') => `<${extra ? 'button type="button"' : 'div'} class="tile${extra ? ' link' : ''}" ${extra}><span class="t-av" style="background:${tint};color:${col}">${ic(icon, 20)}</span><span class="t-txt"><span class="t-l">${label}</span><span class="t-v">${value}</span></span></${extra ? 'button' : 'div'}>`;
+const kvr = (k, v) => `<div class="r"><span class="k">${k}</span><span class="v">${v}</span></div>`;
+const fmt = n => n.toLocaleString('en-US');
+
+/* Overall-compliance gauge 223×117 (2303:3033): red→amber sweep, olive + green segments, marker at value */
 function gaugeSVG(pct) {
-  const r = 54, c = Math.PI * r, off = c * (1 - pct / 100), col = pct >= 80 ? COLORS.green : pct >= 60 ? COLORS.amber : COLORS.red;
-  return `<svg width="150" height="90" viewBox="0 0 150 90"><path d="M15 82 A60 60 0 0 1 135 82" fill="none" stroke="#f2f4f7" stroke-width="14" stroke-linecap="round"/><path d="M15 82 A60 60 0 0 1 135 82" fill="none" stroke="${col}" stroke-width="14" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${off}"/></svg>`;
+  const cx = 111.5, cy = 108, r = 96, sw = 22;
+  const pt = (a) => { const t = Math.PI * (1 - a); return [cx + r * Math.cos(t), cy - r * Math.sin(t)]; };
+  const arc = (a0, a1) => { const [x0, y0] = pt(a0), [x1, y1] = pt(a1); return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`; };
+  const gap = .012, m = pt(pct / 100), ang = Math.PI * (1 - pct / 100), mi = [cx + (r - sw / 2 - 6) * Math.cos(ang), cy - (r - sw / 2 - 6) * Math.sin(ang)];
+  return `<svg width="223" height="117" viewBox="0 0 223 117" aria-label="Overall compliance ${pct}%">
+    <defs><linearGradient id="gA" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="${C.red}"/><stop offset=".55" stop-color="${C.amber}"/><stop offset="1" stop-color="#fdb022"/></linearGradient>
+    <linearGradient id="gB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c8c72c"/><stop offset="1" stop-color="#7cc45a"/></linearGradient>
+    <linearGradient id="gC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C.green}"/><stop offset="1" stop-color="${C.success}"/></linearGradient></defs>
+    <path d="${arc(0, .62 - gap)}" stroke="url(#gA)" stroke-width="${sw}" stroke-linecap="round" fill="none"/>
+    <path d="${arc(.62 + gap, .78 - gap)}" stroke="url(#gB)" stroke-width="${sw}" stroke-linecap="round" fill="none"/>
+    <path d="${arc(.78 + gap, 1)}" stroke="url(#gC)" stroke-width="${sw}" stroke-linecap="round" fill="none"/>
+    <g transform="translate(${mi[0].toFixed(1)} ${mi[1].toFixed(1)}) rotate(${(90 - pct / 100 * 180).toFixed(1)})"><path d="M0 -7 L7 5 L-7 5 Z" fill="${C.ink}"/></g>
+    <text x="${cx}" y="${cy + 3}" text-anchor="middle" font-size="36" font-weight="600" fill="${C.ink}">${pct}%</text>
+  </svg>`;
 }
-function openDetail(c) {
-  killCharts(); document.getElementById('cmApp').hidden = true; detail.hidden = false;
-  document.getElementById('dtCrumb').innerHTML = `01 · <b>${c.id}</b> · <b>${esc(c.name)} Contract</b>`;
-  const compliance = 81;
-  document.getElementById('dtWrap').innerHTML = `
-    <div class="dt-topgrid">
-      <div class="dt-gauge">${gaugeSVG(compliance)}<div class="g-val">${compliance}%</div><div class="g-lbl">Overall Compliance</div></div>
-      ${tileHTML('car-01', COLORS.blue, 'Number Of Vehicle', `${c.m.vehicles}<span class="max">/120</span>`)}
-      ${tileHTML('users-02', COLORS.green, 'Number Of Workforce', `${c.m.workforce}<span class="max">/120</span>`)}
-      ${tileHTML('tool-02', COLORS.amber, 'Number Of Equipment', `${c.m.equipment}<span class="max">/120</span>`)}
-      ${tileHTML('list', COLORS.purple, 'Number Of Plans', `100<span class="max">/120</span>`)}
-      ${tileHTML('coins-hand', COLORS.teal, 'Number Of Services', '05')}
-      ${tileHTML('target-04', COLORS.red, 'Number Of KPIs', '05')}
-    </div>
-    <div class="dt-strip">
-      ${tileHTML('calendar', COLORS.blue, 'Days Remaining', c.expiresDays > 0 ? `${c.expiresDays} Days` : '—')}
-      ${tileHTML('target-04', COLORS.purple, 'Service Compliance', '62%')}
-      ${tileHTML('calendar', COLORS.green, 'Start & End Date', '24 Nov 2024 – 10 Nov 2028')}
-    </div>
-    <div class="dt-2col">
-      <div class="dt-card"><div class="dc-h">${ic('file-06', 16)}Contractor Details</div>
-        <div class="dt-kv"><span class="k">Contractor</span><span class="v"><span class="av" style="width:16px;height:16px;border-radius:8px;background:var(--esp-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700">B</span>${c.contractor}</span></div>
-        <div class="dt-kv"><span class="k">Contact Person</span><span class="v">Saad Bin Usman</span></div>
-        <div class="dt-kv"><span class="k">Email</span><span class="v">saad.beih@gmail.com</span></div>
-        <div class="dt-kv"><span class="k">Contact Phone</span><span class="v">+971 50 123 4567</span></div>
-        <div class="dt-kv"><span class="k">Project Manager</span><span class="v">${ic('user-03', 14)}Syed Abul</span></div>
-      </div>
-      <div class="dt-card"><div class="dc-h">${ic('target-04', 16)}Daily Plans Compliance vs Required Baseline</div><div class="dt-chart"><canvas id="dtDaily"></canvas></div></div>
-    </div>
-    <div class="dt-card"><div class="dc-h">${ic('target-04', 16)}KPI Targets — Target vs Achieved</div><div class="dt-chart"><canvas id="dtKpi"></canvas></div></div>
-    <div class="dt-card"><div class="dc-h">${ic('coins-hand', 16)}Service Coverage &amp; Frequencies Compliance</div><div class="dt-chart tall"><canvas id="dtService"></canvas></div></div>
-    <div class="dt-card"><div class="dc-h">${ic('calendar', 16)}5-Years Plan Compliance</div><div class="dt-chart tall"><canvas id="dt5yr"></canvas></div></div>
-    <div class="dt-3col">${['Vehicle','Workforce','Equipment'].map((t, i) => `<div class="dt-card"><div class="dc-h">${ic('list', 16)}${t} Type Breakdown</div><div class="dt-donut"><canvas id="dtDonut${i}"></canvas></div></div>`).join('')}</div>
-    <div class="dt-3col">
-      <div class="dt-card"><div class="dc-h">${ic('trash-03', 16)}Bin Type Breakdown</div><div class="dt-donut"><canvas id="dtDonut3"></canvas></div></div>
-      <div class="dt-card" style="grid-column:2/-1"><div class="dc-h">${ic('attachment-01', 16)}Attached Documents</div>
-        <div class="dt-doclist">
-          <div class="dt-doc"><span class="pdf">PDF</span><div><div style="font-weight:600">ESP Physical Contract</div><div style="font-size:12px;color:var(--g500)">Expiry Date: 24 Oct, 2028</div></div></div>
-          <div class="dt-doc"><span class="pdf">PDF</span><div><div style="font-weight:600">ESP Company Info</div><div style="font-size:12px;color:var(--g500)">Uploaded 12 Oct, 2024</div></div></div>
-        </div></div>
-    </div>`;
-  if (window.Chart) buildDetailCharts();
-  detail.scrollTop = 0;
+
+/* Catmull-Rom → cubic bezier path through points */
+function smooth(pts) {
+  if (pts.length < 2) return '';
+  let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+    const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6], c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+    d += ` C${c1[0].toFixed(1)} ${c1[1].toFixed(1)} ${c2[0].toFixed(1)} ${c2[1].toFixed(1)} ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;
+  }
+  return d;
 }
-function buildDetailCharts() {
-  const grid = { color:COLORS.line }, noGrid = { display:false }, legend = { position:'bottom', labels:{ boxWidth:10, usePointStyle:true, pointStyle:'circle' } };
-  const days = Array.from({ length:30 }, (_, i) => `${i + 1}`);
-  dtCharts.push(new Chart(document.getElementById('dtDaily'), { type:'line', data:{ labels:days, datasets:[
-    { label:'Compliance', data:days.map((_, i) => 92 - i * .3 + Math.sin(i) * 2), borderColor:COLORS.amber, backgroundColor:'rgba(247,144,9,.10)', fill:true, tension:.4, pointRadius:0, borderWidth:2 },
-    { label:'Baseline', data:days.map(() => 95), borderColor:COLORS.ink3, borderDash:[6,6], pointRadius:0, borderWidth:1.5 } ] },
-    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ grid, min:0, max:100, ticks:{ stepSize:25 } }, x:{ grid:noGrid, ticks:{ maxTicksLimit:8 } } } } }));
-  dtCharts.push(new Chart(document.getElementById('dtKpi'), { type:'bar', data:{ labels:['MSW Collection','Bulky Waste Collection','C & D Waste Collection'], datasets:[
-    { label:'Target', data:[100,90,90], backgroundColor:'rgba(34,200,130,.20)', borderRadius:4, barThickness:14 }, { label:'Achieved', data:[92,78,60], backgroundColor:COLORS.amber, borderRadius:4, barThickness:14 } ] },
-    options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false, plugins:{ legend }, scales:{ x:{ grid, min:0, max:100, ticks:{ callback:v => v + '%' } }, y:{ grid:noGrid } } } }));
-  dtCharts.push(new Chart(document.getElementById('dtService'), { type:'bar', data:{ labels:['Solid Waste Collection','On-Time','Green & Bulky Waste','Bin Washing','Recyclable','Dead Animals'], datasets:[
-    { label:'On-Time', data:[85,90,72,95,88,80], backgroundColor:COLORS.green, borderRadius:{ topLeft:4, bottomLeft:4 }, barThickness:16, stack:'s' },
-    { label:'Late', data:[10,7,18,3,8,12], backgroundColor:COLORS.amber, barThickness:16, stack:'s' },
-    { label:'Missed', data:[5,3,10,2,4,8], backgroundColor:COLORS.red, borderRadius:{ topRight:4, bottomRight:4 }, barThickness:16, stack:'s' } ] },
-    options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false, plugins:{ legend }, scales:{ x:{ grid, max:100, stacked:true }, y:{ grid:noGrid, stacked:true } } } }));
-  const months = Array.from({ length:24 }, (_, i) => `M${i + 1}`);
-  dtCharts.push(new Chart(document.getElementById('dt5yr'), { type:'line', data:{ labels:months, datasets:[COLORS.blue, COLORS.green, COLORS.amber, COLORS.purple, COLORS.red].map((col, s) => ({ label:`Series ${s + 1}`, borderColor:col, backgroundColor:col, pointRadius:0, borderWidth:2, tension:.4, data:months.map((_, i) => 60 + s * 8 + Math.sin(i / 3 + s) * 5 + i * .4) })) },
-    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'top', align:'end', labels:{ boxWidth:10, usePointStyle:true, pointStyle:'circle' } } }, scales:{ y:{ grid, min:40, max:110 }, x:{ grid:noGrid, ticks:{ maxTicksLimit:8 } } } } }));
-  [ { labels:['Compactor','Skip Loader','Tipper Truck'], data:[60,40,21], cols:[COLORS.green, COLORS.blue, COLORS.amber] },
-    { labels:['Drivers','Helpers','Supervisors'], data:[70,35,16], cols:[COLORS.blue, COLORS.green, COLORS.amber] },
-    { labels:['Sweeper','Broom','Loader'], data:[55,40,26], cols:[COLORS.purple, COLORS.green, COLORS.blue] },
-    { labels:['3 CBM','5 CBM','7 CBM'], data:[60,41,20], cols:[COLORS.blue, COLORS.green, COLORS.amber] } ].forEach((d, i) => {
-    dtCharts.push(new Chart(document.getElementById('dtDonut' + i), { type:'doughnut', data:{ labels:d.labels, datasets:[{ data:d.data, backgroundColor:d.cols, borderWidth:0 }] },
-      options:{ responsive:true, maintainAspectRatio:false, cutout:'68%', plugins:{ legend:{ position:'bottom', labels:{ boxWidth:8, usePointStyle:true, pointStyle:'circle', font:{ size:10 } } } } },
-      plugins:[{ id:'ctr' + i, afterDraw(ch) { const { ctx, chartArea } = ch; const x = (chartArea.left + chartArea.right) / 2, y = (chartArea.top + chartArea.bottom) / 2;
-        ctx.save(); ctx.textAlign = 'center'; ctx.fillStyle = '#1d2939'; ctx.font = '700 22px Gilroy,Inter,sans-serif'; ctx.fillText('121', x, y - 2);
-        ctx.fillStyle = '#667085'; ctx.font = '500 10px Gilroy,Inter,sans-serif'; ctx.fillText('Total', x, y + 14); ctx.restore(); } }] }));
+
+/* Daily Plans line chart (2303:3175): y label col 18 + gap 4 · ticks w40 gap 8 · x labels 16h px24 · "Date" pt8 */
+function dailyChartSVG(w, h) {
+  const yl = 22, tick = 48, xh = 16, xl = 26, top = 9;
+  const L = yl + tick, R = w, T = top, B = h - xh - xl, PH = B - T;
+  const y = v => T + PH * (1 - v / 100), xs = i => L + 24 + (R - L - 48) * i / (DAILY.length - 1);
+  const pts = DAILY.map((v, i) => [xs(i), y(v)]);
+  const line = smooth(pts), area = `${line} L${pts[pts.length - 1][0].toFixed(1)} ${B} L${pts[0][0].toFixed(1)} ${B} Z`;
+  const days = ['8 July','9 July','10 July','11 July','12 July','13 July','14 July'];
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+    <defs><linearGradient id="dArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C.amber}" stop-opacity=".22"/><stop offset="1" stop-color="${C.amber}" stop-opacity="0"/></linearGradient></defs>
+    <text class="axt" transform="translate(13 ${(T + B) / 2}) rotate(-90)" text-anchor="middle">Number of Resources</text>
+    ${[100,80,60,40,20,0].map(v => `<text x="${yl + 40}" y="${y(v) + 4}" text-anchor="end">${v}</text><line x1="${L}" x2="${R}" y1="${y(v)}" y2="${y(v)}" stroke="${C.g200}"/>`).join('')}
+    <path d="${area}" fill="url(#dArea)"/><path d="${line}" stroke="${C.amber}" stroke-width="2" fill="none" stroke-linejoin="round"/>
+    <line x1="${L}" x2="${R}" y1="${y(87)}" y2="${y(87)}" stroke="${C.teal}" stroke-width="2" stroke-dasharray="8 6"/>
+    ${days.map((d, i) => `<text x="${L + 24 + (R - L - 48) * (i / 6)}" y="${B + 13}" text-anchor="middle">${d}</text>`).join('')}
+    <text class="axl" x="${(L + R) / 2}" y="${h - 4}" text-anchor="middle">Date</text>
+  </svg>`;
+}
+
+/* 5-Years Plan line chart (2303:3441): rotated "Compliance %" · 6 pct ticks · 12 month labels · 5 series */
+function fiveYearSVG(w, h) {
+  const T = 0, L = 18 + 48, R = w - 33, B = 228;
+  const y = v => T + (B - T) * (1 - v / 100), xs = i => L + (R - L) * i / 47;
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+    <text class="axl" transform="translate(9 ${(T + B) / 2}) rotate(-90)" text-anchor="middle">Compliance %</text>
+    ${[100,80,60,40,20,0].map(v => `<text class="ax" x="${18 + 40}" y="${y(v) + 4}" text-anchor="end">${v ? v + '%' : '0'}</text><line x1="${L}" x2="${R}" y1="${y(v)}" y2="${y(v)}" stroke="${C.g200}"/>`).join('')}
+    ${FIVE.map(s => `<path d="${smooth(s.d.map((v, i) => [xs(i), y(Math.min(100, v))]))}" stroke="${s.c}" stroke-width="1.5" fill="none" stroke-linejoin="round"/>`).join('')}
+    ${Array.from({ length: 12 }, (_, i) => `<text class="ax" x="${L + 28 + (R - L - 56) * i / 11}" y="${B + 14}" text-anchor="middle">${i + 1}</text>`).join('')}
+    <text class="axl" x="${(L + R) / 2}" y="${B + 40}" text-anchor="middle">Months</text>
+  </svg>`;
+}
+
+/* KPI Targets — horizontal target-vs-achieved bars (2303:3209): label col 163 · dotted grid · 32px bars r6 */
+function kpiBarsSVG(w, h) {
+  const L = 163 + 2, R = w - 2, rows = KPI_BARS.length, RH = h / rows, x = v => L + (R - L) * v / 100;
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+    ${[0,20,40,60,80,100].map(v => `<line x1="${x(v)}" x2="${x(v)}" y1="1" y2="${h - 1}" stroke="${C.g300}" stroke-dasharray="2 3"/>`).join('')}
+    ${KPI_BARS.map((k, i) => { const cy = RH * i + RH / 2; return `
+      <text class="lbl" x="${L - 6}" y="${cy + 4}" text-anchor="end">${esc(k.l)}</text>
+      <line x1="${L}" x2="${R}" y1="${RH * (i + 1) - .5}" y2="${RH * (i + 1) - .5}" stroke="${C.g300}" stroke-dasharray="2 3"/>
+      <rect x="${L}" y="${cy - 16}" width="${x(k.t) - L}" height="32" rx="6" fill="${C.yellow}" opacity=".16"/>
+      <rect x="${L}" y="${cy - 16}" width="${x(k.a) - L}" height="32" rx="6" fill="${C.amber}" opacity=".8"/>`; }).join('')}
+    <line x1="${L}" x2="${R}" y1=".5" y2=".5" stroke="${C.g300}" stroke-dasharray="2 3"/>
+  </svg>
+  <div class="kaxis" style="display:flex;justify-content:space-between;padding-left:${L + 17}px;font-size:12px;font-weight:600;color:rgba(0,0,0,.7);margin-top:2px">${[0,20,40,60,80,100].map(v => `<span>${v}</span>`).join('')}</div>`;
+}
+
+/* Donut 220 (2303:3486): 22px ring, 3° gaps, round caps, starts at −35° */
+function donutSVG(seg, vis) {
+  const total = seg.reduce((a, s) => a + s[1], 0), r = 98, sw = 22, cx = 110, cy = 110, gapDeg = 7;
+  let a = 3; const paths = [];
+  seg.forEach(([, v, col], i) => {
+    const frac = vis ? vis[i] : v / total;
+    const sweep = 360 * frac - gapDeg, a0 = a + gapDeg / 2, a1 = a0 + sweep;
+    const p = d => { const t = (d - 90) * Math.PI / 180; return [cx + r * Math.cos(t), cy + r * Math.sin(t)]; };
+    const [x0, y0] = p(a0), [x1, y1] = p(a1);
+    paths.push(`<path d="M${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 ${sweep > 180 ? 1 : 0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}" stroke="${col}" stroke-width="${sw}" stroke-linecap="round" fill="none"/>`);
+    a += 360 * frac;
   });
+  return `<svg width="220" height="220" viewBox="0 0 220 220">${paths.join('')}</svg>`;
+}
+const donutCard = d => card('pie-chart-01', d.t, `<div class="dc-b">
+    <div class="donut">${donutSVG(d.seg, d.vis)}<div class="ctr"><div class="n">${d.n}</div><div class="u">${d.u}</div><div class="tr">${ic('arrow-up', 10)}20%</div></div></div>
+    <div class="dlg">${d.seg.map(([l, v, c]) => `<span><i style="background:${c}"></i>${l}<em>${v}</em></span>`).join('')}</div>
+  </div>`, 'dt-donut');
+
+/* ── Page ───────────────────────────────────────────────────────────────── */
+function openDetail(c) {
+  currentContract = c; closeDrawer();
+  document.getElementById('cmApp').hidden = true; detail.hidden = false;
+  const lotNo = (c.lot || 'Lot 1').replace(/\D/g, '') || '1', area = c.name.split('—')[1]?.trim() || 'Abu Dhabi';
+  document.getElementById('dtId').textContent = 'CRT' + c.id.replace(/\D/g, '').slice(-3);
+  document.getElementById('dtTitle').textContent = `LOT ${lotNo}: ${area} Contract`;
+  document.getElementById('dtEsp').innerHTML = `<span class="av">${esc(c.contractor[0])}</span>${esc(c.contractor[0] + c.contractor.slice(1).toLowerCase())}`;
+  document.getElementById('dtLot').innerHTML = `${ic('skew', 16)}Lot ${lotNo}`;
+  const st = document.getElementById('dtStatus'); st.textContent = c.status === 'draft' ? 'Draft' : c.status === 'expired' ? 'Expired' : c.status === 'expiring' ? 'Expiring' : 'Active';
+  st.style.background = c.status === 'draft' ? 'var(--g400)' : c.status === 'expired' ? 'var(--error)' : c.status === 'expiring' ? 'var(--warning)' : '';
+  const days = c.expiresDays == null ? '—' : c.expiresDays < 0 ? 'Expired' : `${c.expiresDays} Days`;
+  const raw = (k, t) => `data-raw="${k}" data-rawt="${t}"`;
+  dtWrap.innerHTML = `
+    <div class="dt-row">
+      <section class="dcard dt-gauge">${gaugeSVG(81)}<div class="g-lbl">Overall Compliance</div></section>
+      <div class="dt-tiles">
+        <div class="dt-row">
+          ${tile('truck-01', 'rgba(165,218,18,.09)', '#7fb50a', 'Number Of Vehicles', `${c.m.vehicles}/120`, raw('vehicles', 'Number of Vehicles'))}
+          ${tile('users-02', 'rgba(34,200,130,.07)', C.green, 'Number Of Workforce', `${c.m.workforce}/120`, raw('workforce', 'Number of Workforce'))}
+          ${tile('tool-02', 'rgba(234,16,96,.07)', '#ea1060', 'Number Of Equipment', `${c.m.equipment}/120`, raw('equipment', 'Number of Equipment'))}
+        </div>
+        <div class="dt-row">
+          ${tile('file-06', 'rgba(149,75,175,.07)', '#954baf', 'Number Of Plans', '100/120', raw('plans', 'Number of Plans'))}
+          ${tile('briefcase-01', 'rgba(0,114,214,.07)', C.blue, 'number of Services', '05')}
+          ${tile('target-04', 'rgba(34,200,130,.07)', C.green, 'Number Of KPIs', '05')}
+        </div>
+      </div>
+    </div>
+    <div class="dt-row">
+      ${tile('calendar', 'rgba(0,114,214,.07)', C.blue, 'Days Remaining', days)}
+      ${tile('briefcase-01', 'rgba(149,75,175,.07)', '#954baf', 'Service Compliance', '82%')}
+      <div class="tile date"><span class="t-av" style="background:rgba(254,200,75,.08);color:#f2a90a">${ic('calendar', 20)}</span><span class="t-txt"><span class="t-l">Start &amp; End Date</span><span class="t-v"><span>24 Nov, 2024</span><span>-</span><span>10 Nov, 2028</span></span></span></div>
+    </div>
+    <div class="dt-row">
+      ${card('building-06', 'Contractor Details', `<div class="kvl">
+        ${kvr('Contractor', `<span class="v img"><img src="assets/art/esp-avatar.png" alt="">${esc(c.contractor === 'BEEAH' ? 'ESP Contractor' : c.contractor)}</span>`)}
+        ${kvr('Contact', `<span class="v"><span class="ini lav">S</span>Saad Bin Usman</span>`)}
+        ${kvr('Contact’s Email', 'saad.bin12@gmail.com')}
+        ${kvr('Contact’s Phone', '+971 50 123 4567')}
+        ${kvr('Project Manager', `<span class="v"><span class="ini blu">S</span>Syed Ali</span>`)}
+      </div>`, 'dt-half')}
+      ${card('trend-up-01', 'Daily Plans Compliance vs Required Baseline', `<div class="dc-b chart" id="chDaily"></div>`, 'dt-half')}
+    </div>
+    ${card('pie-chart-01', 'KPI Targets — Target vs Achieved', `<div class="dc-b"><div class="chart" id="chKpi"></div><div class="foot">Percentage %</div></div>`, 'dt-kpi bd3')}
+    ${card('horizontal-bar-chart-01', 'Service Coverage &amp; Frequencies Compliance', `<div class="dc-b"><div class="svc-rows">${SVC_ROWS.map(r => `<div class="svc-r">
+        <div class="l1"><span class="nm">${esc(r.n)}<span>${esc(r.f)}</span></span><span class="pc">${r.pc}</span></div>
+        <div class="bar3"><i class="e"></i><i class="w" style="left:9.2%;width:${(r.w - 9.2).toFixed(1)}%"></i><i class="s" style="width:${r.s}%"></i></div>
+        <div class="l2"><span class="lg"><span><i style="background:${C.success}"></i>On Time<em>${r.on}</em></span><span><i style="background:${C.amber}"></i>Late<em>${r.late}</em></span><span><i style="background:${C.red}"></i>Missed<em>${r.miss}</em></span></span><span class="of">2,810 of 2,890 Schedules</span></div>
+      </div>`).join('')}</div></div>`, 'dt-svc bd3')}
+    ${card('target-04', '5-Years Plan Compliance', `<div class="legend">${FIVE.map((s, i) => `<span><i style="background:${s.c}"></i>Series ${i + 1}</span>`).join('')}</div><div class="dc-b chart" id="ch5yr"></div>`, 'dt-5yr')}
+    <div class="dt-row">${DONUTS.slice(0, 3).map(donutCard).join('')}</div>
+    <div class="dt-row"><div style="flex:1;display:flex">${donutCard(DONUTS[3])}</div><div style="flex:2"></div></div>
+    ${card('file-05', 'Attached Documents', `<div class="dc-b">${DOCS.map(a => `<div class="doc"><img src="assets/art/pdf.png" alt="PDF"><div><div class="n">${esc(a.name)}</div><div class="m">${esc(a.meta || 'Expiry Date: 12 Apr, 2026')}</div></div></div>`).join('')}</div>`, 'dt-docs bd3')}`;
+  dtWrap.querySelectorAll('[data-raw]').forEach(el => el.addEventListener('click', () => openDrawer('raw', { key: el.dataset.raw, title: el.dataset.rawt })));
+  drawCharts();
+  detail.scrollTop = 0; window.scrollTo(0, 0);
+}
+function drawCharts() {
+  const d = document.getElementById('chDaily'); if (d) d.innerHTML = dailyChartSVG(d.clientWidth - 32, d.clientHeight - 32);
+  const k = document.getElementById('chKpi'); if (k) k.innerHTML = kpiBarsSVG(k.clientWidth, 207);
+  const f = document.getElementById('ch5yr'); if (f) f.innerHTML = fiveYearSVG(f.clientWidth - 24, f.clientHeight - 50);
+}
+
+/* ── Drawers ────────────────────────────────────────────────────────────── */
+function closeDrawer() { dtDrawer.hidden = true; dtPanel.innerHTML = ''; dtPanel.className = 'dt-panel'; }
+const closeBtn = `<button class="dt-close" type="button" data-close aria-label="Close">${ic('x', 24)}</button>`;
+function openDrawer(kind, opts = {}) {
+  dtDrawer.hidden = false;
+  if (kind === 'timeline') { dtPanel.className = 'dt-panel tl-panel'; dtPanel.innerHTML = closeBtn + timelineHTML(); wireTimeline(); }
+  else { dtPanel.className = 'dt-panel rd-panel'; dtPanel.innerHTML = closeBtn + rawDataHTML(opts); wireRaw(); }
+  dtPanel.querySelector('[data-close]').addEventListener('click', closeDrawer);
+}
+
+/* Timeline (2303:4371) */
+const badge = ([t, c], old) => `<span class="bg${old ? ' old' : ''}" style="background:${c}">${esc(t)}</span>`;
+function entryHTML(e, last) {
+  const av = e.av.img ? `<span class="av"><img src="${e.av.img}" alt=""></span>` : `<span class="av">${ic(e.av.icon, 14)}</span>`;
+  const sts = e.from ? `<span class="sts">${badge(e.from, true)}${ic('arrow-narrow-right', 14)}${badge(e.to)}</span>` : '';
+  return `<div class="tl-e${last ? ' last' : ''}"><span class="ln"></span><div class="box">
+    <div class="hd"><div class="who">${av}<div class="txt"><span class="nm">${esc(e.who)}</span><span class="ac">${esc(e.act)}</span>${sts}</div></div><span class="tm">${e.tm}</span></div>
+    ${e.msg ? `<div class="msg">${esc(e.msg)}</div>` : ''}
+  </div></div>`;
+}
+function timelineHTML() {
+  return `<div class="tl-tabs"><button type="button">Timeline</button></div>
+    <div class="tl-body"><div class="tl-list" id="tlList">${TIMELINE.map(g => `<div class="tl-day"><b>${g.day}</b></div><div class="tl-entries">${g.items.map((e, i) => entryHTML(e, i === g.items.length - 1)).join('')}</div>`).join('')}</div>
+    <form class="tl-foot" id="tlForm"><label class="tl-in"><input id="tlInput" placeholder="Write comment here" autocomplete="off">${ic('attachment-01', 16)}</label><button class="tl-send" type="submit" aria-label="Send">${ic('send-01', 20)}</button></form></div>`;
+}
+function wireTimeline() {
+  const list = document.getElementById('tlList'); list.scrollTop = list.scrollHeight;
+  document.getElementById('tlForm').addEventListener('submit', e => {
+    e.preventDefault(); const inp = document.getElementById('tlInput'), txt = inp.value.trim(); if (!txt) return;
+    const now = new Date(), tm = now.toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit' }).toLowerCase();
+    const day = now.toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' }).toUpperCase().replace(/(\d{2}) (\w{3}) (\d{4})/, '$1 $2 , $3');
+    let grp = TIMELINE[TIMELINE.length - 1]; if (grp.day !== day) { grp = { day, items:[] }; TIMELINE.push(grp); }
+    grp.items.push({ av:{ img:'assets/art/avatar-khalid.png' }, who:'KHALID AL-MANSOORI', act:'Added Comment', tm, msg:txt });
+    inp.value = ''; dtPanel.innerHTML = closeBtn + timelineHTML(); wireTimeline(); dtPanel.querySelector('[data-close]').addEventListener('click', closeDrawer);
+  });
+}
+
+/* Raw Data (2303:5206): title 24/18 · toolbar · count · 7-column table 110|150|230|142|114|160|160 */
+function rawRows(q) {
+  return DRIVERS.map((d, i) => ({ v:'2342', d, plan:PLANS[i], i })).filter(r => !q || (r.d + ' ' + r.plan).toLowerCase().includes(q));
+}
+function rawDataHTML({ title = 'Number of Vehicles', q = '' } = {}) {
+  const rows = rawRows(q);
+  const avatar = (r) => AV_STYLE(r.i) === 'img' ? `<span class="av"><img src="assets/art/${r.i % 2 ? 'avatar-ali' : 'avatar-khalid'}.png" alt=""></span>` : AV_STYLE(r.i) === 'c' ? `<span class="av c" style="background:${C.blue}">${r.d[0]}</span>` : `<span class="av">${r.d[0]}</span>`;
+  return `<div class="rd-inner">
+    <div class="rd-h"><h2>${esc(title)}</h2><span>(Raw Data)</span></div>
+    <div class="rd-tb"><div class="l"><label class="search">${ic('search-refraction', 16)}<input id="rdSearch" placeholder="Search anything here" value="${esc(q)}" autocomplete="off"></label><button class="iconbtn" type="button" aria-label="Filter">${ic('filter-funnel-01', 16)}</button></div><button class="dl" type="button" aria-label="Download">${ic('file-download-03', 16)}</button></div>
+    <div class="rd-cnt">Showing ${q ? rows.length : 292} items</div>
+    <div class="rd-tbl"><table><colgroup><col style="width:110px"><col style="width:150px"><col style="width:230px"><col style="width:142px"><col style="width:114px"><col style="width:160px"><col style="width:160px"></colgroup>
+      <thead><tr><th>Vehicle</th><th>Driver</th><th>Plan</th><th>Service Type</th><th>Waste Type</th><th>Planned Time</th><th>Status</th></tr></thead>
+      <tbody>${rows.map(r => `<tr>
+        <td><span class="cell"><img class="veh" src="assets/art/veh-compactor-40.png" alt="">${r.v}</span></td>
+        <td><span class="cell">${avatar(r)}${esc(r.d)}</span></td>
+        <td>${esc(r.plan)}</td>
+        <td><span class="bdg"><img src="assets/art/bin-collection-filled.svg" alt="">Bin Collection</span></td>
+        <td><span class="wt"><img src="assets/art/recyclable.svg" alt="">Recyclable</span></td>
+        <td><span class="tm"><span>Start: 30 JUN | 13:20</span><span>End: 30 JUN | 16:00</span></span></td>
+        <td class="stc"><span class="st">Active</span></td>
+      </tr>`).join('')}</tbody></table></div>
+  </div>`;
+}
+function wireRaw() {
+  const s = document.getElementById('rdSearch');
+  s.addEventListener('input', () => {
+    const q = s.value.trim().toLowerCase(), title = dtPanel.querySelector('.rd-h h2').textContent;
+    const rows = rawRows(q); dtPanel.querySelector('.rd-cnt').textContent = `Showing ${q ? rows.length : 292} items`;
+    const tb = dtPanel.querySelector('tbody'); tb.innerHTML = rawDataHTML({ title, q }).match(/<tbody>([\s\S]*)<\/tbody>/)[1];
+  });
+  s.focus();
 }

@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="/fams-design-system/packages/tokens/dist/theme.css">
 <link rel="stylesheet" href="/fams-design-system/packages/tokens/dist/tenants.css">
 <link rel="stylesheet" href="cm.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>try{if(new URLSearchParams(location.search).has('embed'))document.documentElement.classList.add('embed')}catch(e){}</script>
 </head>
 <body>
@@ -36,17 +35,25 @@
   <div class="grid" id="cmGrid"></div>
 </div>
 
-<!-- ══ Contract detail dashboard ══ -->
+<!-- ══ Contract Details (Figma 2303:2988 · Timeline 2303:3679 · Raw Data 2303:4514) ══ -->
 <div class="cm-detail" id="cmDetail" hidden>
-  <div class="dt-bar">
-    <button class="dt-back" id="dtBack" type="button"><svg class="ic r90" width="14" height="14" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg>Back</button>
-    <div class="dt-crumb" id="dtCrumb"></div>
-    <div class="cm-spacer"></div>
-    <button class="dt-edit" type="button"><svg class="ic" width="14" height="14" aria-hidden="true"><use href="assets/icons.svg#i-tool-02"/></svg>Edit</button>
-    <span class="chip lot"><svg class="ic" width="16" height="16" aria-hidden="true"><use href="assets/icons.svg#i-skew"/></svg>Lot 1</span>
-    <span class="dt-active">ACTIVE</span>
+  <div class="dt-top">
+    <div class="dt-tl">
+      <button class="dt-back" id="dtBack" type="button" aria-label="Back to contracts"><svg class="ic" width="20" height="20" aria-hidden="true"><use href="assets/icons.svg#i-arrow-narrow-left"/></svg></button>
+      <div class="dt-crumb"><span class="c1"><svg class="ic r180" width="16" height="16" aria-hidden="true"><use href="assets/icons.svg#i-hash-02"/></svg><b id="dtId">CRT123</b></span><span class="c2" id="dtTitle">LOT 1: Abu Dhabi Contract</span></div>
+      <span class="chip esp" id="dtEsp"><span class="av">B</span>Beah</span>
+      <span class="chip lot" id="dtLot"><svg class="ic" width="16" height="16" aria-hidden="true"><use href="assets/icons.svg#i-skew"/></svg>Lot 1</span>
+    </div>
+    <div class="dt-tr">
+      <span class="dt-active" id="dtStatus">Active</span>
+      <button class="dt-act" id="dtTimeline" type="button" aria-label="Open timeline"><svg class="ic" width="20" height="20" aria-hidden="true"><use href="assets/icons.svg#i-activity"/></svg></button>
+    </div>
   </div>
   <div class="dt-wrap" id="dtWrap"></div>
+  <div class="dt-drawer" id="dtDrawer" hidden>
+    <div class="dt-scrim" id="dtScrim"></div>
+    <div class="dt-panel" id="dtPanel"></div>
+  </div>
 </div>
 
 <!-- ══ Create New Contract wizard (Figma 2111:1925 …) ══ -->

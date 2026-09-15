@@ -1,0 +1,1440 @@
+<frame id="2303:4514" name="Version 7" x="3506" y="2588" width="1440" height="1024">
+  <instance id="2303:4531" name="Side Navigation" x="0" y="0" width="104" height="3231">
+    <frame id="I2303:4531;1024:461" name="Primary Nav" x="0" y="0" width="44" height="3231">
+      <frame id="I2303:4531;1024:462" name="Primary Nav" x="8" y="16" width="28" height="228">
+        <slot id="I2303:4531;5800:1266" name="Logo" x="0" y="0" width="28" height="40">
+          <instance id="I2303:4531;5800:1266;2303:4516" name="FAMS Logo" x="0" y="12" width="28" height="28" hidden="true" />
+          <instance id="I2303:4531;5800:1266;2303:4517" name="Tadweer Logo" x="0" y="0" width="28" height="40" />
+        </slot>
+        <frame id="I2303:4531;1024:480" name="Primary Nav Items" x="1" y="54" width="26" height="174">
+          <frame id="I2303:4531;6646:3215" name="Inbox" x="0" y="0" width="26" height="48">
+            <rounded-rectangle id="I2303:4531;6646:3054" name="Divider" x="-7" y="0" width="40" height="1" />
+            <instance id="I2303:4531;6646:3147" name="Inbox" x="0" y="11" width="26" height="26" />
+            <rounded-rectangle id="I2303:4531;6646:3069" name="Divider" x="-7" y="47" width="40" height="1" />
+            <ellipse id="I2303:4531;6650:5090" name="Indicator" x="20" y="9" width="8" height="8" hidden="true" />
+          </frame>
+          <instance id="I2303:4531;6646:3175" name="_Side Nav Apps" x="0" y="64" width="26" height="26" />
+          <instance id="I2303:4531;4844:1700" name="_Side Nav Apps" x="0" y="106" width="26" height="26" />
+          <instance id="I2303:4531;4844:1874" name="_Side Nav Apps" x="0" y="148" width="26" height="26" />
+          <instance id="I2303:4531;4844:1878" name="_Side Nav Apps" x="0" y="126" width="26" height="26" hidden="true" />
+          <instance id="I2303:4531;4844:1882" name="_Side Nav Apps" x="0" y="168" width="26" height="26" hidden="true" />
+          <instance id="I2303:4531;4844:1886" name="_Side Nav Apps" x="0" y="210" width="26" height="26" hidden="true" />
+          <instance id="I2303:4531;4844:1890" name="_Side Nav Apps" x="0" y="252" width="26" height="26" hidden="true" />
+        </frame>
+        <line id="I2303:4531;4844:1894" name="Line 1" x="-6" y="42" width="40" height="0" hidden="true" />
+      </frame>
+      <frame id="I2303:4531;1024:487" name="Secondary Nav Items" x="8" y="3115" width="28" height="100">
+        <instance id="I2303:4531;4844:1858" name="Settings" x="0" y="0" width="28" height="28" />
+        <instance id="I2303:4531;5365:1349" name="Help Center" x="0" y="36" width="28" height="28" />
+        <instance id="I2303:4531;4844:1801" name="User" x="0" y="72" width="28" height="28" />
+        <line id="I2303:4531;4844:1864" name="Line 1" x="-6" y="-8" width="40" height="0" />
+      </frame>
+    </frame>
+    <slot id="I2303:4531;1024:494" name="Secomdary Tab" x="44" y="0" width="60" height="3231">
+      <instance id="I2303:4531;1024:494;2303:4519" name="_Side Nav modules" x="16" y="16" width="28" height="28" />
+      <instance id="I2303:4531;1024:494;2303:4520" name="_Side Nav modules" x="16" y="60" width="28" height="28" />
+      <instance id="I2303:4531;1024:494;2303:4521" name="_Side Nav modules" x="16" y="104" width="28" height="28" />
+      <instance id="I2303:4531;1024:494;2303:4522" name="_Side Nav modules" x="16" y="148" width="28" height="28" />
+      <instance id="I2303:4531;1024:494;2303:4523" name="_Side Nav modules" x="16" y="192" width="28" height="28" />
+      <instance id="I2303:4531;1024:494;2303:4524" name="_Side Nav modules" x="16" y="236" width="28" height="28" />
+      <instance id="I2303:4531;1024:494;2303:4525" name="_Side Nav modules" x="16" y="280" width="28" height="28" />
+      <instance id="I2303:4531;1024:494;2303:4526" name="_Side Nav modules" x="16" y="324" width="28" height="28" />
+      <instance id="I2303:4531;1024:494;2303:4527" name="_Side Nav modules" x="16" y="368" width="28" height="28" />
+      <instance id="I2303:4531;1024:494;2303:4528" name="_Side Nav modules" x="16" y="412" width="28" height="28" />
+      <instance id="I2303:4531;1024:494;2303:4529" name="_Side Nav modules" x="16" y="456" width="28" height="28" />
+      <instance id="I2303:4531;1024:494;2303:4530" name="IconBase" x="20" y="500" width="20" height="20" hidden="true" />
+    </slot>
+  </instance>
+  <frame id="2303:4532" name="Frame 1984078563" x="118" y="0" width="1322" height="3199.01318359375">
+    <frame id="2303:4533" name="Frame 1984078796" x="24" y="24" width="1274" height="32">
+      <frame id="2303:4534" name="Frame 1984078571" x="0" y="0" width="1274" height="32">
+        <frame id="2303:4535" name="Frame 1984078578" x="0" y="0" width="1274" height="32">
+          <frame id="2303:4536" name="Frame 1984078578" x="0" y="0" width="525" height="32">
+            <frame id="2303:4537" name="Frame 1984078376" x="0" y="0" width="32" height="32">
+              <instance id="2303:4538" name="arrow-narrow-left" x="6.000000953674316" y="6" width="19.999998092651367" height="19.999998092651367" />
+            </frame>
+            <frame id="2303:4539" name="Frame 1984078599" x="48" y="0" width="299" height="32">
+              <frame id="2303:4540" name="Frame 1984078596" x="0" y="0" width="113" height="32">
+                <instance id="2303:4541" name="hash-02" x="24" y="24" width="15.999999046325684" height="15.999999046325684" />
+                <text id="2303:4542" name="CRT123" x="32" y="11" width="73" height="10" />
+              </frame>
+              <frame id="2303:4543" name="Frame 1984078597" x="112" y="0" width="187" height="32">
+                <text id="2303:4544" name="LOT 1: Abu Dhabi Contract" x="8" y="11" width="171" height="10" />
+              </frame>
+            </frame>
+            <frame id="2303:4545" name="Frame 1984078374" x="363" y="0" width="77" height="32">
+              <frame id="2303:4546" name="Frame 1261154906" x="10" y="6" width="20" height="20">
+                <text id="2303:4547" name="B" x="7" y="4.5" width="7" height="12" />
+              </frame>
+              <text id="2303:4548" name="Beah" x="36" y="12" width="29" height="8" />
+            </frame>
+            <frame id="2303:4549" name="Frame 1984078603" x="456" y="0" width="69" height="32">
+              <instance id="2303:4550" name="skew" x="10" y="8" width="16" height="16" />
+              <text id="2303:4551" name="Lot 1" x="32" y="12" width="25" height="8" />
+            </frame>
+          </frame>
+          <frame id="2303:4552" name="Frame 1984079568" x="1156" y="0" width="118" height="32">
+            <frame id="2303:4553" name="Frame 1000002926" x="0" y="0" width="74" height="32">
+              <text id="2303:4554" name="Active" x="12" y="11" width="50" height="10" />
+            </frame>
+            <instance id="2303:4555" name="Button" x="86" y="0" width="32" height="32" />
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+    <frame id="2303:4556" name="Frame 1618873519" x="24" y="80" width="1274" height="184">
+      <frame id="2303:4557" name="Card" x="0" y="0" width="300" height="184">
+        <frame id="2303:4558" name="Frame 1618873501" x="38.49500274658203" y="18.623855590820312" width="223.00999450683594" height="116.75228881835938">
+          <frame id="2303:4559" name="Donut Chart" x="0" y="0" width="223.00999450683594" height="116.75228881835938">
+            <frame id="2303:4560" name="Container" x="-0.7265625" y="1.3125" width="221.39266967773438" height="221.39266967773438" />
+            <text id="2303:4565" name="Value" x="49.50390625" y="68.376953125" width="124" height="30" />
+          </frame>
+        </frame>
+        <text id="2303:4566" name="54" x="20" y="147.3761444091797" width="260" height="18" />
+      </frame>
+      <frame id="2303:4567" name="Frame 1984078559" x="324" y="0" width="950" height="184">
+        <frame id="2303:4568" name="Frame 1984078557" x="0" y="0" width="950" height="80">
+          <frame id="2303:4569" name="Card" x="0" y="0" width="300.6666564941406" height="80">
+            <frame id="2303:4570" name="Frame 1984078562" x="16" y="15" width="268.6666564941406" height="50">
+              <frame id="2303:4571" name="Avatar" x="0" y="1" width="48" height="48">
+                <instance id="2303:4572" name="truck-01" x="14.000000953674316" y="14.000000953674316" width="19.999998092651367" height="19.999998092651367" />
+              </frame>
+              <frame id="2303:4573" name="Frame 1261154904" x="60" y="0" width="208.66665649414062" height="50">
+                <frame id="2303:4574" name="Frame 1618873473" x="0" y="0" width="208.66665649414062" height="20">
+                  <text id="2303:4575" name="53" x="0" y="0" width="126" height="20" />
+                </frame>
+                <text id="2303:4576" name="Text" x="0" y="22" width="81" height="28" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2303:4577" name="Card" x="324.6666564941406" y="0" width="300.66668701171875" height="80">
+            <frame id="2303:4578" name="Frame 1984078562" x="16" y="15" width="268.66668701171875" height="50">
+              <frame id="2303:4579" name="Avatar" x="0" y="1" width="48" height="48">
+                <instance id="2303:4580" name="users-02" x="14.000000953674316" y="14.000000953674316" width="19.999998092651367" height="19.999998092651367" />
+              </frame>
+              <frame id="2303:4581" name="Frame 1261154904" x="60" y="0" width="208.66668701171875" height="50">
+                <frame id="2303:4582" name="Frame 1618873473" x="0" y="0" width="208.66668701171875" height="20">
+                  <text id="2303:4583" name="54" x="0" y="0" width="140" height="20" />
+                </frame>
+                <text id="2303:4584" name="Text" x="0" y="22" width="81" height="28" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2303:4585" name="Card" x="649.3333740234375" y="0" width="300.66668701171875" height="80">
+            <frame id="2303:4586" name="Frame 1984078562" x="16" y="15" width="268.66668701171875" height="50">
+              <frame id="2303:4587" name="Avatar" x="0" y="1" width="48" height="48">
+                <instance id="2303:4588" name="tool-02" x="14.000000953674316" y="14.000000953674316" width="19.999998092651367" height="19.999998092651367" />
+              </frame>
+              <frame id="2303:4589" name="Frame 1261154904" x="60" y="0" width="208.66668701171875" height="50">
+                <frame id="2303:4590" name="Frame 1618873473" x="0" y="0" width="208.66668701171875" height="20">
+                  <text id="2303:4591" name="54" x="0" y="0" width="143" height="20" />
+                </frame>
+                <text id="2303:4592" name="Text" x="0" y="22" width="81" height="28" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+        <frame id="2303:4593" name="Frame 1984078556" x="0" y="104" width="950" height="80">
+          <frame id="2303:4594" name="Card" x="0" y="0" width="300.6666564941406" height="80">
+            <frame id="2303:4595" name="Frame 1984078562" x="16" y="15" width="268.6666564941406" height="50">
+              <frame id="2303:4596" name="Avatar" x="0" y="1" width="48" height="48">
+                <instance id="2303:4597" name="file-06" x="14.000000953674316" y="14.000000953674316" width="19.999998092651367" height="19.999998092651367" />
+              </frame>
+              <frame id="2303:4598" name="Frame 1261154904" x="60" y="0" width="208.66665649414062" height="50">
+                <frame id="2303:4599" name="Frame 1618873473" x="0" y="0" width="208.66665649414062" height="20">
+                  <text id="2303:4600" name="54" x="0" y="0" width="109" height="20" />
+                </frame>
+                <text id="2303:4601" name="Text" x="0" y="22" width="81" height="28" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2303:4602" name="Card" x="324.6666564941406" y="0" width="300.66668701171875" height="80">
+            <frame id="2303:4603" name="Frame 1984078562" x="16" y="15" width="90" height="50">
+              <frame id="2303:4604" name="Avatar" x="0" y="9" width="32" height="32">
+                <instance id="2303:4605" name="briefcase-01" x="6.000000953674316" y="6.000000953674316" width="19.999998092651367" height="19.999998092651367" />
+              </frame>
+              <frame id="2303:4606" name="Frame 1261154904" x="44" y="0" width="46" height="50">
+                <frame id="2303:4607" name="Frame 1618873473" x="0" y="0" width="46" height="20">
+                  <text id="2303:4608" name="53" x="0" y="0" width="127" height="20" />
+                </frame>
+                <text id="2303:4609" name="Text" x="0" y="22" width="81" height="28" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2303:4610" name="Card" x="649.3333740234375" y="0" width="300.66668701171875" height="80">
+            <frame id="2303:4611" name="Frame 1984078562" x="16" y="15" width="268.66668701171875" height="50">
+              <frame id="2303:4612" name="Avatar" x="0" y="1" width="48" height="48">
+                <instance id="2303:4613" name="target-04" x="14.000000953674316" y="14.000000953674316" width="19.999998092651367" height="19.999998092651367" />
+              </frame>
+              <frame id="2303:4614" name="Frame 1261154904" x="60" y="0" width="208.66668701171875" height="50">
+                <frame id="2303:4615" name="Frame 1618873473" x="0" y="0" width="208.66668701171875" height="20">
+                  <text id="2303:4616" name="54" x="0" y="0" width="100" height="20" />
+                </frame>
+                <text id="2303:4617" name="Text" x="0" y="22" width="81" height="28" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+    <frame id="2303:4618" name="Frame 1984078556" x="24" y="288" width="1274" height="80">
+      <frame id="2303:4619" name="Frame 1984079556" x="0" y="0" width="1274" height="80">
+        <frame id="2303:4620" name="Card" x="0" y="0" width="420.5" height="80">
+          <frame id="2303:4621" name="Frame 1984078562" x="16" y="15" width="388.5" height="50">
+            <frame id="2303:4622" name="Avatar" x="0" y="1" width="48" height="48">
+              <instance id="2303:4623" name="calendar" x="14.000000953674316" y="14.000000953674316" width="19.999998092651367" height="19.999998092651367" />
+            </frame>
+            <frame id="2303:4624" name="Frame 1261154904" x="60" y="0" width="328.5" height="50">
+              <frame id="2303:4625" name="Frame 1618873473" x="0" y="0" width="328.5" height="20">
+                <text id="2303:4626" name="53" x="0" y="0" width="104" height="20" />
+              </frame>
+              <text id="2303:4627" name="Text" x="0" y="22" width="81" height="28" />
+            </frame>
+          </frame>
+        </frame>
+        <frame id="2303:4628" name="Card" x="444.5" y="0" width="420.5" height="80">
+          <frame id="2303:4629" name="Frame 1984078562" x="16" y="15" width="388.5" height="50">
+            <frame id="2303:4630" name="Avatar" x="0" y="1" width="48" height="48">
+              <instance id="2303:4631" name="briefcase-01" x="14.000000953674316" y="14.000000953674316" width="19.999998092651367" height="19.999998092651367" />
+            </frame>
+            <frame id="2303:4632" name="Frame 1261154904" x="60" y="0" width="328.5" height="50">
+              <frame id="2303:4633" name="Frame 1618873473" x="0" y="0" width="328.5" height="20">
+                <text id="2303:4634" name="54" x="0" y="0" width="129" height="20" />
+              </frame>
+              <text id="2303:4635" name="Text" x="0" y="22" width="81" height="28" />
+            </frame>
+          </frame>
+        </frame>
+        <frame id="2303:4636" name="Card" x="889" y="0" width="385" height="80">
+          <frame id="2303:4637" name="Avatar" x="14" y="16" width="48" height="48">
+            <instance id="2303:4638" name="calendar" x="14" y="14" width="20" height="20" />
+          </frame>
+          <frame id="2303:4639" name="Frame 1261154904" x="74" y="16" width="285" height="48">
+            <frame id="2303:4640" name="Frame 1618873517" x="0" y="0" width="285" height="18">
+              <text id="2303:4641" name="55" x="0" y="0" width="143" height="18" />
+            </frame>
+            <frame id="2303:4642" name="Frame 1984078799" x="0" y="33" width="285" height="15">
+              <frame id="2303:4643" name="Frame 1984078792" x="0" y="0" width="128" height="15">
+                <text id="2303:4644" name="Text" x="0" y="0" width="128" height="15" />
+              </frame>
+              <frame id="2303:4645" name="Frame 1984078794" x="138" y="0" width="12" height="15">
+                <text id="2303:4646" name="Text" x="0" y="0" width="12" height="15" />
+              </frame>
+              <frame id="2303:4647" name="Frame 1984078793" x="160" y="0" width="125" height="15">
+                <text id="2303:4648" name="Text" x="0" y="0" width="125" height="15" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+    <frame id="2303:4649" name="Frame 1984079617" x="24" y="392" width="1274" height="369">
+      <frame id="2303:4650" name="Frame 1984078269" x="0" y="0" width="625" height="369">
+        <frame id="2303:4651" name="Frame 1984078268" x="0" y="0" width="625" height="369">
+          <frame id="2303:4652" name="Frame 1261154692" x="0" y="0" width="625" height="60">
+            <frame id="2303:4653" name="Frame 1984078269" x="16" y="16" width="593" height="28">
+              <frame id="2303:4654" name="Frame 1984078271" x="0" y="0" width="296" height="28">
+                <frame id="2303:4655" name="Avatar" x="0" y="0" width="28" height="28">
+                  <frame id="2303:4656" name="Contrast border" x="0.390625" y="0" width="28" height="28" />
+                  <instance id="2303:4657" name="building-06" x="6.390625" y="6" width="16" height="16" />
+                </frame>
+                <frame id="2303:4658" name="Frame 1261154689" x="40" y="2" width="256" height="24">
+                  <text id="2303:4659" name="Contractor Details" x="0" y="0" width="350" height="24" />
+                </frame>
+              </frame>
+              <instance id="2303:4660" name="Edit Icon" x="577" y="6" width="16" height="16" />
+            </frame>
+          </frame>
+          <frame id="2303:4661" name="Frame 1261154892" x="0" y="60" width="625" height="282">
+            <frame id="2303:4662" name="Frame 1261154883" x="16" y="24" width="593" height="24">
+              <text id="2303:4663" name="Contractor" x="0" y="5" width="61" height="14" />
+              <frame id="2303:4664" name="Frame 1261154791" x="462" y="0" width="131" height="24">
+                <frame id="2303:4665" name="Frame 1261154762" x="0" y="0" width="131" height="24">
+                  <frame id="2303:4666" name="Frame 1261154762" x="0" y="0" width="24" height="24" />
+                  <text id="2303:4667" name="ESP Contractor" x="32" y="4" width="99" height="16" />
+                </frame>
+              </frame>
+            </frame>
+            <frame id="2303:4668" name="Frame 1261154883" x="16" y="80" width="593" height="24">
+              <text id="2303:4669" name="Contact" x="0" y="5" width="46" height="14" />
+              <frame id="2303:4670" name="Frame 1261154762" x="457" y="0" width="136" height="24">
+                <frame id="2303:4671" name="Group 1261154941" x="0" y="0" width="24" height="24">
+                  <frame id="2303:4672" name="Frame 1261154762" x="0" y="0" width="24" height="24" />
+                  <text id="2303:4673" name="S" x="7.5" y="4" width="9" height="16" />
+                </frame>
+                <text id="2303:4674" name="Saad Bin Usman" x="30" y="3.5" width="106" height="17" />
+              </frame>
+            </frame>
+            <frame id="2303:4675" name="Frame 1261154882" x="16" y="136" width="593" height="17">
+              <text id="2303:4676" name="Contact’s Email" x="0" y="1.5" width="87" height="14" />
+              <text id="2303:4677" name="saad.bin12@gmail.com" x="446" y="0" width="147" height="17" />
+            </frame>
+            <frame id="2303:4678" name="Frame 1261154882" x="16" y="185" width="593" height="17">
+              <text id="2303:4679" name="Contact’s Phone" x="0" y="1.5" width="92" height="14" />
+              <text id="2303:4680" name="+971 50 123 4567" x="488" y="0" width="105" height="17" />
+            </frame>
+            <frame id="2303:4681" name="Frame 1261154882" x="16" y="234" width="593" height="24">
+              <text id="2303:4682" name="Project Manager" x="0" y="5" width="93" height="14" />
+              <frame id="2303:4683" name="Frame 1261154762" x="512" y="0" width="81" height="24">
+                <frame id="2303:4684" name="Group 1261154941" x="0" y="0" width="24" height="24">
+                  <frame id="2303:4685" name="Frame 1261154762" x="0" y="0" width="24" height="24" />
+                  <text id="2303:4686" name="S" x="7.5" y="4" width="9" height="16" />
+                </frame>
+                <text id="2303:4687" name="Syed Ali" x="30" y="4" width="51" height="16" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+      <frame id="2303:4688" name="Frame 1984079581" x="649" y="0" width="625" height="369">
+        <frame id="2303:4689" name="Frame 1984078276" x="0" y="0" width="625" height="369">
+          <frame id="2303:4690" name="Frame 1261154692" x="0" y="0" width="625" height="60">
+            <frame id="2303:4691" name="Frame 1984078259" x="16" y="16" width="593" height="28">
+              <frame id="2303:4692" name="Frame 1984078260" x="0" y="0" width="296" height="28">
+                <frame id="2303:4693" name="Avatar" x="0" y="0" width="28" height="28">
+                  <frame id="2303:4694" name="Contrast border" x="-0.265625" y="-0.064453125" width="28" height="28" />
+                  <instance id="2303:4695" name="trend-up-01" x="5.734375" y="5.935546875" width="16" height="16" />
+                </frame>
+                <frame id="2303:4696" name="Frame 1261154689" x="40" y="2" width="256" height="24">
+                  <text id="2303:4697" name="Daily Plans Compliance vs Required Baseline" x="0" y="0" width="524" height="24" />
+                  <text id="2303:4698" name="Supporting text" x="0" y="24" width="346" height="14" hidden="true" />
+                </frame>
+              </frame>
+              <instance id="2303:4699" name="Edit Icon" x="816" y="13" width="16" height="16" hidden="true" />
+            </frame>
+          </frame>
+          <frame id="2303:4700" name="Content" x="0" y="60" width="625" height="309">
+            <frame id="2303:4701" name="Line and bar chart" x="16" y="16" width="593" height="277">
+              <frame id="2303:4702" name="Axis" x="0" y="0" width="593" height="277">
+                <frame id="2303:4703" name="_Y-axis label" x="0" y="0" width="18.000003814697266" height="277">
+                  <text id="2303:4704" name="Text" x="0.000005833397153764963" y="194.5" width="18.00000594474841" height="136.00000078680478" />
+                </frame>
+                <frame id="2303:4705" name="Content" x="22.000003814697266" y="0" width="571" height="277">
+                  <instance id="2303:4706" name="_Y-axis" x="0" y="0" width="571" height="235" />
+                  <frame id="2303:4707" name="X-axis" x="0" y="235" width="571" height="16">
+                    <frame id="2303:4708" name="_X-axis" x="49" y="-0.00341796875" width="522" height="18">
+                      <text id="2303:4709" name="8 July" x="24" y="0" width="32" height="18" />
+                      <text id="2303:4710" name="9 July" x="94.16667175292969" y="0" width="32" height="18" />
+                      <text id="2303:4711" name="10 July" x="164.33334350585938" y="0" width="38" height="18" />
+                      <text id="2303:4712" name="11 July" x="240.5" y="0" width="34" height="18" />
+                      <text id="2303:4713" name="12 July" x="312.66668701171875" y="0" width="36" height="18" />
+                      <text id="2303:4714" name="13 July" x="386.8333740234375" y="0" width="36" height="18" />
+                      <text id="2303:4715" name="14 July" x="461.00006103515625" y="0" width="37" height="18" />
+                    </frame>
+                  </frame>
+                  <frame id="2303:4716" name="_X-axis label" x="0" y="251" width="571" height="26">
+                    <text id="2303:4717" name="Text" x="271.5" y="8" width="28" height="18" />
+                  </frame>
+                </frame>
+              </frame>
+              <frame id="2303:4718" name="_Chart data" x="662" y="0" width="661" height="227">
+                <frame id="2303:4719" name="Series 1" x="70" y="54.38525390625" width="521" height="172.61459350585938">
+                  <vector id="2303:4720" name="Line background" x="70" y="54.38523292541504" width="521" height="172.61459350585938" />
+                  <vector id="2303:4721" name="Line" x="70" y="54.38523292541504" width="521" height="46.109378814697266" />
+                </frame>
+                <vector id="2303:4722" name="Line 785" x="70" y="41" width="521" height="0.00004554727047434426" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+    <frame id="2303:4723" name="Card" x="24" y="785" width="1274" height="355">
+      <frame id="2303:4724" name="Frame 1261154692" x="0" y="0" width="1274" height="60">
+        <frame id="2303:4725" name="Frame 1984078259" x="16" y="16" width="1242" height="28">
+          <frame id="2303:4726" name="Frame 1984078260" x="0" y="0" width="1242" height="28">
+            <frame id="2303:4727" name="Avatar" x="0" y="0" width="28" height="28">
+              <frame id="2303:4728" name="Contrast border" x="0.390625" y="0" width="28" height="28" />
+              <instance id="2303:4729" name="pie-chart-01" x="6.390625" y="6" width="16" height="16" />
+            </frame>
+            <frame id="2303:4730" name="Frame 1261154689" x="40" y="2" width="1202" height="24">
+              <text id="2303:4731" name="KPI Targets — Target vs Achieved" x="0" y="0" width="302" height="24" />
+            </frame>
+          </frame>
+          <instance id="2303:4732" name="Edit Icon" x="816" y="13" width="16" height="16" hidden="true" />
+        </frame>
+      </frame>
+      <frame id="2303:4733" name="Frame 1984078807" x="0" y="60" width="1274" height="295">
+        <frame id="2303:4734" name="BarLineChart" x="16" y="16" width="1242" height="263">
+          <frame id="2303:4735" name="BarLineChart" x="8" y="8" width="1226" height="225">
+            <frame id="2303:4736" name="MainChart" x="0" y="0" width="1226" height="211">
+              <frame id="2303:4737" name="xAxis" x="8" y="0" width="163" height="211">
+                <frame id="2303:4738" name="xLabelBox" x="2" y="0" width="159" height="70.33333587646484">
+                  <text id="2303:4739" name="MSW Collection" x="0" y="26.166667938232422" width="159" height="18" />
+                </frame>
+                <frame id="2303:4740" name="xLabelBox" x="2" y="70.33333587646484" width="159" height="70.33332824707031">
+                  <text id="2303:4741" name="Bulky Waste Collection" x="0" y="26.166664123535156" width="159" height="18" />
+                </frame>
+                <frame id="2303:4742" name="xLabelBox" x="2" y="140.66665649414062" width="159" height="70.33332824707031">
+                  <text id="2303:4743" name="C &amp; D Waste Collection" x="0" y="26.166664123535156" width="159" height="18" />
+                </frame>
+              </frame>
+              <frame id="2303:4744" name="Graphi&amp;Grid" x="1218" y="-2.842170943040401e-14" width="1045" height="211">
+                <frame id="2303:4745" name="xLines" x="0" y="0" width="1045" height="211">
+                  <line id="2303:4746" name="Line" x="1" y="1" width="0" height="209" />
+                  <line id="2303:4747" name="Line" x="1" y="209.60000610351562" width="0" height="209" />
+                  <line id="2303:4748" name="Line" x="1" y="418.20001220703125" width="0" height="209" />
+                  <line id="2303:4749" name="Line" x="1" y="626.800048828125" width="0" height="209" />
+                  <line id="2303:4750" name="Line" x="1" y="835.4000244140625" width="0" height="209" />
+                  <line id="2303:4751" name="Line" x="1" y="1044" width="0" height="209" />
+                </frame>
+                <frame id="2303:4752" name="yLines" x="0" y="0" width="1045" height="211">
+                  <line id="2303:4753" name="Line" x="1" y="1044" width="1043" height="0" />
+                  <line id="2303:4754" name="Line" x="35.83333206176758" y="1044" width="1043" height="0" />
+                  <line id="2303:4755" name="Line" x="70.66666412353516" y="1044" width="1043" height="0" />
+                  <line id="2303:4756" name="Line" x="105.5" y="1044" width="1043" height="0" />
+                  <line id="2303:4757" name="Line" x="140.3333282470703" y="1044" width="1043" height="0" />
+                  <line id="2303:4758" name="Line" x="175.16665649414062" y="1044" width="1043" height="0" />
+                  <line id="2303:4759" name="Line" x="209.99998474121094" y="1044" width="1043" height="0" />
+                </frame>
+                <frame id="2303:4760" name="BarArea" x="0" y="1" width="1043" height="211">
+                  <frame id="2303:4761" name="BarGroup" x="0" y="0" width="1043" height="70.33333587646484">
+                    <frame id="2303:4762" name="BarBlock" x="19.166667938232422" y="0" width="1043" height="32">
+                      <frame id="2303:4763" name="BarBG" x="0" y="0" width="1043" height="32">
+                        <rounded-rectangle id="2303:4764" name="BarStrip" x="-0.39990234375" y="122" width="921" height="32" />
+                      </frame>
+                      <frame id="2303:4765" name="SingleBar" x="0" y="667.5203857421875" width="375.47998046875" height="32">
+                        <rounded-rectangle id="2303:4766" name="BarStrip" x="0.60009765625" y="-418.36041259765625" width="793" height="32" />
+                      </frame>
+                      <frame id="2303:4767" name="DataLabel" x="10.560546875" y="645.4464111328125" width="35.8703727722168" height="10.87818717956543" hidden="true">
+                        <text id="2303:4768" name="36" x="23" y="-1" width="13" height="12" />
+                      </frame>
+                    </frame>
+                  </frame>
+                  <frame id="2303:4769" name="BarGroup" x="70.33333587646484" y="0" width="1043" height="70.33332824707031">
+                    <frame id="2303:4770" name="BarBlock" x="19.166664123535156" y="0" width="1043" height="32">
+                      <frame id="2303:4771" name="BarBG" x="0" y="0" width="1043" height="32">
+                        <rounded-rectangle id="2303:4772" name="BarStrip" x="-0.19970703125" y="49" width="994" height="32" />
+                      </frame>
+                      <frame id="2303:4773" name="SingleBar" x="-5.684341886080802e-14" y="93.87097930908203" width="949.1298217773438" height="32">
+                        <rounded-rectangle id="2303:4774" name="BarStrip" x="-0.19970703125" y="216.3389892578125" width="733" height="32" />
+                      </frame>
+                      <frame id="2303:4775" name="DataLabel" x="10.560546875" y="71.79598999023438" width="30.351844787597656" height="10.87818717956543" hidden="true">
+                        <text id="2303:4776" name="91" x="19" y="-1" width="11" height="12" />
+                      </frame>
+                    </frame>
+                  </frame>
+                  <frame id="2303:4777" name="BarGroup" x="140.66665649414062" y="0" width="1043" height="70.33332824707031">
+                    <frame id="2303:4778" name="BarBlock" x="19.166664123535156" y="0" width="1043" height="32">
+                      <frame id="2303:4779" name="BarBG" x="0" y="0" width="1043" height="32">
+                        <rounded-rectangle id="2303:4780" name="BarStrip" x="0" y="136" width="907" height="32" />
+                      </frame>
+                      <frame id="2303:4781" name="SingleBar" x="-1.1368683772161603e-13" y="886.5496826171875" width="156.45005798339844" height="32" />
+                      <frame id="2303:4783" name="DataLabel" x="10.560546875" y="864.4762573242188" width="30.351844787597656" height="10.878186225891113" hidden="true">
+                        <text id="2303:4784" name="15" x="19" y="-1" width="11" height="12" />
+                      </frame>
+                    </frame>
+                  </frame>
+                </frame>
+              </frame>
+            </frame>
+            <frame id="2303:4785" name="yAxisTop" x="0" y="211" width="1226" height="14">
+              <text id="2303:4786" name="0" x="182" y="0" width="8" height="14" />
+              <text id="2303:4787" name="20" x="381.3999938964844" y="0" width="14" height="14" />
+              <text id="2303:4788" name="40" x="586.7999877929688" y="0" width="15" height="14" />
+              <text id="2303:4789" name="60" x="793.199951171875" y="0" width="15" height="14" />
+              <text id="2303:4790" name="80" x="999.5999755859375" y="0" width="15" height="14" />
+              <text id="2303:4791" name="100" x="1206" y="0" width="20" height="14" />
+            </frame>
+          </frame>
+          <frame id="2303:4792" name="Legends" x="8" y="241" width="1226" height="14">
+            <text id="2303:4793" name="Percentage %" x="574.5" y="0" width="77" height="14" />
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+    <frame id="2303:4794" name="Card" x="24" y="1164" width="1274" height="516.012939453125">
+      <frame id="2303:4795" name="Frame 1261154692" x="0" y="0" width="1274" height="60">
+        <frame id="2303:4796" name="Frame 1984078259" x="16" y="16" width="1242" height="28">
+          <frame id="2303:4797" name="Frame 1984078260" x="0" y="0" width="1242" height="28">
+            <frame id="2303:4798" name="Avatar" x="0" y="0" width="28" height="28">
+              <frame id="2303:4799" name="Contrast border" x="0.390625" y="0" width="28" height="28" />
+              <instance id="2303:4800" name="horizontal-bar-chart-01" x="6.390625" y="6" width="16" height="16" />
+            </frame>
+            <frame id="2303:4801" name="Frame 1261154689" x="40" y="2" width="1202" height="24">
+              <text id="2303:4802" name="Service Coverage &amp; Frequencies Compliance" x="0" y="0" width="560" height="24" />
+            </frame>
+          </frame>
+          <instance id="2303:4803" name="Edit Icon" x="816" y="13" width="16" height="16" hidden="true" />
+        </frame>
+      </frame>
+      <frame id="2303:4804" name="Frame 1984078807" x="0" y="60" width="1274" height="456.012939453125">
+        <frame id="2303:4805" name="BarArea" x="1258" y="24" width="1242" height="408.012939453125">
+          <frame id="2303:4806" name="BarGroup" x="0" y="0" width="1242" height="72.000244140625">
+            <frame id="2303:4807" name="xLabelBox" x="0" y="1242" width="1242" height="18">
+              <frame id="2303:4808" name="Frame 1984079581" x="0" y="0" width="310" height="18">
+                <text id="2303:4809" name="Solid Waste Collection &amp; Transportation Services" x="0" y="0" width="270" height="18" />
+                <text id="2303:4810" name="Daily" x="282" y="0" width="28" height="18" />
+              </frame>
+              <frame id="2303:4811" name="Frame 1984079582" x="1220" y="0" width="22" height="18">
+                <text id="2303:4812" name="96%" x="0" y="0" width="22" height="18" />
+              </frame>
+            </frame>
+            <frame id="2303:4813" name="Group 1261153701" x="22" y="1242" width="1242" height="26.000244140625">
+              <rounded-rectangle id="2303:4814" name="Rectangle 4367" x="22.000197410583496" y="1242" width="1242" height="26" />
+              <rounded-rectangle id="2303:4815" name="Rectangle 4368" x="22.000000000000007" y="1128" width="1028" height="26" />
+              <rounded-rectangle id="2303:4816" name="Rectangle 4370" x="22.000223398208618" y="1242" width="1007.4132080078125" height="26" />
+            </frame>
+            <frame id="2303:4817" name="xLabelBox" x="52.000244140625" y="1242" width="1242" height="20">
+              <frame id="2303:4818" name="Frame 1261154765" x="0" y="0" width="269" height="20">
+                <frame id="2303:4819" name="Frame 1261154761" x="0" y="0" width="88" height="20">
+                  <ellipse id="2303:4820" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4821" name="Supporting text" x="14" y="0" width="46" height="20" />
+                  <frame id="2303:4822" name="Frame 1261154629" x="66" y="1" width="22" height="18">
+                    <text id="2303:4823" name="648" x="2" y="3" width="18" height="12" />
+                  </frame>
+                </frame>
+                <frame id="2303:4824" name="Frame 1261154760" x="108" y="0" width="65" height="20">
+                  <ellipse id="2303:4825" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4826" name="Supporting text" x="14" y="0" width="25" height="20" />
+                  <frame id="2303:4827" name="Frame 1261154629" x="45" y="1" width="20" height="18">
+                    <text id="2303:4828" name="120" x="2" y="3" width="16" height="12" />
+                  </frame>
+                </frame>
+                <frame id="2303:4829" name="Frame 1261154759" x="193" y="0" width="76" height="20">
+                  <ellipse id="2303:4830" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4831" name="Supporting text" x="14" y="0" width="38" height="20" />
+                  <frame id="2303:4832" name="Frame 1261154628" x="58" y="1" width="18" height="18">
+                    <text id="2303:4833" name="110" x="2" y="3" width="14" height="12" />
+                  </frame>
+                </frame>
+              </frame>
+              <frame id="2303:4834" name="Frame 1984079582" x="1107" y="1" width="135" height="18">
+                <text id="2303:4835" name="2,810 of 2,890 Schedules" x="0" y="0" width="135" height="18" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2303:4836" name="BarGroup" x="84.000244140625" y="0" width="1242" height="72">
+            <frame id="2303:4837" name="xLabelBox" x="0" y="1242" width="1242" height="18">
+              <frame id="2303:4838" name="Frame 1984079581" x="0" y="0" width="216" height="18">
+                <text id="2303:4839" name="Green &amp; Bulky Waste Collection" x="0" y="0" width="176" height="18" />
+                <text id="2303:4840" name="Daily" x="188" y="0" width="28" height="18" />
+              </frame>
+              <frame id="2303:4841" name="Frame 1984079582" x="1220" y="0" width="22" height="18">
+                <text id="2303:4842" name="97%" x="0" y="0" width="22" height="18" />
+              </frame>
+            </frame>
+            <frame id="2303:4843" name="Group 1261153701" x="22" y="1242" width="1242" height="26">
+              <rounded-rectangle id="2303:4844" name="Rectangle 4367" x="22" y="1242" width="1242" height="26" />
+              <rounded-rectangle id="2303:4845" name="Rectangle 4368" x="22.000000000000007" y="1128" width="1028" height="26" />
+              <rounded-rectangle id="2303:4846" name="Rectangle 4370" x="22" y="1242" width="964" height="26" />
+            </frame>
+            <frame id="2303:4847" name="xLabelBox" x="52" y="1242" width="1242" height="20">
+              <frame id="2303:4848" name="Frame 1261154765" x="0" y="0" width="269" height="20">
+                <frame id="2303:4849" name="Frame 1261154761" x="0" y="0" width="88" height="20">
+                  <ellipse id="2303:4850" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4851" name="Supporting text" x="14" y="0" width="46" height="20" />
+                  <frame id="2303:4852" name="Frame 1261154629" x="66" y="1" width="22" height="18">
+                    <text id="2303:4853" name="648" x="2" y="3" width="18" height="12" />
+                  </frame>
+                </frame>
+                <frame id="2303:4854" name="Frame 1261154760" x="108" y="0" width="65" height="20">
+                  <ellipse id="2303:4855" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4856" name="Supporting text" x="14" y="0" width="25" height="20" />
+                  <frame id="2303:4857" name="Frame 1261154629" x="45" y="1" width="20" height="18">
+                    <text id="2303:4858" name="120" x="2" y="3" width="16" height="12" />
+                  </frame>
+                </frame>
+                <frame id="2303:4859" name="Frame 1261154759" x="193" y="0" width="76" height="20">
+                  <ellipse id="2303:4860" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4861" name="Supporting text" x="14" y="0" width="38" height="20" />
+                  <frame id="2303:4862" name="Frame 1261154628" x="58" y="1" width="18" height="18">
+                    <text id="2303:4863" name="110" x="2" y="3" width="14" height="12" />
+                  </frame>
+                </frame>
+              </frame>
+              <frame id="2303:4864" name="Frame 1984079582" x="1107" y="1" width="135" height="18">
+                <text id="2303:4865" name="2,810 of 2,890 Schedules" x="0" y="0" width="135" height="18" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2303:4866" name="BarGroup" x="168.000244140625" y="0" width="1242" height="72.00048828125">
+            <frame id="2303:4867" name="xLabelBox" x="0" y="1242" width="1242" height="18">
+              <frame id="2303:4868" name="Frame 1984079581" x="0" y="0" width="144" height="18">
+                <text id="2303:4869" name="Bin Washing" x="0" y="0" width="69" height="18" />
+                <text id="2303:4870" name="Weekly . 3X" x="81" y="0" width="63" height="18" />
+              </frame>
+              <frame id="2303:4871" name="Frame 1984079582" x="1219" y="0" width="23" height="18">
+                <text id="2303:4872" name="88%" x="0" y="0" width="23" height="18" />
+              </frame>
+            </frame>
+            <frame id="2303:4873" name="Group 1261153701" x="22" y="1242" width="1242" height="26.00048828125">
+              <rounded-rectangle id="2303:4874" name="Rectangle 4367" x="22" y="1242" width="1242" height="26" />
+              <rounded-rectangle id="2303:4875" name="Rectangle 4368" x="22.000000000000007" y="1128" width="1082" height="26" />
+              <rounded-rectangle id="2303:4876" name="Rectangle 4370" x="22.000467538833618" y="1242" width="1007.4132080078125" height="26" />
+            </frame>
+            <frame id="2303:4877" name="xLabelBox" x="52.00048828125" y="1242" width="1242" height="20">
+              <frame id="2303:4878" name="Frame 1261154765" x="0" y="0" width="269" height="20">
+                <frame id="2303:4879" name="Frame 1261154761" x="0" y="0" width="88" height="20">
+                  <ellipse id="2303:4880" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4881" name="Supporting text" x="14" y="0" width="46" height="20" />
+                  <frame id="2303:4882" name="Frame 1261154629" x="66" y="1" width="22" height="18">
+                    <text id="2303:4883" name="648" x="2" y="3" width="18" height="12" />
+                  </frame>
+                </frame>
+                <frame id="2303:4884" name="Frame 1261154760" x="108" y="0" width="65" height="20">
+                  <ellipse id="2303:4885" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4886" name="Supporting text" x="14" y="0" width="25" height="20" />
+                  <frame id="2303:4887" name="Frame 1261154629" x="45" y="1" width="20" height="18">
+                    <text id="2303:4888" name="120" x="2" y="3" width="16" height="12" />
+                  </frame>
+                </frame>
+                <frame id="2303:4889" name="Frame 1261154759" x="193" y="0" width="76" height="20">
+                  <ellipse id="2303:4890" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4891" name="Supporting text" x="14" y="0" width="38" height="20" />
+                  <frame id="2303:4892" name="Frame 1261154628" x="58" y="1" width="18" height="18">
+                    <text id="2303:4893" name="110" x="2" y="3" width="14" height="12" />
+                  </frame>
+                </frame>
+              </frame>
+              <frame id="2303:4894" name="Frame 1984079582" x="1107" y="1" width="135" height="18">
+                <text id="2303:4895" name="2,810 of 2,890 Schedules" x="0" y="0" width="135" height="18" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2303:4896" name="BarGroup" x="252.000732421875" y="0" width="1242" height="72.0029296875">
+            <frame id="2303:4897" name="xLabelBox" x="0" y="1242" width="1242" height="18">
+              <frame id="2303:4898" name="Frame 1984079581" x="0" y="0" width="214" height="18">
+                <text id="2303:4899" name="Dead Animals Collection" x="0" y="0" width="137" height="18" />
+                <text id="2303:4900" name="Ad-hoc 24h" x="149" y="0" width="65" height="18" />
+              </frame>
+              <frame id="2303:4901" name="Frame 1984079582" x="1220" y="0" width="22" height="18">
+                <text id="2303:4902" name="96%" x="0" y="0" width="22" height="18" />
+              </frame>
+            </frame>
+            <frame id="2303:4903" name="Group 1261153701" x="22" y="1242" width="1242" height="26.0029296875">
+              <rounded-rectangle id="2303:4904" name="Rectangle 4367" x="22" y="1242" width="1242" height="26" />
+              <rounded-rectangle id="2303:4905" name="Rectangle 4368" x="22.000976562500007" y="1128" width="1049" height="26" />
+              <rounded-rectangle id="2303:4906" name="Rectangle 4370" x="22.002908945083618" y="1242" width="1007.4132080078125" height="26" />
+            </frame>
+            <frame id="2303:4907" name="xLabelBox" x="52.0029296875" y="1242" width="1242" height="20">
+              <frame id="2303:4908" name="Frame 1261154765" x="0" y="0" width="269" height="20">
+                <frame id="2303:4909" name="Frame 1261154761" x="0" y="0" width="88" height="20">
+                  <ellipse id="2303:4910" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4911" name="Supporting text" x="14" y="0" width="46" height="20" />
+                  <frame id="2303:4912" name="Frame 1261154629" x="66" y="1" width="22" height="18">
+                    <text id="2303:4913" name="648" x="2" y="3" width="18" height="12" />
+                  </frame>
+                </frame>
+                <frame id="2303:4914" name="Frame 1261154760" x="108" y="0" width="65" height="20">
+                  <ellipse id="2303:4915" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4916" name="Supporting text" x="14" y="0" width="25" height="20" />
+                  <frame id="2303:4917" name="Frame 1261154629" x="45" y="1" width="20" height="18">
+                    <text id="2303:4918" name="120" x="2" y="3" width="16" height="12" />
+                  </frame>
+                </frame>
+                <frame id="2303:4919" name="Frame 1261154759" x="193" y="0" width="76" height="20">
+                  <ellipse id="2303:4920" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4921" name="Supporting text" x="14" y="0" width="38" height="20" />
+                  <frame id="2303:4922" name="Frame 1261154628" x="58" y="1" width="18" height="18">
+                    <text id="2303:4923" name="110" x="2" y="3" width="14" height="12" />
+                  </frame>
+                </frame>
+              </frame>
+              <frame id="2303:4924" name="Frame 1984079582" x="1107" y="1" width="135" height="18">
+                <text id="2303:4925" name="2,810 of 2,890 Schedules" x="0" y="0" width="135" height="18" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2303:4926" name="BarGroup" x="336.003662109375" y="0" width="1242" height="72.00927734375">
+            <frame id="2303:4927" name="xLabelBox" x="0" y="1242" width="1242" height="18">
+              <frame id="2303:4928" name="Frame 1984079581" x="0" y="0" width="170" height="18">
+                <text id="2303:4929" name="Bin Maintenance" x="0" y="0" width="93" height="18" />
+                <text id="2303:4930" name="Ad-hoc 24h" x="105" y="0" width="65" height="18" />
+              </frame>
+              <frame id="2303:4931" name="Frame 1984079582" x="1220" y="0" width="22" height="18">
+                <text id="2303:4932" name="92%" x="0" y="0" width="22" height="18" />
+              </frame>
+            </frame>
+            <frame id="2303:4933" name="Group 1261153701" x="22" y="1242" width="1242" height="26.00927734375">
+              <rounded-rectangle id="2303:4934" name="Rectangle 4367" x="22" y="1242" width="1242" height="26" />
+              <rounded-rectangle id="2303:4935" name="Rectangle 4368" x="22.003906250000007" y="1128" width="1001" height="26" />
+              <rounded-rectangle id="2303:4936" name="Rectangle 4370" x="22.009521484375" y="1242" width="962" height="26" />
+            </frame>
+            <frame id="2303:4937" name="xLabelBox" x="52.00927734375" y="1242" width="1242" height="20">
+              <frame id="2303:4938" name="Frame 1261154765" x="0" y="0" width="269" height="20">
+                <frame id="2303:4939" name="Frame 1261154761" x="0" y="0" width="88" height="20">
+                  <ellipse id="2303:4940" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4941" name="Supporting text" x="14" y="0" width="46" height="20" />
+                  <frame id="2303:4942" name="Frame 1261154629" x="66" y="1" width="22" height="18">
+                    <text id="2303:4943" name="648" x="2" y="3" width="18" height="12" />
+                  </frame>
+                </frame>
+                <frame id="2303:4944" name="Frame 1261154760" x="108" y="0" width="65" height="20">
+                  <ellipse id="2303:4945" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4946" name="Supporting text" x="14" y="0" width="25" height="20" />
+                  <frame id="2303:4947" name="Frame 1261154629" x="45" y="1" width="20" height="18">
+                    <text id="2303:4948" name="120" x="2" y="3" width="16" height="12" />
+                  </frame>
+                </frame>
+                <frame id="2303:4949" name="Frame 1261154759" x="193" y="0" width="76" height="20">
+                  <ellipse id="2303:4950" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                  <text id="2303:4951" name="Supporting text" x="14" y="0" width="38" height="20" />
+                  <frame id="2303:4952" name="Frame 1261154628" x="58" y="1" width="18" height="18">
+                    <text id="2303:4953" name="110" x="2" y="3" width="14" height="12" />
+                  </frame>
+                </frame>
+              </frame>
+              <frame id="2303:4954" name="Frame 1984079582" x="1107" y="1" width="135" height="18">
+                <text id="2303:4955" name="2,810 of 2,890 Schedules" x="0" y="0" width="135" height="18" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+    <frame id="2303:4956" name="Frame 1984078823" x="24" y="1704.01318359375" width="1274" height="407">
+      <frame id="2303:4957" name="Frame 1261154893" x="0" y="0" width="1274" height="60">
+        <frame id="2303:4958" name="Frame 1984078269" x="16" y="16" width="1242" height="28">
+          <frame id="2303:4959" name="Frame 1984078271" x="0" y="0" width="296" height="28">
+            <frame id="2303:4960" name="Avatar" x="0" y="0" width="28" height="28">
+              <frame id="2303:4961" name="Contrast border" x="0.390625" y="0" width="28" height="28" />
+              <instance id="2303:4962" name="target-04" x="6.390625" y="6" width="16" height="16" />
+            </frame>
+            <frame id="2303:4963" name="Frame 1261154689" x="40" y="2" width="256" height="24">
+              <text id="2303:4964" name="5-Years Plan Compliance" x="0" y="0" width="350" height="24" />
+            </frame>
+          </frame>
+          <instance id="2303:4965" name="Edit Icon" x="1226" y="6" width="16" height="16" />
+        </frame>
+      </frame>
+      <instance id="2303:4966" name="_Legend" x="884" y="73" width="366" height="16" />
+      <frame id="2303:4967" name="Line/Area Charts" x="0" y="87" width="1274" height="320">
+        <frame id="2303:4968" name="Line/Area Charts" x="0" y="-0.01318359375" width="1274" height="320">
+          <instance id="2303:4969" name="YAxisLabel" x="24" y="24" width="18.000003814697266" height="272" />
+          <frame id="2303:4970" name="ChartContainer" x="42.000003814697266" y="24" width="1232" height="272">
+            <frame id="2303:4971" name="Y-axis" x="0" y="-0.01318359375" width="1199" height="228">
+              <instance id="2303:4972" name="_Y-axis line/Default" x="0" y="0" width="1199" height="17" />
+              <instance id="2303:4973" name="_Y-axis line/Default" x="0" y="42.20000076293945" width="1199" height="17" />
+              <instance id="2303:4974" name="_Y-axis line/Default" x="0" y="84.4000015258789" width="1199" height="17" />
+              <instance id="2303:4975" name="_Y-axis line/Default" x="0" y="126.60000610351562" width="1199" height="17" />
+              <instance id="2303:4976" name="_Y-axis line/Default" x="0" y="168.8000030517578" width="1199" height="17" />
+              <instance id="2303:4977" name="_Y-axis line/Default" x="0" y="211" width="1199" height="17" />
+              <instance id="2303:4978" name="_Y-axis line/Default" x="-14847" y="178" width="1216" height="17" hidden="true" />
+              <instance id="2303:4979" name="_Y-axis line/Default" x="-14847" y="178" width="1216" height="17" hidden="true" />
+              <instance id="2303:4980" name="_Y-axis line/Default" x="-14847" y="178" width="1216" height="17" hidden="true" />
+              <instance id="2303:4981" name="_Y-axis line/Default" x="-14847" y="178" width="1216" height="17" hidden="true" />
+              <instance id="2303:4982" name="_Y-axis line/Default" x="-14847" y="178" width="1216" height="17" hidden="true" />
+              <instance id="2303:4983" name="_Y-axis line/Default" x="-14847" y="178" width="1216" height="17" hidden="true" />
+            </frame>
+            <instance id="2303:4984" name="X-axis" x="0" y="227.98681640625" width="1199" height="18" />
+            <instance id="2303:4985" name="XAxisLabel" x="0" y="246" width="1232" height="26" />
+            <frame id="2303:4986" name="_Chart data" x="48" y="27" width="1184" height="192">
+              <frame id="2303:4987" name="Series 1" x="0" y="46.000244140625" width="0" height="0" />
+              <vector id="2303:4990" name="Line" x="0" y="56.999755859375" width="1143" height="39" />
+              <frame id="2303:4991" name="Series 2" x="0" y="98.999755859375" width="1143" height="25">
+                <vector id="2303:4992" name="Line" x="0" y="98.999755859375" width="1143" height="25" />
+              </frame>
+              <frame id="2303:4993" name="Series 3" x="0" y="107" width="1143" height="66">
+                <vector id="2303:4994" name="Line" x="0" y="107" width="1143" height="66" />
+              </frame>
+            </frame>
+            <frame id="2303:4995" name="Series 2" x="48" y="8.999755859375" width="1143" height="25">
+              <vector id="2303:4996" name="Line" x="48" y="8.999755859375" width="1143" height="25" />
+            </frame>
+            <frame id="2303:4997" name="Series 3" x="48" y="17" width="1143" height="66">
+              <vector id="2303:4998" name="Line" x="48" y="17" width="1143" height="66" />
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+    <frame id="2303:4999" name="Frame 1984079616" x="24" y="2135.01318359375" width="1305" height="792">
+      <frame id="2303:5000" name="Frame 1984078260" x="0" y="0" width="1305" height="372">
+        <frame id="2303:5001" name="Frame 1984078258" x="0" y="0" width="419" height="372">
+          <frame id="2303:5002" name="Frame 1261154692" x="0" y="0" width="419" height="60">
+            <frame id="2303:5003" name="Frame 1984078259" x="16" y="16" width="387" height="28">
+              <frame id="2303:5004" name="Frame 1984078260" x="0" y="0" width="296" height="28">
+                <frame id="2303:5005" name="Avatar" x="0" y="0" width="28" height="28">
+                  <frame id="2303:5006" name="Contrast border" x="0.390625" y="0" width="28" height="28" />
+                  <instance id="2303:5007" name="pie-chart-01" x="6.390625" y="6" width="16" height="16" />
+                </frame>
+                <frame id="2303:5008" name="Frame 1261154689" x="40" y="2" width="256" height="24">
+                  <text id="2303:5009" name="Vehicle Type Breakdown" x="0" y="0" width="224" height="24" />
+                </frame>
+              </frame>
+              <instance id="2303:5010" name="Edit Icon" x="816" y="13" width="16" height="16" hidden="true" />
+            </frame>
+          </frame>
+          <frame id="2303:5011" name="Frame 1261154892" x="0" y="60" width="419" height="312">
+            <frame id="2303:5012" name="Donut Chart" x="99.5" y="20" width="220" height="220">
+              <frame id="2303:5013" name="Chart-container" x="0" y="0" width="220" height="220">
+                <frame id="2303:5014" name="Total-container" x="0" y="0" width="220" height="220">
+                  <text id="2303:5015" name="Label" x="124.48046875" y="129.55691528320312" width="69" height="17" hidden="true" />
+                  <text id="2303:5016" name="Value" x="141.6127166748047" y="155.0435333251953" width="35" height="34" hidden="true" />
+                </frame>
+                <frame id="2303:5017" name="Square-fixed-ratio" x="-0.000030517578125" y="0" width="220" height="220">
+                  <frame id="2303:5018" name="2:1-fixed-ratio" x="0" y="0" width="220" height="110">
+                    <frame id="2303:5019" name="Spine" x="14.737207412719727" y="110" width="190.52558592034075" height="109.99999880789346" />
+                  </frame>
+                  <frame id="2303:5020" name="2:1-fixed-ratio" x="-1.8189894035458565e-12" y="110" width="220" height="110">
+                    <frame id="2303:5021" name="Spine" x="14.737207412719727" y="110" width="190.52558592034075" height="109.99999880789346" />
+                  </frame>
+                </frame>
+                <frame id="2303:5022" name="Container" x="0" y="0" width="220" height="220" />
+              </frame>
+              <frame id="2303:5026" name="Frame 1261154677" x="51.857421875" y="84.4642333984375" width="116.28571319580078" height="65.21428680419922">
+                <frame id="2303:5027" name="Frame 1261154691" x="11.785713195800781" y="0" width="92.71428680419922" height="39.71428680419922">
+                  <text id="2303:5028" name="Value" x="0" y="0" width="92.71428680419922" height="22" />
+                  <text id="2303:5029" name="Vehicles" x="0" y="26.71428680419922" width="92.71428680419922" height="13" />
+                </frame>
+                <frame id="2303:5030" name="Trending Indicator" x="39.5" y="45.21428680419922" width="37.28571319580078" height="20">
+                  <frame id="2303:5031" name="_Change" x="3.142857074737549" y="0" width="31" height="20">
+                    <instance id="2303:5032" name="arrow-up" x="0" y="5" width="10" height="10" />
+                    <text id="2303:5033" name="Change" x="12" y="0" width="19" height="20" />
+                  </frame>
+                </frame>
+              </frame>
+            </frame>
+            <frame id="2303:5034" name="Frame 1261154765" x="16" y="272" width="387" height="20">
+              <frame id="2303:5035" name="Frame 1261154759" x="24.5" y="0" width="102" height="20">
+                <ellipse id="2303:5036" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                <text id="2303:5037" name="Supporting text" x="14" y="0" width="64" height="20" />
+                <frame id="2303:5038" name="Frame 1261154628" x="84" y="1" width="18" height="18">
+                  <text id="2303:5039" name="73" x="3.5" y="3" width="11" height="12" />
+                </frame>
+              </frame>
+              <frame id="2303:5040" name="Frame 1261154761" x="138.5" y="0" width="101" height="20">
+                <ellipse id="2303:5041" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                <text id="2303:5042" name="Supporting text" x="14" y="0" width="63" height="20" />
+                <frame id="2303:5043" name="Frame 1261154629" x="83" y="1" width="18" height="18">
+                  <text id="2303:5044" name="43" x="3" y="3" width="12" height="12" />
+                </frame>
+              </frame>
+              <frame id="2303:5045" name="Frame 1261154760" x="251.5" y="0" width="111" height="20">
+                <ellipse id="2303:5046" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                <text id="2303:5047" name="Supporting text" x="14" y="0" width="73" height="20" />
+                <frame id="2303:5048" name="Frame 1261154629" x="93" y="1" width="18" height="18">
+                  <text id="2303:5049" name="5" x="6" y="3" width="6" height="12" />
+                </frame>
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+        <frame id="2303:5050" name="Frame 1984078276" x="443" y="0" width="419" height="372">
+          <frame id="2303:5051" name="Frame 1261154692" x="0" y="0" width="419" height="60">
+            <frame id="2303:5052" name="Frame 1984078259" x="16" y="16" width="387" height="28">
+              <frame id="2303:5053" name="Frame 1984078260" x="0" y="0" width="296" height="28">
+                <frame id="2303:5054" name="Avatar" x="0" y="0" width="28" height="28">
+                  <frame id="2303:5055" name="Contrast border" x="0.390625" y="0" width="28" height="28" />
+                  <instance id="2303:5056" name="pie-chart-01" x="6.390625" y="6" width="16" height="16" />
+                </frame>
+                <frame id="2303:5057" name="Frame 1261154689" x="40" y="2" width="256" height="24">
+                  <text id="2303:5058" name="Workforce Type Breakdown" x="0" y="0" width="252" height="24" />
+                </frame>
+              </frame>
+              <instance id="2303:5059" name="Edit Icon" x="816" y="13" width="16" height="16" hidden="true" />
+            </frame>
+          </frame>
+          <frame id="2303:5060" name="Frame 1261154892" x="0" y="60" width="419" height="312">
+            <frame id="2303:5061" name="Donut Chart" x="99.5" y="20" width="220" height="220">
+              <frame id="2303:5062" name="Chart-container" x="0" y="0" width="220" height="220">
+                <frame id="2303:5063" name="Total-container" x="0" y="0" width="220" height="220">
+                  <text id="2303:5064" name="Label" x="124.48046875" y="129.55691528320312" width="69" height="17" hidden="true" />
+                  <text id="2303:5065" name="Value" x="141.6127166748047" y="155.0435333251953" width="35" height="34" hidden="true" />
+                </frame>
+                <frame id="2303:5066" name="Square-fixed-ratio" x="-0.000030517578125" y="0" width="220" height="220">
+                  <frame id="2303:5067" name="2:1-fixed-ratio" x="0" y="0" width="220" height="110">
+                    <frame id="2303:5068" name="Spine" x="14.737207412719727" y="110" width="190.52558592034075" height="109.99999880789346" />
+                  </frame>
+                  <frame id="2303:5069" name="2:1-fixed-ratio" x="-1.8189894035458565e-12" y="110" width="220" height="110">
+                    <frame id="2303:5070" name="Spine" x="14.737207412719727" y="110" width="190.52558592034075" height="109.99999880789346" />
+                  </frame>
+                </frame>
+                <frame id="2303:5071" name="Container" x="0" y="0" width="220" height="220" />
+              </frame>
+              <frame id="2303:5075" name="Frame 1261154677" x="51.857421875" y="84.4642333984375" width="116.28571319580078" height="65.21428680419922">
+                <frame id="2303:5076" name="Frame 1261154691" x="11.785713195800781" y="0" width="92.71428680419922" height="39.71428680419922">
+                  <text id="2303:5077" name="Value" x="0" y="0" width="92.71428680419922" height="22" />
+                  <text id="2303:5078" name="Workforce" x="-9.14285659790039" y="26.71428680419922" width="111" height="13" />
+                </frame>
+                <frame id="2303:5079" name="Trending Indicator" x="39.5" y="45.21428680419922" width="37.28571319580078" height="20">
+                  <frame id="2303:5080" name="_Change" x="3.142857074737549" y="0" width="31" height="20">
+                    <instance id="2303:5081" name="arrow-up" x="0" y="5" width="10" height="10" />
+                    <text id="2303:5082" name="Change" x="12" y="0" width="19" height="20" />
+                  </frame>
+                </frame>
+              </frame>
+            </frame>
+            <frame id="2303:5083" name="Frame 1261154765" x="16" y="272" width="387" height="20">
+              <frame id="2303:5084" name="Frame 1261154759" x="52.5" y="0" width="76" height="20">
+                <ellipse id="2303:5085" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                <text id="2303:5086" name="Supporting text" x="14" y="0" width="38" height="20" />
+                <frame id="2303:5087" name="Frame 1261154628" x="58" y="1" width="18" height="18">
+                  <text id="2303:5088" name="73" x="3.5" y="3" width="11" height="12" />
+                </frame>
+              </frame>
+              <frame id="2303:5089" name="Frame 1261154761" x="140.5" y="0" width="80" height="20">
+                <ellipse id="2303:5090" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                <text id="2303:5091" name="Supporting text" x="14" y="0" width="42" height="20" />
+                <frame id="2303:5092" name="Frame 1261154629" x="62" y="1" width="18" height="18">
+                  <text id="2303:5093" name="43" x="3" y="3" width="12" height="12" />
+                </frame>
+              </frame>
+              <frame id="2303:5094" name="Frame 1261154760" x="232.5" y="0" width="102" height="20">
+                <ellipse id="2303:5095" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                <text id="2303:5096" name="Supporting text" x="14" y="0" width="64" height="20" />
+                <frame id="2303:5097" name="Frame 1261154629" x="84" y="1" width="18" height="18">
+                  <text id="2303:5098" name="5" x="6" y="3" width="6" height="12" />
+                </frame>
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+        <frame id="2303:5099" name="Frame 1984078275" x="886" y="0" width="419" height="372">
+          <frame id="2303:5100" name="Frame 1261154692" x="0" y="0" width="419" height="60">
+            <frame id="2303:5101" name="Frame 1984078259" x="16" y="16" width="387" height="28">
+              <frame id="2303:5102" name="Frame 1984078260" x="0" y="0" width="296" height="28">
+                <frame id="2303:5103" name="Avatar" x="0" y="0" width="28" height="28">
+                  <frame id="2303:5104" name="Contrast border" x="0.390625" y="0" width="28" height="28" />
+                  <instance id="2303:5105" name="pie-chart-01" x="6.390625" y="6" width="16" height="16" />
+                </frame>
+                <frame id="2303:5106" name="Frame 1261154689" x="40" y="2" width="256" height="24">
+                  <text id="2303:5107" name="Equipment Type Breakdown" x="0" y="0" width="257" height="24" />
+                </frame>
+              </frame>
+              <instance id="2303:5108" name="Edit Icon" x="816" y="13" width="16" height="16" hidden="true" />
+            </frame>
+          </frame>
+          <frame id="2303:5109" name="Frame 1261154892" x="0" y="60" width="419" height="312">
+            <frame id="2303:5110" name="Donut Chart" x="99.5" y="20" width="220" height="220">
+              <frame id="2303:5111" name="Chart-container" x="0" y="0" width="220" height="220">
+                <frame id="2303:5112" name="Total-container" x="0" y="0" width="220" height="220">
+                  <text id="2303:5113" name="Label" x="124.48046875" y="129.55691528320312" width="69" height="17" hidden="true" />
+                  <text id="2303:5114" name="Value" x="141.6127166748047" y="155.0435333251953" width="35" height="34" hidden="true" />
+                </frame>
+                <frame id="2303:5115" name="Square-fixed-ratio" x="-0.000030517578125" y="0" width="220" height="220">
+                  <frame id="2303:5116" name="2:1-fixed-ratio" x="0" y="0" width="220" height="110">
+                    <frame id="2303:5117" name="Spine" x="14.737207412719727" y="110" width="190.52558592034075" height="109.99999880789346" />
+                  </frame>
+                  <frame id="2303:5118" name="2:1-fixed-ratio" x="-1.8189894035458565e-12" y="110" width="220" height="110">
+                    <frame id="2303:5119" name="Spine" x="14.737207412719727" y="110" width="190.52558592034075" height="109.99999880789346" />
+                  </frame>
+                </frame>
+                <frame id="2303:5120" name="Container" x="0" y="0" width="220" height="220" />
+              </frame>
+              <frame id="2303:5124" name="Frame 1261154677" x="51.857421875" y="84.4642333984375" width="116.28571319580078" height="65.21428680419922">
+                <frame id="2303:5125" name="Frame 1261154691" x="11.785713195800781" y="0" width="92.71428680419922" height="39.71428680419922">
+                  <text id="2303:5126" name="Value" x="0" y="0" width="92.71428680419922" height="22" />
+                  <text id="2303:5127" name="Approved" x="-12.14285659790039" y="26.71428680419922" width="117" height="13" />
+                </frame>
+                <frame id="2303:5128" name="Trending Indicator" x="39.5" y="45.21428680419922" width="37.28571319580078" height="20">
+                  <frame id="2303:5129" name="_Change" x="3.142857074737549" y="0" width="31" height="20">
+                    <instance id="2303:5130" name="arrow-up" x="0" y="5" width="10" height="10" />
+                    <text id="2303:5131" name="Change" x="12" y="0" width="19" height="20" />
+                  </frame>
+                </frame>
+              </frame>
+            </frame>
+            <frame id="2303:5132" name="Frame 1261154765" x="16" y="272" width="387" height="20">
+              <frame id="2303:5133" name="Frame 1261154759" x="69" y="0" width="73" height="20">
+                <ellipse id="2303:5134" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                <text id="2303:5135" name="Supporting text" x="14" y="0" width="35" height="20" />
+                <frame id="2303:5136" name="Frame 1261154628" x="55" y="1" width="18" height="18">
+                  <text id="2303:5137" name="12" x="4" y="3" width="10" height="12" />
+                </frame>
+              </frame>
+              <frame id="2303:5138" name="Frame 1261154761" x="154" y="0" width="76" height="20">
+                <ellipse id="2303:5139" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                <text id="2303:5140" name="Supporting text" x="14" y="0" width="38" height="20" />
+                <frame id="2303:5141" name="Frame 1261154629" x="58" y="1" width="18" height="18">
+                  <text id="2303:5142" name="43" x="3" y="3" width="12" height="12" />
+                </frame>
+              </frame>
+              <frame id="2303:5143" name="Frame 1261154760" x="242" y="0" width="76" height="20">
+                <ellipse id="2303:5144" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+                <text id="2303:5145" name="Supporting text" x="14" y="0" width="38" height="20" />
+                <frame id="2303:5146" name="Frame 1261154629" x="58" y="1" width="18" height="18">
+                  <text id="2303:5147" name="5" x="6" y="3" width="6" height="12" />
+                </frame>
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+      <frame id="2303:5148" name="Frame 1984078261" x="0" y="408" width="419" height="372">
+        <frame id="2303:5149" name="Frame 1261154692" x="0" y="0" width="419" height="60">
+          <frame id="2303:5150" name="Frame 1984078259" x="16" y="16" width="387" height="28">
+            <frame id="2303:5151" name="Frame 1984078260" x="0" y="0" width="296" height="28">
+              <frame id="2303:5152" name="Avatar" x="0" y="0" width="28" height="28">
+                <frame id="2303:5153" name="Contrast border" x="0.390625" y="0" width="28" height="28" />
+                <instance id="2303:5154" name="pie-chart-01" x="6.390625" y="6" width="16" height="16" />
+              </frame>
+              <frame id="2303:5155" name="Frame 1261154689" x="40" y="2" width="256" height="24">
+                <text id="2303:5156" name="Bin Type Breakdown" x="0" y="0" width="186" height="24" />
+              </frame>
+            </frame>
+            <instance id="2303:5157" name="Edit Icon" x="816" y="13" width="16" height="16" hidden="true" />
+          </frame>
+        </frame>
+        <frame id="2303:5158" name="Frame 1261154892" x="0" y="60" width="419" height="312">
+          <frame id="2303:5159" name="Donut Chart" x="99.5" y="20" width="220" height="220">
+            <frame id="2303:5160" name="Chart-container" x="0" y="0" width="220" height="220">
+              <frame id="2303:5161" name="Total-container" x="0" y="0" width="220" height="220">
+                <text id="2303:5162" name="Label" x="124.48046875" y="129.55691528320312" width="69" height="17" hidden="true" />
+                <text id="2303:5163" name="Value" x="141.6127166748047" y="155.0435333251953" width="35" height="34" hidden="true" />
+              </frame>
+              <frame id="2303:5164" name="Square-fixed-ratio" x="-0.000030517578125" y="0" width="220" height="220">
+                <frame id="2303:5165" name="2:1-fixed-ratio" x="0" y="0" width="220" height="110">
+                  <frame id="2303:5166" name="Spine" x="14.737207412719727" y="110" width="190.52558592034075" height="109.99999880789346" />
+                </frame>
+                <frame id="2303:5167" name="2:1-fixed-ratio" x="-1.8189894035458565e-12" y="110" width="220" height="110">
+                  <frame id="2303:5168" name="Spine" x="14.737207412719727" y="110" width="190.52558592034075" height="109.99999880789346" />
+                </frame>
+              </frame>
+              <frame id="2303:5169" name="Container" x="0" y="0" width="220" height="220" />
+            </frame>
+            <frame id="2303:5172" name="Frame 1261154677" x="51.857421875" y="84.46429443359375" width="116.28571319580078" height="65.21428680419922">
+              <frame id="2303:5173" name="Frame 1261154691" x="11.785713195800781" y="0" width="92.71428680419922" height="39.71428680419922">
+                <text id="2303:5174" name="Value" x="0" y="0" width="92.71428680419922" height="22" />
+                <text id="2303:5175" name="Approved" x="0" y="26.71428680419922" width="92.71428680419922" height="13" />
+              </frame>
+              <frame id="2303:5176" name="Trending Indicator" x="39.5" y="45.21428680419922" width="37.28571319580078" height="20">
+                <frame id="2303:5177" name="_Change" x="3.142857074737549" y="0" width="31" height="20">
+                  <instance id="2303:5178" name="arrow-up" x="0" y="5" width="10" height="10" />
+                  <text id="2303:5179" name="Change" x="12" y="0" width="19" height="20" />
+                </frame>
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2303:5180" name="Frame 1261154765" x="16" y="272" width="387" height="20">
+            <frame id="2303:5181" name="Frame 1261154759" x="121" y="0" width="65" height="20">
+              <ellipse id="2303:5182" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+              <text id="2303:5183" name="Supporting text" x="14" y="0" width="27" height="20" />
+              <frame id="2303:5184" name="Frame 1261154628" x="47" y="1" width="18" height="18">
+                <text id="2303:5185" name="73" x="3.5" y="3" width="11" height="12" />
+              </frame>
+            </frame>
+            <frame id="2303:5186" name="Frame 1261154761" x="198" y="0" width="68" height="20">
+              <ellipse id="2303:5187" name="Ellipse 1749" x="0" y="6" width="8" height="8" />
+              <text id="2303:5188" name="Supporting text" x="14" y="0" width="30" height="20" />
+              <frame id="2303:5189" name="Frame 1261154629" x="50" y="1" width="18" height="18">
+                <text id="2303:5190" name="43" x="3" y="3" width="12" height="12" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+    <frame id="2303:5191" name="Card" x="24" y="2951.01318359375" width="1274" height="224">
+      <frame id="2303:5192" name="Frame 1261154692" x="0" y="0" width="1274" height="60">
+        <frame id="2303:5193" name="Frame 1984078259" x="16" y="16" width="1242" height="28">
+          <frame id="2303:5194" name="Frame 1984078260" x="0" y="0" width="1242" height="28">
+            <frame id="2303:5195" name="Avatar" x="0" y="0" width="28" height="28">
+              <frame id="2303:5196" name="Contrast border" x="0.390625" y="0" width="28" height="28" />
+              <instance id="2303:5197" name="file-05" x="6.390625" y="6" width="16" height="16" />
+            </frame>
+            <frame id="2303:5198" name="Frame 1261154689" x="40" y="2" width="1202" height="24">
+              <text id="2303:5199" name="Attached Documents" x="0" y="0" width="560" height="24" />
+            </frame>
+          </frame>
+          <instance id="2303:5200" name="Edit Icon" x="816" y="13" width="16" height="16" hidden="true" />
+        </frame>
+      </frame>
+      <frame id="2303:5201" name="Frame 1984078807" x="0" y="60" width="1274" height="164">
+        <frame id="2303:5202" name="Frame 1984079156" x="16" y="16" width="1242" height="132">
+          <instance id="2303:5203" name="File Uploader" x="0" y="0" width="1242" height="62" />
+          <instance id="2303:5204" name="File Uploader" x="0" y="70" width="1242" height="62" />
+        </frame>
+      </frame>
+    </frame>
+  </frame>
+  <rounded-rectangle id="2303:5205" name="Rectangle 18060" x="0" y="0" width="1440" height="1024" />
+  <frame id="2303:5206" name="Form" x="360" y="0" width="1080" height="1024">
+    <frame id="2303:5207" name="Group 1000002614" x="0" y="483" width="58" height="58">
+      <ellipse id="2303:5208" name="Ellipse 1301" x="0" y="483" width="58" height="58" />
+      <instance id="2303:5209" name="x" x="17" y="500" width="24" height="24" />
+    </frame>
+    <frame id="2303:5210" name="Frame 1261154511" x="98" y="0" width="982" height="1024">
+      <frame id="2303:5211" name="Frame 1261154830" x="24" y="24" width="934" height="32">
+        <frame id="2303:5212" name="Frame 1984079568" x="0" y="0" width="313" height="32">
+          <text id="2303:5213" name="Number of Vehicles" x="0" y="0" width="212" height="32" />
+          <text id="2303:5214" name="(Raw Data)" x="220" y="3" width="93" height="26" />
+        </frame>
+        <text id="2303:5215" name="Dispatch replacements for routes affected during the current shift." x="0" y="44" width="425" height="20" hidden="true" />
+        <instance id="2303:5216" name="Button" x="898" y="0" width="36" height="36" hidden="true" />
+      </frame>
+      <frame id="2303:5217" name="Table" x="24" y="72" width="934" height="940">
+        <frame id="2303:5218" name="Frame 48095831" x="0" y="0" width="930" height="40">
+          <frame id="2303:5219" name="Frame 1984079618" x="0" y="0" width="419" height="40">
+            <frame id="2303:5220" name="Frame 48095829" x="0" y="0" width="367" height="40">
+              <rounded-rectangle id="2303:5221" name="Rectangle 9480" x="0" y="0" width="367" height="40" />
+              <frame id="2303:5222" name="Frame 48095828" x="8" y="12" width="142" height="16">
+                <instance id="2303:5223" name="search-refraction" x="0" y="0" width="16" height="16" />
+                <text id="2303:5224" name="Search anything here" x="24" y="1" width="118" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5225" name="Frame 1261154841" x="379" y="0" width="40" height="40">
+              <frame id="2303:5226" name="Frame 48095830" x="0" y="0" width="40" height="40">
+                <instance id="2303:5227" name="filter-funnel-01" x="12" y="12" width="16" height="16" />
+              </frame>
+              <frame id="2303:5228" name="Frame 1261154569" x="48" y="0" width="90" height="40" hidden="true">
+                <text id="2303:5229" name="Group By" x="8" y="12.5" width="52" height="14" />
+                <instance id="2303:5230" name="chevron-down" x="68" y="13" width="14.000000953674316" height="14.000000953674316" />
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2327:4279" name="Button" x="890" y="0" width="40" height="40">
+            <frame id="2327:4280" name="CTA" x="0" y="0" width="40" height="40">
+              <instance id="2327:4281" name="file-download-03" x="12" y="12" width="16" height="16" />
+            </frame>
+          </frame>
+        </frame>
+        <text id="2303:5232" name="Showing 292 items" x="0" y="48" width="102" height="18" />
+        <frame id="2303:5233" name="Table Sample" x="0" y="74" width="1090" height="914">
+          <frame id="2303:5234" name="ID Column" x="12" y="12" width="110" height="790">
+            <instance id="2303:5235" name="Table Header" x="0" y="0" width="110" height="40" />
+            <instance id="2303:5236" name="Table Cell" x="0" y="40" width="110" height="50" />
+            <instance id="2303:5237" name="Table Cell" x="0" y="90" width="110" height="50" />
+            <instance id="2303:5238" name="Table Cell" x="0" y="140" width="110" height="50" />
+            <instance id="2303:5239" name="Table Cell" x="0" y="190" width="110" height="50" />
+            <instance id="2303:5240" name="Table Cell" x="0" y="240" width="110" height="50" />
+            <instance id="2303:5241" name="Table Cell" x="0" y="290" width="110" height="50" />
+            <instance id="2303:5242" name="Table Cell" x="0" y="340" width="110" height="50" />
+            <instance id="2303:5243" name="Table Cell" x="0" y="390" width="110" height="50" />
+            <instance id="2303:5244" name="Table Cell" x="0" y="440" width="110" height="50" />
+            <instance id="2303:5245" name="Table Cell" x="0" y="490" width="110" height="50" />
+            <instance id="2303:5246" name="Table Cell" x="0" y="540" width="110" height="50" />
+            <instance id="2303:5247" name="Table Cell" x="0" y="590" width="110" height="50" />
+            <instance id="2303:5248" name="Table Cell" x="0" y="640" width="110" height="50" />
+            <instance id="2303:5249" name="Table Cell" x="0" y="690" width="110" height="50" />
+            <instance id="2303:5250" name="Table Cell" x="0" y="740" width="110" height="50" />
+          </frame>
+          <frame id="2303:5251" name="ID Column" x="122" y="12" width="150" height="790">
+            <instance id="2303:5252" name="Table Header" x="0" y="0" width="150" height="40" />
+            <instance id="2303:5253" name="Table Cell" x="0" y="40" width="150" height="50" />
+            <instance id="2303:5254" name="Table Cell" x="0" y="90" width="150" height="50" />
+            <instance id="2303:5255" name="Table Cell" x="0" y="140" width="150" height="50" />
+            <instance id="2303:5256" name="Table Cell" x="0" y="190" width="150" height="50" />
+            <instance id="2303:5257" name="Table Cell" x="0" y="240" width="150" height="50" />
+            <instance id="2303:5258" name="Table Cell" x="0" y="290" width="150" height="50" />
+            <instance id="2303:5259" name="Table Cell" x="0" y="340" width="150" height="50" />
+            <instance id="2303:5260" name="Table Cell" x="0" y="390" width="150" height="50" />
+            <instance id="2303:5261" name="Table Cell" x="0" y="440" width="150" height="50" />
+            <instance id="2303:5262" name="Table Cell" x="0" y="490" width="150" height="50" />
+            <instance id="2303:5263" name="Table Cell" x="0" y="540" width="150" height="50" />
+            <instance id="2303:5264" name="Table Cell" x="0" y="590" width="150" height="50" />
+            <instance id="2303:5265" name="Table Cell" x="0" y="640" width="150" height="50" />
+            <instance id="2303:5266" name="Table Cell" x="0" y="690" width="150" height="50" />
+            <instance id="2303:5267" name="Table Cell" x="0" y="740" width="150" height="50" />
+          </frame>
+          <frame id="2303:5268" name="ID Column" x="272" y="12" width="230" height="790">
+            <instance id="2303:5269" name="Table Header" x="0" y="0" width="230" height="40" />
+            <instance id="2303:5270" name="Table Cell" x="0" y="40" width="230" height="50" />
+            <instance id="2303:5271" name="Table Cell" x="0" y="90" width="230" height="50" />
+            <instance id="2303:5272" name="Table Cell" x="0" y="140" width="230" height="50" />
+            <instance id="2303:5273" name="Table Cell" x="0" y="190" width="230" height="50" />
+            <instance id="2303:5274" name="Table Cell" x="0" y="240" width="230" height="50" />
+            <instance id="2303:5275" name="Table Cell" x="0" y="290" width="230" height="50" />
+            <instance id="2303:5276" name="Table Cell" x="0" y="340" width="230" height="50" />
+            <instance id="2303:5277" name="Table Cell" x="0" y="390" width="230" height="50" />
+            <instance id="2303:5278" name="Table Cell" x="0" y="440" width="230" height="50" />
+            <instance id="2303:5279" name="Table Cell" x="0" y="490" width="230" height="50" />
+            <instance id="2303:5280" name="Table Cell" x="0" y="540" width="230" height="50" />
+            <instance id="2303:5281" name="Table Cell" x="0" y="590" width="230" height="50" />
+            <instance id="2303:5282" name="Table Cell" x="0" y="640" width="230" height="50" />
+            <instance id="2303:5283" name="Table Cell" x="0" y="690" width="230" height="50" />
+            <instance id="2303:5284" name="Table Cell" x="0" y="740" width="230" height="50" />
+          </frame>
+          <frame id="2303:5285" name="ID Column" x="502" y="12" width="142" height="790">
+            <instance id="2303:5286" name="Table Header" x="0" y="0" width="142" height="40" />
+            <frame id="2303:5287" name="Table Cell" x="0" y="40" width="142" height="50">
+              <instance id="2303:5290" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5290;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5290;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5290;5597:12959;2303:5289" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5290;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+            <frame id="2303:5291" name="Table Cell" x="0" y="90" width="142" height="50">
+              <instance id="2303:5294" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5294;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5294;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5294;5597:12959;2303:5293" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5294;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+            <frame id="2303:5295" name="Table Cell" x="0" y="140" width="142" height="50">
+              <instance id="2303:5298" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5298;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5298;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5298;5597:12959;2303:5297" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5298;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+            <frame id="2303:5299" name="Table Cell" x="0" y="190" width="142" height="50">
+              <instance id="2303:5302" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5302;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5302;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5302;5597:12959;2303:5301" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5302;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+            <frame id="2303:5303" name="Table Cell" x="0" y="240" width="142" height="50">
+              <instance id="2303:5306" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5306;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5306;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5306;5597:12959;2303:5305" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5306;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+            <frame id="2303:5307" name="Table Cell" x="0" y="290" width="142" height="50">
+              <instance id="2303:5310" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5310;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5310;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5310;5597:12959;2303:5309" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5310;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+            <frame id="2303:5311" name="Table Cell" x="0" y="340" width="142" height="50">
+              <instance id="2303:5314" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5314;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5314;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5314;5597:12959;2303:5313" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5314;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+            <frame id="2303:5315" name="Table Cell" x="0" y="390" width="142" height="50">
+              <instance id="2303:5318" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5318;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5318;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5318;5597:12959;2303:5317" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5318;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+            <frame id="2303:5319" name="Table Cell" x="0" y="440" width="142" height="50">
+              <instance id="2303:5322" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5322;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5322;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5322;5597:12959;2303:5321" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5322;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+            <frame id="2303:5323" name="Table Cell" x="0" y="490" width="142" height="50">
+              <instance id="2303:5326" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5326;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5326;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5326;5597:12959;2303:5325" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5326;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+            <frame id="2303:5327" name="Table Cell" x="0" y="540" width="142" height="50">
+              <instance id="2303:5330" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5330;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5330;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5330;5597:12959;2303:5329" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5330;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+            <frame id="2303:5331" name="Table Cell" x="0" y="590" width="142" height="50">
+              <instance id="2303:5334" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5334;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5334;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5334;5597:12959;2303:5333" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5334;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+            <frame id="2303:5335" name="Table Cell" x="0" y="640" width="142" height="50">
+              <instance id="2303:5338" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5338;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5338;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5338;5597:12959;2303:5337" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5338;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+            <frame id="2303:5339" name="Table Cell" x="0" y="690" width="142" height="50">
+              <instance id="2303:5342" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5342;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5342;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5342;5597:12959;2303:5341" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5342;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+            <frame id="2303:5343" name="Table Cell" x="0" y="740" width="142" height="50">
+              <instance id="2303:5346" name="Badges" x="12" y="14" width="108" height="22">
+                <instance id="I2303:5346;4825:4557" name="Leading Icon" x="6" y="4" width="14" height="14" />
+                <slot id="I2303:5346;5597:12959" name="Text" x="24" y="4" width="76" height="14">
+                  <text id="I2303:5346;5597:12959;2303:5345" name="Text" x="0" y="0" width="76" height="14" />
+                </slot>
+                <instance id="I2303:5346;4825:4562" name="Trailing Icon" x="53" y="4" width="14" height="14" hidden="true" />
+              </instance>
+            </frame>
+          </frame>
+          <frame id="2303:5347" name="ID Column" x="644" y="12" width="114" height="790">
+            <instance id="2303:5348" name="Table Header" x="0" y="0" width="114" height="40" />
+            <frame id="2303:5349" name="Table Cell" x="0" y="40" width="114" height="50">
+              <frame id="2303:5350" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5353" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+            <frame id="2303:5354" name="Table Cell" x="0" y="90" width="114" height="50">
+              <frame id="2303:5355" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5358" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+            <frame id="2303:5359" name="Table Cell" x="0" y="140" width="114" height="50">
+              <frame id="2303:5360" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5363" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+            <frame id="2303:5364" name="Table Cell" x="0" y="190" width="114" height="50">
+              <frame id="2303:5365" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5368" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+            <frame id="2303:5369" name="Table Cell" x="0" y="240" width="114" height="50">
+              <frame id="2303:5370" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5373" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+            <frame id="2303:5374" name="Table Cell" x="0" y="290" width="114" height="50">
+              <frame id="2303:5375" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5378" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+            <frame id="2303:5379" name="Table Cell" x="0" y="340" width="114" height="50">
+              <frame id="2303:5380" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5383" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+            <frame id="2303:5384" name="Table Cell" x="0" y="390" width="114" height="50">
+              <frame id="2303:5385" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5388" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+            <frame id="2303:5389" name="Table Cell" x="0" y="440" width="114" height="50">
+              <frame id="2303:5390" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5393" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+            <frame id="2303:5394" name="Table Cell" x="0" y="490" width="114" height="50">
+              <frame id="2303:5395" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5398" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+            <frame id="2303:5399" name="Table Cell" x="0" y="540" width="114" height="50">
+              <frame id="2303:5400" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5403" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+            <frame id="2303:5404" name="Table Cell" x="0" y="590" width="114" height="50">
+              <frame id="2303:5405" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5408" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+            <frame id="2303:5409" name="Table Cell" x="0" y="640" width="114" height="50">
+              <frame id="2303:5410" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5413" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+            <frame id="2303:5414" name="Table Cell" x="0" y="690" width="114" height="50">
+              <frame id="2303:5415" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5418" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+            <frame id="2303:5419" name="Table Cell" x="0" y="740" width="114" height="50">
+              <frame id="2303:5420" name="Frame" x="12" y="15" width="20" height="20" />
+              <text id="2303:5423" name="Recyclable" x="36" y="18" width="61" height="14" />
+            </frame>
+          </frame>
+          <frame id="2303:5424" name="ID Column" x="758" y="12" width="160" height="790">
+            <instance id="2303:5425" name="Table Header" x="0" y="0" width="160" height="40" />
+            <instance id="2303:5426" name="Table Cell" x="0" y="40" width="160" height="50" />
+            <instance id="2303:5427" name="Table Cell" x="0" y="90" width="160" height="50" />
+            <instance id="2303:5428" name="Table Cell" x="0" y="140" width="160" height="50" />
+            <instance id="2303:5429" name="Table Cell" x="0" y="190" width="160" height="50" />
+            <instance id="2303:5430" name="Table Cell" x="0" y="240" width="160" height="50" />
+            <instance id="2303:5431" name="Table Cell" x="0" y="290" width="160" height="50" />
+            <instance id="2303:5432" name="Table Cell" x="0" y="340" width="160" height="50" />
+            <instance id="2303:5433" name="Table Cell" x="0" y="390" width="160" height="50" />
+            <instance id="2303:5434" name="Table Cell" x="0" y="440" width="160" height="50" />
+            <instance id="2303:5435" name="Table Cell" x="0" y="490" width="160" height="50" />
+            <instance id="2303:5436" name="Table Cell" x="0" y="540" width="160" height="50" />
+            <instance id="2303:5437" name="Table Cell" x="0" y="590" width="160" height="50" />
+            <instance id="2303:5438" name="Table Cell" x="0" y="640" width="160" height="50" />
+            <instance id="2303:5439" name="Table Cell" x="0" y="690" width="160" height="50" />
+            <instance id="2303:5440" name="Table Cell" x="0" y="740" width="160" height="50" />
+          </frame>
+          <frame id="2303:5441" name="ID Column" x="918" y="12" width="160" height="790">
+            <instance id="2303:5442" name="Table Header" x="0" y="0" width="160" height="40" />
+            <frame id="2303:5443" name="Frame 1261154803" x="0" y="40" width="160" height="50">
+              <frame id="2303:5444" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5445" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5446" name="Frame 1261154816" x="0" y="90" width="160" height="50">
+              <frame id="2303:5447" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5448" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5449" name="Frame 1261154811" x="0" y="140" width="160" height="50">
+              <frame id="2303:5450" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5451" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5452" name="Frame 1261154807" x="0" y="190" width="160" height="50">
+              <frame id="2303:5453" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5454" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5455" name="Frame 1261154809" x="0" y="240" width="160" height="50">
+              <frame id="2303:5456" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5457" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5458" name="Frame 1261154810" x="0" y="290" width="160" height="50">
+              <frame id="2303:5459" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5460" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5461" name="Frame 1261154813" x="0" y="340" width="160" height="50">
+              <frame id="2303:5462" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5463" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5464" name="Frame 1261154814" x="0" y="390" width="160" height="50">
+              <frame id="2303:5465" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5466" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5467" name="Frame 1261154808" x="0" y="440" width="160" height="50">
+              <frame id="2303:5468" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5469" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5470" name="Frame 1261154806" x="0" y="490" width="160" height="50">
+              <frame id="2303:5471" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5472" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5473" name="Frame 1261154812" x="0" y="540" width="160" height="50">
+              <frame id="2303:5474" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5475" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5476" name="Frame 1261154805" x="0" y="590" width="160" height="50">
+              <frame id="2303:5477" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5478" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5479" name="Frame 1261154815" x="0" y="640" width="160" height="50">
+              <frame id="2303:5480" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5481" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5482" name="Frame 1261154804" x="0" y="690" width="160" height="50">
+              <frame id="2303:5483" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5484" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+            <frame id="2303:5485" name="Frame 1261154817" x="0" y="740" width="160" height="50">
+              <frame id="2303:5486" name="Frame 1261155402" x="16" y="14" width="52" height="22">
+                <text id="2303:5487" name="Active" x="6" y="4" width="40" height="14" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+  </frame>
+</frame>
