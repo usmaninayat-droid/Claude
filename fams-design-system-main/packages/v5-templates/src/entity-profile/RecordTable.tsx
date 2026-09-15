@@ -395,6 +395,7 @@ export function RecordTable({
           getRowId={(row, index) => cellText(row.id) ?? String(index)}
           isCustomizable={false}
           ariaLabel="Records"
+          rowHeight="lg"
           disableResponsiveHide={!responsiveHide}
           onRowClick={onRowClick}
           hasFocusableRows={Boolean(onRowClick)}

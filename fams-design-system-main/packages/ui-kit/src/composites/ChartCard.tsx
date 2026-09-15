@@ -102,7 +102,7 @@ export const ChartCard = forwardRef<HTMLDivElement, ChartCardProps>(
       <Card
         ref={ref}
         data-slot="chart-card"
-        className={cn('overflow-hidden', className)}
+        className={cn('overflow-hidden shadow-none', className)}
         {...props}
       >
         <CardHeader className="flex-row items-center justify-between gap-3 border-b border-border px-5 py-4">
