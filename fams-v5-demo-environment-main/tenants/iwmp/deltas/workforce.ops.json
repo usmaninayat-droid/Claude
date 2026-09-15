@@ -43,7 +43,7 @@
               "valid": "Valid",
               "expiring": "Expiring",
               "expired": "Expired",
-              "blocked": "Missing"
+              "blocked": "Blocked"
             },
             "criticalBuckets": [
               "expired",
