@@ -146,7 +146,9 @@
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-DEF-2000",
         "status": "Valid",
-        "id": "WCR-01-DEF"
+        "id": "WCR-01-DEF",
+        "eligibleFor": "All heavy vehicles",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "RL",
@@ -157,7 +159,9 @@
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-RL-2000",
         "status": "Valid",
-        "id": "WCR-01-RL"
+        "id": "WCR-01-RL",
+        "eligibleFor": "RL · Rear End Loader",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "WCS",
@@ -168,7 +172,9 @@
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-WCS-2000",
         "status": "Valid",
-        "id": "WCR-01-WCS"
+        "id": "WCR-01-WCS",
+        "eligibleFor": "All routes (helpers)",
+        "gracePeriod": "90 days"
       }
     ],
     "trnValid": "3",
@@ -467,7 +473,9 @@
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-WCS-2001",
         "status": "Expired",
-        "id": "WCR-02-WCS"
+        "id": "WCR-02-WCS",
+        "eligibleFor": "All routes (helpers)",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "DEF",
@@ -478,7 +486,9 @@
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-DEF-2001",
         "status": "Valid",
-        "id": "WCR-02-DEF"
+        "id": "WCR-02-DEF",
+        "eligibleFor": "All heavy vehicles",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "SL",
@@ -489,7 +499,9 @@
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-SL-2001",
         "status": "Valid",
-        "id": "WCR-02-SL"
+        "id": "WCR-02-SL",
+        "eligibleFor": "SL · Side Loader",
+        "gracePeriod": "90 days"
       }
     ],
     "trnValid": "2",
@@ -664,7 +676,9 @@
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-WCS-2002",
         "status": "Expired",
-        "id": "WCR-03-WCS"
+        "id": "WCR-03-WCS",
+        "eligibleFor": "All routes (helpers)",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "DEF",
@@ -675,7 +689,9 @@
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-DEF-2002",
         "status": "Valid",
-        "id": "WCR-03-DEF"
+        "id": "WCR-03-DEF",
+        "eligibleFor": "All heavy vehicles",
+        "gracePeriod": "90 days"
       }
     ],
     "trnValid": "1",
@@ -983,7 +999,9 @@
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-WCS-2003",
         "status": "Blocked",
-        "id": "WCR-04-WCS"
+        "id": "WCR-04-WCS",
+        "eligibleFor": "All routes (helpers)",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "CCV",
@@ -994,7 +1012,9 @@
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-CCV-2003",
         "status": "Valid",
-        "id": "WCR-04-CCV"
+        "id": "WCR-04-CCV",
+        "eligibleFor": "CCV · Compactor Container",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "DEF",
@@ -1005,7 +1025,9 @@
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-DEF-2003",
         "status": "Valid",
-        "id": "WCR-04-DEF"
+        "id": "WCR-04-DEF",
+        "eligibleFor": "All heavy vehicles",
+        "gracePeriod": "90 days"
       }
     ],
     "trnValid": "2",
@@ -1180,7 +1202,9 @@
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-WCS-2004",
         "status": "Expiring",
-        "id": "WCR-05-WCS"
+        "id": "WCR-05-WCS",
+        "eligibleFor": "All routes (helpers)",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "BWC",
@@ -1191,7 +1215,9 @@
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-BWC-2004",
         "status": "Valid",
-        "id": "WCR-05-BWC"
+        "id": "WCR-05-BWC",
+        "eligibleFor": "BWC · Bin Washer",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "DEF",
@@ -1202,7 +1228,9 @@
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-DEF-2004",
         "status": "Valid",
-        "id": "WCR-05-DEF"
+        "id": "WCR-05-DEF",
+        "eligibleFor": "All heavy vehicles",
+        "gracePeriod": "90 days"
       }
     ],
     "trnValid": "2",
@@ -1377,7 +1405,9 @@
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-WCS-2005",
         "status": "Expiring",
-        "id": "WCR-06-WCS"
+        "id": "WCR-06-WCS",
+        "eligibleFor": "All routes (helpers)",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "DEF",
@@ -1388,7 +1418,9 @@
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-DEF-2005",
         "status": "Valid",
-        "id": "WCR-06-DEF"
+        "id": "WCR-06-DEF",
+        "eligibleFor": "All heavy vehicles",
+        "gracePeriod": "90 days"
       }
     ],
     "trnValid": "1",
@@ -1563,7 +1595,9 @@
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-WCS-2006",
         "status": "Blocked",
-        "id": "WCR-07-WCS"
+        "id": "WCR-07-WCS",
+        "eligibleFor": "All routes (helpers)",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "DEF",
@@ -1574,7 +1608,9 @@
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-DEF-2006",
         "status": "Valid",
-        "id": "WCR-07-DEF"
+        "id": "WCR-07-DEF",
+        "eligibleFor": "All heavy vehicles",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "RL",
@@ -1585,7 +1621,9 @@
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-RL-2006",
         "status": "Valid",
-        "id": "WCR-07-RL"
+        "id": "WCR-07-RL",
+        "eligibleFor": "RL · Rear End Loader",
+        "gracePeriod": "90 days"
       }
     ],
     "trnValid": "2",
@@ -1760,7 +1798,9 @@
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-WCS-2007",
         "status": "Blocked",
-        "id": "WCR-08-WCS"
+        "id": "WCR-08-WCS",
+        "eligibleFor": "All routes (helpers)",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "DEF",
@@ -1771,7 +1811,9 @@
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-DEF-2007",
         "status": "Valid",
-        "id": "WCR-08-DEF"
+        "id": "WCR-08-DEF",
+        "eligibleFor": "All heavy vehicles",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "SL",
@@ -1782,7 +1824,9 @@
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-SL-2007",
         "status": "Valid",
-        "id": "WCR-08-SL"
+        "id": "WCR-08-SL",
+        "eligibleFor": "SL · Side Loader",
+        "gracePeriod": "90 days"
       }
     ],
     "trnValid": "2",
@@ -1957,7 +2001,9 @@
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-DEF-2008",
         "status": "Valid",
-        "id": "WCR-09-DEF"
+        "id": "WCR-09-DEF",
+        "eligibleFor": "All heavy vehicles",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "WCS",
@@ -1968,7 +2014,9 @@
         "trainer": "Mariam Fadel (HSE)",
         "certificateRef": "CRT-WCS-2008",
         "status": "Valid",
-        "id": "WCR-09-WCS"
+        "id": "WCR-09-WCS",
+        "eligibleFor": "All routes (helpers)",
+        "gracePeriod": "90 days"
       }
     ],
     "trnValid": "2",
@@ -2143,7 +2191,9 @@
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-WCS-2009",
         "status": "Expired",
-        "id": "WCR-10-WCS"
+        "id": "WCR-10-WCS",
+        "eligibleFor": "All routes (helpers)",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "CCV",
@@ -2154,7 +2204,9 @@
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-CCV-2009",
         "status": "Valid",
-        "id": "WCR-10-CCV"
+        "id": "WCR-10-CCV",
+        "eligibleFor": "CCV · Compactor Container",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "DEF",
@@ -2165,7 +2217,9 @@
         "trainer": "Layla Rahman (HSE)",
         "certificateRef": "CRT-DEF-2009",
         "status": "Valid",
-        "id": "WCR-10-DEF"
+        "id": "WCR-10-DEF",
+        "eligibleFor": "All heavy vehicles",
+        "gracePeriod": "90 days"
       }
     ],
     "trnValid": "2",
@@ -2341,7 +2395,9 @@
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-WCS-2010",
         "status": "Expired",
-        "id": "WCR-11-WCS"
+        "id": "WCR-11-WCS",
+        "eligibleFor": "All routes (helpers)",
+        "gracePeriod": "90 days"
       },
       {
         "trainingCode": "DEF",
@@ -2352,7 +2408,9 @@
         "trainer": "Kareem Odeh (HSE)",
         "certificateRef": "CRT-DEF-2010",
         "status": "Valid",
-        "id": "WCR-11-DEF"
+        "id": "WCR-11-DEF",
+        "eligibleFor": "All heavy vehicles",
+        "gracePeriod": "90 days"
       }
     ],
     "trnValid": "1",

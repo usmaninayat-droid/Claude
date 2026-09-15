@@ -81,6 +81,16 @@
                 "type": "text"
               },
               {
+                "key": "eligibleFor",
+                "label": "ELIGIBLE FOR",
+                "type": "text"
+              },
+              {
+                "key": "gracePeriod",
+                "label": "GRACE PERIOD",
+                "type": "text"
+              },
+              {
                 "key": "completedOn",
                 "label": "COMPLETED",
                 "type": "text"
