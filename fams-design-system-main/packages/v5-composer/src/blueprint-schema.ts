@@ -246,6 +246,20 @@ export interface AuthoredUiConfig {
     sheetTitle?: string
     sheetDescription?: string
     emptyLabel?: string
+    outbound?: {
+      nameField?: string
+      idField?: string
+      uidField?: string
+      contextField?: string
+      reasonLabel?: string
+      headerTag?: string
+    }
+    suggestions?: { id: string; name: string; role?: string; meta?: string; shortId?: string }[]
+    sectionLabel?: string
+    approveAllLabel?: string
+    viewLinkLabel?: string
+    approveToastTitle?: string
+    approveToastDescription?: string
   }
   /** Hybrid (split list + profile) view options — see `UiConfig.hybrid` in `types.ts`. */
   hybrid?: { listColumns?: string[]; stageTabs?: boolean }

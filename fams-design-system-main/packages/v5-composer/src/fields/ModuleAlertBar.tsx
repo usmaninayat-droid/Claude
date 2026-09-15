@@ -1,12 +1,13 @@
 import { useMemo, useState } from 'react'
-import { ChevronRight, Icon, Siren, X, getIcon } from '@fams/ui-kit/icons'
+import { ArrowDown, ChevronRight, ExternalLink, Icon, Siren, X, getIcon } from '@fams/ui-kit/icons'
 import {
   Avatar,
+  Button,
   Sheet,
   SheetContent,
   SheetDescription,
   SheetTitle,
-  Button,
+  toast,
 } from '@fams/ui-kit'
 import type { EntityRecord, UiConfig } from '../types'
 
@@ -55,8 +56,112 @@ function matches(record: EntityRecord, filter?: AlertBarConfig['filter']): boole
   return true
 }
 
-function fill(template: string, count: number): string {
-  return template.replace(/\{count\}/g, String(count))
+function fill(template: string, vars: Record<string, string | number>): string {
+  return template.replace(/\{(\w+)\}/g, (_, key) => (vars[key] != null ? String(vars[key]) : ''))
+}
+
+const DEFAULT_SUGGESTIONS: NonNullable<AlertBarConfig['suggestions']> = [
+  { id: 's1', shortId: 'D-1277', name: 'Omar Farouk', role: 'HD Driver', meta: 'Standby pool' },
+  { id: 's2', shortId: 'D-1341', name: 'Anwar Farooq', role: 'HD Driver', meta: 'Cluster · MSW' },
+  { id: 's3', shortId: 'D-1408', name: 'Yousuf Iqbal', role: 'HD Driver', meta: 'Cluster · MSW' },
+  { id: 's4', shortId: 'D-1502', name: 'Ali Naseem', role: 'HD Driver', meta: 'Reliever queue' },
+  { id: 's5', shortId: 'D-1621', name: 'Bilal Khan', role: 'HD Driver', meta: 'Standby pool' },
+]
+
+/** One conflict card — mirrors shift-rostering's per-route swap card exactly. */
+function ConflictCard({
+  outbound,
+  suggested,
+  headerLine,
+  headerTag,
+  reasonLabel,
+  viewLinkLabel,
+  onApprove,
+  onReplaceManually,
+}: {
+  outbound: { name: string; shortId?: string }
+  suggested: { name: string; shortId?: string; role?: string; meta?: string }
+  headerLine: string
+  headerTag: string
+  reasonLabel: string
+  viewLinkLabel?: string
+  onApprove: () => void
+  onReplaceManually: () => void
+}) {
+  return (
+    <article className="flex flex-col rounded-md border border-border bg-card">
+      <header className="flex items-center justify-between gap-3 border-b border-border px-4 py-3">
+        <p className="text-body-sm font-semibold text-foreground">{headerLine}</p>
+        <span className="inline-flex items-center rounded-sm border border-error-300 bg-card px-2 py-1 text-caption font-semibold uppercase tracking-wide text-error-700">
+          {headerTag}
+        </span>
+      </header>
+      <div className="flex flex-col gap-2 p-4">
+        <div className="flex items-center gap-3 opacity-70">
+          <Avatar name={outbound.name} size="sm" />
+          <div className="flex flex-1 items-center gap-2">
+            {outbound.shortId ? (
+              <>
+                <span className="text-body-sm font-medium text-muted-foreground line-through">
+                  {outbound.shortId}
+                </span>
+                <span className="text-muted-foreground">·</span>
+              </>
+            ) : null}
+            <span className="text-body-sm text-muted-foreground line-through">{outbound.name}</span>
+            <span className="inline-flex items-center rounded-sm bg-warning-scale-50 px-2 py-0.5 text-caption font-semibold text-warning-text">
+              {reasonLabel}
+            </span>
+          </div>
+          <div className="flex items-center gap-2 text-caption text-muted-foreground">
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-error-500" />
+            Originally Assigned
+          </div>
+        </div>
+        <div className="flex justify-center">
+          <span className="grid size-6 place-items-center rounded-full border border-border bg-card text-muted-foreground">
+            <ArrowDown className="size-3.5" aria-hidden="true" />
+          </span>
+        </div>
+        <div className="flex items-center gap-3">
+          <Avatar name={suggested.name} size="sm" />
+          <div className="flex flex-1 items-center gap-2">
+            {suggested.shortId ? (
+              <>
+                <span className="text-body-sm font-medium text-primary">{suggested.shortId}</span>
+                <span className="text-muted-foreground">·</span>
+              </>
+            ) : null}
+            <span className="text-body-sm text-foreground">{suggested.name}</span>
+            <span className="inline-flex items-center rounded-sm bg-success-scale-100 px-2 py-0.5 text-caption font-semibold text-success-text">
+              Available for Shift
+            </span>
+          </div>
+          <div className="flex items-center gap-2 text-caption text-muted-foreground">
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-primary" />
+            Suggested Replacement
+          </div>
+        </div>
+      </div>
+      <footer className="flex items-center gap-3 border-t border-border px-4 py-3">
+        {viewLinkLabel ? (
+          <Button variant="tertiary" size="sm">
+            {viewLinkLabel}
+            <ExternalLink className="ms-1 size-4" aria-hidden="true" />
+          </Button>
+        ) : null}
+        <div className="flex-1" />
+        <button
+          type="button"
+          onClick={onReplaceManually}
+          className="rounded-xs px-3 py-2 text-body-sm font-semibold text-foreground outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          Replace Manually
+        </button>
+        <Button onClick={onApprove}>Approve Replacement</Button>
+      </footer>
+    </article>
+  )
 }
 
 export function ModuleAlertBar({
@@ -81,9 +186,39 @@ export function ModuleAlertBar({
   const classes = TONE_CLASSES[tone]
   const iconName = config.icon ?? 'alarm'
   const IconGlyph = getIcon(iconName)
-  const message = fill(config.message, count)
+  const message = fill(config.message, { count })
   const ctaLabel = config.ctaLabel ?? 'View'
   const sheetTitle = config.sheetTitle ?? 'Conflicts'
+  const sectionLabel = config.sectionLabel ?? 'Records Requiring Action'
+  const suggestions = config.suggestions ?? DEFAULT_SUGGESTIONS
+  const outboundConfig = config.outbound ?? {}
+  const reasonLabel = outboundConfig.reasonLabel ?? 'Absent'
+  const headerTag = outboundConfig.headerTag ?? 'Employee Absent'
+  const nameField = outboundConfig.nameField ?? 'title'
+  const idField = outboundConfig.idField
+  const uidField = outboundConfig.uidField ?? 'uniqueidentifier'
+  const contextField = outboundConfig.contextField ?? 'systemcol2'
+
+  const dispatchOne = (record: EntityRecord, suggested: { name: string }) => {
+    const outboundName = displayName
+      ? displayName(String(record[nameField] ?? ''))
+      : String(record[nameField] ?? '')
+    toast(config.approveToastTitle ?? 'Replacement approved', {
+      description:
+        config.approveToastDescription
+          ? fill(config.approveToastDescription, {
+              suggested: suggested.name,
+              outbound: outboundName,
+            })
+          : `${suggested.name} has been dispatched to replace ${outboundName}.`,
+    })
+  }
+  const dispatchAll = () => {
+    setOpen(false)
+    toast(config.approveToastTitle ?? 'All replacements approved', {
+      description: `${matched.length} suggested reliever${matched.length === 1 ? '' : 's'} dispatched.`,
+    })
+  }
 
   return (
     <>
@@ -131,7 +266,7 @@ export function ModuleAlertBar({
             <SheetTitle className="text-h3 font-semibold text-foreground">{sheetTitle}</SheetTitle>
             {config.sheetDescription ? (
               <SheetDescription className="text-body-sm text-muted-foreground">
-                {fill(config.sheetDescription, count)}
+                {fill(config.sheetDescription, { count })}
               </SheetDescription>
             ) : null}
           </div>
@@ -141,39 +276,46 @@ export function ModuleAlertBar({
                 {config.emptyLabel ?? 'No conflicts right now.'}
               </p>
             ) : (
-              <ul className="flex flex-col gap-2">
-                {matched.map((r) => {
-                  const name = displayName
-                    ? displayName(String(r.title ?? r.id))
-                    : String(r.title ?? r.id)
-                  const uid = String(r.uniqueidentifier ?? r.id ?? '')
-                  const context = String(r.systemcol2 ?? r.assignedRoute ?? '')
-                  return (
-                    <li
-                      key={String(r.id)}
-                      className="flex items-center gap-3 rounded-sm border border-border bg-card p-3"
+              <>
+                <div className="mb-3 flex items-center justify-between">
+                  <p className="text-body-sm text-muted-foreground">{sectionLabel}</p>
+                  {config.approveAllLabel ? (
+                    <button
+                      type="button"
+                      onClick={dispatchAll}
+                      className="rounded-xs text-body-sm font-semibold text-primary outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring"
                     >
-                      <Avatar name={name} size="sm" />
-                      <div className="min-w-0 flex-1">
-                        <p className="truncate text-body-sm font-semibold text-foreground">
-                          {name}
-                        </p>
-                        <p className="truncate text-caption text-muted-foreground">
-                          {[uid, context].filter(Boolean).join(' · ')}
-                        </p>
-                      </div>
-                      <span
-                        className={`inline-flex items-center rounded-full bg-error-100 px-2.5 py-0.5 text-caption font-semibold uppercase tracking-wide text-error-700`}
-                      >
-                        Needs dispatch
-                      </span>
-                      <Button size="sm" variant="tertiary">
-                        Resolve
-                      </Button>
-                    </li>
-                  )
-                })}
-              </ul>
+                      {config.approveAllLabel}
+                    </button>
+                  ) : null}
+                </div>
+                <ul className="flex flex-col gap-3">
+                  {matched.map((r, i) => {
+                    const outboundName = displayName
+                      ? displayName(String(r[nameField] ?? ''))
+                      : String(r[nameField] ?? '')
+                    const outboundShortId = idField ? String(r[idField] ?? '') || undefined : undefined
+                    const uid = String(r[uidField] ?? r.id ?? '')
+                    const context = String(r[contextField] ?? '')
+                    const headerLine = [uid, context].filter(Boolean).join(' · ')
+                    const suggested = suggestions[i % suggestions.length]
+                    return (
+                      <li key={String(r.id)}>
+                        <ConflictCard
+                          outbound={{ name: outboundName, shortId: outboundShortId }}
+                          suggested={suggested}
+                          headerLine={headerLine}
+                          headerTag={headerTag}
+                          reasonLabel={reasonLabel}
+                          viewLinkLabel={config.viewLinkLabel}
+                          onApprove={() => dispatchOne(r, suggested)}
+                          onReplaceManually={() => dispatchOne(r, suggested)}
+                        />
+                      </li>
+                    )
+                  })}
+                </ul>
+              </>
             )}
           </div>
         </SheetContent>

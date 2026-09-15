@@ -1460,12 +1460,41 @@ export interface UiConfig {
     ctaLabel?: string
     /** Predicate that selects the conflicting records; same shape as `listSummary[].filter`. */
     filter?: { col: string; equals?: string; in?: string[] }
-    /** Side-sheet title (e.g. "Dispatching Conflicts"). Defaults to "Conflicts". */
+    /** Side-sheet title (e.g. "Resolve Dispatching Conflicts"). */
     sheetTitle?: string
-    /** Side-sheet description under the title. */
+    /** Side-sheet description under the title; `{count}` interpolates the total. */
     sheetDescription?: string
     /** Empty-state text when the filter matches zero records. Defaults to "No conflicts right now." */
     emptyLabel?: string
+    /**
+     * Outbound-row copy (the record's own strike-through row inside each
+     * conflict card). Field keys are the same shape `DispatchAction` uses.
+     */
+    outbound?: {
+      /** Column key for the person's display name. Defaults to `title`. */
+      nameField?: string
+      /** Column key for a short id (e.g. `E-102`) shown before the name. */
+      idField?: string
+      /** Column key for the record uid shown in the card header. Defaults to `uniqueidentifier`. */
+      uidField?: string
+      /** Column key for the context line after the uid. Defaults to `systemcol2`. */
+      contextField?: string
+      /** Pill label on the outbound row. Defaults to "Absent". */
+      reasonLabel?: string
+      /** Header top-right tag. Defaults to "Employee Absent". */
+      headerTag?: string
+    }
+    /** Suggested reliever pool; cards rotate through this list by index. */
+    suggestions?: { id: string; name: string; role?: string; meta?: string; shortId?: string }[]
+    /** Section header label above the cards. Defaults to "Records Requiring Action". */
+    sectionLabel?: string
+    /** "Approve All" text button label. Omit to hide the affordance. */
+    approveAllLabel?: string
+    /** Ghost "View Plan"-style footer button label on each card. Omit to hide. */
+    viewLinkLabel?: string
+    /** Toast copy when an individual replacement is approved. */
+    approveToastTitle?: string
+    approveToastDescription?: string
   }
   /** Hybrid (split list + profile) view options. */
   hybrid?: {

@@ -2884,7 +2884,39 @@
             },
             "sheetTitle": { "type": "string" },
             "sheetDescription": { "type": "string" },
-            "emptyLabel": { "type": "string" }
+            "emptyLabel": { "type": "string" },
+            "outbound": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "nameField": { "type": "string" },
+                "idField": { "type": "string" },
+                "uidField": { "type": "string" },
+                "contextField": { "type": "string" },
+                "reasonLabel": { "type": "string" },
+                "headerTag": { "type": "string" }
+              }
+            },
+            "suggestions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["id", "name"],
+                "properties": {
+                  "id": { "type": "string" },
+                  "name": { "type": "string" },
+                  "role": { "type": "string" },
+                  "meta": { "type": "string" },
+                  "shortId": { "type": "string" }
+                }
+              }
+            },
+            "sectionLabel": { "type": "string" },
+            "approveAllLabel": { "type": "string" },
+            "viewLinkLabel": { "type": "string" },
+            "approveToastTitle": { "type": "string" },
+            "approveToastDescription": { "type": "string" }
           }
         },
         "hybrid": {

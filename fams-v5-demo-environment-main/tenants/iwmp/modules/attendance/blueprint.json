@@ -79,9 +79,21 @@
       "message": "{count} employees are absent today — each has a suggested reliever ready to dispatch.",
       "ctaLabel": "Click to resolve",
       "filter": { "col": "status", "equals": "Absent" },
-      "sheetTitle": "Dispatching Conflicts",
-      "sheetDescription": "{count} attendance records need a reliever dispatched.",
-      "emptyLabel": "No dispatching conflicts right now."
+      "sheetTitle": "Resolve Attendance Coverage",
+      "sheetDescription": "{count} attendance records need attention today.",
+      "emptyLabel": "No dispatching conflicts right now.",
+      "sectionLabel": "Records Requiring Action",
+      "approveAllLabel": "Approve All Suggestions",
+      "viewLinkLabel": "View Record",
+      "approveToastTitle": "Reliever dispatched",
+      "approveToastDescription": "{suggested} has been dispatched to replace {outbound}.",
+      "outbound": {
+        "nameField": "title",
+        "uidField": "uniqueidentifier",
+        "contextField": "systemcol2",
+        "reasonLabel": "Absent",
+        "headerTag": "Employee Absent"
+      }
     },
     "listSummary": [
       { "id": "kpi_att_reported", "label": "Reported", "icon": "check-circle", "tone": "success", "filter": { "col": "status", "in": ["Present", "Late"] } },

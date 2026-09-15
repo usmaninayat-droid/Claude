@@ -157,6 +157,9 @@
   ],
   "uiConfig": {
     "alertBar": {
+      "approveAllLabel": "Approve All Suggestions",
+      "approveToastDescription": "{suggested} has been dispatched to replace {outbound}.",
+      "approveToastTitle": "Reliever dispatched",
       "ctaLabel": "Click to resolve",
       "emptyLabel": "No dispatching conflicts right now.",
       "filter": {
@@ -165,9 +168,18 @@
       },
       "icon": "alarm",
       "message": "{count} employees are absent today — each has a suggested reliever ready to dispatch.",
-      "sheetDescription": "{count} attendance records need a reliever dispatched.",
-      "sheetTitle": "Dispatching Conflicts",
-      "tone": "danger"
+      "outbound": {
+        "contextField": "systemcol2",
+        "headerTag": "Employee Absent",
+        "nameField": "title",
+        "reasonLabel": "Absent",
+        "uidField": "uniqueidentifier"
+      },
+      "sectionLabel": "Records Requiring Action",
+      "sheetDescription": "{count} attendance records need attention today.",
+      "sheetTitle": "Resolve Attendance Coverage",
+      "tone": "danger",
+      "viewLinkLabel": "View Record"
     },
     "creation": {
       "disabled": true,
