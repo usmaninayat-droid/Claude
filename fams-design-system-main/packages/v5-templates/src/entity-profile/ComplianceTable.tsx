@@ -349,7 +349,7 @@ export function ComplianceTable({
       </div>
 
       {sectionLabel ? (
-        <p className="-mb-1 text-body-sm font-medium text-secondary-foreground-strong">
+        <p className="-mb-2 text-body-sm font-medium text-secondary-foreground-strong">
           {fill(sectionLabel, { role: role || '—' })}
         </p>
       ) : null}
