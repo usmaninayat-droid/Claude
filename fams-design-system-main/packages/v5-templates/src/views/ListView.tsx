@@ -163,7 +163,7 @@ export function ListView({
   return (
     <section
       data-slot="list-view"
-      className={cn('flex h-full min-h-0 flex-col gap-3', className)}
+      className={cn('flex h-full min-h-0 flex-col gap-1', className)}
     >
       {/* The lens's own region label under the page `h1` — round 1 found List
           and Kanban with no `h2` at all, so a screen-reader user had no way to

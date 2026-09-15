@@ -858,7 +858,13 @@ export function ModuleViewShell({
         data-slot="module-view-shell-body"
         className={cn(
           'min-h-0 flex-1 overflow-auto',
-          bodyInset === 'flush' ? 'p-0' : cn('py-6', MODULE_GUTTER_X),
+          // Top inset is intentionally zero (`pt-0` vs `pb-6`): the filters/
+          // search row above already supplies its own `py-3` bottom padding,
+          // so ANY body top here stacks on top of that, plus the lens's own
+          // reserved count row, and reads as a dead band between the toolbar
+          // and the first content. Zero top collapses the doubled inset while
+          // `pb-6` keeps the same bottom breathing room dashboards use.
+          bodyInset === 'flush' ? 'p-0' : cn('pt-0 pb-6', MODULE_GUTTER_X),
         )}
       >
         {activeView ? renderView(activeView) : (emptyState ?? null)}
