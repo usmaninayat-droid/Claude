@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { ArrowDown, ExternalLink, MoreVertical, X } from '@fams/ui-kit/icons'
 import {
   Avatar,
@@ -257,7 +257,20 @@ export function DispatchActionMenu({
 
   const selectedManualCandidate = manual.find((c) => c.id === selectedManualId)
 
+  const rootRef = useRef<HTMLSpanElement | null>(null)
   const openProfile = () => {
+    // Synthesize a click on the containing table row so the caller's own
+    // `onRowClick` (which normally opens the record's profile drawer)
+    // fires. The action cell stops pointer/click propagation to keep
+    // stray kebab clicks from also opening the profile, so triggering
+    // the row activation programmatically is the seam.
+    const row = rootRef.current?.closest('tr')
+    if (row) {
+      row.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+      return
+    }
+    // No row ancestor (e.g. this renderer used off a `DataTable`) — fall
+    // back to the same demo toast the earlier commit shipped.
     toast(props.viewProfileToastTitle ?? 'View profile', {
       description:
         props.viewProfileToastDescription
@@ -268,6 +281,7 @@ export function DispatchActionMenu({
 
   return (
     <span
+      ref={rootRef}
       onClick={(e) => e.stopPropagation()}
       onPointerDown={(e) => e.stopPropagation()}
       onPointerUp={(e) => e.stopPropagation()}
