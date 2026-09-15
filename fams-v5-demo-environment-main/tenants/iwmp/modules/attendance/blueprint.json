@@ -69,9 +69,9 @@
   "uiConfig": {
     "icon": "calendar-check-01",
     "statusList": [
-      { "id": "sts_att_present", "key": "Present", "label": "Present", "color": "#027a48", "tone": "success" },
-      { "id": "sts_att_late", "key": "Late", "label": "Late", "color": "#b54708", "tone": "warning" },
-      { "id": "sts_att_absent", "key": "Absent", "label": "Absent", "color": "#b42318", "tone": "danger" }
+      { "id": "sts_att_present", "key": "Present", "label": "Present", "color": "#22C882", "tone": "success" },
+      { "id": "sts_att_late", "key": "Late", "label": "Late", "color": "#F79009", "tone": "warning" },
+      { "id": "sts_att_absent", "key": "Absent", "label": "Absent", "color": "#F04438", "tone": "danger" }
     ],
     "alertBar": {
       "icon": "alarm",

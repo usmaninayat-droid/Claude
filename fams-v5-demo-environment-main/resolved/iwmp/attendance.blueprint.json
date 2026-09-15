@@ -380,21 +380,21 @@
     },
     "statusList": [
       {
-        "color": "#027a48",
+        "color": "#22C882",
         "id": "sts_att_present",
         "key": "Present",
         "label": "Present",
         "tone": "success"
       },
       {
-        "color": "#b54708",
+        "color": "#F79009",
         "id": "sts_att_late",
         "key": "Late",
         "label": "Late",
         "tone": "warning"
       },
       {
-        "color": "#b42318",
+        "color": "#F04438",
         "id": "sts_att_absent",
         "key": "Absent",
         "label": "Absent",
