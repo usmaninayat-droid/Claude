@@ -255,7 +255,7 @@ export interface AuthoredUiConfig {
       headerTag?: string
       routeIdPrefix?: string
     }
-    suggestions?: { id: string; name: string; role?: string; meta?: string; shortId?: string }[]
+    suggestions?: { id: string; name: string; role?: string; meta?: string; shortId?: string; status?: 'available' | 'overtime' }[]
     sectionLabel?: string
     approveAllLabel?: string
     viewLinkLabel?: string

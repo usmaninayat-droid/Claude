@@ -61,15 +61,26 @@ function fill(template: string, vars: Record<string, string | number>): string {
   return template.replace(/\{(\w+)\}/g, (_, key) => (vars[key] != null ? String(vars[key]) : ''))
 }
 
-const DEFAULT_SUGGESTIONS: NonNullable<AlertBarConfig['suggestions']> = [
+const DEFAULT_SUGGESTIONS: Candidate[] = [
   { id: 's1', shortId: 'D-1277', name: 'Omar Farouk', role: 'HD Driver', meta: 'Standby pool' },
   { id: 's2', shortId: 'D-1341', name: 'Anwar Farooq', role: 'HD Driver', meta: 'Cluster · MSW' },
   { id: 's3', shortId: 'D-1408', name: 'Yousuf Iqbal', role: 'HD Driver', meta: 'Cluster · MSW' },
   { id: 's4', shortId: 'D-1502', name: 'Ali Naseem', role: 'HD Driver', meta: 'Reliever queue' },
   { id: 's5', shortId: 'D-1621', name: 'Bilal Khan', role: 'HD Driver', meta: 'Standby pool' },
+  { id: 's6', shortId: 'D-1707', name: 'Faisal Ahmed', role: 'HD Driver', meta: 'Reliever queue' },
+  { id: 's7', shortId: 'D-1802', name: 'Junaid Malik', role: 'HD Driver', meta: 'Reliever queue' },
+  { id: 's8', shortId: 'D-1396', name: 'Salim Haddad', role: 'HD Driver', meta: 'Cluster · MSW', status: 'overtime' },
 ]
 
-type Candidate = { id: string; name: string; role?: string; meta?: string; shortId?: string }
+type Candidate = {
+  id: string
+  name: string
+  role?: string
+  meta?: string
+  shortId?: string
+  /** Trailing status pill in the manual-replace list (default `available`). */
+  status?: 'available' | 'overtime'
+}
 
 /**
  * One conflict card — same as shift-rostering's per-route swap card.
@@ -190,9 +201,18 @@ function ConflictCard({
 }
 
 /**
- * ManualReplacePanel — the separate side sheet the shift-rostering `.mpanel`
- * opens on top of the main resolve sheet. Reuses the same 700px width and
- * external circular close as the main sheet.
+ * ManualReplacePanel — the shift-rostering `.mpanel` side sheet. Layout:
+ *   - Header: "Replace Manually" title.
+ *   - Outbound record card (route uid + plan · red DRIVER UNAVAILABLE tag,
+ *     then the outbound driver row inside with strikethrough + reason pill
+ *     and red-dot "Originally Assigned").
+ *   - Search input (with a leading search glyph inside a soft circle).
+ *   - Two-column table (DRIVER / STATUS) with a radio dot per row. The
+ *     first row of the pool carries a blue "Suggested" chip next to the
+ *     name; every row carries a status pill (green "Available" or amber
+ *     "Overtime" — an authoring hint carried on the candidate itself).
+ *   - Footer: ghost "View Plan" on the left, green "Assign Replacement"
+ *     primary on the right (disabled until a driver is selected).
  */
 function ManualReplacePanel({
   open,
@@ -201,7 +221,10 @@ function ManualReplacePanel({
   outboundShortId,
   headerLine,
   reasonLabel,
+  headerTag,
+  suggested,
   pool,
+  viewLinkLabel,
   onDispatch,
 }: {
   open: boolean
@@ -210,7 +233,10 @@ function ManualReplacePanel({
   outboundShortId?: string
   headerLine: string
   reasonLabel: string
+  headerTag: string
+  suggested: Candidate
   pool: Candidate[]
+  viewLinkLabel?: string
   onDispatch: (candidate: Candidate) => void
 }) {
   const [query, setQuery] = useState('')
@@ -248,95 +274,144 @@ function ManualReplacePanel({
         >
           <X className="size-5" />
         </button>
-        <div className="flex flex-col gap-1 border-b border-border p-6">
+        <div className="border-b border-border p-6">
           <SheetTitle className="text-h3 font-semibold text-foreground">Replace Manually</SheetTitle>
-          <SheetDescription className="text-body-sm text-muted-foreground">
-            {headerLine} — pick a reliever to dispatch in place of {outboundName}.
+          <SheetDescription className="sr-only">
+            Choose a reliever for {outboundName}
           </SheetDescription>
         </div>
         <div className="flex-1 overflow-y-auto p-6">
-          <div className="mb-4 flex items-center gap-3 rounded-sm border border-border bg-muted/40 p-3">
-            <Avatar name={outboundName} size="sm" />
-            <div className="flex flex-1 items-center gap-2">
-              {outboundShortId ? (
-                <>
-                  <span className="text-body-sm font-medium text-muted-foreground line-through">
-                    {outboundShortId}
-                  </span>
-                  <span className="text-muted-foreground">·</span>
-                </>
-              ) : null}
-              <span className="text-body-sm text-muted-foreground line-through">{outboundName}</span>
-              <span className="inline-flex items-center rounded-sm bg-warning-scale-50 px-2 py-0.5 text-caption font-semibold text-warning-text">
-                {reasonLabel}
+          {/* Outbound record card — same visual chrome as a conflict card in
+              the resolve sheet: header line + red-outlined tag, then the
+              outbound driver row inside. */}
+          <div className="mb-4 rounded-md border border-border bg-card">
+            <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-3">
+              <p className="text-body-sm font-semibold text-foreground">{headerLine}</p>
+              <span className="inline-flex items-center rounded-sm border border-error-300 bg-card px-2 py-1 text-caption font-semibold uppercase tracking-wide text-error-700">
+                {headerTag}
               </span>
             </div>
+            <div className="flex items-center gap-3 px-4 py-3 opacity-70">
+              <Avatar name={outboundName} size="sm" />
+              <div className="flex flex-1 items-center gap-2">
+                {outboundShortId ? (
+                  <>
+                    <span className="text-body-sm font-medium text-muted-foreground line-through">
+                      {outboundShortId}
+                    </span>
+                    <span className="text-muted-foreground">·</span>
+                  </>
+                ) : null}
+                <span className="text-body-sm text-muted-foreground line-through">
+                  {outboundName}
+                </span>
+                <span className="inline-flex items-center rounded-sm bg-warning-scale-50 px-2 py-0.5 text-caption font-semibold text-warning-text">
+                  {reasonLabel}
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-caption text-muted-foreground">
+                <span aria-hidden="true" className="size-1.5 rounded-full bg-error-500" />
+                Originally Assigned
+              </div>
+            </div>
           </div>
-          <div className="relative mb-3">
+
+          {/* Search — matches shift-rostering's rounded pill search with an
+              inline glyph. */}
+          <div className="relative mb-4">
             <Search
               aria-hidden="true"
-              className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+              className="pointer-events-none absolute start-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
             />
             <Input
               type="search"
-              placeholder="Search workforce"
+              placeholder="Search driver"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="ps-9"
-              aria-label="Search workforce"
+              className="h-11 rounded-sm ps-10"
+              aria-label="Search driver"
             />
           </div>
-          <div className="flex flex-col gap-2">
+
+          {/* Driver / Status table — column headers + a radio-selectable row
+              per candidate. The first pool entry gets the blue "Suggested"
+              chip; each candidate carries an authoring `status` field
+              (default "Available") that maps to the trailing pill's tone. */}
+          <div className="overflow-hidden rounded-md border border-border">
+            <div className="grid grid-cols-[auto_1fr_auto] items-center gap-4 border-b border-border bg-muted/30 px-4 py-2 text-caption font-semibold uppercase tracking-wide text-muted-foreground">
+              <span className="w-6" aria-hidden="true" />
+              <span>Driver</span>
+              <span>Status</span>
+            </div>
             {filtered.length === 0 ? (
-              <p className="p-3 text-body-sm text-muted-foreground">No matching workers.</p>
+              <p className="p-4 text-body-sm text-muted-foreground">No matching drivers.</p>
             ) : (
-              filtered.map((c) => (
-                <button
-                  key={c.id}
-                  type="button"
-                  onClick={() => setPickedId(c.id)}
-                  className={
-                    pickedId === c.id
-                      ? 'flex w-full items-center gap-3 rounded-sm border border-primary bg-primary/5 p-3 text-start'
-                      : 'flex w-full items-center gap-3 rounded-sm border border-border bg-card p-3 text-start hover:bg-muted/50'
-                  }
-                >
-                  <Avatar name={c.name} size="sm" />
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-body-sm font-semibold text-foreground">
-                      {c.shortId ? `${c.shortId} · ` : ''}
-                      {c.name}
-                    </p>
-                    <p className="truncate text-caption text-muted-foreground">
-                      {[c.role, c.meta].filter(Boolean).join(' · ')}
-                    </p>
-                  </div>
-                  <span
-                    aria-hidden="true"
-                    className={
-                      pickedId === c.id
-                        ? 'grid size-4 place-items-center rounded-full border-2 border-primary'
-                        : 'grid size-4 place-items-center rounded-full border-2 border-border'
-                    }
-                  >
-                    {pickedId === c.id ? <span className="size-2 rounded-full bg-primary" /> : null}
-                  </span>
-                </button>
-              ))
+              <ul className="flex flex-col">
+                {filtered.map((c, i) => {
+                  const isSuggested = c.id === suggested.id
+                  const status = (c as Candidate & { status?: 'available' | 'overtime' }).status ?? 'available'
+                  const isPicked = pickedId === c.id
+                  return (
+                    <li key={c.id} className={i > 0 ? 'border-t border-border' : ''}>
+                      <button
+                        type="button"
+                        onClick={() => setPickedId(c.id)}
+                        aria-pressed={isPicked}
+                        className={`grid w-full grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-3 text-start transition-colors ${isPicked ? 'bg-primary/5' : 'hover:bg-muted/40'}`}
+                      >
+                        <span
+                          aria-hidden="true"
+                          className={`grid size-5 place-items-center rounded-full border-2 ${isPicked ? 'border-primary' : 'border-border'}`}
+                        >
+                          {isPicked ? <span className="size-2.5 rounded-full bg-primary" /> : null}
+                        </span>
+                        <div className="flex items-center gap-3">
+                          <Avatar name={c.name} size="sm" />
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-2">
+                              <span className="truncate text-body-sm font-semibold text-foreground">
+                                {c.name}
+                              </span>
+                              {isSuggested ? (
+                                <span className="inline-flex items-center rounded-sm bg-info-scale-50 px-2 py-0.5 text-caption font-semibold text-info-scale-700">
+                                  Suggested
+                                </span>
+                              ) : null}
+                            </div>
+                            {c.shortId ? (
+                              <p className="mt-0.5 inline-flex items-center rounded-xs bg-muted px-1.5 py-0.5 text-caption text-muted-foreground">
+                                # {c.shortId}
+                              </p>
+                            ) : null}
+                          </div>
+                        </div>
+                        <span
+                          className={
+                            status === 'overtime'
+                              ? 'inline-flex items-center rounded-sm bg-warning-scale-50 px-2 py-1 text-caption font-semibold text-warning-text'
+                              : 'inline-flex items-center rounded-sm bg-success-scale-100 px-2 py-1 text-caption font-semibold text-success-text'
+                          }
+                        >
+                          {status === 'overtime' ? 'Overtime' : 'Available'}
+                        </span>
+                      </button>
+                    </li>
+                  )
+                })}
+              </ul>
             )}
           </div>
         </div>
         <div className="flex items-center gap-3 border-t border-border p-4">
+          {viewLinkLabel ? (
+            <Button variant="tertiary" size="md">
+              {viewLinkLabel}
+              <ExternalLink className="ms-1 size-4" aria-hidden="true" />
+            </Button>
+          ) : null}
           <div className="flex-1" />
-          <button
-            type="button"
-            onClick={() => onOpenChange(false)}
-            className="rounded-xs px-3 py-2 text-body-sm font-semibold text-foreground outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            Cancel
-          </button>
           <Button onClick={() => picked && onDispatch(picked)} disabled={!picked}>
-            Dispatch Reliever
+            Assign Replacement
           </Button>
         </div>
       </SheetContent>
@@ -591,9 +666,14 @@ export function ModuleAlertBar({
         const headerLine = [routeId, context].filter(Boolean).join(' · ')
         const idx = matched.indexOf(record)
         const cardSuggested = suggestions[idx % suggestions.length]
-        // Manual pool excludes the record's own inline suggestion (it's
-        // already the primary approve action; hand-picking offers the rest).
-        const manualPool = suggestions.filter((c) => c.id !== cardSuggested.id)
+        // Manual pool leads with the record's own suggestion (marked with the
+        // blue "Suggested" chip), then the rest of the reliever pool. The
+        // whole set is offered for hand-picking; the trailing status pill on
+        // each row (Available / Overtime) is authored on the candidate.
+        const manualPool = [
+          cardSuggested,
+          ...suggestions.filter((c) => c.id !== cardSuggested.id),
+        ]
         return (
           <ManualReplacePanel
             open={manualForId === String(record.id)}
@@ -602,7 +682,10 @@ export function ModuleAlertBar({
             outboundShortId={outboundShortId}
             headerLine={headerLine}
             reasonLabel={reasonLabel}
+            headerTag={headerTag}
+            suggested={cardSuggested}
             pool={manualPool}
+            viewLinkLabel={config.viewLinkLabel}
             onDispatch={(candidate) => {
               setManualForId(null)
               beginResolve(record, candidate)

@@ -1486,8 +1486,8 @@ export interface UiConfig {
       /** Prefix prepended to the numeric part of the uid in each card's header line (default `R#`). Formats a record uid like `ATT-2012` as `R#2012 · <context>`, matching the shift-rostering "R#…" convention. */
       routeIdPrefix?: string
     }
-    /** Suggested reliever pool; cards rotate through this list by index. */
-    suggestions?: { id: string; name: string; role?: string; meta?: string; shortId?: string }[]
+    /** Suggested reliever pool; cards rotate through this list by index. `status` = trailing pill on the Replace-Manually list ("Available" default, "Overtime" for an amber pill). */
+    suggestions?: { id: string; name: string; role?: string; meta?: string; shortId?: string; status?: 'available' | 'overtime' }[]
     /** Section header label above the cards. Defaults to "Records Requiring Action". */
     sectionLabel?: string
     /** "Approve All" text button label. Omit to hide the affordance. */

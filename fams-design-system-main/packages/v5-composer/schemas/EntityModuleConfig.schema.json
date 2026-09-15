@@ -2909,7 +2909,8 @@
                   "name": { "type": "string" },
                   "role": { "type": "string" },
                   "meta": { "type": "string" },
-                  "shortId": { "type": "string" }
+                  "shortId": { "type": "string" },
+                  "status": { "enum": ["available", "overtime"] }
                 }
               }
             },
