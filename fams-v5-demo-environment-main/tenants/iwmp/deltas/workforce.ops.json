@@ -135,23 +135,6 @@
           "props": {
             "widgets": [
               {
-                "type": "filterBar",
-                "filters": [
-                  {
-                    "kind": "dateRange",
-                    "icon": "calendar",
-                    "label": "Date Range",
-                    "value": "Last 30 Days"
-                  },
-                  {
-                    "kind": "select",
-                    "icon": "filter-lines",
-                    "label": "Source",
-                    "value": "All"
-                  }
-                ]
-              },
-              {
                 "type": "attendanceHeatmap",
                 "title": "Attendance",
                 "rowsField": "attendanceLog",

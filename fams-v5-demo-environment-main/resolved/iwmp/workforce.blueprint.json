@@ -512,23 +512,6 @@
               "props": {
                 "widgets": [
                   {
-                    "filters": [
-                      {
-                        "icon": "calendar",
-                        "kind": "dateRange",
-                        "label": "Date Range",
-                        "value": "Last 30 Days"
-                      },
-                      {
-                        "icon": "filter-lines",
-                        "kind": "select",
-                        "label": "Source",
-                        "value": "All"
-                      }
-                    ],
-                    "type": "filterBar"
-                  },
-                  {
                     "dateKey": "date",
                     "rowsField": "attendanceLog",
                     "statusKey": "status",
