@@ -1,6 +1,7 @@
 import { useMemo, useState, type ReactNode } from 'react'
 import { computeThresholdTone, formatFigmaDate, humanizeEnumValue } from '@fams/v5-composer'
-import { Filter, Search, ChevronDown, Plus } from '@fams/ui-kit/icons'
+import { Search, ChevronDown, Plus } from '@fams/ui-kit/icons'
+import { RecordTableFilterButton, applyRecordTableFilters } from './RecordTableFilterButton'
 import {
   Avatar,
   DataTable,
@@ -266,14 +267,24 @@ export function RecordTable({
   className,
 }: RecordTableProps) {
   const [query, setQuery] = useState('')
+  const [filters, setFilters] = useState<Record<string, string[]>>({})
   const rows = useMemo(() => {
     if (rowsProp) return rowsProp
     const raw = field ? record?.[field] : undefined
     return Array.isArray(raw) ? (raw as Record<string, unknown>[]) : []
   }, [rowsProp, record, field])
-  const visibleRows = useMemo(
+  // The Filter popover derives its distinct-value groups from rows AFTER
+  // search has narrowed them — so a search term shrinks the checkbox list to
+  // match what the user is currently looking at, rather than always showing
+  // the full column vocabulary. The filter selection itself then narrows
+  // those rows further.
+  const searchedRows = useMemo(
     () => (search && query ? rows.filter((row) => matchesSearch(row, columns, query)) : rows),
     [rows, columns, search, query],
+  )
+  const visibleRows = useMemo(
+    () => applyRecordTableFilters(searchedRows, filters),
+    [searchedRows, filters],
   )
 
   const dataColumns = useMemo<DataTableColumn<Record<string, unknown>>[]>(
@@ -324,13 +335,13 @@ export function RecordTable({
                   aria-label={searchPlaceholder}
                 />
               </div>
-              <button
-                type="button"
-                aria-label="Filter"
-                className="grid size-10 shrink-0 place-items-center rounded-sm border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              >
-                <Filter className="size-4" aria-hidden="true" />
-              </button>
+              <RecordTableFilterButton
+                columns={columns}
+                rows={searchedRows}
+                value={filters}
+                onChange={setFilters}
+                statusLabels={statusLabels}
+              />
             </>
           ) : null}
           {timeframeSelect ? (
