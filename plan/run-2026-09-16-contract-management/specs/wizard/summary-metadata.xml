@@ -1,0 +1,976 @@
+<frame id="2111:4992" name="Add Contract- Contract Information" x="35308" y="342" width="1920" height="2472">
+  <rounded-rectangle id="2111:4993" name="image 4" x="0" y="0" width="1920" height="1080" />
+  <frame id="2111:4994" name="Form" x="82" y="0" width="1838" height="1080">
+    <frame id="2111:4995" name="Group 1000002614" x="0" y="511" width="58" height="58">
+      <ellipse id="2111:4996" name="Ellipse 1301" x="0" y="511" width="58" height="58" />
+      <instance id="2111:4997" name="x" x="17" y="528" width="24" height="24" />
+    </frame>
+    <frame id="2111:4998" name="Auto Detect Area" x="98" y="0" width="1740" height="1080">
+      <frame id="2111:4999" name="Frame 1618873391" x="0" y="0" width="326" height="1080">
+        <frame id="2111:5000" name="Frame 1984078551" x="28" y="28" width="270" height="39">
+          <text id="2111:5001" name="Create New Contract" x="0" y="0" width="270" height="33" />
+        </frame>
+        <frame id="2111:5002" name="Frame 1984078550" x="28" y="91" width="270" height="700">
+          <frame id="2111:5003" name="Frame 1984078829" x="0" y="0" width="270" height="32">
+            <frame id="2111:5004" name="Frame 1984078544" x="0" y="0" width="31.999998092651367" height="32">
+              <instance id="2111:5005" name="check" x="7" y="7.000000953674316" width="17.999998092651367" height="17.999998092651367" />
+            </frame>
+            <frame id="2111:5006" name="Frame 1984078543" x="41" y="2" width="229" height="28">
+              <text id="2111:5007" name="STEP 1" x="0" y="0" width="32" height="12" />
+              <text id="2111:5008" name="Basic Info" x="0" y="12" width="229" height="16" />
+            </frame>
+          </frame>
+          <frame id="2111:5009" name="Frame 1984078830" x="0" y="38" width="32" height="32">
+            <rounded-rectangle id="2111:5010" name="Rectangle 18043" x="15" y="0" width="2" height="32" />
+          </frame>
+          <instance id="2111:5011" name="Stepper " x="0" y="76" width="220" height="68" />
+          <frame id="2111:5012" name="Frame 1261154915" x="0" y="150" width="270" height="550">
+            <instance id="2111:5013" name="Stepper " x="0" y="0" width="220" height="68" />
+            <instance id="2111:5014" name="Stepper " x="0" y="74" width="220" height="68" />
+            <instance id="2111:5015" name="Stepper " x="0" y="148" width="220" height="68" />
+            <instance id="2111:5016" name="Stepper " x="0" y="222" width="220" height="68" />
+            <instance id="2111:5017" name="Stepper " x="0" y="296" width="270" height="68" />
+            <instance id="2111:5018" name="Stepper " x="0" y="370" width="270" height="68" />
+            <instance id="2111:5019" name="Stepper " x="0" y="444" width="270" height="68" />
+            <instance id="2111:5020" name="Stepper " x="0" y="518" width="270" height="32" />
+          </frame>
+        </frame>
+      </frame>
+      <frame id="2111:5021" name="Frame 1984078707" x="326" y="0" width="1414" height="3658">
+        <frame id="2111:5022" name="Frame 1984078319" x="28" y="28" width="1358" height="3526">
+          <frame id="2111:5023" name="Frame 1618873384" x="0" y="0" width="1171" height="42">
+            <frame id="2111:5024" name="Frame 1618873374" x="0" y="0" width="159" height="22">
+              <text id="2111:5025" name="Contract Summary" x="0" y="0" width="159" height="22" />
+            </frame>
+            <text id="2111:5026" name="Review all the core requirements for this contract." x="0" y="26" width="1171" height="16" />
+          </frame>
+          <frame id="2111:5027" name="Frame 1984078757" x="0" y="62" width="1358" height="708">
+            <frame id="2111:5028" name="Frame 1261154550" x="0" y="0" width="1358" height="190">
+              <text id="2111:5029" name="Basic Info" x="0" y="16" width="63" height="14" />
+              <frame id="2111:5030" name="Frame 1261154856" x="0" y="46" width="1358" height="128">
+                <frame id="2111:5031" name="Frame 1984078710" x="0" y="0" width="679" height="128">
+                  <frame id="2111:5032" name="Frame 1261154759" x="0" y="0" width="679" height="20">
+                    <frame id="2111:5033" name="Frame 1261154553" x="0" y="0" width="354" height="20">
+                      <text id="2111:5034" name="Contract Title" x="0" y="3" width="210" height="14" />
+                      <text id="2111:5035" name="Lot 1 Contract" x="250" y="2" width="104" height="16" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5036" name="Frame 1261154760" x="0" y="36" width="679" height="20">
+                    <frame id="2111:5037" name="Frame 1261154555" x="0" y="0" width="286" height="20">
+                      <text id="2111:5038" name="Contract Type" x="0" y="3" width="210" height="14" />
+                      <text id="2111:5039" name="Type" x="250" y="2" width="36" height="16" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5040" name="Frame 1261154761" x="0" y="72" width="679" height="20">
+                    <frame id="2111:5041" name="Frame 1261154555" x="0" y="0" width="333" height="20">
+                      <text id="2111:5042" name="Start Date" x="0" y="3" width="210" height="14" />
+                      <text id="2111:5043" name="10-12-2024" x="250" y="2" width="83" height="16" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5044" name="Frame 1261154762" x="0" y="108" width="679" height="20">
+                    <frame id="2111:5045" name="Frame 1261154555" x="0" y="0" width="334" height="20">
+                      <text id="2111:5046" name="Contract Manager" x="0" y="3" width="210" height="14" />
+                      <text id="2111:5047" name="Syed Abdul" x="250" y="2" width="84" height="16" />
+                    </frame>
+                  </frame>
+                </frame>
+                <frame id="2111:5048" name="Frame 1984078749" x="679" y="0" width="679" height="128">
+                  <frame id="2111:5049" name="Frame 1261154556" x="0" y="0" width="679" height="20">
+                    <text id="2111:5050" name="Reference Number" x="0" y="3" width="210" height="14" />
+                    <text id="2111:5051" name="3422" x="250" y="2" width="36" height="16" />
+                  </frame>
+                  <frame id="2111:5052" name="Frame 1984078711" x="0" y="36" width="679" height="20">
+                    <text id="2111:5053" name="ESP" x="0" y="3" width="210" height="14" />
+                    <text id="2111:5054" name="JavaJet" x="250" y="2" width="62" height="16" />
+                  </frame>
+                  <frame id="2111:5055" name="Frame 1261154760" x="0" y="72" width="679" height="20">
+                    <frame id="2111:5056" name="Frame 1261154555" x="0" y="0" width="333" height="20">
+                      <text id="2111:5057" name="End Date" x="0" y="3" width="210" height="14" />
+                      <text id="2111:5058" name="10-12-2029" x="250" y="2" width="83" height="16" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5059" name="Frame 1984078712" x="0" y="108" width="679" height="20">
+                    <frame id="2111:5060" name="Frame 1261154555" x="0" y="0" width="326" height="20">
+                      <text id="2111:5061" name="Project Manager" x="0" y="3" width="210" height="14" />
+                      <text id="2111:5062" name="Ali Hassan" x="250" y="2" width="76" height="16" />
+                    </frame>
+                  </frame>
+                </frame>
+              </frame>
+            </frame>
+            <frame id="2111:5063" name="Frame 1618873385" x="0" y="210" width="1358" height="498">
+              <text id="2111:5064" name="Lot Selection" x="0" y="16" width="84" height="14" />
+              <frame id="2111:5065" name="Frame 1261154759" x="0" y="46" width="1358" height="20">
+                <frame id="2111:5066" name="Frame 1261154553" x="0" y="0" width="370" height="20">
+                  <text id="2111:5067" name="Contract Title" x="0" y="3" width="210" height="14" />
+                  <text id="2111:5068" name="Lot 1, Abu Dhabi" x="250" y="2" width="120" height="16" />
+                </frame>
+              </frame>
+              <frame id="2111:5069" name="Frame 1618873383" x="0" y="82" width="1358" height="400">
+                <frame id="2111:5070" name="Frame 1984078319" x="0" y="0" width="1358" height="400">
+                  <frame id="2111:5071" name="snazzy-image (1)" x="0" y="0" width="1358" height="400" />
+                </frame>
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:5085" name="Frame 1618873385" x="0" y="790" width="1358" height="406">
+            <text id="2111:5086" name="Required Vehicle" x="0" y="16" width="108" height="14" />
+            <frame id="2111:5087" name="Frame 1261155381" x="0" y="36" width="1358" height="354">
+              <frame id="2111:5088" name="Header" x="16" y="16" width="1326" height="32">
+                <frame id="2111:5089" name="Frame 1261154641" x="0" y="0" width="34" height="32">
+                  <text id="2111:5090" name="#" x="10" y="10" width="7" height="12" />
+                </frame>
+                <frame id="2111:5091" name="Frame 1261154648" x="34" y="0" width="406.5" height="32">
+                  <text id="2111:5092" name="Type" x="10" y="10" width="26" height="12" />
+                </frame>
+                <frame id="2111:5093" name="Frame 1261154649" x="440.5" y="0" width="306" height="32">
+                  <text id="2111:5094" name="Capacity" x="10" y="10" width="53" height="12" />
+                </frame>
+                <frame id="2111:5095" name="Frame 1261154642" x="746.5" y="0" width="406.5" height="32">
+                  <text id="2111:5096" name="Make" x="10" y="10" width="29" height="12" />
+                </frame>
+                <frame id="2111:5097" name="Frame 1261154646" x="1153" y="0" width="173" height="32">
+                  <text id="2111:5098" name="Required QUANTITY" x="10" y="10" width="110" height="12" />
+                </frame>
+              </frame>
+              <frame id="2111:5099" name="Frame 1261154798" x="16" y="48" width="1326" height="290">
+                <frame id="2111:5100" name="Frame 1261154647" x="0" y="0" width="34" height="290">
+                  <frame id="2111:5101" name="Frame 1261154637" x="0" y="0" width="34" height="58">
+                    <text id="2111:5102" name="1" x="10" y="22" width="5" height="14" />
+                  </frame>
+                  <frame id="2111:5103" name="Frame 1261154691" x="0" y="58" width="34" height="58">
+                    <text id="2111:5104" name="2" x="10" y="22" width="7" height="14" />
+                  </frame>
+                  <frame id="2111:5105" name="Frame 1261154683" x="0" y="116" width="34" height="58">
+                    <text id="2111:5106" name="3" x="10" y="22" width="7" height="14" />
+                  </frame>
+                  <frame id="2111:5107" name="Frame 1261154681" x="0" y="174" width="34" height="58">
+                    <text id="2111:5108" name="4" x="10" y="22" width="7" height="14" />
+                  </frame>
+                  <frame id="2111:5109" name="Frame 1261154680" x="0" y="232" width="34" height="58">
+                    <text id="2111:5110" name="5" x="10" y="22" width="7" height="14" />
+                  </frame>
+                </frame>
+                <frame id="2111:5111" name="Frame 1261154640" x="34" y="0" width="406.5" height="290">
+                  <frame id="2111:5112" name="Frame 1261154623" x="0" y="0" width="406.5" height="58">
+                    <instance id="2111:5113" name="truck-01" x="10" y="21" width="16" height="16" />
+                    <text id="2111:5114" name="Compactor" x="34" y="21" width="74" height="16" />
+                  </frame>
+                  <frame id="2111:5115" name="Frame 1261154683" x="0" y="58" width="406.5" height="58">
+                    <instance id="2111:5116" name="truck-01" x="10" y="21" width="16" height="16" />
+                    <text id="2111:5117" name="Compactor" x="34" y="21" width="74" height="16" />
+                  </frame>
+                  <frame id="2111:5118" name="Frame 1261154685" x="0" y="116" width="406.5" height="58">
+                    <instance id="2111:5119" name="truck-01" x="10" y="21" width="16" height="16" />
+                    <text id="2111:5120" name="Compactor" x="34" y="21" width="74" height="16" />
+                  </frame>
+                  <frame id="2111:5121" name="Frame 1261154684" x="0" y="174" width="406.5" height="58">
+                    <instance id="2111:5122" name="truck-01" x="10" y="21" width="16" height="16" />
+                    <text id="2111:5123" name="Hook Lift" x="34" y="21" width="57" height="16" />
+                  </frame>
+                  <frame id="2111:5124" name="Frame 1261154686" x="0" y="232" width="406.5" height="58">
+                    <instance id="2111:5125" name="truck-01" x="10" y="21" width="16" height="16" />
+                    <text id="2111:5126" name="Hook Lift with Crane" x="34" y="21" width="131" height="16" />
+                  </frame>
+                </frame>
+                <frame id="2111:5127" name="Frame 1261154716" x="440.5" y="0" width="306" height="290">
+                  <frame id="2111:5128" name="Frame 1261154685" x="0" y="0" width="306" height="58">
+                    <text id="2111:5129" name="(7-10 cbm) RCV" x="10" y="21" width="99" height="16" />
+                  </frame>
+                  <frame id="2111:5130" name="Frame 1261154623" x="0" y="58" width="306" height="58">
+                    <text id="2111:5131" name="(20-25 cbm) RCV" x="10" y="21" width="109" height="16" />
+                  </frame>
+                  <frame id="2111:5132" name="Frame 1261154684" x="0" y="116" width="306" height="58">
+                    <text id="2111:5133" name="(20-25 cbm) - Side Loaders (SL)" x="10" y="21" width="202" height="16" />
+                  </frame>
+                  <frame id="2111:5134" name="Frame 1261154686" x="0" y="174" width="306" height="58">
+                    <text id="2111:5135" name="-" x="10" y="21" width="8" height="16" />
+                  </frame>
+                  <frame id="2111:5136" name="Frame 1261154683" x="0" y="232" width="306" height="58">
+                    <text id="2111:5137" name="-" x="10" y="21" width="8" height="16" />
+                  </frame>
+                </frame>
+                <frame id="2111:5138" name="Frame 1261154710" x="746.5" y="0" width="406.5" height="290">
+                  <frame id="2111:5139" name="Frame 1261154685" x="0" y="0" width="406.5" height="58">
+                    <text id="2111:5140" name="Mercedes" x="10" y="21" width="63" height="16" />
+                  </frame>
+                  <frame id="2111:5141" name="Frame 1261154623" x="0" y="58" width="406.5" height="58">
+                    <text id="2111:5142" name="UD" x="10" y="21" width="20" height="16" />
+                  </frame>
+                  <frame id="2111:5143" name="Frame 1261154684" x="0" y="116" width="406.5" height="58">
+                    <text id="2111:5144" name="Mercedes" x="10" y="21" width="63" height="16" />
+                  </frame>
+                  <frame id="2111:5145" name="Frame 1261154686" x="0" y="174" width="406.5" height="58">
+                    <text id="2111:5146" name="UD" x="10" y="21" width="20" height="16" />
+                  </frame>
+                  <frame id="2111:5147" name="Frame 1261154683" x="0" y="232" width="406.5" height="58">
+                    <text id="2111:5148" name="UD" x="10" y="21" width="20" height="16" />
+                  </frame>
+                </frame>
+                <frame id="2111:5149" name="Frame 1261154715" x="1153" y="0" width="173" height="290">
+                  <frame id="2111:5150" name="Frame 1261154685" x="0" y="0" width="173" height="58">
+                    <text id="2111:5151" name="2" x="10" y="21" width="8" height="16" />
+                  </frame>
+                  <frame id="2111:5152" name="Frame 1261154623" x="0" y="58" width="173" height="58">
+                    <text id="2111:5153" name="10" x="10" y="21" width="14" height="16" />
+                  </frame>
+                  <frame id="2111:5154" name="Frame 1261154684" x="0" y="116" width="173" height="58">
+                    <text id="2111:5155" name="10" x="10" y="21" width="14" height="16" />
+                  </frame>
+                  <frame id="2111:5156" name="Frame 1261154686" x="0" y="174" width="173" height="58">
+                    <text id="2111:5157" name="12" x="10" y="21" width="13" height="16" />
+                  </frame>
+                  <frame id="2111:5158" name="Frame 1261154683" x="0" y="232" width="173" height="58">
+                    <text id="2111:5159" name="2" x="10" y="21" width="8" height="16" />
+                  </frame>
+                </frame>
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:5160" name="Frame 1984078588" x="0" y="1216" width="1358" height="290">
+            <text id="2111:5161" name="Required Equipment" x="0" y="16" width="131" height="14" />
+            <frame id="2111:5162" name="Frame 1261155381" x="0" y="36" width="1358" height="238">
+              <frame id="2111:5163" name="Header" x="16" y="16" width="1326" height="32">
+                <frame id="2111:5164" name="Frame 1261154641" x="0" y="0" width="34" height="32">
+                  <text id="2111:5165" name="#" x="10" y="10" width="7" height="12" />
+                </frame>
+                <frame id="2111:5166" name="Frame 1261154648" x="34" y="0" width="559.5" height="32">
+                  <text id="2111:5167" name="Type" x="10" y="10" width="26" height="12" />
+                </frame>
+                <frame id="2111:5168" name="Frame 1261154642" x="593.5" y="0" width="559.5" height="32">
+                  <text id="2111:5169" name="Make" x="10" y="10" width="29" height="12" />
+                </frame>
+                <frame id="2111:5170" name="Frame 1261154646" x="1153" y="0" width="173" height="32">
+                  <text id="2111:5171" name="Required QUANTITY" x="10" y="10" width="110" height="12" />
+                </frame>
+              </frame>
+              <frame id="2111:5172" name="Frame 1261154798" x="16" y="48" width="1326" height="174">
+                <frame id="2111:5173" name="Frame 1261154647" x="0" y="0" width="34" height="174">
+                  <frame id="2111:5174" name="Frame 1261154637" x="0" y="0" width="34" height="58">
+                    <text id="2111:5175" name="1" x="10" y="22" width="5" height="14" />
+                  </frame>
+                  <frame id="2111:5176" name="Frame 1261154691" x="0" y="58" width="34" height="58">
+                    <text id="2111:5177" name="2" x="10" y="22" width="7" height="14" />
+                  </frame>
+                  <frame id="2111:5178" name="Frame 1261154683" x="0" y="116" width="34" height="58">
+                    <text id="2111:5179" name="3" x="10" y="22" width="7" height="14" />
+                  </frame>
+                </frame>
+                <frame id="2111:5180" name="Frame 1261154640" x="34" y="0" width="559.5" height="174">
+                  <frame id="2111:5181" name="Frame 1261154623" x="0" y="0" width="559.5" height="58">
+                    <instance id="2111:5182" name="tool-02" x="10" y="21" width="16" height="16" />
+                    <text id="2111:5183" name="Backhoe Loader" x="34" y="21" width="106" height="16" />
+                  </frame>
+                  <frame id="2111:5184" name="Frame 1261154688" x="0" y="58" width="559.5" height="58">
+                    <instance id="2111:5185" name="tool-02" x="10" y="21" width="16" height="16" />
+                    <text id="2111:5186" name="Skid Steer Loader" x="34" y="21" width="114" height="16" />
+                  </frame>
+                  <frame id="2111:5187" name="Frame 1261154687" x="0" y="116" width="559.5" height="58">
+                    <instance id="2111:5188" name="tool-02" x="10" y="21" width="16" height="16" />
+                    <text id="2111:5189" name="Green Waste Shredders" x="34" y="21" width="153" height="16" />
+                  </frame>
+                </frame>
+                <frame id="2111:5190" name="Frame 1261154710" x="593.5" y="0" width="559.5" height="174">
+                  <frame id="2111:5191" name="Frame 1261154685" x="0" y="0" width="559.5" height="58">
+                    <text id="2111:5192" name="TBA" x="10" y="21" width="26" height="16" />
+                  </frame>
+                  <frame id="2111:5193" name="Frame 1261154623" x="0" y="58" width="559.5" height="58">
+                    <text id="2111:5194" name="TBA" x="10" y="21" width="26" height="16" />
+                  </frame>
+                  <frame id="2111:5195" name="Frame 1261154684" x="0" y="116" width="559.5" height="58">
+                    <text id="2111:5196" name="TBA" x="10" y="21" width="26" height="16" />
+                  </frame>
+                </frame>
+                <frame id="2111:5197" name="Frame 1261154715" x="1153" y="0" width="173" height="174">
+                  <frame id="2111:5198" name="Frame 1261154685" x="0" y="0" width="173" height="58">
+                    <text id="2111:5199" name="2" x="10" y="21" width="8" height="16" />
+                  </frame>
+                  <frame id="2111:5200" name="Frame 1261154623" x="0" y="58" width="173" height="58">
+                    <text id="2111:5201" name="1" x="10" y="21" width="5" height="16" />
+                  </frame>
+                  <frame id="2111:5202" name="Frame 1261154684" x="0" y="116" width="173" height="58">
+                    <text id="2111:5203" name="1" x="10" y="21" width="5" height="16" />
+                  </frame>
+                </frame>
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:5204" name="Frame 1984078587" x="0" y="1526" width="1358" height="290">
+            <text id="2111:5205" name="Required Workforce" x="0" y="16" width="128" height="14" />
+            <frame id="2111:5206" name="Frame 1261155381" x="0" y="36" width="1358" height="238">
+              <frame id="2111:5207" name="Header" x="16" y="16" width="1326" height="32">
+                <frame id="2111:5208" name="Frame 1261154641" x="0" y="0" width="34" height="32">
+                  <text id="2111:5209" name="#" x="10" y="10" width="7" height="12" />
+                </frame>
+                <frame id="2111:5210" name="Frame 1261154648" x="34" y="0" width="559.5" height="32">
+                  <text id="2111:5211" name="Type" x="10" y="10" width="26" height="12" />
+                </frame>
+                <frame id="2111:5212" name="Frame 1261154642" x="593.5" y="0" width="559.5" height="32">
+                  <text id="2111:5213" name="Experience" x="10" y="10" width="64" height="12" />
+                </frame>
+                <frame id="2111:5214" name="Frame 1261154646" x="1153" y="0" width="173" height="32">
+                  <text id="2111:5215" name="Required QUANTITY" x="10" y="10" width="110" height="12" />
+                </frame>
+              </frame>
+              <frame id="2111:5216" name="Frame 1261154798" x="16" y="48" width="1326" height="174">
+                <frame id="2111:5217" name="Frame 1261154647" x="0" y="0" width="34" height="174">
+                  <frame id="2111:5218" name="Frame 1261154637" x="0" y="0" width="34" height="58">
+                    <text id="2111:5219" name="1" x="10" y="22" width="5" height="14" />
+                  </frame>
+                  <frame id="2111:5220" name="Frame 1261154691" x="0" y="58" width="34" height="58">
+                    <text id="2111:5221" name="2" x="10" y="22" width="7" height="14" />
+                  </frame>
+                  <frame id="2111:5222" name="Frame 1261154683" x="0" y="116" width="34" height="58">
+                    <text id="2111:5223" name="3" x="10" y="22" width="7" height="14" />
+                  </frame>
+                </frame>
+                <frame id="2111:5224" name="Frame 1261154640" x="34" y="0" width="559.5" height="174">
+                  <frame id="2111:5225" name="Frame 1261154623" x="0" y="0" width="559.5" height="58">
+                    <instance id="2111:5226" name="users-02" x="10" y="21" width="16" height="16" />
+                    <text id="2111:5227" name="Supervisors" x="34" y="21" width="74" height="16" />
+                  </frame>
+                  <frame id="2111:5228" name="Frame 1261154690" x="0" y="58" width="559.5" height="58">
+                    <instance id="2111:5229" name="users-02" x="10" y="21" width="16" height="16" />
+                    <text id="2111:5230" name="Helpers" x="34" y="21" width="49" height="16" />
+                  </frame>
+                  <frame id="2111:5231" name="Frame 1261154689" x="0" y="116" width="559.5" height="58">
+                    <instance id="2111:5232" name="users-02" x="10" y="21" width="16" height="16" />
+                    <text id="2111:5233" name="Drivers" x="34" y="21" width="44" height="16" />
+                  </frame>
+                </frame>
+                <frame id="2111:5234" name="Frame 1261154710" x="593.5" y="0" width="559.5" height="174">
+                  <frame id="2111:5235" name="Frame 1261154685" x="0" y="0" width="559.5" height="58">
+                    <text id="2111:5236" name="5+ Years" x="10" y="21" width="54" height="16" />
+                  </frame>
+                  <frame id="2111:5237" name="Frame 1261154623" x="0" y="58" width="559.5" height="58">
+                    <text id="2111:5238" name="2+ Years" x="10" y="21" width="54" height="16" />
+                  </frame>
+                  <frame id="2111:5239" name="Frame 1261154684" x="0" y="116" width="559.5" height="58">
+                    <text id="2111:5240" name="4+ Years" x="10" y="21" width="55" height="16" />
+                  </frame>
+                </frame>
+                <frame id="2111:5241" name="Frame 1261154715" x="1153" y="0" width="173" height="174">
+                  <frame id="2111:5242" name="Frame 1261154685" x="0" y="0" width="173" height="58">
+                    <text id="2111:5243" name="5" x="10" y="21" width="8" height="16" />
+                  </frame>
+                  <frame id="2111:5244" name="Frame 1261154623" x="0" y="58" width="173" height="58">
+                    <text id="2111:5245" name="35" x="10" y="21" width="16" height="16" />
+                  </frame>
+                  <frame id="2111:5246" name="Frame 1261154684" x="0" y="116" width="173" height="58">
+                    <text id="2111:5247" name="16" x="10" y="21" width="13" height="16" />
+                  </frame>
+                </frame>
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:5248" name="Frame 1984078589" x="0" y="1836" width="1358" height="290">
+            <text id="2111:5249" name="Required Bins" x="0" y="16" width="88" height="14" />
+            <frame id="2111:5250" name="Frame 1261155381" x="0" y="36" width="1358" height="238">
+              <frame id="2111:5251" name="Header" x="16" y="16" width="1326" height="32">
+                <frame id="2111:5252" name="Frame 1261154641" x="0" y="0" width="34" height="32">
+                  <text id="2111:5253" name="#" x="10" y="10" width="7" height="12" />
+                </frame>
+                <frame id="2111:5254" name="Frame 1261154648" x="34" y="0" width="1119" height="32">
+                  <text id="2111:5255" name="Type" x="10" y="10" width="26" height="12" />
+                </frame>
+                <frame id="2111:5256" name="Frame 1261154646" x="1153" y="0" width="173" height="32">
+                  <text id="2111:5257" name="Required QUANTITY" x="10" y="10" width="110" height="12" />
+                </frame>
+              </frame>
+              <frame id="2111:5258" name="Frame 1261154798" x="16" y="48" width="1326" height="174">
+                <frame id="2111:5259" name="Frame 1261154647" x="0" y="0" width="34" height="174">
+                  <frame id="2111:5260" name="Frame 1261154637" x="0" y="0" width="34" height="58">
+                    <text id="2111:5261" name="1" x="10" y="22" width="5" height="14" />
+                  </frame>
+                  <frame id="2111:5262" name="Frame 1261154691" x="0" y="58" width="34" height="58">
+                    <text id="2111:5263" name="2" x="10" y="22" width="7" height="14" />
+                  </frame>
+                  <frame id="2111:5264" name="Frame 1261154683" x="0" y="116" width="34" height="58">
+                    <text id="2111:5265" name="3" x="10" y="22" width="7" height="14" />
+                  </frame>
+                </frame>
+                <frame id="2111:5266" name="Frame 1261154640" x="34" y="0" width="1119" height="174">
+                  <frame id="2111:5267" name="Frame 1261154623" x="0" y="0" width="1119" height="58">
+                    <frame id="2111:5268" name="users-02" x="10" y="21" width="16" height="16" />
+                    <text id="2111:5273" name="Litter Basket Bins - Pole Mounted (Plastic or Metal)" x="34" y="21" width="322" height="16" />
+                  </frame>
+                  <frame id="2111:5274" name="Frame 1261154690" x="0" y="58" width="1119" height="58">
+                    <frame id="2111:5275" name="users-02" x="10" y="21" width="16" height="16" />
+                    <text id="2111:5280" name="Litter Bins - Ground Mounted" x="34" y="21" width="186" height="16" />
+                  </frame>
+                  <frame id="2111:5281" name="Frame 1261154689" x="0" y="116" width="1119" height="58">
+                    <frame id="2111:5282" name="users-02" x="10" y="21" width="16" height="16" />
+                    <text id="2111:5287" name="Skip 7 CBM" x="34" y="21" width="72" height="16" />
+                  </frame>
+                </frame>
+                <frame id="2111:5288" name="Frame 1261154715" x="1153" y="0" width="173" height="174">
+                  <frame id="2111:5289" name="Frame 1261154685" x="0" y="0" width="173" height="58">
+                    <text id="2111:5290" name="1000" x="10" y="21" width="32" height="16" />
+                  </frame>
+                  <frame id="2111:5291" name="Frame 1261154623" x="0" y="58" width="173" height="58">
+                    <text id="2111:5292" name="500" x="10" y="21" width="26" height="16" />
+                  </frame>
+                  <frame id="2111:5293" name="Frame 1261154684" x="0" y="116" width="173" height="58">
+                    <text id="2111:5294" name="4" x="10" y="21" width="9" height="16" />
+                  </frame>
+                </frame>
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:5295" name="Frame 1618873387" x="0" y="2146" width="1358" height="366">
+            <text id="2111:5296" name="Services" x="0" y="16" width="54" height="14" />
+            <frame id="2111:5297" name="Frame 1261154741" x="0" y="46" width="1358" height="304">
+              <frame id="2111:5298" name="Header" x="16" y="16" width="1326" height="32">
+                <frame id="2111:5299" name="Frame 1261154775" x="0" y="0" width="58" height="32">
+                  <text id="2111:5300" name="#" x="10" y="10" width="7" height="12" />
+                </frame>
+                <frame id="2111:5301" name="Frame 1261154649" x="58" y="0" width="992" height="32">
+                  <text id="2111:5302" name="Service" x="10" y="10" width="982" height="12" />
+                </frame>
+                <frame id="2111:5303" name="Frame 1261154770" x="1050" y="0" width="244" height="32">
+                  <text id="2111:5304" name="Tags" x="10" y="10" width="78" height="12" />
+                </frame>
+                <frame id="2111:5305" name="Frame 1261154623" x="1294" y="0" width="32" height="32" />
+              </frame>
+              <frame id="2111:5306" name="Frame 1261154626" x="16" y="48" width="1326" height="240">
+                <frame id="2111:5307" name="Frame 1261154719" x="0" y="0" width="58" height="680">
+                  <frame id="2111:5308" name="Frame 1261154623" x="0" y="0" width="58" height="40">
+                    <text id="2111:5309" name="1" x="10" y="10.5" width="5" height="19" />
+                  </frame>
+                  <frame id="2111:5310" name="Frame 1261154942" x="0" y="40" width="58" height="40">
+                    <text id="2111:5311" name="2" x="10" y="10.5" width="7" height="19" />
+                  </frame>
+                  <frame id="2111:5312" name="Frame 1261154933" x="0" y="80" width="58" height="40">
+                    <text id="2111:5313" name="3" x="10" y="10.5" width="7" height="19" />
+                  </frame>
+                  <frame id="2111:5314" name="Frame 1261154930" x="0" y="120" width="58" height="40">
+                    <text id="2111:5315" name="4" x="10" y="10.5" width="7" height="19" />
+                  </frame>
+                  <frame id="2111:5316" name="Frame 1261154931" x="0" y="160" width="58" height="40">
+                    <text id="2111:5317" name="5" x="10" y="10.5" width="7" height="19" />
+                  </frame>
+                  <frame id="2111:5318" name="Frame 1261154934" x="0" y="200" width="58" height="40">
+                    <text id="2111:5319" name="6" x="10" y="10.5" width="7" height="19" />
+                  </frame>
+                  <frame id="2111:5320" name="Frame 1261154936" x="0" y="240" width="58" height="40">
+                    <text id="2111:5321" name="1" x="10" y="10.5" width="5" height="19" />
+                  </frame>
+                  <frame id="2111:5322" name="Frame 1261154937" x="0" y="280" width="58" height="40">
+                    <text id="2111:5323" name="1" x="10" y="10.5" width="5" height="19" />
+                  </frame>
+                  <frame id="2111:5324" name="Frame 1261154938" x="0" y="320" width="58" height="40">
+                    <text id="2111:5325" name="1" x="10" y="10.5" width="5" height="19" />
+                  </frame>
+                  <frame id="2111:5326" name="Frame 1261154939" x="0" y="360" width="58" height="40">
+                    <text id="2111:5327" name="1" x="10" y="10.5" width="5" height="19" />
+                  </frame>
+                  <frame id="2111:5328" name="Frame 1261154940" x="0" y="400" width="58" height="40">
+                    <text id="2111:5329" name="1" x="10" y="10.5" width="5" height="19" />
+                  </frame>
+                  <frame id="2111:5330" name="Frame 1261154941" x="0" y="440" width="58" height="40">
+                    <text id="2111:5331" name="1" x="10" y="10.5" width="5" height="19" />
+                  </frame>
+                  <frame id="2111:5332" name="Frame 1261154943" x="0" y="480" width="58" height="40">
+                    <text id="2111:5333" name="1" x="10" y="10.5" width="5" height="19" />
+                  </frame>
+                  <frame id="2111:5334" name="Frame 1261154944" x="0" y="520" width="58" height="40">
+                    <text id="2111:5335" name="1" x="10" y="10.5" width="5" height="19" />
+                  </frame>
+                  <frame id="2111:5336" name="Frame 1261154932" x="0" y="560" width="58" height="40">
+                    <text id="2111:5337" name="1" x="10" y="10.5" width="5" height="19" />
+                  </frame>
+                  <frame id="2111:5338" name="Frame 1261154935" x="0" y="600" width="58" height="40">
+                    <text id="2111:5339" name="1" x="10" y="10.5" width="5" height="19" />
+                  </frame>
+                  <frame id="2111:5340" name="Frame 1261154945" x="0" y="640" width="58" height="40">
+                    <text id="2111:5341" name="1" x="10" y="10.5" width="5" height="19" />
+                  </frame>
+                </frame>
+                <frame id="2111:5342" name="Frame 1261154715" x="58" y="0" width="992" height="680">
+                  <frame id="2111:5343" name="Frame 1261154623" x="0" y="0" width="992" height="40">
+                    <text id="2111:5344" name="MSW (Household waste and Recyclables)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5345" name="Frame 1261154921" x="0" y="40" width="992" height="40">
+                    <text id="2111:5346" name="MSW (Commercial/Industrial waste)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5347" name="Frame 1261154914" x="0" y="80" width="992" height="40">
+                    <text id="2111:5348" name="MSW (Public Place litter bins)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5349" name="Frame 1261154916" x="0" y="120" width="992" height="40">
+                    <text id="2111:5350" name="Additional Services to E Roads" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5351" name="Frame 1261154918" x="0" y="160" width="992" height="40">
+                    <text id="2111:5352" name="(MSW) Palace Waste" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5353" name="Frame 1261154922" x="0" y="200" width="992" height="40">
+                    <text id="2111:5354" name="MSW (Institutional waste)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5355" name="Frame 1261154924" x="0" y="240" width="992" height="40">
+                    <text id="2111:5356" name="MSW (Household waste and Recyclables)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5357" name="Frame 1261154925" x="0" y="280" width="992" height="40">
+                    <text id="2111:5358" name="MSW (Household waste and Recyclables)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5359" name="Frame 1261154927" x="0" y="320" width="992" height="40">
+                    <text id="2111:5360" name="MSW (Household waste and Recyclables)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5361" name="Frame 1261154919" x="0" y="360" width="992" height="40">
+                    <text id="2111:5362" name="MSW (Household waste and Recyclables)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5363" name="Frame 1261154920" x="0" y="400" width="992" height="40">
+                    <text id="2111:5364" name="MSW (Household waste and Recyclables)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5365" name="Frame 1261154929" x="0" y="440" width="992" height="40">
+                    <text id="2111:5366" name="MSW (Household waste and Recyclables)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5367" name="Frame 1261154917" x="0" y="480" width="992" height="40">
+                    <text id="2111:5368" name="MSW (Household waste and Recyclables)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5369" name="Frame 1261154928" x="0" y="520" width="992" height="40">
+                    <text id="2111:5370" name="MSW (Household waste and Recyclables)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5371" name="Frame 1261154923" x="0" y="560" width="992" height="40">
+                    <text id="2111:5372" name="MSW (Household waste and Recyclables)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5373" name="Frame 1261154915" x="0" y="600" width="992" height="40">
+                    <text id="2111:5374" name="MSW (Household waste and Recyclables)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                  <frame id="2111:5375" name="Frame 1261154926" x="0" y="640" width="992" height="40">
+                    <text id="2111:5376" name="MSW (Household waste and Recyclables)" x="10" y="10.5" width="972" height="19" />
+                  </frame>
+                </frame>
+                <frame id="2111:5377" name="Frame 1261154712" x="1050" y="0" width="244" height="878">
+                  <frame id="2111:5378" name="Frame 1261154706" x="0" y="0" width="244" height="40">
+                    <frame id="2111:5379" name="Frame 1000002861" x="16" y="10" width="143" height="20">
+                      <text id="2111:5380" name="Residential MSW Collection" x="8" y="4" width="127" height="12" />
+                    </frame>
+                    <frame id="2111:5381" name="Frame 1000002860" x="169" y="10" width="20" height="20">
+                      <text id="2111:5382" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5383" name="Frame 1261154842" x="0" y="40" width="244" height="40">
+                    <frame id="2111:5384" name="Frame 1000002862" x="16" y="10" width="166" height="20">
+                      <text id="2111:5385" name="Non-Residential MSW Collection" x="8" y="4" width="150" height="12" />
+                    </frame>
+                    <frame id="2111:5386" name="Frame 1000002860" x="192" y="10" width="20" height="20">
+                      <text id="2111:5387" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5388" name="Frame 1261154843" x="0" y="80" width="244" height="40">
+                    <frame id="2111:5389" name="Frame 1000002862" x="16" y="10" width="166" height="20">
+                      <text id="2111:5390" name="Non-Residential MSW Collection" x="8" y="4" width="150" height="12" />
+                    </frame>
+                    <frame id="2111:5391" name="Frame 1000002860" x="192" y="10" width="20" height="20">
+                      <text id="2111:5392" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5393" name="Frame 1261154861" x="0" y="120" width="244" height="40">
+                    <frame id="2111:5394" name="Frame 1000002861" x="16" y="10" width="143" height="20">
+                      <text id="2111:5395" name="Residential MSW Collection" x="8" y="4" width="127" height="12" />
+                    </frame>
+                    <frame id="2111:5396" name="Frame 1000002860" x="169" y="10" width="20" height="20">
+                      <text id="2111:5397" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5398" name="Frame 1261154852" x="0" y="160" width="244" height="40">
+                    <frame id="2111:5399" name="Frame 1000002862" x="16" y="10" width="166" height="20">
+                      <text id="2111:5400" name="Non-Residential MSW Collection" x="8" y="4" width="150" height="12" />
+                    </frame>
+                    <frame id="2111:5401" name="Frame 1000002860" x="192" y="10" width="20" height="20">
+                      <text id="2111:5402" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5403" name="Frame 1261154844" x="0" y="200" width="244" height="40">
+                    <frame id="2111:5404" name="Frame 1000002862" x="16" y="10" width="166" height="20">
+                      <text id="2111:5405" name="Non-Residential MSW Collection" x="8" y="4" width="150" height="12" />
+                    </frame>
+                    <frame id="2111:5406" name="Frame 1000002860" x="192" y="10" width="20" height="20">
+                      <text id="2111:5407" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5408" name="Frame 1261154859" x="0" y="240" width="244" height="58">
+                    <frame id="2111:5409" name="Frame 1000002861" x="16" y="19" width="143" height="20">
+                      <text id="2111:5410" name="Residential MSW Collection" x="8" y="4" width="127" height="12" />
+                    </frame>
+                    <frame id="2111:5411" name="Frame 1000002860" x="169" y="19" width="20" height="20">
+                      <text id="2111:5412" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5413" name="Frame 1261154846" x="0" y="298" width="244" height="58">
+                    <frame id="2111:5414" name="Frame 1000002862" x="16" y="19" width="166" height="20">
+                      <text id="2111:5415" name="Non-Residential MSW Collection" x="8" y="4" width="150" height="12" />
+                    </frame>
+                    <frame id="2111:5416" name="Frame 1000002860" x="192" y="19" width="20" height="20">
+                      <text id="2111:5417" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5418" name="Frame 1261154860" x="0" y="356" width="244" height="58">
+                    <frame id="2111:5419" name="Frame 1000002861" x="16" y="19" width="143" height="20">
+                      <text id="2111:5420" name="Residential MSW Collection" x="8" y="4" width="127" height="12" />
+                    </frame>
+                    <frame id="2111:5421" name="Frame 1000002860" x="169" y="19" width="20" height="20">
+                      <text id="2111:5422" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5423" name="Frame 1261154850" x="0" y="414" width="244" height="58">
+                    <frame id="2111:5424" name="Frame 1000002862" x="16" y="19" width="166" height="20">
+                      <text id="2111:5425" name="Non-Residential MSW Collection" x="8" y="4" width="150" height="12" />
+                    </frame>
+                    <frame id="2111:5426" name="Frame 1000002860" x="192" y="19" width="20" height="20">
+                      <text id="2111:5427" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5428" name="Frame 1261154851" x="0" y="472" width="244" height="58">
+                    <frame id="2111:5429" name="Frame 1000002862" x="16" y="19" width="166" height="20">
+                      <text id="2111:5430" name="Non-Residential MSW Collection" x="8" y="4" width="150" height="12" />
+                    </frame>
+                    <frame id="2111:5431" name="Frame 1000002860" x="192" y="19" width="20" height="20">
+                      <text id="2111:5432" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5433" name="Frame 1261154858" x="0" y="530" width="244" height="58">
+                    <frame id="2111:5434" name="Frame 1000002861" x="16" y="19" width="143" height="20">
+                      <text id="2111:5435" name="Residential MSW Collection" x="8" y="4" width="127" height="12" />
+                    </frame>
+                    <frame id="2111:5436" name="Frame 1000002860" x="169" y="19" width="20" height="20">
+                      <text id="2111:5437" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5438" name="Frame 1261154854" x="0" y="588" width="244" height="58">
+                    <frame id="2111:5439" name="Frame 1000002862" x="16" y="19" width="166" height="20">
+                      <text id="2111:5440" name="Non-Residential MSW Collection" x="8" y="4" width="150" height="12" />
+                    </frame>
+                    <frame id="2111:5441" name="Frame 1000002860" x="192" y="19" width="20" height="20">
+                      <text id="2111:5442" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5443" name="Frame 1261154853" x="0" y="646" width="244" height="58">
+                    <frame id="2111:5444" name="Frame 1000002862" x="16" y="19" width="166" height="20">
+                      <text id="2111:5445" name="Non-Residential MSW Collection" x="8" y="4" width="150" height="12" />
+                    </frame>
+                    <frame id="2111:5446" name="Frame 1000002860" x="192" y="19" width="20" height="20">
+                      <text id="2111:5447" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5448" name="Frame 1261154855" x="0" y="704" width="244" height="58">
+                    <frame id="2111:5449" name="Frame 1000002862" x="16" y="19" width="166" height="20">
+                      <text id="2111:5450" name="Non-Residential MSW Collection" x="8" y="4" width="150" height="12" />
+                    </frame>
+                    <frame id="2111:5451" name="Frame 1000002860" x="192" y="19" width="20" height="20">
+                      <text id="2111:5452" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5453" name="Frame 1261154856" x="0" y="762" width="244" height="58">
+                    <frame id="2111:5454" name="Frame 1000002862" x="16" y="19" width="166" height="20">
+                      <text id="2111:5455" name="Non-Residential MSW Collection" x="8" y="4" width="150" height="12" />
+                    </frame>
+                    <frame id="2111:5456" name="Frame 1000002860" x="192" y="19" width="20" height="20">
+                      <text id="2111:5457" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                  <frame id="2111:5458" name="Frame 1261154857" x="0" y="820" width="244" height="58">
+                    <frame id="2111:5459" name="Frame 1000002862" x="16" y="19" width="166" height="20">
+                      <text id="2111:5460" name="Non-Residential MSW Collection" x="8" y="4" width="150" height="12" />
+                    </frame>
+                    <frame id="2111:5461" name="Frame 1000002860" x="192" y="19" width="20" height="20">
+                      <text id="2111:5462" name="+1" x="5" y="4" width="10" height="12" />
+                    </frame>
+                  </frame>
+                </frame>
+                <frame id="2111:5463" name="Frame 1261154627" x="1294" y="0" width="32" height="770">
+                  <frame id="2111:5464" name="Frame 1261154623" x="0" y="0" width="32" height="40" />
+                  <frame id="2111:5465" name="Frame 1261154689" x="0" y="40" width="32" height="40" />
+                  <frame id="2111:5466" name="Frame 1261154688" x="0" y="80" width="32" height="40" />
+                  <frame id="2111:5467" name="Frame 1261154677" x="0" y="120" width="32" height="40" />
+                  <frame id="2111:5468" name="Frame 1261154682" x="0" y="160" width="32" height="40" />
+                  <frame id="2111:5469" name="Frame 1261154672" x="0" y="200" width="32" height="40" />
+                  <frame id="2111:5470" name="Frame 1261154676" x="0" y="240" width="32" height="40" />
+                  <frame id="2111:5471" name="Frame 1261154674" x="0" y="280" width="32" height="40" />
+                  <frame id="2111:5472" name="Frame 1261154681" x="0" y="320" width="32" height="40" />
+                  <frame id="2111:5473" name="Frame 1261154687" x="0" y="360" width="32" height="40" />
+                  <frame id="2111:5474" name="Frame 1261154675" x="0" y="400" width="32" height="40" />
+                  <frame id="2111:5475" name="Frame 1261154680" x="0" y="440" width="32" height="40" />
+                  <frame id="2111:5476" name="Frame 1261154685" x="0" y="480" width="32" height="58" />
+                  <frame id="2111:5477" name="Frame 1261154683" x="0" y="538" width="32" height="58" />
+                  <frame id="2111:5478" name="Frame 1261154679" x="0" y="596" width="32" height="58" />
+                  <frame id="2111:5479" name="Frame 1261154686" x="0" y="654" width="32" height="58" />
+                  <frame id="2111:5480" name="Frame 1261154690" x="0" y="712" width="32" height="58" />
+                </frame>
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:5481" name="Frame 1984078591" x="0" y="2532" width="1358" height="406">
+            <text id="2111:5482" name="Services &amp; Frequencies" x="0" y="16" width="148" height="14" />
+            <frame id="2111:5483" name="Frame 1261155381" x="0" y="36" width="1358" height="354">
+              <frame id="2111:5484" name="Header" x="16" y="16" width="1326" height="32">
+                <frame id="2111:5485" name="Frame 1261154641" x="0" y="0" width="34" height="32">
+                  <text id="2111:5486" name="#" x="10" y="10" width="7" height="12" />
+                </frame>
+                <frame id="2111:5487" name="Frame 1261154648" x="34" y="0" width="422" height="32">
+                  <text id="2111:5488" name="Service" x="10" y="10" width="44" height="12" />
+                </frame>
+                <frame id="2111:5489" name="Frame 1261154649" x="456" y="0" width="422" height="32">
+                  <text id="2111:5490" name="Specific Operation" x="10" y="10" width="113" height="12" />
+                </frame>
+                <frame id="2111:5491" name="Frame 1261154642" x="878" y="0" width="193" height="32">
+                  <text id="2111:5492" name="Action" x="10" y="10" width="41" height="12" />
+                </frame>
+                <frame id="2111:5493" name="Frame 1261154646" x="1071" y="0" width="255" height="32">
+                  <text id="2111:5494" name="Recurrence/ Frequency/ Response Time" x="10" y="10" width="235" height="12" />
+                </frame>
+              </frame>
+              <frame id="2111:5495" name="Frame 1261154798" x="16" y="48" width="1326" height="290">
+                <frame id="2111:5496" name="Frame 1261154647" x="0" y="0" width="34" height="290">
+                  <frame id="2111:5497" name="Frame 1261154637" x="0" y="0" width="34" height="58">
+                    <text id="2111:5498" name="1" x="10" y="22" width="5" height="14" />
+                  </frame>
+                  <frame id="2111:5499" name="Frame 1261154691" x="0" y="58" width="34" height="58">
+                    <text id="2111:5500" name="2" x="10" y="22" width="7" height="14" />
+                  </frame>
+                  <frame id="2111:5501" name="Frame 1261154683" x="0" y="116" width="34" height="58">
+                    <text id="2111:5502" name="3" x="10" y="22" width="7" height="14" />
+                  </frame>
+                  <frame id="2111:5503" name="Frame 1261154681" x="0" y="174" width="34" height="58">
+                    <text id="2111:5504" name="4" x="10" y="22" width="7" height="14" />
+                  </frame>
+                  <frame id="2111:5505" name="Frame 1261154680" x="0" y="232" width="34" height="58">
+                    <text id="2111:5506" name="5" x="10" y="22" width="7" height="14" />
+                  </frame>
+                </frame>
+                <frame id="2111:5507" name="Frame 1261154640" x="34" y="0" width="422" height="290">
+                  <frame id="2111:5508" name="Frame 1261154623" x="0" y="0" width="422" height="58">
+                    <text id="2111:5509" name="MSW (Household waste and Recyclables)" x="10" y="21" width="265" height="16" />
+                  </frame>
+                  <frame id="2111:5510" name="Frame 1261154689" x="0" y="58" width="422" height="58">
+                    <text id="2111:5511" name="MSW (Household waste and Recyclables)" x="10" y="21" width="265" height="16" />
+                  </frame>
+                  <frame id="2111:5512" name="Frame 1261154688" x="0" y="116" width="422" height="58">
+                    <text id="2111:5513" name="Illegal Waste" x="10" y="21" width="84" height="16" />
+                  </frame>
+                  <frame id="2111:5514" name="Frame 1261154690" x="0" y="174" width="422" height="58">
+                    <text id="2111:5515" name="MSW (Commercial/Industrial waste)" x="10" y="21" width="231" height="16" />
+                  </frame>
+                  <frame id="2111:5516" name="Frame 1261154687" x="0" y="232" width="422" height="58">
+                    <text id="2111:5517" name="MSW (Public Place litter bins)" x="10" y="21" width="185" height="16" />
+                  </frame>
+                </frame>
+                <frame id="2111:5518" name="Frame 1261154716" x="456" y="0" width="422" height="290">
+                  <frame id="2111:5519" name="Frame 1261154685" x="0" y="0" width="422" height="58">
+                    <text id="2111:5520" name="Residential Non-Recyclable MSW Collection" x="10" y="21" width="284" height="16" />
+                  </frame>
+                  <frame id="2111:5521" name="Frame 1261154623" x="0" y="58" width="422" height="58">
+                    <text id="2111:5522" name="Residential Recyclable MSW Collection" x="10" y="21" width="251" height="16" />
+                  </frame>
+                  <frame id="2111:5523" name="Frame 1261154684" x="0" y="116" width="422" height="58">
+                    <text id="2111:5524" name="-" x="10" y="21" width="8" height="16" />
+                  </frame>
+                  <frame id="2111:5525" name="Frame 1261154686" x="0" y="174" width="422" height="58">
+                    <text id="2111:5526" name="Non-Recyclable &amp; Recyclable MSW Collection" x="10" y="21" width="296" height="16" />
+                  </frame>
+                  <frame id="2111:5527" name="Frame 1261154683" x="0" y="232" width="422" height="58">
+                    <text id="2111:5528" name="Public Place MSW Collection" x="10" y="21" width="184" height="16" />
+                  </frame>
+                </frame>
+                <frame id="2111:5529" name="Frame 1261154710" x="878" y="0" width="193" height="290">
+                  <frame id="2111:5530" name="Frame 1261154685" x="0" y="0" width="193" height="58">
+                    <text id="2111:5531" name="Scheduled" x="10" y="21" width="69" height="16" />
+                  </frame>
+                  <frame id="2111:5532" name="Frame 1261154687" x="0" y="58" width="193" height="58">
+                    <text id="2111:5533" name="Scheduled" x="10" y="21" width="69" height="16" />
+                  </frame>
+                  <frame id="2111:5534" name="Frame 1261154684" x="0" y="116" width="193" height="58">
+                    <text id="2111:5535" name="Adhoc" x="10" y="21" width="42" height="16" />
+                  </frame>
+                  <frame id="2111:5536" name="Frame 1261154686" x="0" y="174" width="193" height="58">
+                    <text id="2111:5537" name="Scheduled" x="10" y="21" width="69" height="16" />
+                  </frame>
+                  <frame id="2111:5538" name="Frame 1261154683" x="0" y="232" width="193" height="58">
+                    <text id="2111:5539" name="Scheduled" x="10" y="21" width="69" height="16" />
+                  </frame>
+                </frame>
+                <frame id="2111:5540" name="Frame 1261154715" x="1071" y="0" width="255" height="290">
+                  <frame id="2111:5541" name="Frame 1261154685" x="0" y="0" width="255" height="58">
+                    <text id="2111:5542" name="Daily" x="10" y="21" width="33" height="16" />
+                  </frame>
+                  <frame id="2111:5543" name="Frame 1261154623" x="0" y="58" width="255" height="58">
+                    <text id="2111:5544" name="3x Weekly" x="10" y="21" width="66" height="16" />
+                  </frame>
+                  <frame id="2111:5545" name="Frame 1261154684" x="0" y="116" width="255" height="58">
+                    <text id="2111:5546" name="24 hours Response Time" x="10" y="21" width="154" height="16" />
+                  </frame>
+                  <frame id="2111:5547" name="Frame 1261154688" x="0" y="174" width="255" height="58">
+                    <text id="2111:5548" name="Daily" x="10" y="21" width="33" height="16" />
+                  </frame>
+                  <frame id="2111:5549" name="Frame 1261154687" x="0" y="232" width="255" height="58">
+                    <text id="2111:5550" name="Daily" x="10" y="21" width="33" height="16" />
+                  </frame>
+                </frame>
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:5551" name="Frame 1984078590" x="0" y="2958" width="1358" height="406">
+            <frame id="2111:5552" name="Frame 1984078776" x="0" y="16" width="1358" height="14">
+              <text id="2111:5553" name="KPI Target" x="0" y="0" width="66" height="14" />
+              <text id="2111:5554" name="Edit" x="1333" y="0" width="25" height="14" />
+            </frame>
+            <frame id="2111:5555" name="Frame 1261155381" x="0" y="36" width="1358" height="354">
+              <frame id="2111:5556" name="Header" x="16" y="16" width="1326" height="32">
+                <frame id="2111:5557" name="Frame 1261154641" x="0" y="0" width="34" height="32">
+                  <text id="2111:5558" name="#" x="10" y="10" width="7" height="12" />
+                </frame>
+                <frame id="2111:5559" name="Frame 1261154648" x="34" y="0" width="818" height="32">
+                  <text id="2111:5560" name="Performance Indicator" x="10" y="10" width="141" height="12" />
+                </frame>
+                <frame id="2111:5561" name="Frame 1261154650" x="852" y="0" width="162" height="32">
+                  <text id="2111:5562" name="Reporting Unit" x="10" y="10" width="89" height="12" />
+                </frame>
+                <frame id="2111:5563" name="Frame 1261154649" x="1014" y="0" width="162" height="32">
+                  <text id="2111:5564" name="Rectifiable" x="10" y="10" width="66" height="12" />
+                </frame>
+                <frame id="2111:5565" name="Frame 1261154646" x="1176" y="0" width="150" height="32">
+                  <text id="2111:5566" name="KPI Target" x="10" y="10" width="61" height="12" />
+                </frame>
+              </frame>
+              <frame id="2111:5567" name="Frame 1261154798" x="16" y="48" width="1326" height="290">
+                <frame id="2111:5568" name="Frame 1261154647" x="0" y="0" width="34" height="290">
+                  <frame id="2111:5569" name="Frame 1261154637" x="0" y="0" width="34" height="58">
+                    <text id="2111:5570" name="2.1" x="10" y="22" width="14" height="14" />
+                  </frame>
+                  <frame id="2111:5571" name="Frame 1261154691" x="0" y="58" width="34" height="58">
+                    <text id="2111:5572" name="2.2" x="10" y="22" width="16" height="14" />
+                  </frame>
+                  <frame id="2111:5573" name="Frame 1261154683" x="0" y="116" width="34" height="58">
+                    <text id="2111:5574" name="2.3" x="10" y="22" width="16" height="14" />
+                  </frame>
+                  <frame id="2111:5575" name="Frame 1261154681" x="0" y="174" width="34" height="58">
+                    <text id="2111:5576" name="2.4" x="10" y="22" width="17" height="14" />
+                  </frame>
+                  <frame id="2111:5577" name="Frame 1261154680" x="0" y="232" width="34" height="58">
+                    <text id="2111:5578" name="2.5" x="10" y="22" width="16" height="14" />
+                  </frame>
+                </frame>
+                <frame id="2111:5579" name="Frame 1261154640" x="34" y="0" width="818" height="290">
+                  <frame id="2111:5580" name="Frame 1261154623" x="0" y="0" width="818" height="58">
+                    <text id="2111:5581" name="MSW Collection: Percentage of bins emptied as scheduled for all services, as detailed in Schedule 5 Volume 2; a) Household waste, b) Recyclable waste" x="10" y="21" width="753" height="16" />
+                  </frame>
+                  <frame id="2111:5582" name="Frame 1261154689" x="0" y="58" width="818" height="58">
+                    <text id="2111:5583" name="Bulky Waste Collection: Percentage of bulky waste found within 20m of Container removed within specified timeframe." x="10" y="21" width="753" height="16" />
+                  </frame>
+                  <frame id="2111:5584" name="Frame 1261154688" x="0" y="116" width="818" height="58">
+                    <text id="2111:5585" name="Green Waste Collection: Percentage of Service areas collected within specified timeframe" x="10" y="21" width="753" height="16" />
+                  </frame>
+                  <frame id="2111:5586" name="Frame 1261154690" x="0" y="174" width="818" height="58">
+                    <text id="2111:5587" name="C &amp; D Waste Collection: Percentage of Service areas collected within specified timeframe" x="10" y="21" width="753" height="16" />
+                  </frame>
+                  <frame id="2111:5588" name="Frame 1261154687" x="0" y="232" width="818" height="58">
+                    <text id="2111:5589" name="Slaughterhouse Waste Collection: Percentage of Service areas collected within specified timeframe" x="10" y="21" width="753" height="16" />
+                  </frame>
+                </frame>
+                <frame id="2111:5590" name="Frame 1261154717" x="852" y="0" width="162" height="290">
+                  <frame id="2111:5591" name="Frame 1261154685" x="0" y="0" width="162" height="58">
+                    <text id="2111:5592" name="Daily" x="10" y="21" width="33" height="16" />
+                  </frame>
+                  <frame id="2111:5593" name="Frame 1261154690" x="0" y="58" width="162" height="58">
+                    <text id="2111:5594" name="Daily" x="10" y="21" width="33" height="16" />
+                  </frame>
+                  <frame id="2111:5595" name="Frame 1261154689" x="0" y="116" width="162" height="58">
+                    <text id="2111:5596" name="Daily" x="10" y="21" width="33" height="16" />
+                  </frame>
+                  <frame id="2111:5597" name="Frame 1261154688" x="0" y="174" width="162" height="58">
+                    <text id="2111:5598" name="Daily" x="10" y="21" width="33" height="16" />
+                  </frame>
+                  <frame id="2111:5599" name="Frame 1261154687" x="0" y="232" width="162" height="58">
+                    <text id="2111:5600" name="Daily" x="10" y="21" width="33" height="16" />
+                  </frame>
+                </frame>
+                <frame id="2111:5601" name="Frame 1261154716" x="1014" y="0" width="162" height="290">
+                  <frame id="2111:5602" name="Frame 1261154685" x="0" y="0" width="162" height="58">
+                    <text id="2111:5603" name="Yes" x="10" y="21" width="22" height="16" />
+                  </frame>
+                  <frame id="2111:5604" name="Frame 1261154693" x="0" y="58" width="162" height="58">
+                    <text id="2111:5605" name="Yes" x="10" y="21" width="22" height="16" />
+                  </frame>
+                  <frame id="2111:5606" name="Frame 1261154691" x="0" y="116" width="162" height="58">
+                    <text id="2111:5607" name="Yes" x="10" y="21" width="22" height="16" />
+                  </frame>
+                  <frame id="2111:5608" name="Frame 1261154694" x="0" y="174" width="162" height="58">
+                    <text id="2111:5609" name="Yes" x="10" y="21" width="22" height="16" />
+                  </frame>
+                  <frame id="2111:5610" name="Frame 1261154692" x="0" y="232" width="162" height="58">
+                    <text id="2111:5611" name="Yes" x="10" y="21" width="22" height="16" />
+                  </frame>
+                </frame>
+                <frame id="2111:5612" name="Frame 1261154715" x="1176" y="0" width="150" height="290">
+                  <frame id="2111:5613" name="Frame 1261154685" x="0" y="0" width="150" height="58">
+                    <text id="2111:5614" name="90% → 100% (+3%/yr)" x="10" y="21" width="137" height="16" />
+                  </frame>
+                  <frame id="2111:5615" name="Frame 1261154692" x="0" y="58" width="150" height="58">
+                    <text id="2111:5616" name="90%" x="10" y="21" width="27" height="16" />
+                  </frame>
+                  <frame id="2111:5617" name="Frame 1261154690" x="0" y="116" width="150" height="58">
+                    <text id="2111:5618" name="85% → 100% · per yr" x="10" y="21" width="128" height="16" />
+                  </frame>
+                  <frame id="2111:5619" name="Frame 1261154691" x="0" y="174" width="150" height="58">
+                    <text id="2111:5620" name="90%" x="10" y="21" width="27" height="16" />
+                  </frame>
+                  <frame id="2111:5621" name="Frame 1261154689" x="0" y="232" width="150" height="58">
+                    <text id="2111:5622" name="90%" x="10" y="21" width="27" height="16" />
+                  </frame>
+                </frame>
+              </frame>
+            </frame>
+          </frame>
+          <frame id="2111:5623" name="Frame 1618873386" x="0" y="3384" width="1358" height="142">
+            <text id="2111:5624" name="Attachments" x="0" y="16" width="83" height="14" />
+            <frame id="2111:5625" name="Frame 1261154856" x="0" y="46" width="1358" height="80">
+              <frame id="2111:5626" name="Frame 1984078549" x="0" y="0" width="659" height="80">
+                <frame id="2111:5627" name="Frame 1000002798" x="20" y="20" width="218" height="40">
+                  <frame id="2111:5628" name="Frame 1000002795" x="0" y="0" width="40" height="40">
+                    <frame id="2111:5629" name="Group 1000002604" x="2" y="4" width="36" height="32">
+                      <frame id="2111:5630" name="Group 1000002603" x="2" y="4" width="36" height="32">
+                        <frame id="2111:5631" name="Group 1000002602" x="13.999832153320312" y="4" width="24" height="32" />
+                        <frame id="2111:5634" name="Frame 1000002796" x="2" y="17.578125" width="27" height="13">
+                          <text id="2111:5635" name="PDF" x="4" y="1" width="19" height="11" />
+                        </frame>
+                      </frame>
+                    </frame>
+                  </frame>
+                  <frame id="2111:5636" name="Frame 1000002797" x="56" y="0" width="162" height="37">
+                    <text id="2111:5637" name="ESP Physical Contract" x="0" y="0" width="162" height="19" />
+                    <text id="2111:5638" name="Expiry Date: 24th Oct, 2028" x="0" y="23" width="150" height="14" />
+                  </frame>
+                </frame>
+              </frame>
+              <frame id="2111:5639" name="Frame 1984078550" x="699" y="0" width="659" height="80">
+                <frame id="2111:5640" name="Frame 1000002798" x="20" y="20" width="218" height="40">
+                  <frame id="2111:5641" name="Frame 1000002795" x="0" y="0" width="40" height="40">
+                    <frame id="2111:5642" name="Group 1000002604" x="2" y="4" width="36" height="32">
+                      <frame id="2111:5643" name="Group 1000002603" x="2" y="4" width="36" height="32">
+                        <frame id="2111:5644" name="Group 1000002602" x="13.999832153320312" y="4" width="24" height="32" />
+                        <frame id="2111:5647" name="Frame 1000002796" x="2" y="17.578125" width="27" height="13">
+                          <text id="2111:5648" name="PDF" x="4" y="1" width="19" height="11" />
+                        </frame>
+                      </frame>
+                    </frame>
+                  </frame>
+                  <frame id="2111:5649" name="Frame 1000002797" x="56" y="0" width="162" height="37">
+                    <text id="2111:5650" name="ESP Physical Contract" x="0" y="0" width="162" height="19" />
+                    <text id="2111:5651" name="Expiry Date: 24th Oct, 2028" x="0" y="23" width="150" height="14" />
+                  </frame>
+                </frame>
+                <frame id="2111:5652" name="Frame 1000002799" x="497" y="31.5" width="142" height="17" />
+              </frame>
+            </frame>
+          </frame>
+        </frame>
+        <frame id="2111:5653" name="Frame 1984078756" x="28" y="3582" width="1358" height="48">
+          <text id="2111:5654" name="Back" x="0" y="13.5" width="42" height="21" />
+          <frame id="2111:5655" name="B1" x="1126" y="0" width="232" height="48">
+            <text id="2111:5656" name="Create" x="15" y="13.5" width="202" height="21" />
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

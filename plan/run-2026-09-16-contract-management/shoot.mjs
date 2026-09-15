@@ -33,6 +33,14 @@ try {
 }
 await page.waitForTimeout(800)
 await shot(page, 'list')
+const bail = async (e) => {
+  try { await shot(page, 'debug-fail') } catch {}
+  console.log(JSON.stringify({ failed: String(e && e.message || e).slice(0, 300), errors }, null, 1))
+  try { await browser.close() } catch {}
+  process.exit(1)
+}
+process.on('unhandledRejection', bail)
+process.on('uncaughtException', bail)
 
 // interaction: search narrows the grid, filter button exists, card opens detail, back returns
 await fr.locator('#cmSearch').fill('Yas')
@@ -72,6 +80,27 @@ for (const [key, first] of Object.entries(pickers)) {
   await fr.locator('#pkAdd').click(); await page.waitForTimeout(300)
   await shot(page, `config-${key}`)
 }
+// services: pick three, then exercise Weekly (frequency stepper) and Adhoc (response time)
+await fr.locator('#wzNext').click(); await page.waitForTimeout(400)
+await fr.locator('[data-pkopen="service"]').click(); await fr.locator('#wzPicker').waitFor()
+for (const id of ['svc0', 'svc1', 'svc2']) await fr.locator(`[data-oid="${id}"]`).click()
+await shot(page, 'picker-service')
+await fr.locator('#pkAdd').click(); await page.waitForTimeout(300)
+await fr.locator('[data-si="1"][data-sk="recurrence"]').selectOption('Weekly'); await page.waitForTimeout(300)
+await fr.locator('[data-si="2"][data-sk="action"]').selectOption('Adhoc'); await page.waitForTimeout(300)
+const svcCards = await fr.locator('.svc-card').count()
+await shot(page, 'config-service')
+// KPI: seed covers fixed / yearly / manual; bump one stepper to prove it works
+await fr.locator('#wzNext').click(); await page.waitForTimeout(400)
+const kpiBefore = await fr.locator('.kpi-card').first().locator('.kf input').inputValue()
+await fr.locator('.kpi-card').first().locator('.kf-ud .ud-up').click(); await page.waitForTimeout(300)
+const kpiAfter = await fr.locator('.kpi-card').first().locator('.kf input').inputValue()
+await shot(page, 'kpi')
+await fr.locator('#wzNext').click(); await page.waitForTimeout(300); await shot(page, 'attachments')
+await fr.locator('#wzNext').click(); await page.waitForTimeout(500); await shot(page, 'summary-top')
+await fr.locator('#wzBody').evaluate(el => { el.scrollTop = el.scrollHeight })
+await page.waitForTimeout(300); await shot(page, 'summary-bottom')
+console.log(JSON.stringify({ svcCards, kpiBefore, kpiAfter }))
 await fr.locator('#wzClose').click()
 
 console.log(JSON.stringify({ afterSearch, stepLabels, cfgCards, errors }, null, 1))

@@ -104,7 +104,7 @@ const STEP_DEFS = [
   { key:'summary',     n:'FINAL STEP', label:'Summary',                       icon:'align-left' },
 ];
 /* Figma-rendered art (multi-fragment vectors captured as PNG at native size) */
-const ART = { vehicles:'assets/art/empty-vehicles.png', equipment:'assets/art/empty-equipment.png', workforce:'assets/art/empty-workforce.png', bins:'assets/art/empty-bins.png' };
+const ART = { vehicles:'assets/art/empty-vehicles.png', equipment:'assets/art/empty-equipment.png', workforce:'assets/art/empty-workforce.png', bins:'assets/art/empty-bins.png', service:'assets/art/empty-services.png' };
 const CAT = {
   vehicles: [
     { id:'compactor', name:'Compactor',   icon:'truck-02', art:'assets/art/veh-compactor.png', capacity:'(7–10 cbm) RCV',                  make:'Mercedes' },
@@ -190,7 +190,7 @@ function renderWizard() {
   const step = STEP_DEFS[wzIndex];
   const R = STEP_RENDER[step.key]();
   document.getElementById('wzTitleRow').innerHTML =
-    `<div><h3 class="wz-h">${R.title}</h3>${R.sub ? `<p class="wz-sub">${R.sub}</p>` : ''}</div>${R.headRight || ''}`;
+    `<div><h3 class="wz-h">${R.title}</h3>${R.sub ? `<p class="wz-sub ${R.subClass || ''}">${R.sub}</p>` : ''}</div>${R.headRight || ''}`;
   const body = document.getElementById('wzBody');
   body.innerHTML = R.body; body.scrollTop = 0;
   const back = document.getElementById('wzBack');
@@ -323,9 +323,10 @@ const PICKER_UI = {
   vehicles:{ title:true, search:true, icon:true }, equipment:{ title:true, search:true, icon:true },
   workforce:{ title:true, search:true, icon:true }, bins:{ title:true, search:false, icon:false }, service:{ title:true, search:true, icon:false },
 };
+const draftItems = key => key === 'service' ? draft.services : draft[key];
 function openPicker(key) {
   closePicker();
-  pickerState = { key, sel:new Set(draft[key].map(i => i.id)), q:'' };
+  pickerState = { key, sel:new Set(draftItems(key).map(i => i.id)), q:'' };
   const wrap = document.createElement('div'); wrap.className = 'wz-picker'; wrap.id = 'wzPicker';
   document.querySelector('.wz-main').appendChild(wrap);
   document.querySelectorAll(`[data-pkopen="${key}"]`).forEach(b => b.classList.add('open'));
@@ -363,19 +364,37 @@ function commitPicker(catalog) {
   closePicker(); renderWizard();
 }
 
-/* STEP 8 — Services & Frequencies */
+/* STEP 8 — Services & Frequencies (2111:3808): one card per service — Action · Recurrence · Frequency | Response Time */
+const svcSelect = (i, key, label, icon, val, options, chev = 'chevron-down') =>
+  `<label class="f">${ic(icon, 20, 'lead')}<span class="f-col"><span class="f-lbl md">${label}</span>
+    <select class="f-sel" data-si="${i}" data-sk="${key}">${options.map(o => `<option${o === val ? ' selected' : ''}>${esc(o)}</option>`).join('')}</select></span>${ic(chev, 12, 'trail')}</label>`;
 STEP_RENDER.service = () => {
   const items = draft.services;
   const headRight = `<button class="wz-addnew" type="button" data-pkopen="service">Add New${ic('chevron-down', 16)}</button>`;
   const body = !items.length
     ? emptyState('service')
-    : `<div class="tbl"><div class="th" style="grid-template-columns:50px 1fr 320px"><span>#</span><span>Service</span><span>Frequency</span></div>
-      ${items.map((s, i) => `<div class="tr" style="grid-template-columns:50px 1fr 320px">
-        <span style="font-weight:600">${i + 1}</span><span style="font-weight:600;color:var(--g900)">${esc(s.name)}</span>
-        <label class="f" style="height:44px"><span class="f-col"><select class="f-sel" data-si="${i}">${['Daily','3x Weekly','Weekly','Monthly','On Demand / Adhoc'].map(o => `<option${o === (s.freq || 'Daily') ? ' selected' : ''}>${o}</option>`).join('')}</select></span>${ic('chevron-down', 12, 'trail')}</label>
-      </div>`).join('')}</div>`;
+    : items.map((s, i) => {
+        s.action = s.action || 'Scheduled'; s.recurrence = s.recurrence || 'Daily'; s.frequency = s.frequency || '3 times'; s.response = s.response || '24 hours';
+        const fields = [svcSelect(i, 'action', 'Action', 'plus-square', s.action, ['Scheduled', 'Adhoc'])];
+        if (s.action === 'Adhoc') fields.push(svcSelect(i, 'response', 'Response Time', 'clock', s.response, ['12 hours', '24 hours', '48 hours', '72 hours', '1 week']));
+        else {
+          fields.push(svcSelect(i, 'recurrence', 'Recurrence', 'calendar', s.recurrence, ['Daily', 'Weekly', 'Monthly', 'Quarterly']));
+          if (s.recurrence === 'Weekly' || s.recurrence === 'Monthly') fields.push(svcSelect(i, 'frequency', 'Frequency', 'clock-fast-forward', s.frequency, ['1 time', '2 times', '3 times', '4 times', '5 times', '6 times'], 'chevron-selector-vertical'));
+        }
+        return `<div class="svc-card">
+          <div class="c-head"><div class="c-name">${esc(s.name)}</div><span class="c-remove" data-srm="${i}" title="Remove">${ic('trash-03', 16)}</span></div>
+          <div class="c-fields">${fields.join('')}</div>
+        </div>`;
+      }).join('');
   return { title:'Services and Frequencies', sub:"Let's get started by filling in your program's core information.", headRight, body,
-    after() { wirePicker('service'); document.querySelectorAll('#wzBody [data-si]').forEach(el => el.addEventListener('change', e => { draft.services[+e.target.dataset.si].freq = e.target.value; })); } };
+    after() {
+      wirePicker('service');
+      document.querySelectorAll('#wzBody [data-si]').forEach(el => el.addEventListener('change', e => {
+        const s = draft.services[+e.target.dataset.si]; s[e.target.dataset.sk] = e.target.value;
+        if (e.target.dataset.sk !== 'frequency' && e.target.dataset.sk !== 'response') renderWizard();
+      }));
+      document.querySelectorAll('#wzBody [data-srm]').forEach(el => el.addEventListener('click', e => { draft.services.splice(+e.currentTarget.dataset.srm, 1); renderWizard(); }));
+    } };
 };
 
 /* STEP 9 — KPI Targets */
@@ -387,32 +406,36 @@ const KPI_SEED = [
   { code:'2.4', tag:'SOLID WASTE COLLECTION & TRANSPORTATION SERVICES', name:'C & D Waste Collection', rectifiable:'Yes', unit:'Daily',
     indicator:'Percentage of Service areas collected within specified timeframe.', mode:'manual', years:[90,92,94,97,100] },
 ];
-function kpiPreview(k) {
-  const vals = k.mode === 'fixed' ? [0,1,2,3,4].map(() => k.target) : k.mode === 'yearly' ? [0,1,2,3,4].map(i => Math.min(100, k.target + k.inc * i)) : (k.years || [90,90,90,90,90]).map(v => Math.min(100, v));
-  return `<div style="margin-top:16px"><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--g500);margin-bottom:8px"><span style="font-weight:600">5-year preview</span><span>Capped at 100%</span></div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:end;height:120px">
-    ${vals.map((v, i) => { const cap = v >= 100; return `<div style="display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end">
-      <span style="font-size:12px;font-weight:600;color:${cap ? 'var(--primary)' : 'var(--g700)'}">${v}%</span>
-      <div style="width:100%;height:${Math.max(8, v)}%;border-radius:6px;background:${cap ? 'var(--primary)' : 'rgba(34,200,130,.35)'}"></div>
-      <span style="font-size:11px;color:var(--g500)">Year ${i + 1}</span></div>`; }).join('')}</div></div>`;
+/* KPI Targets (2111:4159 / card 2111:4283) */
+function kpiValues(k) {
+  return k.mode === 'fixed' ? [0,1,2,3,4].map(() => k.target)
+    : k.mode === 'yearly' ? [0,1,2,3,4].map(i => Math.min(100, k.target + k.inc * i))
+    : (k.years || [90,90,90,90,90]).map(v => Math.min(100, v));
 }
-const numField = (label, val, attrs) => `<label class="f kpi-num"><span class="f-col"><span class="f-lbl">${label}</span><input class="f-in" type="number" value="${val}" ${attrs}></span>
-  <span class="kpi-ud">${ic('chevron-down', 9, 'r180 ud-up')}${ic('chevron-down', 9, 'ud-down')}</span></label>`;
+function kpiPreview(k) {
+  return `<div class="kprev"><div class="div"></div>
+    <div class="kp-h"><b>5-year preview</b><span>Capped at 100%</span></div>
+    <div class="kbars">${kpiValues(k).map((v, i) => `<div class="kbar${v >= 100 ? ' full' : ''}"><span class="v">${v}%</span><div class="track"><i style="height:${Math.round(72 * Math.max(0, Math.min(100, v)) / 100)}px"></i></div><span class="y">Year ${i + 1}</span></div>`).join('')}</div>
+  </div>`;
+}
+/* 57h stepper field: target icon · label 12 / value 14 · stacked chevrons (Figma 2111:4306) */
+const stepField = (label, val, attrs) => `<label class="kf">${ic('target-03', 20, 'lead')}<span class="f-col"><span class="f-lbl">${label}</span><input class="f-in" type="text" inputmode="numeric" value="${val}%" ${attrs}></span>
+  <span class="kf-ud">${ic('chevron-down', 12, 'r180 ud-up')}${ic('chevron-down', 12, 'ud-down')}</span></label>`;
 function kpiCard(k, idx) {
-  const seg = (m, label) => `<button class="kpi-seg${k.mode === m ? ' on' : ''}" data-ki="${idx}" data-km="${m}">${label}</button>`;
+  const tab = (m, label) => `<button class="ktab${k.mode === m ? ' on' : ''}" type="button" data-ki="${idx}" data-km="${m}">${label}</button>`;
   let controls;
-  if (k.mode === 'fixed') controls = numField('KPI Target', k.target, `data-ki="${idx}" data-kf="target"`);
-  else if (k.mode === 'yearly') controls = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">${numField('Baseline yield (Year 1)', k.target, `data-ki="${idx}" data-kf="target"`)}
-      <label class="f"><span class="f-col"><span class="f-lbl">Yearly Increase</span><input class="f-in" type="text" value="+${k.inc}%/year" data-ki="${idx}" data-kf="inc"></span></label></div>`;
-  else controls = `<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">${(k.years || []).map((v, y) => numField(`Year ${y + 1}`, v, `data-ki="${idx}" data-ky="${y}"`)).join('')}</div>`;
-  return `<div style="border:1px solid var(--g200);border-radius:6px;padding:18px">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="chip id">${ic('hash-02', 12, 'r180')}${k.code}</span>
-      <span style="font-size:11px;font-weight:600;color:var(--g500);text-transform:uppercase">${k.tag}</span></div>
-    <div style="font-size:16px;font-weight:700;color:var(--g900);margin-bottom:12px">${k.name}</div>
-    <div style="background:var(--g50);border-radius:4px;padding:12px 14px;font-size:12px;color:var(--g700);line-height:20px;margin-bottom:14px">
-      <div><b>Rectifiable:</b> ${k.rectifiable}</div><div><b>Reporting Unit:</b> ${k.unit}</div><div><b>Performance Indicator:</b> ${esc(k.indicator)}</div></div>
-    <div class="kpi-segs">${seg('fixed', 'Fixed')}${seg('yearly', 'Yearly Increase')}${seg('manual', 'Manual')}</div>
-    <div style="margin-top:14px">${controls}</div>${kpiPreview(k)}
+  if (k.mode === 'fixed') controls = `<div class="kctl">${stepField('KPI Target', k.target, `data-ki="${idx}" data-kf="target"`)}</div>`;
+  else if (k.mode === 'yearly') controls = `<div class="kctl">${stepField('Baseline yield (Year 1)', k.target, `data-ki="${idx}" data-kf="target"`)}
+      <label class="f">${ic('trend-up-01', 20, 'lead')}<span class="f-col"><span class="f-lbl md">Yearly Increase</span>
+        <select class="f-sel" data-ki="${idx}" data-kinc>${[1,2,3,5,10].map(n => `<option value="${n}"${n === k.inc ? ' selected' : ''}>+${n}%/year</option>`).join('')}</select></span>${ic('chevron-down', 12, 'trail')}</label></div>`;
+  else controls = `<div class="kctl">${(k.years || []).map((v, y) => stepField(`Year ${y + 1}`, v, `data-ki="${idx}" data-ky="${y}"`)).join('')}</div>`;
+  return `<div class="kpi-card">
+    <div class="kchips"><span class="kchip code">${ic('hash-02', 16, 'r180')}${k.code}</span><span class="kchip tag">${ic('tag-01', 16)}${esc(k.tag)}</span></div>
+    <div class="ktitle">${esc(k.name)}</div>
+    <div class="kmeta"><div>Rectifiable:&nbsp; <b>${esc(k.rectifiable)}</b></div><div>Reporting Unit:&nbsp; <b>${esc(k.unit)}</b></div><div>Performance Indicator:&nbsp; <b>${esc(k.indicator)}</b></div></div>
+    <div class="ktabs">${tab('fixed', 'Fixed')}${tab('yearly', 'Yearly Increase')}${tab('manual', 'Manual')}</div>
+    ${controls}
+    ${kpiPreview(k)}
   </div>`;
 }
 STEP_RENDER.kpi = () => {
@@ -420,68 +443,95 @@ STEP_RENDER.kpi = () => {
   return {
     title:'KPI Targets', sub:'Define and configure KPI targets that align with your required standards. These targets help measure performance against benchmarks, ensure compliance.',
     headRight:`<button class="wz-addnew" type="button">Add New${ic('chevron-down', 16)}</button>`,
-    body:`<div class="wz-hint">${ic('target-04', 16)}KPIs have been smartly added based on your previous selections. Review and adjust them as per your preferences.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">${draft.kpis.map(kpiCard).join('')}</div>`,
+    body:`<div class="wz-hint">${ic('sparkle', 20)}<span>KPIs have been smartly added based on your previous selections. Review and adjust them as per your preferences.</span></div>
+      <div class="kpi-grid">${draft.kpis.map(kpiCard).join('')}</div>`,
     after() {
+      const num = s => Math.max(0, Math.min(100, parseInt(String(s).replace(/[^\d]/g, ''), 10) || 0));
       document.querySelectorAll('#wzBody [data-km]').forEach(el => el.addEventListener('click', e => { draft.kpis[+e.currentTarget.dataset.ki].mode = e.currentTarget.dataset.km; renderWizard(); }));
-      document.querySelectorAll('#wzBody [data-kf]').forEach(el => el.addEventListener('input', e => { const k = draft.kpis[+e.target.dataset.ki]; k[e.target.dataset.kf] = e.target.dataset.kf === 'inc' ? e.target.value : +e.target.value || 0; if (e.target.dataset.kf !== 'inc') renderWizard(); }));
-      document.querySelectorAll('#wzBody [data-ky]').forEach(el => el.addEventListener('input', e => { draft.kpis[+e.target.dataset.ki].years[+e.target.dataset.ky] = +e.target.value || 0; renderWizard(); }));
-      document.querySelectorAll('#wzBody .kpi-ud .ic').forEach(el => el.addEventListener('click', e => {
-        e.preventDefault(); const inp = e.currentTarget.closest('.kpi-num').querySelector('input');
-        inp.value = Math.max(0, Math.min(100, (+inp.value || 0) + (e.currentTarget.classList.contains('ud-up') ? 1 : -1)));
-        inp.dispatchEvent(new Event('input', { bubbles:true }));
+      document.querySelectorAll('#wzBody [data-kf]').forEach(el => el.addEventListener('change', e => { draft.kpis[+e.target.dataset.ki].target = num(e.target.value); renderWizard(); }));
+      document.querySelectorAll('#wzBody [data-ky]').forEach(el => el.addEventListener('change', e => { draft.kpis[+e.target.dataset.ki].years[+e.target.dataset.ky] = num(e.target.value); renderWizard(); }));
+      document.querySelectorAll('#wzBody [data-kinc]').forEach(el => el.addEventListener('change', e => { draft.kpis[+e.target.dataset.ki].inc = +e.target.value; renderWizard(); }));
+      document.querySelectorAll('#wzBody .kf-ud .ic').forEach(el => el.addEventListener('click', e => {
+        e.preventDefault(); const inp = e.currentTarget.closest('.kf').querySelector('input');
+        inp.value = num(inp.value) + (e.currentTarget.classList.contains('ud-up') ? 1 : -1) + '%';
+        inp.dispatchEvent(new Event('change', { bubbles:true }));
       }));
     },
   };
 };
 
-/* STEP 10 — Attachments */
+/* STEP 10 — Attachments (2111:4484) */
 STEP_RENDER.attachments = () => ({
-  title:'Upload Attachments', sub:'Upload any supporting documents for the contract here',
-  body:`<div style="border:1.5px dashed var(--g300);border-radius:6px;padding:22px;text-align:center;color:var(--g500);font-size:14px;font-weight:500;margin-bottom:16px">
-    ${ic('attachment-01', 16)} &nbsp;Drop files to attach or <b style="color:var(--primary)">browse</b></div>
-    ${draft.attachments.map((a, i) => `<div style="display:flex;align-items:center;gap:14px;border:1px solid var(--g200);border-radius:6px;padding:16px;margin-bottom:12px">
-      <span class="pdf">PDF</span><div style="flex:1"><div style="font-size:14px;font-weight:600;color:var(--g900)">${esc(a.name)}</div>${a.meta ? `<div style="font-size:12px;color:var(--g500)">${esc(a.meta)}</div>` : ''}</div>
-      <a style="color:var(--info);font-size:13px;font-weight:600;cursor:pointer">Re-upload</a><a style="color:var(--error);font-size:13px;font-weight:600;cursor:pointer" data-arm="${i}">Remove</a></div>`).join('')}`,
-  after() { document.querySelectorAll('#wzBody [data-arm]').forEach(el => el.addEventListener('click', e => { draft.attachments.splice(+e.currentTarget.dataset.arm, 1); renderWizard(); })); },
+  title:'Upload Attachments', sub:'Upload any supporting documents for the contract here', subClass:'sm',
+  body:`<label class="drop">${ic('upload-cloud-01', 24)}<span>Drop files to attach or <b>browse</b></span><input type="file" multiple hidden id="attFile"></label>
+    <div class="att-list">${draft.attachments.map((a, i) => `<div class="att-row">
+      <div class="att-l"><img src="assets/art/pdf.png" alt="PDF"><div class="att-t"><div class="att-n">${esc(a.name)}</div>${a.meta ? `<div class="att-m">${esc(a.meta)}</div>` : ''}</div></div>
+      <div class="att-a"><button type="button" data-areup="${i}">Re-upload</button><button type="button" class="rm" data-arm="${i}">Remove</button></div>
+    </div>`).join('')}</div>`,
+  after() {
+    document.querySelectorAll('#wzBody [data-arm]').forEach(el => el.addEventListener('click', e => { draft.attachments.splice(+e.currentTarget.dataset.arm, 1); renderWizard(); }));
+    document.querySelectorAll('#wzBody [data-areup]').forEach(el => el.addEventListener('click', () => toast('Choose a file to replace the attachment')));
+    const file = document.getElementById('attFile');
+    if (file) file.addEventListener('change', e => {
+      for (const f of e.target.files) draft.attachments.push({ name: f.name.replace(/\.[^.]+$/, ''), meta: `Uploaded ${new Date().toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' })}` });
+      renderWizard();
+    });
+  },
 });
 
-/* FINAL — Summary */
-function sumTable(head, rows) {
-  const cols = head.map(() => '1fr').join(' ');
-  return `<div class="tbl"><div class="th" style="grid-template-columns:${cols}">${head.map(h => `<span>${h}</span>`).join('')}</div>
-    ${rows.map(r => `<div class="tr" style="grid-template-columns:${cols}">${r.map(c => `<span>${esc(c)}</span>`).join('')}</div>`).join('')}</div>`;
+/* FINAL — Summary (2111:4992) */
+const SUM_ICON = { vehicles:'truck-02', equipment:'tool-02', workforce:'users-02', bins:'trash-03' };
+const sumSection = (t, inner, { right = '', tight = false } = {}) => `<section class="sum-sec"><div class="sum-h${tight ? ' tight' : ''}"><span>${t}</span>${right}</div>${inner}</section>`;
+/* cols: [{h, w}] — first column is the `#` column (Medium 12) */
+function sumTable(cols, rows, cls = '') {
+  const tpl = cols.map(c => c.w).join(' ');
+  return `<div class="stbl ${cls}"><div class="sth" style="grid-template-columns:${tpl}">${cols.map(c => `<span>${c.h}</span>`).join('')}</div>
+    <div class="stb">${rows.map(r => `<div class="str" style="grid-template-columns:${tpl}">${r.map((c, i) => `<span class="${i === 0 ? 'n' : ''}">${c}</span>`).join('')}</div>`).join('')}</div></div>`;
 }
-const sumSection = (t, inner) => `<div class="sum-sec"><div class="sum-t">${t}</div>${inner}</div>`;
-const SVC_TAGS = ['Residential MSW Collection','Non-Residential MSW Collection','Non-Residential MSW Collection','Residential MSW Collection','Non-Residential MSW Collection','Non-Residential MSW Collection'];
+const kv = (k, v) => `<div class="kv"><span class="k">${k}</span><span class="v">${esc(v || '—')}</span></div>`;
+const SVC_TAGS = ['Residential MSW Collection', 'Non-Residential MSW Collection'];
+const SVC_OPS = ['Residential Non-Recyclable MSW Collection', 'Residential Recyclable MSW Collection', 'Non-Recyclable & Recyclable MSW Collection', 'Public Place MSW Collection'];
 STEP_RENDER.summary = () => {
   const b = draft.basic;
-  const bi = [['Contract Title', b.title || '—'], ['Reference Number', b.ref || '—'], ['Contract Type', b.type], ['ESP', b.contractor], ['Start Date', b.start || '—'], ['End Date', b.end || '—'], ['Contract Manager', b.manager || '—'], ['Project Manager', b.pm || '—']];
-  const basicGrid = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;margin-bottom:8px">${bi.map(([k, v]) => `<div style="display:grid;grid-template-columns:180px 1fr;font-size:13px"><span style="color:var(--g500)">${k}</span><span style="font-weight:600;color:var(--g900)">${esc(v)}</span></div>`).join('')}</div>`;
+  const basicGrid = `<div class="sum-grid"><div>${kv('Contract Title', b.title)}${kv('Contract Type', b.type)}${kv('Start Date', b.start)}${kv('Contract Manager', b.manager)}</div>
+    <div>${kv('Reference Number', b.ref)}${kv('ESP', b.contractor)}${kv('End Date', b.end)}${kv('Project Manager', b.pm)}</div></div>`;
+  const typeCell = (key, name) => `${ic(SUM_ICON[key], 16)}${esc(name)}`;
   const rowsOf = (key, map) => draft[key].map((it, i) => { const c = CAT[key].find(x => x.id === it.id) || it; return map(i + 1, c, it); });
-  const vehRows = rowsOf('vehicles', (n, c, it) => [String(n), c.name, c.capacity || '—', c.make || '—', it.qty || '—']);
-  const eqpRows = rowsOf('equipment', (n, c, it) => [String(n), c.name, it.make || c.make || 'TBA', it.qty || '—']);
-  const wfRows  = rowsOf('workforce', (n, c, it) => [String(n), c.name, it.exp || '—', it.qty || '—']);
-  const binRows = rowsOf('bins', (n, c, it) => [String(n), c.name, it.qty || '—']);
-  const zoneMap = `<div class="map-frame" id="sumMapFrame" style="border-radius:6px"><div class="map-canvas" id="sumMapCanvas"><img class="map-img" src="assets/zone-map.png" alt=""><div class="map-poly"><img src="assets/zone-polygon.svg" alt=""></div></div>
-    <div class="zone-field" style="width:auto;min-width:320px"><span class="f-col"><span class="f-lbl md">Contract Title</span><span class="f-in static" style="pointer-events:none">${esc(b.title || 'Lot 1, Abu Dhabi')}</span></span></div></div>`;
-  const svcTagRows = draft.services.length
-    ? `<div class="tbl"><div class="th" style="grid-template-columns:50px 1fr 260px"><span>#</span><span>Service</span><span>Tags</span></div>${draft.services.map((s, i) => `<div class="tr" style="grid-template-columns:50px 1fr 260px"><span>${i + 1}</span><span style="font-weight:600;color:var(--g900)">${esc(s.name)}</span><span><span class="chip id" style="background:var(--tint-warning);color:#b54708">${esc(SVC_TAGS[i % SVC_TAGS.length])}</span></span></div>`).join('')}</div>`
-    : sumTable(['#','Service','Tags'], [['—','No services added','—']]);
-  const svcFreqRows = sumTable(['#','Service','Specified Operation','Action','Frequency'], draft.services.length ? draft.services.map((s, i) => [String(i + 1), s.name, i % 2 ? 'Residential Recyclable MSW Collection' : 'Residential Non-Recyclable MSW Collection', 'Scheduled', s.freq || 'Daily']) : [['—','No services','—','—','—']]);
+  const none = (n, msg) => [[ '—', msg, ...Array(n - 2).fill('—') ]];
+  const vehRows = rowsOf('vehicles', (n, c, it) => [String(n), typeCell('vehicles', c.name), esc(c.capacity || '—'), esc(c.make || '—'), esc(it.qty || '—')]);
+  const eqpRows = rowsOf('equipment', (n, c, it) => [String(n), typeCell('equipment', c.name), esc(it.make || c.make || 'TBA'), esc(it.qty || '—')]);
+  const wfRows  = rowsOf('workforce', (n, c, it) => [String(n), typeCell('workforce', c.name), esc(it.exp || '—'), esc(it.qty || '—')]);
+  const binRows = rowsOf('bins', (n, c, it) => [String(n), typeCell('bins', c.name), esc(it.qty || '—')]);
+  const lot = `${kv('Contract Title', b.title || 'Lot 1, Abu Dhabi')}
+    <div class="sum-map"><div class="map-frame" id="sumMapFrame"><div class="map-canvas" id="sumMapCanvas"><img class="map-img" src="assets/zone-map.png" alt=""><div class="map-poly"><img src="assets/zone-polygon.svg" alt=""></div></div>
+      <button class="map-layers" type="button" aria-label="Map layers"><img src="assets/layers-thumb.png" alt="">${ic('layers-three-01', 20)}</button>
+      <div class="map-ctl"><div class="map-zoom"><button type="button" aria-label="Zoom in">${ic('plus', 20)}</button><span class="div"></span><button type="button" aria-label="Zoom out">${ic('minus', 20)}</button></div><button class="map-max" type="button" aria-label="Full screen">${ic('maximize-02', 20)}</button></div>
+    </div></div>`;
+  const tag = i => `<span class="tagc ${i % 2 ? 'blue' : 'amber'}">${SVC_TAGS[i % 2]}</span><span class="tagc more">+1</span>`;
+  const svcRows = draft.services.length ? draft.services.map((s, i) => [String(i + 1), esc(s.name), tag(i)]) : none(3, 'No services added');
+  const freqOf = s => s.action === 'Adhoc' ? `${s.response || '24 hours'} Response Time` : (s.recurrence === 'Weekly' || s.recurrence === 'Monthly') ? `${(s.frequency || '3 times').replace(' times', 'x').replace(' time', 'x')} ${s.recurrence}` : (s.recurrence || 'Daily');
+  const sfRows = draft.services.length ? draft.services.map((s, i) => [String(i + 1), esc(s.name), s.action === 'Adhoc' ? '–' : esc(SVC_OPS[i % SVC_OPS.length]), esc(s.action || 'Scheduled'), esc(freqOf(s))]) : none(5, 'No services added');
+  const kpiTarget = k => k.mode === 'yearly' ? `${k.target}% → 100% (+${k.inc}%/yr)` : k.mode === 'manual' ? `${k.years[0]}% → ${k.years[4]}% · per yr` : `${k.target}%`;
+  const kpiRows = draft.kpis.map(k => [k.code, esc(`${k.name}: ${k.indicator}`), esc(k.unit.length > 20 ? 'Daily' : k.unit), esc(k.rectifiable), kpiTarget(k)]);
+  const atts = `<div class="sum-atts">${draft.attachments.map(a => `<div class="att-row"><div class="att-l"><img src="assets/art/pdf.png" alt="PDF"><div class="att-t"><div class="att-n">${esc(a.name)}</div>${a.meta ? `<div class="att-m">${esc(a.meta)}</div>` : ''}</div></div></div>`).join('')}</div>`;
+  const W = { n:'34px', q:'173px' };
   return {
     title:'Contract Summary', sub:'Review all the core requirements for this contract.',
-    body:`${sumSection('Basic Info', basicGrid)}${sumSection('Lot Selection', zoneMap)}
-      ${sumSection('Required Vehicles', sumTable(['#','Type','Capacity','Make','Required Quantity'], vehRows.length ? vehRows : [['—','No vehicles added','—','—','—']]))}
-      ${sumSection('Required Equipment', sumTable(['#','Type','Make','Required Quantity'], eqpRows.length ? eqpRows : [['—','No equipment added','—','—']]))}
-      ${sumSection('Required Workforce', sumTable(['#','Type','Experience','Required Quantity'], wfRows.length ? wfRows : [['—','No workforce added','—','—']]))}
-      ${sumSection('Required Bins', sumTable(['#','Type','Required Quantity'], binRows.length ? binRows : [['—','No bins added','—']]))}
-      ${sumSection('Services', svcTagRows)}${sumSection('Services & Frequencies', svcFreqRows)}
-      ${sumSection('KPI Target', sumTable(['#','Performance Indicator','Reporting Unit','Rectifiable','KPI Target'], draft.kpis.map(k => [k.code, k.name, k.unit && k.unit.length > 28 ? k.unit.slice(0, 28) + '…' : (k.unit || 'Daily'), k.rectifiable, k.mode === 'yearly' ? `${k.target}% → 100% (+${k.inc}%/yr)` : k.mode === 'manual' ? (k.years ? k.years[0] : 0) + '%' : k.target + '%'])))}
-      ${sumSection('Attachments', draft.attachments.map(a => `<div style="display:inline-flex;align-items:center;gap:10px;border:1px solid var(--g200);border-radius:6px;padding:12px 16px;margin:0 12px 8px 0"><span class="pdf" style="width:30px;height:38px">PDF</span><div><div style="font-size:13px;font-weight:600">${esc(a.name)}</div>${a.meta ? `<div style="font-size:11px;color:var(--g500)">${esc(a.meta)}</div>` : ''}</div></div>`).join(''))}`,
+    body:`<div class="sum">
+      ${sumSection('Basic Info', basicGrid)}
+      ${sumSection('Lot Selection', lot)}
+      ${sumSection('Required Vehicle', sumTable([{ h:'#', w:W.n }, { h:'Type', w:'406fr' }, { h:'Capacity', w:'306fr' }, { h:'Make', w:'406fr' }, { h:'Required Quantity', w:W.q }], vehRows.length ? vehRows : none(5, 'No vehicles added')), { tight:true })}
+      ${sumSection('Required Equipment', sumTable([{ h:'#', w:W.n }, { h:'Type', w:'1fr' }, { h:'Make', w:'1fr' }, { h:'Required Quantity', w:W.q }], eqpRows.length ? eqpRows : none(4, 'No equipment added')), { tight:true })}
+      ${sumSection('Required Workforce', sumTable([{ h:'#', w:W.n }, { h:'Type', w:'1fr' }, { h:'Experience', w:'1fr' }, { h:'Required Quantity', w:W.q }], wfRows.length ? wfRows : none(4, 'No workforce added')), { tight:true })}
+      ${sumSection('Required Bins', sumTable([{ h:'#', w:W.n }, { h:'Type', w:'1fr' }, { h:'Required Quantity', w:W.q }], binRows.length ? binRows : none(3, 'No bins added')), { tight:true })}
+      ${sumSection('Services', sumTable([{ h:'#', w:'58px' }, { h:'Service', w:'1fr' }, { h:'Tags', w:'276px' }], svcRows, 'svc'))}
+      ${sumSection('Services & Frequencies', sumTable([{ h:'#', w:W.n }, { h:'Service', w:'422fr' }, { h:'Specific Operation', w:'422fr' }, { h:'Action', w:'193fr' }, { h:'Recurrence/ Frequency/ Response Time', w:'255fr' }], sfRows), { tight:true })}
+      ${sumSection('KPI Target', sumTable([{ h:'#', w:'44px' }, { h:'Performance Indicator', w:'1fr' }, { h:'Reporting Unit', w:'162px' }, { h:'Rectifiable', w:'162px' }, { h:'KPI Target', w:'190px' }], kpiRows), { tight:true })}
+      ${sumSection('Attachments', atts)}
+    </div>`,
     after() {
       const frame = document.getElementById('sumMapFrame'), canvas = document.getElementById('sumMapCanvas');
-      if (frame) { const s = frame.clientWidth / 1358; canvas.style.transform = `scale(${s})`; frame.style.height = `${Math.round(766 * s * .45)}px`; }
+      if (frame) { const s = frame.clientWidth / 1358, dy = (766 * s - 400) / 2; canvas.style.transform = `translateY(${-dy}px) scale(${s})`; }
     },
   };
 };
