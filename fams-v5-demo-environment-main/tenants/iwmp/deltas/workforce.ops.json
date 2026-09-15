@@ -48,9 +48,9 @@
               "blocked"
             ],
             "alert": {
-              "message": "{count} safety-critical certificate{s} {are} expired or missing. Roster hides this {role} from assignment until {codes} {are} renewed.",
+              "message": "{count} required training{s} for this {role} {are} expired beyond the grace period. Renew {names} to restore route assignment.",
               "ctaLabel": "Renew",
-              "ctaToast": "Renewal requested for {codes}."
+              "ctaToast": "Renewal requested for {names}."
             },
             "statusColors": {
               "Valid": "#12b76a",
@@ -115,7 +115,8 @@
                 "label": "View certificate",
                 "toast": "Opening certificate {code}…"
               }
-            ]
+            ],
+            "nameKey": "trainingName"
           }
         }
       }

@@ -398,8 +398,8 @@
               "props": {
                 "alert": {
                   "ctaLabel": "Renew",
-                  "ctaToast": "Renewal requested for {codes}.",
-                  "message": "{count} safety-critical certificate{s} {are} expired or missing. Roster hides this {role} from assignment until {codes} {are} renewed."
+                  "ctaToast": "Renewal requested for {names}.",
+                  "message": "{count} required training{s} for this {role} {are} expired beyond the grace period. Renew {names} to restore route assignment."
                 },
                 "bucketLabels": {
                   "blocked": "Blocked",
@@ -471,6 +471,7 @@
                 "emptyText": "No trainings recorded for this workforce member.",
                 "field": "trainings",
                 "headerEdit": true,
+                "nameKey": "trainingName",
                 "roleField": "systemcol1",
                 "rowActions": [
                   {

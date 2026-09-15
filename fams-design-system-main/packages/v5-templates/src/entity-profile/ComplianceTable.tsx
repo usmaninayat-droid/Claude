@@ -69,6 +69,8 @@ export interface ComplianceTableProps {
   statusLabels?: Record<string, string>
   /** Row key printed in the alert's `{codes}` list. Default `id`. */
   codeKey?: string
+  /** Row key printed in the alert's `{names}` list. Default `codeKey` — swap to a `trainingName`-style field for readable copy. */
+  nameKey?: string
   /** Record field holding the role/segment named in `sectionLabel`. */
   roleField?: string
   /** Template for the section label; `{role}` interpolates `roleField`. */
@@ -134,6 +136,7 @@ export function ComplianceTable({
   statusColors,
   statusLabels,
   codeKey = 'id',
+  nameKey,
   roleField,
   sectionLabel,
   alert,
@@ -190,12 +193,15 @@ export function ComplianceTable({
   const visibleRows = category && categoryKey ? rows.filter((r) => String(r[categoryKey]) === category) : rows
 
   const codes = critical.map((r) => String(r[codeKey] ?? '')).filter(Boolean)
+  const names = critical.map((r) => String(r[nameKey ?? codeKey] ?? '')).filter(Boolean)
   const alertVars = {
     count: critical.length,
     codes: codes.join(', '),
+    names: names.join(', '),
     role: role.toLowerCase(),
     s: critical.length === 1 ? '' : 's',
     are: critical.length === 1 ? 'is' : 'are',
+    it: critical.length === 1 ? 'it' : 'them',
   }
 
   const renderRowActions = rowActions?.length
