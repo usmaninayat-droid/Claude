@@ -388,7 +388,9 @@ export function RecordTable({
         </div>
       ) : null}
 
-      <div className="overflow-x-auto rounded-md border border-border">
+      {/* No border here — DataTable draws its own; a wrapper border would
+          double the outer stroke against the single-weight row dividers. */}
+      <div className="overflow-x-auto">
         <DataTable<Record<string, unknown>>
           columns={dataColumns}
           data={visibleRows}
