@@ -1438,6 +1438,35 @@ export interface UiConfig {
      */
     stepIcons?: Record<string, string>
   }
+  /**
+   * Optional alert strip pinned above the module's filters row (attendance's
+   * "N assignments need attention" bar, mirroring the shift-rostering
+   * `#alertBar` pattern). Clicking the bar opens a side sheet listing the
+   * matching records — the derivation is driven by `filter` (a
+   * `records`-level predicate the composer resolves the same way summary
+   * tiles' filters resolve, e.g. `{ col: "status", equals: "Absent" }`).
+   */
+  alertBar?: {
+    /** Icon glyph shown in the leading circle; DS icon-registry name. Defaults to `alarm`. */
+    icon?: string
+    /** Tone driving the bar's tint (soft `-scale-50` bg + `-scale-700` text/icon). */
+    tone?: 'danger' | 'warning' | 'info' | 'success'
+    /**
+     * Message template. `{count}` is replaced with the matched-record count.
+     * Example: "{count} employees are absent — dispatch a reliever now."
+     */
+    message: string
+    /** Trailing CTA text (e.g. "Click to resolve"). Defaults to "View". */
+    ctaLabel?: string
+    /** Predicate that selects the conflicting records; same shape as `listSummary[].filter`. */
+    filter?: { col: string; equals?: string; in?: string[] }
+    /** Side-sheet title (e.g. "Dispatching Conflicts"). Defaults to "Conflicts". */
+    sheetTitle?: string
+    /** Side-sheet description under the title. */
+    sheetDescription?: string
+    /** Empty-state text when the filter matches zero records. Defaults to "No conflicts right now." */
+    emptyLabel?: string
+  }
   /** Hybrid (split list + profile) view options. */
   hybrid?: {
     /** systemcolumn ids shown in the compact left list of the hybrid view. */

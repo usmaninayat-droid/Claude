@@ -236,6 +236,17 @@ export interface AuthoredUiConfig {
     /** Size of the implicit first "Basic Info" group — see `UiConfig.creation.basicCount` in `types.ts`. */
     basicCount?: number
   }
+  /** Module-header alert strip — see `UiConfig.alertBar` in `types.ts`. */
+  alertBar?: {
+    icon?: string
+    tone?: 'danger' | 'warning' | 'info' | 'success'
+    message: string
+    ctaLabel?: string
+    filter?: { col: string; equals?: string; in?: string[] }
+    sheetTitle?: string
+    sheetDescription?: string
+    emptyLabel?: string
+  }
   /** Hybrid (split list + profile) view options — see `UiConfig.hybrid` in `types.ts`. */
   hybrid?: { listColumns?: string[]; stageTabs?: boolean }
   /** Map/live-monitoring bindings — see `UiConfig.map` in `types.ts` (authored 1:1). */

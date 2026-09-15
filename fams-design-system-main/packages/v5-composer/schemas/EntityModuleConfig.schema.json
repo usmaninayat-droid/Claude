@@ -2862,6 +2862,31 @@
             }
           }
         },
+        "alertBar": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Module-header alert strip pinned above the filters row (attendance's dispatching-conflicts bar). Clicking opens a side sheet listing the records matched by `filter`.",
+          "required": ["message"],
+          "properties": {
+            "icon": { "type": "string" },
+            "tone": { "enum": ["danger", "warning", "info", "success"] },
+            "message": { "type": "string", "description": "Message template; '{count}' is replaced with the matched-record count." },
+            "ctaLabel": { "type": "string" },
+            "filter": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["col"],
+              "properties": {
+                "col": { "type": "string" },
+                "equals": { "type": "string" },
+                "in": { "type": "array", "items": { "type": "string" } }
+              }
+            },
+            "sheetTitle": { "type": "string" },
+            "sheetDescription": { "type": "string" },
+            "emptyLabel": { "type": "string" }
+          }
+        },
         "hybrid": {
           "type": "object",
           "additionalProperties": false,

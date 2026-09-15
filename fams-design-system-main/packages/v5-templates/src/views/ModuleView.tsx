@@ -22,7 +22,7 @@ import {
   Users,
   Icon,
 } from '@fams/ui-kit/icons'
-import { viewSpecKind, type EntityConfig, type EntityRecord, type FilterFacet, type ViewKind, type ViewSpec } from '@fams/v5-composer'
+import { ModuleAlertBar, viewSpecKind, type EntityConfig, type EntityRecord, type FilterFacet, type ViewKind, type ViewSpec } from '@fams/v5-composer'
 import { Button, Tooltip, TooltipContent, TooltipTrigger, type BadgeVariant } from '@fams/ui-kit'
 import {
   ModuleViewShell,
@@ -927,6 +927,11 @@ export function ModuleView({
       bodyInset={liveModule && !(recordMapModule && activeView?.kind === 'list') ? 'flush' : 'default'}
       renderView={() => withBulkBar(renderBody())}
       emptyState={pickerBody}
+      alertBar={
+        config.uiConfig.alertBar && !showPicker ? (
+          <ModuleAlertBar config={config.uiConfig.alertBar} records={records} />
+        ) : undefined
+      }
       // The takeover replaces EVERYTHING below the top nav (figma new-view
       // spec §visual: no toolbar row between the bar and the heading) — the
       // filters row is withheld while the picker is up, and withheld for a

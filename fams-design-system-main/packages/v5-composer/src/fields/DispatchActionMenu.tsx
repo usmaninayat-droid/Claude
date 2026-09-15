@@ -134,7 +134,7 @@ function SwapRow({
       <div className="flex items-center gap-2 text-caption text-muted-foreground">
         <span
           aria-hidden="true"
-          className={`size-1.5 rounded-full ${side === 'origin' ? 'bg-danger' : 'bg-primary'}`}
+          className={`size-1.5 rounded-full ${side === 'origin' ? 'bg-error-500' : 'bg-primary'}`}
         />
         {side === 'origin' ? 'Originally Assigned' : 'Suggested Replacement'}
       </div>
@@ -325,7 +325,7 @@ export function DispatchActionMenu({
                     ) : null}
                     <span className="text-foreground">{outboundContext || 'Attendance record'}</span>
                   </div>
-                  <span className="inline-flex items-center rounded-full bg-danger/10 px-2.5 py-0.5 text-caption font-semibold uppercase tracking-wide text-danger">
+                  <span className="inline-flex items-center rounded-full bg-error-100 px-2.5 py-0.5 text-caption font-semibold uppercase tracking-wide text-error-700">
                     {headerTag}
                   </span>
                 </div>

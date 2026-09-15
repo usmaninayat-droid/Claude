@@ -69,10 +69,20 @@
   "uiConfig": {
     "icon": "calendar-check-01",
     "statusList": [
-      { "id": "sts_att_present", "key": "Present", "label": "Present", "color": "#15794f" },
-      { "id": "sts_att_late", "key": "Late", "label": "Late", "color": "#b54708" },
-      { "id": "sts_att_absent", "key": "Absent", "label": "Absent", "color": "#b42318" }
+      { "id": "sts_att_present", "key": "Present", "label": "Present", "color": "#027a48", "tone": "success" },
+      { "id": "sts_att_late", "key": "Late", "label": "Late", "color": "#b54708", "tone": "warning" },
+      { "id": "sts_att_absent", "key": "Absent", "label": "Absent", "color": "#b42318", "tone": "danger" }
     ],
+    "alertBar": {
+      "icon": "alarm",
+      "tone": "danger",
+      "message": "{count} employees are absent today — each has a suggested reliever ready to dispatch.",
+      "ctaLabel": "Click to resolve",
+      "filter": { "col": "status", "equals": "Absent" },
+      "sheetTitle": "Dispatching Conflicts",
+      "sheetDescription": "{count} attendance records need a reliever dispatched.",
+      "emptyLabel": "No dispatching conflicts right now."
+    },
     "listSummary": [
       { "id": "kpi_att_reported", "label": "Reported", "icon": "check-circle", "tone": "success", "filter": { "col": "status", "in": ["Present", "Late"] } },
       { "id": "kpi_att_present", "label": "Present", "icon": "check-done-01", "tone": "success", "filter": { "col": "status", "equals": "Present" } },

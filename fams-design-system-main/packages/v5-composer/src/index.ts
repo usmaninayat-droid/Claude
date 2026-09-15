@@ -258,3 +258,5 @@ export type {
   BespokeModuleProps,
   ComposedModuleProps,
 } from './composer'
+
+export { ModuleAlertBar } from './fields/ModuleAlertBar'

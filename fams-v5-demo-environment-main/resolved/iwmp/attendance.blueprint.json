@@ -156,6 +156,19 @@
     }
   ],
   "uiConfig": {
+    "alertBar": {
+      "ctaLabel": "Click to resolve",
+      "emptyLabel": "No dispatching conflicts right now.",
+      "filter": {
+        "col": "status",
+        "equals": "Absent"
+      },
+      "icon": "alarm",
+      "message": "{count} employees are absent today — each has a suggested reliever ready to dispatch.",
+      "sheetDescription": "{count} attendance records need a reliever dispatched.",
+      "sheetTitle": "Dispatching Conflicts",
+      "tone": "danger"
+    },
     "creation": {
       "disabled": true,
       "fieldChrome": "inset-label",
@@ -351,22 +364,25 @@
     },
     "statusList": [
       {
-        "color": "#15794f",
+        "color": "#027a48",
         "id": "sts_att_present",
         "key": "Present",
-        "label": "Present"
+        "label": "Present",
+        "tone": "success"
       },
       {
         "color": "#b54708",
         "id": "sts_att_late",
         "key": "Late",
-        "label": "Late"
+        "label": "Late",
+        "tone": "warning"
       },
       {
         "color": "#b42318",
         "id": "sts_att_absent",
         "key": "Absent",
-        "label": "Absent"
+        "label": "Absent",
+        "tone": "danger"
       }
     ]
   },

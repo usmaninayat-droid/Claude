@@ -220,6 +220,12 @@ export interface ModuleViewShellProps extends Omit<HTMLAttributes<HTMLDivElement
   filters?: ReactNode
   /** Search input for the active view. Same contract as `filters`. */
   search?: ReactNode
+  /**
+   * Optional alert strip rendered ABOVE the filters row (e.g. attendance's
+   * dispatching-conflicts bar). Same "slot" contract as `filters`/`search`
+   * — the shell owns spacing/placement; the caller owns content.
+   */
+  alertBar?: ReactNode
   /** Accessible label + i18n string for the create-view control. */
   createViewLabel?: string
   /** Accessible label + i18n string for the delete-view control. */
@@ -353,6 +359,7 @@ export function ModuleViewShell({
   actions,
   filters,
   search,
+  alertBar,
   createViewLabel = 'Add view',
   deleteViewLabel = 'Delete view',
   className,
@@ -827,6 +834,15 @@ export function ModuleViewShell({
           actions={barActions ?? undefined}
         />
       )}
+
+      {alertBar ? (
+        <div
+          data-slot="module-view-shell-alert"
+          className={cn('flex flex-col gap-3 bg-background pt-3', MODULE_GUTTER_X)}
+        >
+          {alertBar}
+        </div>
+      ) : null}
 
       {filters || search ? (
         <div
