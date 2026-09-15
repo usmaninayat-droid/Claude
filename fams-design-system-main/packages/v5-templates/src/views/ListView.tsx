@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Pencil } from '@fams/ui-kit/icons'
-import { Button, DataTable, KpiTile, Skeleton, Stack } from '@fams/ui-kit'
+import { Button, DataTable, KpiTile, Skeleton } from '@fams/ui-kit'
 import { compileFieldSet, deriveColumns, type EntityRecord } from '@fams/v5-composer'
 import { cn } from '../lib/cn'
 import { RecordCountRow } from './RecordCountRow'
@@ -185,7 +185,17 @@ export function ListView({
         />
       ) : null}
       {summaryTiles?.length ? (
-        <Stack data-slot="list-view-summary" direction="row" wrap gap="field">
+        // CSS Grid with `auto-fit, minmax(13rem, 1fr)` — equal-width tiles
+        // that wrap into as many columns as the container fits, and every
+        // wrapped tile stays the same width as its siblings above. The
+        // previous `flex-row wrap` layout let a lone wrapped tile (e.g. the
+        // 4th of 4 when 3 fit per row) stretch to the full row width, which
+        // read as an inconsistent tile size.
+        <div
+          data-slot="list-view-summary"
+          className="grid gap-field"
+          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(13rem, 1fr))' }}
+        >
           {summaryTiles.map((tile) => (
             <KpiTile
               key={tile.id}
@@ -196,10 +206,9 @@ export function ListView({
               tone={tile.tone}
               iconColor={tile.iconColor}
               iconBg={tile.iconBg}
-              className="min-w-[13rem] flex-1"
             />
           ))}
-        </Stack>
+        </div>
       ) : null}
 
       <DataTable<EntityRecord>

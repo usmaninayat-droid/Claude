@@ -8,7 +8,6 @@ import {
   IdChip,
   Input,
   KpiTile,
-  Stack,
   StatusPill,
   TableCell,
   type DataTableColumn,
@@ -301,7 +300,14 @@ export function RecordTable({
   return (
     <div data-slot="record-table" className={cn('flex flex-col gap-3', className)}>
       {summaryTiles?.length ? (
-        <Stack data-slot="record-table-summary" direction="row" wrap gap="field">
+        // See `ListView.tsx`'s summary-tile grid for the layout rationale
+        // (equal-width `auto-fit, minmax(13rem, 1fr)` tiles that keep the
+        // same width whether they wrap or not).
+        <div
+          data-slot="record-table-summary"
+          className="grid gap-field"
+          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(13rem, 1fr))' }}
+        >
           {summaryTiles.map((tile) => (
             <KpiTile
               key={tile.id}
@@ -312,10 +318,9 @@ export function RecordTable({
               tone={tile.tone}
               iconColor={tile.iconColor}
               iconBg={tile.iconBg}
-              className="min-w-[13rem] flex-1"
             />
           ))}
-        </Stack>
+        </div>
       ) : null}
       {search || timeframeSelect || action ? (
         <div data-slot="record-table-toolbar" className="flex items-center gap-3">
