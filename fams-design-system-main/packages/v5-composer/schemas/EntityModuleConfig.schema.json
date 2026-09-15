@@ -2286,6 +2286,10 @@
               "type": "string",
               "description": "Create-CTA label (e.g. 'New Collection Point'); falls back to 'Create New'."
             },
+            "disabled": {
+              "type": "boolean",
+              "description": "Hides the module-header 'New X' CTA and every inline create-from-empty-facet affordance derived from it. Read-only affordances are untouched. Use when the create flow is not yet implemented / disabled by policy; the rest of this block (label/layout/chrome) is still authorable for when the flow reopens."
+            },
             "explicit": {
               "type": "boolean",
               "description": "Suppresses the create form's trailing catch-all 'Details' group \u2014 only the implicit Basic-Info group plus fields explicitly placed in profile.sections appear."

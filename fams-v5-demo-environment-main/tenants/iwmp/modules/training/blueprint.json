@@ -418,7 +418,8 @@
     "creation": {
       "label": "New Training",
       "layout": "flat",
-      "fieldChrome": "inset-label"
+      "fieldChrome": "inset-label",
+      "disabled": true
     },
     "listRowHeight": "md",
     "listSort": false,

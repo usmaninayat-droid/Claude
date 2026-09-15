@@ -1366,6 +1366,20 @@ export interface UiConfig {
     /** Create-CTA label (e.g. "New Collection Point"); falls back to "Create New". */
     label?: string
     /**
+     * Hides the module-header create CTA (`ModuleView`'s primary "New X"
+     * button) and every inline "create from empty facet" affordance derived
+     * from it. Read-only affordances (search/filters/list actions) are
+     * untouched. Default `false` (unchanged behavior).
+     *
+     * Use when the module's create flow is not yet implemented / disabled by
+     * policy — the button was the only visible entry to a broken flow, and
+     * leaving it live invited an unfinished wizard. Prefer this over
+     * removing `uiConfig.creation` entirely: the rest of that block (label,
+     * layout, chrome) may still be authored for when the flow reopens, and
+     * a privilege-driven hide is a separate concern this doesn't replace.
+     */
+    disabled?: boolean
+    /**
      * How many leading editable fields form the implicit first "Basic Info"
      * group (`computeCreationGroups`). Defaults to the locked v1 constant of
      * `5`. Set it when a wizard's first step must contain an EXACT field count

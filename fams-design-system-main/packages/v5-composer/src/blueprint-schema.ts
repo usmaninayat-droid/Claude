@@ -229,6 +229,8 @@ export interface AuthoredUiConfig {
     layout?: 'auto' | 'flat' | 'wizard'
     fieldChrome?: 'default' | 'inset-label'
     label?: string
+    /** Hides the module-header create CTA — see `UiConfig.creation.disabled` in `types.ts`. */
+    disabled?: boolean
     /** Suppresses the trailing catch-all "Details" group — see `UiConfig.creation.explicit` in `types.ts`. */
     explicit?: boolean
     /** Size of the implicit first "Basic Info" group — see `UiConfig.creation.basicCount` in `types.ts`. */

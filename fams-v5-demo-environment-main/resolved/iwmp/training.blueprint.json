@@ -160,6 +160,7 @@
   ],
   "uiConfig": {
     "creation": {
+      "disabled": true,
       "fieldChrome": "inset-label",
       "label": "New Training",
       "layout": "flat"

@@ -771,9 +771,17 @@ export function ModuleView({
     return items
   }
 
+  // `uiConfig.creation.disabled` gates every create-CTA seam this view
+  // renders — the primary header button below AND the inline
+  // `onCreateFromSearch` empty-state CTA further down — so a blueprint's
+  // "create flow not yet implemented" declaration removes the whole
+  // visible entry, not just one of two. `actions` (a caller-supplied
+  // replacement toolbar) still wins over both, unchanged.
+  const creationDisabled = config.uiConfig.creation?.disabled === true
+  const effectiveOnCreateRecord = creationDisabled ? undefined : onCreateRecord
   const createAction =
     actions ??
-    (onCreateRecord ? (
+    (effectiveOnCreateRecord ? (
       // UX ruling A3 (run 2026-09-05, W9/P0-2) SUPERSEDES the prior UX note
       // I.54 collapse-order item 3 this comment used to describe: I.54 had
       // the label drop to glyph-only below 1300px, keeping only the
@@ -790,7 +798,7 @@ export function ModuleView({
       // narrower width this platform does not yet support/test.
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button size="lg" onClick={() => onCreateRecord()} aria-label={createLabel}>
+          <Button size="lg" onClick={() => effectiveOnCreateRecord!()} aria-label={createLabel}>
             <Plus className="size-4" aria-hidden="true" />
             <span className="max-[79.9375rem]:sr-only">{createLabel}</span>
           </Button>
@@ -978,7 +986,9 @@ export function ModuleView({
              * affordance in this view already uses.
              */
             onCreateFromSearch={
-              onCreateRecord ? (facet, query) => onCreateRecord({ [facet.col]: query }) : undefined
+              effectiveOnCreateRecord
+                ? (facet, query) => effectiveOnCreateRecord({ [facet.col]: query })
+                : undefined
             }
           />
         )
