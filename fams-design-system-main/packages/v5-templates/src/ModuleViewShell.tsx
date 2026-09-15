@@ -808,7 +808,14 @@ export function ModuleViewShell({
   return (
     <div
       data-slot="module-view-shell"
-      className={cn('flex h-full min-h-0 flex-col', className)}
+      // `bg-card` paints the whole module body white, so the only surface
+      // still tinted with the app-shell's `bg-background` grey is the strip
+      // above the shell (the AppShell top bar, which sits ABOVE this
+      // component). Every module across every tenant reads on white now,
+      // matching the "top bar only" design direction — sections that
+      // deliberately want grey chrome (a filters row, an alert band) opt in
+      // to `bg-background` per element.
+      className={cn('flex h-full min-h-0 flex-col bg-card', className)}
       {...props}
     >
       {/*
@@ -838,7 +845,7 @@ export function ModuleViewShell({
       {alertBar ? (
         <div
           data-slot="module-view-shell-alert"
-          className={cn('flex flex-col gap-3 bg-background pt-3', MODULE_GUTTER_X)}
+          className={cn('flex flex-col gap-3 pt-3', MODULE_GUTTER_X)}
         >
           {alertBar}
         </div>
@@ -847,7 +854,7 @@ export function ModuleViewShell({
       {filters || search ? (
         <div
           data-slot="module-view-shell-filters"
-          className={cn('flex flex-wrap items-center gap-3 bg-background py-3', MODULE_GUTTER_X)}
+          className={cn('flex flex-wrap items-center gap-3 py-3', MODULE_GUTTER_X)}
         >
           {search}
           {filters}
