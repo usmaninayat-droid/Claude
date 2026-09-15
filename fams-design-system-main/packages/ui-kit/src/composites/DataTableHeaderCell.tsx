@@ -36,7 +36,6 @@ export interface DataTableHeaderCellProps<T> {
    * `columnWidthStyle`'s own `null` vs `key` distinction lives in the
    * expansion hook; this component only needs to know WHICH key, if any. */
   expandedKey: string | null
-  toggleExpanded: (key: string) => void
   registerTap: (key: string, pointerType: string) => void
   consumeSuppressedClick: () => boolean
   columnWidthStyle: (col: DataTableColumn<T>) => { width?: string; minInlineSize?: string } | undefined
@@ -53,7 +52,6 @@ export function DataTableHeaderCell<T>({
   isStickyThisCol,
   stickyPinClass,
   expandedKey,
-  toggleExpanded,
   registerTap,
   consumeSuppressedClick,
   columnWidthStyle,
@@ -62,7 +60,6 @@ export function DataTableHeaderCell<T>({
   resizedWidthPx,
 }: DataTableHeaderCellProps<T>) {
   const isSorted = sort?.key === col.key
-  const isExpandedCol = expandedKey === col.key
   // Only meaningful outside expansion — §7 deliberately hides the resize
   // handle while a column is expanded (drag-resize and "compress everyone
   // else" are alternative ways to the SAME end; combining them is out of

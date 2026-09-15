@@ -91,17 +91,6 @@ function fillTemplate(template: string, vars: Record<string, string | number>): 
   return template.replace(/\{(\w+)\}/g, (_, k) => (vars[k] != null ? String(vars[k]) : ''))
 }
 
-/**
- * `hex + alpha` mixed to the card background (white in light theme) with a
- * fixed 40% alpha, so a saturated status ramp reads as a soft tint on the
- * heatmap without needing a per-status "-100" companion token. Falls back to
- * the raw hex if the string isn't a #rrggbb.
- */
-function tintCell(hex: string): string {
-  const m = /^#([0-9a-fA-F]{6})$/.exec(hex)
-  if (!m) return hex
-  return `${hex}CC` // ~80% opacity gives the Figma's near-solid look
-}
 
 export function AttendanceHeatmapWidget({
   widget,

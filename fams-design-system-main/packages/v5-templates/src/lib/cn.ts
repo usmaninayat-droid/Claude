@@ -40,6 +40,7 @@ const twMerge = extendTailwindMerge({
             'body-lg',
             'body-xl',
             'caption',
+            'metric',
           ],
         },
       ],

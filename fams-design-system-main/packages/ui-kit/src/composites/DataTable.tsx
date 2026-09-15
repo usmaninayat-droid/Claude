@@ -324,7 +324,7 @@ export function DataTable<T>({
   const headerRowHeightClass = isCompact ? 'h-8' : 'h-10'
 
   /* ---- column expansion (text-truncation.md §7) ---- */
-  const { expandedKey, toggleExpanded, registerTap, consumeSuppressedClick, columnWidthStyle, isTableFixed } =
+  const { expandedKey, registerTap, consumeSuppressedClick, columnWidthStyle, isTableFixed } =
     useDataTableColumnExpansion<T>({ expandedColumnKey, onExpandedColumnChange })
   const { beginResize, stepResize, resizedWidthPx } = useDataTableColumnResize<T>()
 
@@ -699,7 +699,6 @@ export function DataTable<T>({
                   isStickyThisCol={pinIdentityCol && colIndex === 0}
                   stickyPinClass={identityPinClass}
                   expandedKey={expandedKey}
-                  toggleExpanded={toggleExpanded}
                   registerTap={registerTap}
                   consumeSuppressedClick={consumeSuppressedClick}
                   columnWidthStyle={columnWidthStyle}

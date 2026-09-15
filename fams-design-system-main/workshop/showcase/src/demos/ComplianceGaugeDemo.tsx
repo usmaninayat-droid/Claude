@@ -14,12 +14,12 @@ export default function ComplianceGaugeDemo() {
     <DocPage
       title="ComplianceGauge"
       badge="stable"
-      summary="Semi-circular gauge: 3 gapped, rounded-cap arc segments sharing one continuous red→amber→green gradient, with a small triangular needle marking the current value. Callers tune only where the bands split — never the colors — keeping every compliance/health reading visually consistent."
+      summary="Semi-circular gauge: a thick ring cut into 3 flat-ended sectors sharing one continuous red→amber→green gradient, with a small triangular needle straddling the outer edge at the current value. Callers tune only where the bands split — never the colors — keeping every compliance/health reading visually consistent."
     >
       <DocSection id="usage" title="Usage">
         <Prose>
-          The value renders large and bold under the arc, with a smaller <Code>%</Code> suffix and — when{' '}
-          <Code>label</Code> is given — a muted caption underneath it (e.g. "Overall Compliance").
+          The value renders large and semibold inside the arc's mouth, with a smaller <Code>%</Code> suffix and — when{' '}
+          <Code>label</Code> is given — a muted caption under the arc (e.g. "Overall Compliance").
         </Prose>
         <Demo
           title="Default thresholds"
@@ -95,7 +95,7 @@ export default function ComplianceGaugeDemo() {
             { prop: 'min', type: 'number', default: '0', description: 'Range minimum.' },
             { prop: 'max', type: 'number', default: '100', description: 'Range maximum.' },
             { prop: 'unit', type: 'string', default: "'%'", description: 'Suffix rendered smaller beside the value.' },
-            { prop: 'label', type: 'ReactNode', description: 'Muted caption directly under the value, e.g. "Overall Compliance".' },
+            { prop: 'label', type: 'ReactNode', description: 'Muted caption under the arc, e.g. "Compliance Score".' },
             {
               prop: 'criticalThreshold',
               type: 'number',

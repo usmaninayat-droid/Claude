@@ -114,7 +114,7 @@ export function RecordTableFilterButton({
           <span
             data-slot="filter-active-badge"
             aria-hidden="true"
-            className="absolute -end-1 -top-1 grid size-4 place-items-center rounded-full bg-primary text-[10px] font-semibold leading-none text-primary-foreground"
+            className="absolute -end-1 -top-1 grid size-4 place-items-center rounded-full bg-primary text-wall-label font-semibold leading-none text-primary-foreground"
           >
             {activeCount}
           </span>

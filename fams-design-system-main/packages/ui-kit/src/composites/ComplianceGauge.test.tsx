@@ -34,21 +34,31 @@ describe('ComplianceGauge', () => {
     expect(wrapper).toHaveAttribute('aria-busy', 'false')
   })
 
-  it('draws exactly 3 gapped, rounded-cap arc segments sharing one continuous gradient by default', () => {
+  it('draws exactly 3 filled sectors, seamed by card background, sharing one continuous gradient by default', () => {
     const { container } = render(<ComplianceGauge value={54} aria-label="Reading" />)
     const paths = container.querySelectorAll('[data-slot="compliance-gauge-arc"] path')
     expect(paths).toHaveLength(3)
     paths.forEach((path) => {
-      expect(path).toHaveAttribute('stroke-linecap', 'round')
-      expect(path.getAttribute('stroke')).toMatch(/^url\(#.+\)$/)
+      expect(path.getAttribute('fill')).toMatch(/^url\(#.+\)$/)
+      expect(path).toHaveAttribute('stroke', 'var(--color-card)')
     })
     // All three segments reference the SAME gradient id — one continuous sweep, not per-segment fills.
-    const strokes = new Set(Array.from(paths).map((p) => p.getAttribute('stroke')))
-    expect(strokes.size).toBe(1)
+    const fills = new Set(Array.from(paths).map((p) => p.getAttribute('fill')))
+    expect(fills.size).toBe(1)
     const gradient = container.querySelector('linearGradient')
     expect(gradient).toBeInTheDocument()
     const stops = gradient!.querySelectorAll('stop')
     expect(stops).toHaveLength(3)
+  })
+
+  it('lands the amber and green gradient stops on the band boundaries', () => {
+    const { container } = render(
+      <ComplianceGauge value={50} aria-label="Reading" criticalThreshold={67} warningThreshold={83} />,
+    )
+    const stops = container.querySelectorAll('linearGradient stop')
+    // 67% → 59.4° → x = (1 + cos 59.4°) / 2 ≈ 75.5%; 83% → 30.6° → ≈ 93%.
+    expect(parseFloat(stops[1].getAttribute('offset')!)).toBeCloseTo(75.5, 0)
+    expect(parseFloat(stops[2].getAttribute('offset')!)).toBeCloseTo(93, 0)
   })
 
   it('splits the default 3 segments at criticalThreshold/warningThreshold', () => {
@@ -78,9 +88,10 @@ describe('ComplianceGauge', () => {
     expect(container.querySelector('[data-slot="compliance-gauge-value"]')).toHaveTextContent('81 pts')
   })
 
-  it('renders the label as the muted caption directly under the value', () => {
+  it('renders the label as the muted caption under the arc, outside the value stack', () => {
     const { container } = render(<ComplianceGauge value={54} label="Overall Compliance" aria-label="Reading" />)
-    expect(container.querySelector('[data-slot="compliance-gauge-value"]')).toHaveTextContent('Overall Compliance')
+    expect(container.querySelector('[data-slot="compliance-gauge-label"]')).toHaveTextContent('Overall Compliance')
+    expect(container.querySelector('[data-slot="compliance-gauge-value"]')).not.toHaveTextContent('Overall Compliance')
   })
 
   it('shows the needle marker by default and hides it when showNeedle is false', () => {
@@ -93,7 +104,7 @@ describe('ComplianceGauge', () => {
 
   it('applies the size-driven value typography class, sm/md/lg', () => {
     const { container, rerender } = render(<ComplianceGauge value={50} aria-label="Reading" size="sm" />)
-    expect(container.querySelector('[data-slot="compliance-gauge-value-number"]')).toHaveClass('text-h4')
+    expect(container.querySelector('[data-slot="compliance-gauge-value-number"]')).toHaveClass('text-metric')
 
     rerender(<ComplianceGauge value={50} aria-label="Reading" size="md" />)
     expect(container.querySelector('[data-slot="compliance-gauge-value-number"]')).toHaveClass('text-h2')

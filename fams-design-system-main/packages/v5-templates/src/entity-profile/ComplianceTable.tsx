@@ -274,12 +274,15 @@ export function ComplianceTable({
         </button>
       ) : null}
 
-      <div className="grid gap-4 md:grid-cols-[14.5rem_1fr]">
-        <div className="flex items-center justify-center rounded-md border border-border bg-card p-4">
+      <div className="grid gap-6 md:grid-cols-[16.5rem_1fr]">
+        <div className="flex items-center justify-center rounded-md border border-border bg-card px-5 py-3.5">
+          {/* Figma 6557:19933 cuts the ring at 2/3 and 5/6, not at the dashboard's 50/80 defaults. */}
           <ComplianceGauge
             value={score}
             unit=""
             size="sm"
+            criticalThreshold={67}
+            warningThreshold={83}
             label={scoreLabel}
             aria-label={`${scoreLabel}: ${score} percent`}
           />
