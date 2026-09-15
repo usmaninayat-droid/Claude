@@ -256,25 +256,25 @@
                     "tiles": [
                       {
                         "icon": "shield-tick",
-                        "label": "Valid",
+                        "label": "Certified Workers",
                         "tone": "success",
                         "valueField": "kpiValid"
                       },
                       {
                         "icon": "clock",
-                        "label": "Expiring",
+                        "label": "Expiring Soon",
                         "tone": "warning",
                         "valueField": "kpiExpiring"
                       },
                       {
                         "icon": "alert-triangle",
-                        "label": "Expired",
+                        "label": "Certificates Expired",
                         "tone": "warning",
                         "valueField": "kpiExpired"
                       },
                       {
                         "icon": "x-circle",
-                        "label": "Blocked",
+                        "label": "Blocked from Roster",
                         "tone": "danger",
                         "valueField": "kpiBlocked"
                       }

@@ -258,25 +258,25 @@
                     "columns": 2,
                     "tiles": [
                       {
-                        "label": "Valid",
+                        "label": "Certified Workers",
                         "valueField": "kpiValid",
                         "icon": "shield-tick",
                         "tone": "success"
                       },
                       {
-                        "label": "Expiring",
+                        "label": "Expiring Soon",
                         "valueField": "kpiExpiring",
                         "icon": "clock",
                         "tone": "warning"
                       },
                       {
-                        "label": "Expired",
+                        "label": "Certificates Expired",
                         "valueField": "kpiExpired",
                         "icon": "alert-triangle",
                         "tone": "warning"
                       },
                       {
-                        "label": "Blocked",
+                        "label": "Blocked from Roster",
                         "valueField": "kpiBlocked",
                         "icon": "x-circle",
                         "tone": "danger"
