@@ -200,6 +200,9 @@ export function DispatchActionMenu({
   const displayName = useDisplayName()
 
   const gated = props.gateCol ? record?.[props.gateCol] === props.gateValue : true
+  // Hide the kebab entirely on rows where the gated action is not applicable
+  // (attendance's Present/Late rows). An empty cell reads as "nothing to do
+  // here" more clearly than a kebab that only ever opens a disabled item.
   const suggestions = props.suggestions ?? DEFAULT_SUGGESTIONS
   const manual = props.manual ?? DEFAULT_MANUAL
   const primarySuggestion = suggestions[0]
@@ -248,6 +251,8 @@ export function DispatchActionMenu({
 
   const selectedManualCandidate = manual.find((c) => c.id === selectedManualId)
 
+  if (!gated) return null
+
   return (
     <span
       onClick={(e) => e.stopPropagation()}
@@ -263,7 +268,6 @@ export function DispatchActionMenu({
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-48">
           <DropdownMenuItem
-            disabled={!gated}
             onSelect={(e) => {
               e.preventDefault()
               setOpen(true)
