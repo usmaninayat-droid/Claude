@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react'
-import { ArrowDown, ChevronRight, ExternalLink, Icon, Siren, X, getIcon } from '@fams/ui-kit/icons'
+import { ArrowDown, ChevronRight, ExternalLink, Icon, Search, Siren, X, getIcon } from '@fams/ui-kit/icons'
 import {
   Avatar,
   Button,
+  Input,
   Sheet,
   SheetContent,
   SheetDescription,
@@ -68,7 +69,20 @@ const DEFAULT_SUGGESTIONS: NonNullable<AlertBarConfig['suggestions']> = [
   { id: 's5', shortId: 'D-1621', name: 'Bilal Khan', role: 'HD Driver', meta: 'Standby pool' },
 ]
 
-/** One conflict card — mirrors shift-rostering's per-route swap card exactly. */
+type Candidate = { id: string; name: string; role?: string; meta?: string; shortId?: string }
+
+/**
+ * One conflict card — same as shift-rostering's per-route swap card.
+ *
+ * Approve triggers `onApprove(suggested)`; the parent then animates the card
+ * out via the `resolving` flag (max-height + opacity + translate transition)
+ * and removes the record from the list once the animation settles — mirrors
+ * the shift-rostering issue-list card-leave animation exactly.
+ *
+ * Replace Manually fires `onReplaceManually` — the parent opens a SEPARATE
+ * side sheet on top of this one (the shift-rostering `.mpanel`) rather than
+ * flipping the card body inline.
+ */
 function ConflictCard({
   outbound,
   suggested,
@@ -78,18 +92,27 @@ function ConflictCard({
   viewLinkLabel,
   onApprove,
   onReplaceManually,
+  resolving,
 }: {
   outbound: { name: string; shortId?: string }
-  suggested: { name: string; shortId?: string; role?: string; meta?: string }
+  suggested: Candidate
   headerLine: string
   headerTag: string
   reasonLabel: string
   viewLinkLabel?: string
-  onApprove: () => void
+  onApprove: (candidate: Candidate) => void
   onReplaceManually: () => void
+  resolving: boolean
 }) {
   return (
-    <article className="flex flex-col rounded-md border border-border bg-card">
+    <article
+      style={
+        resolving
+          ? { maxHeight: 0, opacity: 0, transform: 'translateX(28px)', marginBottom: '-12px' }
+          : { maxHeight: 480 }
+      }
+      className="flex flex-col overflow-hidden rounded-md border border-border bg-card transition-[max-height,opacity,transform,margin] duration-[270ms] ease-out"
+    >
       <header className="flex items-center justify-between gap-3 border-b border-border px-4 py-3">
         <p className="text-body-sm font-semibold text-foreground">{headerLine}</p>
         <span className="inline-flex items-center rounded-sm border border-error-300 bg-card px-2 py-1 text-caption font-semibold uppercase tracking-wide text-error-700">
@@ -158,9 +181,166 @@ function ConflictCard({
         >
           Replace Manually
         </button>
-        <Button onClick={onApprove}>Approve Replacement</Button>
+        <Button onClick={() => onApprove(suggested)} disabled={resolving}>
+          Approve Replacement
+        </Button>
       </footer>
     </article>
+  )
+}
+
+/**
+ * ManualReplacePanel — the separate side sheet the shift-rostering `.mpanel`
+ * opens on top of the main resolve sheet. Reuses the same 700px width and
+ * external circular close as the main sheet.
+ */
+function ManualReplacePanel({
+  open,
+  onOpenChange,
+  outboundName,
+  outboundShortId,
+  headerLine,
+  reasonLabel,
+  pool,
+  onDispatch,
+}: {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  outboundName: string
+  outboundShortId?: string
+  headerLine: string
+  reasonLabel: string
+  pool: Candidate[]
+  onDispatch: (candidate: Candidate) => void
+}) {
+  const [query, setQuery] = useState('')
+  const [pickedId, setPickedId] = useState<string | null>(null)
+  const filtered = useMemo(() => {
+    const needle = query.trim().toLowerCase()
+    if (!needle) return pool
+    return pool.filter((c) =>
+      [c.name, c.shortId, c.role, c.meta].some((s) => (s ?? '').toLowerCase().includes(needle)),
+    )
+  }, [pool, query])
+  const picked = pool.find((c) => c.id === pickedId) ?? null
+
+  return (
+    <Sheet
+      open={open}
+      onOpenChange={(next) => {
+        onOpenChange(next)
+        if (!next) {
+          setQuery('')
+          setPickedId(null)
+        }
+      }}
+    >
+      <SheetContent
+        side="right"
+        hideClose
+        className="flex w-full flex-col gap-0 overflow-visible p-0 sm:max-w-[44rem]"
+      >
+        <button
+          type="button"
+          onClick={() => onOpenChange(false)}
+          aria-label="Close"
+          className="absolute -start-14 top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-card text-muted-foreground shadow-elevation outline-none transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          <X className="size-5" />
+        </button>
+        <div className="flex flex-col gap-1 border-b border-border p-6">
+          <SheetTitle className="text-h3 font-semibold text-foreground">Replace Manually</SheetTitle>
+          <SheetDescription className="text-body-sm text-muted-foreground">
+            {headerLine} — pick a reliever to dispatch in place of {outboundName}.
+          </SheetDescription>
+        </div>
+        <div className="flex-1 overflow-y-auto p-6">
+          <div className="mb-4 flex items-center gap-3 rounded-sm border border-border bg-muted/40 p-3">
+            <Avatar name={outboundName} size="sm" />
+            <div className="flex flex-1 items-center gap-2">
+              {outboundShortId ? (
+                <>
+                  <span className="text-body-sm font-medium text-muted-foreground line-through">
+                    {outboundShortId}
+                  </span>
+                  <span className="text-muted-foreground">·</span>
+                </>
+              ) : null}
+              <span className="text-body-sm text-muted-foreground line-through">{outboundName}</span>
+              <span className="inline-flex items-center rounded-sm bg-warning-scale-50 px-2 py-0.5 text-caption font-semibold text-warning-text">
+                {reasonLabel}
+              </span>
+            </div>
+          </div>
+          <div className="relative mb-3">
+            <Search
+              aria-hidden="true"
+              className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+            />
+            <Input
+              type="search"
+              placeholder="Search workforce"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="ps-9"
+              aria-label="Search workforce"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            {filtered.length === 0 ? (
+              <p className="p-3 text-body-sm text-muted-foreground">No matching workers.</p>
+            ) : (
+              filtered.map((c) => (
+                <button
+                  key={c.id}
+                  type="button"
+                  onClick={() => setPickedId(c.id)}
+                  className={
+                    pickedId === c.id
+                      ? 'flex w-full items-center gap-3 rounded-sm border border-primary bg-primary/5 p-3 text-start'
+                      : 'flex w-full items-center gap-3 rounded-sm border border-border bg-card p-3 text-start hover:bg-muted/50'
+                  }
+                >
+                  <Avatar name={c.name} size="sm" />
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-body-sm font-semibold text-foreground">
+                      {c.shortId ? `${c.shortId} · ` : ''}
+                      {c.name}
+                    </p>
+                    <p className="truncate text-caption text-muted-foreground">
+                      {[c.role, c.meta].filter(Boolean).join(' · ')}
+                    </p>
+                  </div>
+                  <span
+                    aria-hidden="true"
+                    className={
+                      pickedId === c.id
+                        ? 'grid size-4 place-items-center rounded-full border-2 border-primary'
+                        : 'grid size-4 place-items-center rounded-full border-2 border-border'
+                    }
+                  >
+                    {pickedId === c.id ? <span className="size-2 rounded-full bg-primary" /> : null}
+                  </span>
+                </button>
+              ))
+            )}
+          </div>
+        </div>
+        <div className="flex items-center gap-3 border-t border-border p-4">
+          <div className="flex-1" />
+          <button
+            type="button"
+            onClick={() => onOpenChange(false)}
+            className="rounded-xs px-3 py-2 text-body-sm font-semibold text-foreground outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            Cancel
+          </button>
+          <Button onClick={() => picked && onDispatch(picked)} disabled={!picked}>
+            Dispatch Reliever
+          </Button>
+        </div>
+      </SheetContent>
+    </Sheet>
   )
 }
 
@@ -175,11 +355,26 @@ export function ModuleAlertBar({
   displayName?: (id: string) => string
 }) {
   const [open, setOpen] = useState(false)
-  const matched = useMemo(
+  // In-flight resolve state — a card id in `resolvingIds` is running its
+  // slide-out animation; a card id in `resolvedIds` has finished and is
+  // filtered out of the render. Both reset when the sheet closes so a
+  // reopen starts fresh (a real backend would remove the record from the
+  // list itself; the demo keeps it local so the animation is repeatable).
+  const [resolvingIds, setResolvingIds] = useState<Set<string>>(new Set())
+  const [resolvedIds, setResolvedIds] = useState<Set<string>>(new Set())
+  // The manual-replace panel opens as a separate side sheet on top of the
+  // main resolve sheet; `manualForId` names which record it's picking a
+  // reliever for.
+  const [manualForId, setManualForId] = useState<string | null>(null)
+  const allMatched = useMemo(
     () => records.filter((r) => matches(r, config.filter)),
     [records, config.filter],
   )
-  const count = matched.length
+  const matched = useMemo(
+    () => allMatched.filter((r) => !resolvedIds.has(String(r.id))),
+    [allMatched, resolvedIds],
+  )
+  const count = allMatched.length
   if (count === 0) return null
 
   const tone = config.tone ?? 'danger'
@@ -199,25 +394,65 @@ export function ModuleAlertBar({
   const uidField = outboundConfig.uidField ?? 'uniqueidentifier'
   const contextField = outboundConfig.contextField ?? 'systemcol2'
 
-  const dispatchOne = (record: EntityRecord, suggested: { name: string }) => {
+  const CARD_LEAVE_MS = 270
+
+  const beginResolve = (record: EntityRecord, chosen: Candidate) => {
+    const id = String(record.id)
+    if (resolvingIds.has(id) || resolvedIds.has(id)) return
+    // Kick off the slide-out animation; commit + toast fire after the
+    // transition settles (matches shift-rostering's 270ms leave).
+    setResolvingIds((prev) => {
+      const next = new Set(prev)
+      next.add(id)
+      return next
+    })
     const outboundName = displayName
       ? displayName(String(record[nameField] ?? ''))
       : String(record[nameField] ?? '')
-    toast(config.approveToastTitle ?? 'Replacement approved', {
-      description:
-        config.approveToastDescription
+    window.setTimeout(() => {
+      setResolvingIds((prev) => {
+        const next = new Set(prev)
+        next.delete(id)
+        return next
+      })
+      setResolvedIds((prev) => {
+        const next = new Set(prev)
+        next.add(id)
+        return next
+      })
+      toast(config.approveToastTitle ?? 'Replacement approved', {
+        description: config.approveToastDescription
           ? fill(config.approveToastDescription, {
-              suggested: suggested.name,
+              suggested: chosen.name,
               outbound: outboundName,
             })
-          : `${suggested.name} has been dispatched to replace ${outboundName}.`,
-    })
+          : `${chosen.name} has been dispatched to replace ${outboundName}.`,
+      })
+    }, CARD_LEAVE_MS)
   }
-  const dispatchAll = () => {
-    setOpen(false)
-    toast(config.approveToastTitle ?? 'All replacements approved', {
-      description: `${matched.length} suggested reliever${matched.length === 1 ? '' : 's'} dispatched.`,
+  const approveAll = () => {
+    // Fire slide-out for every currently-pending card (same 270ms leave);
+    // once they've all settled, close the sheet and show one summary toast.
+    // This is the composer-side equivalent of shift-rostering's `approveAll`.
+    const remaining = matched.filter((r) => !resolvingIds.has(String(r.id)))
+    if (remaining.length === 0) return
+    setResolvingIds((prev) => {
+      const next = new Set(prev)
+      for (const r of remaining) next.add(String(r.id))
+      return next
     })
+    window.setTimeout(() => {
+      setResolvingIds(new Set())
+      setResolvedIds((prev) => {
+        const next = new Set(prev)
+        for (const r of remaining) next.add(String(r.id))
+        return next
+      })
+      setOpen(false)
+      toast(config.approveToastTitle ?? 'All replacements approved', {
+        description: `${remaining.length} suggested reliever${remaining.length === 1 ? '' : 's'} dispatched.`,
+      })
+    }, CARD_LEAVE_MS)
   }
 
   return (
@@ -248,7 +483,17 @@ export function ModuleAlertBar({
         </div>
       </button>
 
-      <Sheet open={open} onOpenChange={setOpen}>
+      <Sheet
+        open={open}
+        onOpenChange={(next) => {
+          setOpen(next)
+          if (!next) {
+            setResolvingIds(new Set())
+            setResolvedIds(new Set())
+            setManualForId(null)
+          }
+        }}
+      >
         <SheetContent
           side="right"
           hideClose
@@ -282,8 +527,9 @@ export function ModuleAlertBar({
                   {config.approveAllLabel ? (
                     <button
                       type="button"
-                      onClick={dispatchAll}
-                      className="rounded-xs text-body-sm font-semibold text-primary outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring"
+                      onClick={approveAll}
+                      disabled={matched.length === 0 || resolvingIds.size > 0}
+                      className="rounded-xs text-body-sm font-semibold text-primary outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-default disabled:text-muted-foreground disabled:no-underline"
                     >
                       {config.approveAllLabel}
                     </button>
@@ -316,8 +562,9 @@ export function ModuleAlertBar({
                           headerTag={headerTag}
                           reasonLabel={reasonLabel}
                           viewLinkLabel={config.viewLinkLabel}
-                          onApprove={() => dispatchOne(r, suggested)}
-                          onReplaceManually={() => dispatchOne(r, suggested)}
+                          onApprove={(chosen) => beginResolve(r, chosen)}
+                          onReplaceManually={() => setManualForId(String(r.id))}
+                          resolving={resolvingIds.has(String(r.id))}
                         />
                       </li>
                     )
@@ -328,6 +575,41 @@ export function ModuleAlertBar({
           </div>
         </SheetContent>
       </Sheet>
+
+      {(() => {
+        const record = matched.find((r) => String(r.id) === manualForId)
+        if (!record) return null
+        const outboundName = displayName
+          ? displayName(String(record[nameField] ?? ''))
+          : String(record[nameField] ?? '')
+        const outboundShortId = idField ? String(record[idField] ?? '') || undefined : undefined
+        const uid = String(record[uidField] ?? record.id ?? '')
+        const context = String(record[contextField] ?? '')
+        const routeIdPrefix = outboundConfig.routeIdPrefix ?? 'R#'
+        const routeIdDigits = uid.replace(/^[^0-9]+/, '') || uid
+        const routeId = routeIdDigits ? `${routeIdPrefix}${routeIdDigits}` : uid
+        const headerLine = [routeId, context].filter(Boolean).join(' · ')
+        const idx = matched.indexOf(record)
+        const cardSuggested = suggestions[idx % suggestions.length]
+        // Manual pool excludes the record's own inline suggestion (it's
+        // already the primary approve action; hand-picking offers the rest).
+        const manualPool = suggestions.filter((c) => c.id !== cardSuggested.id)
+        return (
+          <ManualReplacePanel
+            open={manualForId === String(record.id)}
+            onOpenChange={(next) => setManualForId(next ? String(record.id) : null)}
+            outboundName={outboundName}
+            outboundShortId={outboundShortId}
+            headerLine={headerLine}
+            reasonLabel={reasonLabel}
+            pool={manualPool}
+            onDispatch={(candidate) => {
+              setManualForId(null)
+              beginResolve(record, candidate)
+            }}
+          />
+        )
+      })()}
     </>
   )
 }
