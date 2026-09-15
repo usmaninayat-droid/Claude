@@ -2894,7 +2894,8 @@
                 "uidField": { "type": "string" },
                 "contextField": { "type": "string" },
                 "reasonLabel": { "type": "string" },
-                "headerTag": { "type": "string" }
+                "headerTag": { "type": "string" },
+                "routeIdPrefix": { "type": "string" }
               }
             },
             "suggestions": {

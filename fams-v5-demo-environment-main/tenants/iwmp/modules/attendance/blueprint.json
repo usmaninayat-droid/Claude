@@ -84,7 +84,7 @@
       "emptyLabel": "No dispatching conflicts right now.",
       "sectionLabel": "Records Requiring Action",
       "approveAllLabel": "Approve All Suggestions",
-      "viewLinkLabel": "View Record",
+      "viewLinkLabel": "View Plan",
       "approveToastTitle": "Reliever dispatched",
       "approveToastDescription": "{suggested} has been dispatched to replace {outbound}.",
       "outbound": {
@@ -92,7 +92,8 @@
         "uidField": "uniqueidentifier",
         "contextField": "systemcol2",
         "reasonLabel": "Absent",
-        "headerTag": "Employee Absent"
+        "headerTag": "Employee Absent",
+        "routeIdPrefix": "R#"
       }
     },
     "listSummary": [

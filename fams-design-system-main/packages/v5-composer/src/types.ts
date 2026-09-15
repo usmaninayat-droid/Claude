@@ -1483,6 +1483,8 @@ export interface UiConfig {
       reasonLabel?: string
       /** Header top-right tag. Defaults to "Employee Absent". */
       headerTag?: string
+      /** Prefix prepended to the numeric part of the uid in each card's header line (default `R#`). Formats a record uid like `ATT-2012` as `R#2012 · <context>`, matching the shift-rostering "R#…" convention. */
+      routeIdPrefix?: string
     }
     /** Suggested reliever pool; cards rotate through this list by index. */
     suggestions?: { id: string; name: string; role?: string; meta?: string; shortId?: string }[]

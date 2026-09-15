@@ -253,6 +253,7 @@ export interface AuthoredUiConfig {
       contextField?: string
       reasonLabel?: string
       headerTag?: string
+      routeIdPrefix?: string
     }
     suggestions?: { id: string; name: string; role?: string; meta?: string; shortId?: string }[]
     sectionLabel?: string

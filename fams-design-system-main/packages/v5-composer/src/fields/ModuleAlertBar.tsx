@@ -297,7 +297,15 @@ export function ModuleAlertBar({
                     const outboundShortId = idField ? String(r[idField] ?? '') || undefined : undefined
                     const uid = String(r[uidField] ?? r.id ?? '')
                     const context = String(r[contextField] ?? '')
-                    const headerLine = [uid, context].filter(Boolean).join(' · ')
+                    // Present each conflict as a route (matches shift-rostering's
+                    // `R#9876541 · Dubai Mall Bin Collection Plan`) — strip the
+                    // record-uid prefix (`ATT-2012` → `2012`) and format as
+                    // `R#<digits>` so the sheet reads as "resolve THIS route"
+                    // rather than "resolve THIS attendance record".
+                    const routeIdPrefix = outboundConfig.routeIdPrefix ?? 'R#'
+                    const routeIdDigits = uid.replace(/^[^0-9]+/, '') || uid
+                    const routeId = routeIdDigits ? `${routeIdPrefix}${routeIdDigits}` : uid
+                    const headerLine = [routeId, context].filter(Boolean).join(' · ')
                     const suggested = suggestions[i % suggestions.length]
                     return (
                       <li key={String(r.id)}>

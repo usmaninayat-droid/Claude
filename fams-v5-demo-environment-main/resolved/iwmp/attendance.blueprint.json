@@ -173,13 +173,14 @@
         "headerTag": "Employee Absent",
         "nameField": "title",
         "reasonLabel": "Absent",
+        "routeIdPrefix": "R#",
         "uidField": "uniqueidentifier"
       },
       "sectionLabel": "Records Requiring Action",
       "sheetDescription": "{count} attendance records need attention today.",
       "sheetTitle": "Resolve Attendance Coverage",
       "tone": "danger",
-      "viewLinkLabel": "View Record"
+      "viewLinkLabel": "View Plan"
     },
     "creation": {
       "disabled": true,
