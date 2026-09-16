@@ -2,36 +2,128 @@
   "$schema": "../../../../node_modules/@fams/v5-composer/schemas/EntityModuleConfig.schema.json",
   "kind": "entity",
   "code": "contract-management/contract",
-  "name": "Contract Management",
-  "uidPrefix": "CRT",
-  "views": ["list"],
+  "name": "Project Management",
+  "uidPrefix": "PRJ",
+  "views": [
+    "list"
+  ],
   "systemcolumns": [
-    { "id": "fld_crt_name", "col": "title", "name": "Contract", "type": "SmallText", "required": true },
-    { "id": "fld_crt_lot", "col": "systemcol1", "name": "Lot", "type": "SmallText" },
-    { "id": "fld_crt_contractor", "col": "systemcol2", "name": "Contractor", "type": "SmallText" },
-    { "id": "fld_crt_status", "col": "status", "name": "Status", "type": "SingleSelect", "listValues": ["Ongoing", "Expiring", "Draft", "Expired"], "default": "Ongoing" }
+    {
+      "id": "fld_crt_name",
+      "col": "title",
+      "name": "Project",
+      "type": "SmallText",
+      "required": true
+    },
+    {
+      "id": "fld_crt_lot",
+      "col": "systemcol1",
+      "name": "Lot",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_crt_contractor",
+      "col": "systemcol2",
+      "name": "Contractor",
+      "type": "SmallText"
+    },
+    {
+      "id": "fld_crt_status",
+      "col": "status",
+      "name": "Status",
+      "type": "SingleSelect",
+      "listValues": [
+        "Ongoing",
+        "Expiring",
+        "Draft",
+        "Expired"
+      ],
+      "default": "Ongoing"
+    }
   ],
   "uiConfig": {
     "icon": "file-05",
     "statusList": [
-      { "id": "sts_crt_ongoing", "key": "Ongoing", "label": "Ongoing", "color": "#12b76a" },
-      { "id": "sts_crt_expiring", "key": "Expiring", "label": "Expiring", "color": "#f79009" },
-      { "id": "sts_crt_draft", "key": "Draft", "label": "Draft", "color": "#98a2b3" },
-      { "id": "sts_crt_expired", "key": "Expired", "label": "Expired", "color": "#f04438" }
+      {
+        "id": "sts_crt_ongoing",
+        "key": "Ongoing",
+        "label": "Ongoing",
+        "color": "#12b76a"
+      },
+      {
+        "id": "sts_crt_expiring",
+        "key": "Expiring",
+        "label": "Expiring",
+        "color": "#f79009"
+      },
+      {
+        "id": "sts_crt_draft",
+        "key": "Draft",
+        "label": "Draft",
+        "color": "#98a2b3"
+      },
+      {
+        "id": "sts_crt_expired",
+        "key": "Expired",
+        "label": "Expired",
+        "color": "#f04438"
+      }
     ],
     "profile": {
-      "title": { "id": "fld_crt_name", "col": "title", "pos": "left" },
+      "title": {
+        "id": "fld_crt_name",
+        "col": "title",
+        "pos": "left"
+      },
       "details": [
-        { "id": "fld_crt_lot", "col": "systemcol1", "pos": "left", "order": 1 },
-        { "id": "fld_crt_status", "col": "status", "pos": "right", "order": 1, "component": { "name": "StatusList" } }
+        {
+          "id": "fld_crt_lot",
+          "col": "systemcol1",
+          "pos": "left",
+          "order": 1
+        },
+        {
+          "id": "fld_crt_status",
+          "col": "status",
+          "pos": "right",
+          "order": 1,
+          "component": {
+            "name": "StatusList"
+          }
+        }
       ],
       "sections": []
     }
   },
   "listcolumns": [
-    { "id": "fld_uniqueidentifier", "col": "uniqueidentifier", "name": "ID", "component": { "name": "TextView" } },
-    { "id": "fld_crt_name", "col": "title", "component": { "name": "TextView" } },
-    { "id": "fld_crt_lot", "col": "systemcol1", "component": { "name": "TextView" } },
-    { "id": "fld_crt_status", "col": "status", "component": { "name": "StatusList" } }
+    {
+      "id": "fld_uniqueidentifier",
+      "col": "uniqueidentifier",
+      "name": "ID",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_crt_name",
+      "col": "title",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_crt_lot",
+      "col": "systemcol1",
+      "component": {
+        "name": "TextView"
+      }
+    },
+    {
+      "id": "fld_crt_status",
+      "col": "status",
+      "component": {
+        "name": "StatusList"
+      }
+    }
   ]
 }

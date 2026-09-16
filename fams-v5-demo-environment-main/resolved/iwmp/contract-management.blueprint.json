@@ -32,12 +32,12 @@
       "id": "fld_crt_status"
     }
   ],
-  "name": "Contract Management",
+  "name": "Project Management",
   "systemcolumns": [
     {
       "col": "title",
       "id": "fld_crt_name",
-      "name": "Contract",
+      "name": "Project",
       "required": true,
       "type": "SmallText"
     },
@@ -121,7 +121,7 @@
       }
     ]
   },
-  "uidPrefix": "CRT",
+  "uidPrefix": "PRJ",
   "views": [
     "list"
   ]

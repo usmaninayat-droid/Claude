@@ -24,7 +24,7 @@ function ContractManagementPage(_deps: ContractManagementDeps) {
   return (
     <div className="h-full">
       <iframe
-        title="Contract Management"
+        title="Project Management"
         src={iframeSrc()}
         style={{ border: 'none', width: '100%', height: '100%', display: 'block' }}
       />

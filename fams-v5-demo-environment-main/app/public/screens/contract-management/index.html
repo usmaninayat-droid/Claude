@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#22C882">
-<title>Tadweer — Contract Management</title>
+<title>Tadweer — Project Management</title>
 <!-- Design-system token layer (link-mode symlink → ../fams-design-system-main) -->
 <link rel="stylesheet" href="/fams-design-system/packages/tokens/fonts.css">
 <link rel="stylesheet" href="/fams-design-system/packages/tokens/dist/tokens.css">
@@ -21,14 +21,14 @@
     <div class="tb-left">
       <label class="search">
         <svg class="ic" width="16" height="16" aria-hidden="true"><use href="assets/icons.svg#i-search-refraction"/></svg>
-        <input id="cmSearch" placeholder="Search anything here" autocomplete="off" aria-label="Search contracts">
+        <input id="cmSearch" placeholder="Search anything here" autocomplete="off" aria-label="Search projects">
       </label>
       <button class="iconbtn" id="cmFilter" type="button" aria-label="Filter">
         <svg class="ic" width="16" height="16" aria-hidden="true"><use href="assets/icons.svg#i-filter-funnel-01"/></svg>
       </button>
     </div>
     <button class="btn-primary sm" id="cmCreate" type="button">
-      <svg class="ic" width="12" height="12" aria-hidden="true"><use href="assets/icons.svg#i-plus"/></svg>Create New Contract
+      <svg class="ic" width="12" height="12" aria-hidden="true"><use href="assets/icons.svg#i-plus"/></svg>Create New Project
     </button>
   </div>
   <div class="kpis" id="cmKpis"></div>
@@ -39,8 +39,8 @@
 <div class="cm-detail" id="cmDetail" hidden>
   <div class="dt-top">
     <div class="dt-tl">
-      <button class="dt-back" id="dtBack" type="button" aria-label="Back to contracts"><svg class="ic" width="20" height="20" aria-hidden="true"><use href="assets/icons.svg#i-arrow-narrow-left"/></svg></button>
-      <div class="dt-crumb"><span class="c1"><svg class="ic r180" width="16" height="16" aria-hidden="true"><use href="assets/icons.svg#i-hash-02"/></svg><b id="dtId">CRT123</b></span><span class="c2" id="dtTitle">LOT 1: Abu Dhabi Contract</span></div>
+      <button class="dt-back" id="dtBack" type="button" aria-label="Back to projects"><svg class="ic" width="20" height="20" aria-hidden="true"><use href="assets/icons.svg#i-arrow-narrow-left"/></svg></button>
+      <div class="dt-crumb"><span class="c1"><svg class="ic r180" width="16" height="16" aria-hidden="true"><use href="assets/icons.svg#i-hash-02"/></svg><b id="dtId">PRJ123</b></span><span class="c2" id="dtTitle">LOT 1: Abu Dhabi Project</span></div>
       <span class="chip esp" id="dtEsp"><span class="av">B</span>Beah</span>
       <span class="chip lot" id="dtLot"><svg class="ic" width="16" height="16" aria-hidden="true"><use href="assets/icons.svg#i-skew"/></svg>Lot 1</span>
     </div>
@@ -63,7 +63,7 @@
   </button>
   <div class="wz-panel" role="dialog" aria-modal="true" aria-labelledby="wzTitle">
     <aside class="wz-rail">
-      <h2 class="wz-title" id="wzTitle">Create New Contract</h2>
+      <h2 class="wz-title" id="wzTitle">Create New Project</h2>
       <div class="wz-steps" id="wzSteps"></div>
     </aside>
     <section class="wz-main">

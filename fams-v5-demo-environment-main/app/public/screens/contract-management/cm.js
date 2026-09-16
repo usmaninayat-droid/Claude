@@ -12,16 +12,16 @@ const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').
    LIST
    ══════════════════════════════════════════════════════════════════════════ */
 const CONTRACTS = [
-  { id:'CRT769012', name:'Lot 1 — Abu Dhabi',      lot:'Lot 1', contractor:'BEEAH', expiresDays:45,  status:'ongoing',  m:{ workforce:110, vehicles:95,  equipment:60,  bins:118 } },
-  { id:'CRT769012', name:'Lot 2 — Al Ain',         lot:'Lot 1', contractor:'BEEAH', expiresDays:12,  status:'ongoing',  m:{ workforce:80,  vehicles:40,  equipment:100, bins:120 }, key:'c2' },
-  { id:'CRT769012', name:'Lot 3 — Al Dhafra',      lot:'Lot 1', contractor:'BEEAH', expiresDays:210, status:'ongoing',  m:{ workforce:120, vehicles:115, equipment:110, bins:119 }, key:'c3' },
-  { id:'CRT769012', name:'Lot 7 — Mussafah',       lot:'Lot 1', contractor:'BEEAH', expiresDays:30,  status:'ongoing',  m:{ workforce:88,  vehicles:72,  equipment:65,  bins:100 }, key:'c4' },
-  { id:'CRT769012', name:'Lot 8 — Yas Island',     lot:'Lot 1', contractor:'BEEAH', expiresDays:18,  status:'expiring', m:{ workforce:60,  vehicles:50,  equipment:40,  bins:80  }, key:'c5' },
-  { id:'CRT769012', name:'Lot 9 — Saadiyat',       lot:'Lot 1', contractor:'BEEAH', expiresDays:150, status:'ongoing',  m:{ workforce:118, vehicles:120, equipment:112, bins:120 }, key:'c6' },
-  { id:'CRT769012', name:'Lot 4 — Abu Dhabi City', lot:'Lot 1', contractor:'BEEAH', expiresDays:8,   status:'expiring', m:{ workforce:70,  vehicles:55,  equipment:45,  bins:90  }, key:'c7' },
-  { id:'CRT769012', name:'Lot 5 — Western Region', lot:'Lot 1', contractor:'BEEAH', expiresDays:null,status:'draft',    m:{ workforce:0,   vehicles:0,   equipment:0,   bins:0   }, key:'c8' },
-  { id:'CRT769012', name:'Lot 6 — Khalifa City',   lot:'Lot 1', contractor:'BEEAH', expiresDays:95,  status:'ongoing',  m:{ workforce:102, vehicles:98,  equipment:90,  bins:110 }, key:'c9' },
-  { id:'CRT769012', name:'Lot 10 — Al Shamkha',    lot:'Lot 1', contractor:'BEEAH', expiresDays:-3,  status:'expired',  m:{ workforce:40,  vehicles:35,  equipment:20,  bins:50  }, key:'c10' },
+  { id:'PRJ769012', name:'Lot 1 — Abu Dhabi',      lot:'Lot 1', contractor:'BEEAH', expiresDays:45,  status:'ongoing',  m:{ workforce:110, vehicles:95,  equipment:60,  bins:118 } },
+  { id:'PRJ769012', name:'Lot 2 — Al Ain',         lot:'Lot 1', contractor:'BEEAH', expiresDays:12,  status:'ongoing',  m:{ workforce:80,  vehicles:40,  equipment:100, bins:120 }, key:'c2' },
+  { id:'PRJ769012', name:'Lot 3 — Al Dhafra',      lot:'Lot 1', contractor:'BEEAH', expiresDays:210, status:'ongoing',  m:{ workforce:120, vehicles:115, equipment:110, bins:119 }, key:'c3' },
+  { id:'PRJ769012', name:'Lot 7 — Mussafah',       lot:'Lot 1', contractor:'BEEAH', expiresDays:30,  status:'ongoing',  m:{ workforce:88,  vehicles:72,  equipment:65,  bins:100 }, key:'c4' },
+  { id:'PRJ769012', name:'Lot 8 — Yas Island',     lot:'Lot 1', contractor:'BEEAH', expiresDays:18,  status:'expiring', m:{ workforce:60,  vehicles:50,  equipment:40,  bins:80  }, key:'c5' },
+  { id:'PRJ769012', name:'Lot 9 — Saadiyat',       lot:'Lot 1', contractor:'BEEAH', expiresDays:150, status:'ongoing',  m:{ workforce:118, vehicles:120, equipment:112, bins:120 }, key:'c6' },
+  { id:'PRJ769012', name:'Lot 4 — Abu Dhabi City', lot:'Lot 1', contractor:'BEEAH', expiresDays:8,   status:'expiring', m:{ workforce:70,  vehicles:55,  equipment:45,  bins:90  }, key:'c7' },
+  { id:'PRJ769012', name:'Lot 5 — Western Region', lot:'Lot 1', contractor:'BEEAH', expiresDays:null,status:'draft',    m:{ workforce:0,   vehicles:0,   equipment:0,   bins:0   }, key:'c8' },
+  { id:'PRJ769012', name:'Lot 6 — Khalifa City',   lot:'Lot 1', contractor:'BEEAH', expiresDays:95,  status:'ongoing',  m:{ workforce:102, vehicles:98,  equipment:90,  bins:110 }, key:'c9' },
+  { id:'PRJ769012', name:'Lot 10 — Al Shamkha',    lot:'Lot 1', contractor:'BEEAH', expiresDays:-3,  status:'expired',  m:{ workforce:40,  vehicles:35,  equipment:20,  bins:50  }, key:'c10' },
 ];
 CONTRACTS.forEach((c, i) => { c.key = c.key || 'c' + (i + 1); });
 const CAP = 120;
@@ -63,7 +63,7 @@ function cardHTML(c) {
   </div>`;
 }
 const KPIS = [
-  { tint:'info',     label:'Total Contract',      calc:cs => cs.length },
+  { tint:'info',     label:'Total Project',      calc:cs => cs.length },
   { tint:'success',  label:'Active',              calc:cs => cs.filter(c => c.status === 'ongoing' || c.status === 'expiring').length },
   { tint:'warning',  label:'Expiring ≤ 120 days', calc:cs => cs.filter(c => c.status === 'expiring').length },
   { tint:'grayblue', label:'Drafts',              calc:cs => cs.filter(c => c.status === 'draft').length },
@@ -78,7 +78,7 @@ let query = '';
 function renderGrid() {
   const q = query.trim().toLowerCase();
   const rows = CONTRACTS.filter(c => !q || c.name.toLowerCase().includes(q) || c.id.toLowerCase().includes(q) || c.contractor.toLowerCase().includes(q));
-  document.getElementById('cmGrid').innerHTML = rows.length ? rows.map(cardHTML).join('') : '<div class="cm-empty">No contracts match your search.</div>';
+  document.getElementById('cmGrid').innerHTML = rows.length ? rows.map(cardHTML).join('') : '<div class="cm-empty">No projects match your search.</div>';
 }
 document.getElementById('cmSearch').addEventListener('input', e => { query = e.target.value; renderGrid(); });
 document.getElementById('cmCreate').addEventListener('click', () => openWizard());
@@ -159,9 +159,9 @@ const EMPTY_TXT = {
 let draft = null, wzIndex = 0;
 function freshDraft() {
   return {
-    basic:{ title:'Lot 1 Contract', ref:'123', type:'MSW Commercials', contractor:'BEEAH', start:'10-12-2024', end:'10-12-2029', manager:'Syed Abdul', pm:'Syed Abul' },
+    basic:{ title:'Lot 1 Project', ref:'123', type:'MSW Commercials', contractor:'BEEAH', start:'10-12-2024', end:'10-12-2029', manager:'Syed Abdul', pm:'Syed Abul' },
     zones:['LOT-01'], vehicles:[], equipment:[], workforce:[], bins:[], services:[], kpis:[],
-    attachments:[ { name:'ESP Physical Contract', meta:'Expiry Date: 24th Oct, 2028' }, { name:'ESP Company Info', meta:'' } ],
+    attachments:[ { name:'ESP Agreement', meta:'Expiry Date: 24th Oct, 2028' }, { name:'ESP Company Info', meta:'' } ],
   };
 }
 const wizard = document.getElementById('cmWizard');
@@ -200,7 +200,7 @@ function renderWizard() {
 }
 document.getElementById('wzBack').addEventListener('click', () => { if (wzIndex > 0) { wzIndex--; renderWizard(); } });
 document.getElementById('wzNext').addEventListener('click', () => {
-  if (wzIndex === STEP_DEFS.length - 1) { closeWizard(); toast('Contract created'); return; }
+  if (wzIndex === STEP_DEFS.length - 1) { closeWizard(); toast('Project created'); return; }
   wzIndex++; renderWizard();
 });
 document.getElementById('wzSteps').addEventListener('click', e => {
@@ -230,13 +230,13 @@ STEP_RENDER.basic = () => {
   return {
     title:'Basic Info',
     body:`<div class="form">
-      ${fieldHTML('title', 'Contract Title', b.title, { req:true })}
+      ${fieldHTML('title', 'Project Title', b.title, { req:true })}
       ${fieldHTML('ref', 'Reference Number', b.ref, { req:true })}
-      ${fieldHTML('type', 'Contract Type', b.type, { req:true, options:['MSW Commercials','MSW Residential','C&D Waste','Green Waste','Bulk Collection'] })}
-      ${fieldHTML('contractor', 'Contractor', b.contractor, { req:true, options:['BEEAH','Tadweer','Dulsco','Averda'] })}
+      ${fieldHTML('type', 'Project Type', b.type, { req:true, options:['MSW Commercials','MSW Residential','C&D Waste','Green Waste','Bulk Collection'] })}
+      ${fieldHTML('contractor', 'ESP', b.contractor, { req:true, options:['BEEAH','Tadweer','Dulsco','Averda'] })}
       ${fieldHTML('start', 'Start Date', b.start, { req:true, icon:'calendar', clear:true })}
       ${fieldHTML('end', 'End Date', b.end, { req:true, icon:'calendar' })}
-      ${fieldHTML('pm', 'Project Manger', b.pm, { opt:true, icon:'user-03', full:true, lblMd:true, options:['Syed Abul','Ali Hassan','Reem Al Zaabi','Faisal Al Mansoori'] })}
+      ${fieldHTML('pm', 'Program Manager', b.pm, { opt:true, icon:'user-03', full:true, lblMd:true, options:['Syed Abul','Ali Hassan','Reem Al Zaabi','Faisal Al Mansoori'] })}
     </div>`,
     after() {
       document.querySelectorAll('#wzBody [data-bk]').forEach(el => {
@@ -462,7 +462,7 @@ STEP_RENDER.kpi = () => {
 
 /* STEP 10 — Attachments (2111:4484) */
 STEP_RENDER.attachments = () => ({
-  title:'Upload Attachments', sub:'Upload any supporting documents for the contract here', subClass:'sm',
+  title:'Upload Attachments', sub:'Upload any supporting documents for the project here', subClass:'sm',
   body:`<label class="drop">${ic('upload-cloud-01', 24)}<span>Drop files to attach or <b>browse</b></span><input type="file" multiple hidden id="attFile"></label>
     <div class="att-list">${draft.attachments.map((a, i) => `<div class="att-row">
       <div class="att-l"><img src="assets/art/pdf.png" alt="PDF"><div class="att-t"><div class="att-n">${esc(a.name)}</div>${a.meta ? `<div class="att-m">${esc(a.meta)}</div>` : ''}</div></div>
@@ -493,8 +493,8 @@ const SVC_TAGS = ['Residential MSW Collection', 'Non-Residential MSW Collection'
 const SVC_OPS = ['Residential Non-Recyclable MSW Collection', 'Residential Recyclable MSW Collection', 'Non-Recyclable & Recyclable MSW Collection', 'Public Place MSW Collection'];
 STEP_RENDER.summary = () => {
   const b = draft.basic;
-  const basicGrid = `<div class="sum-grid"><div>${kv('Contract Title', b.title)}${kv('Contract Type', b.type)}${kv('Start Date', b.start)}${kv('Contract Manager', b.manager)}</div>
-    <div>${kv('Reference Number', b.ref)}${kv('ESP', b.contractor)}${kv('End Date', b.end)}${kvr('Project Manager', b.pm)}</div></div>`;
+  const basicGrid = `<div class="sum-grid"><div>${kv('Project Title', b.title)}${kv('Project Type', b.type)}${kv('Start Date', b.start)}${kv('Project Manager', b.manager)}</div>
+    <div>${kv('Reference Number', b.ref)}${kv('ESP', b.contractor)}${kv('End Date', b.end)}${kvr('Program Manager', b.pm)}</div></div>`;
   const typeCell = (key, name) => `${ic(SUM_ICON[key], 16)}${esc(name)}`;
   const rowsOf = (key, map) => draft[key].map((it, i) => { const c = CAT[key].find(x => x.id === it.id) || it; return map(i + 1, c, it); });
   const none = (n, msg) => [[ '—', msg, ...Array(n - 2).fill('—') ]];
@@ -502,7 +502,7 @@ STEP_RENDER.summary = () => {
   const eqpRows = rowsOf('equipment', (n, c, it) => [String(n), typeCell('equipment', c.name), esc(it.make || c.make || 'TBA'), esc(it.qty || '—')]);
   const wfRows  = rowsOf('workforce', (n, c, it) => [String(n), typeCell('workforce', c.name), esc(it.exp || '—'), esc(it.qty || '—')]);
   const binRows = rowsOf('bins', (n, c, it) => [String(n), typeCell('bins', c.name), esc(it.qty || '—')]);
-  const lot = `${kv('Contract Title', b.title || 'Lot 1, Abu Dhabi')}
+  const lot = `${kv('Project Title', b.title || 'Lot 1, Abu Dhabi')}
     <div class="sum-map"><div class="map-frame" id="sumMapFrame"><div class="map-canvas" id="sumMapCanvas"><img class="map-img" src="assets/zone-map.png" alt=""><div class="map-poly"><img src="assets/zone-polygon.svg" alt=""></div></div>
       <button class="map-layers" type="button" aria-label="Map layers"><img src="assets/layers-thumb.png" alt="">${ic('layers-three-01', 20)}</button>
       <div class="map-ctl"><div class="map-zoom"><button type="button" aria-label="Zoom in">${ic('plus', 20)}</button><span class="div"></span><button type="button" aria-label="Zoom out">${ic('minus', 20)}</button></div><button class="map-max" type="button" aria-label="Full screen">${ic('maximize-02', 20)}</button></div>
@@ -516,7 +516,7 @@ STEP_RENDER.summary = () => {
   const atts = `<div class="sum-atts">${draft.attachments.map(a => `<div class="att-row"><div class="att-l"><img src="assets/art/pdf.png" alt="PDF"><div class="att-t"><div class="att-n">${esc(a.name)}</div>${a.meta ? `<div class="att-m">${esc(a.meta)}</div>` : ''}</div></div></div>`).join('')}</div>`;
   const W = { n:'34px', q:'173px' };
   return {
-    title:'Contract Summary', sub:'Review all the core requirements for this contract.',
+    title:'Project Summary', sub:'Review all the core requirements for this project.',
     body:`<div class="sum">
       ${sumSection('Basic Info', basicGrid)}
       ${sumSection('Lot Selection', lot)}
@@ -581,7 +581,7 @@ const DONUTS = [
 ];
 const TIMELINE = [
   { day:'22 JUN , 2026', items:[
-    { av:{ icon:'plus' }, who:'ZAYD FARSI', act:'Created Contract.', tm:'11:20 pm' },
+    { av:{ icon:'plus' }, who:'ZAYD FARSI', act:'Created Project.', tm:'11:20 pm' },
     { av:{ icon:'edit-02' }, who:'Tadweer Amin', act:'Update Description', tm:'11:20 pm' },
     { av:{ img:'assets/art/avatar-khalid.png' }, who:'KHALID AL-MANSOORI', act:'Update Status', from:['Draft', '#4e5ba6'], to:['Scheduled', C.amber], tm:'01:24 am' } ] },
   { day:'23 JUN , 2026', items:[
@@ -592,7 +592,7 @@ const TIMELINE = [
 ];
 const DRIVERS = ['Ali Raza','Bina Khan','Cyrus Patel','Danish Alli','Ehsan Malik','Farah Noor','Gulzar Ahmed','Hasseb Asad','Ibrahim Khan','Jasmine Tariq','Kareem Shah','Laila Hussain','M. Farooq','Nadeem Saeed','Omar Yasin','Parvez Iqbal'];
 const PLANS = ['Bin Collection Golden Mall','Bin Collection Central Park','Bin Collection Riverfront Plaza','Bin Collection Eastside Market','Bin Collection West End Theatre','Oakwood Community Center','Bin Collection Pine Hill Park','Bin Collection Sunset Boulevard','Bin Collection Maple Avenue','Bin Collection Lakeside Resort','Bin Collection City Square','Downtown Arts District','Bin Collection Heritage Museum','Bin Collection Tech Hub','Bin Collection Sports Complex','Bin Collection Harbour View'];
-const DOCS = [ { name:'ESP Physical Contract', meta:'Expiry Date: 24th Oct, 2028' }, { name:'ESP Company Info', meta:'Expiry Date: 12 Apr, 2026' } ];
+const DOCS = [ { name:'ESP Agreement', meta:'Expiry Date: 24th Oct, 2028' }, { name:'ESP Company Info', meta:'Expiry Date: 12 Apr, 2026' } ];
 const AV_STYLE = i => i % 3 === 1 ? 'img' : i % 3 === 2 ? 'c' : 'l';   /* photo · coloured initial · plain initial */
 
 /* ── Small builders ─────────────────────────────────────────────────────── */
@@ -703,7 +703,7 @@ function openDetail(c) {
   document.getElementById('cmApp').hidden = true; detail.hidden = false;
   const lotNo = (c.lot || 'Lot 1').replace(/\D/g, '') || '1', area = c.name.split('—')[1]?.trim() || 'Abu Dhabi';
   document.getElementById('dtId').textContent = 'CRT' + c.id.replace(/\D/g, '').slice(-3);
-  document.getElementById('dtTitle').textContent = `LOT ${lotNo}: ${area} Contract`;
+  document.getElementById('dtTitle').textContent = `LOT ${lotNo}: ${area} Project`;
   document.getElementById('dtEsp').innerHTML = `<span class="av">${esc(c.contractor[0])}</span>${esc(c.contractor[0] + c.contractor.slice(1).toLowerCase())}`;
   document.getElementById('dtLot').innerHTML = `${ic('skew', 16)}Lot ${lotNo}`;
   const st = document.getElementById('dtStatus'); st.textContent = c.status === 'draft' ? 'Draft' : c.status === 'expired' ? 'Expired' : c.status === 'expiring' ? 'Expiring' : 'Active';
