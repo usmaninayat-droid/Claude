@@ -261,9 +261,12 @@ img{display:block}
 .wz-cfg .c-actions{display:flex;align-items:center;gap:16px}
 .wz-cfg .c-addfield{color:var(--primary);font-size:16px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:normal}
 .wz-cfg .c-addfield .ic{width:16px;height:16px}
-.wz-cfg .c-remove{color:var(--g400);cursor:pointer;display:inline-flex}
-.wz-cfg .c-remove:hover{color:var(--error)}
-.wz-cfg .c-remove .ic{width:16px;height:16px}
+/* Destructive glyph — the trash-03 icon is always the destructive-red across
+   the surface (card headers, attachment rows, anywhere it appears); a hover
+   deepens the ink so the affordance is still felt without a shape change. */
+.c-remove,.wz-cfg .c-remove{color:var(--error);cursor:pointer;display:inline-flex}
+.c-remove:hover,.wz-cfg .c-remove:hover{color:#c53030}
+.wz-cfg .c-remove .ic,.svc-card .c-remove .ic{width:16px;height:16px}
 .wz-cfg .c-fields{display:flex;gap:20px}
 .wz-cfg .c-fields .f{flex:1}
 /* Attachments (2111:4484): dashed drop zone 54h · file rows 80h p20 · gap 16 */
@@ -294,6 +297,34 @@ img{display:block}
 .svc-card .days-row{display:flex;gap:6px}
 .svc-card .day{width:42px;height:30px;border-radius:999px;border:1px solid var(--g300);background:var(--g50);font-size:12px;line-height:18px;font-weight:600;color:var(--g800);display:flex;align-items:center;justify-content:center}
 .svc-card .day.on{background:var(--primary);border-color:var(--primary);color:#fff}
+
+/* ── Date picker popover (DS §6649:26866) ────────────────────────────────── */
+.dp{position:fixed;z-index:80;background:#fff;border:1px solid var(--g200);border-radius:8px;box-shadow:0 20px 24px -4px rgba(16,24,40,.08),0 8px 8px -4px rgba(16,24,40,.03);display:flex;flex-direction:column;width:428px;overflow:hidden;font-family:var(--font)}
+.dp-cal{display:flex;flex-direction:column;gap:12px;padding:16px}
+.dp-hd{display:flex;gap:24px;align-items:center}
+.dp-stepper{flex:1;display:flex;align-items:center;justify-content:space-between}
+.dp-stepper.year{flex:0 0 auto;gap:0}
+.dp-stepper>span{font-size:16px;font-weight:600;color:var(--g800);line-height:24px}
+.dp-stepper.year>span{padding:0 4px}
+.dp-nav{min-height:36px;min-width:36px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;color:var(--g700);background:#fff}
+.dp-nav:hover{background:var(--g100)}
+.dp-nav .ic.r-90{transform:rotate(180deg)}
+.dp-week{display:grid;grid-template-columns:repeat(7,1fr);gap:0}
+.dp-week .wk{color:var(--g700)}
+.dp-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:0}
+.dp-c{height:40px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:14px;line-height:20px;font-weight:600;color:var(--g700);background:transparent;border:0;cursor:pointer}
+.dp-c.wk{cursor:default}
+.dp-c:hover:not(.wk):not(.sel){background:var(--g100)}
+.dp-c.dim{color:var(--g400)}
+.dp-c.today{background:var(--g100);color:var(--g800)}
+.dp-c.sel{background:var(--primary);color:#fff}
+.dp-foot{display:flex;align-items:center;justify-content:space-between;padding:16px;border-top:1px solid var(--g200)}
+.dp-prev{font-size:12px;line-height:18px;font-weight:600;color:var(--g700)}
+.dp-ctas{display:flex;gap:16px;align-items:center}
+.dp-cancel{min-height:40px;padding:10px 16px;border-radius:4px;font-size:14px;font-weight:600;color:var(--g600);background:#fff}
+.dp-cancel:hover{background:var(--g100)}
+.dp-apply{min-height:40px;padding:10px 16px;border-radius:4px;font-size:14px;font-weight:600;color:#fff;background:var(--primary)}
+.dp-apply:hover{filter:brightness(.96)}
 .f .f-in.ro{pointer-events:none}
 /* KPI hint pill (2111:4212): #dffff2 on primary-200, r18, pl10 pr12 py8, Medium 16/19 #344054 */
 .wz-hint{display:inline-flex;align-items:flex-start;gap:6px;background:#dffff2;border:1px solid var(--primary-200);border-radius:18px;padding:8px 12px 8px 10px;font-size:16px;line-height:19px;font-weight:500;color:var(--g700);margin-bottom:24px;max-width:100%}

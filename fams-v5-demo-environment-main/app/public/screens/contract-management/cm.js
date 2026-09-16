@@ -131,9 +131,15 @@ const CAT = {
     { id:'street',     name:'Street Sweepers', icon:'users-02', art:'assets/art/wf-person.png', sq:true },
     { id:'drivers',    name:'Drivers',         icon:'users-02', art:'assets/art/wf-person.png', sq:true },
   ],
+  // Bin catalog per client-supplied list (assets master).
   bins: [
-    { id:'b3', name:'3 CBM Bins', icon:'trash-03' }, { id:'b5', name:'5 CBM Bins', icon:'trash-03' }, { id:'b7', name:'7 CBM Bins', icon:'trash-03' },
-    { id:'l240', name:'240 L Bins', icon:'trash-03' }, { id:'l660', name:'660 L Bins', icon:'trash-03' }, { id:'l1100', name:'1100 L Bins', icon:'trash-03' },
+    { id:'b11c', name:'1.1 CBM', icon:'trash-03' },
+    { id:'b32c', name:'3.2 CBM', icon:'trash-03' },
+    { id:'b32l', name:'3.2 L',   icon:'trash-03' },
+    { id:'b45c', name:'4.5 CBM', icon:'trash-03' },
+    { id:'b45l', name:'4.5 L',   icon:'trash-03' },
+    { id:'b7c',  name:'7 CBM',   icon:'trash-03' },
+    { id:'b7l',  name:'7 L',     icon:'trash-03' },
   ],
   service: [
     'Full Bin Collection','Bin Washing','Under Bin Washing','Bulky Waste Collection','Dead Animals Collection','Stuff Complaint','Green Waste Collection',
@@ -220,13 +226,16 @@ const STEP_RENDER = {};
    Empty (idle) state renders just the field's label at value-size, like a placeholder;
    the input/select reveals itself on focus or as soon as it carries a value. The
    `.f-lbl` on top + `.f-in` value below is the FILLED state (Figma Basic Info). */
-function fieldHTML(k, label, val, { req, opt, icon, clear, options, full, lblMd, type = 'text', attrs = '' } = {}) {
+function fieldHTML(k, label, val, { req, opt, icon, clear, options, full, lblMd, type = 'text', attrs = '', date } = {}) {
   const empty = val === undefined || val === null || val === '';
   const lbl = `<span class="f-lbl${lblMd ? ' md' : ''}">${label}${req ? ' <b class="req">*</b>' : ''}${opt ? ' <span class="opt">(optional)</span>' : ''}</span>`;
   const control = options
     // A leading empty option is what makes a select's "no value" state real — without it the browser
     // picks the first option and the field reads as pre-selected even though `val` is empty.
     ? `<select class="f-sel" ${attrs} data-bk="${k}">${empty ? '<option value="" hidden></option>' : ''}${options.map(o => `<option${o === val ? ' selected' : ''}>${esc(o)}</option>`).join('')}</select>`
+    // A date field is read-only text that opens the calendar popover on click — never free-typed.
+    : date
+    ? `<input class="f-in" data-bk="${k}" data-datepicker="${k}" type="text" readonly value="${esc(val)}">`
     : `<input class="f-in" ${attrs} data-bk="${k}" type="${type}" value="${esc(val)}">`;
   return `<label class="f${full ? ' span2' : ''}${empty ? ' f--empty' : ''}">
     ${icon ? ic(icon, 20, 'lead') : ''}
@@ -245,8 +254,8 @@ STEP_RENDER.basic = () => {
       ${fieldHTML('ref', 'Reference Number', b.ref, { req:true })}
       ${fieldHTML('type', 'Project Type', b.type, { req:true, options:['MSW Commercials','MSW Residential','C&D Waste','Green Waste','Bulk Collection'] })}
       ${fieldHTML('contractor', 'ESP', b.contractor, { req:true, options:['BEEAH','Tadweer','Dulsco','Averda'] })}
-      ${fieldHTML('start', 'Start Date', b.start, { req:true, icon:'calendar', clear:true })}
-      ${fieldHTML('end', 'End Date', b.end, { req:true, icon:'calendar' })}
+      ${fieldHTML('start', 'Start Date', b.start, { req:true, icon:'calendar', clear:true, date:true })}
+      ${fieldHTML('end', 'End Date', b.end, { req:true, icon:'calendar', date:true })}
       ${fieldHTML('pm', 'Program Manager', b.pm, { opt:true, icon:'user-03', full:true, lblMd:true, options:['Syed Abul','Ali Hassan','Reem Al Zaabi','Faisal Al Mansoori'] })}
     </div>`,
     after() {
@@ -258,10 +267,12 @@ STEP_RENDER.basic = () => {
         el.addEventListener('input', save); el.addEventListener('change', save);
       });
       document.querySelectorAll('#wzBody .f .clear').forEach(x => x.addEventListener('click', e => {
-        e.preventDefault(); const inp = e.currentTarget.closest('.f').querySelector('.f-in');
+        e.preventDefault(); e.stopPropagation(); const inp = e.currentTarget.closest('.f').querySelector('.f-in');
         inp.value = ''; draft.basic[inp.dataset.bk] = '';
         inp.closest('.f').classList.add('f--empty');
-        inp.focus();
+      }));
+      document.querySelectorAll('#wzBody [data-datepicker]').forEach(el => el.addEventListener('click', e => {
+        e.preventDefault(); openDatePicker(el.closest('.f'), el.dataset.datepicker);
       }));
     },
   };
@@ -391,28 +402,37 @@ const svcInput = (i, key, label, val) =>
   `<label class="f"><span class="f-col"><span class="f-lbl md">${label}</span>
     <input class="f-in" type="text" inputmode="numeric" data-si="${i}" data-sk="${key}" value="${esc(val)}"></span></label>`;
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-const WASTE_TYPES = ['Recyclable', 'Non-Recycleable', 'Mixed', 'Green Waste', 'Bulky'];
-const FREQUENCIES = ['Daily', '2x weekly', '3x weekly', 'Weekly', 'Fortnightly', 'Monthly'];
+const WASTE_TYPES = ['General Waste', 'Recyclable'];
+// Frequency ordered by increasing interval — Daily → Monthly. Only shown for
+// Scheduled (or Both) Action, and paired with the Collection Days pill row so
+// the reader picks the CADENCE here and the WEEKDAYS below.
+const FREQUENCIES = ['Daily', '5x weekly', '4x weekly', '3x weekly', '2x weekly', 'Weekly', 'Bi-weekly', 'Monthly'];
+const RESPONSE_TIMES = ['4 hours', '8 hours', '12 hours', '24 hours', '48 hours', '72 hours', '1 week'];
 STEP_RENDER.service = () => {
   const items = draft.services;
   const headRight = `<button class="wz-addnew" type="button" data-pkopen="service">Add Service${ic('chevron-down', 16)}</button>`;
   const body = !items.length
     ? emptyState('service')
     : items.map((s, i) => {
-        s.bin = s.bin || CAT.bins[0].name; s.qty = s.qty ?? '20'; s.waste = s.waste || 'Non-Recycleable';
-        s.action = s.action || 'Scheduled'; s.frequency = s.frequency || '3x weekly';
+        s.bin = s.bin || CAT.bins[0].name; s.qty = s.qty ?? '20'; s.waste = s.waste || 'General Waste';
+        s.action = s.action || 'Scheduled'; s.frequency = s.frequency || '3x weekly'; s.response = s.response || '24 hours';
         if (!s.days) s.days = ['Mon', 'Wed', 'Fri'];
+        const scheduled = s.action === 'Scheduled' || s.action === 'Both';
+        const adhoc = s.action === 'Ad-hoc' || s.action === 'Both';
         const row1 = [
           svcSelect(i, 'bin', 'Bin Type', null, s.bin, CAT.bins.map(b => b.name)),
           svcInput(i, 'qty', 'Required Quantity', s.qty),
           svcSelect(i, 'waste', 'Waste Type', null, s.waste, WASTE_TYPES),
         ];
-        const row2 = [
-          svcSelect(i, 'action', 'Action', 'plus-square', s.action, ['Scheduled', 'Adhoc']),
-          svcSelect(i, 'frequency', 'Frequency', 'clock-fast-forward', s.frequency, FREQUENCIES),
+        // Row 2 depends on Action: Scheduled → Frequency + Collection Days;
+        // Ad-hoc → Response Time only; Both → all three side-by-side.
+        const row2 = [svcSelect(i, 'action', 'Action', 'plus-square', s.action, ['Scheduled', 'Ad-hoc', 'Both'])];
+        if (scheduled) row2.push(svcSelect(i, 'frequency', 'Frequency', 'clock-fast-forward', s.frequency, FREQUENCIES));
+        if (adhoc)     row2.push(svcSelect(i, 'response',  'Response Time', 'clock', s.response, RESPONSE_TIMES));
+        if (scheduled) row2.push(
           `<div class="days"><span class="days-l">Collection days</span><div class="days-row">${DAYS.map(d =>
-            `<button type="button" class="day${s.days.includes(d) ? ' on' : ''}" data-si="${i}" data-day="${d}" aria-pressed="${s.days.includes(d)}">${d}</button>`).join('')}</div></div>`,
-        ];
+            `<button type="button" class="day${s.days.includes(d) ? ' on' : ''}" data-si="${i}" data-day="${d}" aria-pressed="${s.days.includes(d)}">${d}</button>`).join('')}</div></div>`
+        );
         return `<div class="svc-card">
           <div class="c-head"><div class="c-name">${esc(s.name)}</div><span class="c-remove" data-srm="${i}" title="Remove">${ic('trash-03', 16)}</span></div>
           <div class="c-fields">${row1.join('')}</div>
@@ -423,7 +443,11 @@ STEP_RENDER.service = () => {
     after() {
       wirePicker('service');
       document.querySelectorAll('#wzBody [data-si][data-sk]').forEach(el => {
-        const save = e => { draft.services[+e.target.dataset.si][e.target.dataset.sk] = e.target.value; };
+        const save = e => {
+          draft.services[+e.target.dataset.si][e.target.dataset.sk] = e.target.value;
+          // Action changes rearrange the row (Scheduled vs Ad-hoc vs Both) — re-render.
+          if (e.target.dataset.sk === 'action') renderWizard();
+        };
         el.addEventListener('change', save); el.addEventListener('input', save);
       });
       document.querySelectorAll('#wzBody .day').forEach(el => el.addEventListener('click', e => {
@@ -865,4 +889,103 @@ function wireRaw() {
     const tb = dtPanel.querySelector('tbody'); tb.innerHTML = rawDataHTML({ title, q }).match(/<tbody>([\s\S]*)<\/tbody>/)[1];
   });
   s.focus();
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DATE PICKER — Figma Design System V2 §6649:26866
+   A calendar popover pinned under the field: month/year steppers, Mo-first
+   6-week grid (40×40 r20 cells), today ring, selected fill, other-month +
+   disabled dimmed; Cancel/Apply footer with the preview date. All state is
+   local to the popover — on Apply we write `dd-mm-yyyy` back to draft.basic.
+   ══════════════════════════════════════════════════════════════════════════ */
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const WEEK   = ['Mo','Tu','We','Th','Fr','Sa','Su'];
+const pad2 = n => String(n).padStart(2, '0');
+const fmtDMY = d => `${pad2(d.getDate())}-${pad2(d.getMonth() + 1)}-${d.getFullYear()}`;
+const fmtShort = d => `${d.getDate()} ${MONTHS[d.getMonth()].slice(0, 3)}, ${String(d.getFullYear()).slice(-2)}`;
+function parseDMY(s) {
+  const m = /^(\d{1,2})-(\d{1,2})-(\d{4})$/.exec(s || '');
+  if (!m) return null;
+  const d = new Date(+m[3], +m[2] - 1, +m[1]);
+  return isNaN(d) ? null : d;
+}
+function closeDatePicker() {
+  const p = document.getElementById('dpPop'); if (p) p.remove();
+  document.removeEventListener('pointerdown', dpOutside, true);
+  window.removeEventListener('scroll', closeDatePicker, true);
+  window.removeEventListener('resize', closeDatePicker, true);
+}
+function dpOutside(e) {
+  const p = document.getElementById('dpPop'); if (!p) return;
+  if (!p.contains(e.target) && !e.target.closest('[data-datepicker]')) closeDatePicker();
+}
+function openDatePicker(field, bk) {
+  closeDatePicker();
+  const inp = field.querySelector('.f-in');
+  const initial = parseDMY(inp.value) || new Date();
+  const state = { view: new Date(initial.getFullYear(), initial.getMonth(), 1), sel: parseDMY(inp.value) };
+  const pop = document.createElement('div'); pop.id = 'dpPop'; pop.className = 'dp'; pop.tabIndex = -1;
+  document.body.appendChild(pop);
+  const place = () => {
+    const r = field.getBoundingClientRect();
+    pop.style.left = `${Math.min(r.left, window.innerWidth - 428)}px`;
+    pop.style.top  = `${r.bottom + 6}px`;
+  };
+  const paint = () => {
+    const y = state.view.getFullYear(), m = state.view.getMonth();
+    const first = new Date(y, m, 1), lastDay = new Date(y, m + 1, 0).getDate();
+    // Monday-first weekday offset (getDay: Sun=0 … Sat=6 → Mon=0 … Sun=6)
+    const startCol = (first.getDay() + 6) % 7;
+    const gridStart = new Date(y, m, 1 - startCol);
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const cells = [];
+    for (let i = 0; i < 42; i++) {
+      const d = new Date(gridStart); d.setDate(gridStart.getDate() + i);
+      const inMonth = d.getMonth() === m;
+      const isToday = d.getTime() === today.getTime();
+      const isSel = state.sel && d.getFullYear() === state.sel.getFullYear() && d.getMonth() === state.sel.getMonth() && d.getDate() === state.sel.getDate();
+      const cls = ['dp-c']; if (!inMonth) cls.push('dim'); if (isToday && !isSel) cls.push('today'); if (isSel) cls.push('sel');
+      cells.push(`<button type="button" class="${cls.join(' ')}" data-dp-day="${i}">${d.getDate()}</button>`);
+    }
+    pop.innerHTML = `
+      <div class="dp-cal">
+        <div class="dp-hd">
+          <div class="dp-stepper">
+            <button type="button" class="dp-nav" data-dp-mo="-1" aria-label="Previous month">${ic('chevron-left', 20)}</button>
+            <span>${MONTHS[m]}</span>
+            <button type="button" class="dp-nav" data-dp-mo="1" aria-label="Next month">${ic('chevron-down', 20, 'r-90')}</button>
+          </div>
+          <div class="dp-stepper year">
+            <button type="button" class="dp-nav" data-dp-yr="-1" aria-label="Previous year">${ic('chevron-left', 20)}</button>
+            <span>${y}</span>
+            <button type="button" class="dp-nav" data-dp-yr="1" aria-label="Next year">${ic('chevron-down', 20, 'r-90')}</button>
+          </div>
+        </div>
+        <div class="dp-week">${WEEK.map(w => `<span class="dp-c wk">${w}</span>`).join('')}</div>
+        <div class="dp-grid">${cells.join('')}</div>
+      </div>
+      <div class="dp-foot">
+        <span class="dp-prev">${state.sel ? fmtShort(state.sel) : '—'}</span>
+        <div class="dp-ctas"><button type="button" class="dp-cancel">Cancel</button><button type="button" class="dp-apply">Apply</button></div>
+      </div>`;
+    pop.querySelectorAll('[data-dp-mo]').forEach(b => b.addEventListener('click', () => { state.view.setMonth(state.view.getMonth() + Number(b.dataset.dpMo)); paint(); }));
+    pop.querySelectorAll('[data-dp-yr]').forEach(b => b.addEventListener('click', () => { state.view.setFullYear(state.view.getFullYear() + Number(b.dataset.dpYr)); paint(); }));
+    pop.querySelectorAll('[data-dp-day]').forEach(b => b.addEventListener('click', () => {
+      const idx = +b.dataset.dpDay, d = new Date(gridStart); d.setDate(gridStart.getDate() + idx);
+      state.sel = d;
+      if (d.getMonth() !== m) state.view = new Date(d.getFullYear(), d.getMonth(), 1);
+      paint();
+    }));
+    pop.querySelector('.dp-cancel').addEventListener('click', closeDatePicker);
+    pop.querySelector('.dp-apply').addEventListener('click', () => {
+      const v = state.sel ? fmtDMY(state.sel) : '';
+      inp.value = v; draft.basic[bk] = v; field.classList.toggle('f--empty', !v);
+      closeDatePicker();
+    });
+    place();
+  };
+  paint();
+  setTimeout(() => document.addEventListener('pointerdown', dpOutside, true), 0);
+  window.addEventListener('scroll', closeDatePicker, true);
+  window.addEventListener('resize', closeDatePicker, true);
 }
