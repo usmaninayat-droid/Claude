@@ -32,9 +32,6 @@
     "available": {
       "source": "tenant-native"
     },
-    "breakdown": {
-      "source": "tenant-native"
-    },
     "commercial": {
       "source": "tenant-native"
     },
@@ -42,12 +39,6 @@
       "source": "tenant-native"
     },
     "deployment-dashboard": {
-      "source": "tenant-native"
-    },
-    "idle": {
-      "source": "tenant-native"
-    },
-    "inactive": {
       "source": "tenant-native"
     },
     "kpi-drivers": {
@@ -68,25 +59,7 @@
     "kpi-training-risk": {
       "source": "tenant-native"
     },
-    "late": {
-      "source": "tenant-native"
-    },
-    "maintenance": {
-      "source": "tenant-native"
-    },
     "msw": {
-      "source": "tenant-native"
-    },
-    "next-shift": {
-      "source": "tenant-native"
-    },
-    "on-duty": {
-      "source": "tenant-native"
-    },
-    "on-leave": {
-      "source": "tenant-native"
-    },
-    "on-route": {
       "source": "tenant-native"
     },
     "onboard": {
@@ -110,9 +83,6 @@
     "requirement": {
       "source": "tenant-native"
     },
-    "standby": {
-      "source": "tenant-native"
-    },
     "total": {
       "source": "tenant-native"
     },
@@ -120,9 +90,6 @@
       "source": "tenant-native"
     },
     "vacation": {
-      "source": "tenant-native"
-    },
-    "vehicle-type": {
       "source": "tenant-native"
     },
     "view-deployment": {
@@ -146,22 +113,13 @@
     "w-duty-mix": {
       "source": "tenant-native"
     },
-    "w-fleet-availability": {
-      "source": "tenant-native"
-    },
     "w-headcount-breakdown": {
       "source": "tenant-native"
     },
     "w-requirement-vs-deployment": {
       "source": "tenant-native"
     },
-    "w-workforce-readiness": {
-      "source": "tenant-native"
-    },
     "weekly-off": {
-      "source": "tenant-native"
-    },
-    "workforce-type": {
       "source": "tenant-native"
     }
   },
