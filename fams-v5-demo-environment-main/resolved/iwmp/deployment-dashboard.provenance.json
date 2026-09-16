@@ -41,6 +41,9 @@
     "deployment-dashboard": {
       "source": "tenant-native"
     },
+    "headcount-scope": {
+      "source": "tenant-native"
+    },
     "kpi-drivers": {
       "source": "tenant-native"
     },

@@ -79,41 +79,54 @@
     {
       "id": "w-headcount-breakdown",
       "title": "Headcount breakdown — Monday 31 August",
-      "type": "stat-tile-group",
+      "type": "breakdown-strip",
       "span": 12,
       "dataSource": {
+        "icon": "users",
         "subtitle": "reported HC from attendance machine",
-        "note": "Available = Total − Reported − Weekly off − Vacation",
-        "tiles": [
+        "scopeFilter": {
+          "id": "headcount-scope",
+          "label": "Headcount",
+          "allLabel": "All Employees",
+          "options": [
+            {
+              "value": "drivers",
+              "label": "Drivers"
+            },
+            {
+              "value": "helpers",
+              "label": "Helpers"
+            },
+            {
+              "value": "supervisors",
+              "label": "Supervisors"
+            }
+          ]
+        },
+        "slices": [
           {
             "id": "total",
             "label": "Total Head Count",
             "value": 764,
-            "tone": "neutral"
+            "tone": "primary"
           },
           {
             "id": "planned",
             "label": "Planned Head Count",
             "value": 470,
-            "tone": "neutral"
+            "tone": "info"
           },
           {
             "id": "reported",
             "label": "Reported Head Count",
             "value": 459,
-            "tone": "neutral",
-            "target": 470
+            "tone": "success"
           },
           {
             "id": "absent",
             "label": "Absenteeism",
             "value": 35,
-            "tone": "warning",
-            "trend": {
-              "direction": "up",
-              "value": "+5",
-              "note": "vs Yest."
-            }
+            "tone": "danger"
           },
           {
             "id": "weekly-off",
@@ -125,21 +138,16 @@
             "id": "vacation",
             "label": "Vacation",
             "value": 42,
-            "tone": "neutral"
+            "tone": "yellow"
           },
           {
             "id": "available",
             "label": "Available Head Count",
             "value": 158,
-            "tone": "neutral",
-            "trend": {
-              "direction": "up",
-              "value": "+8",
-              "note": "vs Yest."
-            }
+            "tone": "lavender"
           }
         ],
-        "ariaLabel": "Headcount breakdown for Monday 31 August, reported from the attendance machine: total, planned, reported, absenteeism, weekly off, vacation and available head counts."
+        "ariaLabel": "Headcount breakdown for Monday 31 August: total, planned, reported, absenteeism, weekly off, vacation and available head counts reported from the attendance machine."
       }
     },
     {
