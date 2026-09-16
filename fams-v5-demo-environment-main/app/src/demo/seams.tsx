@@ -48,7 +48,7 @@ const MODULE_ICONS: Record<string, ReactNode> = {
   // from `inspector-shifts`'s glyph above (an unrelated, older screen).
   'inspector-app': <Icon name="clipboard-check" />,
   // Contract Management (Figma: Tadweer June Release) — a document/contract mark.
-  'contract-management': <Icon name="file-05" />,
+  'contract-management': <Icon name="briefcase-01" />,
 }
 
 /** Last-resort rail glyph for a module that names no icon and has no entry

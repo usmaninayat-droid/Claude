@@ -167,10 +167,9 @@ let draft = null, wzIndex = 0;
 function freshDraft() {
   return {
     // Basic Info opens EMPTY by default — every field renders in its idle
-    // label-only state until the user fills it. `manager` has no form field
-    // (it appears on the summary only) so it keeps a demo value for the
-    // review screen.
-    basic:{ title:'', ref:'', type:'', contractor:'', start:'', end:'', manager:'Syed Abdul', pm:'' },
+    // label-only state until the user fills it. Fields match Figma Launch Pad
+    // 7002:9118: title / ref · type / contract · start / end · pm / area · supervisor.
+    basic:{ title:'', ref:'', type:'', contract:'', contractor:'', start:'', end:'', pm:'', area:'', supervisor:'' },
     zones:['LOT-01'], vehicles:[], equipment:[], workforce:[], bins:[], services:[], kpis:[],
     attachments:[ { name:'ESP Agreement', meta:'Expiry Date: 24th Oct, 2028' }, { name:'ESP Company Info', meta:'' } ],
   };
@@ -244,7 +243,8 @@ function fieldHTML(k, label, val, { req, opt, icon, clear, options, full, lblMd,
   </label>`;
 }
 
-/* STEP 1 — Basic Info (2111:1925) */
+/* STEP 1 — Basic Info (Launch Pad 7002:9118) — shared people-picker options */
+const PEOPLE = ['Syed Abul','Ali Hassan','Reem Al Zaabi','Faisal Al Mansoori','Muhammad Ali','Khalid Al-Mansoori'];
 STEP_RENDER.basic = () => {
   const b = draft.basic;
   return {
@@ -253,10 +253,12 @@ STEP_RENDER.basic = () => {
       ${fieldHTML('title', 'Project Title', b.title, { req:true })}
       ${fieldHTML('ref', 'Reference Number', b.ref, { req:true })}
       ${fieldHTML('type', 'Project Type', b.type, { req:true, options:['MSW Commercials','MSW Residential','C&D Waste','Green Waste','Bulk Collection'] })}
-      ${fieldHTML('contractor', 'ESP', b.contractor, { req:true, options:['BEEAH','Tadweer','Dulsco','Averda'] })}
+      ${fieldHTML('contract', 'Contract', b.contract, { req:true, options:['Lot 1 Contract','Lot 2 Contract','Lot 3 Contract','Lot 4 Contract','Lot 5 Contract'] })}
       ${fieldHTML('start', 'Start Date', b.start, { req:true, icon:'calendar', clear:true, date:true })}
       ${fieldHTML('end', 'End Date', b.end, { req:true, icon:'calendar', date:true })}
-      ${fieldHTML('pm', 'Program Manager', b.pm, { opt:true, icon:'user-03', full:true, lblMd:true, options:['Syed Abul','Ali Hassan','Reem Al Zaabi','Faisal Al Mansoori'] })}
+      ${fieldHTML('pm', 'Project Manager', b.pm, { opt:true, icon:'user-03', options:PEOPLE })}
+      ${fieldHTML('area', 'Area Manager', b.area, { opt:true, icon:'user-03', options:PEOPLE })}
+      ${fieldHTML('supervisor', 'Supervisor', b.supervisor, { opt:true, icon:'user-03', full:true, lblMd:true, options:PEOPLE })}
     </div>`,
     after() {
       document.querySelectorAll('#wzBody [data-bk]').forEach(el => {
@@ -555,8 +557,8 @@ function sumTable(cols, rows, cls = '') {
 const kv = (k, v) => `<div class="kv"><span class="k">${k}</span><span class="v">${esc(v || '—')}</span></div>`;
 STEP_RENDER.summary = () => {
   const b = draft.basic;
-  const basicGrid = `<div class="sum-grid"><div>${kv('Project Title', b.title)}${kv('Project Type', b.type)}${kv('Start Date', b.start)}${kv('Project Manager', b.manager)}</div>
-    <div>${kv('Reference Number', b.ref)}${kv('ESP', b.contractor)}${kv('End Date', b.end)}${kvr('Program Manager', b.pm)}</div></div>`;
+  const basicGrid = `<div class="sum-grid"><div>${kv('Project Title', b.title)}${kv('Project Type', b.type)}${kv('Start Date', b.start)}${kv('Project Manager', b.pm)}${kv('Supervisor', b.supervisor)}</div>
+    <div>${kv('Reference Number', b.ref)}${kv('Contract', b.contract)}${kv('End Date', b.end)}${kvr('Area Manager', b.area)}</div></div>`;
   const typeCell = (key, name) => `${ic(SUM_ICON[key], 16)}${esc(name)}`;
   const rowsOf = (key, map) => draft[key].map((it, i) => { const c = CAT[key].find(x => x.id === it.id) || it; return map(i + 1, c, it); });
   const none = (n, msg) => [[ '—', msg, ...Array(n - 2).fill('—') ]];
