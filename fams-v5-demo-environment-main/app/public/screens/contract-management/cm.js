@@ -159,7 +159,11 @@ const EMPTY_TXT = {
 let draft = null, wzIndex = 0;
 function freshDraft() {
   return {
-    basic:{ title:'Lot 1 Project', ref:'123', type:'MSW Commercials', contractor:'BEEAH', start:'10-12-2024', end:'10-12-2029', manager:'Syed Abdul', pm:'Syed Abul' },
+    // Basic Info opens EMPTY by default — every field renders in its idle
+    // label-only state until the user fills it. `manager` has no form field
+    // (it appears on the summary only) so it keeps a demo value for the
+    // review screen.
+    basic:{ title:'', ref:'', type:'', contractor:'', start:'', end:'', manager:'Syed Abdul', pm:'' },
     zones:['LOT-01'], vehicles:[], equipment:[], workforce:[], bins:[], services:[], kpis:[],
     attachments:[ { name:'ESP Agreement', meta:'Expiry Date: 24th Oct, 2028' }, { name:'ESP Company Info', meta:'' } ],
   };
@@ -211,13 +215,19 @@ document.getElementById('wzSteps').addEventListener('click', e => {
 /* ── Step renderers ─────────────────────────────────────────────────────── */
 const STEP_RENDER = {};
 
-/* Field factory — Figma 56h anatomy. opts: req, opt, icon, clear, options(select), full, lblSize */
+/* Field factory — Figma 56h anatomy. opts: req, opt, icon, clear, options(select), full, lblSize
+   Empty (idle) state renders just the field's label at value-size, like a placeholder;
+   the input/select reveals itself on focus or as soon as it carries a value. The
+   `.f-lbl` on top + `.f-in` value below is the FILLED state (Figma Basic Info). */
 function fieldHTML(k, label, val, { req, opt, icon, clear, options, full, lblMd, type = 'text', attrs = '' } = {}) {
+  const empty = val === undefined || val === null || val === '';
   const lbl = `<span class="f-lbl${lblMd ? ' md' : ''}">${label}${req ? ' <b class="req">*</b>' : ''}${opt ? ' <span class="opt">(optional)</span>' : ''}</span>`;
   const control = options
-    ? `<select class="f-sel" ${attrs} data-bk="${k}">${options.map(o => `<option${o === val ? ' selected' : ''}>${esc(o)}</option>`).join('')}</select>`
+    // A leading empty option is what makes a select's "no value" state real — without it the browser
+    // picks the first option and the field reads as pre-selected even though `val` is empty.
+    ? `<select class="f-sel" ${attrs} data-bk="${k}">${empty ? '<option value="" hidden></option>' : ''}${options.map(o => `<option${o === val ? ' selected' : ''}>${esc(o)}</option>`).join('')}</select>`
     : `<input class="f-in" ${attrs} data-bk="${k}" type="${type}" value="${esc(val)}">`;
-  return `<label class="f${full ? ' span2' : ''}">
+  return `<label class="f${full ? ' span2' : ''}${empty ? ' f--empty' : ''}">
     ${icon ? ic(icon, 20, 'lead') : ''}
     <span class="f-col">${lbl}${control}</span>
     ${options ? ic('chevron-down', 12, 'trail') : ''}${clear ? ic('x', 12, 'clear') : ''}
@@ -240,11 +250,17 @@ STEP_RENDER.basic = () => {
     </div>`,
     after() {
       document.querySelectorAll('#wzBody [data-bk]').forEach(el => {
-        const save = e => { draft.basic[e.target.dataset.bk] = e.target.value; };
+        const save = e => {
+          draft.basic[e.target.dataset.bk] = e.target.value;
+          e.target.closest('.f').classList.toggle('f--empty', e.target.value === '');
+        };
         el.addEventListener('input', save); el.addEventListener('change', save);
       });
       document.querySelectorAll('#wzBody .f .clear').forEach(x => x.addEventListener('click', e => {
-        e.preventDefault(); const inp = e.currentTarget.closest('.f').querySelector('.f-in'); inp.value = ''; draft.basic[inp.dataset.bk] = ''; inp.focus();
+        e.preventDefault(); const inp = e.currentTarget.closest('.f').querySelector('.f-in');
+        inp.value = ''; draft.basic[inp.dataset.bk] = '';
+        inp.closest('.f').classList.add('f--empty');
+        inp.focus();
       }));
     },
   };
