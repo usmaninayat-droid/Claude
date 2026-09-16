@@ -233,7 +233,8 @@
             "value": 158
           }
         ],
-        "subtitle": "reported HC from attendance machine"
+        "subtitle": "reported HC from attendance machine",
+        "tone": "primary"
       },
       "id": "w-headcount-breakdown",
       "span": 12,
@@ -247,9 +248,11 @@
           "caption": "Reported vs Planned",
           "value": "95%"
         },
+        "icon": "target-04",
         "max": 100,
         "min": 0,
         "subtitle": "Reported head count vs planned",
+        "tone": "success",
         "value": 95
       },
       "id": "w-deployment-compliance",
@@ -264,6 +267,7 @@
           "caption": "Duties",
           "value": "671"
         },
+        "icon": "pie-chart-01",
         "legendOrientation": "vertical",
         "slices": [
           {
@@ -306,7 +310,8 @@
             "label": "Extra Assignment (EX)",
             "value": 20
           }
-        ]
+        ],
+        "tone": "info"
       },
       "id": "w-duty-mix",
       "span": 4,
@@ -320,6 +325,7 @@
           "caption": "Deployed",
           "value": "486"
         },
+        "icon": "briefcase",
         "legendOrientation": "vertical",
         "slices": [
           {
@@ -341,7 +347,8 @@
             "value": 103
           }
         ],
-        "subtitle": "Reported head count by project"
+        "subtitle": "Reported head count by project",
+        "tone": "info"
       },
       "id": "w-by-project",
       "span": 4,
@@ -376,6 +383,7 @@
           "13",
           "14"
         ],
+        "icon": "trending-up",
         "series": [
           {
             "colorIndex": 1,
@@ -400,7 +408,8 @@
             "unit": "staff"
           }
         ],
-        "subtitle": "Reported head count — last 14 days"
+        "subtitle": "Reported head count — last 14 days",
+        "tone": "warning"
       },
       "id": "w-daily-trend",
       "span": 6,
@@ -425,6 +434,7 @@
           "DSL",
           "Bin Washer"
         ],
+        "icon": "bar-chart-01",
         "legendPlacement": "bottom",
         "series": [
           {
@@ -456,7 +466,8 @@
             "label": "Reported"
           }
         ],
-        "subtitle": "Planned vs reported (attendance machine)"
+        "subtitle": "Planned vs reported (attendance machine)",
+        "tone": "info"
       },
       "id": "w-by-service-line",
       "span": 6,
@@ -477,6 +488,7 @@
           "LDD Driver",
           "Helper"
         ],
+        "icon": "users",
         "legendPlacement": "bottom",
         "series": [
           {
@@ -520,7 +532,8 @@
             "label": "Under Training"
           }
         ],
-        "subtitle": "By designation, with under-training count"
+        "subtitle": "By designation, with under-training count",
+        "tone": "primary"
       },
       "id": "w-requirement-vs-deployment",
       "span": 6,
@@ -557,6 +570,7 @@
           }
         ],
         "entityLabel": "Route",
+        "icon": "list",
         "rows": [
           {
             "cells": {
@@ -689,7 +703,8 @@
         ],
         "searchPlaceholder": "Search route, driver or district",
         "searchable": true,
-        "subtitle": "Route, vehicle, crew and punch status for the selected date"
+        "subtitle": "Route, vehicle, crew and punch status for the selected date",
+        "tone": "neutral"
       },
       "id": "w-daily-deployment",
       "span": 12,

@@ -147,7 +147,8 @@
             "tone": "lavender"
           }
         ],
-        "ariaLabel": "Headcount breakdown for Monday 31 August: total, planned, reported, absenteeism, weekly off, vacation and available head counts reported from the attendance machine."
+        "ariaLabel": "Headcount breakdown for Monday 31 August: total, planned, reported, absenteeism, weekly off, vacation and available head counts reported from the attendance machine.",
+        "tone": "primary"
       }
     },
     {
@@ -164,7 +165,9 @@
           "value": "95%",
           "caption": "Reported vs Planned"
         },
-        "ariaLabel": "Deployment compliance — reported head count as a percentage of planned head count for the selected date."
+        "ariaLabel": "Deployment compliance — reported head count as a percentage of planned head count for the selected date.",
+        "icon": "target-04",
+        "tone": "success"
       }
     },
     {
@@ -220,7 +223,9 @@
             "colorIndex": 3
           }
         ],
-        "ariaLabel": "Duty mix for today across route, reliever, weekly off, vacation, emergency leave, on-call, standby and extra assignment duties."
+        "ariaLabel": "Duty mix for today across route, reliever, weekly off, vacation, emergency leave, on-call, standby and extra assignment duties.",
+        "icon": "pie-chart-01",
+        "tone": "info"
       }
     },
     {
@@ -255,7 +260,9 @@
             }
           }
         ],
-        "ariaLabel": "Deployment by project — reported head count split between the MSW and Commercial projects."
+        "ariaLabel": "Deployment by project — reported head count split between the MSW and Commercial projects.",
+        "icon": "briefcase",
+        "tone": "info"
       }
     },
     {
@@ -314,7 +321,9 @@
             "min": 0
           }
         },
-        "ariaLabel": "Daily deployment trend — reported head count over the last 14 days."
+        "ariaLabel": "Daily deployment trend — reported head count over the last 14 days.",
+        "icon": "trending-up",
+        "tone": "warning"
       }
     },
     {
@@ -370,7 +379,9 @@
           }
         },
         "legendPlacement": "bottom",
-        "ariaLabel": "Deployment by service line — planned versus reported head count per service line."
+        "ariaLabel": "Deployment by service line — planned versus reported head count per service line.",
+        "icon": "bar-chart-01",
+        "tone": "info"
       }
     },
     {
@@ -434,7 +445,9 @@
           }
         },
         "legendPlacement": "bottom",
-        "ariaLabel": "Requirement versus onboard, deployed and under-training counts per designation."
+        "ariaLabel": "Requirement versus onboard, deployed and under-training counts per designation.",
+        "icon": "users",
+        "tone": "primary"
       }
     },
     {
@@ -603,7 +616,9 @@
             }
           }
         ],
-        "ariaLabel": "Daily deployment sheet — route, vehicle category, shift, district, driver, helper crew and punch status."
+        "ariaLabel": "Daily deployment sheet — route, vehicle category, shift, district, driver, helper crew and punch status.",
+        "icon": "list",
+        "tone": "neutral"
       }
     }
   ],
