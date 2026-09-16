@@ -74,6 +74,87 @@
   "icon": "gauge",
   "id": "deployment-dashboard",
   "kind": "dashboard",
+  "kpiStrip": [
+    {
+      "dataSource": {
+        "kind": "static",
+        "value": 788
+      },
+      "format": "integer",
+      "icon": "users",
+      "id": "kpi-total-manpower",
+      "label": "Total Manpower",
+      "tone": "info",
+      "type": "stat",
+      "valueSuffix": "Employee master · all statuses"
+    },
+    {
+      "dataSource": {
+        "kind": "static",
+        "value": 294
+      },
+      "format": "integer",
+      "icon": "truck",
+      "id": "kpi-drivers",
+      "label": "Drivers",
+      "tone": "success",
+      "type": "stat",
+      "valueSuffix": "HDD 265 · LDD 29"
+    },
+    {
+      "dataSource": {
+        "kind": "static",
+        "value": 470
+      },
+      "format": "integer",
+      "icon": "user",
+      "id": "kpi-helpers",
+      "label": "Helpers",
+      "tone": "lavender",
+      "type": "stat",
+      "valueSuffix": "Route · supervisor · extra assignments"
+    },
+    {
+      "dataSource": {
+        "kind": "static",
+        "value": 785
+      },
+      "format": "integer",
+      "icon": "briefcase",
+      "id": "kpi-operational",
+      "label": "Operational Staff",
+      "tone": "info",
+      "type": "stat",
+      "valueSuffix": "Excludes Area Manager and above"
+    },
+    {
+      "dataSource": {
+        "kind": "static",
+        "value": 136
+      },
+      "format": "integer",
+      "icon": "calendar",
+      "id": "kpi-pending-rostering",
+      "label": "Pending Rostering",
+      "tone": "danger",
+      "type": "stat",
+      "valueSuffix": "Active, no duty in week 2"
+    },
+    {
+      "dataSource": {
+        "kind": "static",
+        "value": 228
+      },
+      "format": "integer",
+      "icon": "alert-triangle",
+      "id": "kpi-training-risk",
+      "label": "Training Pending / Expired",
+      "tone": "warning",
+      "type": "stat",
+      "valueSuffix": "9 blocked from rostering"
+    }
+  ],
+  "kpiStripVariant": "accent",
   "views": [
     {
       "id": "view-deployment",
@@ -82,6 +163,68 @@
     }
   ],
   "widgetGrid": [
+    {
+      "dataSource": {
+        "ariaLabel": "Headcount breakdown for Monday 31 August, reported from the attendance machine: total, planned, reported, absenteeism, weekly off, vacation and available head counts.",
+        "note": "Available = Total − Reported − Weekly off − Vacation",
+        "subtitle": "reported HC from attendance machine",
+        "tiles": [
+          {
+            "caption": "Active + on leave + training",
+            "id": "total",
+            "label": "Total Head Count",
+            "tone": "dark",
+            "value": 764
+          },
+          {
+            "caption": "Rostered to route / reliever / on call / extra",
+            "id": "planned",
+            "label": "Planned Head Count",
+            "tone": "info",
+            "value": 470
+          },
+          {
+            "caption": "Punched in (attendance machine)",
+            "id": "reported",
+            "label": "Reported Head Count",
+            "tone": "success",
+            "value": 459
+          },
+          {
+            "caption": "7% of planned",
+            "id": "absent",
+            "label": "Absenteeism",
+            "tone": "danger",
+            "value": 35
+          },
+          {
+            "caption": "Contracted rest day",
+            "id": "weekly-off",
+            "label": "Weekly Off",
+            "tone": "neutral",
+            "value": 105
+          },
+          {
+            "caption": "Annual + emergency leave",
+            "id": "vacation",
+            "label": "Vacation",
+            "tone": "yellow",
+            "value": 42
+          },
+          {
+            "caption": "Not deployed, not off, not on leave",
+            "id": "available",
+            "label": "Available Head Count",
+            "tone": "lavender",
+            "value": 158
+          }
+        ]
+      },
+      "id": "w-headcount-breakdown",
+      "span": 12,
+      "title": "Headcount breakdown — Monday 31 August",
+      "type": "stat-tile-group"
+    },
     {
       "dataSource": {
         "ariaLabel": "Fleet availability — 328 vehicles by operating state: on route, idle, standby, maintenance, breakdown and inactive.",
@@ -388,49 +531,6 @@
       "span": 4,
       "title": "Deployment by Project",
       "type": "donut"
-    },
-    {
-      "dataSource": {
-        "ariaLabel": "Headcount breakdown — total, planned, reported, absenteeism, weekly off, vacation and available head counts for the selected date.",
-        "axis": {
-          "x": {
-            "min": 0,
-            "title": "Employees"
-          }
-        },
-        "categories": [
-          "Total",
-          "Planned",
-          "Reported",
-          "Absenteeism",
-          "Weekly Off",
-          "Vacation",
-          "Available"
-        ],
-        "orientation": "horizontal",
-        "series": [
-          {
-            "colorToken": "var(--color-primary)",
-            "data": [
-              618,
-              512,
-              486,
-              26,
-              74,
-              32,
-              26
-            ],
-            "label": "Head Count",
-            "unit": "staff"
-          }
-        ],
-        "showValues": true,
-        "subtitle": "Attendance-machine truth for the selected date"
-      },
-      "id": "w-headcount",
-      "span": 6,
-      "title": "Headcount Breakdown",
-      "type": "bar"
     },
     {
       "dataSource": {

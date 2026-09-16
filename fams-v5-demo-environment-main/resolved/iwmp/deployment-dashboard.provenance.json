@@ -26,6 +26,12 @@
     "TW_04_08": {
       "source": "tenant-native"
     },
+    "absent": {
+      "source": "tenant-native"
+    },
+    "available": {
+      "source": "tenant-native"
+    },
     "breakdown": {
       "source": "tenant-native"
     },
@@ -42,6 +48,24 @@
       "source": "tenant-native"
     },
     "inactive": {
+      "source": "tenant-native"
+    },
+    "kpi-drivers": {
+      "source": "tenant-native"
+    },
+    "kpi-helpers": {
+      "source": "tenant-native"
+    },
+    "kpi-operational": {
+      "source": "tenant-native"
+    },
+    "kpi-pending-rostering": {
+      "source": "tenant-native"
+    },
+    "kpi-total-manpower": {
+      "source": "tenant-native"
+    },
+    "kpi-training-risk": {
       "source": "tenant-native"
     },
     "late": {
@@ -89,7 +113,13 @@
     "standby": {
       "source": "tenant-native"
     },
+    "total": {
+      "source": "tenant-native"
+    },
     "training": {
+      "source": "tenant-native"
+    },
+    "vacation": {
       "source": "tenant-native"
     },
     "vehicle-type": {
@@ -119,13 +149,16 @@
     "w-fleet-availability": {
       "source": "tenant-native"
     },
-    "w-headcount": {
+    "w-headcount-breakdown": {
       "source": "tenant-native"
     },
     "w-requirement-vs-deployment": {
       "source": "tenant-native"
     },
     "w-workforce-readiness": {
+      "source": "tenant-native"
+    },
+    "weekly-off": {
       "source": "tenant-native"
     },
     "workforce-type": {
