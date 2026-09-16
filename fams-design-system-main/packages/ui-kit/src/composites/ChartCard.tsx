@@ -105,7 +105,11 @@ export const ChartCard = forwardRef<HTMLDivElement, ChartCardProps>(
         className={cn('overflow-hidden shadow-none', className)}
         {...props}
       >
-        <CardHeader className="flex-row items-center justify-between gap-3 border-b border-border px-5 py-4">
+        {/* HEADER RHYTHM (global): px-5 py-3 (20/12) — the widget-header height
+            Figma draws (52px), tighter than the shared Card default so a strip
+            of widgets reads as one calm row. Keep it here on ChartCard rather
+            than per-widget so every dashboard/profile widget stays in sync. */}
+        <CardHeader className="flex-row items-center justify-between gap-3 border-b border-border px-5 py-3">
           <div className="flex min-w-0 flex-1 items-center gap-3">
             {Icon ? (
               <span
