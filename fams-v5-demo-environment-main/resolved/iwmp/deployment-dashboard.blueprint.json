@@ -74,96 +74,6 @@
   "icon": "gauge",
   "id": "deployment-dashboard",
   "kind": "dashboard",
-  "kpiStrip": [
-    {
-      "dataSource": {
-        "kind": "static",
-        "value": 632
-      },
-      "format": "integer",
-      "icon": "users",
-      "id": "kpi-total-manpower",
-      "label": "Total Manpower",
-      "tone": "primary",
-      "type": "stat"
-    },
-    {
-      "dataSource": {
-        "kind": "static",
-        "value": 232
-      },
-      "format": "integer",
-      "icon": "truck",
-      "id": "kpi-drivers",
-      "label": "Drivers",
-      "tone": "info",
-      "type": "stat",
-      "valueSuffix": "HDD 168 · LDD 64"
-    },
-    {
-      "dataSource": {
-        "kind": "static",
-        "value": 400
-      },
-      "format": "integer",
-      "icon": "user",
-      "id": "kpi-helpers",
-      "label": "Helpers",
-      "tone": "info",
-      "type": "stat"
-    },
-    {
-      "dataSource": {
-        "kind": "static",
-        "value": 618
-      },
-      "format": "integer",
-      "icon": "briefcase",
-      "id": "kpi-operational",
-      "label": "Operational Staff",
-      "tone": "primary",
-      "type": "stat"
-    },
-    {
-      "dataSource": {
-        "kind": "static",
-        "value": 12,
-        "variants": [
-          {
-            "value": 34,
-            "when": {
-              "timeframe": "last-7-days"
-            }
-          },
-          {
-            "value": 61,
-            "when": {
-              "timeframe": "last-30-days"
-            }
-          }
-        ]
-      },
-      "format": "integer",
-      "icon": "calendar",
-      "id": "kpi-pending-rostering",
-      "label": "Pending Rostering",
-      "tone": "warning",
-      "type": "stat"
-    },
-    {
-      "dataSource": {
-        "kind": "static",
-        "value": 27
-      },
-      "format": "integer",
-      "icon": "alert-triangle",
-      "id": "kpi-training-risk",
-      "label": "Training Pending & Expired",
-      "tone": "danger",
-      "type": "stat",
-      "valueSuffix": "8 blocked"
-    }
-  ],
   "views": [
     {
       "id": "view-deployment",
@@ -172,6 +82,205 @@
     }
   ],
   "widgetGrid": [
+    {
+      "dataSource": {
+        "ariaLabel": "Fleet availability — 328 vehicles by operating state: on route, idle, standby, maintenance, breakdown and inactive.",
+        "icon": "truck",
+        "scopeFilter": {
+          "allLabel": "All Vehicles",
+          "id": "vehicle-type",
+          "label": "Vehicles",
+          "options": [
+            {
+              "label": "Compactors",
+              "value": "compactor"
+            },
+            {
+              "label": "Skip Loaders",
+              "value": "skip-loader"
+            },
+            {
+              "label": "Bin Washers",
+              "value": "bin-washer"
+            }
+          ]
+        },
+        "slices": [
+          {
+            "dimensions": {
+              "vehicle-type": [
+                "compactor",
+                "skip-loader",
+                "bin-washer"
+              ]
+            },
+            "id": "on-route",
+            "label": "On Route",
+            "tone": "success",
+            "value": 271
+          },
+          {
+            "dimensions": {
+              "vehicle-type": [
+                "compactor",
+                "skip-loader"
+              ]
+            },
+            "id": "idle",
+            "label": "Idle",
+            "tone": "lavender",
+            "value": 19
+          },
+          {
+            "dimensions": {
+              "vehicle-type": [
+                "compactor",
+                "bin-washer"
+              ]
+            },
+            "id": "standby",
+            "label": "Standby",
+            "tone": "info",
+            "value": 24
+          },
+          {
+            "dimensions": {
+              "vehicle-type": [
+                "compactor",
+                "skip-loader"
+              ]
+            },
+            "id": "maintenance",
+            "label": "Maintenance",
+            "tone": "yellow",
+            "value": 10
+          },
+          {
+            "dimensions": {
+              "vehicle-type": [
+                "compactor"
+              ]
+            },
+            "display": "03",
+            "id": "breakdown",
+            "label": "Breakdown",
+            "tone": "danger",
+            "value": 3
+          },
+          {
+            "dimensions": {
+              "vehicle-type": [
+                "skip-loader"
+              ]
+            },
+            "display": "01",
+            "id": "inactive",
+            "label": "Inactive",
+            "tone": "neutral",
+            "value": 1
+          }
+        ],
+        "tone": "neutral"
+      },
+      "id": "w-fleet-availability",
+      "span": 6,
+      "title": "Fleet Availability",
+      "type": "breakdown-strip"
+    },
+    {
+      "dataSource": {
+        "ariaLabel": "Workforce readiness — 615 operational staff by deployment state: on duty, late, standby, next shift and on leave.",
+        "icon": "users",
+        "scopeFilter": {
+          "allLabel": "All Workforce",
+          "id": "workforce-type",
+          "label": "Workforce",
+          "options": [
+            {
+              "label": "Drivers",
+              "value": "drivers"
+            },
+            {
+              "label": "Helpers",
+              "value": "helpers"
+            },
+            {
+              "label": "Supervisors",
+              "value": "supervisors"
+            }
+          ]
+        },
+        "slices": [
+          {
+            "dimensions": {
+              "workforce-type": [
+                "drivers",
+                "helpers",
+                "supervisors"
+              ]
+            },
+            "id": "on-duty",
+            "label": "On Duty",
+            "tone": "success",
+            "value": 422
+          },
+          {
+            "dimensions": {
+              "workforce-type": [
+                "drivers",
+                "helpers"
+              ]
+            },
+            "id": "late",
+            "label": "Late",
+            "tone": "lavender",
+            "value": 18
+          },
+          {
+            "dimensions": {
+              "workforce-type": [
+                "drivers",
+                "helpers"
+              ]
+            },
+            "id": "standby",
+            "label": "Standby",
+            "tone": "info",
+            "value": 24
+          },
+          {
+            "dimensions": {
+              "workforce-type": [
+                "drivers",
+                "helpers",
+                "supervisors"
+              ]
+            },
+            "id": "next-shift",
+            "label": "Next Shift",
+            "tone": "yellow",
+            "value": 148
+          },
+          {
+            "dimensions": {
+              "workforce-type": [
+                "helpers"
+              ]
+            },
+            "display": "03",
+            "id": "on-leave",
+            "label": "On Leave",
+            "tone": "danger",
+            "value": 3
+          }
+        ],
+        "tone": "neutral"
+      },
+      "id": "w-workforce-readiness",
+      "span": 6,
+      "title": "Workforce Readiness",
+      "type": "breakdown-strip"
+    },
     {
       "dataSource": {
         "ariaLabel": "Deployment compliance — reported head count as a percentage of planned head count for the selected date.",
@@ -279,69 +388,6 @@
       "span": 4,
       "title": "Deployment by Project",
       "type": "donut"
-    },
-    {
-      "dataSource": {
-        "ariaLabel": "Workforce readiness — operational staff distributed across on-duty, late, standby, next-shift and on-leave states for the selected date.",
-        "axis": {
-          "x": {
-            "min": 0,
-            "title": "Employees"
-          }
-        },
-        "categories": [
-          "Readiness"
-        ],
-        "legendPlacement": "bottom",
-        "orientation": "horizontal",
-        "series": [
-          {
-            "colorIndex": 1,
-            "data": [
-              486
-            ],
-            "id": "on-duty",
-            "label": "On Duty"
-          },
-          {
-            "colorIndex": 3,
-            "data": [
-              18
-            ],
-            "id": "late",
-            "label": "Late"
-          },
-          {
-            "colorIndex": 2,
-            "data": [
-              24
-            ],
-            "id": "standby",
-            "label": "Standby"
-          },
-          {
-            "colorIndex": 4,
-            "data": [
-              58
-            ],
-            "id": "next-shift",
-            "label": "Next Shift"
-          },
-          {
-            "colorIndex": 5,
-            "data": [
-              32
-            ],
-            "id": "on-leave",
-            "label": "On Leave"
-          }
-        ],
-        "subtitle": "Operational staff by deployment state (selected date)"
-      },
-      "id": "w-workforce-readiness",
-      "span": 12,
-      "title": "Workforce Readiness",
-      "type": "stacked-bar"
     },
     {
       "dataSource": {

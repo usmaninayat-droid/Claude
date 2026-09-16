@@ -26,6 +26,9 @@
     "TW_04_08": {
       "source": "tenant-native"
     },
+    "breakdown": {
+      "source": "tenant-native"
+    },
     "commercial": {
       "source": "tenant-native"
     },
@@ -35,25 +38,16 @@
     "deployment-dashboard": {
       "source": "tenant-native"
     },
-    "kpi-drivers": {
+    "idle": {
       "source": "tenant-native"
     },
-    "kpi-helpers": {
-      "source": "tenant-native"
-    },
-    "kpi-operational": {
-      "source": "tenant-native"
-    },
-    "kpi-pending-rostering": {
-      "source": "tenant-native"
-    },
-    "kpi-total-manpower": {
-      "source": "tenant-native"
-    },
-    "kpi-training-risk": {
+    "inactive": {
       "source": "tenant-native"
     },
     "late": {
+      "source": "tenant-native"
+    },
+    "maintenance": {
       "source": "tenant-native"
     },
     "msw": {
@@ -66,6 +60,9 @@
       "source": "tenant-native"
     },
     "on-leave": {
+      "source": "tenant-native"
+    },
+    "on-route": {
       "source": "tenant-native"
     },
     "onboard": {
@@ -95,6 +92,9 @@
     "training": {
       "source": "tenant-native"
     },
+    "vehicle-type": {
+      "source": "tenant-native"
+    },
     "view-deployment": {
       "source": "tenant-native"
     },
@@ -116,6 +116,9 @@
     "w-duty-mix": {
       "source": "tenant-native"
     },
+    "w-fleet-availability": {
+      "source": "tenant-native"
+    },
     "w-headcount": {
       "source": "tenant-native"
     },
@@ -123,6 +126,9 @@
       "source": "tenant-native"
     },
     "w-workforce-readiness": {
+      "source": "tenant-native"
+    },
+    "workforce-type": {
       "source": "tenant-native"
     }
   },

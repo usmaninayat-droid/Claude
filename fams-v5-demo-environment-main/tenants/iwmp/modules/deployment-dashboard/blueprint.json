@@ -7,7 +7,7 @@
     "singular": "Deployment Dashboard",
     "plural": "Deployment Dashboard"
   },
-  "description": "Manpower deployment insight \u2014 headcount, duty mix, deployment against requirement and the daily deployment sheet (RST-DSH).",
+  "description": "Manpower deployment insight — headcount, duty mix, deployment against requirement and the daily deployment sheet (RST-DSH).",
   "filterPills": [
     {
       "id": "pill-timeframe",
@@ -75,97 +75,206 @@
       ]
     }
   ],
-  "kpiStrip": [
+  "widgetGrid": [
     {
-      "id": "kpi-total-manpower",
-      "label": "Total Manpower",
-      "icon": "users",
-      "type": "stat",
-      "format": "integer",
-      "tone": "primary",
+      "id": "w-fleet-availability",
+      "title": "Fleet Availability",
+      "type": "breakdown-strip",
+      "span": 6,
       "dataSource": {
-        "kind": "static",
-        "value": 632
-      }
-    },
-    {
-      "id": "kpi-drivers",
-      "label": "Drivers",
-      "icon": "truck",
-      "type": "stat",
-      "format": "integer",
-      "tone": "info",
-      "valueSuffix": "HDD 168 \u00b7 LDD 64",
-      "dataSource": {
-        "kind": "static",
-        "value": 232
-      }
-    },
-    {
-      "id": "kpi-helpers",
-      "label": "Helpers",
-      "icon": "user",
-      "type": "stat",
-      "format": "integer",
-      "tone": "info",
-      "dataSource": {
-        "kind": "static",
-        "value": 400
-      }
-    },
-    {
-      "id": "kpi-operational",
-      "label": "Operational Staff",
-      "icon": "briefcase",
-      "type": "stat",
-      "format": "integer",
-      "tone": "primary",
-      "dataSource": {
-        "kind": "static",
-        "value": 618
-      }
-    },
-    {
-      "id": "kpi-pending-rostering",
-      "label": "Pending Rostering",
-      "icon": "calendar",
-      "type": "stat",
-      "format": "integer",
-      "tone": "warning",
-      "dataSource": {
-        "kind": "static",
-        "value": 12,
-        "variants": [
-          {
-            "when": {
-              "timeframe": "last-7-days"
+        "icon": "truck",
+        "tone": "neutral",
+        "scopeFilter": {
+          "id": "vehicle-type",
+          "label": "Vehicles",
+          "allLabel": "All Vehicles",
+          "options": [
+            {
+              "value": "compactor",
+              "label": "Compactors"
             },
-            "value": 34
+            {
+              "value": "skip-loader",
+              "label": "Skip Loaders"
+            },
+            {
+              "value": "bin-washer",
+              "label": "Bin Washers"
+            }
+          ]
+        },
+        "slices": [
+          {
+            "id": "on-route",
+            "label": "On Route",
+            "value": 271,
+            "tone": "success",
+            "dimensions": {
+              "vehicle-type": [
+                "compactor",
+                "skip-loader",
+                "bin-washer"
+              ]
+            }
           },
           {
-            "when": {
-              "timeframe": "last-30-days"
-            },
-            "value": 61
+            "id": "idle",
+            "label": "Idle",
+            "value": 19,
+            "tone": "lavender",
+            "dimensions": {
+              "vehicle-type": [
+                "compactor",
+                "skip-loader"
+              ]
+            }
+          },
+          {
+            "id": "standby",
+            "label": "Standby",
+            "value": 24,
+            "tone": "info",
+            "dimensions": {
+              "vehicle-type": [
+                "compactor",
+                "bin-washer"
+              ]
+            }
+          },
+          {
+            "id": "maintenance",
+            "label": "Maintenance",
+            "value": 10,
+            "tone": "yellow",
+            "dimensions": {
+              "vehicle-type": [
+                "compactor",
+                "skip-loader"
+              ]
+            }
+          },
+          {
+            "id": "breakdown",
+            "label": "Breakdown",
+            "value": 3,
+            "tone": "danger",
+            "display": "03",
+            "dimensions": {
+              "vehicle-type": [
+                "compactor"
+              ]
+            }
+          },
+          {
+            "id": "inactive",
+            "label": "Inactive",
+            "value": 1,
+            "tone": "neutral",
+            "display": "01",
+            "dimensions": {
+              "vehicle-type": [
+                "skip-loader"
+              ]
+            }
           }
-        ]
+        ],
+        "ariaLabel": "Fleet availability — 328 vehicles by operating state: on route, idle, standby, maintenance, breakdown and inactive."
       }
     },
     {
-      "id": "kpi-training-risk",
-      "label": "Training Pending & Expired",
-      "icon": "alert-triangle",
-      "type": "stat",
-      "format": "integer",
-      "tone": "danger",
-      "valueSuffix": "8 blocked",
+      "id": "w-workforce-readiness",
+      "title": "Workforce Readiness",
+      "type": "breakdown-strip",
+      "span": 6,
       "dataSource": {
-        "kind": "static",
-        "value": 27
+        "icon": "users",
+        "tone": "neutral",
+        "scopeFilter": {
+          "id": "workforce-type",
+          "label": "Workforce",
+          "allLabel": "All Workforce",
+          "options": [
+            {
+              "value": "drivers",
+              "label": "Drivers"
+            },
+            {
+              "value": "helpers",
+              "label": "Helpers"
+            },
+            {
+              "value": "supervisors",
+              "label": "Supervisors"
+            }
+          ]
+        },
+        "slices": [
+          {
+            "id": "on-duty",
+            "label": "On Duty",
+            "value": 422,
+            "tone": "success",
+            "dimensions": {
+              "workforce-type": [
+                "drivers",
+                "helpers",
+                "supervisors"
+              ]
+            }
+          },
+          {
+            "id": "late",
+            "label": "Late",
+            "value": 18,
+            "tone": "lavender",
+            "dimensions": {
+              "workforce-type": [
+                "drivers",
+                "helpers"
+              ]
+            }
+          },
+          {
+            "id": "standby",
+            "label": "Standby",
+            "value": 24,
+            "tone": "info",
+            "dimensions": {
+              "workforce-type": [
+                "drivers",
+                "helpers"
+              ]
+            }
+          },
+          {
+            "id": "next-shift",
+            "label": "Next Shift",
+            "value": 148,
+            "tone": "yellow",
+            "dimensions": {
+              "workforce-type": [
+                "drivers",
+                "helpers",
+                "supervisors"
+              ]
+            }
+          },
+          {
+            "id": "on-leave",
+            "label": "On Leave",
+            "value": 3,
+            "tone": "danger",
+            "display": "03",
+            "dimensions": {
+              "workforce-type": [
+                "helpers"
+              ]
+            }
+          }
+        ],
+        "ariaLabel": "Workforce readiness — 615 operational staff by deployment state: on duty, late, standby, next shift and on leave."
       }
-    }
-  ],
-  "widgetGrid": [
+    },
     {
       "id": "w-deployment-compliance",
       "title": "Deployment Compliance",
@@ -180,7 +289,7 @@
           "value": "95%",
           "caption": "Reported vs Planned"
         },
-        "ariaLabel": "Deployment compliance \u2014 reported head count as a percentage of planned head count for the selected date."
+        "ariaLabel": "Deployment compliance — reported head count as a percentage of planned head count for the selected date."
       }
     },
     {
@@ -271,70 +380,7 @@
             }
           }
         ],
-        "ariaLabel": "Deployment by project \u2014 reported head count split between the MSW and Commercial projects."
-      }
-    },
-    {
-      "id": "w-workforce-readiness",
-      "title": "Workforce Readiness",
-      "type": "stacked-bar",
-      "span": 12,
-      "dataSource": {
-        "orientation": "horizontal",
-        "subtitle": "Operational staff by deployment state (selected date)",
-        "categories": [
-          "Readiness"
-        ],
-        "series": [
-          {
-            "id": "on-duty",
-            "label": "On Duty",
-            "colorIndex": 1,
-            "data": [
-              486
-            ]
-          },
-          {
-            "id": "late",
-            "label": "Late",
-            "colorIndex": 3,
-            "data": [
-              18
-            ]
-          },
-          {
-            "id": "standby",
-            "label": "Standby",
-            "colorIndex": 2,
-            "data": [
-              24
-            ]
-          },
-          {
-            "id": "next-shift",
-            "label": "Next Shift",
-            "colorIndex": 4,
-            "data": [
-              58
-            ]
-          },
-          {
-            "id": "on-leave",
-            "label": "On Leave",
-            "colorIndex": 5,
-            "data": [
-              32
-            ]
-          }
-        ],
-        "axis": {
-          "x": {
-            "title": "Employees",
-            "min": 0
-          }
-        },
-        "legendPlacement": "bottom",
-        "ariaLabel": "Workforce readiness \u2014 operational staff distributed across on-duty, late, standby, next-shift and on-leave states for the selected date."
+        "ariaLabel": "Deployment by project — reported head count split between the MSW and Commercial projects."
       }
     },
     {
@@ -377,7 +423,7 @@
           }
         },
         "showValues": true,
-        "ariaLabel": "Headcount breakdown \u2014 total, planned, reported, absenteeism, weekly off, vacation and available head counts for the selected date."
+        "ariaLabel": "Headcount breakdown — total, planned, reported, absenteeism, weekly off, vacation and available head counts for the selected date."
       }
     },
     {
@@ -386,7 +432,7 @@
       "type": "area",
       "span": 6,
       "dataSource": {
-        "subtitle": "Reported head count \u2014 last 14 days",
+        "subtitle": "Reported head count — last 14 days",
         "categories": [
           "1",
           "2",
@@ -436,7 +482,7 @@
             "min": 0
           }
         },
-        "ariaLabel": "Daily deployment trend \u2014 reported head count over the last 14 days."
+        "ariaLabel": "Daily deployment trend — reported head count over the last 14 days."
       }
     },
     {
@@ -492,7 +538,7 @@
           }
         },
         "legendPlacement": "bottom",
-        "ariaLabel": "Deployment by service line \u2014 planned versus reported head count per service line."
+        "ariaLabel": "Deployment by service line — planned versus reported head count per service line."
       }
     },
     {
@@ -725,7 +771,7 @@
             }
           }
         ],
-        "ariaLabel": "Daily deployment sheet \u2014 route, vehicle category, shift, district, driver, helper crew and punch status."
+        "ariaLabel": "Daily deployment sheet — route, vehicle category, shift, district, driver, helper crew and punch status."
       }
     }
   ],
