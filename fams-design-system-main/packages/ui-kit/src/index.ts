@@ -293,6 +293,7 @@ export {
   StatTile,
   type StatTileProps,
   type StatTileTone,
+  type StatTileTrend,
 } from './composites/StatTile'
 export {
   StatusBreakdownCard,

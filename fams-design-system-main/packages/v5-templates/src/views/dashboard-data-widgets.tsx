@@ -262,6 +262,8 @@ export function StatTileGroupWidget(props: DashboardWidgetRenderProps) {
               key={tile.id ?? index}
               label={tile.label}
               value={typeof tile.value === 'number' ? tile.value.toLocaleString('en-US') : tile.value}
+              target={tile.target === undefined ? undefined : typeof tile.target === 'number' ? tile.target.toLocaleString('en-US') : tile.target}
+              trend={tile.trend}
               caption={tile.caption}
               tone={tile.tone}
               icon={resolveWidgetIcon(tile.icon)}

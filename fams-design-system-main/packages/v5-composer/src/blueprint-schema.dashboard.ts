@@ -112,9 +112,13 @@ export interface DashboardStatTile {
   label: string
   /** Pre-formatted by the caller, or a number the renderer formats with the widget's `format`. */
   value: number | string
-  /** Muted supporting line under the value. */
+  /** Denominator drawn after the value as `/target` (`270/292`). */
+  target?: number | string
+  /** Same-row delta at the inline-end (`+12 vs Yest.`). Ignored when `target` is set. */
+  trend?: { direction?: 'up' | 'down' | 'flat'; value: string; note?: string }
+  /** Optional muted third line under the label. */
   caption?: string
-  /** Accent bar + icon-chip tone. Default `'neutral'`. */
+  /** Accent bar tone. Default `'neutral'` (grey) — a status tone only where the number means something. */
   tone?: DashboardStatTileTone
   /** Named lucide icon, kebab-case. Omit for the icon-less tile. */
   icon?: string

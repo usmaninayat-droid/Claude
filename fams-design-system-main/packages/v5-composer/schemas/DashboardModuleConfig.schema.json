@@ -778,6 +778,17 @@
               "id": { "type": "string" },
               "label": { "type": "string" },
               "value": { "type": ["string", "number"] },
+              "target": { "type": ["string", "number"], "description": "Denominator drawn after the value as /target (270/292)." },
+              "trend": {
+                "type": "object",
+                "required": ["value"],
+                "properties": {
+                  "direction": { "enum": ["up", "down", "flat"] },
+                  "value": { "type": "string" },
+                  "note": { "type": "string" }
+                },
+                "description": "Same-row delta at the inline-end (+12 vs Yest.). Ignored when target is set."
+              },
               "caption": { "type": "string" },
               "icon": { "type": "string", "description": "Named lucide icon, kebab-case. Omit for the icon-less tile." },
               "tone": {

@@ -266,8 +266,8 @@ function KpiRegion({
               data-widget-id={tile.id}
               label={tile.label}
               value={value}
-              caption={tile.valueSuffix ?? source.valueSuffix}
-              icon={resolveWidgetIcon(tile.icon ?? source.icon)}
+              target={tile.type === 'stat-with-target' && source.target !== undefined ? formatKpiValue(source.target, tile.format) : undefined}
+              trend={source.trend}
               tone={tone}
             />
           )

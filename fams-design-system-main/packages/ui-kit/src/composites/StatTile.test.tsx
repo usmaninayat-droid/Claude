@@ -4,36 +4,42 @@ import { Truck } from '../icons'
 import { StatTile } from './StatTile'
 
 describe('StatTile', () => {
-  it('renders label, value and caption', () => {
-    render(<StatTile label="Total Manpower" value="788" caption="Employee master · all statuses" tone="info" />)
-    expect(screen.getByText('Total Manpower')).toBeInTheDocument()
-    expect(screen.getByText('788')).toBeInTheDocument()
-    expect(screen.getByText('Employee master · all statuses')).toBeInTheDocument()
+  it('renders the value first and the label under it', () => {
+    const { container } = render(<StatTile label="Scheduled Routes" value="292" />)
+    const value = container.querySelector('[data-slot="stat-tile-value"]')
+    const label = container.querySelector('[data-slot="stat-tile-label"]')
+    expect(value).toHaveTextContent('292')
+    expect(label).toHaveTextContent('Scheduled Routes')
+    expect(value!.compareDocumentPosition(label!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   })
 
-  it('paints the accent bar from the tone', () => {
-    const { container } = render(<StatTile label="Drivers" value="294" tone="success" />)
-    const bar = container.querySelector('[aria-hidden].h-\\[3px\\]')
-    expect(bar).toHaveClass('bg-success')
-    expect(container.querySelector('[data-slot="stat-tile"]')).toHaveAttribute('data-tone', 'success')
-  })
-
-  it('renders a tone-tinted icon chip only when an icon is given', () => {
-    const { container, rerender } = render(<StatTile label="Drivers" value="294" tone="lavender" icon={Truck} />)
-    const chip = container.querySelector('[data-slot="stat-tile-icon"]')
-    expect(chip).toHaveClass('text-accent-family-lavender-normal')
-    rerender(<StatTile label="Weekly Off" value="105" tone="neutral" />)
-    expect(container.querySelector('[data-slot="stat-tile-icon"]')).not.toBeInTheDocument()
-  })
-
-  it('defaults to the neutral tone', () => {
-    const { container } = render(<StatTile label="Total Head Count" value="764" />)
+  it('paints a grey inline-start accent by default and a status tone on request', () => {
+    const { container, rerender } = render(<StatTile label="Ongoing Routes" value="149" />)
+    const accent = () => container.querySelector('[data-slot="stat-tile-accent"]')
+    expect(accent()).toHaveClass('bg-gray-300', 'start-0')
     expect(container.querySelector('[data-slot="stat-tile"]')).toHaveAttribute('data-tone', 'neutral')
-    expect(container.querySelector('[aria-hidden].h-\\[3px\\]')).toHaveClass('bg-gray-300')
+    rerender(<StatTile label="Delayed Routes" value="24" tone="warning" />)
+    expect(accent()).toHaveClass('bg-warning')
   })
 
-  it('omits the caption node when none is given', () => {
-    const { container } = render(<StatTile label="A" value="1" />)
+  it('renders a same-row trend coloured by direction', () => {
+    render(<StatTile label="Scheduled Routes" value="292" trend={{ value: '+12', note: 'vs Yest.' }} />)
+    expect(screen.getByText('+12')).toHaveClass('text-success')
+    expect(screen.getByText('vs Yest.')).toBeInTheDocument()
+  })
+
+  it('renders a denominator after the value and suppresses the trend when both are given', () => {
+    const { container } = render(<StatTile label="Dispatched Routes" value="270" target="292" trend={{ value: '+1' }} />)
+    expect(container.querySelector('[data-slot="stat-tile-target"]')).toHaveTextContent('/292')
+    expect(container.querySelector('[data-slot="stat-tile-trend"]')).not.toBeInTheDocument()
+  })
+
+  it('renders an optional icon and caption, and omits both by default', () => {
+    const { container, rerender } = render(<StatTile label="A" value="1" icon={Truck} caption="note" />)
+    expect(container.querySelector('[data-slot="stat-tile-icon"]')).toBeInTheDocument()
+    expect(container.querySelector('[data-slot="stat-tile-caption"]')).toHaveTextContent('note')
+    rerender(<StatTile label="A" value="1" />)
+    expect(container.querySelector('[data-slot="stat-tile-icon"]')).not.toBeInTheDocument()
     expect(container.querySelector('[data-slot="stat-tile-caption"]')).not.toBeInTheDocument()
   })
 })

@@ -3,20 +3,19 @@ import type { LucideIcon } from '../icons'
 import { cn } from '../lib/cn'
 
 /**
- * StatTile — a stat card with a coloured top accent border, an uppercase label
- * with an optional trailing icon chip, a large value, and a muted caption.
- * [L3 composite]
+ * StatTile — the compact "Metrics Card" (Tadweer June Release 2538:120579):
+ * a 3px inline-start accent border, the VALUE first (20/26 semibold) with an
+ * optional same-row trend (`+12 vs Yest.`) or denominator (`/292`), and the
+ * label underneath (14/20 medium). [L3 composite]
  *
- * The Tadweer "Deployment Dashboard" KPI/headcount tile (June Release): the
- * KPI strip uses the icon-bearing form, the headcount-breakdown panel uses the
- * icon-less form — one anatomy, so both read as the same object. Distinct from
- * `KpiTile` (icon-on-the-left disc, no accent border — the general dashboard
- * stat) — this is the accent-topped card the deployment surface draws.
+ * The accent is grey by default and takes a status tone only when the number
+ * MEANS something (a delayed count in warning) — so a row of tiles reads as one
+ * calm strip with the exception picked out, exactly as the design draws it.
+ * Distinct from `KpiTile` (icon disc, label-first): this is the dense,
+ * value-first card the deployment KPI strip and headcount breakdown use.
  *
- * The accent bar and icon-chip tint are the SAME closed tone set the dashboard
- * charts use (semantic status plus the `lavender`/`yellow`/`dark` categorical
- * accents), driven by `tone` — never a raw hex (hard rule 2). State-agnostic
- * (rule 8): `value` and `caption` are pre-formatted by the caller.
+ * State-agnostic (rule 8): `value`, `target`, `trend.value`, `caption` are
+ * pre-formatted by the caller. Tones are the closed token set — never a hex.
  *
  * @usage-index stat-tile
  */
@@ -31,7 +30,7 @@ export type StatTileTone =
   | 'neutral'
   | 'dark'
 
-/** Top accent bar fill per tone. Static lookup so Tailwind sees every class. */
+/** Inline-start accent bar per tone. Static lookup so Tailwind sees every class. */
 const ACCENT_CLASSES: Record<StatTileTone, string> = {
   primary: 'bg-primary',
   success: 'bg-success',
@@ -44,69 +43,74 @@ const ACCENT_CLASSES: Record<StatTileTone, string> = {
   dark: 'bg-gray-700',
 }
 
-/** Icon-chip tint (low-opacity fill + solid ink) per tone. */
-const ICON_CHIP_CLASSES: Record<StatTileTone, string> = {
-  primary: 'bg-primary/10 text-primary',
-  success: 'bg-success/10 text-success',
-  warning: 'bg-warning/10 text-warning',
-  danger: 'bg-destructive/10 text-destructive',
-  info: 'bg-info/10 text-info',
-  lavender: 'bg-accent-family-lavender-normal/10 text-accent-family-lavender-normal',
-  yellow: 'bg-accent-family-yellow-normal/10 text-accent-family-yellow-dark',
-  neutral: 'bg-muted text-muted-foreground',
-  dark: 'bg-gray-700/10 text-gray-700',
+/** Trend ink — the design colours the delta by direction, never by tile tone. */
+const TREND_INK: Record<'up' | 'down' | 'flat', string> = {
+  up: 'text-success',
+  down: 'text-destructive',
+  flat: 'text-muted-foreground',
+}
+
+export interface StatTileTrend {
+  /** Pre-formatted delta, e.g. `"+12"`. */
+  value: ReactNode
+  /** Comparison caption after the delta, e.g. `"vs Yest."`. */
+  note?: ReactNode
+  /** Colours the delta. Default `'up'`. */
+  direction?: 'up' | 'down' | 'flat'
 }
 
 export interface StatTileProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
-  /** Small uppercase label above the value. */
+  /** Label under the value. */
   label: ReactNode
-  /** The big value. Pre-formatted by the caller (e.g. `"788"`, `"7:45 hrs"`). */
+  /** The big value. Pre-formatted by the caller (e.g. `"292"`, `"7:45 hrs"`). */
   value: ReactNode
-  /** Muted supporting line under the value, e.g. `"Employee master · all statuses"`. */
+  /** Denominator rendered right after the value as `/target` in muted 16px (`270/292`). */
+  target?: ReactNode
+  /** Same-row delta at the inline-end (`+12 vs Yest.`). Ignored when `target` is set — the design draws one or the other. */
+  trend?: StatTileTrend
+  /** Optional muted third line under the label. Omit for the two-line design form. */
   caption?: ReactNode
-  /** Trailing icon, rendered in a tone-tinted rounded-square chip. Omit for the icon-less form. */
+  /** Optional trailing glyph on the value row. Omit for the design's icon-less form. */
   icon?: LucideIcon
-  /** Accent bar + icon-chip tone. Default `'neutral'`. */
+  /** Accent bar tone. Default `'neutral'` (grey) — reserve a status tone for the number that means something. */
   tone?: StatTileTone
 }
 
 export const StatTile = forwardRef<HTMLDivElement, StatTileProps>(
-  ({ className, label, value, caption, icon: Icon, tone = 'neutral', ...props }, ref) => {
+  ({ className, label, value, target, trend, caption, icon: Icon, tone = 'neutral', ...props }, ref) => {
+    const showTrend = trend !== undefined && (target === undefined || target === null)
     return (
       <div
         ref={ref}
         data-slot="stat-tile"
         data-tone={tone}
-        className={cn('flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card', className)}
+        className={cn('relative flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card', className)}
         {...props}
       >
-        <span aria-hidden className={cn('h-[3px] w-full shrink-0', ACCENT_CLASSES[tone])} />
-        <div className="flex min-w-0 flex-1 flex-col gap-2 p-4">
-          <div className="flex min-w-0 items-start justify-between gap-2">
-            <span
-              data-slot="stat-tile-label"
-              className="min-w-0 truncate text-body-xs font-semibold uppercase tracking-wide text-muted-foreground"
-            >
-              {label}
-            </span>
-            {Icon ? (
-              <span
-                aria-hidden
-                data-slot="stat-tile-icon"
-                className={cn(
-                  'inline-flex size-8 shrink-0 items-center justify-center rounded-md [&_svg]:size-4 [&_svg]:shrink-0',
-                  ICON_CHIP_CLASSES[tone],
-                )}
-              >
-                <Icon />
+        <span aria-hidden data-slot="stat-tile-accent" className={cn('absolute inset-y-0 start-0 w-[3px]', ACCENT_CLASSES[tone])} />
+        <div className="flex min-w-0 flex-1 flex-col gap-1 py-3 pe-3 ps-[0.875rem]">
+          <div className="flex min-w-0 items-center justify-between gap-2">
+            {/* `<bdi>`: a numeral plus a qualifier — bidi isolation keeps the pair in order on an RTL line. */}
+            <bdi data-slot="stat-tile-value" className="min-w-0 truncate text-h6 font-semibold leading-[1.3] text-gray-800">
+              {value}
+              {target !== undefined && target !== null ? (
+                <span data-slot="stat-tile-target" className="text-body-md font-semibold leading-6 text-muted-foreground">
+                  /{target}
+                </span>
+              ) : null}
+            </bdi>
+            {showTrend ? (
+              <span data-slot="stat-tile-trend" className="flex shrink-0 items-center gap-1 whitespace-nowrap">
+                <bdi className={cn('text-body-xs font-semibold leading-[14px]', TREND_INK[trend.direction ?? 'up'])}>{trend.value}</bdi>
+                {trend.note ? <span className="text-body-xs font-medium leading-[18px] text-gray-600">{trend.note}</span> : null}
               </span>
+            ) : Icon ? (
+              <Icon aria-hidden data-slot="stat-tile-icon" className="size-4 shrink-0 text-muted-foreground" />
             ) : null}
           </div>
-          {/* `<bdi>`: a stat value is a numeral that may carry a unit; an RTL
-              line would otherwise reorder the pair. */}
-          <bdi data-slot="stat-tile-value" className="text-h4 font-bold leading-tight text-foreground">
-            {value}
-          </bdi>
+          <span data-slot="stat-tile-label" className="min-w-0 truncate text-body-sm font-medium leading-5 text-gray-600">
+            {label}
+          </span>
           {caption ? (
             <span data-slot="stat-tile-caption" className="text-body-xs leading-normal text-muted-foreground">
               {caption}
