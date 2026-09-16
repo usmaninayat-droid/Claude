@@ -23,7 +23,7 @@ page.on('console', m => { if (m.type() === 'error') errors.push(m.text().slice(0
 page.on('pageerror', e => errors.push('PAGEERROR ' + e.message.slice(0, 200)))
 
 await page.goto(`${base}/contract-management?tenant=iwmp&persona=u_admin`, { waitUntil: 'load', timeout: 90000 })
-const fr = page.frameLocator('iframe[title="Contract Management"]')
+const fr = page.frameLocator('iframe[title="Project Management"]')
 try {
   await fr.locator('.card').first().waitFor({ timeout: 60000 })
 } catch (e) {
@@ -71,7 +71,7 @@ await shot(page, 'basic')
 const stepLabels = await fr.locator('.st-l').allTextContents()
 await fr.locator('#wzNext').click(); await fr.locator('#mapFrame').waitFor(); await page.waitForTimeout(1500)
 await shot(page, 'zone')
-const names = ['vehicles', 'equipment', 'workforce', 'bins', 'service', 'kpi', 'attachments', 'summary']
+const names = ['vehicles', 'equipment', 'workforce', 'service', 'kpi', 'attachments', 'summary']
 for (const n of names) {
   await fr.locator('#wzNext').click(); await page.waitForTimeout(400)
   await shot(page, `step-${n}`)
@@ -84,8 +84,8 @@ await shot(page, 'picker-vehicles')
 await fr.locator('#pkAdd').click(); await page.waitForTimeout(300)
 const cfgCards = await fr.locator('.wz-cfg').count()
 await shot(page, 'config-vehicles')
-// remaining pickers: equipment (search + 20px icons), workforce (search + person icon), bins (title only)
-const pickers = { equipment: 'rideon', workforce: 'supervisor', bins: 'b3' }
+// remaining pickers: equipment (search + 20px icons), workforce (search + person icon)
+const pickers = { equipment: 'rideon', workforce: 'supervisor' }
 for (const [key, first] of Object.entries(pickers)) {
   await fr.locator('#wzNext').click(); await page.waitForTimeout(500)
   await fr.locator(`[data-pkopen="${key}"]`).click(); await fr.locator('#wzPicker').waitFor()
@@ -94,13 +94,15 @@ for (const [key, first] of Object.entries(pickers)) {
   await fr.locator('#pkAdd').click(); await page.waitForTimeout(300)
   await shot(page, `config-${key}`)
 }
-// services: pick three, then exercise Weekly (frequency stepper) and Adhoc (response time)
+// service lines: pick three, then change a frequency, an action and toggle a collection day
 await fr.locator('#wzNext').click(); await page.waitForTimeout(400)
 await fr.locator('[data-pkopen="service"]').click(); await fr.locator('#wzPicker').waitFor()
 for (const id of ['svc0', 'svc1', 'svc2']) await fr.locator(`[data-oid="${id}"]`).click()
 await shot(page, 'picker-service')
 await fr.locator('#pkAdd').click(); await page.waitForTimeout(300)
-await fr.locator('[data-si="1"][data-sk="recurrence"]').selectOption('Weekly'); await page.waitForTimeout(300)
+await fr.locator('[data-si="1"][data-sk="frequency"]').selectOption('Weekly'); await page.waitForTimeout(200)
+await fr.locator('[data-si="0"][data-day="Tue"]').click(); await page.waitForTimeout(200)
+const tueOn = await fr.locator('[data-si="0"][data-day="Tue"]').getAttribute('aria-pressed')
 await fr.locator('[data-si="2"][data-sk="action"]').selectOption('Adhoc'); await page.waitForTimeout(300)
 const svcCards = await fr.locator('.svc-card').count()
 await shot(page, 'config-service')
@@ -114,7 +116,7 @@ await fr.locator('#wzNext').click(); await page.waitForTimeout(300); await shot(
 await fr.locator('#wzNext').click(); await page.waitForTimeout(500); await shot(page, 'summary-top')
 await fr.locator('#wzBody').evaluate(el => { el.scrollTop = el.scrollHeight })
 await page.waitForTimeout(300); await shot(page, 'summary-bottom')
-console.log(JSON.stringify({ svcCards, kpiBefore, kpiAfter }))
+console.log(JSON.stringify({ svcCards, tueOn, kpiBefore, kpiAfter }))
 await fr.locator('#wzClose').click()
 
 console.log(JSON.stringify({ afterSearch, stepLabels, cfgCards, errors }, null, 1))

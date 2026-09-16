@@ -286,7 +286,14 @@ img{display:block}
 .svc-card .c-head{display:flex;align-items:center;justify-content:space-between;padding-top:4px}
 .svc-card .c-name{font-size:18px;font-weight:700;color:#000;line-height:normal}
 .svc-card .c-fields{display:flex;gap:20px}
+.svc-card .c-fields.top{align-items:flex-start}
 .svc-card .c-fields .f{flex:1}
+/* Collection-days field (7218:15230): 12 SemiBold label, gap 8, 42×30 pills r999 gap 6 */
+.svc-card .days{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
+.svc-card .days-l{font-size:12px;line-height:18px;font-weight:600;color:var(--g400);white-space:nowrap}
+.svc-card .days-row{display:flex;gap:6px}
+.svc-card .day{width:42px;height:30px;border-radius:999px;border:1px solid var(--g300);background:var(--g50);font-size:12px;line-height:18px;font-weight:600;color:var(--g800);display:flex;align-items:center;justify-content:center}
+.svc-card .day.on{background:var(--primary);border-color:var(--primary);color:#fff}
 .f .f-in.ro{pointer-events:none}
 /* KPI hint pill (2111:4212): #dffff2 on primary-200, r18, pl10 pr12 py8, Medium 16/19 #344054 */
 .wz-hint{display:inline-flex;align-items:flex-start;gap:6px;background:#dffff2;border:1px solid var(--primary-200);border-radius:18px;padding:8px 12px 8px 10px;font-size:16px;line-height:19px;font-weight:500;color:var(--g700);margin-bottom:24px;max-width:100%}

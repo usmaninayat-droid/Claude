@@ -97,8 +97,9 @@ const STEP_DEFS = [
   { key:'vehicles',    n:'STEP 3',     label:'Add Vehicles',                  icon:'truck-02' },
   { key:'equipment',   n:'STEP 5',     label:'Add Equipment',                 icon:'tool-02' },
   { key:'workforce',   n:'STEP 6',     label:'Add Workforce',                 icon:'users-02' },
-  { key:'bins',        n:'STEP 7',     label:'Add Bins',                      icon:'trash-03' },
-  { key:'service',     n:'STEP 8',     label:'Service & Frequency Selection', icon:'coins-hand' },
+  // Figma (Launch Pad 7205:11761) folds Add Bins + Services & Frequencies into
+  // ONE "Service Lines" step and keeps the rail's own numbering (no STEP 7).
+  { key:'service',     n:'STEP 8',     label:'Service Lines',                 icon:'coins-hand' },
   { key:'kpi',         n:'STEP 9',     label:'KPI Targets',                   icon:'target-04' },
   { key:'attachments', n:'STEP 10',    label:'Attachments',                   icon:'attachment-01' },
   { key:'summary',     n:'FINAL STEP', label:'Summary',                       icon:'align-left' },
@@ -153,7 +154,7 @@ const EMPTY_TXT = {
   equipment:{ t:'Add Equipment',         s:'Add the required types & number of equipment' },
   workforce:{ t:'Add Workforce',         s:'Add the required types & number of workforce' },
   bins:     { t:'Add Bin',               s:'Add the required types & number of bins' },
-  service:  { t:'Add Services & Frequencies', s:'Add the services and there frequencies included in this plan.' },
+  service:  { t:'Add Service Lines',          s:'Add the service lines, their bins and collection frequency included in this plan.' },
 };
 
 let draft = null, wzIndex = 0;
@@ -380,34 +381,57 @@ function commitPicker(catalog) {
   closePicker(); renderWizard();
 }
 
-/* STEP 8 — Services & Frequencies (2111:3808): one card per service — Action · Recurrence · Frequency | Response Time */
+/* STEP 8 — Service Lines (Launch Pad 7205:11761): one card per service line —
+   row 1: Bin Type · Required Quantity · Waste Type
+   row 2: Action (plus-square) · Frequency (clock-fast-forward) · Collection days pills */
 const svcSelect = (i, key, label, icon, val, options, chev = 'chevron-down') =>
-  `<label class="f">${ic(icon, 20, 'lead')}<span class="f-col"><span class="f-lbl md">${label}</span>
+  `<label class="f">${icon ? ic(icon, 20, 'lead') : ''}<span class="f-col"><span class="f-lbl md">${label}</span>
     <select class="f-sel" data-si="${i}" data-sk="${key}">${options.map(o => `<option${o === val ? ' selected' : ''}>${esc(o)}</option>`).join('')}</select></span>${ic(chev, 12, 'trail')}</label>`;
+const svcInput = (i, key, label, val) =>
+  `<label class="f"><span class="f-col"><span class="f-lbl md">${label}</span>
+    <input class="f-in" type="text" inputmode="numeric" data-si="${i}" data-sk="${key}" value="${esc(val)}"></span></label>`;
+const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const WASTE_TYPES = ['Recyclable', 'Non-Recycleable', 'Mixed', 'Green Waste', 'Bulky'];
+const FREQUENCIES = ['Daily', '2x weekly', '3x weekly', 'Weekly', 'Fortnightly', 'Monthly'];
 STEP_RENDER.service = () => {
   const items = draft.services;
-  const headRight = `<button class="wz-addnew" type="button" data-pkopen="service">Add New${ic('chevron-down', 16)}</button>`;
+  const headRight = `<button class="wz-addnew" type="button" data-pkopen="service">Add Service${ic('chevron-down', 16)}</button>`;
   const body = !items.length
     ? emptyState('service')
     : items.map((s, i) => {
-        s.action = s.action || 'Scheduled'; s.recurrence = s.recurrence || 'Daily'; s.frequency = s.frequency || '3 times'; s.response = s.response || '24 hours';
-        const fields = [svcSelect(i, 'action', 'Action', 'plus-square', s.action, ['Scheduled', 'Adhoc'])];
-        if (s.action === 'Adhoc') fields.push(svcSelect(i, 'response', 'Response Time', 'clock', s.response, ['12 hours', '24 hours', '48 hours', '72 hours', '1 week']));
-        else {
-          fields.push(svcSelect(i, 'recurrence', 'Recurrence', 'calendar', s.recurrence, ['Daily', 'Weekly', 'Monthly', 'Quarterly']));
-          if (s.recurrence === 'Weekly' || s.recurrence === 'Monthly') fields.push(svcSelect(i, 'frequency', 'Frequency', 'clock-fast-forward', s.frequency, ['1 time', '2 times', '3 times', '4 times', '5 times', '6 times'], 'chevron-selector-vertical'));
-        }
+        s.bin = s.bin || CAT.bins[0].name; s.qty = s.qty ?? '20'; s.waste = s.waste || 'Non-Recycleable';
+        s.action = s.action || 'Scheduled'; s.frequency = s.frequency || '3x weekly';
+        if (!s.days) s.days = ['Mon', 'Wed', 'Fri'];
+        const row1 = [
+          svcSelect(i, 'bin', 'Bin Type', null, s.bin, CAT.bins.map(b => b.name)),
+          svcInput(i, 'qty', 'Required Quantity', s.qty),
+          svcSelect(i, 'waste', 'Waste Type', null, s.waste, WASTE_TYPES),
+        ];
+        const row2 = [
+          svcSelect(i, 'action', 'Action', 'plus-square', s.action, ['Scheduled', 'Adhoc']),
+          svcSelect(i, 'frequency', 'Frequency', 'clock-fast-forward', s.frequency, FREQUENCIES),
+          `<div class="days"><span class="days-l">Collection days</span><div class="days-row">${DAYS.map(d =>
+            `<button type="button" class="day${s.days.includes(d) ? ' on' : ''}" data-si="${i}" data-day="${d}" aria-pressed="${s.days.includes(d)}">${d}</button>`).join('')}</div></div>`,
+        ];
         return `<div class="svc-card">
           <div class="c-head"><div class="c-name">${esc(s.name)}</div><span class="c-remove" data-srm="${i}" title="Remove">${ic('trash-03', 16)}</span></div>
-          <div class="c-fields">${fields.join('')}</div>
+          <div class="c-fields">${row1.join('')}</div>
+          <div class="c-fields top">${row2.join('')}</div>
         </div>`;
       }).join('');
-  return { title:'Services and Frequencies', sub:"Let's get started by filling in your program's core information.", headRight, body,
+  return { title:'Service Lines', sub:"Let's get started by filling in your program's core information.", headRight, body,
     after() {
       wirePicker('service');
-      document.querySelectorAll('#wzBody [data-si]').forEach(el => el.addEventListener('change', e => {
-        const s = draft.services[+e.target.dataset.si]; s[e.target.dataset.sk] = e.target.value;
-        if (e.target.dataset.sk !== 'frequency' && e.target.dataset.sk !== 'response') renderWizard();
+      document.querySelectorAll('#wzBody [data-si][data-sk]').forEach(el => {
+        const save = e => { draft.services[+e.target.dataset.si][e.target.dataset.sk] = e.target.value; };
+        el.addEventListener('change', save); el.addEventListener('input', save);
+      });
+      document.querySelectorAll('#wzBody .day').forEach(el => el.addEventListener('click', e => {
+        const svc = draft.services[+e.currentTarget.dataset.si], d = e.currentTarget.dataset.day;
+        // Keep weekday order stable regardless of click order.
+        svc.days = svc.days.includes(d) ? svc.days.filter(x => x !== d) : DAYS.filter(x => x === d || svc.days.includes(x));
+        const on = svc.days.includes(d);
+        e.currentTarget.classList.toggle('on', on); e.currentTarget.setAttribute('aria-pressed', String(on));
       }));
       document.querySelectorAll('#wzBody [data-srm]').forEach(el => el.addEventListener('click', e => { draft.services.splice(+e.currentTarget.dataset.srm, 1); renderWizard(); }));
     } };
@@ -505,8 +529,6 @@ function sumTable(cols, rows, cls = '') {
     <div class="stb">${rows.map(r => `<div class="str" style="grid-template-columns:${tpl}">${r.map((c, i) => `<span class="${i === 0 ? 'n' : ''}">${c}</span>`).join('')}</div>`).join('')}</div></div>`;
 }
 const kv = (k, v) => `<div class="kv"><span class="k">${k}</span><span class="v">${esc(v || '—')}</span></div>`;
-const SVC_TAGS = ['Residential MSW Collection', 'Non-Residential MSW Collection'];
-const SVC_OPS = ['Residential Non-Recyclable MSW Collection', 'Residential Recyclable MSW Collection', 'Non-Recyclable & Recyclable MSW Collection', 'Public Place MSW Collection'];
 STEP_RENDER.summary = () => {
   const b = draft.basic;
   const basicGrid = `<div class="sum-grid"><div>${kv('Project Title', b.title)}${kv('Project Type', b.type)}${kv('Start Date', b.start)}${kv('Project Manager', b.manager)}</div>
@@ -517,16 +539,15 @@ STEP_RENDER.summary = () => {
   const vehRows = rowsOf('vehicles', (n, c, it) => [String(n), typeCell('vehicles', c.name), esc(c.capacity || '—'), esc(c.make || '—'), esc(it.qty || '—')]);
   const eqpRows = rowsOf('equipment', (n, c, it) => [String(n), typeCell('equipment', c.name), esc(it.make || c.make || 'TBA'), esc(it.qty || '—')]);
   const wfRows  = rowsOf('workforce', (n, c, it) => [String(n), typeCell('workforce', c.name), esc(it.exp || '—'), esc(it.qty || '—')]);
-  const binRows = rowsOf('bins', (n, c, it) => [String(n), typeCell('bins', c.name), esc(it.qty || '—')]);
   const lot = `${kv('Project Title', b.title || 'Lot 1, Abu Dhabi')}
     <div class="sum-map"><div class="map-frame" id="sumMapFrame"><div class="map-canvas" id="sumMapCanvas"><img class="map-img" src="assets/zone-map.png" alt=""><div class="map-poly"><img src="assets/zone-polygon.svg" alt=""></div></div>
       <button class="map-layers" type="button" aria-label="Map layers"><img src="assets/layers-thumb.png" alt="">${ic('layers-three-01', 20)}</button>
       <div class="map-ctl"><div class="map-zoom"><button type="button" aria-label="Zoom in">${ic('plus', 20)}</button><span class="div"></span><button type="button" aria-label="Zoom out">${ic('minus', 20)}</button></div><button class="map-max" type="button" aria-label="Full screen">${ic('maximize-02', 20)}</button></div>
     </div></div>`;
-  const tag = i => `<span class="tagc ${i % 2 ? 'blue' : 'amber'}">${SVC_TAGS[i % 2]}</span><span class="tagc more">+1</span>`;
-  const svcRows = draft.services.length ? draft.services.map((s, i) => [String(i + 1), esc(s.name), tag(i)]) : none(3, 'No services added');
-  const freqOf = s => s.action === 'Adhoc' ? `${s.response || '24 hours'} Response Time` : (s.recurrence === 'Weekly' || s.recurrence === 'Monthly') ? `${(s.frequency || '3 times').replace(' times', 'x').replace(' time', 'x')} ${s.recurrence}` : (s.recurrence || 'Daily');
-  const sfRows = draft.services.length ? draft.services.map((s, i) => [String(i + 1), esc(s.name), s.action === 'Adhoc' ? '–' : esc(SVC_OPS[i % SVC_OPS.length]), esc(s.action || 'Scheduled'), esc(freqOf(s))]) : none(5, 'No services added');
+  // Service Lines — mirrors the step's card fields one row per service line.
+  const slRows = draft.services.length
+    ? draft.services.map((s, i) => [String(i + 1), `${ic('trash-03', 16)}${esc(s.name)}`, esc(s.bin || '—'), esc(s.qty || '—'), esc(s.waste || '—'), esc(s.action || 'Scheduled'), esc(s.frequency || 'Daily'), esc((s.days || []).join(' · ') || '—')])
+    : none(8, 'No service lines added');
   const kpiTarget = k => k.mode === 'yearly' ? `${k.target}% → 100% (+${k.inc}%/yr)` : k.mode === 'manual' ? `${k.years[0]}% → ${k.years[4]}% · per yr` : `${k.target}%`;
   const kpiRows = draft.kpis.map(k => [k.code, esc(`${k.name}: ${k.indicator}`), esc(k.unit.length > 20 ? 'Daily' : k.unit), esc(k.rectifiable), kpiTarget(k)]);
   const atts = `<div class="sum-atts">${draft.attachments.map(a => `<div class="att-row"><div class="att-l"><img src="assets/art/pdf.png" alt="PDF"><div class="att-t"><div class="att-n">${esc(a.name)}</div>${a.meta ? `<div class="att-m">${esc(a.meta)}</div>` : ''}</div></div></div>`).join('')}</div>`;
@@ -539,9 +560,7 @@ STEP_RENDER.summary = () => {
       ${sumSection('Required Vehicle', sumTable([{ h:'#', w:W.n }, { h:'Type', w:'406fr' }, { h:'Capacity', w:'306fr' }, { h:'Make', w:'406fr' }, { h:'Required Quantity', w:W.q }], vehRows.length ? vehRows : none(5, 'No vehicles added')), { tight:true })}
       ${sumSection('Required Equipment', sumTable([{ h:'#', w:W.n }, { h:'Type', w:'1fr' }, { h:'Make', w:'1fr' }, { h:'Required Quantity', w:W.q }], eqpRows.length ? eqpRows : none(4, 'No equipment added')), { tight:true })}
       ${sumSection('Required Workforce', sumTable([{ h:'#', w:W.n }, { h:'Type', w:'1fr' }, { h:'Experience', w:'1fr' }, { h:'Required Quantity', w:W.q }], wfRows.length ? wfRows : none(4, 'No workforce added')), { tight:true })}
-      ${sumSection('Required Bins', sumTable([{ h:'#', w:W.n }, { h:'Type', w:'1fr' }, { h:'Required Quantity', w:W.q }], binRows.length ? binRows : none(3, 'No bins added')), { tight:true })}
-      ${sumSection('Services', sumTable([{ h:'#', w:'58px' }, { h:'Service', w:'1fr' }, { h:'Tags', w:'276px' }], svcRows, 'svc'))}
-      ${sumSection('Services & Frequencies', sumTable([{ h:'#', w:W.n }, { h:'Service', w:'422fr' }, { h:'Specific Operation', w:'422fr' }, { h:'Action', w:'193fr' }, { h:'Recurrence/ Frequency/ Response Time', w:'255fr' }], sfRows), { tight:true })}
+      ${sumSection('Service Lines', sumTable([{ h:'#', w:W.n }, { h:'Service', w:'1fr' }, { h:'Bin Type', w:'150px' }, { h:'Qty', w:'80px' }, { h:'Waste Type', w:'160px' }, { h:'Action', w:'120px' }, { h:'Frequency', w:'130px' }, { h:'Collection Days', w:'230px' }], slRows), { tight:true })}
       ${sumSection('KPI Target', sumTable([{ h:'#', w:'44px' }, { h:'Performance Indicator', w:'1fr' }, { h:'Reporting Unit', w:'162px' }, { h:'Rectifiable', w:'162px' }, { h:'KPI Target', w:'190px' }], kpiRows), { tight:true })}
       ${sumSection('Attachments', atts)}
     </div>`,
