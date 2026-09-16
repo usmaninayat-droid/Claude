@@ -10,6 +10,7 @@ import {
 } from './dashboard-chart-widgets'
 import {
   BreakdownStripWidget,
+  StatTileGroupWidget,
   KpiCardWidget,
   LeaderboardWidget,
   ListWidget,
@@ -37,6 +38,7 @@ import type { DashboardWidgetRenderer, DashboardWidgetRenderProps } from './dash
 export const DASHBOARD_WIDGET_RENDERERS: Record<DashboardWidgetType, DashboardWidgetRenderer> = {
   donut: DonutWidget,
   'breakdown-strip': BreakdownStripWidget,
+  'stat-tile-group': StatTileGroupWidget,
   bar: BarWidget,
   line: LineWidget,
   'stacked-bar': BarWidget,

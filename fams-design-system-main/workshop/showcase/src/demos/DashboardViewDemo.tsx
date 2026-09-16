@@ -25,6 +25,8 @@ const WIDGET_NOTES: Record<DashboardWidgetType, string> = {
   line: 'Trend over an ordered axis.',
   area: 'Trend with filled magnitude.',
   donut: 'Proportional share of a total.',
+  'breakdown-strip': 'Stat row + overlapping proportion bar (Progress Overview).',
+  'stat-tile-group': 'A titled panel of accent-topped stat tiles.',
   'compliance-gauge': 'A single score against a band.',
   'heatmap-calendar': 'Two categorical axes, binned magnitude.',
   'geospatial-heatmap': 'Point density on a map (heavy map entry).',

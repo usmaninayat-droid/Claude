@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import {
   Avatar,
   BreakdownStrip,
+  StatTile,
   CriticalEventsList,
   IconBadge,
   KpiTile,
@@ -20,6 +21,7 @@ import type {
   DashboardRow,
   DashboardSeverity,
   DashboardSlice,
+  DashboardStatTile,
 } from '@fams/v5-composer'
 import { cn } from '../lib/cn'
 import {
@@ -217,6 +219,57 @@ export function BreakdownStripWidget(props: DashboardWidgetRenderProps) {
         }))}
       />
     </WidgetCard>
+  )
+}
+
+/**
+ * The "Headcount Breakdown" panel (Figma Deployment Dashboard): a titled,
+ * bordered container — its header pairs the title with a muted subtitle
+ * (the date / source line) and an inline-end formula `note` — over an auto-fit
+ * row of accent-topped `StatTile`s from the widget's `tiles[]`.
+ *
+ * A LAYOUT-shaped widget, so it composes its own panel rather than the
+ * `ChartCard`/`WidgetCard` header (the design's header carries no leading icon
+ * disc). It still routes its body through `WidgetState`, so the four-state
+ * contract (loading / empty / error-with-retry) holds like every other widget.
+ */
+export function StatTileGroupWidget(props: DashboardWidgetRenderProps) {
+  const { widget } = props
+  const source = sourceOf(widget)
+  const tiles = (source.tiles ?? []) as DashboardStatTile[]
+  return (
+    <div
+      data-slot="dashboard-widget"
+      data-widget-id={widget.id}
+      data-widget-type={widget.type}
+      className="flex min-w-0 flex-col gap-4 rounded-md border border-border bg-muted/40 p-4"
+    >
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
+          {widget.title ? <span className="text-body-md font-semibold text-foreground">{widget.title}</span> : null}
+          {source.subtitle ? <span className="text-body-sm text-muted-foreground">{source.subtitle}</span> : null}
+        </div>
+        {source.note ? (
+          <span data-slot="stat-tile-group-note" className="text-body-xs text-muted-foreground">
+            {source.note}
+          </span>
+        ) : null}
+      </div>
+      <WidgetState count={tiles.length} source={source} loading={props.loading} error={props.error} onRetry={props.onRetry}>
+        <div className="grid gap-4 [grid-template-columns:repeat(auto-fit,minmax(11.25rem,1fr))]">
+          {tiles.map((tile, index) => (
+            <StatTile
+              key={tile.id ?? index}
+              label={tile.label}
+              value={typeof tile.value === 'number' ? tile.value.toLocaleString('en-US') : tile.value}
+              caption={tile.caption}
+              tone={tile.tone}
+              icon={resolveWidgetIcon(tile.icon)}
+            />
+          ))}
+        </div>
+      </WidgetState>
+    </div>
   )
 }
 

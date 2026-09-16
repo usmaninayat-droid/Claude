@@ -96,14 +96,23 @@
               "warning",
               "danger",
               "info",
-              "neutral"
-            ]
+              "lavender",
+              "yellow",
+              "neutral",
+              "dark"
+            ],
+            "description": "Semantic/accent tone. In a 'stat' strip it tints the icon disc (lavender/yellow/dark fall back to neutral there); in an 'accent' strip it drives the tile's top accent bar and icon chip in full."
           },
           "dataSource": {
             "$ref": "#/$defs/DashboardDataSource"
           }
         }
       }
+    },
+    "kpiStripVariant": {
+      "type": "string",
+      "enum": ["stat", "accent"],
+      "description": "How the KPI strip renders. 'stat' (default) is the KpiTile row (icon disc on the left). 'accent' is the StatTile row — a coloured top accent bar per tile, the label uppercased with the icon chip on the inline-end, and the tile's valueSuffix as the caption."
     },
     "filterPills": {
       "type": "array",
@@ -222,6 +231,7 @@
           "enum": [
             "donut",
             "breakdown-strip",
+            "stat-tile-group",
             "bar",
             "line",
             "stacked-bar",
@@ -753,6 +763,39 @@
             "vertical"
           ],
           "description": "donut legend placement: 'horizontal' (default, in the card legend row) or 'vertical' (beside the chart)."
+        },
+        "note": {
+          "type": "string",
+          "description": "stat-tile-group ONLY — a formula/definition note shown at the inline-end of the panel header, e.g. \"Available = Total − Reported − Weekly off − Vacation\"."
+        },
+        "tiles": {
+          "type": "array",
+          "description": "stat-tile-group tiles — accent-topped stat cards (label / value / caption / tone / optional icon).",
+          "items": {
+            "type": "object",
+            "required": ["label", "value"],
+            "properties": {
+              "id": { "type": "string" },
+              "label": { "type": "string" },
+              "value": { "type": ["string", "number"] },
+              "caption": { "type": "string" },
+              "icon": { "type": "string", "description": "Named lucide icon, kebab-case. Omit for the icon-less tile." },
+              "tone": {
+                "enum": ["primary", "success", "warning", "danger", "info", "lavender", "yellow", "neutral", "dark"],
+                "description": "Accent bar + icon-chip tone. Default 'neutral'."
+              },
+              "dimensions": {
+                "type": "object",
+                "description": "Dimension values this tile belongs to (see a slice's dimensions).",
+                "additionalProperties": {
+                  "oneOf": [
+                    { "type": "string" },
+                    { "type": "array", "items": { "type": "string" } }
+                  ]
+                }
+              }
+            }
+          }
         },
         "slices": {
           "type": "array",

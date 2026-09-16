@@ -11,7 +11,10 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
   KpiTile,
+  StatTile,
   StatusView,
+  type IconBadgeTone,
+  type StatTileTone,
 } from '@fams/ui-kit'
 import type {
   DashboardFilterPill,
@@ -215,13 +218,29 @@ function FilterPill({
   )
 }
 
-function KpiRegion({ tiles, selection }: { tiles: DashboardKpiTile[]; selection: DashboardDimensionSelection }) {
+/** The wider tile tone set narrows to `IconBadge`'s six for the `stat` KpiTile,
+ *  where the `lavender`/`yellow`/`dark` accents have no icon-disc equivalent. */
+function toIconBadgeTone(tone: StatTileTone | undefined): IconBadgeTone | undefined {
+  if (tone === 'lavender' || tone === 'yellow' || tone === 'dark') return 'neutral'
+  return tone
+}
+
+function KpiRegion({
+  tiles,
+  selection,
+  variant = 'stat',
+}: {
+  tiles: DashboardKpiTile[]
+  selection: DashboardDimensionSelection
+  variant?: 'stat' | 'accent'
+}) {
   // V7: ONE auto-fit rule. `16.25rem` (260px) when any tile carries a value
   // suffix, which needs a second line rather than a truncation.
   const wide = tiles.some((tile) => tile.valueSuffix ?? tile.dataSource?.valueSuffix)
   return (
     <div
       data-slot="dashboard-kpi-region"
+      data-variant={variant}
       className={cn(
         'col-span-full grid gap-6',
         wide
@@ -233,6 +252,26 @@ function KpiRegion({ tiles, selection }: { tiles: DashboardKpiTile[]; selection:
         // A KPI's datum IS the tile, so it filters through `variants` rather
         // than by dropping rows — same selection, the shape a scalar needs.
         const source = applyDashboardFilters(tile.dataSource, selection) ?? {}
+        const value = formatKpiValue(source.value, tile.format)
+        const tone = tile.tone ?? source.tone
+        // The `accent` strip is the Deployment surface's StatTile row: a
+        // coloured top accent bar, the label uppercased with the icon chip on
+        // the inline-end, and `valueSuffix` as the caption. `stat` stays the
+        // original KpiTile.
+        if (variant === 'accent') {
+          return (
+            <StatTile
+              key={tile.id}
+              data-slot="dashboard-kpi-tile"
+              data-widget-id={tile.id}
+              label={tile.label}
+              value={value}
+              caption={tile.valueSuffix ?? source.valueSuffix}
+              icon={resolveWidgetIcon(tile.icon ?? source.icon)}
+              tone={tone}
+            />
+          )
+        }
         return (
           <KpiTile
             key={tile.id}
@@ -240,14 +279,14 @@ function KpiRegion({ tiles, selection }: { tiles: DashboardKpiTile[]; selection:
             data-widget-id={tile.id}
             layout="stat"
             label={tile.label}
-            value={formatKpiValue(source.value, tile.format)}
+            value={value}
             unit={tile.unit ?? source.unit}
             valueSuffix={tile.valueSuffix ?? source.valueSuffix}
             target={tile.type === 'stat-with-target' && source.target !== undefined ? formatKpiValue(source.target, tile.format) : undefined}
             targetLabel={source.targetLabel}
             badge={tile.badge ?? source.badge}
             icon={resolveWidgetIcon(tile.icon ?? source.icon)}
-            tone={tile.tone ?? source.tone}
+            tone={toIconBadgeTone(tone)}
             trend={source.trend}
           />
         )
@@ -312,7 +351,7 @@ export function DashboardView({ config, renderer, actions, onFiltersChange, clas
       data-dashboard-id={config.id}
       className={cn(GRID_GAP, className)}
       header={header}
-      kpis={kpiTiles.length > 0 ? <KpiRegion tiles={kpiTiles} selection={selection} /> : undefined}
+      kpis={kpiTiles.length > 0 ? <KpiRegion tiles={kpiTiles} selection={selection} variant={config.kpiStripVariant} /> : undefined}
     >
       {widgets.length === 0 ? (
         <div className="lg:col-span-12">

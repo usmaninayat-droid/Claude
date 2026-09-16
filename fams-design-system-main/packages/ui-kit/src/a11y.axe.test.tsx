@@ -184,6 +184,7 @@ import {
   RouteJobCard,
   StatusBreakdownCard,
   BreakdownStrip,
+  StatTile,
   Alert,
   InfoBanner,
   Breadcrumbs,
@@ -1153,6 +1154,12 @@ const FIXTURES: Fixture[] = [
         selected
         onSelect={() => {}}
       />
+    ),
+  },
+  {
+    name: 'StatTile',
+    render: () => (
+      <StatTile label="Total Manpower" value="788" caption="Employee master · all statuses" tone="info" icon={Truck} />
     ),
   },
   {

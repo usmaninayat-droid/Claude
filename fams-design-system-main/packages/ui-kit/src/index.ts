@@ -290,6 +290,11 @@ export {
   type BreakdownTone,
 } from './composites/BreakdownStrip'
 export {
+  StatTile,
+  type StatTileProps,
+  type StatTileTone,
+} from './composites/StatTile'
+export {
   StatusBreakdownCard,
   type StatusBreakdownCardProps,
   type StatusBreakdownRow,

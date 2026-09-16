@@ -59,10 +59,11 @@ export type DashboardColorToken = string
  */
 export type DashboardDimensionValues = Record<string, string | string[]>
 
-/** The 15 widget forms `DashboardModuleConfig.schema.json` names. */
+/** The 16 widget forms `DashboardModuleConfig.schema.json` names. */
 export type DashboardWidgetType =
   | 'donut'
   | 'breakdown-strip'
+  | 'stat-tile-group'
   | 'bar'
   | 'line'
   | 'stacked-bar'
@@ -101,6 +102,25 @@ export interface DashboardSeries {
 
 /** Status tones a `breakdown-strip` slice may take — mirrors `@fams/ui-kit`'s `BreakdownTone`. */
 export type DashboardBreakdownTone = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'lavender' | 'yellow' | 'neutral'
+
+/** Accent tones a `stat-tile-group` tile / accent KPI may take — mirrors `@fams/ui-kit`'s `StatTileTone` (the breakdown set plus `dark`). */
+export type DashboardStatTileTone = DashboardBreakdownTone | 'dark'
+
+/** One tile of a `stat-tile-group` widget — an accent-topped stat card. */
+export interface DashboardStatTile {
+  id?: string
+  label: string
+  /** Pre-formatted by the caller, or a number the renderer formats with the widget's `format`. */
+  value: number | string
+  /** Muted supporting line under the value. */
+  caption?: string
+  /** Accent bar + icon-chip tone. Default `'neutral'`. */
+  tone?: DashboardStatTileTone
+  /** Named lucide icon, kebab-case. Omit for the icon-less tile. */
+  icon?: string
+  /** Dimension values this tile belongs to — see `DashboardDimensionValues`. */
+  dimensions?: DashboardDimensionValues
+}
 
 /** One proportional slice — the `donut` and `breakdown-strip` widgets' data shape. */
 export interface DashboardSlice {
@@ -370,6 +390,10 @@ export interface DashboardWidgetDataSource {
   items?: DashboardListItem[]
   /** `leaderboard` / `sparkline-table` rows. */
   rows?: DashboardRow[]
+  /** `stat-tile-group` tiles. */
+  tiles?: DashboardStatTile[]
+  /** `stat-tile-group` — a formula/definition note shown at the inline-end of the panel header, e.g. `"Available = Total − Reported − Weekly off − Vacation"`. */
+  note?: string
   columns?: DashboardColumn[]
   /** `heatmap-calendar` cells. */
   cells?: DashboardHeatCell[]
@@ -584,7 +608,13 @@ export interface DashboardKpiTile {
   unit?: string
   valueSuffix?: string
   badge?: string
-  tone?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'neutral'
+  /**
+   * Semantic/accent tone. In the default `stat` KPI strip it tints the icon
+   * disc (the `lavender`/`yellow`/`dark` accents fall back to neutral there);
+   * in an `accent` strip (`kpiStripVariant: 'accent'`) it drives the tile's
+   * top accent bar and icon chip in full.
+   */
+  tone?: DashboardStatTileTone
   dataSource?: DashboardWidgetDataSource
 }
 
@@ -635,6 +665,13 @@ export interface DashboardModuleConfigBlueprint {
   icon?: string
   description?: string
   kpiStrip?: DashboardKpiTile[]
+  /**
+   * How the KPI strip renders. `'stat'` (default) is the `KpiTile` row (icon
+   * disc on the left). `'accent'` is the `StatTile` row the deployment surface
+   * draws — a coloured top accent bar per tile, the label uppercased with the
+   * icon chip on the inline-end, and the tile's `valueSuffix` as the caption.
+   */
+  kpiStripVariant?: 'stat' | 'accent'
   filterPills?: DashboardFilterPill[]
   widgetGrid: DashboardWidget[]
   views?: DashboardSavedView[]
@@ -645,6 +682,7 @@ export interface DashboardModuleConfigBlueprint {
 export const DASHBOARD_WIDGET_TYPES: readonly DashboardWidgetType[] = [
   'donut',
   'breakdown-strip',
+  'stat-tile-group',
   'bar',
   'line',
   'stacked-bar',

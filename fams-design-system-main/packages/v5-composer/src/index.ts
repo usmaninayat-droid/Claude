@@ -150,6 +150,8 @@ export type {
   DashboardSeries,
   DashboardSlice,
   DashboardBreakdownTone,
+  DashboardStatTileTone,
+  DashboardStatTile,
   DashboardSeverity,
   DashboardMetaItem,
   DashboardListItem,

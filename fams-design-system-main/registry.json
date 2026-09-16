@@ -1016,6 +1016,24 @@
       ]
     },
     {
+      "name": "stat-tile",
+      "type": "registry:component",
+      "title": "StatTile",
+      "description": "At-a-glance metric tiles, health rollups, and live status cards for dashboards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/StatTile.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@fams/ui-kit/icons",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "kpi-metric-card",
       "type": "registry:component",
       "title": "KpiMetricCard",

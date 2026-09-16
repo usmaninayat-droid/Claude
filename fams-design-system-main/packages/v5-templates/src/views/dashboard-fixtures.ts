@@ -100,6 +100,26 @@ export const dashboardWidgetFixtures: Record<DashboardWidgetType, DashboardWidge
       ariaLabel: 'Fleet availability — 328 vehicles by operating state.',
     },
   },
+  'stat-tile-group': {
+    id: 'w-headcount-breakdown',
+    title: 'Headcount breakdown — Monday 31 August',
+    type: 'stat-tile-group',
+    span: 12,
+    dataSource: {
+      subtitle: 'reported HC from attendance machine',
+      note: 'Available = Total − Reported − Weekly off − Vacation',
+      tiles: [
+        { id: 'total', label: 'Total Head Count', value: 764, caption: 'Active + on leave + training', tone: 'dark' },
+        { id: 'planned', label: 'Planned Head Count', value: 470, caption: 'Rostered to route / reliever', tone: 'info' },
+        { id: 'reported', label: 'Reported Head Count', value: 459, caption: 'Punched in (attendance machine)', tone: 'success' },
+        { id: 'absent', label: 'Absenteeism', value: 35, caption: '7% of planned', tone: 'danger' },
+        { id: 'weekly-off', label: 'Weekly Off', value: 105, caption: 'Contracted rest day', tone: 'neutral' },
+        { id: 'vacation', label: 'Vacation', value: 42, caption: 'Annual + emergency leave', tone: 'yellow' },
+        { id: 'available', label: 'Available Head Count', value: 158, caption: 'Not deployed, not off', tone: 'lavender' },
+      ],
+      ariaLabel: 'Headcount breakdown for Monday 31 August, reported from the attendance machine.',
+    },
+  },
   'compliance-gauge': {
     id: 'w-gauge',
     title: 'Fuel Efficiency Score',
