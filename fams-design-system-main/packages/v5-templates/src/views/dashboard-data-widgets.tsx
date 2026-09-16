@@ -244,11 +244,8 @@ export function StatTileGroupWidget(props: DashboardWidgetRenderProps) {
       data-widget-type={widget.type}
       className="flex min-w-0 flex-col gap-4 rounded-md border border-border bg-muted/40 p-4"
     >
-      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-        <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
-          {widget.title ? <span className="text-body-md font-semibold text-foreground">{widget.title}</span> : null}
-          {source.subtitle ? <span className="text-body-sm text-muted-foreground">{source.subtitle}</span> : null}
-        </div>
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+        {widget.title ? <span className="min-w-0 truncate text-body-md font-semibold text-foreground">{widget.title}</span> : null}
         {source.note ? (
           <span data-slot="stat-tile-group-note" className="text-body-xs text-muted-foreground">
             {source.note}

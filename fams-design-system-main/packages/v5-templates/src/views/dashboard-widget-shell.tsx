@@ -272,7 +272,6 @@ export interface WidgetCardProps extends DashboardWidgetRenderProps {
   bodyHeight?: number | string
   /** Legend row between the header and the body. */
   legend?: ReactNode
-  subtitle?: ReactNode
   /** Renders the body with no card chrome at all (the headerless gauge card). */
   bare?: boolean
   children: ReactNode
@@ -289,7 +288,6 @@ export function WidgetCard({
   bodyPadding = 'md',
   bodyHeight,
   legend,
-  subtitle,
   actions,
   bare,
   loading,
@@ -323,12 +321,11 @@ export function WidgetCard({
       data-widget-id={widget.id}
       data-widget-type={widget.type}
       title={widget.title ?? ''}
-      // The two-line header (leading tinted icon + title + supporting line) is
-      // metadata-driven: a widget that authors `dataSource.subtitle`/`icon`
-      // gets it, one that does not keeps the compact title-only header. A
-      // renderer-specific `subtitle` still wins, for the widgets that compose
-      // their own.
-      subtitle={subtitle ?? source.subtitle}
+      // TITLE-ONLY HEADER. Dashboard widgets in Figma carry no supporting line
+      // under the title — the title is the identity, everything explanatory
+      // lives beside it (the trailing scope select) or in the body. `subtitle`
+      // + `dataSource.subtitle` are honoured on the type but not rendered here;
+      // dropping them keeps every widget header on the same one-line rhythm.
       icon={resolveWidgetIcon(source.icon)}
       iconTone={source.tone === 'neutral' ? undefined : source.tone}
       actions={actions}
