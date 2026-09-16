@@ -21,12 +21,14 @@ describe('BreakdownStrip', () => {
     expect(screen.getByText('01')).toBeInTheDocument()
   })
 
-  it('inks each value in its tone and separates columns with hairlines', () => {
+  it('inks each value in its tone, centre-aligns every column and separates them with hairlines', () => {
     const { container } = render(<BreakdownStrip items={FLEET} />)
-    const stats = container.querySelectorAll('[data-slot="breakdown-strip-stat"]')
+    const stats = container.querySelectorAll<HTMLElement>('[data-slot="breakdown-strip-stat"]')
     expect(stats).toHaveLength(6)
     expect(stats[0].querySelector('bdi')).toHaveClass('text-success')
     expect(stats[1].querySelector('bdi')).toHaveClass('text-accent-family-lavender-normal')
+    // Every column is centre-aligned — the outer columns no longer hug their edge.
+    for (const stat of stats) expect(stat).toHaveClass('items-center', 'text-center')
     expect(container.querySelectorAll('[data-slot="breakdown-strip-stats"] > .contents > span[aria-hidden]')).toHaveLength(5)
   })
 

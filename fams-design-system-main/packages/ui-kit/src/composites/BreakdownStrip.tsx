@@ -116,12 +116,7 @@ export const BreakdownStrip = forwardRef<HTMLDivElement, BreakdownStripProps>(
               <div
                 data-slot="breakdown-strip-stat"
                 data-tone={item.tone ?? 'neutral'}
-                className={cn(
-                  'flex min-w-0 flex-1 flex-col gap-1 text-center',
-                  // Outer columns hug their edge as the design draws them.
-                  index === 0 && 'items-start text-start',
-                  index === items.length - 1 && items.length > 1 && 'items-end text-end',
-                )}
+                className="flex min-w-0 flex-1 flex-col items-center gap-1 text-center"
               >
                 <span className="w-full truncate text-body-sm font-medium leading-5 text-muted-foreground">{item.label}</span>
                 <bdi className={cn('w-full text-h6 font-semibold leading-[1.3] tabular-nums', INK_CLASSES[item.tone ?? 'neutral'])}>
