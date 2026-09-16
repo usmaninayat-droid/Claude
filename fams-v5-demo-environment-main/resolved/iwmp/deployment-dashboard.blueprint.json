@@ -78,15 +78,18 @@
     {
       "dataSource": {
         "kind": "static",
+        "trend": {
+          "direction": "up",
+          "note": "vs Yest.",
+          "value": "+12"
+        },
         "value": 788
       },
       "format": "integer",
-      "icon": "users",
       "id": "kpi-total-manpower",
       "label": "Total Manpower",
-      "tone": "info",
-      "type": "stat",
-      "valueSuffix": "Employee master · all statuses"
+      "tone": "neutral",
+      "type": "stat"
     },
     {
       "dataSource": {
@@ -94,12 +97,10 @@
         "value": 294
       },
       "format": "integer",
-      "icon": "truck",
       "id": "kpi-drivers",
       "label": "Drivers",
-      "tone": "success",
-      "type": "stat",
-      "valueSuffix": "HDD 265 · LDD 29"
+      "tone": "neutral",
+      "type": "stat"
     },
     {
       "dataSource": {
@@ -107,12 +108,10 @@
         "value": 470
       },
       "format": "integer",
-      "icon": "user",
       "id": "kpi-helpers",
       "label": "Helpers",
-      "tone": "lavender",
-      "type": "stat",
-      "valueSuffix": "Route · supervisor · extra assignments"
+      "tone": "neutral",
+      "type": "stat"
     },
     {
       "dataSource": {
@@ -120,38 +119,42 @@
         "value": 785
       },
       "format": "integer",
-      "icon": "briefcase",
       "id": "kpi-operational",
       "label": "Operational Staff",
-      "tone": "info",
-      "type": "stat",
-      "valueSuffix": "Excludes Area Manager and above"
+      "tone": "neutral",
+      "type": "stat"
     },
     {
       "dataSource": {
         "kind": "static",
+        "trend": {
+          "direction": "up",
+          "note": "vs Yest.",
+          "value": "+9"
+        },
         "value": 136
       },
       "format": "integer",
-      "icon": "calendar",
       "id": "kpi-pending-rostering",
       "label": "Pending Rostering",
-      "tone": "danger",
-      "type": "stat",
-      "valueSuffix": "Active, no duty in week 2"
+      "tone": "warning",
+      "type": "stat"
     },
     {
       "dataSource": {
         "kind": "static",
+        "trend": {
+          "direction": "down",
+          "note": "vs Yest.",
+          "value": "-4"
+        },
         "value": 228
       },
       "format": "integer",
-      "icon": "alert-triangle",
       "id": "kpi-training-risk",
       "label": "Training Pending / Expired",
-      "tone": "warning",
-      "type": "stat",
-      "valueSuffix": "9 blocked from rostering"
+      "tone": "danger",
+      "type": "stat"
     }
   ],
   "kpiStripVariant": "accent",
@@ -170,52 +173,56 @@
         "subtitle": "reported HC from attendance machine",
         "tiles": [
           {
-            "caption": "Active + on leave + training",
             "id": "total",
             "label": "Total Head Count",
-            "tone": "dark",
+            "tone": "neutral",
             "value": 764
           },
           {
-            "caption": "Rostered to route / reliever / on call / extra",
             "id": "planned",
             "label": "Planned Head Count",
-            "tone": "info",
+            "tone": "neutral",
             "value": 470
           },
           {
-            "caption": "Punched in (attendance machine)",
             "id": "reported",
             "label": "Reported Head Count",
-            "tone": "success",
+            "target": 470,
+            "tone": "neutral",
             "value": 459
           },
           {
-            "caption": "7% of planned",
             "id": "absent",
             "label": "Absenteeism",
-            "tone": "danger",
+            "tone": "warning",
+            "trend": {
+              "direction": "up",
+              "note": "vs Yest.",
+              "value": "+5"
+            },
             "value": 35
           },
           {
-            "caption": "Contracted rest day",
             "id": "weekly-off",
             "label": "Weekly Off",
             "tone": "neutral",
             "value": 105
           },
           {
-            "caption": "Annual + emergency leave",
             "id": "vacation",
             "label": "Vacation",
-            "tone": "yellow",
+            "tone": "neutral",
             "value": 42
           },
           {
-            "caption": "Not deployed, not off, not on leave",
             "id": "available",
             "label": "Available Head Count",
-            "tone": "lavender",
+            "tone": "neutral",
+            "trend": {
+              "direction": "up",
+              "note": "vs Yest.",
+              "value": "+8"
+            },
             "value": 158
           }
         ]

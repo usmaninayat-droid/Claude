@@ -89,50 +89,54 @@
             "id": "total",
             "label": "Total Head Count",
             "value": 764,
-            "caption": "Active + on leave + training",
-            "tone": "dark"
+            "tone": "neutral"
           },
           {
             "id": "planned",
             "label": "Planned Head Count",
             "value": 470,
-            "caption": "Rostered to route / reliever / on call / extra",
-            "tone": "info"
+            "tone": "neutral"
           },
           {
             "id": "reported",
             "label": "Reported Head Count",
             "value": 459,
-            "caption": "Punched in (attendance machine)",
-            "tone": "success"
+            "tone": "neutral",
+            "target": 470
           },
           {
             "id": "absent",
             "label": "Absenteeism",
             "value": 35,
-            "caption": "7% of planned",
-            "tone": "danger"
+            "tone": "warning",
+            "trend": {
+              "direction": "up",
+              "value": "+5",
+              "note": "vs Yest."
+            }
           },
           {
             "id": "weekly-off",
             "label": "Weekly Off",
             "value": 105,
-            "caption": "Contracted rest day",
             "tone": "neutral"
           },
           {
             "id": "vacation",
             "label": "Vacation",
             "value": 42,
-            "caption": "Annual + emergency leave",
-            "tone": "yellow"
+            "tone": "neutral"
           },
           {
             "id": "available",
             "label": "Available Head Count",
             "value": 158,
-            "caption": "Not deployed, not off, not on leave",
-            "tone": "lavender"
+            "tone": "neutral",
+            "trend": {
+              "direction": "up",
+              "value": "+8",
+              "note": "vs Yest."
+            }
           }
         ],
         "ariaLabel": "Headcount breakdown for Monday 31 August, reported from the attendance machine: total, planned, reported, absenteeism, weekly off, vacation and available head counts."
@@ -607,24 +611,25 @@
     {
       "id": "kpi-total-manpower",
       "label": "Total Manpower",
-      "icon": "users",
       "type": "stat",
       "format": "integer",
-      "tone": "info",
-      "valueSuffix": "Employee master · all statuses",
+      "tone": "neutral",
       "dataSource": {
         "kind": "static",
-        "value": 788
+        "value": 788,
+        "trend": {
+          "direction": "up",
+          "value": "+12",
+          "note": "vs Yest."
+        }
       }
     },
     {
       "id": "kpi-drivers",
       "label": "Drivers",
-      "icon": "truck",
       "type": "stat",
       "format": "integer",
-      "tone": "success",
-      "valueSuffix": "HDD 265 · LDD 29",
+      "tone": "neutral",
       "dataSource": {
         "kind": "static",
         "value": 294
@@ -633,11 +638,9 @@
     {
       "id": "kpi-helpers",
       "label": "Helpers",
-      "icon": "user",
       "type": "stat",
       "format": "integer",
-      "tone": "lavender",
-      "valueSuffix": "Route · supervisor · extra assignments",
+      "tone": "neutral",
       "dataSource": {
         "kind": "static",
         "value": 470
@@ -646,11 +649,9 @@
     {
       "id": "kpi-operational",
       "label": "Operational Staff",
-      "icon": "briefcase",
       "type": "stat",
       "format": "integer",
-      "tone": "info",
-      "valueSuffix": "Excludes Area Manager and above",
+      "tone": "neutral",
       "dataSource": {
         "kind": "static",
         "value": 785
@@ -659,27 +660,33 @@
     {
       "id": "kpi-pending-rostering",
       "label": "Pending Rostering",
-      "icon": "calendar",
       "type": "stat",
       "format": "integer",
-      "tone": "danger",
-      "valueSuffix": "Active, no duty in week 2",
+      "tone": "warning",
       "dataSource": {
         "kind": "static",
-        "value": 136
+        "value": 136,
+        "trend": {
+          "direction": "up",
+          "value": "+9",
+          "note": "vs Yest."
+        }
       }
     },
     {
       "id": "kpi-training-risk",
       "label": "Training Pending / Expired",
-      "icon": "alert-triangle",
       "type": "stat",
       "format": "integer",
-      "tone": "warning",
-      "valueSuffix": "9 blocked from rostering",
+      "tone": "danger",
       "dataSource": {
         "kind": "static",
-        "value": 228
+        "value": 228,
+        "trend": {
+          "direction": "down",
+          "value": "-4",
+          "note": "vs Yest."
+        }
       }
     }
   ]
