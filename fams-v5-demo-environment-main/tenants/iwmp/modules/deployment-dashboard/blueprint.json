@@ -7,29 +7,8 @@
     "singular": "Deployment Dashboard",
     "plural": "Deployment Dashboard"
   },
-  "description": "Manpower deployment insight — headcount, duty mix, deployment against requirement and the daily deployment sheet (RST-DSH).",
+  "description": "Manpower deployment insight \u2014 headcount, duty mix, deployment against requirement and the daily deployment sheet (RST-DSH).",
   "filterPills": [
-    {
-      "id": "pill-timeframe",
-      "label": "Date",
-      "type": "time-range",
-      "dimension": "timeframe",
-      "defaultValue": "today",
-      "options": [
-        {
-          "value": "today",
-          "label": "Today"
-        },
-        {
-          "value": "last-7-days",
-          "label": "Last 7 days"
-        },
-        {
-          "value": "last-30-days",
-          "label": "Last 30 days"
-        }
-      ]
-    },
     {
       "id": "pill-project",
       "label": "Project",
@@ -44,7 +23,62 @@
           "value": "commercial",
           "label": "Commercial"
         }
-      ]
+      ],
+      "allLabel": "Project"
+    },
+    {
+      "id": "pill-lot",
+      "label": "Lot",
+      "type": "single-select",
+      "dimension": "lot",
+      "options": [
+        {
+          "value": "lot-1",
+          "label": "Lot 1"
+        },
+        {
+          "value": "lot-2",
+          "label": "Lot 2"
+        },
+        {
+          "value": "lot-3",
+          "label": "Lot 3"
+        },
+        {
+          "value": "lot-4",
+          "label": "Lot 4"
+        },
+        {
+          "value": "lot-5",
+          "label": "Lot 5"
+        }
+      ],
+      "allLabel": "Lot"
+    },
+    {
+      "id": "pill-designation",
+      "label": "Designation",
+      "type": "single-select",
+      "dimension": "designation",
+      "options": [
+        {
+          "value": "driver",
+          "label": "Driver"
+        },
+        {
+          "value": "helper",
+          "label": "Helper"
+        },
+        {
+          "value": "supervisor",
+          "label": "Supervisor"
+        },
+        {
+          "value": "operator",
+          "label": "Operator"
+        }
+      ],
+      "allLabel": "Designation"
     },
     {
       "id": "pill-shift",
@@ -72,13 +106,43 @@
           "value": "mid",
           "label": "Mid"
         }
-      ]
+      ],
+      "allLabel": "Shift"
+    },
+    {
+      "id": "pill-service-line",
+      "label": "Service Line",
+      "type": "single-select",
+      "dimension": "serviceLine",
+      "options": [
+        {
+          "value": "msw-collection",
+          "label": "MSW Collection"
+        },
+        {
+          "value": "bulky-waste",
+          "label": "Bulky Waste Collection"
+        },
+        {
+          "value": "c-and-d",
+          "label": "C & D Waste Collection"
+        },
+        {
+          "value": "green-waste",
+          "label": "Green Waste Collection"
+        },
+        {
+          "value": "bin-washing",
+          "label": "Bin Washing"
+        }
+      ],
+      "allLabel": "Service Line"
     }
   ],
   "widgetGrid": [
     {
       "id": "w-headcount-breakdown",
-      "title": "Headcount breakdown — Monday 31 August",
+      "title": "Headcount breakdown \u2014 Monday 31 August",
       "type": "breakdown-strip",
       "span": 12,
       "dataSource": {
@@ -108,43 +172,274 @@
             "id": "total",
             "label": "Total Head Count",
             "value": 764,
-            "tone": "primary"
+            "tone": "primary",
+            "dimensions": {
+              "project": [
+                "msw",
+                "commercial"
+              ],
+              "lot": [
+                "lot-1",
+                "lot-2",
+                "lot-3",
+                "lot-4",
+                "lot-5"
+              ],
+              "designation": [
+                "driver",
+                "helper",
+                "supervisor",
+                "operator"
+              ],
+              "shift": [
+                "day",
+                "night",
+                "afn",
+                "evening",
+                "mid"
+              ],
+              "serviceLine": [
+                "msw-collection",
+                "bulky-waste",
+                "c-and-d",
+                "green-waste",
+                "bin-washing"
+              ]
+            }
           },
           {
             "id": "planned",
             "label": "Planned Head Count",
             "value": 470,
-            "tone": "info"
+            "tone": "info",
+            "dimensions": {
+              "project": [
+                "msw",
+                "commercial"
+              ],
+              "lot": [
+                "lot-1",
+                "lot-2",
+                "lot-3",
+                "lot-4",
+                "lot-5"
+              ],
+              "designation": [
+                "driver",
+                "helper",
+                "supervisor",
+                "operator"
+              ],
+              "shift": [
+                "day",
+                "night",
+                "afn",
+                "evening",
+                "mid"
+              ],
+              "serviceLine": [
+                "msw-collection",
+                "bulky-waste",
+                "c-and-d",
+                "green-waste",
+                "bin-washing"
+              ]
+            }
           },
           {
             "id": "reported",
             "label": "Reported Head Count",
             "value": 459,
-            "tone": "success"
+            "tone": "success",
+            "dimensions": {
+              "project": [
+                "msw",
+                "commercial"
+              ],
+              "lot": [
+                "lot-1",
+                "lot-2",
+                "lot-3",
+                "lot-4",
+                "lot-5"
+              ],
+              "designation": [
+                "driver",
+                "helper",
+                "supervisor",
+                "operator"
+              ],
+              "shift": [
+                "day",
+                "night",
+                "afn",
+                "evening",
+                "mid"
+              ],
+              "serviceLine": [
+                "msw-collection",
+                "bulky-waste",
+                "c-and-d",
+                "green-waste",
+                "bin-washing"
+              ]
+            }
           },
           {
             "id": "absent",
             "label": "Absenteeism",
             "value": 35,
-            "tone": "danger"
+            "tone": "danger",
+            "dimensions": {
+              "project": [
+                "msw",
+                "commercial"
+              ],
+              "lot": [
+                "lot-1",
+                "lot-2",
+                "lot-3",
+                "lot-4",
+                "lot-5"
+              ],
+              "designation": [
+                "driver",
+                "helper",
+                "supervisor",
+                "operator"
+              ],
+              "shift": [
+                "day",
+                "night",
+                "afn",
+                "evening",
+                "mid"
+              ],
+              "serviceLine": [
+                "msw-collection",
+                "bulky-waste",
+                "c-and-d",
+                "green-waste",
+                "bin-washing"
+              ]
+            }
           },
           {
             "id": "weekly-off",
             "label": "Weekly Off",
             "value": 105,
-            "tone": "neutral"
+            "tone": "neutral",
+            "dimensions": {
+              "project": [
+                "msw",
+                "commercial"
+              ],
+              "lot": [
+                "lot-1",
+                "lot-2",
+                "lot-3",
+                "lot-4",
+                "lot-5"
+              ],
+              "designation": [
+                "driver",
+                "helper",
+                "supervisor",
+                "operator"
+              ],
+              "shift": [
+                "day",
+                "night",
+                "afn",
+                "evening",
+                "mid"
+              ],
+              "serviceLine": [
+                "msw-collection",
+                "bulky-waste",
+                "c-and-d",
+                "green-waste",
+                "bin-washing"
+              ]
+            }
           },
           {
             "id": "vacation",
             "label": "Vacation",
             "value": 42,
-            "tone": "yellow"
+            "tone": "yellow",
+            "dimensions": {
+              "project": [
+                "msw",
+                "commercial"
+              ],
+              "lot": [
+                "lot-1",
+                "lot-2",
+                "lot-3",
+                "lot-4",
+                "lot-5"
+              ],
+              "designation": [
+                "driver",
+                "helper",
+                "supervisor",
+                "operator"
+              ],
+              "shift": [
+                "day",
+                "night",
+                "afn",
+                "evening",
+                "mid"
+              ],
+              "serviceLine": [
+                "msw-collection",
+                "bulky-waste",
+                "c-and-d",
+                "green-waste",
+                "bin-washing"
+              ]
+            }
           },
           {
             "id": "available",
             "label": "Available Head Count",
             "value": 158,
-            "tone": "lavender"
+            "tone": "lavender",
+            "dimensions": {
+              "project": [
+                "msw",
+                "commercial"
+              ],
+              "lot": [
+                "lot-1",
+                "lot-2",
+                "lot-3",
+                "lot-4",
+                "lot-5"
+              ],
+              "designation": [
+                "driver",
+                "helper",
+                "supervisor",
+                "operator"
+              ],
+              "shift": [
+                "day",
+                "night",
+                "afn",
+                "evening",
+                "mid"
+              ],
+              "serviceLine": [
+                "msw-collection",
+                "bulky-waste",
+                "c-and-d",
+                "green-waste",
+                "bin-washing"
+              ]
+            }
           }
         ],
         "ariaLabel": "Headcount breakdown for Monday 31 August: total, planned, reported, absenteeism, weekly off, vacation and available head counts reported from the attendance machine.",
@@ -152,29 +447,10 @@
       }
     },
     {
-      "id": "w-deployment-compliance",
-      "title": "Deployment Compliance",
-      "type": "compliance-gauge",
-      "span": 4,
-      "dataSource": {
-        "subtitle": "Reported head count vs planned",
-        "value": 95,
-        "min": 0,
-        "max": 100,
-        "centerLabel": {
-          "value": "95%",
-          "caption": "Reported vs Planned"
-        },
-        "ariaLabel": "Deployment compliance — reported head count as a percentage of planned head count for the selected date.",
-        "icon": "target-04",
-        "tone": "success"
-      }
-    },
-    {
       "id": "w-duty-mix",
       "title": "Duty Mix (Today)",
       "type": "donut",
-      "span": 4,
+      "span": 6,
       "dataSource": {
         "legendOrientation": "vertical",
         "centerLabel": {
@@ -232,7 +508,7 @@
       "id": "w-by-project",
       "title": "Deployment by Project",
       "type": "donut",
-      "span": 4,
+      "span": 6,
       "dataSource": {
         "subtitle": "Reported head count by project",
         "legendOrientation": "vertical",
@@ -260,7 +536,7 @@
             }
           }
         ],
-        "ariaLabel": "Deployment by project — reported head count split between the MSW and Commercial projects.",
+        "ariaLabel": "Deployment by project \u2014 reported head count split between the MSW and Commercial projects.",
         "icon": "briefcase",
         "tone": "info"
       }
@@ -271,7 +547,7 @@
       "type": "area",
       "span": 6,
       "dataSource": {
-        "subtitle": "Reported head count — last 14 days",
+        "subtitle": "Reported head count \u2014 last 14 days",
         "categories": [
           "1",
           "2",
@@ -321,7 +597,7 @@
             "min": 0
           }
         },
-        "ariaLabel": "Daily deployment trend — reported head count over the last 14 days.",
+        "ariaLabel": "Daily deployment trend \u2014 reported head count over the last 14 days.",
         "icon": "trending-up",
         "tone": "warning"
       }
@@ -379,7 +655,7 @@
           }
         },
         "legendPlacement": "bottom",
-        "ariaLabel": "Deployment by service line — planned versus reported head count per service line.",
+        "ariaLabel": "Deployment by service line \u2014 planned versus reported head count per service line.",
         "icon": "bar-chart-01",
         "tone": "info"
       }
@@ -616,7 +892,7 @@
             }
           }
         ],
-        "ariaLabel": "Daily deployment sheet — route, vehicle category, shift, district, driver, helper crew and punch status.",
+        "ariaLabel": "Daily deployment sheet \u2014 route, vehicle category, shift, district, driver, helper crew and punch status.",
         "icon": "list",
         "tone": "neutral"
       }

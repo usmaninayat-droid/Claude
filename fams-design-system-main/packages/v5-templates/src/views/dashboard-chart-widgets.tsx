@@ -251,31 +251,43 @@ export function DonutWidget(props: DashboardWidgetRenderProps) {
         showCounts
         hiddenIds={hiddenIds}
         onToggle={toggle}
+        density={vertical ? 'compact' : 'default'}
       />
     ) : undefined
 
+  // Figma DS V2 donut widget (node 5186:15665): a fixed 280px disc, ring from
+  // r=100.8 to r=140 (72% → 100% of the half-box), 8px rounded caps and a 3px
+  // card-coloured gap between segments; legend beside it 40px away, the pair
+  // centred in a 24px-padded body. The horizontal (toolbar-legend) variant
+  // keeps the chassis defaults.
   const chart = (
     <DonutChart
       data={slices}
       legend="none"
-      centerLabel={<CenterStack centerLabel={centerLabel} />}
+      centerLabel={<CenterStack centerLabel={centerLabel} size={vertical ? 'lg' : 'md'} />}
       emptyText={source.emptyText}
       hiddenIds={hiddenIds}
       onToggle={toggle}
-      height={widgetHeight(widget, 280)}
+      height={vertical ? 280 : widgetHeight(widget, 280)}
+      innerRadius={vertical ? 72 : undefined}
+      outerRadius={vertical ? 100 : undefined}
+      segmentGap={vertical ? 3 : 0}
       loading={props.loading}
       renderer={renderer}
       aria-label={widgetAriaLabel(widget, props.filterSummary)}
-      className={vertical ? 'min-w-0 flex-1' : undefined}
+      // 280px is the Figma disc; below that width (a span-6 card on a narrow
+      // canvas) the disc yields before the legend so no counter is clipped —
+      // ECharts scales the ring to the shorter side, keeping the 72%/100% ratio.
+      className={vertical ? 'w-[280px] min-w-0 shrink' : undefined}
     />
   )
 
   return (
-    <WidgetCard {...props} count={slices.length} legend={vertical ? undefined : legendNode}>
+    <WidgetCard {...props} count={slices.length} legend={vertical ? undefined : legendNode} bodyPadding={vertical ? 'lg' : 'md'}>
       {vertical ? (
-        <div className="flex h-full flex-col items-center gap-4 sm:flex-row">
+        <div className="flex h-full flex-col items-center justify-center gap-10 sm:flex-row">
           {chart}
-          {legendNode ? <div className="w-full shrink-0 sm:w-auto sm:max-w-[45%]">{legendNode}</div> : null}
+          {legendNode ? <div className="shrink-0">{legendNode}</div> : null}
         </div>
       ) : (
         chart

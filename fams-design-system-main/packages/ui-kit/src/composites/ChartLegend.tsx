@@ -91,6 +91,13 @@ export interface ChartLegendProps
   hiddenIds?: string[]
   /** Presence makes the legend interactive: items become toggle buttons. Omit for a static display (e.g. a fixed legend key). */
   onToggle?: (id: string) => void
+  /**
+   * `'compact'` is the Figma DS V2 chart-side legend (node 5186:15669): rows
+   * 8px apart, 4px dot→label→counter gap, label 14px Medium in the strong
+   * muted ink, no 44px hit floor — it sits beside a donut, not in a toolbar.
+   * Default `'default'` keeps the toolbar rhythm and the hit floor.
+   */
+  density?: 'default' | 'compact'
 }
 
 export const ChartLegend = forwardRef<HTMLUListElement, ChartLegendProps>(
@@ -103,11 +110,13 @@ export const ChartLegend = forwardRef<HTMLUListElement, ChartLegendProps>(
       showCounts = false,
       hiddenIds = [],
       onToggle,
+      density = 'default',
       ...props
     },
     ref,
   ) => {
     const interactive = Boolean(onToggle)
+    const compact = density === 'compact'
 
     return (
       <ul
@@ -137,14 +146,20 @@ export const ChartLegend = forwardRef<HTMLUListElement, ChartLegendProps>(
               />
               <span
                 className={cn(
-                  'truncate text-body-sm text-foreground',
+                  'truncate text-body-sm',
+                  compact ? 'font-medium leading-5 text-muted-foreground-strong' : 'text-foreground',
                   hidden && 'text-muted-foreground line-through',
                 )}
               >
                 {item.label}
               </span>
               {showCounts && item.value != null ? (
-                <Badge size="xs" variant="muted" className="shrink-0">
+                <Badge
+                  size="xs"
+                  variant="muted"
+                  // Figma DS V2 counter (5122:12340): h16 · px8 · r40 · 10/12 SemiBold on surface/low_contrast.
+                  className={cn('shrink-0', compact && 'bg-surface-low-contrast px-2 text-[10px] font-semibold leading-3 text-muted-foreground-strong')}
+                >
                   {item.value}
                 </Badge>
               ) : null}
@@ -166,7 +181,7 @@ export const ChartLegend = forwardRef<HTMLUListElement, ChartLegendProps>(
               // A toggle row is a real control, so it carries the 44px hit
               // floor (verdict V11) — the map legend already does; this is the
               // one legend that did not. A static key keeps its compact height.
-              className={cn('flex min-w-0 items-center', interactive && 'min-h-11')}
+              className={cn('flex min-w-0 items-center', interactive && !compact && 'min-h-11')}
             >
               {interactive ? (
                 <button
@@ -175,7 +190,8 @@ export const ChartLegend = forwardRef<HTMLUListElement, ChartLegendProps>(
                   aria-pressed={!hidden}
                   data-slot="chart-legend-toggle"
                   className={cn(
-                    'flex min-h-11 min-w-0 items-center gap-1.5 rounded-xs px-1 outline-none transition-opacity',
+                    'flex min-w-0 items-center rounded-xs outline-none transition-opacity',
+                    compact ? 'gap-1 px-0' : 'min-h-11 gap-1.5 px-1',
                     'hover:opacity-80 focus-visible:ring-2 focus-visible:ring-ring',
                     hidden && 'opacity-50',
                   )}
@@ -185,7 +201,7 @@ export const ChartLegend = forwardRef<HTMLUListElement, ChartLegendProps>(
               ) : (
                 <span
                   data-slot="chart-legend-static"
-                  className={cn('flex min-w-0 items-center gap-1.5 px-1', hidden && 'opacity-50')}
+                  className={cn('flex min-w-0 items-center', compact ? 'gap-1 px-0' : 'gap-1.5 px-1', hidden && 'opacity-50')}
                 >
                   {inner}
                 </span>

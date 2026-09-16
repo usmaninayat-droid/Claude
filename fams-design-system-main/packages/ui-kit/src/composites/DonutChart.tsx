@@ -92,6 +92,12 @@ export interface DonutChartProps
   renderer?: 'canvas' | 'svg'
   /** Message rendered in place of the arc when every slice is hidden or there is nothing to draw. Without it, hiding every slice paints a solid placeholder disc. */
   emptyText?: ReactNode
+  /**
+   * Visual gap between adjacent segments, in px (Figma DS V2 donut, node
+   * 5186:15665, draws a 3px card-coloured stroke). Painted as a card-coloured
+   * border so it reads as a gap over any card surface. Default `0` — none.
+   */
+  segmentGap?: number
 }
 
 const CHART_COLORS = chartTheme.color
@@ -125,6 +131,7 @@ function buildOption(
   innerRadius: number,
   outerRadius: number,
   valueLabels: 'none' | 'outside',
+  segmentGap = 0,
 ): EChartsOption {
   const slices = data
     .map((datum, index) => ({
@@ -161,7 +168,10 @@ function buildOption(
         type: 'pie',
         radius: [`${innerRadius}%`, `${outerRadius}%`],
         avoidLabelOverlap: outside,
-        itemStyle: { borderRadius: 8 },
+        itemStyle:
+          segmentGap > 0
+            ? { borderRadius: 8, borderWidth: segmentGap, borderColor: resolveCssColor('var(--color-card)', '#ffffff') }
+            : { borderRadius: 8 },
         label: outside
           ? {
               show: true,
@@ -199,6 +209,7 @@ export function DonutChart({
   outerRadius = 90,
   renderer = 'canvas',
   emptyText,
+  segmentGap = 0,
   className,
   'aria-label': ariaLabel,
   ...rest
@@ -225,7 +236,7 @@ export function DonutChart({
 
   const visibleCount = data.filter((datum, index) => !hiddenIds.includes(idOf(datum, index))).length
   const isEmpty = visibleCount === 0
-  const option = buildOption(data, hiddenIds, innerRadius, outerRadius, valueLabels)
+  const option = buildOption(data, hiddenIds, innerRadius, outerRadius, valueLabels, segmentGap)
   const dataTable = buildShareDataTable(ariaLabel, data, (value) => value.toLocaleString())
 
   return (

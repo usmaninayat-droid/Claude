@@ -428,14 +428,26 @@ const TREND_PILL_SURFACE: Record<'up' | 'down' | 'flat', string> = {
   flat: 'bg-muted',
 }
 
-export function CenterStack({ centerLabel }: { centerLabel: DashboardCenterLabel | undefined }) {
+export function CenterStack({
+  centerLabel,
+  size = 'md',
+}: {
+  centerLabel: DashboardCenterLabel | undefined
+  /** `'lg'` is the Figma DS V2 donut hole (node 5186:15668): H1 48/56 value over a 14px semibold caption. */
+  size?: 'md' | 'lg'
+}) {
   if (!centerLabel) return null
+  const large = size === 'lg'
   return (
-    <span className="flex flex-col items-center gap-0.5 text-center">
+    <span className={cn('flex flex-col items-center text-center', large ? 'gap-1' : 'gap-0.5')}>
       {/* `<bdi>`: a centre value is a numeral that may carry a unit; an RTL
           line would otherwise move the unit ahead of the number. */}
-      <bdi className="text-2xl font-semibold text-foreground">{centerLabel.value}</bdi>
-      {centerLabel.caption ? <span className="text-caption text-muted-foreground">{centerLabel.caption}</span> : null}
+      <bdi className={cn('font-semibold', large ? 'text-[48px] leading-[56px] text-card-foreground' : 'text-2xl text-foreground')}>
+        {centerLabel.value}
+      </bdi>
+      {centerLabel.caption ? (
+        <span className={cn('text-muted-foreground', large ? 'text-body-sm font-semibold leading-5' : 'text-caption')}>{centerLabel.caption}</span>
+      ) : null}
       {centerLabel.trend ? (
         <span
           data-slot="center-stack-trend"

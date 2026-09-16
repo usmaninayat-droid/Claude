@@ -12,22 +12,23 @@ const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').
    LIST
    ══════════════════════════════════════════════════════════════════════════ */
 const CONTRACTS = [
-  { id:'PRJ769012', name:'Lot 1 — Abu Dhabi',      lot:'Lot 1', contractor:'BEEAH', expiresDays:45,  status:'ongoing',  m:{ workforce:110, vehicles:95,  equipment:60,  bins:118 } },
-  { id:'PRJ769012', name:'Lot 2 — Al Ain',         lot:'Lot 1', contractor:'BEEAH', expiresDays:12,  status:'ongoing',  m:{ workforce:80,  vehicles:40,  equipment:100, bins:120 }, key:'c2' },
-  { id:'PRJ769012', name:'Lot 3 — Al Dhafra',      lot:'Lot 1', contractor:'BEEAH', expiresDays:210, status:'ongoing',  m:{ workforce:120, vehicles:115, equipment:110, bins:119 }, key:'c3' },
-  { id:'PRJ769012', name:'Lot 7 — Mussafah',       lot:'Lot 1', contractor:'BEEAH', expiresDays:30,  status:'ongoing',  m:{ workforce:88,  vehicles:72,  equipment:65,  bins:100 }, key:'c4' },
-  { id:'PRJ769012', name:'Lot 8 — Yas Island',     lot:'Lot 1', contractor:'BEEAH', expiresDays:18,  status:'expiring', m:{ workforce:60,  vehicles:50,  equipment:40,  bins:80  }, key:'c5' },
-  { id:'PRJ769012', name:'Lot 9 — Saadiyat',       lot:'Lot 1', contractor:'BEEAH', expiresDays:150, status:'ongoing',  m:{ workforce:118, vehicles:120, equipment:112, bins:120 }, key:'c6' },
-  { id:'PRJ769012', name:'Lot 4 — Abu Dhabi City', lot:'Lot 1', contractor:'BEEAH', expiresDays:8,   status:'expiring', m:{ workforce:70,  vehicles:55,  equipment:45,  bins:90  }, key:'c7' },
-  { id:'PRJ769012', name:'Lot 5 — Western Region', lot:'Lot 1', contractor:'BEEAH', expiresDays:null,status:'draft',    m:{ workforce:0,   vehicles:0,   equipment:0,   bins:0   }, key:'c8' },
-  { id:'PRJ769012', name:'Lot 6 — Khalifa City',   lot:'Lot 1', contractor:'BEEAH', expiresDays:95,  status:'ongoing',  m:{ workforce:102, vehicles:98,  equipment:90,  bins:110 }, key:'c9' },
-  { id:'PRJ769012', name:'Lot 10 — Al Shamkha',    lot:'Lot 1', contractor:'BEEAH', expiresDays:-3,  status:'expired',  m:{ workforce:40,  vehicles:35,  equipment:20,  bins:50  }, key:'c10' },
+  { id:'PRJ769012', name:'Lot 1 — Abu Dhabi',      lot:'Lot 1', contractor:'BEEAH', expiresDays:45,  status:'ongoing',  m:{ workforce:110, vehicles:95,  equipment:60,  bins:118, services:113 } },
+  { id:'PRJ769012', name:'Lot 2 — Al Ain',         lot:'Lot 1', contractor:'BEEAH', expiresDays:12,  status:'ongoing',  m:{ workforce:80,  vehicles:40,  equipment:100, bins:120, services:115 }, key:'c2' },
+  { id:'PRJ769012', name:'Lot 3 — Al Dhafra',      lot:'Lot 1', contractor:'BEEAH', expiresDays:210, status:'ongoing',  m:{ workforce:120, vehicles:115, equipment:110, bins:119, services:114 }, key:'c3' },
+  { id:'PRJ769012', name:'Lot 7 — Mussafah',       lot:'Lot 1', contractor:'BEEAH', expiresDays:30,  status:'ongoing',  m:{ workforce:88,  vehicles:72,  equipment:65,  bins:100, services:95 }, key:'c4' },
+  { id:'PRJ769012', name:'Lot 8 — Yas Island',     lot:'Lot 1', contractor:'BEEAH', expiresDays:18,  status:'expiring', m:{ workforce:60,  vehicles:50,  equipment:40,  bins:80, services:75  }, key:'c5' },
+  { id:'PRJ769012', name:'Lot 9 — Saadiyat',       lot:'Lot 1', contractor:'BEEAH', expiresDays:150, status:'ongoing',  m:{ workforce:118, vehicles:120, equipment:112, bins:120, services:115 }, key:'c6' },
+  { id:'PRJ769012', name:'Lot 4 — Abu Dhabi City', lot:'Lot 1', contractor:'BEEAH', expiresDays:8,   status:'expiring', m:{ workforce:70,  vehicles:55,  equipment:45,  bins:90, services:85  }, key:'c7' },
+  { id:'PRJ769012', name:'Lot 5 — Western Region', lot:'Lot 1', contractor:'BEEAH', expiresDays:null,status:'draft',    m:{ workforce:0,   vehicles:0,   equipment:0,   bins:0, services:0   }, key:'c8' },
+  { id:'PRJ769012', name:'Lot 6 — Khalifa City',   lot:'Lot 1', contractor:'BEEAH', expiresDays:95,  status:'ongoing',  m:{ workforce:102, vehicles:98,  equipment:90,  bins:110, services:105 }, key:'c9' },
+  { id:'PRJ769012', name:'Lot 10 — Al Shamkha',    lot:'Lot 1', contractor:'BEEAH', expiresDays:-3,  status:'expired',  m:{ workforce:40,  vehicles:35,  equipment:20,  bins:50, services:45  }, key:'c10' },
 ];
 CONTRACTS.forEach((c, i) => { c.key = c.key || 'c' + (i + 1); });
 const CAP = 120;
 const METER = {
   workforce:{ icon:'users-02', label:'Workforce' }, vehicles:{ icon:'car-01', label:'Vehicles' },
   equipment:{ icon:'tool-02', label:'Equipment' },  bins:{ icon:'trash-03', label:'Bins' },
+  services:{ icon:'service-line', label:'Service Lines' },
 };
 const fillClass = v => v / CAP < .55 ? 'bad' : v / CAP < .85 ? 'warn' : 'ok';
 
@@ -58,7 +59,7 @@ function cardHTML(c) {
     </div>
     <div class="meters">
       <div class="mrow">${meterHTML('workforce', c.m.workforce)}${meterHTML('vehicles', c.m.vehicles)}</div>
-      <div class="mrow">${meterHTML('equipment', c.m.equipment)}${meterHTML('bins', c.m.bins)}</div>
+      <div class="mrow">${meterHTML('equipment', c.m.equipment)}${meterHTML('services', c.m.services)}</div>
     </div>
   </div>`;
 }
@@ -99,7 +100,7 @@ const STEP_DEFS = [
   { key:'workforce',   n:'STEP 6',     label:'Add Workforce',                 icon:'users-02' },
   // Figma (Launch Pad 7205:11761) folds Add Bins + Services & Frequencies into
   // ONE "Service Lines" step and keeps the rail's own numbering (no STEP 7).
-  { key:'service',     n:'STEP 8',     label:'Service Lines',                 icon:'coins-hand' },
+  { key:'service',     n:'STEP 8',     label:'Service Lines',                 icon:'service-line' },
   { key:'kpi',         n:'STEP 9',     label:'KPI Targets',                   icon:'target-04' },
   { key:'attachments', n:'STEP 10',    label:'Attachments',                   icon:'attachment-01' },
   { key:'summary',     n:'FINAL STEP', label:'Summary',                       icon:'align-left' },
@@ -133,13 +134,13 @@ const CAT = {
   ],
   // Bin catalog per client-supplied list (assets master).
   bins: [
-    { id:'b11c', name:'1.1 CBM', icon:'trash-03' },
-    { id:'b32c', name:'3.2 CBM', icon:'trash-03' },
-    { id:'b32l', name:'3.2 L',   icon:'trash-03' },
-    { id:'b45c', name:'4.5 CBM', icon:'trash-03' },
-    { id:'b45l', name:'4.5 L',   icon:'trash-03' },
-    { id:'b7c',  name:'7 CBM',   icon:'trash-03' },
-    { id:'b7l',  name:'7 L',     icon:'trash-03' },
+    { id:'b11c', name:'1.1 CBM', icon:'service-line' },
+    { id:'b32c', name:'3.2 CBM', icon:'service-line' },
+    { id:'b32l', name:'3.2 L',   icon:'service-line' },
+    { id:'b45c', name:'4.5 CBM', icon:'service-line' },
+    { id:'b45l', name:'4.5 L',   icon:'service-line' },
+    { id:'b7c',  name:'7 CBM',   icon:'service-line' },
+    { id:'b7l',  name:'7 L',     icon:'service-line' },
   ],
   service: [
     'Full Bin Collection','Bin Washing','Under Bin Washing','Bulky Waste Collection','Dead Animals Collection','Stuff Complaint','Green Waste Collection',
@@ -147,6 +148,30 @@ const CAT = {
     'Sweeping Sand Service','Open Areas Cleaning','Pedestrian Underpasses Cleaning','Pedestrian Bridge Cleaning','Walkways Cleaning','Mechanical Sweeping',
     'Bushes Removal','Manpower Allocation','Vehicle / Equipment Allocation','Collection & Transportation Services to Palaces','Safety Related','Negative Media Coverage',
   ].map((n, i) => ({ id:'svc' + i, name:n })),
+};
+const EXTRA_FIELDS = {
+  vehicles: [
+    { k:'make',     l:'Make' },
+    { k:'model',    l:'Model' },
+    { k:'status',   l:'Vehicle Status' },
+    { k:'fuel',     l:'Fuel Type' },
+    { k:'color',    l:'Vehicle Color' },
+    { k:'myear',    l:'Manufacturing Year' },
+    { k:'odometer', l:'Odometer' },
+    { k:'maxspeed', l:'Maximum Allowed Speed' },
+  ],
+  equipment: [
+    { k:'serial',   l:'Serial Number' }, { k:'condition', l:'Condition' }, { k:'warranty', l:'Warranty Period' },
+    { k:'category', l:'Category' }, { k:'weight', l:'Weight' }, { k:'power', l:'Power Rating' },
+  ],
+  workforce: [
+    { k:'role',     l:'Role' }, { k:'shift', l:'Preferred Shift' }, { k:'license', l:'License Class' },
+    { k:'language', l:'Languages' }, { k:'nationality', l:'Nationality' }, { k:'gender', l:'Gender' },
+  ],
+  bins: [
+    { k:'color',    l:'Bin Color' }, { k:'material', l:'Material' }, { k:'wheels', l:'Wheels' },
+    { k:'lid',      l:'Lid Type' }, { k:'capacity', l:'Capacity' },
+  ],
 };
 const CFG_FIELDS = {
   vehicles:  [ { k:'qty', l:'Required Quantity', t:'number', d:'' }, { k:'year', l:'Minimum Manufacture Year', t:'number', d:'' } ],
@@ -207,6 +232,7 @@ function renderWizard() {
   back.classList.toggle('ghost', wzIndex === 0);
   document.getElementById('wzNext').textContent = wzIndex === STEP_DEFS.length - 1 ? 'Create' : 'Save and Continue';
   if (R.after) R.after();
+  wireCustomSelects();
 }
 document.getElementById('wzBack').addEventListener('click', () => { if (wzIndex > 0) { wzIndex--; renderWizard(); } });
 document.getElementById('wzNext').addEventListener('click', () => {
@@ -252,7 +278,7 @@ STEP_RENDER.basic = () => {
     body:`<div class="form">
       ${fieldHTML('title', 'Project Title', b.title, { req:true })}
       ${fieldHTML('ref', 'Reference Number', b.ref, { req:true })}
-      ${fieldHTML('type', 'Project Type', b.type, { req:true, options:['MSW Commercials','MSW Residential','C&D Waste','Green Waste','Bulk Collection'] })}
+      ${fieldHTML('type', 'Project Type', b.type, { req:true, options:['MSW','Commercials'] })}
       ${fieldHTML('contract', 'Contract', b.contract, { req:true, options:['Lot 1 Contract','Lot 2 Contract','Lot 3 Contract','Lot 4 Contract','Lot 5 Contract'] })}
       ${fieldHTML('start', 'Start Date', b.start, { req:true, icon:'calendar', clear:true, date:true })}
       ${fieldHTML('end', 'End Date', b.end, { req:true, icon:'calendar', date:true })}
@@ -288,10 +314,13 @@ STEP_RENDER.zone = () => ({
       <img class="map-img" src="assets/zone-map.png" alt="">
       <div class="map-poly"><img src="assets/zone-polygon.svg" alt=""></div>
     </div>
-    <div class="zone-field">
+    <div class="zone-field" id="zoneField" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
       <span class="f-col"><span class="f-lbl md">Zone <b class="req">*</b></span>
-        <span class="zone-chips">${draft.zones.map(z => `<span class="zchip" data-z="${z}">${z}${ic('x', 8)}</span>`).join('')}</span></span>
+        <span class="zone-chips">${draft.zones.length ? draft.zones.map(z => `<span class="zchip" data-z="${z}">${z}${ic('x', 8)}</span>`).join('') : '<span class="zone-ph">Select one or more zones</span>'}</span></span>
       ${ic('chevron-down', 12, 'trail')}
+      <div class="zone-menu" id="zoneMenu" role="listbox" aria-multiselectable="true" hidden>
+        ${['LOT-01','LOT-02','LOT-03','LOT-04','LOT-05','LOT-06','LOT-07','LOT-08','LOT-09','LOT-10'].map(z => `<div class="zone-opt${draft.zones.includes(z) ? ' on' : ''}" data-z="${z}" role="option" aria-selected="${draft.zones.includes(z)}"><span class="zbox">${ic('check', 12)}</span>${z}</div>`).join('')}
+      </div>
     </div>
     <button class="map-layers" type="button" aria-label="Map layers"><img src="assets/layers-thumb.png" alt="">${ic('layers-three-01', 20)}</button>
     <div class="map-ctl">
@@ -304,8 +333,26 @@ STEP_RENDER.zone = () => ({
     const fit = () => { const s = frame.clientWidth / 1358; canvas.style.transform = `scale(${s})`; frame.style.height = `${Math.round(766 * s)}px`; };
     fit(); window.addEventListener('resize', fit, { once:true });
     document.querySelectorAll('#wzBody .zchip .ic').forEach(x => x.addEventListener('click', e => {
+      e.stopPropagation();
       const z = e.currentTarget.closest('.zchip').dataset.z; draft.zones = draft.zones.filter(v => v !== z); renderWizard();
     }));
+    const field = document.getElementById('zoneField'), menu = document.getElementById('zoneMenu');
+    if (field && menu) {
+      const close = () => { menu.hidden = true; field.setAttribute('aria-expanded','false'); document.removeEventListener('click', outside, true); };
+      const outside = e => { if (!field.contains(e.target)) close(); };
+      field.addEventListener('click', e => {
+        if (e.target.closest('.zchip')) return;
+        const open = menu.hidden;
+        menu.hidden = !open; field.setAttribute('aria-expanded', String(open));
+        if (open) setTimeout(() => document.addEventListener('click', outside, true), 0);
+      });
+      menu.querySelectorAll('.zone-opt').forEach(el => el.addEventListener('click', e => {
+        e.stopPropagation();
+        const z = el.dataset.z;
+        draft.zones = draft.zones.includes(z) ? draft.zones.filter(v => v !== z) : [...draft.zones, z];
+        renderWizard();
+      }));
+    }
   },
 });
 
@@ -323,12 +370,29 @@ function pickerStep(key) {
     ? emptyState(key)
     : items.map((it, idx) => {
         const cfg = CAT[key].find(c => c.id === it.id) || it;
-        const fields = CFG_FIELDS[key].map(f =>
-          `<label class="f"><span class="f-col"><span class="f-lbl md">${f.l}</span><input class="f-in" data-ci="${idx}" data-ck="${f.k}" type="${f.t}" value="${esc(it[f.k] ?? '')}"></span>${ic('chevron-down', 12, 'trail')}</label>`).join('');
+        const extraKeys = it._extra || [];
+        const pool = EXTRA_FIELDS[key] || [];
+        const defs = [
+          ...CFG_FIELDS[key].map(f => ({ ...f, _core:true })),
+          ...extraKeys.map(k => pool.find(p => p.k === k)).filter(Boolean).map(f => ({ ...f, t:'text' })),
+        ];
+        const fieldHTMLs = defs.map(f => {
+          const v = it[f.k] ?? '';
+          const empty = v === '' || v === null || v === undefined;
+          const rm = f._core ? '' : `<button type="button" class="f-rm" data-ci="${idx}" data-cx="${f.k}" aria-label="Remove field">${ic('x', 12)}</button>`;
+          return `<label class="f${empty ? ' f--empty' : ''}"><span class="f-col"><span class="f-lbl md">${f.l}</span><input class="f-in" data-ci="${idx}" data-ck="${f.k}" type="${f.t || 'text'}" value="${esc(v)}"></span>${rm}</label>`;
+        });
+        // Chunk fields into rows of 2 so the layout stays 2-across as fields are added.
+        const rows = [];
+        for (let r = 0; r < fieldHTMLs.length; r += 2) rows.push(`<div class="c-fields">${fieldHTMLs.slice(r, r + 2).join('')}</div>`);
+        const available = pool.filter(f => !extraKeys.includes(f.k));
+        const menu = available.length
+          ? `<div class="c-addmenu" id="cAdd_${idx}" hidden><div class="c-addsearch">${ic('search-lg', 16)}<input type="text" placeholder="Search fields here" data-fq="${idx}"></div><div class="c-addlist">${available.map(f => `<div class="c-addopt" data-ci="${idx}" data-cx="${f.k}">${esc(f.l)}</div>`).join('')}</div></div>`
+          : '';
         return `<div class="wz-cfg">
           <div class="c-head"><div class="c-name">${glyphOrArt(cfg, 20)}${esc(cfg.name)}</div>
-            <div class="c-actions"><span class="c-addfield">Add New Field${ic('chevron-down', 16)}</span><span class="c-remove" data-crm="${idx}" title="Remove">${ic('trash-03', 16)}</span></div></div>
-          <div class="c-fields">${fields}</div>
+            <div class="c-actions"><span class="c-addfield${available.length ? '' : ' disabled'}" data-caopen="${idx}" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">Add New Field${ic('chevron-down', 16)}</span>${menu}<span class="c-remove" data-crm="${idx}" title="Remove">${ic('trash-03', 16)}</span></div></div>
+          ${rows.join('')}
         </div>`;
       }).join('');
   return {
@@ -345,8 +409,41 @@ STEP_RENDER.bins      = () => pickerStep('bins');
 let pickerState = null;
 function wirePicker(key) {
   document.querySelectorAll(`[data-pkopen="${key}"]`).forEach(b => b.addEventListener('click', () => openPicker(key)));
-  document.querySelectorAll('#wzBody [data-ci]').forEach(el => el.addEventListener('input', e => { draft[key][+e.target.dataset.ci][e.target.dataset.ck] = e.target.value; }));
+  document.querySelectorAll('#wzBody [data-ci]').forEach(el => el.addEventListener('input', e => { draft[key][+e.target.dataset.ci][e.target.dataset.ck] = e.target.value; e.target.closest('.f').classList.toggle('f--empty', e.target.value === ''); }));
   document.querySelectorAll('#wzBody [data-crm]').forEach(el => el.addEventListener('click', e => { draft[key].splice(+e.currentTarget.dataset.crm, 1); renderWizard(); }));
+  // Add-field dropdown per card
+  const closeAllMenus = () => {
+    document.querySelectorAll('#wzBody .c-addmenu').forEach(m => { m.hidden = true; });
+    document.querySelectorAll('#wzBody [data-caopen]').forEach(t => t.setAttribute('aria-expanded','false'));
+  };
+  document.querySelectorAll('#wzBody [data-caopen]').forEach(trig => trig.addEventListener('click', e => {
+    e.stopPropagation();
+    if (trig.classList.contains('disabled')) return;
+    const idx = trig.dataset.caopen, menu = document.getElementById('cAdd_' + idx);
+    if (!menu) return;
+    const willOpen = menu.hidden;
+    closeAllMenus();
+    if (willOpen) { menu.hidden = false; trig.setAttribute('aria-expanded','true'); const inp = menu.querySelector('input'); if (inp) setTimeout(() => inp.focus(), 0); }
+  }));
+  document.querySelectorAll('#wzBody .c-addopt').forEach(opt => opt.addEventListener('click', e => {
+    e.stopPropagation();
+    const it = draft[key][+opt.dataset.ci];
+    it._extra = [...(it._extra || []), opt.dataset.cx];
+    renderWizard();
+  }));
+  document.querySelectorAll('#wzBody .f-rm').forEach(btn => btn.addEventListener('click', e => {
+    e.preventDefault(); e.stopPropagation();
+    const it = draft[key][+btn.dataset.ci], k = btn.dataset.cx;
+    it._extra = (it._extra || []).filter(x => x !== k); delete it[k]; renderWizard();
+  }));
+  document.querySelectorAll('#wzBody [data-fq]').forEach(inp => inp.addEventListener('input', e => {
+    const q = e.target.value.toLowerCase(), menu = e.target.closest('.c-addmenu');
+    menu.querySelectorAll('.c-addopt').forEach(o => { o.hidden = q && !o.textContent.toLowerCase().includes(q); });
+  }));
+  if (!wirePicker._boundOut) {
+    document.addEventListener('click', e => { if (!e.target.closest('.c-actions')) closeAllMenus(); });
+    wirePicker._boundOut = true;
+  }
 }
 /* Per-step popup anatomy from Figma: bins (2111:3646) has title only — no search, no row icons */
 const PICKER_UI = {
@@ -397,18 +494,22 @@ function commitPicker(catalog) {
 /* STEP 8 — Service Lines (Launch Pad 7205:11761): one card per service line —
    row 1: Bin Type · Required Quantity · Waste Type
    row 2: Action (plus-square) · Frequency (clock-fast-forward) · Collection days pills */
-const svcSelect = (i, key, label, icon, val, options, chev = 'chevron-down') =>
-  `<label class="f">${icon ? ic(icon, 20, 'lead') : ''}<span class="f-col"><span class="f-lbl md">${label}</span>
-    <select class="f-sel" data-si="${i}" data-sk="${key}">${options.map(o => `<option${o === val ? ' selected' : ''}>${esc(o)}</option>`).join('')}</select></span>${ic(chev, 12, 'trail')}</label>`;
-const svcInput = (i, key, label, val) =>
-  `<label class="f"><span class="f-col"><span class="f-lbl md">${label}</span>
-    <input class="f-in" type="text" inputmode="numeric" data-si="${i}" data-sk="${key}" value="${esc(val)}"></span></label>`;
+const svcSelect = (i, key, label, icon, val, options, chev = 'chevron-down') => {
+  const empty = val === undefined || val === null || val === '';
+  return `<label class="f${empty ? ' f--empty' : ''}">${icon ? ic(icon, 20, 'lead') : ''}<span class="f-col"><span class="f-lbl md">${label}</span>
+    <select class="f-sel" data-si="${i}" data-sk="${key}">${empty ? '<option value="" hidden></option>' : ''}${options.map(o => `<option${o === val ? ' selected' : ''}>${esc(o)}</option>`).join('')}</select></span>${ic(chev, 12, 'trail')}</label>`;
+};
+const svcInput = (i, key, label, val) => {
+  const empty = val === undefined || val === null || val === '';
+  return `<label class="f${empty ? ' f--empty' : ''}"><span class="f-col"><span class="f-lbl md">${label}</span>
+    <input class="f-in" type="text" inputmode="numeric" data-si="${i}" data-sk="${key}" value="${esc(val ?? '')}"></span></label>`;
+};
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const WASTE_TYPES = ['General Waste', 'Recyclable'];
 // Frequency ordered by increasing interval — Daily → Monthly. Only shown for
 // Scheduled (or Both) Action, and paired with the Collection Days pill row so
 // the reader picks the CADENCE here and the WEEKDAYS below.
-const FREQUENCIES = ['Daily', '5x weekly', '4x weekly', '3x weekly', '2x weekly', 'Weekly', 'Bi-weekly', 'Monthly'];
+const FREQUENCIES = ['Daily', '5x weekly', '4x weekly', '3x weekly', '2x weekly', 'Weekly'];
 const RESPONSE_TIMES = ['4 hours', '8 hours', '12 hours', '24 hours', '48 hours', '72 hours', '1 week'];
 STEP_RENDER.service = () => {
   const items = draft.services;
@@ -416,9 +517,11 @@ STEP_RENDER.service = () => {
   const body = !items.length
     ? emptyState('service')
     : items.map((s, i) => {
-        s.bin = s.bin || CAT.bins[0].name; s.qty = s.qty ?? '20'; s.waste = s.waste || 'General Waste';
-        s.action = s.action || 'Scheduled'; s.frequency = s.frequency || '3x weekly'; s.response = s.response || '24 hours';
-        if (!s.days) s.days = ['Mon', 'Wed', 'Fri'];
+        // Defaults intentionally blank — new cards show label-only placeholder fields,
+        // per the empty-state pattern from Basic Info. Action defaults to Scheduled so
+        // the row2 shape (Frequency + Collection days) is present out of the box.
+        s.action = s.action || 'Scheduled';
+        if (!s.days) s.days = [];
         const scheduled = s.action === 'Scheduled' || s.action === 'Both';
         const adhoc = s.action === 'Ad-hoc' || s.action === 'Both';
         const row1 = [
@@ -447,6 +550,8 @@ STEP_RENDER.service = () => {
       document.querySelectorAll('#wzBody [data-si][data-sk]').forEach(el => {
         const save = e => {
           draft.services[+e.target.dataset.si][e.target.dataset.sk] = e.target.value;
+          // Drop the label-only placeholder styling as soon as the field carries a value.
+          e.target.closest('.f').classList.toggle('f--empty', e.target.value === '');
           // Action changes rearrange the row (Scheduled vs Ad-hoc vs Both) — re-render.
           if (e.target.dataset.sk === 'action') renderWizard();
         };
@@ -464,6 +569,19 @@ STEP_RENDER.service = () => {
 };
 
 /* STEP 9 — KPI Targets */
+const KPI_CATALOG = [
+  { code:'2.1', tag:'SOLID WASTE COLLECTION & TRANSPORTATION SERVICES', name:'MSW Collection', rectifiable:'Yes', unit:'Every Second Day', indicator:'Percentage of bins emptied as scheduled for all services, as detailed in Schedule 5 Volume 2; a) Household waste, b) Recyclable waste.' },
+  { code:'2.2', tag:'SOLID WASTE COLLECTION & TRANSPORTATION SERVICES', name:'Bulky Waste Collection', rectifiable:'Yes', unit:'Daily within 20m of container for residential / commercial / Industrial area', indicator:'Percentage of bulky waste found within 20m of Container removed within specified timeframe.' },
+  { code:'2.4', tag:'SOLID WASTE COLLECTION & TRANSPORTATION SERVICES', name:'C & D Waste Collection', rectifiable:'Yes', unit:'Daily', indicator:'Percentage of Service areas collected within specified timeframe.' },
+  { code:'2.5', tag:'SOLID WASTE COLLECTION & TRANSPORTATION SERVICES', name:'Green Waste Collection', rectifiable:'Yes', unit:'Weekly', indicator:'Percentage of green waste collected on scheduled service days.' },
+  { code:'2.6', tag:'SOLID WASTE COLLECTION & TRANSPORTATION SERVICES', name:'Open Market Waste Collection', rectifiable:'Yes', unit:'Every Second Day', indicator:'Percentage of Waste Collection Points serviced within specified timeframe (zero waste left at each WCP after collection).' },
+  { code:'2.7', tag:'SOLID WASTE COLLECTION & TRANSPORTATION SERVICES', name:'Bin Washing', rectifiable:'Yes', unit:'Monthly', indicator:'Percentage of bins washed on scheduled dates.' },
+  { code:'2.8', tag:'SOLID WASTE COLLECTION & TRANSPORTATION SERVICES', name:'Under Bin Washing', rectifiable:'Yes', unit:'Monthly', indicator:'Percentage of under-bin areas cleaned on scheduled dates.' },
+  { code:'2.9', tag:'SOLID WASTE COLLECTION & TRANSPORTATION SERVICES', name:'Dead Animals Collection', rectifiable:'Yes', unit:'On demand', indicator:'Percentage of reported dead animals collected within specified timeframe.' },
+  { code:'3.1', tag:'SOLID WASTE COLLECTION & TRANSPORTATION SERVICES', name:'Stuff Complaint', rectifiable:'Yes', unit:'On demand', indicator:'Percentage of stuff complaints resolved within specified timeframe.' },
+  { code:'3.2', tag:'FLEET & EQUIPMENT COMPLIANCE', name:'Vehicle Availability', rectifiable:'No', unit:'Daily', indicator:'Percentage of contracted vehicles available and roadworthy each day.' },
+  { code:'3.3', tag:'HSE COMPLIANCE', name:'Reportable Incidents', rectifiable:'No', unit:'Monthly', indicator:'Percentage of shifts completed with zero reportable HSE incidents.' },
+];
 const KPI_SEED = [
   { code:'2.1', tag:'SOLID WASTE COLLECTION & TRANSPORTATION SERVICES', name:'MSW Collection', rectifiable:'Yes', unit:'Every Second Day',
     indicator:'Percentage of bins emptied as scheduled for all services, as detailed in Schedule 5 Volume 2; a) Household waste, b) Recyclable waste.', mode:'fixed', target:90 },
@@ -508,10 +626,12 @@ STEP_RENDER.kpi = () => {
   if (!draft.kpis.length) draft.kpis = JSON.parse(JSON.stringify(KPI_SEED));
   return {
     title:'KPI Targets', sub:'Define and configure KPI targets that align with your required standards. These targets help measure performance against benchmarks, ensure compliance.',
-    headRight:`<button class="wz-addnew" type="button">Add New${ic('chevron-down', 16)}</button>`,
+    headRight:`<button class="wz-addnew" id="kpiAddNew" type="button">Add New${ic('chevron-down', 16)}</button>`,
     body:`<div class="wz-hint">${ic('sparkle', 20)}<span>KPIs have been smartly added based on your previous selections. Review and adjust them as per your preferences.</span></div>
-      <div class="kpi-grid">${draft.kpis.map(kpiCard).join('')}</div>`,
+      <div class="kpi-grid">${draft.kpis.map(kpiCard).join('')}</div>
+      ${kpiDrawerHTML()}`,
     after() {
+      wireKpiDrawer();
       const num = s => Math.max(0, Math.min(100, parseInt(String(s).replace(/[^\d]/g, ''), 10) || 0));
       document.querySelectorAll('#wzBody [data-km]').forEach(el => el.addEventListener('click', e => { draft.kpis[+e.currentTarget.dataset.ki].mode = e.currentTarget.dataset.km; renderWizard(); }));
       document.querySelectorAll('#wzBody [data-kf]').forEach(el => el.addEventListener('change', e => { draft.kpis[+e.target.dataset.ki].target = num(e.target.value); renderWizard(); }));
@@ -638,7 +758,6 @@ const DONUTS = [
   { t:'Vehicle Type Breakdown',   n:121, u:'Vehicles',  vis:[.5,.36,.14], seg:[ ['Compactor', 73, C.azure], ['Bin Washer', 43, C.teal], ['Tipper Trucks', 5, C.amber] ] },
   { t:'Workforce Type Breakdown', n:121, u:'Workforce', vis:[.5,.36,.14], seg:[ ['Drivers', 73, C.azure], ['Helpers', 43, C.teal], ['Supervisors', 5, C.amber] ] },
   { t:'Equipment Type Breakdown', n:121, u:'Approved',  vis:[.5,.36,.14], seg:[ ['Equip1', 12, C.azure], ['Equip2', 43, C.teal], ['Equip3', 5, C.amber] ] },
-  { t:'Bin Type Breakdown',       n:121, u:'Approved',  vis:[.62,.38], seg:[ ['240L', 73, C.azure], ['1100L', 43, C.teal] ] },
 ];
 const TIMELINE = [
   { day:'22 JUN , 2026', items:[
@@ -763,7 +882,7 @@ function openDetail(c) {
   currentContract = c; closeDrawer();
   document.getElementById('cmApp').hidden = true; detail.hidden = false;
   const lotNo = (c.lot || 'Lot 1').replace(/\D/g, '') || '1', area = c.name.split('—')[1]?.trim() || 'Abu Dhabi';
-  document.getElementById('dtId').textContent = 'CRT' + c.id.replace(/\D/g, '').slice(-3);
+  document.getElementById('dtId').textContent = c.id;
   document.getElementById('dtTitle').textContent = `LOT ${lotNo}: ${area} Project`;
   document.getElementById('dtEsp').innerHTML = `<span class="av">${esc(c.contractor[0])}</span>${esc(c.contractor[0] + c.contractor.slice(1).toLowerCase())}`;
   document.getElementById('dtLot').innerHTML = `${ic('skew', 16)}Lot ${lotNo}`;
@@ -782,7 +901,7 @@ function openDetail(c) {
         </div>
         <div class="dt-row">
           ${tile('file-06', 'rgba(149,75,175,.07)', '#954baf', 'Number Of Plans', '100/120', raw('plans', 'Number of Plans'))}
-          ${tile('briefcase-01', 'rgba(0,114,214,.07)', C.blue, 'number of Services', '05')}
+          ${tile('service-line', 'rgba(0,114,214,.07)', C.blue, 'Number Of Service Lines', '05')}
           ${tile('target-04', 'rgba(34,200,130,.07)', C.green, 'Number Of KPIs', '05')}
         </div>
       </div>
@@ -793,24 +912,23 @@ function openDetail(c) {
       <div class="tile date"><span class="t-av" style="background:rgba(254,200,75,.08);color:#f2a90a">${ic('calendar', 20)}</span><span class="t-txt"><span class="t-l">Start &amp; End Date</span><span class="t-v"><span>24 Nov, 2024</span><span>-</span><span>10 Nov, 2028</span></span></span></div>
     </div>
     <div class="dt-row">
-      ${card('building-06', 'Contractor Details', `<div class="kvl">
-        ${kvr('Contractor', `<span class="v img"><img src="assets/art/esp-avatar.png" alt="">${esc(c.contractor === 'BEEAH' ? 'ESP Contractor' : c.contractor)}</span>`)}
-        ${kvr('Contact', `<span class="v"><span class="ini lav">S</span>Saad Bin Usman</span>`)}
-        ${kvr('Contact’s Email', 'saad.bin12@gmail.com')}
-        ${kvr('Contact’s Phone', '+971 50 123 4567')}
+      ${card('user-03', 'Project Manager Details', `<div class="kvl">
         ${kvr('Project Manager', `<span class="v"><span class="ini blu">S</span>Syed Ali</span>`)}
+        ${kvr('Designation', 'Project Manager — Waste Operations')}
+        ${kvr('Email', 'syed.ali@tadweer.ae')}
+        ${kvr('Phone', '+971 50 123 4567')}
+        ${kvr('Reports To', `<span class="v"><span class="ini lav">R</span>Reem Al Zaabi</span>`)}
       </div>`, 'dt-half')}
       ${card('trend-up-01', 'Daily Plans Compliance vs Required Baseline', `<div class="dc-b chart" id="chDaily"></div>`, 'dt-half')}
     </div>
     ${card('pie-chart-01', 'KPI Targets — Target vs Achieved', `<div class="dc-b"><div class="chart" id="chKpi"></div><div class="foot">Percentage %</div></div>`, 'dt-kpi bd3')}
-    ${card('horizontal-bar-chart-01', 'Service Coverage &amp; Frequencies Compliance', `<div class="dc-b"><div class="svc-rows">${SVC_ROWS.map(r => `<div class="svc-r">
+    ${card('horizontal-bar-chart-01', 'Service Line Coverage', `<div class="dc-b"><div class="svc-rows">${SVC_ROWS.map(r => `<div class="svc-r">
         <div class="l1"><span class="nm">${esc(r.n)}<span>${esc(r.f)}</span></span><span class="pc">${r.pc}</span></div>
         <div class="bar3"><i class="e"></i><i class="w" style="left:9.2%;width:${(r.w - 9.2).toFixed(1)}%"></i><i class="s" style="width:${r.s}%"></i></div>
         <div class="l2"><span class="lg"><span><i style="background:${C.success}"></i>On Time<em>${r.on}</em></span><span><i style="background:${C.amber}"></i>Late<em>${r.late}</em></span><span><i style="background:${C.red}"></i>Missed<em>${r.miss}</em></span></span><span class="of">2,810 of 2,890 Schedules</span></div>
       </div>`).join('')}</div></div>`, 'dt-svc bd3')}
     ${card('target-04', '5-Years Plan Compliance', `<div class="legend">${FIVE.map((s, i) => `<span><i style="background:${s.c}"></i>Series ${i + 1}</span>`).join('')}</div><div class="dc-b chart" id="ch5yr"></div>`, 'dt-5yr')}
     <div class="dt-row">${DONUTS.slice(0, 3).map(donutCard).join('')}</div>
-    <div class="dt-row"><div style="flex:1;display:flex">${donutCard(DONUTS[3])}</div><div style="flex:2"></div></div>
     ${card('file-05', 'Attached Documents', `<div class="dc-b">${DOCS.map(a => `<div class="doc"><img src="assets/art/pdf.png" alt="PDF"><div><div class="n">${esc(a.name)}</div><div class="m">${esc(a.meta || 'Expiry Date: 12 Apr, 2026')}</div></div></div>`).join('')}</div>`, 'dt-docs bd3')}`;
   dtWrap.querySelectorAll('[data-raw]').forEach(el => el.addEventListener('click', () => openDrawer('raw', { key: el.dataset.raw, title: el.dataset.rawt })));
   drawCharts();
@@ -991,3 +1109,122 @@ function openDatePicker(field, bk) {
   window.addEventListener('scroll', closeDatePicker, true);
   window.addEventListener('resize', closeDatePicker, true);
 }
+
+
+/* KPI Selection drawer — Add New on Step 9 opens a right-side sheet of
+   catalog KPIs not yet added to the draft. Selecting rows and pressing
+   Add KPI merges them into draft.kpis with sensible defaults. */
+let kpiDrawerSel = new Set();
+function kpiDrawerHTML() {
+  return `<aside class="kpi-drawer" id="kpiDrawer" hidden aria-hidden="true">
+    <button class="kd-close" id="kdClose" type="button" aria-label="Close">${ic('x', 20)}</button>
+    <div class="kd-panel">
+      <div class="kd-head"><h3>KPI Selection</h3><p>Choose the relevant KPIs where non-compliance occurred. This ensures the penalty is linked to the correct rule or standard for accurate tracking.</p></div>
+      <div class="kd-toolbar">
+        <label class="kd-search">${ic('search-lg', 16)}<input id="kdQ" type="text" placeholder="Search anything here"></label>
+        <button class="kd-filter" type="button" aria-label="Filter">${ic('filter-funnel-01', 16)}</button>
+      </div>
+      <div class="kd-list" id="kdList"></div>
+      <div class="kd-footer"><button class="kd-add" id="kdAdd" type="button">Add KPI</button></div>
+    </div>
+  </aside>`;
+}
+function kpiDrawerRows() {
+  const q = (document.getElementById('kdQ')?.value || '').toLowerCase();
+  const used = new Set(draft.kpis.map(k => k.code));
+  const rows = KPI_CATALOG.filter(k => !used.has(k.code) && (!q || (k.name + ' ' + k.tag + ' ' + k.code + ' ' + k.indicator).toLowerCase().includes(q)));
+  const list = document.getElementById('kdList'); if (!list) return;
+  list.innerHTML = rows.length ? rows.map(k => {
+    const on = kpiDrawerSel.has(k.code);
+    return `<div class="kd-row${on ? ' on' : ''}" data-kdc="${k.code}">
+      <span class="kd-cb">${on ? ic('check', 12) : ''}</span>
+      <div class="kd-body">
+        <div class="kd-chips"><span class="kchip code">${ic('hash-02', 16, 'r180')}${k.code}</span><span class="kchip tag">${ic('tag-01', 16)}${esc(k.tag)}</span></div>
+        <div class="kd-name">${esc(k.name)}</div>
+        <div class="kd-meta"><span><b>Reporting Unit:</b> ${esc(k.unit)}</span><span><b>Rectifiable:</b> ${esc(k.rectifiable)}</span></div>
+        <div class="kd-ind"><b>Performance Indicator:</b> ${esc(k.indicator)}</div>
+      </div>
+    </div>`;
+  }).join('') : '<div class="kd-empty">No matching KPIs.</div>';
+  list.querySelectorAll('[data-kdc]').forEach(el => el.addEventListener('click', () => {
+    const c = el.dataset.kdc; if (kpiDrawerSel.has(c)) kpiDrawerSel.delete(c); else kpiDrawerSel.add(c);
+    kpiDrawerRows();
+    document.getElementById('kdAdd').textContent = kpiDrawerSel.size ? `Add KPI (${kpiDrawerSel.size})` : 'Add KPI';
+  }));
+}
+function wireKpiDrawer() {
+  const btn = document.getElementById('kpiAddNew'), drawer = document.getElementById('kpiDrawer');
+  if (!btn || !drawer) return;
+  const open = () => { kpiDrawerSel = new Set(); drawer.hidden = false; drawer.setAttribute('aria-hidden','false'); document.body.classList.add('kd-open'); kpiDrawerRows(); };
+  const close = () => { drawer.hidden = true; drawer.setAttribute('aria-hidden','true'); document.body.classList.remove('kd-open'); };
+  btn.addEventListener('click', open);
+  document.getElementById('kdClose').addEventListener('click', close);
+  document.getElementById('kdQ').addEventListener('input', kpiDrawerRows);
+  document.getElementById('kdAdd').addEventListener('click', () => {
+    if (!kpiDrawerSel.size) return close();
+    KPI_CATALOG.filter(k => kpiDrawerSel.has(k.code)).forEach(k => {
+      draft.kpis.push({ ...k, mode:'fixed', target:90 });
+    });
+    close(); renderWizard();
+  });
+}
+
+
+/* Global custom-dropdown skin — every native <select class="f-sel"> inside the
+   wizard body is upgraded to a click-to-open menu that visually matches the
+   Add-New-Field dropdown. The underlying <select> keeps its value and still
+   emits `change`, so all existing handlers keep working. */
+function wireCustomSelects() {
+  const root = document.getElementById('wzBody'); if (!root) return;
+  root.querySelectorAll('select.f-sel:not([data-cs])').forEach(sel => {
+    sel.setAttribute('data-cs', '1');
+    const label = sel.closest('.f');
+    if (label) {
+      // Prevent the label's default behavior from focusing the (now hidden) select on stray clicks.
+      label.addEventListener('mousedown', e => {
+        if (e.target.tagName === 'INPUT') return;
+        e.preventDefault();
+      });
+    }
+    // Cover the label with a transparent hit target so any click opens the menu.
+    const host = label || sel.parentElement;
+    if (!host || host.querySelector('.cs-hit')) return;
+    host.style.position = host.style.position || 'relative';
+    const hit = document.createElement('button');
+    hit.type = 'button'; hit.className = 'cs-hit'; hit.setAttribute('aria-haspopup','listbox');
+    hit.addEventListener('click', e => { e.stopPropagation(); openCustomSelect(sel, host); });
+    host.appendChild(hit);
+    // Keyboard: open on space/enter when focused on label
+    host.addEventListener('keydown', e => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target === host) { e.preventDefault(); openCustomSelect(sel, host); }
+    });
+  });
+}
+function openCustomSelect(sel, host) {
+  closeCustomSelect();
+  const opts = Array.from(sel.options).filter(o => !o.hidden && o.value !== '' || o.textContent.trim());
+  const menu = document.createElement('div');
+  menu.className = 'cs-menu';
+  const rect = host.getBoundingClientRect();
+  menu.style.left = rect.left + window.scrollX + 'px';
+  menu.style.top = rect.bottom + window.scrollY + 4 + 'px';
+  menu.style.width = rect.width + 'px';
+  menu.innerHTML = `<div class="cs-search">${ic('search-lg', 16)}<input type="text" placeholder="Search"></div><div class="cs-list">${opts.map(o => `<div class="cs-opt${o.selected ? ' on' : ''}" data-v="${esc(o.value || o.textContent)}">${esc(o.textContent)}</div>`).join('')}</div>`;
+  document.body.appendChild(menu);
+  const inp = menu.querySelector('input');
+  setTimeout(() => inp.focus(), 0);
+  inp.addEventListener('input', () => {
+    const q = inp.value.toLowerCase();
+    menu.querySelectorAll('.cs-opt').forEach(o => { o.hidden = q && !o.textContent.toLowerCase().includes(q); });
+  });
+  menu.querySelectorAll('.cs-opt').forEach(o => o.addEventListener('click', () => {
+    sel.value = o.dataset.v;
+    sel.dispatchEvent(new Event('change', { bubbles:true }));
+    sel.dispatchEvent(new Event('input',  { bubbles:true }));
+    closeCustomSelect();
+  }));
+  const outside = e => { if (!menu.contains(e.target) && e.target !== host && !host.contains(e.target)) closeCustomSelect(); };
+  setTimeout(() => document.addEventListener('mousedown', outside, true), 0);
+  window._csClose = () => { menu.remove(); document.removeEventListener('mousedown', outside, true); window._csClose = null; };
+}
+function closeCustomSelect() { if (window._csClose) window._csClose(); }
