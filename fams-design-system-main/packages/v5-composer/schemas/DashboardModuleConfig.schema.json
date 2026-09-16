@@ -221,6 +221,7 @@
           "type": "string",
           "enum": [
             "donut",
+            "breakdown-strip",
             "bar",
             "line",
             "stacked-bar",
@@ -755,10 +756,18 @@
         },
         "slices": {
           "type": "array",
-          "description": "donut slices.",
+          "description": "donut slices / breakdown-strip items.",
           "items": {
             "type": "object",
             "properties": {
+              "tone": {
+                "enum": ["primary", "success", "warning", "danger", "info", "lavender", "yellow", "neutral"],
+                "description": "breakdown-strip ONLY — semantic status tone of the slice's segment and headline value. Default 'neutral'."
+              },
+              "display": {
+                "type": "string",
+                "description": "breakdown-strip ONLY — pre-formatted display of value (e.g. \"03\"). Falls back to the number."
+              },
               "colorToken": {
                 "type": "string",
                 "description": "Non-categorical colour binding for this slice \u2014 a token reference such as \"var(--color-primary)\", resolved at paint time so it follows the active theme/tenant. Wins over colorIndex."

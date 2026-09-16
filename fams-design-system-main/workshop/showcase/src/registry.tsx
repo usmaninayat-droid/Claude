@@ -61,6 +61,7 @@ import KpiTileDemo from './demos/KpiTileDemo'
 import KpiMetricCardDemo from './demos/KpiMetricCardDemo'
 import RouteJobCardDemo from './demos/RouteJobCardDemo'
 import StatusBreakdownCardDemo from './demos/StatusBreakdownCardDemo'
+import BreakdownStripDemo from './demos/BreakdownStripDemo'
 import HealthStripDemo from './demos/HealthStripDemo'
 import ConnectionStatusCardDemo from './demos/ConnectionStatusCardDemo'
 import LiveDurationCardDemo from './demos/LiveDurationCardDemo'
@@ -362,6 +363,7 @@ export const COMPONENT_GROUPS: Group[] = [
           { id: 'kpi-tile', label: 'KpiTile', Demo: KpiTileDemo },
           { id: 'kpi-metric-card', label: 'KpiMetricCard', Demo: KpiMetricCardDemo },
           { id: 'status-breakdown-card', label: 'StatusBreakdownCard', Demo: StatusBreakdownCardDemo },
+          { id: 'breakdown-strip', label: 'BreakdownStrip', Demo: BreakdownStripDemo },
           { id: 'health-strip', label: 'HealthStrip', Demo: HealthStripDemo },
           { id: 'connection-status-card', label: 'ConnectionStatusCard', Demo: ConnectionStatusCardDemo },
           { id: 'live-duration-card', label: 'LiveDurationCard', Demo: LiveDurationCardDemo },

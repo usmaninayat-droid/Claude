@@ -183,6 +183,7 @@ import {
   KpiMetricCard,
   RouteJobCard,
   StatusBreakdownCard,
+  BreakdownStrip,
   Alert,
   InfoBanner,
   Breadcrumbs,
@@ -1151,6 +1152,22 @@ const FIXTURES: Fixture[] = [
         banner={{ tone: 'warning', text: 'SLA at risk' }}
         selected
         onSelect={() => {}}
+      />
+    ),
+  },
+  {
+    name: 'BreakdownStrip',
+    render: () => (
+      <BreakdownStrip
+        aria-label="Fleet availability"
+        items={[
+          { id: 'on-route', label: 'On Route', value: 271, tone: 'success' },
+          { id: 'idle', label: 'Idle', value: 19, tone: 'lavender' },
+          { id: 'standby', label: 'Standby', value: 24, tone: 'info' },
+          { id: 'maintenance', label: 'Maintenance', value: 10, tone: 'yellow' },
+          { id: 'breakdown', label: 'Breakdown', value: 3, tone: 'danger', display: '03' },
+          { id: 'inactive', label: 'Inactive', value: 1, tone: 'neutral', display: '01' },
+        ]}
       />
     ),
   },

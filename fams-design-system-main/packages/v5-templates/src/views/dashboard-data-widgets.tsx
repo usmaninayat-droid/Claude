@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import {
   Avatar,
+  BreakdownStrip,
   CriticalEventsList,
   IconBadge,
   KpiTile,
@@ -18,6 +19,7 @@ import type {
   DashboardMedia,
   DashboardRow,
   DashboardSeverity,
+  DashboardSlice,
 } from '@fams/v5-composer'
 import { cn } from '../lib/cn'
 import {
@@ -179,6 +181,42 @@ export function KpiCardWidget(props: DashboardWidgetRenderProps) {
         className="h-full"
       />
     </WidgetState>
+  )
+}
+
+/**
+ * The "Progress Overview" card (Figma 2227:76502) — a headline stat row and
+ * one overlapping-pill proportion bar, over the widget's `slices[]`. Reuses the
+ * donut's slice vocabulary (label / value / dimensions) plus a semantic `tone`,
+ * so a page pill filters it exactly as it filters a donut. The optional
+ * `scopeFilter` renders the header's "All Vehicles" select; a scoped strip
+ * keeps the slices whose `dimensions[scopeFilter.id]` carry the chosen value
+ * (un-annotated slices survive, so a dataset without dimensions never blanks).
+ */
+export function BreakdownStripWidget(props: DashboardWidgetRenderProps) {
+  const { widget } = props
+  const source = sourceOf(widget)
+  const scope = useWidgetScopeFilter(source)
+  const scopeKey = source.scopeFilter?.id
+  const slices = ((source.slices ?? []) as DashboardSlice[]).filter((slice) => {
+    if (!scopeKey || !scope.value) return true
+    const tagged = slice.dimensions?.[scopeKey]
+    if (tagged === undefined) return true
+    return Array.isArray(tagged) ? tagged.includes(scope.value) : tagged === scope.value
+  })
+  return (
+    <WidgetCard {...props} count={slices.length} bodyPadding="md" actions={scope.node}>
+      <BreakdownStrip
+        aria-label={widgetAriaLabel(widget, props.filterSummary)}
+        items={slices.map((slice, index) => ({
+          id: slice.id ?? String(index),
+          label: slice.label,
+          value: slice.value,
+          tone: slice.tone,
+          display: slice.display,
+        }))}
+      />
+    </WidgetCard>
   )
 }
 

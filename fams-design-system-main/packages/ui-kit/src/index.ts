@@ -284,6 +284,12 @@ export {
   type RouteJobCardBannerTone,
 } from './composites/RouteJobCard'
 export {
+  BreakdownStrip,
+  type BreakdownStripProps,
+  type BreakdownStripItem,
+  type BreakdownTone,
+} from './composites/BreakdownStrip'
+export {
   StatusBreakdownCard,
   type StatusBreakdownCardProps,
   type StatusBreakdownRow,

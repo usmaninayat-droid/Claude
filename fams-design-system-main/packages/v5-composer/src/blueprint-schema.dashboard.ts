@@ -59,9 +59,10 @@ export type DashboardColorToken = string
  */
 export type DashboardDimensionValues = Record<string, string | string[]>
 
-/** The 14 widget forms `DashboardModuleConfig.schema.json` names. */
+/** The 15 widget forms `DashboardModuleConfig.schema.json` names. */
 export type DashboardWidgetType =
   | 'donut'
+  | 'breakdown-strip'
   | 'bar'
   | 'line'
   | 'stacked-bar'
@@ -98,12 +99,19 @@ export interface DashboardSeries {
   dimensions?: DashboardDimensionValues
 }
 
-/** One proportional slice — the `donut` widget's data shape. */
+/** Status tones a `breakdown-strip` slice may take — mirrors `@fams/ui-kit`'s `BreakdownTone`. */
+export type DashboardBreakdownTone = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'lavender' | 'yellow' | 'neutral'
+
+/** One proportional slice — the `donut` and `breakdown-strip` widgets' data shape. */
 export interface DashboardSlice {
   id?: string
   label: string
   value: number
   colorIndex?: DashboardColorIndex
+  /** `breakdown-strip` ONLY — semantic status tone of the slice's segment and headline value. Default `'neutral'`. */
+  tone?: DashboardBreakdownTone
+  /** `breakdown-strip` ONLY — pre-formatted display of `value` (e.g. `"03"`). Falls back to the number. */
+  display?: string
   /** Non-categorical colour binding — wins over `colorIndex`. See `DashboardColorToken`. */
   colorToken?: DashboardColorToken
   /** Dimension values this slice belongs to — see `DashboardDimensionValues`. */
@@ -636,6 +644,7 @@ export interface DashboardModuleConfigBlueprint {
 /** Every legal `DashboardWidget.type`, in schema order — the runtime twin of the union. */
 export const DASHBOARD_WIDGET_TYPES: readonly DashboardWidgetType[] = [
   'donut',
+  'breakdown-strip',
   'bar',
   'line',
   'stacked-bar',

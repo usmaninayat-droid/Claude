@@ -9,6 +9,7 @@ import {
   SparklineTableWidget,
 } from './dashboard-chart-widgets'
 import {
+  BreakdownStripWidget,
   KpiCardWidget,
   LeaderboardWidget,
   ListWidget,
@@ -35,6 +36,7 @@ import type { DashboardWidgetRenderer, DashboardWidgetRenderProps } from './dash
  */
 export const DASHBOARD_WIDGET_RENDERERS: Record<DashboardWidgetType, DashboardWidgetRenderer> = {
   donut: DonutWidget,
+  'breakdown-strip': BreakdownStripWidget,
   bar: BarWidget,
   line: LineWidget,
   'stacked-bar': BarWidget,

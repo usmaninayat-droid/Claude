@@ -1055,6 +1055,23 @@
       "registryDependencies": []
     },
     {
+      "name": "breakdown-strip",
+      "type": "registry:component",
+      "title": "BreakdownStrip",
+      "description": "At-a-glance metric tiles, health rollups, and live status cards for dashboards.",
+      "files": [
+        {
+          "path": "packages/ui-kit/src/composites/BreakdownStrip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "health-strip",
       "type": "registry:component",
       "title": "HealthStrip",
@@ -3124,7 +3141,8 @@
         "map-panel",
         "overview-widgets",
         "record-sections-grid",
-        "scoped-linked-records"
+        "scoped-linked-records",
+        "v5-list-view"
       ]
     },
     {
@@ -3155,7 +3173,8 @@
         "terra-draw-maplibre-gl-adapter"
       ],
       "registryDependencies": [
-        "map-panel"
+        "map-panel",
+        "v5-list-view"
       ]
     },
     {
@@ -3207,7 +3226,8 @@
       ],
       "registryDependencies": [
         "map-panel",
-        "overview-widgets"
+        "overview-widgets",
+        "v5-list-view"
       ]
     },
     {
@@ -3228,7 +3248,9 @@
         "clsx",
         "tailwind-merge"
       ],
-      "registryDependencies": []
+      "registryDependencies": [
+        "v5-list-view"
+      ]
     },
     {
       "name": "linked-record-detail-section",

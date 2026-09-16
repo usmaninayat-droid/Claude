@@ -149,6 +149,7 @@ export type {
   DashboardWidgetType,
   DashboardSeries,
   DashboardSlice,
+  DashboardBreakdownTone,
   DashboardSeverity,
   DashboardMetaItem,
   DashboardListItem,
